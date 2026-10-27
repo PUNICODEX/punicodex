@@ -736,21 +736,57 @@ async function notifyScholarsAccountProvisioned({
   tempPassword,
 }) {
   const loginUrl = `${PLATFORM_URL}/scholars/login/`;
+  const institution = institutionName ? escapeHtml(institutionName) : 'your institution';
+  // Ceremonial register, same table DNA as the pitch family: provisioning is
+  // not an IT notice, it is a seat in the pantheon.
   return sendEmail({
     to: email,
-    subject: `Your PuniCodex Scholarly Edition account${institutionName ? ` — ${institutionName}` : ''}`,
-    html: `
-      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">PUNICODEX Scholarly Edition</h2>
-        <p>Hi ${escapeHtml(displayName || 'there')},</p>
-        <p>An account has been provisioned for you${institutionName ? ` under <strong>${escapeHtml(institutionName)}</strong>` : ''}. Sign in with this one-time temporary password:</p>
-        <div style="background:#f8f8f8;border-radius:8px;padding:1.5rem;text-align:center;margin:1.5rem 0;">
-          <span style="font-family:monospace;font-size:1.25rem;font-weight:700;letter-spacing:0.05em;color:#111;">${escapeHtml(tempPassword)}</span>
-        </div>
-        <p><a href="${escapeHtml(loginUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Sign In</a></p>
-        <p style="color:#666;font-size:0.85rem;">You will be asked to set a permanent password after signing in. If you did not expect this account, you can ignore this email.</p>
-      </div>
-    `,
+    subject: `A seat in the pantheon — your Scholarly Edition account${
+      institutionName ? ` (${institutionName})` : ''
+    }`,
+    html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Scholarly Edition account</title></head>
+<body style="margin:0; padding:0; background-color:#0b0a08;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#0b0a08"><tr><td align="center" style="padding:28px 12px;">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:560px; max-width:560px; background-color:#14110c; border:1px solid #3a2f1a;">
+  <tr><td align="center" style="padding:26px 36px 20px 36px; border-bottom:1px solid #3a2f1a;">
+    <div style="font-family:Georgia, serif; font-size:24px; letter-spacing:8px; color:#d4af37; font-weight:bold;">PUNICODEX</div>
+    <div style="font-family:Georgia, serif; font-size:10px; letter-spacing:4px; color:#8a7a52; padding-top:6px;">THE SCHOLARLY EDITION</div>
+  </td></tr>
+  <tr><td align="center" style="padding:32px 40px 24px 40px; background-color:#17130d; border-bottom:1px solid #3a2f1a;">
+    <div style="font-family:Georgia, serif; font-size:10px; letter-spacing:4px; color:#8a7a52; padding-bottom:10px;">YOUR ACCOUNT IS PROVISIONED</div>
+    <div style="font-family:Georgia, serif; font-size:24px; letter-spacing:2px; color:#e8c860; line-height:1.3;">Welcome to the edition,<br/>${escapeHtml(displayName || 'scholar')}</div>
+    <div style="width:52px; border-top:1px solid #6b5a33; margin:18px auto 0 auto;"></div>
+  </td></tr>
+  <tr><td style="padding:26px 40px 8px 40px;">
+    <div style="font-family:Georgia, serif; font-size:14px; line-height:1.85; color:#d8cfb8;">
+      <p style="margin:0 0 14px 0;">An account has been provisioned for you under <strong style="color:#e8e0cc;">${institution}</strong>. Your institution now holds a seat in the pantheon — 542 flagship temples whose scholarship its students help keep.</p>
+      <p style="margin:0 0 14px 0;">Sign in with this one-time temporary password. You will choose a permanent password immediately after:</p>
+    </div>
+  </td></tr>
+  <tr><td align="center" style="padding:6px 40px 10px 40px;">
+    <div style="display:inline-block; background-color:#0b0a08; border:1px dashed #8a6d2f; padding:14px 30px;">
+      <span style="font-family:'Courier New', monospace; font-size:18px; letter-spacing:4px; color:#e8c860;">${escapeHtml(tempPassword)}</span>
+    </div>
+  </td></tr>
+  <tr><td align="center" style="padding:14px 40px 26px 40px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td align="center" bgcolor="#8a6d2f" style="border:1px solid #c9a227;">
+        <a href="${escapeHtml(loginUrl)}" target="_blank" style="display:inline-block; padding:12px 26px; font-family:Georgia, serif; font-size:12px; letter-spacing:3px; color:#0b0a08; text-decoration:none; font-weight:bold;">ENTER THE SCHOLARS PORTAL</a>
+      </td>
+    </tr></table>
+  </td></tr>
+  <tr><td align="center" style="padding:16px 40px 22px 40px; border-top:1px solid #3a2f1a; background-color:#100d09;">
+    <div style="font-family:Georgia, serif; font-size:10px; color:#6b6046; line-height:1.8;">
+      Work passes an editorial quality gate before publication; access can be revoked at any time, with immediate effect.<br/>
+      If you did not expect this account, you can ignore this email.
+    </div>
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>`,
   });
 }
 

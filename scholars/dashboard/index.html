@@ -639,6 +639,19 @@
         </div>
 
         <div id="dash-list" aria-live="polite"></div>
+
+        <section class="dash-creatives" aria-label="My creatives" style="margin-top:2.5rem;">
+            <div class="dash-creatives-head">
+                <div>
+                    <h2 style="font-family:inherit;font-size:1.05rem;margin:0 0 .25rem;">My creatives</h2>
+                    <p class="dash-subtitle" style="margin:0;">Marketplace listings, review status, merch consent — and where your art has reached.</p>
+                </div>
+                <a class="dash-pill" href="/scholars/creatives/" style="text-decoration:none;">Open the Creative Studio →</a>
+            </div>
+            <div id="dash-creatives-list" aria-live="polite">
+                <p class="dash-subtitle">Loading creatives…</p>
+            </div>
+        </section>
     </main>
 
     <script>
@@ -879,6 +892,67 @@
             }
         });
 
+        function creativeStatusLabel(status) {
+            return {
+                pending_review: 'In review',
+                approved: 'Approved',
+                rejected: 'Rejected',
+                delisted: 'Delisted',
+            }[status] || status || '—';
+        }
+
+        async function loadCreatives() {
+            const host = document.getElementById('dash-creatives-list');
+            let items = [];
+            try {
+                const res = await fetch('/api/v1/creatives/mine/', { credentials: 'same-origin' });
+                const json = await res.json();
+                items = (json.data && json.data.items) || [];
+            } catch {
+                host.innerHTML = '<p class="dash-subtitle">Creatives unavailable right now.</p>';
+                return;
+            }
+            if (!items.length) {
+                host.innerHTML =
+                    '<p class="dash-subtitle">No creatives yet. Upload work in the <a href="/scholars/creatives/">Creative Studio</a> — approved art can reach a temple’s store products.</p>';
+                return;
+            }
+            host.innerHTML = items
+                .map((c) => {
+                    const templeLine = c.inspirationEntryId
+                        ? '<div class="dash-card-section">Inspired by <a href="/' +
+                          escapeHtml(c.inspirationEntryId) +
+                          '/">the Temple of ' +
+                          escapeHtml(c.inspirationEntryId) +
+                          '</a>' +
+                          (c.merchConsent ? ' · merch opted in (50% royalty)' : '') +
+                          '</div>'
+                        : c.merchConsent
+                          ? '<div class="dash-card-section">Merch opted in (50% royalty)</div>'
+                          : '';
+                    const storeLine =
+                        c.creatorProductStatus === 'live'
+                            ? '<span class="dash-status approved">on sale</span>'
+                            : '';
+                    return (
+                        '<article class="dash-card"><div class="dash-card-head"><div class="dash-card-heading">' +
+                        '<h3 class="dash-card-title">' +
+                        escapeHtml(c.title) +
+                        '</h3>' +
+                        templeLine +
+                        '</div>' +
+                        '<span class="dash-status ' +
+                        escapeHtml(c.status) +
+                        '">' +
+                        creativeStatusLabel(c.status) +
+                        '</span> ' +
+                        storeLine +
+                        '</div></article>'
+                    );
+                })
+                .join('');
+        }
+
         async function init() {
             renderSkeleton();
 
@@ -896,6 +970,7 @@
                 + '<span class="dash-role-badge">' + escapeHtml(user.role || 'student') + '</span>';
 
             await loadEdits();
+            await loadCreatives();
         }
 
         init();

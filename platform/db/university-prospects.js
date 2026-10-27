@@ -9,6 +9,8 @@
  */
 
 const path = require('node:path');
+const fs = require('node:fs');
+const ROOT = path.join(__dirname, '..', '..');
 const { isPostgres, query, run } = require(path.join(__dirname, 'operational.js'));
 
 async function ensureUniversityProspects() {
@@ -144,8 +146,43 @@ async function upsertProspect(row) {
   );
 }
 
+/** First-use bootstrap: an empty table (fresh production Postgres) imports
+ * the committed AU seed so the outreach section is never blank. Idempotent —
+ * only fires when zero rows exist. */
+async function selfSeedIfEmpty() {
+  const rows = await listProspectsRaw();
+  if (rows.length > 0) return;
+  let seed = null;
+  try {
+    seed = JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'university-seed.json'), 'utf8'));
+  } catch {
+    return; // seed file absent — nothing to import
+  }
+  for (const u of seed) {
+    await upsertProspect({
+      institution_name: u.name,
+      slug: u.slug,
+      country: 'AU',
+      state: u.state,
+      domain: u.domain,
+      departments: u.departments,
+      source: 'seed',
+      metadata: { seeded_by: 'self-seed (empty table)' },
+    });
+  }
+}
+
+async function listProspectsRaw() {
+  if (isPostgres()) {
+    return query(`SELECT * FROM university_prospects ORDER BY institution_name`);
+  }
+  const { getDb } = require('./connection.js');
+  return getDb().prepare(`SELECT * FROM university_prospects ORDER BY institution_name`).all();
+}
+
 async function listProspects({ status } = {}) {
   await ensureUniversityProspects();
+  await selfSeedIfEmpty();
   if (isPostgres()) {
     const rows = status
       ? await query(
@@ -229,6 +266,24 @@ async function setProspectStatus(id, status) {
   ).run(status, id);
 }
 
+/** Merge crawled departments into a prospect (human-curated entries are kept). */
+async function updateDepartments(id, departments) {
+  await ensureUniversityProspects();
+  if (isPostgres()) {
+    await query(
+      `UPDATE university_prospects SET departments = $1, updated_at = now() WHERE id = $2`,
+      [JSON.stringify(departments), id]
+    );
+    return;
+  }
+  const { getDb } = require('./connection.js');
+  getDb()
+    .prepare(
+      `UPDATE university_prospects SET departments = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
+    )
+    .run(JSON.stringify(departments), id);
+}
+
 /** The crawler's verification result: mark the pledge verified (or flip back). */
 async function markBacklink(id, verified) {
   await ensureUniversityProspects();
@@ -296,6 +351,7 @@ module.exports = {
   ensureUniversityProspects,
   BACKLINK_PLEDGE_MONTHS,
   markBacklink,
+  updateDepartments,
   sweepOverdueBacklinks,
   deleteProspect,
   upsertProspect,

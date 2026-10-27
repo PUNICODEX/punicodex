@@ -145,6 +145,16 @@
             );
         }
 
+        function backlinkBadge(p) {
+            if (p.backlinkStatus === 'verified') return '<span class="uni-status uni-status--active">verified</span>';
+            if (p.backlinkStatus === 'overdue') return '<span class="uni-status uni-status--declared">overdue</span>';
+            if (p.backlinkDeadlineAt) {
+                var days = Math.ceil((new Date(p.backlinkDeadlineAt) - Date.now()) / 86400000);
+                return '<span class="uni-status uni-status--pending" title="Pledge window">~' + days + 'd left</span>';
+            }
+            return '<span class="field-hint">—</span>';
+        }
+
         function deptTags(list) {
             return (list || []).map(function (d) {
                 return '<span class="uni-dept">' + Portal.escapeHtml(d) + '</span>';
@@ -163,18 +173,22 @@
             }
 
             var byStatus = data.byStatus || {};
+            var byBacklink = data.byBacklink || {};
             document.getElementById('uni-stats').innerHTML =
                 statCard(Portal.fmtNumber(data.total), 'Prospects') +
                 statCard(Portal.fmtNumber(byStatus.pending || 0), 'Pending') +
                 statCard(Portal.fmtNumber(byStatus.contacted || 0), 'Contacted') +
-                statCard(Portal.fmtNumber(byStatus.active || 0), 'Active collaborators');
+                statCard(Portal.fmtNumber(byStatus.active || 0), 'Active collaborators') +
+                statCard(Portal.fmtNumber(byBacklink.pledged || 0), 'Backlink pledged') +
+                statCard(Portal.fmtNumber(byBacklink.verified || 0), 'Backlink verified') +
+                statCard(Portal.fmtNumber(byBacklink.overdue || 0), 'Backlink overdue');
             document.getElementById('uni-total').textContent =
                 data.total + ' institution' + (data.total === 1 ? '' : 's') +
                 (filter ? ' · filtered: ' + filter : '');
 
             document.getElementById('uni-table').innerHTML = data.items.length
                 ? '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
-                  '<th>Institution</th><th>State</th><th>Aligned departments</th><th>Pitched</th><th>Status</th><th></th>' +
+                  '<th>Institution</th><th>State</th><th>Aligned departments</th><th>Pitched</th><th>Status</th><th>Backlink</th><th></th>' +
                   '</tr></thead><tbody>' +
                   data.items.map(function (p) {
                       var canSend = p.status !== 'active' && p.status !== 'declined' && (p.pitchCount || 0) < 3;
@@ -186,6 +200,7 @@
                           '<td>' + deptTags(p.departments) + '</td>' +
                           '<td class="num">' + (p.pitchCount || 0) + (p.lastPitchedAt ? '<div class="field-hint">' + String(p.lastPitchedAt).slice(0, 10) + '</div>' : '') + '</td>' +
                           '<td><span class="uni-status uni-status--' + Portal.escapeHtml(p.status) + '">' + Portal.escapeHtml(p.status) + '</span></td>' +
+                          '<td>' + backlinkBadge(p) + '</td>' +
                           '<td>' + (canSend
                               ? '<button type="button" class="btn btn-secondary btn-sm" data-pitch="' + p.id + '">Pitch</button>'
                               : '<span class="field-hint">—</span>') + '</td>' +

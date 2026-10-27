@@ -29,7 +29,11 @@ module.exports = async (req, res) => {
         : null;
     const items = await prospects.listProspects({ status: status || undefined });
     const byStatus = {};
-    for (const p of items) byStatus[p.status] = (byStatus[p.status] || 0) + 1;
+    const byBacklink = {};
+    for (const p of items) {
+      byStatus[p.status] = (byStatus[p.status] || 0) + 1;
+      byBacklink[p.backlink_status] = (byBacklink[p.backlink_status] || 0) + 1;
+    }
 
     return res.json({
       items: items.map((p) => ({
@@ -45,9 +49,13 @@ module.exports = async (req, res) => {
         source: p.source,
         pitchCount: p.pitch_count,
         lastPitchedAt: p.last_pitched_at,
+        backlinkStatus: p.backlink_status,
+        backlinkDeadlineAt: p.backlink_deadline_at,
+        backlinkVerifiedAt: p.backlink_verified_at,
       })),
       total: items.length,
       byStatus,
+      byBacklink,
     });
   } catch (err) {
     sendError(res, err);

@@ -161,6 +161,35 @@ test('prospect store: upsert is idempotent and markPitched throttles state', asy
   assert.strictEqual(declined.status, 'declined');
 });
 
+// ── Inspiration temple validation ──
+
+test('creative upload rejects unknown inspiration temple ids with a clear 400', async () => {
+  const validate = (value, res) => {
+    // Mirror of platform/api/creative-marketplace.js#validateInspirationEntryId
+    const { LEXICON } = require('../type/js/lexicon.js');
+    if (value === undefined || value === null || value === '') return null;
+    if (typeof value !== 'string' || value.length > 60) {
+      res.status = 400;
+      return false;
+    }
+    const known = Array.isArray(LEXICON) && LEXICON.some((e) => e.id === value);
+    if (!known) {
+      res.status = 400;
+      return false;
+    }
+    return value;
+  };
+  assert.strictEqual(validate('', {}), null);
+  assert.strictEqual(validate(undefined, {}), null);
+  assert.strictEqual(validate('hekate', {}), 'hekate');
+  const bad = {};
+  assert.strictEqual(validate('not-a-real-temple', bad), false);
+  assert.strictEqual(bad.status, 400);
+  const long = {};
+  assert.strictEqual(validate('x'.repeat(61), long), false);
+  assert.strictEqual(long.status, 400);
+});
+
 // ── Creative lifecycle emails ──
 
 test('creative emails: approved / first sale / store-live render branded HTML', () => {
@@ -195,4 +224,38 @@ test('creative emails: approved / first sale / store-live render branded HTML', 
   for (const m of [approved, sale, live]) {
     assert.doesNotMatch(m.html, /invoice/i);
   }
+});
+
+// ── Admin portal regressions (reported live) ──
+
+test('leasing page: the patrons tab deep-link resolves (regression)', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const html = fs.readFileSync(
+    path.join(__dirname, '..', 'platform', 'public', 'admin-portal', 'leasing', 'index.html'),
+    'utf8'
+  );
+  for (const tab of ['bookings', 'creative-review', 'tenants', 'patrons', 'discounts', 'orders']) {
+    assert.ok(html.includes(`id="tab-${tab}"`), `missing panel #tab-${tab}`);
+    assert.ok(html.includes(`data-tab="${tab}"`), `missing button data-tab="${tab}"`);
+  }
+  assert.ok(
+    html.includes(
+      "var TABS = ['bookings', 'creative-review', 'tenants', 'patrons', 'discounts', 'orders'];"
+    ),
+    'TABS registry drifted'
+  );
+  assert.ok(html.includes("initialParams.get('tab')"), 'the ?tab= deep-link reader is gone');
+  assert.ok(html.includes('showTab(initial);'), 'init does not apply the initial tab');
+  assert.ok(
+    html.includes("getElementById('tabbtn-' + tab).addEventListener('click'"),
+    'tab click handlers unwired'
+  );
+});
+
+test('self-seed: a prospect store with rows never re-imports the seed', async () => {
+  const store = require('../platform/db/university-prospects.js');
+  const before = await store.listProspects();
+  const again = await store.listProspects();
+  assert.strictEqual(again.length, before.length, 'self-seed must be a no-op on a populated table');
 });

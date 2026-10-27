@@ -1,0 +1,47 @@
+name: University Crawl
+
+on:
+  schedule:
+    # Mondays 05:17 UTC — after the creative sync, before the workday AU time.
+    - cron: '17 5 * * 1'
+  workflow_dispatch:
+
+# Discovers aligned departments, contact pages, and backlink verifications
+# across the seeded Australian universities. Commits the weekly report when
+# it changes; DB writes (department merges, backlink stamps) go to the
+# operational store directly.
+
+concurrency:
+  group: university-crawl
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Crawl universities (dry report on PRs is manual; here we merge + verify)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/crawl-australian-universities.js
+
+      - name: Commit the weekly report when changed
+        run: |
+          git add data/crawler/universities/
+          if git diff --cached --quiet; then
+            echo "Report unchanged — no commit."
+            exit 0
+          fi
+          git -c user.name="PuniCodex CI" -c user.email="ci@punicodex.com" commit -m "chore(crawler): weekly university discovery report"
+          git push

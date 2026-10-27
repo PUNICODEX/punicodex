@@ -1,3 +1,31 @@
+/** A creative may only point at a real lexicon temple — free-text ids
+ *  silently strand art that can never reach a temple's store products. */
+function validateInspirationEntryId(value, res) {
+  if (value === undefined || value === null || value === '') return null;
+  if (typeof value !== 'string' || value.length > 60) {
+    res.status(400).json(error('Inspiration temple must be a temple id (e.g. "hekate")'));
+    return false;
+  }
+  let lexicon = null;
+  try {
+    lexicon = require('../../type/js/lexicon.js').LEXICON;
+  } catch {
+    lexicon = null;
+  }
+  const known = Array.isArray(lexicon) && lexicon.some((e) => e.id === value);
+  if (!known) {
+    res
+      .status(400)
+      .json(
+        error(
+          `Unknown temple "${value}" — pick a temple from the suggestions (its id, e.g. "hekate")`
+        )
+      );
+    return false;
+  }
+  return value;
+}
+
 /**
  * PuniCodex — Student Creative Marketplace API
  *
@@ -321,13 +349,16 @@ router.post(
         );
     }
 
+    const validatedInspiration = validateInspirationEntryId(inspirationEntryId, res);
+    if (validatedInspiration === false) return;
+
     const assetResult = createCreativeAsset({
       creatorId: req.user.id,
       institutionId: req.user.institutionId,
       title,
       description,
       department,
-      inspirationEntryId: inspirationEntryId || null,
+      inspirationEntryId: validatedInspiration,
       licenseType: 'single_use',
       priceCents: Math.max(0, Number(priceCents) || 0),
       previewPath: null,
@@ -451,6 +482,12 @@ router.patch(
       if (req.body[key] !== undefined) {
         updates[key] = req.body[key];
       }
+    }
+
+    if (updates.inspiration_entry_id !== undefined) {
+      const validated = validateInspirationEntryId(updates.inspiration_entry_id, res);
+      if (validated === false) return;
+      updates.inspiration_entry_id = validated;
     }
 
     if (Object.keys(updates).length === 0) {
@@ -744,6 +781,45 @@ router.get(
       days: Number(req.query.days) || 30,
     });
     res.json(success(summary));
+  })
+);
+
+// ─────────────────────────────────────────────────────────────
+// My creative assets (dashboard surface)
+// ─────────────────────────────────────────────────────────────
+
+router.get(
+  '/mine',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { all } = require('../db/operational.js');
+    const rows = await all(
+      `SELECT a.id, a.title, a.status, a.department, a.inspiration_entry_id,
+              a.merch_consent, a.price_cents, a.created_at,
+              cp.id AS creator_product_id, cp.status AS creator_product_status
+       FROM creative_assets a
+       LEFT JOIN creator_products cp ON cp.creative_asset_id = a.id
+       WHERE a.creator_id = ?
+       ORDER BY a.updated_at DESC
+       LIMIT 50`,
+      [req.user.id]
+    );
+    res.json(
+      success({
+        items: rows.map((r) => ({
+          id: r.id,
+          title: r.title,
+          status: r.status,
+          department: r.department,
+          inspirationEntryId: r.inspiration_entry_id,
+          merchConsent: r.merch_consent === 1,
+          priceCents: r.price_cents,
+          createdAt: r.created_at,
+          creatorProductId: r.creator_product_id,
+          creatorProductStatus: r.creator_product_status,
+        })),
+      })
+    );
   })
 );
 

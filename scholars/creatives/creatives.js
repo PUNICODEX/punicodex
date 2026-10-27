@@ -129,8 +129,10 @@
               <input type="number" id="asset-price" min="0" step="0.01" placeholder="0.00" required>
             </div>
             <div class="cre-field">
-              <label for="asset-inspiration">Inspiration Entry ID <span style="color:var(--cre-white-dim)">(optional)</span></label>
-              <input type="text" id="asset-inspiration" placeholder="e.g., zeus">
+              <label for="asset-inspiration">Inspired temple <span style="color:var(--cre-white-dim)">(optional — links your art to that temple's store products)</span></label>
+              <input type="text" id="asset-inspiration" list="temple-suggestions" placeholder="Start typing a name — e.g. Hekate" autocomplete="off">
+              <datalist id="temple-suggestions"></datalist>
+              <p class="cre-asset-meta" id="inspiration-hint">Pick from the suggestions — the server only accepts real temple ids.</p>
             </div>
           </div>
           <div class="cre-field">
@@ -376,6 +378,64 @@
     });
 
     function showPreview(file) {
+      wireTemplePicker();
+
+      // Temple picker: debounced autocomplete against the public names API.
+      // The datalist shows "Unicode — meaning (pantheon)"; the chosen option's
+      // data-id carries the temple id that gets submitted.
+      let templePickTimer = null;
+      let templeChoices = [];
+      function wireTemplePicker() {
+        const input = document.getElementById('asset-inspiration');
+        const list = document.getElementById('temple-suggestions');
+        if (!input || !list || input.dataset.wired) return;
+        input.dataset.wired = '1';
+        input.addEventListener('input', () => {
+          const q = input.value.trim();
+          clearTimeout(templePickTimer);
+          if (q.length < 2) return;
+          templePickTimer = setTimeout(async () => {
+            try {
+              const res = await fetch(
+                '/api/v1/autocomplete/?q=' + encodeURIComponent(q) + '&limit=8'
+              );
+              const data = await res.json();
+              const items = data.items || data.suggestions || [];
+              templeChoices = items;
+              list.innerHTML = items
+                .map(
+                  (t) =>
+                    '<option value="' +
+                    escapeHtml(t.unicode || t.id) +
+                    ' — ' +
+                    escapeHtml(t.id) +
+                    '" data-id="' +
+                    escapeHtml(t.id) +
+                    '">' +
+                    escapeHtml(t.pantheonLabel || t.pantheon || '') +
+                    '</option>'
+                )
+                .join('');
+            } catch {
+              /* suggestions are a convenience, never a blocker */
+            }
+          }, 200);
+        });
+      }
+
+      // Resolve the picked display text back to a temple id at submit time.
+      function resolveInspirationId() {
+        const raw = document.getElementById('asset-inspiration').value.trim();
+        if (!raw) return undefined;
+        const byValue = templeChoices.find((t) => (t.unicode || t.id) + ' — ' + t.id === raw);
+        if (byValue) return byValue.id;
+        const exactId = templeChoices.find((t) => t.id === raw);
+        if (exactId) return exactId.id;
+        // Typed something not picked from the list: submit raw — the server
+        // validates and rejects unknown ids with a clear message.
+        return raw;
+      }
+
       const reader = new FileReader();
       reader.onload = (e) => {
         preview.src = e.target.result;
@@ -414,8 +474,7 @@
           description: document.getElementById('asset-description').value.trim(),
           department: document.getElementById('asset-department').value,
           priceCents: Math.round(Number(document.getElementById('asset-price').value) * 100),
-          inspirationEntryId:
-            document.getElementById('asset-inspiration').value.trim() || undefined,
+          inspirationEntryId: resolveInspirationId(),
           image: imageBase64,
           merchConsent: document.getElementById('asset-merch-consent').checked,
         };
