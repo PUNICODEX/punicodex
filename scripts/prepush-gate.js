@@ -143,6 +143,7 @@ const RULES = [
       'Admin Tests',
       'Admin Portal Tests',
       'Admin Portal Page Tests',
+      'Portal Shell v2 Tests',
       'Admin Route Auth Contract Tests',
       'Admin Booking Routes',
     ],

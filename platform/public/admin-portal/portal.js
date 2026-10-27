@@ -65,6 +65,14 @@
           href: `${PREFIX}leasing/?tab=discounts`,
           permission: 'read',
         },
+        // Patrons lives as a tab of the Leasing page — deep-link it so the
+        // nav item actually lands on the patrons view (shell test contract).
+        {
+          id: 'patrons',
+          label: 'Patrons',
+          href: `${PREFIX}leasing/?tab=patrons`,
+          permission: 'read',
+        },
         {
           id: 'sponsors',
           label: 'Sponsor Outreach',
