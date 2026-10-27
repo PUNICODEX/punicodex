@@ -14,7 +14,6 @@ const ROOT = path.join(__dirname, '..', '..');
 const { isPostgres, query, run } = require(path.join(__dirname, 'operational.js'));
 
 async function ensureUniversityProspects() {
-  await migrateProspectColumns();
   if (isPostgres()) {
     await query(`CREATE TABLE IF NOT EXISTS university_prospects (
       id SERIAL PRIMARY KEY,
@@ -42,6 +41,7 @@ async function ensureUniversityProspects() {
     await query(
       `CREATE INDEX IF NOT EXISTS idx_university_prospects_status ON university_prospects(status)`
     );
+    await migrateProspectColumns();
     return;
   }
 
@@ -73,6 +73,7 @@ async function ensureUniversityProspects() {
     );
     CREATE INDEX IF NOT EXISTS idx_university_prospects_status ON university_prospects(status);
   `);
+  await migrateProspectColumns();
 }
 
 /** Guarded column adds — existing DBs predate the backlink pledge lifecycle. */

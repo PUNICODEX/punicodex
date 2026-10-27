@@ -8,7 +8,6 @@
  */
 const test = require('node:test');
 const assert = require('node:assert');
-const path = require('node:path');
 
 const { buildUniversityPitch, benefitFor } = require('../platform/api/university-pitch-email.js');
 

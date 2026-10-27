@@ -125,7 +125,9 @@ test('notifyScholarsAccountProvisioned logs and mocks when no RESEND_API_KEY is 
   assert.ok(logged.some((line) => line.includes('To: scholar@test.edu')));
   assert.ok(
     logged.some((line) =>
-      line.includes('Subject: Your PuniCodex Scholarly Edition account — Test University')
+      line.includes(
+        'Subject: A seat in the pantheon — your Scholarly Edition account (Test University)'
+      )
     )
   );
 });
@@ -163,7 +165,7 @@ test('notifyScholarsAccountProvisioned sends temp password and login URL through
     assert.deepStrictEqual(payload.to, ['scholar@test.edu']);
     assert.strictEqual(
       payload.subject,
-      'Your PuniCodex Scholarly Edition account — Test University'
+      'A seat in the pantheon — your Scholarly Edition account (Test University)'
     );
     assert.ok(payload.html.includes('tmp-pass-123'), 'html body must contain the temp password');
     assert.ok(
