@@ -152,7 +152,9 @@ const MOCKUP_FLEET = loadMockupFleet();
 
 function cardImage(p, meta) {
   const composite = p.mockupImage && MOCKUP_FLEET.has(p.id) ? p.mockupImage : null;
-  return composite || meta.mascotPath || p.image;
+  // Cards must read as PRODUCT photos: fleet composite, else the blank
+  // garment base (same visual language as the PDP stage), never flat art.
+  return composite || p.baseMockup || meta.mascotPath || p.image;
 }
 
 /** PDP stage: fleet composite, else the blank-garment base (overlay-ready). */

@@ -132,3 +132,50 @@ test('the placement audit fixture math: content fits inside the garment box', ()
   assert.ok(box.y1 - box.y0 < 0.25, 'wide art height fraction sane');
   assert.ok(box.x0 >= 0.3 && box.x1 <= 0.7, 'centered art stays mid-garment');
 });
+
+// ── Store visual regression guard (2026-10-27 incident) ─────────────
+
+test('no generated store page references a mockup URL outside the verified fleet', () => {
+  const fleet = JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'mockup-fleet.json'), 'utf8'));
+  const pages = [
+    path.join(ROOT, 'store', 'index.html'),
+    path.join(ROOT, 'store', 'aigyptos', 'index.html'),
+    path.join(ROOT, 'store', 'zeus', 'index.html'),
+    path.join(ROOT, 'store', 'aigyptos', 'tee', 'index.html'),
+    path.join(ROOT, 'store', 'zeus', 'mug', 'index.html'),
+  ];
+  let checked = 0;
+  for (const page of pages) {
+    const html = fs.readFileSync(page, 'utf8');
+    for (const m of html.matchAll(
+      /https:\/\/punycodex-masters\.vercel\.app\/mockups\/([a-z0-9-]+)\.jpg/g
+    )) {
+      checked++;
+      assert.strictEqual(
+        fleet[m[1]],
+        true,
+        `${path.basename(page)} references ${m[1]}.jpg which is NOT in the verified live fleet — this 404s`
+      );
+    }
+  }
+  assert.ok(checked > 0, 'expected at least one fleet composite referenced (adonis)');
+});
+
+test('store card and stage imagery resolves to real local assets or fleet composites', () => {
+  const pages = [
+    path.join(ROOT, 'store', 'aigyptos', 'index.html'),
+    path.join(ROOT, 'store', 'aigyptos', 'tee', 'index.html'),
+    path.join(ROOT, 'store', 'zeus', 'mug', 'index.html'),
+    path.join(ROOT, 'store', 'adonis', 'tee', 'index.html'),
+  ];
+  for (const page of pages) {
+    const html = fs.readFileSync(page, 'utf8');
+    for (const m of html.matchAll(/(?:src|srcset)="(\/assets\/[^"]+)"/g)) {
+      const rel = m[1].split(' ')[0];
+      assert.ok(
+        fs.existsSync(path.join(ROOT, rel.replace(/^\//, ''))),
+        `${path.basename(page)} references missing asset ${rel}`
+      );
+    }
+  }
+});
