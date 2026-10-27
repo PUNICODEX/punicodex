@@ -46,7 +46,7 @@ The Unicode keyboard for the world's original scripts.
 • Oracle keyboard training package added
 • Mobile menu navigation fixed
 • Lexicon refreshed: 980 scholarly name restorations`,
-  'en-CA': `🎉 The first production release of PUNICODEX!
+  'en-SG': `🎉 The first production release of PUNICODEX!
 The Unicode keyboard for the world's original scripts.
 • New gold emblem icon and splash screens
 • Sponsorship flow hardened end-to-end
@@ -92,13 +92,6 @@ Le clavier Unicode pour les écritures originales du monde.
 El teclado Unicode para los sistemas de escritura originales del mundo.
 • Nuevo icono y pantallas de inicio con el emblema dorado
 • Flujo de patrocinio endurecido de extremo a extremo
-• Pack de entrenamiento Oracle para el teclado
-• Corregida la navegación del menú móvil
-• Léxico actualizado: 980 restauraciones académicas`,
-  'es-US': `🎉 ¡Primera versión de producción de PUNICODEX!
-El teclado Unicode para los sistemas de escritura originales del mundo.
-• Nuevo icono y pantallas de inicio con el emblema dorado
-• Flujo de patrocinio reforzado de principio a fin
 • Pack de entrenamiento Oracle para el teclado
 • Corregida la navegación del menú móvil
 • Léxico actualizado: 980 restauraciones académicas`,
@@ -228,20 +221,13 @@ Dünyanın özgün yazı sistemleri için Unicode klavyesi.
 • Oracle klavye eğitim paketi eklendi
 • Mobil menü gezinmesi düzeltildi
 • Sözlük güncellendi: 980 akademik isim restorasyonu`,
-  'uk': `🎉 Перший production-реліз PUNICODEX!
-Клавіатура Unicode для оригінальних письмових систем світу.
-• Нова піктограма та стартові екрани з золотим емблемою
-• Потік спонсорства зміцнено від початку до кінця
-• Додано тренувальний пакет Oracle для клавіатури
-• Виправлено навігацію в мобільному меню
-• Оновлено лексикон: 980 наукових реставрацій імен`,
-  'ru-RU': `🎉 Первый релиз PUNICODEX в продакшене!
-Клавиатура Unicode для исконных письменностей мира.
-• Новая иконка и заставки с золотым гербом
-• Процесс спонсорства усилен от начала до конца
-• Добавлен тренировочный пакет Oracle для клавиатуры
-• Исправлена навигация в мобильном меню
-• Обновлён лексикон: 980 академических реконструкций имён`,
+  'lv': `🎉 PUNICODEX pirmā ražošanas versija!
+Unicode tastatūra pasaules oriģinālajām rakstības sistēmām.
+• Jauna zelta emblēmas ikona un sākuma ekrāni
+• Sponsorēšanas plūsma nostiprināta no sākuma līdz galam
+• Pievienots Oracle tastatūras treniņu komplekts
+• Labota mobilās izvēlnes navigācija
+• Atjaunināts leksikons: 980 akadēmiski vārdu atjaunojumi`,
   'zh-CN': `🎉 PUNICODEX 首个正式版！
 为世界各地原生文字打造的 Unicode 键盘。
 • 全新金色徽标图标与启动画面
@@ -284,13 +270,6 @@ Dünyanın özgün yazı sistemleri için Unicode klavyesi.
 • कीबोर्ड के लिए Oracle ट्रेनिंग पैकेट जोड़ा गया
 • मोबाइल मेनू नेविगेशन ठीक किया गया
 • लेक्सिकन अपडेट: 980 विद्वत्तापूर्ण नाम-पुनरुद्धरण`,
-  'bn': `🎉 PUNICODEX-এর প্রথম প্রোডাকশন সংস্করণ!
-বিশ্বের মৌলিক লিপির জন্য ইউনিকোড কিবোর্ড।
-• নতুন সোনালি প্রতীক আইকন ও স্প্ল্যাশ স্ক্রিন
-• স্পনসরশিপ প্রবাহ সামগ্রিকভাবে শক্তিশালী করা হয়েছে
-• কিবোর্ডের জন্য Oracle প্রশিক্ষণ প্যাকেজ যুক্ত
-• মোবাইল মেনু নেভিগেশন ঠিক করা হয়েছে
-• অভিধান আপডেট: ৯৮০টি শৈক্ষিক নাম-পুনরুদ্ধার`,
   'ta-IN': `🎉 PUNICODEX-இன் முதல் தயாரிப்பு பதிப்பு!
 உலகின் அசல் எழுத்து முறைகளுக்கான Unicode விசைப்பலகை.
 • புதிய தங்க எம்ப்ளம் ஐகான் மற்றும் துவக்க திரைகள்
@@ -326,27 +305,20 @@ Dünyanın özgün yazı sistemleri için Unicode klavyesi.
 • कीबोर्डसाठी Oracle प्रशिक्षण पॅकेज जोडले
 • मोबाइल मेनू नेव्हिगेशन दुरुस्त
 • लेक्सिकन अद्यतन: ९८० शैक्षणिक नावांचे पुनरुच्चार`,
-  'gu-IN': `🎉 PUNICODEX નું પ્રથમ પ્રોડક્શન સંસ્કરણ!
+  'gu': `🎉 PUNICODEX નું પ્રથમ પ્રોડક્શન સંસ્કરણ!
 વિશ્વની મૂળ લિપિઓ માટે Unicode કીબોર્ડ.
 • નવો સુવર્ણ પ્રતીક આઇકોન અને સ્પ્લેશ સ્ક્રીનો
 • સ્પોન્સરશિપ પ્રવાહ સંપૂર્ણપણે સુદૃઢ
 • કીબોર્ડ માટે Oracle તાલીમ પેકેજ ઉમેરાયું
 • મોબાઇલ મેનૂ નેવિગેશન સુધારાયું
 • શબ્દકોશ અપડેટ: ૯૮૦ શૈક્ષણિક નામ પુનઃસ્થાપનો`,
-  'pa-IN': `🎉 PUNICODEX ਦਾ ਪਹਿਲਾ ਪ੍ਰੋਡਕਸ਼ਨ ਵਰਜ਼ਨ!
+  'pa': `🎉 PUNICODEX ਦਾ ਪਹਿਲਾ ਪ੍ਰੋਡਕਸ਼ਨ ਵਰਜ਼ਨ!
 ਦੁਨੀਆ ਦੀਆਂ ਮੂਲ ਲਿਪੀਆਂ ਲਈ Unicode ਕੀਬੋਰਡ।
 • ਨਵਾਂ ਸੁਨਹਿਰੀ ਨਿਸ਼ਾਨ ਆਈਕਨ ਅਤੇ ਸਪਲੈਸ਼ ਸਕ੍ਰੀਨਾਂ
 • ਸਪਾਂਸਰਸ਼ਿਪ ਵਹਾਅ ਪੂਰੀ ਤਰ੍ਹਾਂ ਮਜ਼ਬੂਤ
 • ਕੀਬੋਰਡ ਲਈ Oracle ਟ੍ਰੇਨਿੰਗ ਪੈਕੇਜ ਜੋੜਿਆ
 • ਮੋਬਾਈਲ ਮੀਨੂ ਨੇਵੀਗੇਸ਼ਨ ਠੀਕ ਕੀਤਾ
 • ਲੈਕਸੀਕਨ ਅੱਪਡੇਟ: ੯੮੦ ਅਕਾਦਮਿਕ ਨਾਮ-ਪੁਨਰਸ੍ਰਿਸ਼ਟੀਆਂ`,
-  'ne-NP': `🎉 PUNICODEX को पहिलो प्रोडक्सन संस्करण!
-विश्वका मौलिक लिपिहरूका लागि Unicode किबोर्ड।
-• नयाँ सुनौलो प्रतीक आइकन र स्प्लास स्क्रिनहरू
-• स्पोन्सरसिप प्रवाह पूरै बलियो बनाइएको
-• किबोर्डका लागि Oracle तालिम प्याकेज थपिएको
-• मोबाइल मेनु नेभिगेसन ठीक गरिएको
-• शब्दकोश अद्यावधिक: ९८० विद्वतापूर्ण नाम-पुनरुद्धार`,
   'ur': `🎉 PUNICODEX کا پہلا پروڈکشن ورژن!
 دنیا کی اصل رسم الخط کے لیے یونی کوڈ کی بورڈ۔
 • نیا سنہرے نشان والا آئیکن اور اسپلیش اسکرینز
@@ -361,7 +333,7 @@ Dünyanın özgün yazı sistemleri için Unicode klavyesi.
 • إضافة حزمة تدريب Oracle للوحة المفاتيح
 • إصلاح التنقل في القائمة الجوالة
 • تحديث المعجم: 980 استعادة علمية للأسماء`,
-  'fa': `🎉 نخستین نسخهٔ رسمی PUNICODEX!
+  'fa-IR': `🎉 نخستین نسخهٔ رسمی PUNICODEX!
 صفحه‌کلید یونیکد برای خطوط اصیل جهان.
 • آیکن و صفحه‌های آغازین جدید با نشان طلایی
 • تقویت کامل جریان حمایت مالی
@@ -396,7 +368,7 @@ Papan ketik Unicode untuk aksara asli dunia.
 • Paket pelatihan Oracle untuk papan ketik ditambahkan
 • Navigasi menu seluler diperbaiki
 • Leksikon diperbarui: 980 restorasi nama akademis`,
-  'ms': `🎉 Keluaran produksi pertama PUNICODEX!
+  'ms-MY': `🎉 Keluaran produksi pertama PUNICODEX!
 Papan kekunci Unicode untuk tulisan asli dunia.
 • Ikon dan skrin pembuka baharu dengan lambang emas
 • Aliran penajaan diperkukuh sepenuhnya
@@ -417,14 +389,90 @@ Kibodi ya Unicode kwa maandishi asili ya dunia.
 • Kifurushi cha mafunzo cha Oracle kwa kibodi kimeongezwa
 • Urambazaji wa menyu ya simu ume rekebishwa
 • Msamiati umesasishwa: urekebishaji wa kitaaluma wa majina 980`,
-  'zu': `🎉 Ukukhishwa kwangempela kokuqala kwe-PUNICODEX!
-Ikhilobodi ye-Unicode wamabhalwane asemdeni.
-• Isithonjana kanye lesikrini esinembeji yegolide
-• Inzila yesekelo iqinisiwe
-• Iphakheji lomsebenzi we-Oracle yekhilobodi
-• Inkomba yomsebenzi yemenyu yefoni ilungisiwe
-• Ishicilelwe: ukwamukeliswa kabusha kwamagama angu-980`,
+  'az-AZ': `🎉 PUNICODEX-in ilk istehsal buraxılışı!
+Dünyanın orijinal yazı sistemləri üçün Unicode klaviaturası.
+• Yeni qızıl emblemli ikon və açılış ekranları
+• Sponsorluq axını başdan-sona gücləndirildi
+• Klaviatura üçün Oracle təlim pakəti əlavə edildi
+• Mobil menyu naviqasiyası düzəldildi
+• Leksikon yeniləndi: 980 elmi ad bərpası`,
+  'ca': `🎉 Primera versió de producció de PUNICODEX!
+El teclat Unicode per als sistemes d'escriptura originals del món.
+• Icona i pantalles d'inici noves amb l'emblema daurat
+• Flux de patrocini reforçat de principi a fi
+• Pack d'entrenament Oracle per al teclat
+• Navegació del menú mòbil corregida
+• Lèxic actualitzat: 980 restauracions acadèmiques`,
+  'es-419': `🎉 ¡Primera versión de producción de PUNICODEX!
+El teclado Unicode para los sistemas de escritura originales del mundo.
+• Nuevo ícono y pantallas de inicio con el emblema dorado
+• Flujo de patrocinio reforzado de principio a fin
+• Pack de entrenamiento Oracle para el teclado
+• Se corrigió la navegación del menú móvil
+• Léxico actualizado: 980 restauraciones académicas`,
+  'et': `🎉 PUNICODEXi esimene tootmisversioon!
+Unicode-klaviatuur maailma algsete kirjasüsteemide jaoks.
+• Uus kuldse embleemiga ikoon ja avaekraanid
+• Sponsorluse voog tugevdatud algusest lõpuni
+• Klaviatuuri Oracle'i treeningupakett lisatud
+• Mobiilimenüü navigeerimine parandatud
+• Värskendatud leksikon: 980 teaduslikku nime taastamist`,
+  'eu-ES': `🎉 PUNICODEXen lehen ekoizpen-bertsioa!
+Munduko idazkera-sistemetarako Unicode teklatua.
+• Ikur eta hasierako pantaila berriak urrezko ikurrarekin
+• Babesleen fluxua sendotu egin da hasieratik amaierara
+• Teklatuaren Oracle prestakuntza-paketea gehitu da
+• Menu mugikorreko nabigazioa zuzendu da
+• Lexikoa eguneratuta: 980 berreskuratze akademiko`,
+  'gl-ES': `🎉 Primeira versión de produción de PUNICODEX!
+O teclado Unicode para os sistemas de escritura orixinais do mundo.
+• Nova icona e pantallas de inicio co emblema dourado
+• Fluxo de patrocinio reforzado de principio a fin
+• Paquete de adestramento Oracle para o teclado
+• Navegación do menú móbil corrixida
+• Léxico actualizado: 980 restauracións académicas`,
+  'hr': `🎉 Prva produkcijska verzija PUNICODEX-a!
+Unicode tipkovnica za izvorna pisma svijeta.
+• Nova ikona i zasloni za pokretanje sa zlatnim grbom
+• Tok sponzorstva ojačan od početka do kraja
+• Dodan Oracle paket za vježbanje tipkovnice
+• Ispravljena navigacija u mobilnom izborniku
+• Ažurirani leksikon: 980 akademskih rekonstrukcija imena`,
+  'is-IS': `🎉 Fyrsta útgáfa PUNICODEX í framleiðslu!
+Unicode-lyklaborðið fyrir upprunaleg ritmál heimsins.
+• Nýtt táknmynd og ræsiskjáir með gullmerkinu
+• Kostaða ferlið styrkt frá upphafi til enda
+• Oracle æfingapakki fyrir lyklaborðið bætt við
+• Leiðsögn í farsímavalmynd lögð
+• Orðabók uppfærð: 980 fræðileg endurheimt nöfna`,
+  'lt': `🎉 Pirmoji PUNICODEX gamybinė versija!
+„Unicode" klaviatūra pasaulio originalioms rašto sistemoms.
+• Nauja auksinio emblemos piktograma ir įkrovos ekranai
+• Rėmimo srautas sustiprintas nuo pradžios iki galo
+• Pridėtas „Oracle" klaviatūros treniruočių paketas
+• Pataisyta mobiliojo meniu navigacija
+• Atnaujintas leksikonas: 980 akademinių vardų atkūrimų`,
+  'mk-MK': `🎉 Прва продукциска верзија на PUNICODEX!
+Уникод тастатура за оригиналните писма на светот.
+• Нова икона и почетни екрани со златниот емблем
+• Текот на спонзорството зајакнат од почеток до крај
+• Додаден Oracle тренинг-пакет за тастатурата
+• Поправена навигацијата во мобилното мени
+• Ажуриран лексикон: 980 научни реконструкции на имиња`,
 };
+
+// The exact locale set of the Play Console listing, in paste order — the
+// bulk-import.txt blocks follow it so the file drops straight into the
+// Console's bulk release-notes field.
+const LOCALE_ORDER = [
+  'en-AU', 'ar', 'az-AZ', 'bg', 'ca', 'cs-CZ', 'da-DK', 'de-DE', 'el-GR', 'en-GB',
+  'en-IN', 'en-SG', 'en-US', 'en-ZA', 'es-419', 'es-ES', 'et', 'eu-ES', 'fa-IR', 'fi-FI',
+  'fil', 'fr-CA', 'fr-FR', 'gl-ES', 'gu', 'hi-IN', 'hr', 'hu-HU', 'id', 'is-IS',
+  'it-IT', 'iw-IL', 'ja-JP', 'kn-IN', 'ko-KR', 'lt', 'lv', 'mk-MK', 'ml-IN', 'mr-IN',
+  'ms-MY', 'nl-NL', 'no-NO', 'pa', 'pl-PL', 'pt-BR', 'pt-PT', 'ro', 'sk', 'sl',
+  'sr', 'sv-SE', 'sw', 'ta-IN', 'te-IN', 'th', 'tr-TR', 'ur', 'vi', 'zh-CN',
+  'zh-HK', 'zh-TW',
+];
 
 function main() {
   const version = process.argv[2];
@@ -434,26 +482,48 @@ function main() {
   }
   const code = process.argv[3] || '';
   const dir = path.join(ROOT, 'android', 'release-notes', version);
+  fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
 
+  // The map and the listing's locale set must agree exactly — a typo'd code
+  // or a forgotten locale is a silent gap in the bulk import.
+  const mapLocales = Object.keys(NOTES);
+  const missing = LOCALE_ORDER.filter((l) => !NOTES[l]);
+  const extra = mapLocales.filter((l) => !LOCALE_ORDER.includes(l));
+  if (missing.length || extra.length) {
+    if (missing.length) console.error(`✗ missing translations for: ${missing.join(', ')}`);
+    if (extra.length) console.error(`✗ NOTES has locales not in the listing: ${extra.join(', ')}`);
+    process.exit(1);
+  }
+
   let bad = 0;
-  for (const [locale, note] of Object.entries(NOTES)) {
+  const blocks = [];
+  for (const locale of LOCALE_ORDER) {
+    const note = NOTES[locale];
     if (note.length > LIMIT) {
       console.error(`✗ ${locale}: ${note.length} chars — over the ${LIMIT} limit`);
       bad++;
       continue;
     }
     fs.writeFileSync(path.join(dir, `${locale}.txt`), note + '\n');
+    blocks.push(`<${locale}>\n${note}\n</${locale}>`);
   }
   if (bad) process.exit(1);
 
+  // Play Console bulk-import format: one <locale> block per language, paste
+  // the whole file into "What's new in this release?".
+  fs.writeFileSync(path.join(dir, 'bulk-import.txt'), blocks.join('\n') + '\n');
+
   const readme = `PUNICODEX ${version}${code ? ` (versionCode ${code})` : ''} — Play Store release notes
-Paste each <locale>.txt into Play Console → Release → Production →
-"What's new in this release?" for the matching locale.
+- bulk-import.txt: paste the WHOLE file into Play Console → Release →
+  Production → "What's new in this release?" (bulk <locale> format).
+- <locale>.txt: per-language copies if you prefer manual entry.
 Generated by scripts/android-release-notes.js — edit the map there.
 `;
   fs.writeFileSync(path.join(dir, 'README.txt'), readme);
-  console.log(`Wrote ${Object.keys(NOTES).length} locale files to android/release-notes/${version}/`);
+  console.log(
+    `Wrote ${LOCALE_ORDER.length} locale files + bulk-import.txt to android/release-notes/${version}/`
+  );
   console.log('Long-tail translations should get a native-speaker glance before submission.');
 }
 
