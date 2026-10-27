@@ -223,3 +223,30 @@ test('every collection card shows the temple art — fleet composite or build-ti
   }
   assert.ok(cards >= 500, `expected 500+ collection cards across the sample, found ${cards}`);
 });
+
+// ── Mockup fleet integrity (2026-10-27 wipe) ────────────────────────
+
+test('the local mockup fleet covers the full catalog before any masters deploy', () => {
+  // The .masters/mockups folder is gitignored build output — the only copy
+  // of the photorealistic renders. Deleting it silently starves the store
+  // (78 of 7,132 survived the 2026-10-27 wipe). This guard fails npm test
+  // the moment the local fleet no longer covers the catalog, and
+  // scripts/deploy-masters.sh independently refuses partial deploys.
+  const products = require(path.join(ROOT, 'store', 'products.json'));
+  const list = Array.isArray(products.products)
+    ? products.products
+    : Object.values(products.products || {});
+  const mockDir = path.join(ROOT, '.masters', 'mockups');
+  const jpgs = fs
+    .readdirSync(mockDir)
+    .filter((f) => f.endsWith('.jpg') && fs.statSync(path.join(mockDir, f)).size > 0);
+  const missing = list.filter((p) => !fs.existsSync(path.join(mockDir, `${p.id}.jpg`)));
+  assert.strictEqual(
+    missing.length,
+    0,
+    `mockup fleet is partial: ${jpgs.length} JPGs for ${list.length} products — missing e.g. ${missing
+      .slice(0, 5)
+      .map((p) => p.id)
+      .join(', ')}. Do NOT deploy punycodex-masters in this state.`
+  );
+});

@@ -97,6 +97,11 @@ const SUITES = [
     timeout: 60000,
   },
   {
+    name: 'Mockup Fleet Live Tests',
+    cmd: 'node test/mockup-fleet-live.test.js',
+    timeout: 120000,
+  },
+  {
     name: 'Analytics Journeys Tests',
     cmd: 'node test/analytics-journeys.test.js',
     timeout: 60000,
