@@ -853,7 +853,7 @@ function renderProduct(id, kind, product) {
     imageHeight: stageDims[1],
     css: `.pdp .stage{aspect-ratio:${stageDims[0]} / ${stageDims[1]}}`,
   })}
-<link rel="stylesheet" href="/css/store-configurator.css?v=af83704a04">
+<link rel="stylesheet" href="/css/store-configurator.css?v=1">
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/${id}/">${esc(meta.name)}</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
 <div class="wrap pdp">
   <div><div class="stage"><img id="stage-img" src="${esc(stageImg)}" alt="${esc(product.name)}" width="${stageDims[0]}" height="${stageDims[1]}" fetchpriority="high" decoding="async"></div>${colourNote}</div>
@@ -953,7 +953,7 @@ ${breadcrumbScript([
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=0dd185471f" defer></script>
+<script src="/js/store-configurator.js?v=1" defer></script>
     ${footerHtml()}
 </body></html>
 `;

@@ -37,6 +37,8 @@ const ASSETS = [
   '/js/herald-beacon.js',
   '/js/newsletter.js',
   '/js/temple-base.js',
+  '/js/store-configurator.js',
+  '/css/store-configurator.css',
   '/assets/fonts/fonts.css',
   '/admin-portal/portal.css',
   '/admin-portal/portal.js',
