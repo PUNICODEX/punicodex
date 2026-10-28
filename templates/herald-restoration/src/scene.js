@@ -60,11 +60,21 @@ function showFallback(error) {
   document.getElementById('fallback').style.display = 'grid';
 }
 
+// Mobile GPUs (especially on high-DPI phones) cannot sustain the full scene:
+// full-resolution bloom buffers + 2048px PCFSoft shadows + DPR 1.5 get the
+// driver to kill the WebGL context at peak load (the dome/coffer sequence,
+// t≈19–29s). Detect early and render a lighter configuration.
+const MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth / innerHeight < 0.8;
+
 const renderer = createRenderer();
-renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+renderer.setPixelRatio(MOBILE ? 1 : Math.min(devicePixelRatio, 1.5));
 renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.type = MOBILE ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+renderer.domElement.addEventListener('webglcontextlost', (event) => {
+  event.preventDefault();
+  showFallback(new Error('The graphics context was lost (GPU ran out of resources). Please reload.'));
+});
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = .88;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -100,7 +110,7 @@ scene.add(new THREE.HemisphereLight(0xb8c3d8, 0x211709, .62));
 const key = new THREE.DirectionalLight(0xffe6b0, 2.35);
 key.position.set(-11, 20, 13);
 key.castShadow = true;
-key.shadow.mapSize.set(2048, 2048);
+key.shadow.mapSize.set(MOBILE ? 1024 : 2048, MOBILE ? 1024 : 2048);
 Object.assign(key.shadow.camera, { left: -16, right: 16, top: 18, bottom: -12, near: 1, far: 55 });
 key.shadow.normalBias = .035;
 key.shadow.bias = -.00015;
