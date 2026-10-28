@@ -112,6 +112,7 @@ const rootPages = [
   path.join('trending', 'index.html'),
   path.join('patterns', 'index.html'),
   path.join('patterns', 'methodology', 'index.html'),
+  path.join('herald', 'restoration', 'index.html'),
   path.join('careers', 'index.html'),
   path.join('about', 'founder', 'index.html'),
   path.join('arbitrage', 'index.html'),

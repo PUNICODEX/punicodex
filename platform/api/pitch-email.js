@@ -290,6 +290,14 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
           <tr>
             <td valign="top" style="padding:0 0 6px 0;">
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
+                <span style="color:#e8c860;">◆&nbsp;&nbsp;The Herald records its patrons.</span><br/>
+                The Unicode Herald — the Pantheon's quarterly edition — lists the temples' sponsors as they are seated: your name is printed alongside the temple's other patrons, on the temple's own page, for every reader of the edition. And your space does not stay generic — customisations so your placement speaks in your brand's own voice are on the roadmap.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" style="padding:0 0 6px 0;">
+              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
                 <span style="color:#e8c860;">◆&nbsp;&nbsp;Held in confidence.</span><br/>
                 This invitation is issued to one company in your space. We do not publish our sponsor list, we do not announce our approaches, and we will not approach your competitors for the same frame while this invitation stands.
               </div>
@@ -427,6 +435,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
       : null,
     '',
     'The exclusivity: thirteen frames per temple, one brand each, no rotation. And if your brand does not share, a Full Page Takeover exists — every frame of the temple front, held as one, for a single patron.',
+    "The Herald records its patrons: The Unicode Herald, the Pantheon's quarterly edition, lists the temples' sponsors as they are seated — your name printed alongside the temple's other patrons on the temple's own page — and customisations so your placement speaks in your brand's own voice are on the roadmap.",
     'And the strategic point: the temple founds your story. Launches, drops and press angles that would otherwise be unfounded become documented, citable, permanent — the foundation your next campaigns are missing. We are offering that foundation.',
     ...(Array.isArray(brain?.reasons) && brain.reasons.length
       ? ['', 'Why this temple is yours:', ...brain.reasons.map((r) => `— ${r.lead} ${r.why}`)]
