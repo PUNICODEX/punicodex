@@ -137,9 +137,17 @@ function buildPitchEmail({
   // The brain's bespoke reasons lead the resonance section; generic pattern
   // bullets fill what remains of the five.
   const brainBullets = Array.isArray(brain?.reasons)
-    ? brain.reasons.slice(0, 2).map((r) => ({ lead: r.lead, why: r.why }))
+    ? brain.reasons.slice(0, 2).map((r) => ({ type: r.type, lead: r.lead, why: r.why }))
     : [];
-  const genericBullets = (patterns || []).slice(0, 4).map((p) => ({ lead: p.lead, why: p.why }));
+  // Generic bullets supply mythology colour. When the brain already covered
+  // the industry/keyword seats, generic pattern-map bullets are redundant —
+  // but a namesake-only brain keeps them, because the temple's seat colour
+  // (e.g. Hermês as god of commerce) is still new information.
+  const brainCoversSeats = brainBullets.some((b) => /industry|keyword/.test(b.type || ''));
+  const genericBullets = (patterns || [])
+    .slice(0, 4)
+    .map((p) => ({ lead: p.lead, why: p.why }))
+    .filter((b) => !(brainCoversSeats && /industry patterns? map/i.test(b.why || '')));
   const allBullets = [...brainBullets, ...genericBullets]
     .filter((b) => b && b.lead && b.why)
     .slice(0, 5);
@@ -230,7 +238,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.9; color:#d8cfb8;">
           <p style="margin:0 0 18px 0;">Dear ${biz} team,</p>
           <p style="margin:0 0 18px 0;">PUNICODEX is the Unicode Pantheon — a scholarly restoration returning the original, accented names of myth to the digital realm. Across <strong style="color:#e8c860;">${statsLine}</strong>, each deity is served at its own restored Unicode domain, kept by a university-edited Scholarly Edition, an industry-pattern map, and a quarterly publication, <em>The Unicode Herald</em>.</p>
-          <p style="margin:0 0 18px 0;">Here is the finding at the heart of this letter: brands that stand beside their archetype are not buying impressions — they are borrowing twelve thousand years of meaning. Perception research has shown the mechanism for decades: alignment with a story the customer already believes outperforms interruption, at any spend. A frame inside the temple of your own namesake is the strongest alignment that exists.</p>
+          <p style="margin:0 0 18px 0;">Here is the finding at the heart of this letter: brands that stand beside their archetype are not buying impressions — they are borrowing thirty centuries of meaning. Perception research has shown the mechanism for decades: alignment with a story the customer already believes outperforms interruption, at any spend. A frame inside the temple of your own namesake is the strongest alignment that exists.</p>
           <p style="margin:0 0 18px 0;">And the temple does something no agency can manufacture: it <strong style="color:#e8e0cc;">founds the story</strong>. The moment your brand stands in the Temple of ${templeUnicode}, claims that would otherwise be unfounded become documented and permanent — "we are the founding patron of ${templeUnicode}" is a citable fact, kept by a university-edited scholarly edition at a domain that does not expire with the campaign. Product drops, anniversary stories, press angles, a name with twelve thousand years of receipts: the temple is the foundation those campaigns cannot build on their own. We are offering that foundation.</p>
           <p style="margin:0 0 18px 0;">Every temple carries thirteen sponsorship frames${frameRefHtml ? ` — and for ${biz}, ${frameRefHtml} is already chosen` : ''}. As we open these to market, we are admitting a <strong style="color:#e8c860;">small, hand-selected group of founding sponsors</strong> — one brand per frame, and only brands that genuinely embody the archetype.</p>
           <p style="margin:0;">For the Temple of ${templeUnicode}, ${biz} was our first and most natural approach. This invitation is issued to one company in your space; it is not published, and it is not repeated.</p>
@@ -492,6 +500,7 @@ function stripHtml(html) {
     .replace(/&#39;|&rsquo;/g, '’')
     .replace(/&ldquo;|&rdquo;/g, '"')
     .replace(/&emdash;|&mdash;/g, '—')
+    .replace(/\s+([.!?,;:])/g, '$1')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -507,8 +516,10 @@ function firstSentences(text, n = 2, maxLen = 420) {
     out = out ? `${out} ${part.trim()}` : part.trim();
     if ((out.match(/[.!?]/g) || []).length >= n) break;
   }
-  // Drop any leading fragment debris (unmatched quotes/brackets from mid-sentence cuts).
+  // Drop any leading fragment debris (unmatched quotes/brackets from mid-sentence
+  // cuts, and list enumeration like "2)." that survives in some lore fields).
   return out
+    .replace(/^\d{1,2}[).:\]]+\s+/, '')
     .replace(/^[^\p{L}\p{N}(“"']+/u, '')
     .replace(/^['"“]\s+/u, '')
     .trim();
@@ -547,7 +558,7 @@ function buildResonanceBullets(slug, businessName) {
 
   // 2 — the mythology.
   const myth = firstSentences(lore?.mythology?.lead, 2);
-  if (myth) bullets.push({ lead: 'The god, in his own story.', why: myth });
+  if (myth) bullets.push({ lead: 'The deity, in their own story.', why: myth });
 
   // 3 — archaeology / syncretism: the quotable fact.
   const fact = firstSentences(lore && (lore.archaeology || lore.syncretism), 2);

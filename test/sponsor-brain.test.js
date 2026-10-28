@@ -100,18 +100,63 @@ test('a winery belongs to Dionysos — lore beats the industry coincidence', () 
   assert.ok(/mythology/.test(loreReason.why), 'keyword reason carries the lore depth');
 });
 
-test('explainMatch returns reasons for the paired temple and flags better matches', () => {
+test('explainMatch NEVER returns zero reasons for a real business — it composes the archetypal case', () => {
   const nike = explainMatch(
     { businessName: 'Nike, Inc.', domain: 'nike.com', industry: 'Sports, Fitness & Competition' },
     'nike'
   );
   assert.strictEqual(nike.namesake, true);
   assert.ok(nike.reasons.length >= 1);
+  assert.strictEqual(nike.strength, 'namesake');
   assert.strictEqual(nike.bestMatch.slug, 'nike');
 
+  // A business with no direct signal still gets an honest, composed reason.
   const unrelated = explainMatch({ businessName: 'Acme Corp', domain: 'acme.com' }, 'nike');
-  assert.strictEqual(unrelated.reasons.length, 0, 'no fabricated resonance');
+  assert.ok(unrelated.reasons.length >= 1, 'the brain always finds the thread');
   assert.strictEqual(unrelated.namesake, false);
+  assert.strictEqual(unrelated.strength, 'archetypal');
+  assert.ok(/Níkē/.test(unrelated.reasons[0].why), 'composed reason names the temple');
+  assert.ok(
+    /tagline|Winged/i.test(unrelated.reasons[0].why),
+    'composed reason carries the temple voice'
+  );
+
+  // Only a literally empty business gets nothing.
+  const empty = explainMatch({}, 'nike');
+  assert.strictEqual(empty.reasons.length, 0);
+  assert.strictEqual(empty.strength, 'none');
+});
+
+test('never-zero property: arbitrary businesses against arbitrary temples always explain', () => {
+  const cases = [
+    [{ businessName: 'Blue River Logistics', industry: 'Shipping & Logistics' }, 'tethys'],
+    [{ businessName: 'Ironhold Security', keywords: ['protection', 'strength'] }, 'tyche'],
+    [{ businessName: 'Lumen Skincare', keywords: ['beauty', 'radiance'] }, 'hephaistos'],
+    [{ businessName: 'Verdant Farms', industry: 'Agriculture' }, 'prometheus'],
+  ];
+  for (const [business, slug] of cases) {
+    const result = explainMatch(business, slug);
+    assert.ok(result.reasons.length >= 1, `${JSON.stringify(business)} → ${slug} explained itself`);
+    assert.ok(result.reasons[0].why.length >= 80, 'substantive copy, not a stub');
+    assert.match(result.strength, /^(namesake|direct|archetypal)$/);
+  }
+});
+
+test('values layer: a keyword that IS the temple meaning scores and explains', () => {
+  const matches = matchTemplesForBusiness(
+    { businessName: 'WinCo Athletica', keywords: ['victory'] },
+    3
+  );
+  assert.strictEqual(matches[0].slug, 'nike');
+  assert.ok(matches[0].axes.values, 'values axis fired');
+  assert.ok(matches[0].reasons.some((r) => r.type === 'values'));
+});
+
+test('name-fuzzy layer: a derived brand name finds its root temple', () => {
+  // "Nikea" genuinely contains "nike" — linguistically derived names point home.
+  const matches = matchTemplesForBusiness({ businessName: 'Nikea Athletics' }, 3);
+  assert.strictEqual(matches[0].slug, 'nike');
+  assert.ok(matches[0].axes.nameFuzzy, 'fuzzy name axis fired');
 });
 
 test('pantheon stats are live from the canonical sources', () => {
