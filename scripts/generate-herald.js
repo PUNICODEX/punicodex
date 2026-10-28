@@ -4,7 +4,8 @@
  *
  * Reads the canonical edition registry in data/herald-editions.json and the
  * templates in templates/herald/, then writes:
- *   - herald/index.html (publication landing page / cover)
+ *   - herald/edition/index.html (publication landing page / cover; /herald/
+ *     itself is the Restoration experience — see templates/herald-restoration)
  *   - herald/{editionId}/{chapter}/index.html (book chapters)
  *   - herald/{editionId}/book/index.html (complete print-ready edition, 1084+ pages)
  *
@@ -709,7 +710,7 @@ function main() {
 
   // Landing page
   const landingReplacements = {
-    CANONICAL: `https://punicodex.com/herald/`,
+    CANONICAL: `https://punicodex.com/herald/edition/`,
     TITLE: `${baseTitle} | PuniCodex`,
     DESCRIPTION: edition.landing.blurb,
     OG_TITLE: baseTitle,
@@ -731,7 +732,8 @@ function main() {
     BOOK_URL: bookUrl,
     TOC_ITEMS: renderTocItems(edition.chapters),
   };
-  writeFile(path.join(OUT_DIR, 'index.html'), applyReplacements(landingTemplate, landingReplacements));
+  fs.mkdirSync(path.join(OUT_DIR, 'edition'), { recursive: true });
+  writeFile(path.join(OUT_DIR, 'edition', 'index.html'), applyReplacements(landingTemplate, landingReplacements));
   // Emit the canonical mobile menu directly — standalone runs of this
   // generator must not leave a non-canonical menu behind for parallel test
   // phases to trip over (see sync-mobile-menu.js syncOne). Same for the

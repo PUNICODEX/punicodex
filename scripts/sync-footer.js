@@ -90,7 +90,7 @@ const TARGETS = [
   path.join('connections', 'index.html'),
   path.join('contact', 'index.html'),
   path.join('creatives', 'index.html'),
-  path.join('herald', 'index.html'),
+  path.join('herald', 'edition', 'index.html'),
   path.join('lexicon', 'index.html'),
   path.join('lexicon', 'cognates.html'),
   path.join('pantheon', 'index.html'),

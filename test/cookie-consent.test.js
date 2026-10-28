@@ -58,7 +58,12 @@ const PUBLIC_PAGES = [
 ];
 
 // Surfaces the injector must never touch (admin/auth/404/herald pitch page).
-const EXCLUDED_PAGES = ['herald/index.html', '404.html', 'account/index.html'];
+const EXCLUDED_PAGES = [
+  'herald/index.html',
+  'herald/edition/index.html',
+  '404.html',
+  'account/index.html',
+];
 
 test('every public page carries the consent block between its markers', () => {
   for (const rel of PUBLIC_PAGES) {

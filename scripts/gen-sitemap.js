@@ -64,7 +64,7 @@ const mainPages = [
   { loc: '/store/shipping/', priority: '0.3', changefreq: 'yearly' },
   { loc: '/store/returns/', priority: '0.3', changefreq: 'yearly' },
   { loc: '/university/book/', priority: '0.5', changefreq: 'monthly' },
-  { loc: '/herald/restoration/', priority: '0.5', changefreq: 'monthly' },
+  { loc: '/herald/edition/', priority: '0.6', changefreq: 'weekly' },
   { loc: '/university-sponsorship/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/api/v1/docs/', priority: '0.7', changefreq: 'weekly' },
   { loc: '/appraise/', priority: '0.8', changefreq: 'weekly' },

@@ -31,7 +31,7 @@ function loadBookHtml() {
 }
 
 describe('Herald landing page', () => {
-  const html = fs.readFileSync(path.join(ROOT, 'herald', 'index.html'), 'utf8');
+  const html = fs.readFileSync(path.join(ROOT, 'herald', 'edition', 'index.html'), 'utf8');
 
   it('renders the publication masthead', () => {
     assert(html.includes('<title>The Unicode Herald | PuniCodex</title>'));
@@ -95,7 +95,7 @@ describe('Herald book chapters', () => {
       if (idx < edition.chapters.length - 1) {
         assert(html.includes(`href="../${edition.chapters[idx + 1].slug}/"`), 'missing next link');
       }
-      assert(html.includes('href="/herald/"'), 'missing contents link');
+      assert(html.includes('href="/herald/edition/"'), 'missing contents link');
     });
   });
 });

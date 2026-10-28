@@ -387,7 +387,7 @@ scene.add(distant);
 
 // Merge the reusable Ionic master into one normalized geometry, then instance it around the peristyle.
 async function buildColumns() {
-  const assetModulePath = '/herald/restoration/assets/column/asset.mjs';
+  const assetModulePath = '/herald/assets/column/asset.mjs';
   const { createAsset } = await import(/* @vite-ignore */ assetModulePath);
   const root = await createAsset(THREE, { states: 'lazy', sharedResources: true });
   root.updateMatrixWorld(true);

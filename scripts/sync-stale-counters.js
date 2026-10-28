@@ -75,7 +75,7 @@ const replacements = [
   },
   // herald
   {
-    file: 'herald/index.html',
+    file: 'herald/edition/index.html',
     rules: [
       [/(\d+) lexicon entries\. (\d+) flagship temples\. (\d+) pantheons\. (\d+) domains owned/g, `${entries} lexicon entries. ${temples} flagship temples. ${pantheons} pantheons. ${domains} domains owned`],
       [/(\d+) lexicon entries across the restored traditions/g, `${entries} lexicon entries across the restored traditions`],

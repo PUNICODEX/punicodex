@@ -71,7 +71,7 @@ test('about/founder page carries current counts', () => {
 
 test('herald page carries current fleet counts', () => {
   const { temples, entries, pantheons, domains } = loadStats();
-  const html = read('herald/index.html');
+  const html = read('herald/edition/index.html');
   assert.ok(
     html.includes(`${entries} lexicon entries across the restored traditions`),
     `herald must list the current lexicon count (${entries})`
@@ -108,7 +108,7 @@ test('no known stale fleet counters remain in customer-facing pages', () => {
     'pantheon/index.html',
     'about/index.html',
     'about/founder/index.html',
-    'herald/index.html',
+    'herald/edition/index.html',
     'cards/index.html',
     'codex/building-the-temple/index.html',
     'oracle/index.html',

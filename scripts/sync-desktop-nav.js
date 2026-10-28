@@ -9,9 +9,9 @@
  *
  *   Primary : Pantheon (featured), Realms, Patterns, Trending, Store, Connections
  *   More ▾  : sectioned dropdown with Explore, Tools, Resources, About
- *              Explore  : Search, Words, Screen
+ *              Explore  : Herald, Search, Words, Screen
  *              Tools    : Type, Ink, Oracle, App, Extension, API, Codex, Appraise
- *              Resources: Lexicon, Texts, Blog, Cards, Creatives, Scholars, Herald
+ *              Resources: Lexicon, Texts, Blog, Cards, Creatives, Scholars
  *              About    : About, Contact
  *   CTA     : Enter
  *
@@ -44,6 +44,7 @@ const MORE = [
   {
     heading: 'Explore',
     links: [
+      ['/herald/', 'Herald'],
       ['/search/', 'Search'],
       ['/everyday/', 'Words'],
       ['/screen/', 'Screen'],
@@ -72,7 +73,6 @@ const MORE = [
       ['/cards/', 'Cards'],
       ['/creatives/', 'Creatives'],
       ['/scholars/', 'Scholars'],
-      ['/herald/', 'Herald'],
       ['/rulebook/', 'Rulebook'],
       ['/screen/', 'Screen'],
     ],
@@ -125,7 +125,7 @@ const TARGETS = [
   { page: path.join('connections', 'index.html'), active: '/connections/' },
   { page: path.join('contact', 'index.html'), active: '/contact/' },
   { page: path.join('creatives', 'index.html'), active: null, insertNav: true },
-  { page: path.join('herald', 'index.html'), active: '/herald/' },
+  { page: path.join('herald', 'edition', 'index.html'), active: '/herald/' },
   { page: path.join('lexicon', 'index.html'), active: '/lexicon/' },
   { page: path.join('lexicon', 'cognates.html'), active: '/lexicon/' },
   { page: path.join('pantheon', 'index.html'), active: '/pantheon/' },

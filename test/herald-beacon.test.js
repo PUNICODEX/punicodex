@@ -91,7 +91,15 @@ async function run() {
     assert.strictEqual(after, before, 'second run must not change anything');
     assert.ok(after.includes('PUNICODEX-HERALD-BEACON-START'), 'markers on home page');
     const herald = fs.readFileSync(path.join(ROOT, 'herald', 'index.html'), 'utf8');
-    assert.ok(!herald.includes('PUNICODEX-HERALD-BEACON-START'), 'no beacon on the Herald page');
+    assert.ok(
+      !herald.includes('PUNICODEX-HERALD-BEACON-START'),
+      'no beacon on the Restoration experience'
+    );
+    const edition = fs.readFileSync(path.join(ROOT, 'herald', 'edition', 'index.html'), 'utf8');
+    assert.ok(
+      !edition.includes('PUNICODEX-HERALD-BEACON-START'),
+      'no beacon on the Herald edition page'
+    );
     const admin = fs.readFileSync(
       path.join(ROOT, 'platform', 'public', 'admin-portal', 'index.html'),
       'utf8'
