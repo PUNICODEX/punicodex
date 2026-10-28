@@ -80,6 +80,11 @@ module.exports = async (req, res) => {
     const slots = await discountService.slotsForCode(codeRow);
 
     const patterns = buildResonanceBullets(temple.slug, businessName);
+    // Bespoke resonance from the sponsor brain (namesake / industry / keyword).
+    const brain = require('../../../../../../api/sponsor-brain.js').explainMatch(
+      { businessName, domain: recipientSite },
+      temple.slug
+    );
     const pitch = buildPitchEmail({
       codeRow,
       temple,
@@ -88,6 +93,7 @@ module.exports = async (req, res) => {
       customNote,
       patterns,
       slots: slots.length ? slots : null,
+      brain,
     });
 
     const sent = await sendEmail({

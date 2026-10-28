@@ -73,6 +73,10 @@ const RULES = [
     suites: ['University Booking Endpoint Tests', 'University Outreach Tests', 'Pitch Email Tests'],
   },
   {
+    pattern: /^platform\/api\/sponsor-brain\.js$|^test\/sponsor-brain\.test\.js$/,
+    suites: ['Sponsor Brain Tests', 'Pitch Email Tests', 'University Outreach Tests'],
+  },
+  {
     pattern: /^platform\/api\/oracle\.js$|^platform\/api\/llm\.js$/,
     suites: [
       'Oracle Tests',

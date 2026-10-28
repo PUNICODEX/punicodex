@@ -137,6 +137,17 @@ module.exports = async (req, res) => {
     const codeRow = await ensureFoundingCode(prospect, body.offer || {}, auth);
     const slots = await discountService.slotsForCode(codeRow);
     const patterns = buildResonanceBullets(temple.slug, businessName);
+    // The sponsor brain: bespoke, explained resonance for THIS business on
+    // THIS temple (namesake / industry seat / keyword+lore axes).
+    const brain = require('../../../../../../api/sponsor-brain.js').explainMatch(
+      {
+        businessName,
+        domain: recipientSite,
+        industry: prospect.industry_name,
+        industrySeat: prospect.industry_seat,
+      },
+      temple.slug
+    );
     const pitch = buildPitchEmail({
       codeRow,
       temple,
@@ -145,6 +156,7 @@ module.exports = async (req, res) => {
       customNote,
       patterns,
       slots: slots.length ? slots : null,
+      brain,
     });
 
     if (wantsPreview) {

@@ -133,6 +133,7 @@ const SUITES = [
     cmd: 'node test/university-booking.test.js',
     timeout: 60000,
   },
+  { name: 'Sponsor Brain Tests', cmd: 'node --test test/sponsor-brain.test.js', timeout: 60000 },
   {
     name: 'Arbitrage Endpoint Tests',
     cmd: 'node test/arbitrage-endpoint.test.js',

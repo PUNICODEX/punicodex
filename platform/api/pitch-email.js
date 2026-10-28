@@ -102,6 +102,8 @@ function slotLine(codeRow) {
  * @param {string} [opts.customNote]    — one personal paragraph, placed as the final resonance bullet
  * @param {Array}  [opts.patterns]      — industry-pattern seats [{ name, why }] (already templated)
  * @param {Array}  [opts.slots]         — frames the code is bound to [{ name, isBundle }]; null/empty = open choice
+ * @param {object} [opts.brain]         — sponsor-brain match for this temple
+ *                                        ({ reasons: [{lead, why}], namesake }); prepended to the resonance
  */
 function buildPitchEmail({
   codeRow,
@@ -111,6 +113,7 @@ function buildPitchEmail({
   customNote,
   patterns,
   slots,
+  brain,
 }) {
   const biz = escapeHtml(businessName);
   const site = recipientSite ? escapeHtml(recipientSite) : null;
@@ -127,16 +130,28 @@ function buildPitchEmail({
   const tier = escapeHtml(temple.tierLabel || '');
   const templeUrl = `https://punicodex.com/${temple.slug}/`;
   const patternsUrl = `https://punicodex.com/${temple.slug}/patterns/`;
+  // Live counts from the canonical sources — never a stale hand-typed number.
+  const stats = require('./sponsor-brain.js').pantheonStats();
+  const statsLine = `${stats.flagships} flagship temples across ${stats.pantheons} pantheons`;
 
-  const bullets = (patterns || [])
-    .slice(0, 3)
+  // The brain's bespoke reasons lead the resonance section; generic pattern
+  // bullets fill what remains of the five.
+  const brainBullets = Array.isArray(brain?.reasons)
+    ? brain.reasons.slice(0, 2).map((r) => ({ lead: r.lead, why: r.why }))
+    : [];
+  const genericBullets = (patterns || []).slice(0, 4).map((p) => ({ lead: p.lead, why: p.why }));
+  const allBullets = [...brainBullets, ...genericBullets]
+    .filter((b) => b && b.lead && b.why)
+    .slice(0, 5);
+
+  const bullets = allBullets
     .map(
-      (p) => `
+      (b) => `
           <tr>
             <td valign="top" style="padding:0 0 22px 0;">
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
-                <span style="color:#e8c860;">◆&nbsp;&nbsp;${escapeHtml(p.lead)}</span><br/>
-                ${escapeHtml(p.why)}
+                <span style="color:#e8c860;">◆&nbsp;&nbsp;${escapeHtml(b.lead)}</span><br/>
+                ${escapeHtml(b.why)}
               </div>
             </td>
           </tr>`
@@ -157,10 +172,10 @@ function buildPitchEmail({
 
   const preheaderLead = headline.charAt(0) + headline.slice(1).toLowerCase();
   const preheader = frameRef
-    ? `${preheaderLead} on ${frameRef}, prepared for ${businessName}.`
-    : `${preheaderLead} inside the Temple of ${temple.unicode}, prepared for ${businessName}.`;
+    ? `${preheaderLead} on ${frameRef}, prepared exclusively for ${businessName}. Not published, not repeated.`
+    : `${preheaderLead} inside the Temple of ${temple.unicode}, prepared exclusively for ${businessName}. Not published, not repeated.`;
 
-  const subject = `A founding frame for ${businessName} — the Temple of ${temple.unicode}`;
+  const subject = `A private invitation for ${businessName} — the Temple of ${temple.unicode}`;
 
   const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -197,7 +212,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
 
     <tr>
       <td align="center" style="padding:44px 40px 36px 40px; background-color:#17130d; border-bottom:1px solid #3a2f1a;">
-        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52; padding-bottom:16px;">FOUNDING SPONSORSHIP INVITATION</div>
+        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52; padding-bottom:16px;">BY INVITATION ONLY · NOT PUBLISHED ANYWHERE</div>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:44px; letter-spacing:5px; color:#e8c860; line-height:1.15;">${templeUnicode.toUpperCase()}</div>
         ${script ? `<div style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; color:#b09a6a; padding-top:6px;">${script}</div>` : ''}
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:4px; color:#c9b584; padding-top:14px;">${domain.toUpperCase().replace(/, /g, '&nbsp;&nbsp;·&nbsp;&nbsp;')}</div>
@@ -214,9 +229,11 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
       <td style="padding:40px 48px 8px 48px;">
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.9; color:#d8cfb8;">
           <p style="margin:0 0 18px 0;">Dear ${biz} team,</p>
-          <p style="margin:0 0 18px 0;">PUNICODEX is the Unicode Pantheon — a scholarly restoration project returning the original, accented names of myth to the digital realm. Across <strong style="color:#e8c860;">271 digital temples and 25 pantheons</strong>, each deity is served at its own restored Unicode domain, supported by a university-edited Scholarly Edition, an industry-pattern map, and a quarterly publication, <em>The Unicode Herald</em>.</p>
-          <p style="margin:0 0 18px 0;">Every temple carries thirteen sponsorship frames${frameRefHtml ? ` — and for ${biz}, ${frameRefHtml} is already chosen` : ''}. As we open these to market, we are admitting a <strong style="color:#e8c860;">small, hand-selected group of founding sponsors</strong> — brands that do not merely advertise beside an archetype, but genuinely embody it.</p>
-          <p style="margin:0;">For the Temple of ${templeUnicode}, ${biz} was our first and most natural approach. We would like to show you why.</p>
+          <p style="margin:0 0 18px 0;">PUNICODEX is the Unicode Pantheon — a scholarly restoration returning the original, accented names of myth to the digital realm. Across <strong style="color:#e8c860;">${statsLine}</strong>, each deity is served at its own restored Unicode domain, kept by a university-edited Scholarly Edition, an industry-pattern map, and a quarterly publication, <em>The Unicode Herald</em>.</p>
+          <p style="margin:0 0 18px 0;">Here is the finding at the heart of this letter: brands that stand beside their archetype are not buying impressions — they are borrowing twelve thousand years of meaning. Perception research has shown the mechanism for decades: alignment with a story the customer already believes outperforms interruption, at any spend. A frame inside the temple of your own namesake is the strongest alignment that exists.</p>
+          <p style="margin:0 0 18px 0;">And the temple does something no agency can manufacture: it <strong style="color:#e8e0cc;">founds the story</strong>. The moment your brand stands in the Temple of ${templeUnicode}, claims that would otherwise be unfounded become documented and permanent — "we are the founding patron of ${templeUnicode}" is a citable fact, kept by a university-edited scholarly edition at a domain that does not expire with the campaign. Product drops, anniversary stories, press angles, a name with twelve thousand years of receipts: the temple is the foundation those campaigns cannot build on their own. We are offering that foundation.</p>
+          <p style="margin:0 0 18px 0;">Every temple carries thirteen sponsorship frames${frameRefHtml ? ` — and for ${biz}, ${frameRefHtml} is already chosen` : ''}. As we open these to market, we are admitting a <strong style="color:#e8c860;">small, hand-selected group of founding sponsors</strong> — one brand per frame, and only brands that genuinely embody the archetype.</p>
+          <p style="margin:0;">For the Temple of ${templeUnicode}, ${biz} was our first and most natural approach. This invitation is issued to one company in your space; it is not published, and it is not repeated.</p>
         </div>
       </td>
     </tr>
@@ -238,7 +255,53 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
 
     <tr>
       <td style="padding:32px 48px 8px 48px;">
-        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52;">02 — THE OFFER</div>
+        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52;">02 — THE EXCLUSIVITY</div>
+        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#e8c860; padding-top:10px;">One brand per frame. And a way to never share.</div>
+        <div style="width:48px; border-top:1px solid #6b5a33; margin:16px 0 0 0;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:24px 48px 8px 48px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td valign="top" style="padding:0 0 22px 0;">
+              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
+                <span style="color:#e8c860;">◆&nbsp;&nbsp;Thirteen frames. One brand each.</span><br/>
+                When a frame is taken, it is gone — there is no rotation, no auction against a competitor, no shared rotation of the space. The scarcity is structural, not manufactured: the temple front simply has thirteen places, and each holds one name.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" style="padding:0 0 22px 0;">
+              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
+                <span style="color:#e8c860;">◆&nbsp;&nbsp;If your brand does not share.</span><br/>
+                A <strong style="color:#e8e0cc;">Full Page Takeover</strong> exists for exactly one patron per temple: every frame of the temple front, held as one, carrying a single name. Yours. Say the word and the whole temple becomes your address — the closest thing on the modern web to owning the myth itself.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" style="padding:0 0 6px 0;">
+              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
+                <span style="color:#e8c860;">◆&nbsp;&nbsp;Held in confidence.</span><br/>
+                This invitation is issued to one company in your space. We do not publish our sponsor list, we do not announce our approaches, and we will not approach your competitors for the same frame while this invitation stands.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" style="padding:0 0 6px 0;">
+              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
+                <span style="color:#e8c860;">◆&nbsp;&nbsp;The foundation your next campaigns are missing.</span><br/>
+                Stand here, and the story is yours to tell: launches, drops, anniversaries and press angles that would otherwise be unfounded become documented fact — kept by a scholarly edition at a permanent address. The temple outlives the campaign; the association compounds.
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:32px 48px 8px 48px;">
+        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52;">03 — THE OFFER</div>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#e8c860; padding-top:10px;">Extended to you alone</div>
         <div style="width:48px; border-top:1px solid #6b5a33; margin:16px 0 0 0;"></div>
       </td>
@@ -265,7 +328,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
 
     <tr>
       <td style="padding:32px 48px 8px 48px;">
-        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52;">03 — TO PROCEED</div>
+        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52;">04 — TO PROCEED</div>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#e8c860; padding-top:10px;">${frameRef ? (slots.length > 1 ? 'Your frames are set aside' : 'Your frame is set aside') : 'Claim your frame'}</div>
         <div style="width:48px; border-top:1px solid #6b5a33; margin:16px 0 0 0;"></div>
       </td>
@@ -328,7 +391,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
       <td align="center" style="padding:24px 48px 30px 48px; border-top:1px solid #3a2f1a; background-color:#100d09;">
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:4px; color:#8a7a52;">PUNICODEX — THE UNICODE PANTHEON</div>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; color:#6b6046; line-height:1.8; padding-top:8px;">
-          271 temples · 25 pantheons<br/>
+          ${stats.flagships} temples · ${stats.pantheons} pantheons · ${stats.temples} restored names<br/>
           <a href="https://punicodex.com/terms/advertising/" style="color:#6b6046; text-decoration:underline;">Advertising Terms</a> &nbsp;·&nbsp; <a href="https://punicodex.com/tiers/" style="color:#6b6046; text-decoration:underline;">The Tier System</a>
         </div>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:10px; color:#4d4433; line-height:1.7; padding-top:12px;">
@@ -349,11 +412,17 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
   const text = [
     `Dear ${businessName} team,`,
     '',
-    `PUNICODEX is the Unicode Pantheon — 271 restored digital temples across 25 pantheons.`,
-    `We would like to invite ${businessName} to stand as a founding sponsor of the Temple of ${temple.unicode} (${temple.domain}).`,
+    `PUNICODEX is the Unicode Pantheon — ${stats.flagships} flagship temples across ${stats.pantheons} pantheons, ${stats.temples} restored names in all, each kept at its true Unicode domain.`,
+    `We would like to invite ${businessName} to stand as a founding sponsor of the Temple of ${temple.unicode} (${temple.domain}). This invitation is private: it is issued to one company in your space, it is not published, and it is not repeated.`,
     frameRef
       ? `For you we have set aside ${frameRef} — your founding code answers to ${slots.length > 1 ? 'these frames' : 'this frame'} alone.`
       : null,
+    '',
+    'The exclusivity: thirteen frames per temple, one brand each, no rotation. And if your brand does not share, a Full Page Takeover exists — every frame of the temple front, held as one, for a single patron.',
+    'And the strategic point: the temple founds your story. Launches, drops and press angles that would otherwise be unfounded become documented, citable, permanent — the foundation your next campaigns are missing. We are offering that foundation.',
+    ...(Array.isArray(brain?.reasons) && brain.reasons.length
+      ? ['', 'Why this temple is yours:', ...brain.reasons.map((r) => `— ${r.lead} ${r.why}`)]
+      : []),
     '',
     `The offer: ${offerHeadline(codeRow)} — ${offerSentence(codeRow, frameRef)}.`,
     `Your founding code: ${codeRow.code}`,
