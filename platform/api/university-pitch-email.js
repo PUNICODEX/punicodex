@@ -103,9 +103,11 @@ function buildUniversityPitch({ prospect, contactName, customNote, departments }
     ? `Dear ${escapeHtml(contactName)}`
     : `Dear colleagues in the ${escapeHtml(depts[0] || 'faculty')} at ${biz}`;
 
-  const bullets = depts
-    .slice(0, 4)
-    .map((d) => benefitFor(d))
+  const deptBenefits = depts.slice(0, 4).map((d) => benefitFor(d));
+  // The design bullet already carries the marketplace story — don't say it
+  // twice when Design is one of the aligned departments.
+  const hasDesign = deptBenefits.some((b) => b === DEPARTMENT_BENEFITS.design);
+  const bullets = deptBenefits
     .map(
       (b) => `
           <tr>
@@ -119,7 +121,9 @@ function buildUniversityPitch({ prospect, contactName, customNote, departments }
     )
     .join('');
 
-  const marketplaceBullet = `
+  const marketplaceBullet = hasDesign
+    ? ''
+    : `
           <tr>
             <td valign="top" style="padding:0 0 22px 0;">
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
@@ -149,7 +153,7 @@ function buildUniversityPitch({ prospect, contactName, customNote, departments }
     : 'the humanities';
 
   const subject = `A complimentary partnership for ${institution} — the Scholarly Edition`;
-  const preheader = `No cost, no invoice, no renewal — university collaboration on the Unicode Pantheon, prepared for ${institution}.`;
+  const preheader = `Complimentary university collaboration on the Unicode Pantheon — prepared for ${institution}.`;
 
   const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -211,7 +215,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
     <tr>
       <td style="padding:32px 48px 8px 48px;">
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52;">01 — WHAT YOUR DEPARTMENT RECEIVES</div>
-        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#e8c860; padding-top:10px;">The edition, the marketplace, the engine</div>
+        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#e8c860; padding-top:10px;">What your students gain from the first week</div>
         <div style="width:48px; border-top:1px solid #6b5a33; margin:16px 0 0 0;"></div>
       </td>
     </tr>
@@ -238,16 +242,11 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:26px; letter-spacing:3px; color:#e8c860;">COMPLIMENTARY · FOREVER</div>
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:2px; color:#c9b584; padding-top:10px;">ACADEMIC COLLABORATION · ${biz.toUpperCase()}</div>
               <div style="width:48px; border-top:1px solid #6b5a33; margin:18px auto;"></div>
-              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:14px; line-height:1.9; color:#d8cfb8;">
-                Your institution is provisioned with an administrator account; your admin provisions<br/>
-                and revokes student and faculty credentials directly.<br/>
-                <strong style="color:#e8e0cc;">Student work passes an editorial quality gate before publication — and access can be revoked at any time, with immediate effect.</strong><br/>
-                <strong style="color:#e8e0cc;">In return we ask one thing: a link from your department's website to punicodex.com</strong> —<br/>
-                a backlink that says your institution keeps these names alive. You have your first year; most<br/>
-                departments add it in their next site update. We verify it automatically and follow up gently.<br/>
-                No fee, no invoice, no renewal.<br/>
-                An optional Founding Partner sponsorship tier exists for institutions that also want<br/>
-                site-wide placement; it is a separate conversation, and this invitation does not depend on it.
+              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:14px; line-height:1.9; color:#d8cfb8; text-align:left;">
+                <p style="margin:0 0 14px 0;">Your institution holds the keys. An administrator account is provisioned for ${biz} on day one — your admin provisions and revokes student and faculty credentials directly. No IT project, no procurement cycle, no legal review: the platform is simply yours to use.</p>
+                <p style="margin:0 0 14px 0;"><strong style="color:#e8e0cc;">Every edit passes an editorial quality gate before publication — and any account can be revoked at any time, with immediate effect.</strong> Your institution's name appears only beside work that has earned it.</p>
+                <p style="margin:0 0 14px 0;"><strong style="color:#e8e0cc;">In return we ask one thing: a link from your department's website to punicodex.com within your first year.</strong> Not a payment — a public association between your institution and the preservation of these names. Most departments add it in their next site update; we verify it automatically and follow up gently.</p>
+                <p style="margin:0;">No fee. No invoice. No renewal. An optional Founding Partner sponsorship tier exists for institutions that also want site-wide placement — a separate conversation, and this invitation does not depend on it.</p>
               </div>
             </td>
           </tr>
@@ -265,7 +264,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
     <tr>
       <td style="padding:24px 48px 8px 48px;">
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.9; color:#d8cfb8;">
-          Reply to this email with a time that suits, and we will walk your department through the platform, the editorial gate, and the marketplace — or apply directly and a curator will arrange the introductory call:
+          The fastest path is the calendar — choose any quarter-hour that suits and the call is booked, with a confirmation in your inbox before you have closed the tab. Prefer to write first? Reply to this email and we will arrange everything by hand, or apply directly and a curator will set up the introductory call:
         </div>
       </td>
     </tr>
@@ -275,7 +274,14 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
           <tr>
             <td align="center" bgcolor="#8a6d2f" style="border:1px solid #c9a227;">
-              <a href="https://punicodex.com/scholars/apply/" target="_blank" style="display:inline-block; padding:14px 30px; font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:3px; color:#0b0a08; text-decoration:none; font-weight:bold;">BEGIN THE COLLABORATION</a>
+              <a href="https://punicodex.com/university/book/" target="_blank" style="display:inline-block; padding:14px 30px; font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:3px; color:#0b0a08; text-decoration:none; font-weight:bold;">BOOK A FIFTEEN-MINUTE CALL</a>
+            </td>
+          </tr>
+        </table>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td align="center" style="padding-top:12px;">
+              <a href="https://punicodex.com/scholars/apply/" target="_blank" style="font-family:Georgia, 'Times New Roman', serif; font-size:12px; letter-spacing:2px; color:#c9b584; text-decoration:underline;">OR BEGIN THE COLLABORATION IN WRITING →</a>
             </td>
           </tr>
         </table>
@@ -335,9 +341,9 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
     }),
     customNote ? `— A note from the founder: ${customNote}` : null,
     '',
-    'Terms: academic collaboration is complimentary, forever. Your institution provisions its own student accounts; work passes an editorial quality gate; access revokes immediately. In return we ask one thing: a backlink from your department website to punicodex.com within your first year - features start immediately, we verify automatically and follow up gently. An optional paid Founding Partner tier exists separately.',
+    'Terms: academic collaboration is complimentary, forever. Your institution provisions its own student accounts; work passes an editorial quality gate; access revokes immediately. In return we ask one thing: a link from your department website to punicodex.com within your first year - not a payment, a public association between your institution and the preservation of these names. We verify automatically and follow up gently. An optional paid Founding Partner tier exists separately.',
     '',
-    'To proceed: reply with a time for a fifteen-minute call, or apply at https://punicodex.com/scholars/apply/',
+    'To proceed: book a fifteen-minute call in the calendar (https://punicodex.com/university/book/), reply with a time, or apply at https://punicodex.com/scholars/apply/',
     '',
     'With respect,',
     'Martin Khoury — Founder, PUNICODEX',

@@ -144,6 +144,10 @@ const ROUTES = [
     load: () => require('../platform/api-handlers/root/tenant-ads/[id]/analytics/index.js'),
   },
   {
+    segments: ['university', 'book'],
+    load: () => require('../platform/api-handlers/root/university/book/index.js'),
+  },
+  {
     segments: ['verify', 'check'],
     load: () => require('../platform/api-handlers/root/verify/check/index.js'),
   },

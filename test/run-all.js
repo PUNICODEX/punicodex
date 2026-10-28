@@ -129,6 +129,11 @@ const SUITES = [
   { name: 'Contact Endpoint Tests', cmd: 'node test/contact-endpoint.test.js', timeout: 60000 },
   { name: 'Careers Endpoint Tests', cmd: 'node test/careers-endpoint.test.js', timeout: 60000 },
   {
+    name: 'University Booking Endpoint Tests',
+    cmd: 'node test/university-booking.test.js',
+    timeout: 60000,
+  },
+  {
     name: 'Arbitrage Endpoint Tests',
     cmd: 'node test/arbitrage-endpoint.test.js',
     timeout: 60000,

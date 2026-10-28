@@ -30,8 +30,9 @@ test('the pitch is complimentary-first: no price, no invoice framing', () => {
   assert.match(pitch.text, /complimentary/i);
   // Never leads with money: no dollar figure anywhere in the email.
   assert.doesNotMatch(pitch.html + pitch.text, /\$\d/);
-  // The one ask: a backlink from the department's website.
-  assert.match(pitch.html + pitch.text, /backlink/i);
+  // The one ask: a link from the department's website (deliberately not
+  // SEO jargon — the reader is a professor, not a marketer).
+  assert.match(pitch.html + pitch.text, /link from your department/i);
   assert.match(pitch.html, /punicodex\.com/);
 });
 

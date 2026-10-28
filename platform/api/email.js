@@ -27,7 +27,7 @@ function escapeHtml(text) {
     .replace(/'/g, '&#39;');
 }
 
-async function sendEmail({ to, subject, html, text, fromName, headers }) {
+async function sendEmail({ to, subject, html, text, fromName, headers, attachments }) {
   if (!RESEND_API_KEY) {
     console.log('[EMAIL] No RESEND_API_KEY configured. Would send:');
     console.log(`  To: ${to}`);
@@ -40,6 +40,23 @@ async function sendEmail({ to, subject, html, text, fromName, headers }) {
   const displayName = String(fromName || 'PuniCodex')
     .replace(/["\\\r\n]/g, '')
     .slice(0, 80);
+
+  // Resend attachments: { filename, content (base64), content_type? }.
+  const safeAttachments = Array.isArray(attachments)
+    ? attachments
+        .filter(
+          (a) =>
+            a &&
+            typeof a.filename === 'string' &&
+            typeof a.contentBase64 === 'string' &&
+            a.contentBase64.length < 500_000
+        )
+        .map((a) => ({
+          filename: a.filename.slice(0, 120),
+          content: a.contentBase64,
+          ...(a.type ? { content_type: String(a.type).slice(0, 80) } : {}),
+        }))
+    : undefined;
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -56,6 +73,7 @@ async function sendEmail({ to, subject, html, text, fromName, headers }) {
         html,
         text: text || html.replace(/<[^>]*>/g, ''),
         ...(headers && typeof headers === 'object' ? { headers } : {}),
+        ...(safeAttachments && safeAttachments.length ? { attachments: safeAttachments } : {}),
       }),
     });
 
@@ -856,6 +874,254 @@ async function notifyAdminPasswordReset({ email, tempPassword }) {
 }
 
 /**
+ * University introductory-call bookings (POST /api/university/book/). The
+ * founder alert carries an ICS calendar attachment and every contact detail;
+ * the booker receives a confirmation. Meeting link: when ZOOM_MEETING_URL is
+ * set it is included in both emails (a standing room); otherwise the
+ * confirmation promises the link by reply and the alert tells the founder to
+ * send one. Delivered to UNIVERSITY_BOOKINGS_EMAIL (default the founder
+ * inbox). Routes through module.exports.sendEmail for test capture.
+ */
+
+const UNIVERSITY_CALL_DURATION_MIN = 15;
+
+function icsEscape(value) {
+  return String(value ?? '')
+    .replace(/\\/g, '\\\\')
+    .replace(/;/g, '\\;')
+    .replace(/,/g, '\\,')
+    .replace(/\r?\n/g, '\\n');
+}
+
+function icsFold(line) {
+  // RFC 5545: fold at 75 octets, continuation lines start with a space.
+  if (line.length <= 74) return line;
+  const parts = [];
+  let rest = line;
+  while (rest.length > 74) {
+    parts.push(rest.slice(0, 74));
+    rest = ' ' + rest.slice(74);
+  }
+  parts.push(rest);
+  return parts.join('\r\n');
+}
+
+function buildUniversityCallIcs({ uid, institution, email, phone, whenUtc, meetingUrl, notes }) {
+  const stamp = new Date()
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace(/\.\d{3}/, '');
+  const start = new Date(whenUtc);
+  const end = new Date(start.getTime() + UNIVERSITY_CALL_DURATION_MIN * 60000);
+  const fmt = (d) =>
+    d
+      .toISOString()
+      .replace(/[-:]/g, '')
+      .replace(/\.\d{3}/, '');
+  const description = [
+    `Introductory call with ${institution} about the PuniCodex Scholarly Edition.`,
+    email ? `Contact: ${email}` : '',
+    phone ? `Phone: ${phone}` : '',
+    meetingUrl ? `Meeting link: ${meetingUrl}` : 'Meeting link to follow by email.',
+    notes ? `Notes: ${notes}` : '',
+  ]
+    .filter(Boolean)
+    .join('\\n');
+  return [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//PuniCodex//University Call//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    `UID:${uid}@punicodex.com`,
+    `DTSTAMP:${stamp}`,
+    `DTSTART:${fmt(start)}`,
+    `DTEND:${fmt(end)}`,
+    icsFold(`SUMMARY:${icsEscape(`PuniCodex introductory call — ${institution}`)}`),
+    icsFold(`DESCRIPTION:${icsEscape(description)}`),
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n');
+}
+
+function bookingTimeLabel(whenUtc, timezone) {
+  const d = new Date(whenUtc);
+  const wall = d.toLocaleString('en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+    ...(timezone ? { timeZone: timezone } : {}),
+  });
+  const utc = d.toISOString().slice(0, 16).replace('T', ' ');
+  return timezone ? `${wall} (${timezone}) — ${utc} UTC` : `${wall} — ${utc} UTC`;
+}
+
+async function notifyUniversityCallBooked({
+  name,
+  institution,
+  email,
+  phone,
+  whenUtc,
+  timezone,
+  notes,
+  meetingUrl,
+}) {
+  const to = process.env.UNIVERSITY_BOOKINGS_EMAIL || 'punicodex@gmail.com';
+  const who = institution || name;
+  const ics = buildUniversityCallIcs({
+    uid: `ub-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    institution: who,
+    email,
+    phone,
+    whenUtc,
+    meetingUrl,
+    notes,
+  });
+  return module.exports.sendEmail({
+    to,
+    subject: `[University call] ${who} booked ${bookingTimeLabel(whenUtc, timezone)}`,
+    fromName: 'PuniCodex University Bookings',
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">University Call Booked</h2>
+        <p><strong>${escapeHtml(name)}</strong> at <strong>${escapeHtml(institution)}</strong> has booked the introductory call through the calendar.</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:1rem 0;">
+          <tr><td style="padding:6px;color:#666;">Time</td><td style="padding:6px;text-align:right;font-weight:600;">${escapeHtml(bookingTimeLabel(whenUtc, timezone))}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Email</td><td style="padding:6px;text-align:right;">${escapeHtml(email)}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Phone</td><td style="padding:6px;text-align:right;">${escapeHtml(phone || '— not left —')}</td></tr>
+          ${meetingUrl ? `<tr><td style="padding:6px;color:#666;">Meeting link</td><td style="padding:6px;text-align:right;"><a href="${escapeHtml(meetingUrl)}" style="color:#d4af37;">${escapeHtml(meetingUrl)}</a></td></tr>` : '<tr><td style="padding:6px;color:#666;">Meeting link</td><td style="padding:6px;text-align:right;color:#b91c1c;font-weight:600;">ZOOM_MEETING_URL not set — send them a link by reply</td></tr>'}
+        </table>
+        ${notes ? `<p><strong>They asked us to prepare for:</strong></p><p style="white-space:pre-wrap;">${escapeHtml(notes)}</p>` : ''}
+        <p style="color:#666;font-size:0.85rem;">A calendar attachment is included — accept it and the slot is in your calendar. Reply directly to this email goes to the booker.</p>
+      </div>
+    `,
+    text: [
+      `${name} at ${institution} booked the introductory call.`,
+      `Time: ${bookingTimeLabel(whenUtc, timezone)}`,
+      `Email: ${email}`,
+      `Phone: ${phone || 'not left'}`,
+      meetingUrl
+        ? `Meeting link: ${meetingUrl}`
+        : 'Meeting link: ZOOM_MEETING_URL not set — send one by reply.',
+      notes ? `Notes: ${notes}` : '',
+      'A calendar (.ics) attachment is included.',
+    ]
+      .filter(Boolean)
+      .join('\n'),
+    attachments: [
+      {
+        filename: 'university-call.ics',
+        contentBase64: Buffer.from(ics, 'utf8').toString('base64'),
+        type: 'text/calendar',
+      },
+    ],
+  });
+}
+
+async function notifyUniversityCallConfirmation({
+  email,
+  name,
+  institution,
+  whenUtc,
+  timezone,
+  meetingUrl,
+}) {
+  const timeLabel = bookingTimeLabel(whenUtc, timezone);
+  return module.exports.sendEmail({
+    to: email,
+    subject: `Your PuniCodex introductory call is booked — ${institution}`,
+    fromName: 'PuniCodex University Partnerships',
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">Your call is booked</h2>
+        <p>Hi ${escapeHtml(name)},</p>
+        <p>Thank you — your fifteen-minute introductory call with Martin Khoury, founder of PuniCodex, is confirmed:</p>
+        <div style="background:#fdf8e7;border:1px solid #d4af37;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;">
+          <strong>${escapeHtml(timeLabel)}</strong>
+        </div>
+        ${
+          meetingUrl
+            ? `<p>Join with this link at the time above:<br><a href="${escapeHtml(meetingUrl)}" style="color:#d4af37;font-weight:600;">${escapeHtml(meetingUrl)}</a></p>`
+            : `<p>We will send the video-call link to this address shortly before the call — or simply reply to this email if you would rather we call you by phone.</p>`
+        }
+        <p>We will walk through the Scholarly Edition, the editorial quality gate, and the Creatives Marketplace, and leave plenty of room for your questions. Nothing is signed on the call; collaboration is complimentary and begins only when your institution is ready.</p>
+        <p style="color:#666;font-size:0.85rem;">Need to move the slot? Just reply to this email.</p>
+      </div>
+    `,
+    text: [
+      `Hi ${name},`,
+      '',
+      `Your fifteen-minute introductory call with Martin Khoury (founder, PuniCodex) is confirmed for ${timeLabel}.`,
+      meetingUrl
+        ? `Join: ${meetingUrl}`
+        : 'The video-call link will be sent to this address shortly before the call.',
+      '',
+      'We will walk through the Scholarly Edition, the editorial quality gate, and the Creatives Marketplace. Nothing is signed on the call; collaboration is complimentary.',
+      '',
+      'Need to move the slot? Reply to this email.',
+      '— PuniCodex University Partnerships',
+    ].join('\n'),
+  });
+}
+
+/**
+ * Pre-call reminder (~24h before, fired by the university-call-reminders
+ * cron). Carries BOTH ways in: the video link when one is configured, and the
+ * phone fallback — the booker left their number at booking time, so the call
+ * can happen even if links fail. Routes through module.exports.sendEmail.
+ */
+async function notifyUniversityCallReminder({
+  email,
+  name,
+  institution,
+  whenUtc,
+  timezone,
+  meetingUrl,
+  phone,
+}) {
+  const timeLabel = bookingTimeLabel(whenUtc, timezone);
+  const joinBlock = meetingUrl
+    ? `<p>Join with this link at the time above:<br><a href="${escapeHtml(meetingUrl)}" style="color:#d4af37;font-weight:600;">${escapeHtml(meetingUrl)}</a></p>`
+    : `<p>The video-call link will arrive in a separate note shortly before the call.</p>`;
+  const phoneBlock = phone
+    ? `<p style="background:#f8f8f8;border-radius:8px;padding:0.9rem 1.1rem;">Prefer a plain call? We will phone you at <strong>${escapeHtml(phone)}</strong> at the booked time — no link needed. Reply to this email if that number has changed.</p>`
+    : `<p>Prefer a plain call? Reply to this email with a number and we will phone you instead.</p>`;
+  return module.exports.sendEmail({
+    to: email,
+    subject: `Tomorrow: your PuniCodex introductory call — ${institution}`,
+    fromName: 'PuniCodex University Partnerships',
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">Your call is tomorrow</h2>
+        <p>Hi ${escapeHtml(name)},</p>
+        <p>A reminder that your fifteen-minute introductory call with Martin Khoury, founder of PuniCodex, is booked for:</p>
+        <div style="background:#fdf8e7;border:1px solid #d4af37;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;">
+          <strong>${escapeHtml(timeLabel)}</strong>
+        </div>
+        ${joinBlock}
+        ${phoneBlock}
+        <p style="color:#666;font-size:0.85rem;">Need to move the slot? Just reply to this email.</p>
+      </div>
+    `,
+    text: [
+      `Hi ${name},`,
+      '',
+      `Reminder: your fifteen-minute introductory call with Martin Khoury (founder, PuniCodex) is booked for ${timeLabel}.`,
+      meetingUrl ? `Join: ${meetingUrl}` : 'The video-call link arrives shortly before the call.',
+      phone
+        ? `Prefer a plain call? We phone you at ${phone} at the booked time.`
+        : 'Prefer a plain call? Reply with a number and we will phone you instead.',
+      '',
+      'Need to move the slot? Reply to this email.',
+    ].join('\n'),
+  });
+}
+
+/**
  * Careers portal: a candidate applied through /careers/. Delivered to the
  * founder's inbox (CAREERS_EMAIL). Routes through module.exports.sendEmail so
  * endpoint tests can capture at the sendEmail boundary.
@@ -1082,6 +1348,10 @@ module.exports = {
   notifyTenantAccountProvisioned,
   notifyTenantPasswordReset,
   notifyCareersApplication,
+  notifyUniversityCallBooked,
+  notifyUniversityCallConfirmation,
+  notifyUniversityCallReminder,
+  buildUniversityCallIcs,
   notifyWeeklyDigestSponsor,
   notifyWeeklyDigestPatron,
   notifyPatronExpiryReminder,

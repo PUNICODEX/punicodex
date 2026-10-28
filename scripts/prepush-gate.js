@@ -69,6 +69,10 @@ const CANONICAL_SUITES = ['Lexicon Validator', 'Generated Artifacts Tests', 'Fly
 
 const RULES = [
   {
+    pattern: /^platform\/api-handlers\/root\/university\/|^platform\/api\/(university-call-reminders|university-pitch-email|email)\.js$|^platform\/db\/migrate-university-bookings\.js$|^university\/book\/|^api\/cron\/university-call-reminders\/|^test\/university-booking\.test\.js$/,
+    suites: ['University Booking Endpoint Tests', 'University Outreach Tests', 'Pitch Email Tests'],
+  },
+  {
     pattern: /^platform\/api\/oracle\.js$|^platform\/api\/llm\.js$/,
     suites: [
       'Oracle Tests',
