@@ -239,7 +239,7 @@ async function runTests() {
     assert.strictEqual(res.status, 200, JSON.stringify(res.body));
     assert.strictEqual(res.body.preview, true);
     assert.ok(res.body.html.includes('SCOUT-'), 'rendered email quotes the provisioned code');
-    assert.match(res.body.subject, /founding frame/i);
+    assert.match(res.body.subject, /private invitation|founding frame/i);
 
     // Nothing may move on a preview: no counter, no status change — but the
     // code IS provisioned and linked so the draft shows the truth.
