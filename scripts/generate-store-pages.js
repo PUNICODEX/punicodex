@@ -20,6 +20,11 @@ const ROOT = path.join(__dirname, '..');
 const CATALOG = require(path.join(ROOT, 'store', 'products.json'));
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
 const LORE = require(path.join(ROOT, 'scripts', 'lore-catalog.json'));
+// Canonical original-script resolution — the archetype `greek` field holds the
+// legacy "—" placeholder for most non-Greek entries; never render it raw.
+const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
+const { getOriginalScript } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
 // Canonical chrome builders — never fork the nav/menu/footer item lists.
 const { fullNavHtml } = require('./sync-desktop-nav.js');
 const { menuForPage } = require('./sync-mobile-menu.js');
@@ -122,12 +127,13 @@ function templeMeta(id) {
   }
   const a = ARCHETYPES.find((x) => x.id === id);
   const lore = LORE[id];
+  const script = getOriginalScript(LEXICON_BY_ID.get(id));
   return {
     id,
     name: a ? a.name : id,
     tagline: a ? a.tagline : '',
     pantheon: a ? a.pantheon : '',
-    greek: a ? a.greek : '',
+    greek: script || '',
     mascotPath: a ? a.mascotPath : '',
     url: `/${id}/`,
     rentalTier: a ? a.rentalTier : null,
@@ -600,7 +606,8 @@ ${cards}
   })();
 })();
 </script>
-    
+<p class="wrap" style="padding-bottom:2rem;color:var(--dim);font-size:.85rem;text-align:center">Every piece is printed to order and shipped worldwide. <a href="/store/shipping/">Shipping</a> · <a href="/store/returns/">Returns &amp; refunds</a></p>
+
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
@@ -987,10 +994,119 @@ function writeIfChanged(file, content) {
   return true;
 }
 
+// ── Store policy pages (shipping + returns) ──
+// Merchant Center and checkout providers require these URLs to exist on the
+// domain; they ship under the store chrome so nav/footer stay canonical.
+function renderPolicyPage({ title, description, path: pagePath, heading, sections }) {
+  return `${head({
+    title: `${title} | PUNICODEX Reliquary`,
+    description,
+    path: pagePath,
+  })}
+<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <span style="color:var(--gold)">${esc(title)}</span></div>
+<div class="wrap" style="max-width:760px;padding-bottom:4rem">
+  <h1 style="margin-bottom:.4rem">${esc(heading)}</h1>
+  ${sections
+    .map(
+      (s) => `<h2 style="margin-top:2rem;font-size:1.2rem">${esc(s.heading)}</h2>
+  ${s.body
+    .map(
+      (para) =>
+        `<p style="color:var(--dim);line-height:1.7;margin:.6rem 0">${para
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')}</p>`
+    )
+    .join('\n  ')}`
+    )
+    .join('\n  ')}
+  <p style="color:var(--dim);line-height:1.7;margin-top:2rem">Questions about an order? <a href="/contact/">Contact the Reliquary</a> — include your order number (SO-…) and we will sort it out.</p>
+</div>
+    ${footerHtml()}
+</body></html>
+`;
+}
+
+const POLICY_PAGES = [
+  {
+    dir: 'shipping',
+    title: 'Shipping Policy',
+    description:
+      'How PUNICODEX Reliquary orders are produced and shipped: made to order, fulfilled by our print partner, shipped worldwide with tracking.',
+    heading: 'Shipping Policy',
+    sections: [
+      {
+        heading: 'Made to order',
+        body: [
+          'Every Reliquary piece is printed or embroidered only after you order it — nothing sits in a warehouse. Production typically takes 2–5 business days before the piece ships.',
+          'Creator Edition pieces (marked as such) are prepared by our studio and may take a little longer; the order confirmation email tells you which path your order is on.',
+        ],
+      },
+      {
+        heading: 'Worldwide delivery',
+        body: [
+          'We ship worldwide through our print partner’s carrier network (postal and courier services, depending on destination). Shipping options and the exact cost for your address are shown at checkout before you pay.',
+          'After your order ships you receive a tracking link by email. Delivery estimates after production are typically 3–8 business days for North America, 5–10 business days for Europe, and 10–20 business days elsewhere — customs processing can add time outside our control.',
+        ],
+      },
+      {
+        heading: 'Tracking & delays',
+        body: [
+          'If a tracking link stops moving or a delivery estimate passes, contact us with your order number and we will investigate with the carrier. Orders lost in transit are reprinted or refunded.',
+        ],
+      },
+    ],
+  },
+  {
+    dir: 'returns',
+    title: 'Returns & Refunds Policy',
+    description:
+      'PUNICODEX Reliquary returns policy: misprinted, damaged or wrong items are reprinted or refunded free of charge; change-of-mind returns for unworn apparel.',
+    heading: 'Returns & Refunds Policy',
+    sections: [
+      {
+        heading: 'Misprints, damage & wrong items',
+        body: [
+          'If your order arrives misprinted, damaged, or not the piece you ordered, contact us within 30 days of delivery with your order number and a photo of the item. We reprint and reship it free of charge, or refund you in full — your choice.',
+          'Because every piece is made to order, we do not ask you to return a defective item in most cases; if a return is needed we provide a prepaid label.',
+        ],
+      },
+      {
+        heading: 'Change-of-mind returns',
+        body: [
+          'Unworn, unwashed apparel may be returned within 30 days of delivery for a refund of the item price. Return shipping is at your cost unless the item is defective. Start the return via the contact page with your order number.',
+          'For hygiene and made-to-order reasons, drinkware, stickers, prints that are not damaged, and Creator Edition pieces are final sale unless they arrive defective or incorrect.',
+        ],
+      },
+      {
+        heading: 'Refunds',
+        body: [
+          'Approved refunds are issued to your original payment method within 5–10 business days of approval, depending on your bank.',
+          'If an order never arrives and tracking confirms it is lost, you choose a free reprint or a full refund.',
+        ],
+      },
+    ],
+  },
+];
+
 function main() {
   const colls = collections();
   let written = 0;
   written += writeIfChanged(path.join(ROOT, 'store', 'index.html'), renderStoreIndex(colls)) ? 1 : 0;
+  for (const policy of POLICY_PAGES) {
+    written += writeIfChanged(
+      path.join(ROOT, 'store', policy.dir, 'index.html'),
+      renderPolicyPage({
+        title: policy.title,
+        description: policy.description,
+        path: `/store/${policy.dir}/`,
+        heading: policy.heading,
+        sections: policy.sections,
+      })
+    )
+      ? 1
+      : 0;
+  }
   for (const [id, products] of colls) {
     written += writeIfChanged(path.join(ROOT, 'store', id, 'index.html'), renderCollection(id, products)) ? 1 : 0;
     for (const p of products) {

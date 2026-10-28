@@ -149,6 +149,9 @@ const allScripts = [
   // must run after it; the injectors then re-run (idempotent) so the fresh
   // pages also receive analytics, collaborators, and beacon blocks.
   'scripts/generate-store-pages.js',
+  // Merchant feed consumes products.json + the mockup fleet; must run after
+  // the store pages so its prices/imagery match the freshly built PDPs.
+  'scripts/generate-merchant-feed.js',
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',
   'scripts/inject-herald-beacon.js',

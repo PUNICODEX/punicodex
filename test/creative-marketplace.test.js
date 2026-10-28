@@ -312,6 +312,60 @@ async function runTests() {
     assert.strictEqual(analyticsRes.body.data.purchases, 1);
     assert.ok(analyticsRes.body.data.views >= 1, 'analytics includes views');
     console.log('  ✓ creator analytics reflects views and purchases');
+
+    // ── /mine + /mine/earnings must read the same store the writers use ──
+    // Seed a live creator merch product, buy it through the store order
+    // service, and pay it (which settles the 50/50 ledger) — then confirm
+    // both dashboard endpoints see the data.
+    const { getDb } = require('../platform/db/connection');
+    const { migrate: migrateCreatorMerch } = require('../platform/db/migrate-creator-merch');
+    const { migrate: migrateStoreOrders } = require('../platform/db/migrate-store-orders');
+    const merchDb = getDb();
+    migrateCreatorMerch(merchDb);
+    migrateStoreOrders(merchDb);
+    const cpInfo = merchDb
+      .prepare(
+        `INSERT INTO creator_products
+           (creative_asset_id, creator_id, creator_name, title, product_type,
+            price_cents, base_cost_cents, status)
+         VALUES (?, ?, ?, ?, 'poster', 2000, 800, 'live')`
+      )
+      .run(assetId, ctx.studentId, 'Creative Student', 'Victory Laurel Poster');
+    const creatorProductId = Number(cpInfo.lastInsertRowid);
+
+    const storeOrders = require('../platform/api/store-orders');
+    const { order } = await storeOrders.createStoreOrder({
+      productId: `creator-${creatorProductId}`,
+      quantity: 1,
+      email: 'buyer@example.com',
+      artworkKey: `creative:${assetId}`,
+    });
+    await storeOrders.markStoreOrderPaid({ orderRef: order.order_ref, session: {} });
+
+    const mineRes = await request('GET', '/api/v1/creatives/mine', {
+      headers: { 'x-scholars-session': ctx.studentSessionId },
+    });
+    assert.strictEqual(mineRes.status, 200);
+    const mineItem = mineRes.body.data.items.find((i) => i.id === assetId);
+    assert.ok(mineItem, '/mine includes the uploaded asset');
+    assert.strictEqual(mineItem.creatorProductId, creatorProductId);
+    assert.strictEqual(mineItem.creatorProductStatus, 'live');
+    console.log('  ✓ /mine lists the asset with its linked creator product');
+
+    const earningsRes = await request('GET', '/api/v1/creatives/mine/earnings', {
+      headers: { 'x-scholars-session': ctx.studentSessionId },
+    });
+    assert.strictEqual(earningsRes.status, 200);
+    const art = earningsRes.body.data.storeArt.find((a) => a.assetId === assetId);
+    assert.ok(art, 'earnings include the asset');
+    assert.strictEqual(art.orders, 1, 'the paid store order is counted');
+    assert.strictEqual(art.grossCents, 2000);
+    assert.strictEqual(earningsRes.body.data.merchLedger.length, 1, 'ledger row is visible');
+    assert.ok(
+      Number(earningsRes.body.data.merchShareCents) > 0,
+      'creator share is summed from the ledger'
+    );
+    console.log('  ✓ /mine/earnings closes the loop: store order + 50/50 ledger row');
   } finally {
     await cleanup();
   }

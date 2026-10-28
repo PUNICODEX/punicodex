@@ -138,11 +138,10 @@ async function notifyCreativeEvent(type, { assetId, extra }) {
     const db = require('./creative-marketplace-db.js');
     const asset = db.getCreativeAssetById(Number(assetId));
     if (!asset) return;
-    const { all } = require('../db/operational.js');
-    const rows = await all('SELECT email, display_name FROM scholars_users WHERE id = ?', [
-      asset.creator_id,
-    ]);
-    const creator = rows[0];
+    // scholars_users lives in the shared SQLite DB (the scholars layer writes
+    // it there) — read that store, not the operational backend.
+    const { getUserById } = require('../db/scholars');
+    const creator = getUserById(asset.creator_id);
     if (!creator?.email) return;
 
     const base = {

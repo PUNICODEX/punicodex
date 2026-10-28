@@ -197,7 +197,11 @@ test('collection product grids are strictly alphabetical A–Z', () => {
 
 test('the store index lists temple collections strictly A–Z', () => {
   const html = read('store/index.html');
-  const ids = [...html.matchAll(/href="\/store\/([a-z0-9-]+)\/"/g)].map((m) => m[1]);
+  // Filter to real collections — the page also links the shipping/returns
+  // policy pages, which are not part of the A–Z temple grid.
+  const ids = [...html.matchAll(/href="\/store\/([a-z0-9-]+)\/"/g)]
+    .map((m) => m[1])
+    .filter((id) => COLLECTION_IDS.includes(id));
   assert.ok(ids.length >= 500, `expected 500+ collections, got ${ids.length}`);
   const sorted = [...ids].sort((a, b) => a.localeCompare(b));
   assert.deepStrictEqual(
@@ -310,6 +314,125 @@ test('store pages carry the responsive breakpoint and canonical site nav', () =>
     const pdp = read(`store/${id}/index.html`);
     assert.ok(pdp.includes('@media(max-width:820px)'), `store/${id}: no breakpoint`);
   }
+});
+
+// ── Google Merchant Center feed ──
+// The feed is the growth surface for the Reliquary; these tests pin the
+// contract that keeps Merchant from disapproving items: price must match the
+// PDP's displayed price, links must resolve to real product pages, and the
+// POD disclosure (identifier_exists=no) must be present on every item.
+
+function parseFeedItems() {
+  const xml = read('store/merchant-feed.xml');
+  const blocks = xml
+    .split('<item>')
+    .slice(1)
+    .map((b) => b.split('</item>')[0]);
+  const field = (block, tag) => {
+    const m = block.match(new RegExp(`<g:${tag}>([^<]*)</g:${tag}>`));
+    if (!m) return null;
+    return m[1]
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&apos;/g, "'");
+  };
+  return blocks.map((b) => ({
+    id: field(b, 'id'),
+    title: field(b, 'title'),
+    link: field(b, 'link'),
+    image: field(b, 'image_link'),
+    price: field(b, 'price'),
+    brand: field(b, 'brand'),
+    condition: field(b, 'condition'),
+    availability: field(b, 'availability'),
+    identifierExists: field(b, 'identifier_exists'),
+    productType: field(b, 'product_type'),
+    category: field(b, 'google_product_category'),
+  }));
+}
+
+// Mirror of scripts/generate-merchant-feed.js#feedPriceCents — the PDP logic.
+function expectedFeedPriceCents(p) {
+  const pricing = p.variantPricing || null;
+  const labels = p.printfulVariants ? Object.keys(p.printfulVariants) : [];
+  const priced = pricing ? labels.filter((l) => Number.isInteger(pricing[l])) : [];
+  if (priced.length) {
+    const cents = priced.map((l) => pricing[l]);
+    if (Math.max(...cents) > Math.min(...cents)) return Math.min(...cents);
+  }
+  return Math.round(Number(p.price || 0) * 100);
+}
+
+test('merchant feed exists with one item per catalog product', () => {
+  assert.ok(exists('store/merchant-feed.xml'), 'store/merchant-feed.xml missing');
+  const items = parseFeedItems();
+  assert.strictEqual(items.length, CATALOG.products.length);
+  const feedIds = new Set(items.map((i) => i.id));
+  for (const p of CATALOG.products) {
+    assert.ok(feedIds.has(p.id), `${p.id}: missing from feed`);
+  }
+});
+
+test('every feed link resolves to a real product page on disk', () => {
+  for (const item of parseFeedItems()) {
+    assert.ok(item.link.startsWith('https://punicodex.com/store/'), `${item.id}: bad link`);
+    assert.ok(!item.link.includes('/store/null/'), `${item.id}: null temple link`);
+    const rel = item.link.replace('https://punicodex.com/store/', '').replace(/\/$/, '');
+    const file = `store/${rel}/index.html`;
+    assert.ok(exists(file), `${item.id}: link target missing: ${file}`);
+  }
+});
+
+test('feed prices match the PDP price logic exactly', () => {
+  const byId = new Map(parseFeedItems().map((i) => [i.id, i]));
+  for (const p of CATALOG.products.slice(0, 150)) {
+    const item = byId.get(p.id);
+    const expected = (expectedFeedPriceCents(p) / 100).toFixed(2);
+    assert.strictEqual(item.price, `${expected} USD`, `${p.id}: feed/PDP price mismatch`);
+  }
+});
+
+test('feed items carry the Merchant-required POD attributes', () => {
+  for (const item of parseFeedItems()) {
+    assert.strictEqual(item.condition, 'new', `${item.id}: condition`);
+    assert.strictEqual(item.availability, 'in stock', `${item.id}: availability`);
+    assert.strictEqual(item.brand, 'PUNICODEX', `${item.id}: brand`);
+    assert.strictEqual(item.identifierExists, 'no', `${item.id}: identifier_exists`);
+    assert.ok(item.title && item.title.length <= 150, `${item.id}: title length`);
+    assert.ok(/^https:\/\//.test(item.image || ''), `${item.id}: image_link not https`);
+    assert.ok(
+      item.productType && item.productType.startsWith('Reliquary >'),
+      `${item.id}: product_type`
+    );
+    assert.ok(item.category && /^\d+$/.test(item.category), `${item.id}: google_product_category`);
+  }
+});
+
+test('merchant feed generator is idempotent', () => {
+  const before = read('store/merchant-feed.xml');
+  execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'generate-merchant-feed.js')], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  assert.strictEqual(read('store/merchant-feed.xml'), before, 'feed not byte-stable');
+});
+
+test('shipping + returns policy pages exist with canonical chrome and contact route', () => {
+  for (const dir of ['shipping', 'returns']) {
+    const html = read(`store/${dir}/index.html`);
+    assert.ok(html.includes(`href="https://punicodex.com/store/${dir}/"`), `${dir}: canonical`);
+    assert.strictEqual((html.match(/<h1[\s>]/g) || []).length, 1, `${dir}: exactly one h1`);
+    assert.ok(html.includes('href="/contact/"'), `${dir}: support route must be /contact/`);
+    assert.ok(!html.includes('mailto:'), `${dir}: no raw mailto`);
+  }
+});
+
+test('store index links the policy pages', () => {
+  const html = read('store/index.html');
+  assert.ok(html.includes('href="/store/shipping/"'), 'store index: no shipping link');
+  assert.ok(html.includes('href="/store/returns/"'), 'store index: no returns link');
 });
 
 test('generator + stamper are idempotent (second run writes zero files)', () => {

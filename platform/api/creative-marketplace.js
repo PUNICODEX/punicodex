@@ -274,6 +274,125 @@ router.get(
   })
 );
 
+// ─────────────────────────────────────────────────────────────
+// My creative assets (dashboard surface)
+// ─────────────────────────────────────────────────────────────
+// NOTE: these routes must stay ABOVE '/:id' — Express matches in order,
+// and '/:id' would otherwise shadow '/mine' with a 404.
+
+router.get(
+  '/mine',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    // creative_assets + creator_products live in the shared SQLite DB (the
+    // scholars layer writes them there) — read the same store, not the
+    // operational backend, or production (Postgres) sees empty tables.
+    const { getDb } = require('../db/connection');
+    const rows = getDb()
+      .prepare(
+        `SELECT a.id, a.title, a.status, a.department, a.inspiration_entry_id,
+                a.merch_consent, a.price_cents, a.created_at,
+                cp.id AS creator_product_id, cp.status AS creator_product_status
+         FROM creative_assets a
+         LEFT JOIN creator_products cp ON cp.creative_asset_id = a.id
+         WHERE a.creator_id = ?
+         ORDER BY a.updated_at DESC
+         LIMIT 50`
+      )
+      .all(req.user.id);
+    res.json(
+      success({
+        items: rows.map((r) => ({
+          id: r.id,
+          title: r.title,
+          status: r.status,
+          department: r.department,
+          inspirationEntryId: r.inspiration_entry_id,
+          merchConsent: r.merch_consent === 1,
+          priceCents: r.price_cents,
+          createdAt: r.created_at,
+          creatorProductId: r.creator_product_id,
+          creatorProductStatus: r.creator_product_status,
+        })),
+      })
+    );
+  })
+);
+
+// ─────────────────────────────────────────────────────────────
+// Creator earnings from the temple store (the money loop, closed)
+// ─────────────────────────────────────────────────────────────
+
+router.get(
+  '/mine/earnings',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    // Temple store orders that carried this creator's art (artwork_key
+    // 'creative:<id>') plus the creator-merch royalty ledger — one
+    // auditable earnings surface. Assets/ledger live in the shared SQLite
+    // DB (where the writers put them); store_orders lives in the
+    // operational backend, so the cross-DB join is done in two steps.
+    const { getDb } = require('../db/connection');
+    const { all } = require('../db/operational.js');
+    const assets = getDb()
+      .prepare('SELECT id, title FROM creative_assets WHERE creator_id = ?')
+      .all(req.user.id);
+    const orderByKey = new Map();
+    if (assets.length) {
+      const keys = assets.map((a) => `creative:${a.id}`);
+      const placeholders = keys.map((_, i) => `$${i + 1}`).join(', ');
+      const orderRows = await all(
+        `SELECT artwork_key, COUNT(id) AS orders,
+                COALESCE(SUM(gross_cents), 0) AS gross_cents,
+                COALESCE(SUM(quantity), 0) AS units
+         FROM store_orders
+         WHERE artwork_key IN (${placeholders})
+           AND status IN ('paid', 'sent_to_fulfillment', 'shipped', 'delivered')
+         GROUP BY artwork_key`,
+        keys
+      );
+      for (const r of orderRows) orderByKey.set(r.artwork_key, r);
+    }
+    const storeRows = assets.map((a) => ({
+      asset_id: a.id,
+      title: a.title,
+      orders: Number(orderByKey.get(`creative:${a.id}`)?.orders || 0),
+      units: Number(orderByKey.get(`creative:${a.id}`)?.units || 0),
+      gross_cents: Number(orderByKey.get(`creative:${a.id}`)?.gross_cents || 0),
+    }));
+    const ledgerRows = getDb()
+      .prepare(
+        `SELECT l.order_ref, l.gross_cents, l.creator_share_cents, l.created_at
+         FROM creator_order_ledger l
+         JOIN creator_products cp ON cp.id = l.product_id
+         WHERE cp.creator_id = ?
+         ORDER BY l.created_at DESC
+         LIMIT 50`
+      )
+      .all(req.user.id);
+    const shareRate = 0.5; // the merch royalty: half of the net margin
+    res.json(
+      success({
+        storeArt: storeRows.map((r) => ({
+          assetId: r.asset_id,
+          title: r.title,
+          orders: Number(r.orders),
+          units: Number(r.units),
+          grossCents: Number(r.gross_cents),
+          estimatedShareCents: Math.round(Number(r.gross_cents) * shareRate * 0.55), // after base+fees, indicative
+        })),
+        merchLedger: ledgerRows.map((r) => ({
+          orderRef: r.order_ref,
+          grossCents: Number(r.gross_cents),
+          shareCents: Number(r.creator_share_cents),
+          createdAt: r.created_at,
+        })),
+        merchShareCents: ledgerRows.reduce((n, r) => n + Number(r.creator_share_cents), 0),
+      })
+    );
+  })
+);
+
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
@@ -781,102 +900,6 @@ router.get(
       days: Number(req.query.days) || 30,
     });
     res.json(success(summary));
-  })
-);
-
-// ─────────────────────────────────────────────────────────────
-// My creative assets (dashboard surface)
-// ─────────────────────────────────────────────────────────────
-
-router.get(
-  '/mine',
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    const { all } = require('../db/operational.js');
-    const rows = await all(
-      `SELECT a.id, a.title, a.status, a.department, a.inspiration_entry_id,
-              a.merch_consent, a.price_cents, a.created_at,
-              cp.id AS creator_product_id, cp.status AS creator_product_status
-       FROM creative_assets a
-       LEFT JOIN creator_products cp ON cp.creative_asset_id = a.id
-       WHERE a.creator_id = ?
-       ORDER BY a.updated_at DESC
-       LIMIT 50`,
-      [req.user.id]
-    );
-    res.json(
-      success({
-        items: rows.map((r) => ({
-          id: r.id,
-          title: r.title,
-          status: r.status,
-          department: r.department,
-          inspirationEntryId: r.inspiration_entry_id,
-          merchConsent: r.merch_consent === 1,
-          priceCents: r.price_cents,
-          createdAt: r.created_at,
-          creatorProductId: r.creator_product_id,
-          creatorProductStatus: r.creator_product_status,
-        })),
-      })
-    );
-  })
-);
-
-// ─────────────────────────────────────────────────────────────
-// Creator earnings from the temple store (the money loop, closed)
-// ─────────────────────────────────────────────────────────────
-
-router.get(
-  '/mine/earnings',
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    // Temple store orders that carried this creator's art (artwork_key
-    // 'creative:<id>') plus the creator-merch royalty ledger — one
-    // auditable earnings surface.
-    const { all } = require('../db/operational.js');
-    const storeRows = await all(
-      `SELECT a.id AS asset_id, a.title,
-              COUNT(o.id) AS orders,
-              COALESCE(SUM(o.gross_cents), 0) AS gross_cents,
-              COALESCE(SUM(o.quantity), 0) AS units
-       FROM creative_assets a
-       LEFT JOIN store_orders o ON o.artwork_key = 'creative:' || a.id
-       WHERE a.creator_id = ? AND o.status IN ('paid', 'sent_to_fulfillment', 'shipped', 'delivered')
-       GROUP BY a.id
-       ORDER BY gross_cents DESC`,
-      [req.user.id]
-    );
-    const ledgerRows = await all(
-      `SELECT l.order_ref, l.gross_cents, l.creator_share_cents, l.created_at
-       FROM creator_order_ledger l
-       JOIN creator_products cp ON cp.id = l.product_id
-       JOIN creative_assets a ON a.id = cp.creative_asset_id
-       WHERE a.creator_id = ?
-       ORDER BY l.created_at DESC
-       LIMIT 50`,
-      [req.user.id]
-    );
-    const shareRate = 0.5; // the merch royalty: half of the net margin
-    res.json(
-      success({
-        storeArt: storeRows.map((r) => ({
-          assetId: r.asset_id,
-          title: r.title,
-          orders: Number(r.orders),
-          units: Number(r.units),
-          grossCents: Number(r.gross_cents),
-          estimatedShareCents: Math.round(Number(r.gross_cents) * shareRate * 0.55), // after base+fees, indicative
-        })),
-        merchLedger: ledgerRows.map((r) => ({
-          orderRef: r.order_ref,
-          grossCents: Number(r.gross_cents),
-          shareCents: Number(r.creator_share_cents),
-          createdAt: r.created_at,
-        })),
-        merchShareCents: ledgerRows.reduce((n, r) => n + Number(r.creator_share_cents), 0),
-      })
-    );
   })
 );
 

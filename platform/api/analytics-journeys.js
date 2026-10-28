@@ -53,14 +53,14 @@ async function journeyFlows({ days = 7, limit = 20 } = {}) {
        SELECT session_hash, path,
               LAG(path) OVER (PARTITION BY session_hash ORDER BY created_at, id) AS prev_path
        FROM site_analytics_events_v2
-       WHERE event_name = 'page_view' AND is_bot = 0 AND created_at >= ?
+       WHERE event_name = 'page_view' AND is_bot = 0 AND created_at >= ${isPostgres() ? '$1' : '?'}
      )
      SELECT prev_path AS from_path, path AS to_path, COUNT(*) AS transitions
      FROM ordered
      WHERE prev_path IS NOT NULL AND prev_path != path
      GROUP BY prev_path, to_path
      ORDER BY transitions DESC
-     LIMIT ?`,
+     LIMIT ${isPostgres() ? '$2' : '?'}`,
     [since, limit]
   );
 }
@@ -113,10 +113,10 @@ async function entryPages({ days = 7, limit = 20 } = {}) {
             ROUND(AVG(event_count), 1) AS avg_events,
             SUM(CASE WHEN entry_temple_id != '' THEN 1 ELSE 0 END) AS temple_entries
      FROM site_analytics_sessions
-     WHERE is_bot = 0 AND first_seen_at >= ?
+     WHERE is_bot = 0 AND first_seen_at >= ${isPostgres() ? '$1' : '?'}
      GROUP BY entry_path
      ORDER BY sessions DESC
-     LIMIT ?`,
+     LIMIT ${isPostgres() ? '$2' : '?'}`,
     [since, limit]
   );
 }
@@ -141,10 +141,10 @@ async function attribution({ days = 7, limit = 20 } = {}) {
                 AND e.temple_id != '' AND e.temple_id IS NOT NULL
             ) THEN 1 ELSE 0 END) AS reached_temple
      FROM site_analytics_sessions s
-     WHERE s.is_bot = 0 AND s.first_seen_at >= ?
+     WHERE s.is_bot = 0 AND s.first_seen_at >= ${isPostgres() ? '$1' : '?'}
      GROUP BY s.referrer_domain, s.utm_source
      ORDER BY sessions DESC
-     LIMIT ?`,
+     LIMIT ${isPostgres() ? '$2' : '?'}`,
     [since, limit]
   );
 }
@@ -157,7 +157,7 @@ async function surfaceAttribution({ days = 7 } = {}) {
             COUNT(*) AS sessions,
             SUM(CASE WHEN event_count >= 3 THEN 1 ELSE 0 END) AS engaged
      FROM site_analytics_sessions
-     WHERE is_bot = 0 AND first_seen_at >= ?
+     WHERE is_bot = 0 AND first_seen_at >= ${isPostgres() ? '$1' : '?'}
      GROUP BY entry_path`,
     [since]
   );
@@ -215,15 +215,15 @@ async function sessionSamples({ days = 1, limit = 10 } = {}) {
   const since = sinceString(days);
   const sessions = await all(
     `SELECT session_hash FROM site_analytics_sessions
-     WHERE is_bot = 0 AND first_seen_at >= ? AND event_count >= 3
-     ORDER BY event_count DESC LIMIT ?`,
+     WHERE is_bot = 0 AND first_seen_at >= ${isPostgres() ? '$1' : '?'} AND event_count >= 3
+     ORDER BY event_count DESC LIMIT ${isPostgres() ? '$2' : '?'}`,
     [since, limit]
   );
   const out = [];
   for (const s of sessions) {
     const pages = await all(
       `SELECT path, created_at FROM site_analytics_events_v2
-       WHERE session_hash = ? AND event_name = 'page_view' AND is_bot = 0
+       WHERE session_hash = ${isPostgres() ? '$1' : '?'} AND event_name = 'page_view' AND is_bot = 0
        ORDER BY created_at, id LIMIT 12`,
       [s.session_hash]
     );
@@ -237,12 +237,12 @@ async function botOverview({ days = 7 } = {}) {
   const since = sinceString(days);
   const row = await get(
     `SELECT COUNT(*) AS bot_sessions FROM site_analytics_sessions
-     WHERE is_bot = 1 AND first_seen_at >= ?`,
+     WHERE is_bot = 1 AND first_seen_at >= ${isPostgres() ? '$1' : '?'}`,
     [since]
   );
   const classes = await all(
     `SELECT ua_class, COUNT(*) AS events FROM site_analytics_events_v2
-     WHERE is_bot = 1 AND created_at >= ? GROUP BY ua_class ORDER BY events DESC LIMIT 8`,
+     WHERE is_bot = 1 AND created_at >= ${isPostgres() ? '$1' : '?'} GROUP BY ua_class ORDER BY events DESC LIMIT 8`,
     [since]
   );
   return { botSessions: row?.bot_sessions || 0, classes };
