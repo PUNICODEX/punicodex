@@ -738,8 +738,11 @@ function main() {
   // generator must not leave a non-canonical menu behind for parallel test
   // phases to trip over (see sync-mobile-menu.js syncOne). Same for the
   // desktop nav + footer: the inline templates drift, so the canonical sync
-  // runs here as the pipeline's post-steps would.
-  const heraldIndex = path.join(OUT_DIR, 'index.html');
+  // runs here as the pipeline's post-steps would. NOTE: the syncs target the
+  // EDITION cover (herald/edition/) — herald/index.html is the Restoration
+  // WebGL experience (templates/herald-restoration) and must never receive
+  // nav/footer surgery.
+  const heraldIndex = path.join(OUT_DIR, 'edition', 'index.html');
   require('./sync-mobile-menu').syncOne(heraldIndex, '/herald/');
   const heraldRel = path.relative(ROOT, heraldIndex);
   require('./sync-desktop-nav').syncPage(heraldRel, { active: '/herald/', replaceNav: true });

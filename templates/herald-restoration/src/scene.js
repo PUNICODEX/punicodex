@@ -34,7 +34,33 @@ function life(t, start, end) {
   return assembled * (1 - returned);
 }
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
+function createRenderer() {
+  const options = { antialias: true, preserveDrawingBuffer: true };
+  try {
+    return new THREE.WebGLRenderer({ ...options, powerPreference: 'high-performance' });
+  } catch (err) {
+    console.warn('high-performance WebGL context failed, retrying default:', err);
+  }
+  try {
+    return new THREE.WebGLRenderer(options);
+  } catch (err) {
+    showFallback(err);
+    throw err;
+  }
+}
+
+function showFallback(error) {
+  console.error('Pantheon initialization failed:', error);
+  window.__SCENE_ERROR__ = String(error?.stack || error);
+  const message = document.querySelector('#fallback p');
+  if (message && window.__SCENE_ERROR__) {
+    message.textContent = `This experience needs WebGL. (${window.__SCENE_ERROR__.split('\n')[0]})`;
+  }
+  document.getElementById('boot')?.remove();
+  document.getElementById('fallback').style.display = 'grid';
+}
+
+const renderer = createRenderer();
 renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
 renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = true;
@@ -737,10 +763,7 @@ async function init() {
     else renderer.setAnimationLoop(animate);
     window.__SCENE_READY__ = true;
   } catch (error) {
-    console.error('Pantheon initialization failed:', error);
-    window.__SCENE_ERROR__ = String(error?.stack || error);
-    document.getElementById('boot').style.display = 'none';
-    document.getElementById('fallback').style.display = 'grid';
+    showFallback(error);
   }
 }
 
