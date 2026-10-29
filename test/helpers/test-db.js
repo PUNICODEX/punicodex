@@ -37,7 +37,9 @@ function prepareTestDb(suiteName) {
 
   // On Windows the golden DB's -shm/-wal can be transiently locked by another
   // suite reading it (parallel phase) or by the AV/indexer — retry briefly
-  // instead of dying with EBUSY (2026-08 flake class).
+  // instead of dying with EBUSY (2026-08 flake class). ENOENT joins the
+  // retryable set: a writer can checkpoint and remove a -shm/-wal between
+  // our existsSync and the copy (2026-10 flake class).
   const copyWithRetry = (src, dst) => {
     let lastErr;
     for (let attempt = 0; attempt < 12; attempt++) {
@@ -46,12 +48,22 @@ function prepareTestDb(suiteName) {
         return;
       } catch (err) {
         lastErr = err;
-        if (err.code !== 'EBUSY' && err.code !== 'EPERM') throw err;
+        if (err.code !== 'EBUSY' && err.code !== 'EPERM' && err.code !== 'ENOENT') throw err;
         const start = Date.now();
         while (Date.now() - start < 250) {} // brief spin; copies are tiny
       }
     }
     throw lastErr;
+  };
+  // Sidecars are optional by nature: if the source vanished mid-copy the
+  // writer checkpointed — "no sidecar" is a valid, consistent state.
+  const copySidecar = (src, dst) => {
+    try {
+      copyWithRetry(src, dst);
+    } catch (err) {
+      if (err.code !== 'ENOENT') throw err;
+      if (fs.existsSync(dst)) fs.unlinkSync(dst);
+    }
   };
   copyWithRetry(GOLDEN_DB, testDb);
 
@@ -60,7 +72,7 @@ function prepareTestDb(suiteName) {
     const src = `${GOLDEN_DB}${ext}`;
     const dst = `${testDb}${ext}`;
     if (fs.existsSync(src)) {
-      copyWithRetry(src, dst);
+      copySidecar(src, dst);
     } else if (fs.existsSync(dst)) {
       fs.unlinkSync(dst);
     }
@@ -84,7 +96,7 @@ function prepareTestDb(suiteName) {
       for (const ext of ['-wal', '-shm']) {
         const src = `${GOLDEN_DB}${ext}`;
         const dst = `${testDb}${ext}`;
-        if (fs.existsSync(src)) copyWithRetry(src, dst);
+        if (fs.existsSync(src)) copySidecar(src, dst);
         else if (fs.existsSync(dst)) fs.unlinkSync(dst);
       }
     }
