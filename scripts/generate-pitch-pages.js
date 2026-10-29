@@ -25,6 +25,7 @@ const path = require('node:path');
 
 const { ARCHETYPES } = require('../js/archetypes-v2.js');
 const { LEXICON } = require('../type/js/lexicon.js');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const { buildResonanceBullets } = require('../platform/api/pitch-email.js');
 
 const OUT_DIR = path.join(__dirname, '..', 'Marketing', 'Sponsorship Pitches', 'templates');
@@ -50,18 +51,24 @@ function frameNames(entry) {
   };
 }
 
-function tierLabel(tier) {
-  if (tier === 'dual') return 'DUAL-TIER';
-  if (tier === '1') return 'TIER 1';
-  if (tier === '2') return 'TIER 2';
-  return '';
+function tierLabel(entry) {
+  // Retired tier system replaced by the computed preservation description
+  // (see archive/tier-system/): the pitch eyebrow carries the mechanical
+  // prestige line instead of an editorial rank.
+  const features = preservationLabel(entry.unicode);
+  if (features === 'Preserves stress & vowel length') return 'FULL RESTORATION';
+  if (features === 'Preserves stress') return 'STRESS-PRESERVING';
+  if (features === 'Preserves vowel length') return 'LENGTH-PRESERVING';
+  if (features.startsWith('Preserves distinctive letters')) return 'LETTERS PRESERVED';
+  if (features.startsWith('Preserves distinctive marks')) return 'MARKS PRESERVED';
+  return 'ASCII FORM';
 }
 
 function pitchPage(entry) {
   const unicode = escapeHtml(entry.unicode);
   const script = entry.greek && entry.greek !== '—' ? escapeHtml(entry.greek) : null;
   const domains = escapeHtml(entry.domain || '');
-  const tier = tierLabel(entry.tier);
+  const tier = tierLabel(entry);
   const frames = frameNames(entry);
   const bullets = buildResonanceBullets(entry.id, '«BUSINESS NAME»')
     .map(

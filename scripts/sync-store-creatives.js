@@ -35,11 +35,29 @@ const MAX_CREATIVES_PER_TEMPLE = 6;
 const MAX_ORIGINAL_BYTES = 20 * 1024 * 1024;
 
 // platform/db/operational.all handles both Postgres (DATABASE_URL set) and
-// local SQLite transparently — one query either way.
+// local SQLite transparently — one query either way. scholars_users does NOT
+// live in the operational store (SQLite-only, see platform/db/scholars/) — a
+// cross-store JOIN crashes the nightly sync in CI, so creator names are
+// resolved separately below.
 const { all: dbAll } = require('../platform/db/operational');
+const { getUserById } = require('../platform/db/scholars');
 
-async function fetchOriginal(originalPath) {
-  if (/^https?:\/\//.test(originalPath)) {
+// scholars_users lives in the shared SQLite DB (never the operational/Postgres
+// store). Missing user → empty string; the title fallback carries the label.
+const creatorNameCache = new Map();
+function creatorName(creatorId) {
+  if (creatorNameCache.has(creatorId)) return creatorNameCache.get(creatorId);
+  let name = '';
+  try {
+    name = getUserById(Number(creatorId))?.display_name || '';
+  } catch (_e) {
+    name = '';
+  }
+  creatorNameCache.set(creatorId, name);
+  return name;
+}
+
+async function fetchOriginal(originalPath) {  if (/^https?:\/\//.test(originalPath)) {
     const res = await fetch(originalPath);
     if (!res.ok) throw new Error(`download ${originalPath} → ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
@@ -58,10 +76,8 @@ async function fetchOriginal(originalPath) {
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const rows = await dbAll(`
-    SELECT a.id, a.title, a.original_path, a.inspiration_entry_id,
-           u.display_name AS creator_name
+    SELECT a.id, a.title, a.original_path, a.inspiration_entry_id, a.creator_id
     FROM creative_assets a
-    JOIN scholars_users u ON a.creator_id = u.id
     WHERE a.status = 'approved'
       AND a.merch_consent = 1
       AND a.inspiration_entry_id IS NOT NULL
@@ -92,7 +108,7 @@ async function main() {
       index[temple].push({
         id: row.id,
         title: String(row.title || `Creative #${row.id}`),
-        creator: row.creator_name || '',
+        creator: creatorName(row.creator_id),
         src: `/assets/store-creatives/${row.id}.webp`,
         printUrl: `https://punicodex.com/assets/store-creatives/${row.id}.png`,
       });

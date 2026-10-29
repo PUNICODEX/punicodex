@@ -45,7 +45,10 @@
             const tag = 'a';
             const hrefAttr = `href="${url}"`;
             const unbuiltClass = !a.built ? 'unbuilt' : '';
-            const badgeText = !a.built ? 'Awaiting' : preservationBadgeText(a.name);
+            // Awe-first grid: built cards carry no classification badge — the
+            // preservation description lives on the temple page, where the
+            // name itself is the subject. Only unbuilt cards state their status.
+            const badgeText = !a.built ? 'Awaiting' : '';
 
             const scriptInfo = typeof ORIGINAL_SCRIPT_LOOKUP !== 'undefined' ? ORIGINAL_SCRIPT_LOOKUP[a.id] : null;
             const originalScript = scriptInfo ? scriptInfo.originalScript : (a.greek || '');
@@ -71,7 +74,7 @@
                     <p class="card-greek">${scriptLabel}</p>
                     <p class="card-domain">${a.domain}</p>
                     <p class="card-punycode">${a.domainUnicode} &rarr; ${a.domainPunycode}</p>
-                    <span class="card-badge">${badgeText}</span>
+                    ${badgeText ? `<span class="card-badge">${badgeText}</span>` : ''}
                 </${tag}>
             `;
         }).join('');

@@ -18,7 +18,7 @@ const ROOT = path.join(__dirname, '..');
 
 // asset path (repo-relative) → { old, next } token strings.
 const MAP = [
-  { asset: 'css/main.css', old: 'v=perf25', next: 'v=perf26' },
+  { asset: 'css/main.css', old: 'v=perf26', next: 'v=perf27' },
   { asset: 'css/mobile-menu.css', old: 'v=4', next: 'v=5' },
   { asset: 'css/home-critical.css', old: 'v=1', next: 'v=2' },
   { asset: 'css/oracle.css', old: 'v=2', next: 'v=3' },

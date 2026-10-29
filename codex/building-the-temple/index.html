@@ -20,8 +20,8 @@
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": "Building the Temple: A Technical Retrospective — PuniCodex",
-        "datePublished": "2024-10",
-        "dateModified": "2024-10",
+        "datePublished": "2026-07",
+        "dateModified": "2026-07",
         "author": {
             "@type": "Organization",
             "name": "PuniCodex",
@@ -33,7 +33,7 @@
     </script>
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 
-    <link rel="stylesheet" href="/css/main.css?v=perf26">
+    <link rel="stylesheet" href="/css/main.css?v=perf27">
     <link rel="stylesheet" href="/css/codex.css?v=perf9">
     <link rel="stylesheet" href="/css/punicodex-tokens.css">
     <link rel="stylesheet" href="/css/brand-overrides.css">
@@ -137,7 +137,7 @@
                 <picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img style="display:block;width:min(260px,55vw);height:auto;margin:0 0 var(--space-4);" src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex" width="680" height="119" decoding="async"></picture>
                 <div class="codex-article-meta">
                     <span class="codex-article-category">Process</span>
-                    <span class="codex-article-date">October 2024</span>
+                    <span class="codex-article-date">July 2026</span>
                     <span class="codex-article-readtime">10 min read</span>
                 </div>
                 <h1 class="codex-article-title display-md">Building the Temple: A Technical Retrospective</h1>
@@ -146,7 +146,7 @@
         </header>
 
         <article class="codex-article-body container">
-            <p class="lead">PuniCodex now serves 894 individual temple pages, one for every entry in the lexicon. One hundred seventy-three of those are flagships: hand-expanded pages with custom canvases, lore galleries, pronunciation guides, and domain ownership badges. The rest are generated from a single canonical source. This article is the story of how we learned to build at that scale without losing the detail that makes each name feel sacred.</p>
+            <p class="lead">PuniCodex now serves 983 individual temple pages, one for every entry in the lexicon. Five hundred forty-eight of those are flagships: hand-expanded pages with custom canvases, lore galleries, pronunciation guides, and domain ownership badges. The rest are generated from a single canonical source. This article is the story of how we learned to build at that scale without losing the detail that makes each name feel sacred.</p>
 
             <h2>The Source of Truth Problem</h2>
             <p>The first mistake was storing the same data in more than one place. We had a lexicon for the type tool, a separate catalog for temple generation, and a spreadsheet for domain ownership. When a single accent moved — when <code>Apóllōn</code> became <code>Apollōn</code>, for example — the change had to be chased through three files, two build scripts, and a middleware router.</p>
@@ -161,14 +161,9 @@
             <p>Each flagship has an ambient canvas: storm for Zeus, void for Hades, time for Kronos, light for Apollo, water for Poseidon, and so on. The shared canvas system in <code>js/flagship-canvas.js</code> keeps the code small, but performance still matters. Browsers throttle off-screen canvases, and mobile GPUs struggle with particle counts that desktop handles easily.</p>
             <p>We settled on a budget: every effect must run at 60 fps on a mid-range phone, degrade gracefully when <code>prefers-reduced-motion</code> is set, and never block the main thread during initial paint. The result is a library of ten effects, each under a few hundred lines, each parameterized by the archetype id so the same script renders a different mood for every god.</p>
 
-            <h2>The Tier System as UX</h2>
-            <p>The tier system began as a scholarly classifier and became a user-experience map. Tier 1 names preserve both stress and length; Tier 2 names preserve only one or neither; the three dual-tier names preserve multiple historically valid spellings. These categories determine what the temple page shows:</p>
-            <ul>
-                <li>Tier 1 temples display a single meta-badge and explain why the full orthography is defensible.</li>
-                <li>Tier 2 temples label the subtype — "Accent-Preserving" or "Macron-Preserving" — and explain the single coordinate that survives.</li>
-                <li>Dual-tier temples display two badges, two name cards, and a footer that identifies the pair as a real attested alternation.</li>
-            </ul>
-            <p>The tier rules are documented on the <a href="/rulebook/">The Rules</a> page and enforced by the flywheel validator. A Tier 1 name cannot claim a dual-tier spelling, and a Tier 2 name cannot quietly upgrade itself by adding an un-attested accent.</p>
+            <h2>What a Restoration Preserves — and Its Variants</h2>
+            <p>Every temple describes its own form mechanically: the description is computed from the spelling itself, never assigned by editorial judgment. A form either preserves stress, preserves vowel length, preserves a letter ASCII cannot write — or it says so plainly when it is ASCII-equivalent. The description can never overclaim the text it labels, and the flywheel validator re-derives it for every one of the 983 entries on every build.</p>
+            <p>Beyond the displayed form, each name carries its full spelling space: every attested variant with its scholarly sources, the systematic convention forms other romanization standards would produce, and the mechanically derived subsets of the restoration itself. Ownership is an annotation on that family, never a gate — knowledge of a spelling we do not own publishes exactly the same as one we do. The doctrine lives on the <a href="/rulebook/">Rulebook</a> page and is served openly at <code>/api/v1/names/{id}/variants</code>.</p>
 
             <h2>What We Learned</h2>
             <p>The most important lesson was philological, not technical. A diacritic is not decoration. The acute on <a href="/apollon/">Apóllōn</a> is the difference between a rising pitch and a falling one. The macron on <code>Hēra</code> is the difference between a long vowel and a short one. These distinctions were alive in the mouths of ancient speakers, and they survive in the meters of tragedy and hymn.</p>

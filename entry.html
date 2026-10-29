@@ -130,9 +130,6 @@
       letter-spacing: 0.06em;
     }
 
-    .tier-dual { background: var(--gold-dim); color: var(--tier-dual); }
-    .tier-1 { background: rgba(var(--emerald-rgb), 0.12); color: var(--tier-1); }
-    .tier-2 { background: rgba(var(--blue-rgb), 0.12); color: var(--tier-2); }
 
     .pantheon-badge {
       font-size: var(--text-base);
@@ -498,8 +495,17 @@
 
     function renderEntry(entry) {
       const main = document.getElementById('main');
-      const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';
-      const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
+      // Mechanical preservation label — computed from the displayed form.
+      const nfdForm = (entry.unicode || '').normalize('NFD');
+      const circumflexForm = nfdForm.includes('̂');
+      const stressForm = circumflexForm || /[̀́́]/.test(nfdForm);
+      const lengthForm = circumflexForm || /[̄̆]/.test(nfdForm);
+      const featuresForm = [];
+      if (stressForm) featuresForm.push('stress');
+      if (lengthForm) featuresForm.push('vowel length');
+      if (!stressForm && !lengthForm && /[þðæœÞÆŒꜣꜥ]/.test(nfdForm)) featuresForm.push('distinctive letters');
+      else if (!stressForm && !lengthForm && /[̀-ͯ]/.test(nfdForm)) featuresForm.push('distinctive marks');
+      const tierLabel = featuresForm.length ? `Preserves ${featuresForm.join(' & ')}` : 'ASCII-equivalent form';
 
       let html = `<a href="/search/" class="back-link">← Back to Search</a>`;
 
@@ -509,7 +515,7 @@
           <div class="hero-unicode">${escapeHtml(entry.unicode)}</div>
           ${entry.greek && entry.greek !== '—' ? `<div class="hero-greek">${escapeHtml(entry.greek)}</div>` : ''}
           <div class="hero-meta">
-            <span class="tier-badge ${tierClass}">${tierLabel}</span>
+            <span class="tier-badge">${tierLabel}</span>
             <span class="pantheon-badge">${escapeHtml(entry.pantheon)}</span>
             <span class="ascii-badge">ASCII: ${escapeHtml(entry.ascii)}</span>
           </div>

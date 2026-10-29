@@ -38,25 +38,14 @@
   const INITIAL_COUNT = 24;
   let gridExpanded = false;
 
-    // Mechanical preservation badge — computed from the displayed form.
-    function preservationBadgeText(unicode) {
-        const nfd = (unicode || '').normalize('NFD');
-        const circumflex = nfd.includes('̂');
-        const stress = circumflex || /[̀́́]/.test(nfd);
-        const length = circumflex || /[̄̆]/.test(nfd);
-        if (stress && length) return 'Preserves stress & length';
-        if (stress) return 'Preserves stress';
-        if (length) return 'Preserves length';
-        if (/[̀-ͯ]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd)) return 'Preserves marks';
-        return 'ASCII form';
-    }
-
   function cardHtml(a, index) {
     const url = getArchetypeUrl(a);
     const tag = url ? 'a' : 'div';
     const hrefAttr = url ? `href="${url}"` : '';
     const unbuiltClass = !a.built ? 'unbuilt' : '';
-    const badgeText = !a.built ? 'Awaiting' : preservationBadgeText(a.name);
+    // Awe-first grid: built cards carry no classification badge (see
+    // js/pantheon.js); only unbuilt cards state their status.
+    const badgeText = !a.built ? 'Awaiting' : '';
 
     const scriptInfo =
       typeof ORIGINAL_SCRIPT_LOOKUP !== 'undefined'
@@ -83,7 +72,7 @@
         <p class="card-name">${escapeHtml(a.name)}</p>
         <p class="card-greek">${scriptLabel}</p>
         <p class="card-domain">${escapeHtml(a.domain)}</p>
-        <span class="card-badge">${badgeText}</span>
+        ${badgeText ? `<span class="card-badge">${badgeText}</span>` : ''}
       </${tag}>
     `;
   }
