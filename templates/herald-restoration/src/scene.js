@@ -51,7 +51,7 @@ function createRenderer() {
 
 function showFallback(error) {
   console.error('Pantheon initialization failed:', error);
-  window.__SCENE_ERROR__ = String(error?.stack || error);
+  window.__SCENE_ERROR__ = `[${bootPhase}] ${String(error?.stack || error)}`;
   const message = document.querySelector('#fallback p');
   if (message && window.__SCENE_ERROR__) {
     message.textContent = `This experience needs WebGL. (${window.__SCENE_ERROR__.split('\n')[0]})`;
@@ -60,20 +60,69 @@ function showFallback(error) {
   document.getElementById('fallback').style.display = 'grid';
 }
 
+// Mark the current boot phase so a failure can be traced to its exact step.
+let bootPhase = 'module';
+function setBootPhase(phase) {
+  bootPhase = phase;
+  window.__BOOT_PHASE__ = phase;
+}
+
 // Mobile GPUs (especially on high-DPI phones) cannot sustain the full scene:
 // full-resolution bloom buffers + 2048px PCFSoft shadows + DPR 1.5 get the
 // driver to kill the WebGL context at peak load (the dome/coffer sequence,
 // t≈19–29s). Detect early and render a lighter configuration.
 const MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth / innerHeight < 0.8;
 
+// Track the column pack download so the boot loader can show real progress
+// (the pack is ~7MB — on mobile networks the difference between a spinner
+// and a percentage is the difference between "loading" and "crashed").
+const bootLabel = document.querySelector('#boot p');
+{
+  const nativeFetch = window.fetch.bind(window);
+  window.fetch = (input, init) =>
+    nativeFetch(input, init).then((response) => {
+      const url = String(input?.url || input);
+      if (!url.includes('pack-1.bin') || !response.body || !bootLabel) return response;
+      const total = Number(response.headers.get('content-length')) || 0;
+      const reader = response.body.getReader();
+      const stream = new ReadableStream({
+        async start(controller) {
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            if (total) {
+              bootLabel.dataset.loaded = (Number(bootLabel.dataset.loaded || 0) + value.byteLength);
+              const pct = Math.min(99, Math.round((Number(bootLabel.dataset.loaded) / total) * 100));
+              bootLabel.textContent = `ASSEMBLING THE PANTHEON — ${pct}%`;
+            }
+            controller.enqueue(value);
+          }
+          controller.close();
+        },
+      });
+      return new Response(stream, { status: response.status, headers: response.headers });
+    });
+}
+
 const renderer = createRenderer();
 renderer.setPixelRatio(MOBILE ? 1 : Math.min(devicePixelRatio, 1.5));
 renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = MOBILE ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+// Mobile GPUs sometimes lose the WebGL context once during warmup and restore
+// it automatically — only treat a loss as fatal if it is not restored quickly.
+let contextLostTimer = null;
 renderer.domElement.addEventListener('webglcontextlost', (event) => {
   event.preventDefault();
-  showFallback(new Error('The graphics context was lost (GPU ran out of resources). Please reload.'));
+  clearTimeout(contextLostTimer);
+  contextLostTimer = setTimeout(() => {
+    showFallback(
+      new Error('The graphics context was lost during "' + bootPhase + '" and was not restored. Please reload.')
+    );
+  }, 2500);
+});
+renderer.domElement.addEventListener('webglcontextrestored', () => {
+  clearTimeout(contextLostTimer);
 });
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = .88;
@@ -423,9 +472,12 @@ scene.add(distant);
 
 // Merge the reusable Ionic master into one normalized geometry, then instance it around the peristyle.
 async function buildColumns() {
+  setBootPhase('columns:import');
   const assetModulePath = '/herald/assets/column/asset.mjs';
   const { createAsset } = await import(/* @vite-ignore */ assetModulePath);
+  setBootPhase('columns:load');
   const root = await createAsset(THREE, { states: 'lazy', sharedResources: true });
+  setBootPhase('columns:merge');
   root.updateMatrixWorld(true);
   const geometries = [];
   root.traverse(object => {
@@ -761,8 +813,10 @@ addEventListener('resize', () => {
 
 async function init() {
   try {
+    setBootPhase('fonts');
     await document.fonts.ready;
     await buildColumns();
+    setBootPhase('first-frame');
     if (reducedMotion && !CAPTURE) { simT = 30; paused = true; }
     sample(simT);
     updatePlayUI();
