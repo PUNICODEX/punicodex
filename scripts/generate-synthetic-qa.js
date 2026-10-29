@@ -15,6 +15,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 
 const ROOT = path.join(__dirname, '..');
 const ENTRIES_PATH = path.join(ROOT, 'data', 'corpus', 'entries.jsonl');
@@ -45,7 +46,7 @@ const TEMPLATES = {
   restoration: (e) => ({
     instruction: `What is the Unicode restoration of the mythological name "${e.ascii}"?`,
     input: e.ascii,
-    output: `${e.unicode} is the Unicode restoration of "${e.ascii}". Greek/original script: ${e.greek || '—'}. Meaning: ${e.meaning}. Pantheon: ${e.pantheon}. Tier: ${e.tierLabel}.`,
+    output: `${e.unicode} is the Unicode restoration of "${e.ascii}". Greek/original script: ${e.greek || '—'}. Meaning: ${e.meaning}. Pantheon: ${e.pantheon}. Restoration: ${preservationLabel(e.unicode)}.`,
   }),
 
   punycode: (e) =>
@@ -97,18 +98,11 @@ const TEMPLATES = {
     output: `${e.unicode} means: ${e.meaning}. Domain: ${e.domain}. Pantheon: ${e.pantheon}.`,
   }),
 
-  tier: (e) => {
-    const rules = {
-      dual: 'It is Dual-Tier because the Greek original has both stress and length, and there are multiple historically valid Unicode spellings.',
-      '1': 'It is Tier 1 because the Greek original has both stress and length, but only one historically valid Unicode restoration.',
-      '2': 'It is Tier 2 because the Greek original preserves only one scholarly feature (stress or length), or neither.',
-    };
-    return {
-      instruction: `What tier is "${e.unicode}" and why?`,
-      input: e.unicode,
-      output: `${e.unicode} is classified as ${e.tierLabel}. ${rules[e.tier] || ''}`,
-    };
-  },
+  preservation: (e) => ({
+    instruction: `What does the Unicode restoration "${e.unicode}" preserve that ASCII cannot show?`,
+    input: e.unicode,
+    output: `${e.unicode} ${preservationLabel(e.unicode).toLowerCase()} — features the ASCII form ${e.ascii} cannot show.`,
+  }),
 
   mythology: (e) => {
     if (!e.lore || !e.lore.mythologyMyths?.length) return null;

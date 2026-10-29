@@ -8,7 +8,7 @@
  * English-default mispronunciation).
  *
  * Record shape (one JSON object per line):
- *   { id, unicode, ascii, pantheon, tier, ipa, ipaLabel, respelling,
+ *   { id, unicode, ascii, pantheon, ipa, ipaLabel, respelling,
  *     syllables, stressIndex, ssml, notes,
  *     timing: { morae, totalMorae, contour, beats, rhythm, moraMs,
  *               durationMs, perSyllable, model, conventional } | null,
@@ -38,7 +38,6 @@ function recordFor(entry) {
     unicode: entry.unicode,
     ascii: entry.ascii,
     pantheon: entry.pantheon,
-    tier: entry.tier,
     ipa: derived.derived ? derived.ipa : atlas.ipa,
     ipaLabel: derived.derived ? derived.ipaLabel : atlas.ipaLabel,
     respelling: derived.derived ? derived.respelling : atlas.approximation || null,

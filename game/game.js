@@ -63,7 +63,7 @@
     section: 'lobby',
     search: '',
     pantheon: 'all',
-    tier: 'all',
+    marks: 'all',
     rarity: 'all',
     deckSearch: '',
     deckPantheon: 'all',
@@ -241,7 +241,9 @@
   }
 
   function tierRank(card) {
-    return card.tier === 'dual' ? 3 : card.tier === '1' ? 2 : 1;
+    // Mechanical: derived from the displayed form (preservation label).
+    var label = card.preservation || '';
+    return label.indexOf('&') !== -1 ? 3 : label !== 'ASCII-equivalent form' ? 2 : 1;
   }
 
   function removalScore(card) {
@@ -292,7 +294,7 @@
             );
           });
           if (cand.length === 0) continue;
-          // Strongest first (tier), then a light random spread across the
+          // Strongest first (preservation), then a light random spread across the
           // top few so two starters never match.
           cand.sort(function (a, b) {
             return tierRank(b) - tierRank(a);
@@ -440,7 +442,7 @@
 
     var body = el('div', 'card-body');
     body.appendChild(el('div', 'card-name', card.name));
-    body.appendChild(el('div', 'card-sub', prettyPantheon(card.pantheon) + ' · ' + card.tierLabel));
+    body.appendChild(el('div', 'card-sub', prettyPantheon(card.pantheon) + ' · ' + (card.preservation || '')));
 
     var stats = el('div', 'card-stats');
     stats.appendChild(el('span', 'stat-cost', '✦ ' + card.cost));
@@ -491,7 +493,7 @@
       var rarityTag = el('span', 'tag rarity-tag', card.rarity);
       rarityTag.style.color = 'var(--rarity-' + card.rarity + ')';
       tags.appendChild(rarityTag);
-      tags.appendChild(el('span', 'tag', card.tierLabel));
+      tags.appendChild(el('span', 'tag', card.preservation || ''));
       if (card.foil) tags.appendChild(el('span', 'tag', 'Foil'));
       if (card.variant === 'original-script') tags.appendChild(el('span', 'tag', 'Original Script'));
       if (card.flagship) tags.appendChild(el('span', 'tag', 'Flagship'));
@@ -622,11 +624,11 @@
   function renderCollectionFilters() {
     renderPillGroup(
       'tier-filters',
-      ['all', 'dual', '1', '2'],
-      ['All tiers', 'Dual-Tier', 'Tier 1', 'Tier 2'],
-      ui.tier,
+      ['all', 'marked', 'plain'],
+      ['All forms', 'With marks', 'ASCII form'],
+      ui.marks,
       function (v) {
-        ui.tier = v;
+        ui.marks = v;
         renderCollection();
       }
     );
@@ -648,7 +650,7 @@
 
   function collectionMatches(card) {
     if (!save.collection[card.id]) return false;
-    if (ui.tier !== 'all' && card.tier !== ui.tier) return false;
+    if (ui.marks !== 'all' && (card.preservation === 'ASCII-equivalent form') !== (ui.marks === 'plain')) return false;
     if (ui.rarity !== 'all' && card.rarity !== ui.rarity) return false;
     if (ui.pantheon !== 'all' && card.pantheon !== ui.pantheon) return false;
     if (ui.search) {

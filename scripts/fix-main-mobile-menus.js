@@ -15,7 +15,6 @@ const FILES = [
   'store/index.html',
   'type/index.html',
   'pantheon/index.html',
-  'tiers/index.html',
   'appraise/index.html',
   '404.html',
 ];
@@ -27,7 +26,7 @@ const MENU = `    <!-- Mobile Menu -->
         <a href="/pantheon/">Pantheon</a>
         <a href="/realms/">Realms</a>
         <a href="/lexicon/">Lexicon</a>
-        <a href="/tiers/">Tier System</a>
+        <a href="/rulebook/">The Rules</a>
         <a href="/type/">Type</a>
         <a href="/search.html">Search</a>
         <a href="/codex/">Codex</a>

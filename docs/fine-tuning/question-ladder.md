@@ -25,8 +25,8 @@ Legend — what answers the question:
 
 7. "Why do we say 'music'?" — DB (everyday/) + ATLAS
 8. "Is it true Thursday is named after Thor?" — DB+ATLAS
-9. "What's the difference between Hera and Hēra?" — DB (tiers doctrine)
-10. "Why does apóllōn.com have two spellings?" — DB (dual-tier, variants)
+9. "What's the difference between Hera and Hēra?" — DB (restoration preservation)
+10. "Why does apóllōn.com have two spellings?" — DB (multi-form restoration, variants)
 11. "What was the original writing of Krishna's name?" — DB (original-script)
 12. "Are Odin and Woden the same guy?" — DB+SFT (syncretism)
 13. "Why would anyone register a name with accents?" — SFT (thesis) + doctrine

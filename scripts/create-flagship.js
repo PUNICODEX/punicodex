@@ -19,6 +19,7 @@ const cheerio = require('cheerio');
 const url = require('node:url');
 const { unicodeName } = require('unicode-name');
 const { autoLink } = require('./lib/crosslink.js');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const { templeBreadcrumb, templeBreadcrumbNav } = require('./lib/breadcrumb.js');
 const { wikidataUrlFor } = require('./lib/wikidata-links.js');
 const { PANTHEON_META } = require('../type/js/pantheon-meta.js');
@@ -1202,63 +1203,8 @@ function getPunycodeExplainer(entry) {
   return `${ascii}.com \u2192 ${ascii}.com`;
 }
 
-// Dual-tier temples display both meta-badges (Tier-1 + Tier-2); every other
-// temple displays its single tier badge. Canonical doctrine, AGENTS.md.
 function tierBadgesHtml(entry) {
-  if (entry.tier === 'dual') {
-    return '<span class="meta-badge">Tier-1</span> <span class="meta-badge">Tier-2</span>';
-  }
-  return `<span class="meta-badge">${entry.tierLabel || `Tier ${entry.tier}`}</span>`;
-}
-
-function generateTierExplanation(entry) {
-  const source = originalScript(entry);
-  const sourceLabel = isGreekEntry(entry) ? 'Greek original' : 'original form';
-  if (isGreekEntry(entry)) {
-    if (entry.tier === 'dual') {
-      return `The ${sourceLabel} <strong>${source}</strong> contains <strong>both stress and vowel length</strong>, and it supports multiple historically valid Unicode restorations. This makes it a <strong>dual-tier</strong> name.`;
-    }
-    if (entry.tier === '1') {
-      return `The ${sourceLabel} <strong>${source}</strong> contains <strong>both stress and vowel length</strong>, but only one historically valid Unicode restoration exists. This makes it a <strong>single-tier Tier-1</strong> name.`;
-    }
-    const hasStress =
-      /[\u0301\u0302\u0342άέήίόύώΆΈΉΊΌΎΏ]/.test(source) || /[áéíóúÁÉÍÓÚṓṒ]/.test(entry.unicode);
-    const hasLength =
-      /[ηωᾱῑῡēō]/.test(source.toLowerCase()) || /[ēōḗṓ]/.test(entry.unicode.toLowerCase());
-    if (hasStress && !hasLength)
-      return `The ${sourceLabel} <strong>${source}</strong> contains <strong>stress (acute/circumflex)</strong> but no long-vowel mark. This makes it a <strong>single-tier Tier-2 Accent-Preserving</strong> name.`;
-    if (!hasStress && hasLength)
-      return `The ${sourceLabel} <strong>${source}</strong> contains a <strong>long vowel</strong> but no stress mark. This makes it a <strong>single-tier Tier-2 Macron-Preserving</strong> name.`;
-    return `The ${sourceLabel} <strong>${source}</strong> preserves one distinctive feature in its Unicode restoration. This makes it a <strong>${entry.tierLabel || 'Tier-2'}</strong> name.`;
-  }
-  // Non-Greek entries: explain by tradition and tier label
-  if (entry.tier === 'dual') {
-    return `The ${sourceLabel} <strong>${source}</strong> supports multiple historically valid Unicode restorations. Within the ${entry.pantheon} tradition, this makes it a <strong>dual-tier</strong> name.`;
-  }
-  if (entry.tier === '1') {
-    return `The ${sourceLabel} <strong>${source}</strong> survives into Unicode with at least one distinctive feature intact — a diacritic or distinctive letter that ASCII erases. Within the ${entry.pantheon} tradition, this makes it a <strong>single-tier Tier-1</strong> name.`;
-  }
-  return `The ${sourceLabel} <strong>${source}</strong> needs no distinctive letters or diacritics its ASCII form would lose — the restoration is faithful without them. Classified as <strong>${entry.tierLabel || 'Tier-2'}</strong> in the PUNICODEX tier system.`;
-}
-
-function _tierGridValues(entry) {
-  const source = originalScript(entry);
-  const isGreek = isGreekEntry(entry);
-  const hasStress =
-    isGreek &&
-    (/[\u0301\u0302\u0342άέήίόύώΆΈΉΊΌΎΏ]/.test(source) || /[áéíóúÁÉÍÓÚ]/.test(entry.unicode));
-  const hasLength =
-    isGreek &&
-    (/[ηωᾱῑῡēō]/.test(source.toLowerCase()) || /[ēōḗṓ]/.test(entry.unicode.toLowerCase()));
-  const isDual = entry.tier === 'dual';
-  return {
-    stressActive: hasStress ? 'active' : 'inactive',
-    stressValue: hasStress ? 'Preserved' : isGreek ? '\u2014' : 'N/A',
-    lengthActive: hasLength ? 'active' : 'inactive',
-    lengthValue: hasLength ? 'Preserved' : isGreek ? '\u2014' : 'N/A',
-    dualActive: isDual ? 'active' : 'inactive',
-    dualValue: isDual ? 'Yes' : '\u2014',
-  };
+  return `<span class="meta-badge">${preservationLabel(entry.unicode)}</span>`;
 }
 
 function scriptLabel(entry) {
@@ -1526,25 +1472,6 @@ function buildOriginalScriptProvenanceSection(entry, sectionNumber = 2) {
   return buildRichProvenanceSection(entry, sectionNumber);
 }
 
-function _buildTierSection(entry, _sectionNumber) {
-  const tierLabel = entry.tierLabel || `Tier ${entry.tier}`;
-  return `<section class="section section-tier" id="tier">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <h2 class="section-title">Tier Classification</h2>
-            <p class="section-subtitle">Where ${entry.unicode} stands in the PUNICODEX tier system</p>
-        </div>
-        <div class="tier-grid tier-grid-single">
-            <div class="tier-card reveal-up">
-                <div class="tier-label">${tierLabel}</div>
-                <div class="tier-domain">${entry.unicode}.com</div>
-                <p class="tier-body">${generateTierExplanation(entry)}</p>
-            </div>
-        </div>
-    </div>
-</section>`;
-}
-
 function getCanvasEffect(entry) {
   const id = entry.id;
 
@@ -1761,7 +1688,7 @@ function buildRelatedNamesSection(entry, sectionNumber) {
   const cards = related
     .map((e) => {
       const greek = e.greek && e.greek !== '—' ? e.greek : '';
-      const tier = e.tierLabel || `Tier ${e.tier}`;
+      const tier = preservationLabel(e.unicode);
       return `
     <a href="/${e.id}/" class="related-card reveal-up">
       <span class="related-name">${e.unicode}</span>
@@ -1840,10 +1767,7 @@ function buildZeusFooter(entry, assetPrefix) {
         .join(' \u00b7 ')
         .toLowerCase()
     : entry.unicode;
-  const classification =
-    entry.tier === 'dual'
-      ? 'Dual‑Tier Pair (Tier‑1 & Tier‑2)'
-      : entry.tierLabel || `Tier ${entry.tier}`;
+  const classification = preservationLabel(entry.unicode);
   // Sitewide footer link block: crawlers get the important collections from
   // every temple, plus this temple's own Reliquary collection.
   const exploreLinks = [
@@ -1960,7 +1884,7 @@ function buildQuickFactsSection(entry, catalogEntry, sectionNumber = 1) {
     },
     { dt: 'Domain', dd: entry.domain },
     { dt: 'Meaning', dd: entry.meaning || entry.domain },
-    { dt: 'Classification', dd: entry.tierLabel || `Tier ${entry.tier}` },
+    { dt: 'Classification', dd: preservationLabel(entry.unicode) },
     {
       dt: 'Primary Domain',
       dd: getDomainsText(entry).split(' \u00b7 ')[0] || `${entry.unicode}.com`,
@@ -2127,11 +2051,12 @@ function buildUnicodeBreakdownSection(entry, sectionNumber = 3) {
       })
       .join('');
   }
+  const hasForms = Array.isArray(entry.variants) && entry.variants.length > 0;
   const tierNote = asciiOnly
-    ? `The <strong>${entry.tierLabel || `Tier ${entry.tier}`}</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>${entry.unicode}</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.`
-    : entry.tier === 'dual'
-      ? `The <strong>dual-tier</strong> nature of ${entry.unicode} arises because the original carries both stress and vowel length and history has handed down more than one defensible Unicode spelling — each variant is a real, attested restoration, and both live as owned domains.`
-      : `The <strong>${entry.tierLabel || `Tier ${entry.tier}`}</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.`;
+    ? `This restoration reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>${entry.unicode}</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.`
+    : hasForms
+      ? `More than one historically valid Unicode spelling of ${entry.unicode} exists — each variant is a real, attested restoration, and the owned forms live as temples.`
+      : `The restoration of <strong>${entry.unicode}</strong> preserves what it can of the original phonology — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.`;
   return `<section class="section section-pronunciation" id="unicode-breakdown">
     <div class="container">
         <div class="section-header reveal-up">
@@ -3153,7 +3078,7 @@ function generateHomePage(
       return JSON.stringify(about, null, 4).split('\n').join('\n        ');
     })(),
     PANTHEON_LABEL: PANTHEON_META[entry.pantheon]?.label || entry.pantheon,
-    TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
+    TIER_LABEL: preservationLabel(entry.unicode),
     TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
@@ -3352,7 +3277,7 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TAGLINE: heroTagline(entry),
-    TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
+    TIER_LABEL: preservationLabel(entry.unicode),
     TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
@@ -3547,7 +3472,7 @@ function generateGalleryPage(entry, palette, templateDir) {
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
-    TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
+    TIER_LABEL: preservationLabel(entry.unicode),
     TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
@@ -3872,7 +3797,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TAGLINE: heroTagline(entry),
-    TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
+    TIER_LABEL: preservationLabel(entry.unicode),
     TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
@@ -3942,8 +3867,6 @@ function buildLoreJson(entry, catalogEntry) {
     ascii: entry.ascii,
     greek: entry.greek || null,
     pantheon: entry.pantheon,
-    tier: entry.tier,
-    tierLabel: entry.tierLabel || `Tier ${entry.tier}`,
     domain: entry.domain,
     meaning: entry.meaning || '',
     sources: entry.sources || [],

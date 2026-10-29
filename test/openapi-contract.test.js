@@ -423,7 +423,7 @@ async function runTests() {
       check: (body) => {
         assert.ok(Array.isArray(body.data), 'names data must be an array');
         const item = body.data[0];
-        for (const field of ['id', 'ascii', 'unicode', 'pantheon', 'tier', 'links']) {
+        for (const field of ['id', 'ascii', 'unicode', 'pantheon', 'links']) {
           assert.ok(item[field] !== undefined, `Name item must include ${field}`);
         }
         assert.ok(body.meta.pagination, 'names must paginate');
@@ -455,15 +455,6 @@ async function runTests() {
       check: (body) => {
         assert.ok(Array.isArray(body.data.items), 'pantheons must include items');
         assert.ok(body.data.count > 0, 'pantheons must include count');
-      },
-    },
-    {
-      path: '/tiers',
-      ref: 'TiersResponse',
-      url: '/api/v1/tiers',
-      check: (body) => {
-        assert.ok(Array.isArray(body.data.items), 'tiers must include items');
-        assert.strictEqual(body.data.items.length, 3, 'tier system has exactly 3 tiers');
       },
     },
     {
@@ -602,7 +593,6 @@ async function runTests() {
     '/api/v2/names/{id}/{subresource}',
     '/api/v2/pantheons',
     '/api/v2/pantheons/{name}',
-    '/api/v2/tiers',
     '/api/v2/autocomplete',
     '/api/v2/convert',
     '/api/v2/convert/batch',
@@ -689,8 +679,12 @@ async function runTests() {
   // Cross-version consistency
   // =========================================================================
   await test('v1/v2 error envelopes share one shape', async () => {
-    const v1 = await invokeV1(require(v1HandlerPath('/names')), 'GET', '/api/v1/names?tier=bogus');
-    const v2 = await invokeV2('GET', '/api/v2/names?tier=bogus');
+    const v1 = await invokeV1(
+      require(v1HandlerPath('/names')),
+      'GET',
+      '/api/v1/names?pantheon=bogus'
+    );
+    const v2 = await invokeV2('GET', '/api/v2/names?pantheon=bogus');
     assert.strictEqual(v1.status, 400);
     assert.strictEqual(v2.status, 400);
     for (const [body, version] of [

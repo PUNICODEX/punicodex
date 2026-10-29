@@ -73,7 +73,6 @@ const SCHOLARS_SCHEMA = `
     entry_id TEXT UNIQUE NOT NULL,
     name TEXT NOT NULL,
     pantheon TEXT NOT NULL,
-    tier TEXT NOT NULL,
     manifest_version TEXT NOT NULL,
     snapshot_version INTEGER NOT NULL DEFAULT 0,
     is_frozen INTEGER NOT NULL DEFAULT 0,

@@ -53,7 +53,7 @@ function fetchEntryFields(entryId) {
   const db = getDb();
   const row = db
     .prepare(
-      'SELECT ascii, unicode as entry_unicode, greek, pantheon, tier, tier_label, meaning, domain as god_domain FROM entries WHERE id = ?'
+      'SELECT ascii, unicode as entry_unicode, greek, pantheon, meaning, domain as god_domain FROM entries WHERE id = ?'
     )
     .get(entryId);
   return row || {};

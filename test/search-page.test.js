@@ -3,7 +3,7 @@
  *
  * Locks in the 2026-07-19 search audit outcomes: the Similar button is backed
  * by the real similarity API (the dead /api/sites/duplicates route is gone),
- * search state is deep-linkable (?q/mode/pantheon/type/tier/sort), the
+ * search state is deep-linkable (?q/mode/pantheon/type/marks/sort), the
  * autocomplete is a proper ARIA combobox, and the error state is
  * user-friendly.
  */
@@ -59,7 +59,7 @@ test('search state is deep-linkable (read on load, synced on change)', () => {
     html.includes('loadPantheons().then(() => applyInitialState())'),
     'initial state must apply after pantheons load'
   );
-  for (const param of ['q', 'mode', 'pantheon', 'type', 'tier', 'sort']) {
+  for (const param of ['q', 'mode', 'pantheon', 'type', 'marks', 'sort']) {
     assert.ok(
       html.includes(`params.get('${param}')`) || html.includes(`params.set('${param}'`),
       `param ${param} not handled`

@@ -53,7 +53,6 @@ const mainPages = [
   { loc: '/blog/', priority: '0.7', changefreq: 'weekly' },
   { loc: '/texts/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/type/', priority: '0.9', changefreq: 'weekly' },
-  { loc: '/tiers/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/realms/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/codex/', priority: '0.7', changefreq: 'weekly' },
   // /search/ carries noindex,follow — a noindexed URL must never appear in

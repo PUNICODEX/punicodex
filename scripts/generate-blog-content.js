@@ -8,7 +8,7 @@
  *
  * Posts are assembled from the full scholars-content sections (all of them,
  * uncapped) plus canonical lexicon/archetype data (etymology, breakdown,
- * variants, tier classification, owned domain + punycode). Every sentence
+ * variants, restoration-preservation, owned domain + punycode). Every sentence
  * traces to a canonical source; editorial framing is limited to the
  * restoration/DNS angle. Target length: ~2,800–3,600 rendered words.
  *
@@ -21,6 +21,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -337,8 +338,7 @@ function buildData(id) {
     greek: entry?.greek || '',
     sphere: entry?.domain || archetype?.domain || '',
     meaning: entry?.meaning || '',
-    tier: entry?.tier || '',
-    tierLabel: entry?.tierLabel || archetype?.tier || '',
+    preservation: preservationLabel(entry?.unicode || id),
     pantheon: entry?.pantheon || '',
     pantheonDisplay: displayPantheon(entry?.pantheon),
     pantheonCount: LEXICON.filter((e) => e.pantheon === entry?.pantheon).length,
@@ -432,7 +432,6 @@ function makeKeywords(data) {
 function makeTags(data) {
   return [
     data.pantheon || 'mythology',
-    data.tierLabel || 'tier-2',
     'Unicode',
     'original script',
     'restoration',
@@ -453,7 +452,7 @@ const INTROS = [
   (d) =>
     `In 2026, names are treated as data points. **${d.unicode}** is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a ${d.pantheonDisplay} figure into a browser. Scholars never stopped caring about the difference between *${d.ascii}* and ${d.unicode}; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.`,
   (d) =>
-    `The ASCII form *${d.ascii}* is missing something. **${d.unicode}** restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the ${d.scriptName} evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in ${d.unicode} will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.`,
+    `The ASCII form *${d.ascii}* is missing something. **${d.unicode}** restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the ${d.scriptName} evidence, the reconstructed sound, the myths the name carries, and the mechanical logic of what each restored mark preserves. By the end, the marks in ${d.unicode} will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.`,
   (d) =>
     `A name is a door. **${d.unicode}** opens onto an entire world: ${d.sphere ? `the domain of ${d.sphere.toLowerCase()}, ` : ''}a ${d.pantheonDisplay} tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. *${d.ascii}* gets you to the same building, but only the restored form tells you why it was built.`,
   (d) =>
@@ -483,19 +482,11 @@ const CLOSINGS = [
 
 // ── Canonical-data section builders ─────────────────────────────────────────
 
-function tierExplanation(data) {
-  if (data.tier === 'dual') {
-    return 'the original carries both stress and length, and multiple historically valid Unicode spellings exist';
-  }
-  const isGreek = data.pantheon === 'greek' || data.pantheon === 'greek-location';
-  if (data.tier === '1') {
-    return isGreek
-      ? 'the original carries both stress and length, and only one valid Unicode restoration exists'
-      : 'the restoration preserves at least one distinctive feature — a diacritic or a distinctive letter — that the ASCII form loses';
-  }
-  return isGreek
-    ? 'the original carries only one of the two prosodic features — stress or vowel length — not both'
-    : 'the restoration needs no distinctive letters or diacritics its ASCII form would lose';
+function preservationSentence(data) {
+  // Mechanical, from the displayed form — the same computation the type tool
+  // and the temples use, so the post can never overclaim the spelling.
+  const label = data.preservation || preservationLabel(data.unicode);
+  return label.charAt(0).toLowerCase() + label.slice(1);
 }
 
 function atGlanceBlock(data) {
@@ -503,7 +494,7 @@ function atGlanceBlock(data) {
   if (data.meaning) rows.push(`- **Meaning:** "${data.meaning}"`);
   if (data.sphere) rows.push(`- **Domain of influence:** ${data.sphere}`);
   rows.push(`- **Pantheon:** ${data.pantheonDisplay}`);
-  rows.push(`- **Classification:** ${data.tierLabel}`);
+  rows.push(`- **Restoration:** ${data.preservation}`);
   if (data.script && data.script !== '—') rows.push(`- **Original script:** ${data.script} (${data.scriptName})`);
   if (data.domainUnicode) rows.push(`- **Live domain:** ${data.domainUnicode}`);
   return rows.join('\n');
@@ -548,7 +539,7 @@ function tierBlock(data) {
     summary = `Across the ${data.breakdown.length} characters of the name, the restoration adjusts ${changed.length}: ${bits.join('; ')}.`;
   }
   return (
-    `${data.unicode} is classified as **${data.tierLabel}**: ${tierExplanation(data)}. ` +
+    `${data.unicode} ${preservationSentence(data)}. ` +
     `The ASCII fallback *${data.ascii}* still resolves everywhere, but it is the restored form that carries the name's full information.` +
     (summary ? ` ${summary}` : '') +
     ` That is the whole thesis of this temple: the marks are the message.`
@@ -596,7 +587,7 @@ function d_scriptPhrase(data) {
 function pantheonBlock(data) {
   return (
     `${data.unicode} is one of ${data.pantheonCount} entries the PuniCodex lexicon catalogues under the ${data.pantheonDisplay} pantheon. ` +
-    `The [Pantheon page](/pantheon/) gathers the tradition's major figures in one place, and the [Lexicon](/lexicon/) lets you filter all ${LEXICON.length} restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.`
+    `The [Pantheon page](/pantheon/) gathers the tradition's major figures in one place, and the [Lexicon](/lexicon/) lets you filter all ${LEXICON.length} restorations by tradition or script — the fastest way to see where this name sits among its kin.`
   );
 }
 
@@ -667,7 +658,7 @@ function restorationNotesBlock(data) {
     `Restoring a name is not a single decision; it is a sequence of smaller decisions, each backed by a different kind of evidence. For **${data.unicode}**, the chain begins with the attested form in ${data.scriptName}, continues through the standard scholarly romanizations, and ends with the DNS-compatible Unicode spelling used by this temple. ` +
     `${data.meaning ? `The meaning "${data.meaning}" anchors the name in its semantic field; without that anchor, the marks would float free of the figure they name.` : 'The lexicon records no single-line gloss, so the restoration relies on contextual usage and the scholarly record assembled in the sections above.'} ` +
     `${changedDescription} ` +
-    `Those adjustments are not arbitrary styling. They follow the tier rule that places ${data.unicode} in **${data.tierLabel}**: ${tierExplanation(data)}. ` +
+    `Those adjustments are not arbitrary styling. They follow the restoration logic the displayed form wears openly: ${data.unicode} ${preservationSentence(data)}. ` +
     `The rule is mechanical, not editorial, which means the same standard applies to every entry in the lexicon. A visitor who disagrees with the classification can at least see exactly which evidence produced it, because every step is recorded in the Scholarly Edition. ` +
     `That transparency is the difference between a restoration project and a branding exercise. The name is being put back, not invented.`
   );
@@ -682,7 +673,7 @@ function faqBlock(data) {
     `**Which tradition does ${data.unicode} belong to?** ${data.unicode} is catalogued in the ${data.pantheonDisplay} pantheon of the PuniCodex lexicon.`
   );
   qa.push(
-    `**Why is ${data.unicode} classified as ${data.tierLabel}?** Because ${tierExplanation(data)} — and the marks in the restored spelling preserve exactly that evidence.`
+    `**What does ${data.unicode} preserve that ASCII cannot show?** The form itself answers: ${data.unicode} ${preservationSentence(data)} — and the marks in the restored spelling are exactly that evidence.`
   );
   if (data.domainUnicode) {
     qa.push(
@@ -793,7 +784,7 @@ function buildBody(data, angleIdx, links, sisters, sources) {
     }
   }
 
-  push('tier', 'The Unicode Restoration', tierBlock(data));
+  push('preservation', 'The Unicode Restoration', tierBlock(data));
   push('variants', 'Name Variations', variantsBlock(data), true);
   push('breakdown', 'Character by Character', breakdownBlock(data), true);
   push('domain', 'The Domain Name', domainBlock(data));

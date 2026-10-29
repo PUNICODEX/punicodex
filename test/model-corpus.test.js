@@ -64,8 +64,8 @@ test('sample entry contains required corpus fields', () => {
   assert.ok(entry.ascii, 'entry has ascii');
   assert.ok(entry.unicode, 'entry has unicode');
   assert.ok(entry.pantheon, 'entry has pantheon');
-  assert.ok(entry.tier, 'entry has tier');
-  assert.ok(entry.tierLabel, 'entry has tierLabel');
+  assert.ok(entry.pantheon, 'entry has pantheon');
+  assert.ok(entry.unicode, 'entry has unicode');
   assert.ok(entry.meaning, 'entry has meaning');
   assert.ok(entry.originalScript, 'entry has originalScript block');
   assert.ok(entry.pronunciation || entry.pronunciation === null, 'entry has pronunciation block');

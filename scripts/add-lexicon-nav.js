@@ -5,7 +5,6 @@ const pages = [
     'index.html',
     'pantheon/index.html',
     'type/index.html',
-    'tiers/index.html',
     'codex/index.html',
     'store/index.html',
     'about/index.html',

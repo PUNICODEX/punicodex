@@ -90,7 +90,6 @@ const ROOT_PAGE_DIRS = [
   'realms',
   'store',
   'terms',
-  'tiers',
   'type',
   'university-sponsorship',
 ];

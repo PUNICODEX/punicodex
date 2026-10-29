@@ -108,7 +108,6 @@ async function runTests() {
   const nameOriginalScript = require('../platform/api-handlers/v1/names/[id]/original-script.js');
   const pantheons = require('../platform/api-handlers/v1/pantheons/index.js');
   const pantheon = require('../platform/api-handlers/v1/pantheons/[name]/index.js');
-  const tiers = require('../platform/api-handlers/v1/tiers/index.js');
   const autocomplete = require('../platform/api-handlers/v1/autocomplete/index.js');
   const convert = require('../platform/api-handlers/v1/convert/index.js');
   const convertBatch = require('../platform/api-handlers/v1/convert/batch.js');
@@ -158,22 +157,14 @@ async function runTests() {
     );
   });
 
-  await test('GET /api/v1/names supports tier filter', async () => {
-    const { status, body } = await invoke(namesList, 'GET', '/api/v1/names?tier=dual');
+  await test('GET /api/v1/names carries mechanical preservation labels', async () => {
+    const { status, body } = await invoke(namesList, 'GET', '/api/v1/names?limit=20');
     assert.strictEqual(status, 200);
     assertEnvelope(body);
     assert.ok(
-      body.data.every((item) => item.tier === 'dual'),
-      'all items must be dual tier'
+      body.data.every((item) => typeof item.preservation === 'string'),
+      'every item must carry a computed preservation label'
     );
-    assert.ok(body.data.length >= 3, 'must have at least 3 dual-tier entries');
-  });
-
-  await test('GET /api/v1/names validates unknown tier', async () => {
-    const { status, body } = await invoke(namesList, 'GET', '/api/v1/names?tier=invalid');
-    assert.strictEqual(status, 400);
-    assert.strictEqual(body.success, false);
-    assert.strictEqual(body.error.code, 'VALIDATION_ERROR');
   });
 
   await test('GET /api/v1/names/:id returns full scholarly record', async () => {
@@ -186,7 +177,7 @@ async function runTests() {
     assert.strictEqual(body.data.ascii, 'zeus');
     assert.strictEqual(body.data.unicode, 'Zeús');
     assert.ok(body.data.punycode, 'must have punycode');
-    assert.ok(body.data.tierExplanation, 'must have tier explanation');
+    assert.ok(body.data.preservationDetail, 'must have preservation detail');
     assert.ok(Array.isArray(body.data.breakdown), 'must have breakdown array');
     assert.ok(body.data.originalScript, 'must have originalScript');
     assert.ok(Array.isArray(body.data.variants), 'variants must be an array');
@@ -263,18 +254,6 @@ async function runTests() {
     assert.ok(
       body.data.items.every((item) => item.pantheon === 'norse'),
       'all items must be norse'
-    );
-  });
-
-  await test('GET /api/v1/tiers documents tier system', async () => {
-    const { status, body } = await invoke(tiers, 'GET', '/api/v1/tiers');
-    assert.strictEqual(status, 200);
-    assertEnvelope(body);
-    assert.ok(Array.isArray(body.data.items), 'must have tier items');
-    assert.strictEqual(body.data.items.length, 3);
-    assert.ok(
-      body.data.items.some((t) => t.id === 'dual'),
-      'must include dual tier'
     );
   });
 

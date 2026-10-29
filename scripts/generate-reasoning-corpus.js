@@ -2,7 +2,7 @@
 /**
  * PuniCodex — Reasoning / Chain-of-Thought Corpus Generator (Phase 7)
  *
- * Emits step-by-step reasoning traces for breakdowns, tier classification,
+ * Emits step-by-step reasoning traces for breakdowns, restoration-preservation analysis,
  * etymology, and safety verdicts. The model learns to show its work.
  *
  * Output: data/corpus/reasoning-examples.jsonl
@@ -12,6 +12,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 
 const ROOT = path.join(__dirname, '..');
 const ENTRIES_PATH = path.join(ROOT, 'data', 'corpus', 'entries.jsonl');
@@ -46,20 +47,13 @@ function buildBreakdownReasoning(entry, index) {
   };
 }
 
-function buildTierReasoning(entry, index) {
-  const rules = {
-    dual: 'The Greek original has both stress and length, and multiple historically valid Unicode spellings exist.',
-    '1': 'The Greek original has both stress and length, but only one historically valid Unicode restoration exists.',
-    '2': 'The Greek original preserves only one scholarly feature (stress or length), or neither.',
-  };
+function buildPreservationReasoning(entry, index) {
   return {
-    id: makeId(entry.id, 'reasoning_tier', index),
-    entryId: entry.id,
-    task: 'reasoning_tier',
-    instruction: `Classify the tier of ${entry.unicode} and explain the reasoning.`,
-    input: entry.unicode,
-    output: `${entry.unicode} is ${entry.tierLabel}. Reasoning: ${rules[entry.tier] || 'It follows the standard tier rules of the PuniCodex system.'} Tier ${entry.tier} is therefore the correct classification.`,
-    metadata: { pantheon: entry.pantheon, tier: entry.tier },
+    id: makeId(entry.id, 'reasoning_preservation', index),
+    task: 'reasoning_preservation',
+    instruction: `What does the Unicode restoration ${entry.unicode} preserve, and how can you tell?`,
+    output: `${entry.unicode} ${preservationLabel(entry.unicode).toLowerCase()}. Reasoning: inspect the displayed form itself — a circumflex fuses stress and length, a macron marks vowel length, an acute marks stress, and distinctive letters (þ, ð, ꜣ, …) survive where ASCII flattens them. The description is computed from the form, so it can never overclaim it.`,
+    metadata: { pantheon: entry.pantheon },
   };
 }
 
@@ -108,7 +102,7 @@ function buildOriginalScriptReasoning(entry, index) {
 function generateForEntry(entry, index) {
   return [
     buildBreakdownReasoning(entry, index),
-    buildTierReasoning(entry, index),
+    buildPreservationReasoning(entry, index),
     buildEtymologyReasoning(entry, index),
     buildSafetyReasoning(entry, index),
     buildOriginalScriptReasoning(entry, index),

@@ -14,6 +14,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { domainToASCII } = require('node:url');
+const { preservationLabel } = require('./lib/preservation-label.js');
 
 const ROOT = path.join(__dirname, '..');
 const ENTRIES_PATH = path.join(ROOT, 'data', 'corpus', 'entries.jsonl');
@@ -143,7 +144,7 @@ function buildConvertToolExample(entry, index) {
         content: `${entry.unicodeDomain} encodes to ${entry.punycodeDomain}.`,
       },
     ],
-    metadata: { pantheon: entry.pantheon, tier: entry.tier },
+    metadata: { pantheon: entry.pantheon },
   };
 }
 
@@ -258,16 +259,15 @@ function buildGetEntryToolExample(entry, index) {
           ascii: entry.ascii,
           pantheon: entry.pantheon,
           meaning: entry.meaning,
-          tierLabel: entry.tierLabel,
           punycodeDomain: entry.punycodeDomain,
         }),
       },
       {
         role: 'assistant',
-        content: `${entry.unicode} (${entry.ascii}) is a ${entry.tierLabel} ${entry.pantheon} name meaning “${entry.meaning}”. ${entry.punycodeDomain ? `Punycode: ${entry.punycodeDomain}.` : ''}`,
+        content: `${entry.unicode} (${entry.ascii}) is a ${preservationLabel(entry.unicode)} ${entry.pantheon} name meaning “${entry.meaning}”. ${entry.punycodeDomain ? `Punycode: ${entry.punycodeDomain}.` : ''}`,
       },
     ],
-    metadata: { pantheon: entry.pantheon, tier: entry.tier },
+    metadata: { pantheon: entry.pantheon },
   };
 }
 

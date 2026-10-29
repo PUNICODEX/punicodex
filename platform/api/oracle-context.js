@@ -80,8 +80,6 @@ function getEntryContext(entryId) {
     unicode: entry.unicode,
     greek: entry.greek,
     pantheon: entry.pantheon,
-    tier: entry.tier,
-    tierLabel: entry.tier_label,
     domain: entry.domain,
     meaning: entry.meaning,
     sources,

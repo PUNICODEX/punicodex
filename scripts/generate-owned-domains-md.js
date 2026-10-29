@@ -3,7 +3,7 @@
  *
  * Sources of truth:
  *   - platform/db/owned-domains.json  (temple-domain inventory)
- *   - js/archetypes-v2.js             (flagship archetypes + tier info)
+ *   - js/archetypes-v2.js             (flagship archetypes)
  *   - type/js/lexicon.js              (all entries, pantheons)
  *   - middleware.js                   (DOMAIN_MAP — current routing)
  *
@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { preservedFeatures } = require('../type/js/engine.js');
 const vm = require('vm');
 const { domainToASCII } = require('url');
 
@@ -58,14 +59,10 @@ function loadMiddlewareDomainMap() {
   return map;
 }
 
-function classifyTier(archetype, entry) {
-  if (archetype) {
-    if (archetype.tierDetail === 'dual-tier' || archetype.tier === 'dual') return 'dual';
-    if (archetype.tier === 'tier-1') return 'tier-1';
-    if (archetype.tier === 'tier-2') return 'tier-2';
-  }
-  if (entry?.tier) return entry.tier;
-  return 'unknown';
+function classifyPreservation(entry) {
+  return preservedFeatures((entry && entry.unicode) || '').features.length > 0
+    ? 'marked'
+    : 'plain';
 }
 
 function pantheonName(archetype, entry) {
@@ -159,14 +156,14 @@ for (const raw of ownedDomainsRaw) {
   site.domains.add(raw); // keep original casing for display
 }
 
-// ─── Group by tier and compute variants ─────────────────────────────────────
-const dual = [];
-const tier1 = [];
-const tier2 = [];
+// ─── Group by preservation and compute variants ─────────────────────────────
+const multiForm = [];
+const marked = [];
+const plain = [];
 const base = []; // owned domains for non-flagship (base) temples
 
 for (const site of sites.values()) {
-  const tier = classifyTier(site.archetype, site.entry);
+  const preservation = classifyPreservation(site.entry);
   const isFlagship = Boolean(site.archetype);
   const sortedDomains = Array.from(site.domains).sort((a, b) => a.localeCompare(b, 'en'));
 
@@ -195,17 +192,17 @@ for (const site of sites.values()) {
     primaryDomain,
     variants,
     isFlagship,
-    tier,
+    preservation,
   };
 
   if (!isFlagship) {
     base.push(record);
-  } else if (tier === 'dual') {
-    dual.push(record);
-  } else if (tier === 'tier-1') {
-    tier1.push(record);
+  } else if (record.variants.length > 0) {
+    multiForm.push(record);
+  } else if (preservation === 'marked') {
+    marked.push(record);
   } else {
-    tier2.push(record);
+    plain.push(record);
   }
 }
 
@@ -217,9 +214,9 @@ const sortRecords = (records) =>
     return a.name.localeCompare(b.name, 'en');
   });
 
-sortRecords(dual);
-sortRecords(tier1);
-sortRecords(tier2);
+sortRecords(multiForm);
+sortRecords(marked);
+sortRecords(plain);
 sortRecords(base);
 
 // ─── Helpers for markdown tables ────────────────────────────────────────────
@@ -255,9 +252,9 @@ function renderSimpleDomainTable(records) {
 // ─── Compose markdown ───────────────────────────────────────────────────────
 const totalUniqueOwned = seenDomains.size + platform.length;
 const totalTempleDomains = seenDomains.size;
-const totalFlagshipDomains = dual.length + tier1.length + tier2.length;
+const totalFlagshipDomains = multiForm.length + marked.length + plain.length;
 const totalBaseDomains = base.length;
-const allVariantRecords = [...dual, ...tier1, ...tier2, ...base].filter((r) => r.variants.length > 0);
+const allVariantRecords = [...multiForm, ...marked, ...plain, ...base].filter((r) => r.variants.length > 0);
 const totalVariantDomains = allVariantRecords.reduce((sum, r) => sum + r.variants.length, 0);
 
 const sections = [];
@@ -266,7 +263,7 @@ sections.push(`# PUNICODEX — Owned Domain Inventory`);
 sections.push(`> Canonical record of all domains owned by PUNICODEX.`);
 sections.push(`> Auto-generated: ${new Date().toISOString().slice(0, 10)}`);
 sections.push(`> Source: \`platform/db/owned-domains.json\` + \`js/archetypes-v2.js\` + \`middleware.js\` DOMAIN_MAP`);
-sections.push(`> Tier system: The Definitive Tier System (CANONICAL) — see AGENTS.md`);
+sections.push(`> Restorations are described by what they preserve (computed from the form) — see AGENTS.md`);
 sections.push('');
 sections.push('---');
 sections.push('');
@@ -279,9 +276,9 @@ sections.push(`    - **Primary (canonical) domains:** ${totalTempleDomains - tot
 sections.push(`    - **Variant / alternate domains:** ${totalVariantDomains}`);
 sections.push(`  - **Platform domains:** ${platform.length}`);
 sections.push(`- **Flagship temples covered:** ${totalFlagshipDomains}`);
-sections.push(`  - Dual-tier: ${dual.length}`);
-sections.push(`  - Single-tier Tier-1: ${tier1.length}`);
-sections.push(`  - Single-tier Tier-2: ${tier2.length}`);
+sections.push(`  - Multi-form names: ${multiForm.length}`);
+sections.push(`  - With preserved marks: ${marked.length}`);
+sections.push(`  - ASCII-equivalent forms: ${plain.length}`);
 sections.push(`- **Base temples covered:** ${totalBaseDomains}`);
 sections.push(`- **Unmapped owned domains:** ${unmapped.length}`);
 sections.push('');
@@ -297,36 +294,36 @@ if (unmapped.length > 0) {
   sections.push('');
 }
 
-sections.push('## Dual-Tier Names');
+sections.push('## Multi-Form Names');
 sections.push('');
-sections.push('A name is dual-tier when the Greek original has BOTH stress AND long vowel, multiple historically valid Unicode spellings exist, and we own multiple domain variants.');
+sections.push('Multiple historically valid Unicode spellings exist and we own more than one domain variant for the name.');
 sections.push('');
-if (dual.length > 0) {
-  sections.push(renderMultiDomainTable(dual));
+if (multiForm.length > 0) {
+  sections.push(renderMultiDomainTable(multiForm));
 } else {
-  sections.push('*No dual-tier owned domains currently mapped.*');
+  sections.push('*No multi-form owned domains currently mapped.*');
 }
 sections.push('');
 
-sections.push('## Single-Tier Tier-1 Names');
+sections.push('## Restorations With Preserved Marks');
 sections.push('');
-sections.push('Mechanically information-rich: Greek has both stress AND long vowel; non-Greek preserves a distinctive diacritic or atomic letter.');
+sections.push('The displayed form preserves at least one feature ASCII cannot show — a diacritic or a distinctive letter — computed mechanically from the form itself.');
 sections.push('');
-if (tier1.length > 0) {
-  sections.push(renderMultiDomainTable(tier1));
+if (marked.length > 0) {
+  sections.push(renderMultiDomainTable(marked));
 } else {
-  sections.push('*No Tier-1 owned domains currently mapped.*');
+  sections.push('*No marked restorations currently mapped.*');
 }
 sections.push('');
 
-sections.push('## Single-Tier Tier-2 Names');
+sections.push('## ASCII-Equivalent Restorations');
 sections.push('');
-sections.push('Greek has only stress OR length (or neither); non-Greek preserves nothing distinctive vs ASCII.');
+sections.push('The scholarly form is identical to ASCII — faithful without added marks.');
 sections.push('');
-if (tier2.length > 0) {
-  sections.push(renderMultiDomainTable(tier2));
+if (plain.length > 0) {
+  sections.push(renderMultiDomainTable(plain));
 } else {
-  sections.push('*No Tier-2 owned domains currently mapped.*');
+  sections.push('*No ASCII-equivalent owned domains currently mapped.*');
 }
 sections.push('');
 
@@ -405,8 +402,8 @@ console.log(`      Primary:          ${totalTempleDomains - totalVariantDomains}
 console.log(`      Variants:         ${totalVariantDomains}`);
 console.log(`    Platform domains:   ${platform.length}`);
 console.log(`  Flagship temples:     ${totalFlagshipDomains}`);
-console.log(`    Dual-tier:          ${dual.length}`);
-console.log(`    Tier-1:             ${tier1.length}`);
-console.log(`    Tier-2:             ${tier2.length}`);
+console.log(`    Multi-form:         ${multiForm.length}`);
+console.log(`    Marked:             ${marked.length}`);
+console.log(`    ASCII-equivalent:   ${plain.length}`);
 console.log(`  Base temples:         ${totalBaseDomains}`);
 console.log(`  Unmapped:             ${unmapped.length}`);

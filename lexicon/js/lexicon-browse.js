@@ -13,7 +13,7 @@
 
     // ─── State ───
     let currentPantheon = 'all';
-    let currentTier = 'all';
+    let currentMarks = 'all';
     let currentSearch = '';
     let currentSort = 'alpha';
     let showAll = false;
@@ -39,27 +39,28 @@
         Object.entries(PANTHEON_META).map(([id, meta]) => [id, meta.label])
     );
 
-    // ─── Tier subtype helper (mirrors generator logic) ───
-    function getTierSubtype(entry) {
-        const hasStress = /[áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]/.test(entry.unicode);
-        const hasLength = /[āēīōūĀĒĪŌŪ]/.test(entry.unicode);
-
-        if (entry.tier === 'dual') return 'Dual-Tier';
-        // Doctrine: Tier-1 has no subtypes; subtype labels exist only for Tier-2.
-        if (entry.tier === '1') return 'Tier-1';
-        if (entry.tier === '2') {
-            if (hasStress) return 'Tier-2 Accent-Preserving';
-            if (hasLength) return 'Tier-2 Macron-Preserving';
-            return 'Tier-2';
-        }
-        return entry.tierLabel;
+    // ─── Preservation helper (computed from the displayed form) ───
+    function isMarked(entry) {
+        const nfd = (entry.unicode || '').normalize('NFD');
+        return /[̀-ͯ]/.test(nfd) || /[ÞþÐðÆæŒœŠšŽžŁłĐđĦħƏəḌḍṬṭṢṣḤḥṚṛṜṝṆṇṂṃṄṅṠṡŚśŹźḪḫḶḷṔṕꜢꜣꜤꜥ]/.test(nfd);
+    }
+    function preservationLabelOf(entry) {
+        const nfd = (entry.unicode || '').normalize('NFD');
+        const circumflex = nfd.includes('̂');
+        const stress = circumflex || /[̀́́]/.test(nfd);
+        const length = circumflex || /[̄̆]/.test(nfd);
+        if (stress && length) return 'Preserves stress & length';
+        if (stress) return 'Preserves stress';
+        if (length) return 'Preserves length';
+        if (isMarked(entry)) return 'Preserves marks';
+        return 'ASCII form';
     }
 
     // ─── Filter logic ───
     function getFilteredEntries() {
         return LEXICON.filter(entry => {
             if (currentPantheon !== 'all' && entry.pantheon !== currentPantheon) return false;
-            if (currentTier !== 'all' && entry.tier !== currentTier) return false;
+            if (currentMarks !== 'all' && isMarked(entry) !== (currentMarks === 'marked')) return false;
             if (currentSearch) {
                 const q = currentSearch.toLowerCase();
                 const match = entry.ascii.toLowerCase().includes(q) ||
@@ -93,12 +94,11 @@
                     return a.unicode.localeCompare(b.unicode);
                 });
                 break;
-            case 'tier':
-                const tierOrder = { dual: 0, '1': 0, '2': 1 };
+            case 'marks':
                 sorted.sort((a, b) => {
-                    const ta = tierOrder[a.tier] || 3;
-                    const tb = tierOrder[b.tier] || 3;
-                    if (ta !== tb) return ta - tb;
+                    const ma = isMarked(a) ? 0 : 1;
+                    const mb = isMarked(b) ? 0 : 1;
+                    if (ma !== mb) return ma - mb;
                     return a.unicode.localeCompare(b.unicode);
                 });
                 break;
@@ -116,7 +116,7 @@ function escapeHtml(str) {
 
     // ─── Card template ───
     function cardHtml(entry) {
-        const subtype = getTierSubtype(entry);
+        const subtype = preservationLabelOf(entry);
         const hasOriginal = entry.greek && entry.greek !== '—';
         return `
             <a href="/sites/${entry.id}${entry.hasAdSite ? '/lore/' : '/'}" class="lexicon-card reveal-up">
@@ -212,14 +212,14 @@ function escapeHtml(str) {
         }
     }
 
-    // Tier segment
-    const tierSegment = document.getElementById('tier-segment');
-    if (tierSegment) {
-        tierSegment.querySelectorAll('[data-filter="tier"]').forEach(btn => {
+    // Marks segment
+    const marksSegment = document.getElementById('marks-segment');
+    if (marksSegment) {
+        marksSegment.querySelectorAll('[data-filter="marks"]').forEach(btn => {
             btn.addEventListener('click', () => {
-                tierSegment.querySelectorAll('[data-filter="tier"]').forEach(b => b.classList.remove('active'));
+                marksSegment.querySelectorAll('[data-filter="marks"]').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                currentTier = btn.dataset.value;
+                currentMarks = btn.dataset.value;
                 render();
             });
         });
@@ -260,21 +260,21 @@ function escapeHtml(str) {
     const resetBtn = document.getElementById('filter-reset');
     function updateResetButton() {
         if (!resetBtn) return;
-        const isDefault = currentPantheon === 'all' && currentTier === 'all' && currentSearch === '' && currentSort === 'alpha' && !showAll;
+        const isDefault = currentPantheon === 'all' && currentMarks === 'all' && currentSearch === '' && currentSort === 'alpha' && !showAll;
         resetBtn.hidden = isDefault;
     }
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
             currentPantheon = 'all';
-            currentTier = 'all';
+            currentMarks = 'all';
             currentSearch = '';
             currentSort = 'alpha';
             showAll = false;
             searchInput.value = '';
             sortSelect.value = 'alpha';
             renderPantheonChips();
-            tierSegment.querySelectorAll('[data-filter="tier"]').forEach(b => b.classList.remove('active'));
-            tierSegment.querySelector('[data-value="all"]').classList.add('active');
+            marksSegment.querySelectorAll('[data-filter="marks"]').forEach(b => b.classList.remove('active'));
+            marksSegment.querySelector('[data-value="all"]').classList.add('active');
             updateShowAllButton();
             render();
         });

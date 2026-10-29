@@ -20,6 +20,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 
@@ -624,7 +625,7 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
         'IDNA 2008',
         'philology',
       ],
-      tags: [entry.pantheon, entry.tierLabel || `Tier ${entry.tier || '2'}`, 'canonical', 'The Canonical Register'],
+      tags: [entry.pantheon, preservationLabel(entry.unicode), 'canonical', 'The Canonical Register'],
       author: 'PuniCodex Team',
       publishedAt: '2026-07-31',
       readingTime: `${readMin} min read`,

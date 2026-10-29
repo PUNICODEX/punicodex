@@ -63,7 +63,7 @@ function findEntryCandidates(q, limit = 20) {
   // 1. Exact search_key match (fast, indexed)
   const exact = db
     .prepare(
-      `SELECT id, ascii, unicode, meaning, pantheon, tier
+      `SELECT id, ascii, unicode, meaning, pantheon
        FROM entries
        WHERE search_key = ?
        LIMIT ?`
@@ -75,10 +75,10 @@ function findEntryCandidates(q, limit = 20) {
     canonical.length >= 2
       ? db
           .prepare(
-            `SELECT id, ascii, unicode, meaning, pantheon, tier
+            `SELECT id, ascii, unicode, meaning, pantheon
          FROM entries
          WHERE search_key LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
-         ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+         ORDER BY has_flagship DESC, ascii ASC
          LIMIT ?`
           )
           .all(`${canonical}%`, `${canonical}%`, `${canonical}%`, limit)
@@ -87,11 +87,11 @@ function findEntryCandidates(q, limit = 20) {
   // 3. Substring / Greek-latinized fallback
   const fuzzy = db
     .prepare(
-      `SELECT id, ascii, unicode, meaning, pantheon, tier
+      `SELECT id, ascii, unicode, meaning, pantheon
        FROM entries
        WHERE search_key LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
           OR search_key LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
-       ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+       ORDER BY has_flagship DESC, ascii ASC
        LIMIT ?`
     )
     .all(like, like, like, greekLike, greekLike, greekLike, limit);
@@ -105,11 +105,11 @@ function findEntryCandidates(q, limit = 20) {
   const fts = ftsTokens
     ? db
         .prepare(
-          `SELECT e.id, e.ascii, e.unicode, e.meaning, e.pantheon, e.tier
+          `SELECT e.id, e.ascii, e.unicode, e.meaning, e.pantheon
          FROM entries e
          JOIN entries_fts fts ON e.rowid = fts.rowid
          WHERE entries_fts MATCH ?
-         ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC, e.has_flagship DESC
+         ORDER BY e.has_flagship DESC
          LIMIT ?`
         )
         .all(ftsTokens, limit)
@@ -176,7 +176,6 @@ function didYouMean(q, limit = 3) {
         text: e.unicode,
         ascii: e.ascii,
         pantheon: e.pantheon,
-        tier: e.tier,
         score,
         matchedField,
       });
@@ -245,7 +244,7 @@ function didYouMean(q, limit = 3) {
 
 /**
  * Related searches for a given query.
- * Returns entries in the same pantheon, similar tier, or alphabetically nearby.
+ * Returns entries in the same pantheon or alphabetically nearby.
  */
 function relatedSearches(q, limit = 6) {
   const db = getDb();
@@ -255,10 +254,10 @@ function relatedSearches(q, limit = 6) {
   // Exact match first (ascii, unicode display form, or search key)…
   let entry = db
     .prepare(
-      `SELECT id, ascii, unicode, pantheon, tier, meaning
+      `SELECT id, ascii, unicode, pantheon, meaning
        FROM entries
        WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR search_key = ?
-       ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC
+       ORDER BY has_flagship DESC
        LIMIT 1`
     )
     .get(query, query, toSearchKey(query));
@@ -267,10 +266,10 @@ function relatedSearches(q, limit = 6) {
     // …then a prefix/substring fallback before giving up on the lexicon.
     const partial = db
       .prepare(
-        `SELECT id, ascii, unicode, pantheon, tier, meaning
+        `SELECT id, ascii, unicode, pantheon, meaning
          FROM entries
          WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ? OR search_key LIKE ?
-         ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC
+         ORDER BY has_flagship DESC
          LIMIT 1`
       )
       .get(`${query}%`, `${query}%`, `${toSearchKey(query)}%`);
@@ -295,24 +294,11 @@ function relatedSearches(q, limit = 6) {
       `SELECT id, ascii, unicode, pantheon, meaning
        FROM entries
        WHERE pantheon = ? AND id != ?
-       ORDER BY has_flagship DESC, tier = 'dual' DESC, tier = '1' DESC, RANDOM()
+       ORDER BY has_flagship DESC, RANDOM()
        LIMIT ?`
     )
     .all(entry.pantheon, entry.id, Math.ceil(limit / 2));
   related.push(...samePantheon);
-
-  if (related.length < limit) {
-    const sameTier = db
-      .prepare(
-        `SELECT id, ascii, unicode, pantheon, meaning
-         FROM entries
-         WHERE tier = ? AND pantheon != ? AND id != ?
-         ORDER BY has_flagship DESC, RANDOM()
-         LIMIT ?`
-      )
-      .all(entry.tier, entry.pantheon, entry.id, limit - related.length);
-    related.push(...sameTier);
-  }
 
   if (related.length < limit) {
     const existingIds = related.map((r) => r.id).concat([entry.id]);
@@ -349,10 +335,10 @@ function autocomplete(q, limit = 10) {
   // Lexicon prefix matches (Unicode-aware)
   const entries = db
     .prepare(
-      `SELECT id, ascii, unicode, pantheon, tier
+      `SELECT id, ascii, unicode, pantheon
        FROM entries
        WHERE search_key LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
-       ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+       ORDER BY has_flagship DESC, ascii ASC
        LIMIT ?`
     )
     .all(keyLike, like, like, limit);
@@ -363,10 +349,10 @@ function autocomplete(q, limit = 10) {
     const fuzzyLike = `%${searchKey}%`;
     fuzzy = db
       .prepare(
-        `SELECT id, ascii, unicode, pantheon, tier
+        `SELECT id, ascii, unicode, pantheon
          FROM entries
          WHERE search_key LIKE ? AND search_key NOT LIKE ?
-         ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+         ORDER BY has_flagship DESC, ascii ASC
          LIMIT ?`
       )
       .all(fuzzyLike, keyLike, limit - entries.length);
@@ -392,7 +378,6 @@ function autocomplete(q, limit = 10) {
       text: e.unicode,
       ascii: e.ascii,
       pantheon: e.pantheon,
-      tier: e.tier,
       url: `/type/#${e.id}`,
     })),
     ...fuzzy.map((e) => ({
@@ -400,7 +385,6 @@ function autocomplete(q, limit = 10) {
       text: e.unicode,
       ascii: e.ascii,
       pantheon: e.pantheon,
-      tier: e.tier,
       url: `/type/#${e.id}`,
       fuzzy: true,
     })),

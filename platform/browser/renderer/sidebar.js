@@ -99,7 +99,7 @@ const _Sidebar = (function () {
         <div class="sb-hero-unicode">${escapeHtml(fullEntry.unicode)}</div>
         ${fullEntry.greek && fullEntry.greek !== '—' ? `<div class="sb-hero-greek">${escapeHtml(fullEntry.greek)}</div>` : ''}
         <div class="sb-hero-meta">
-          <span class="sb-tier ${tierClass}">${escapeHtml(fullEntry.tierLabel || '')}</span>
+          <span class="sb-tier">${escapeHtml(fullEntry.preservation || '')}</span>
           <span class="sb-pantheon">${escapeHtml(fullEntry.pantheon || '')}</span>
         </div>
       </div>

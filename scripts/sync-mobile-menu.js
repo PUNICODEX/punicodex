@@ -141,7 +141,6 @@ const TARGETS = [
   { page: path.join('everyday', 'index.html'), active: '/everyday/' },
   { page: path.join('ink', 'index.html'), active: '/ink/' },
   { page: path.join('cards', 'index.html'), active: '/cards/' },
-  { page: path.join('tiers', 'index.html'), active: '/tiers/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
   { page: path.join('screen', 'index.html'), active: '/screen/' },
 ];

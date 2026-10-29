@@ -14,6 +14,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const url = require('node:url');
 
 const ROOT = path.join(__dirname, '..');
@@ -148,12 +149,8 @@ function getMeaning(entry) {
 }
 
 function getTierLabel(entry) {
-  if (entry.tier === 'dual') return 'Dual-Tier';
-  if (entry.tier === '1') return 'Tier-1';
-  if (entry.tier === '2') return 'Tier-2';
-  return entry.tierLabel || 'Tier-2';
+  return preservationLabel(entry.unicode);
 }
-
 function getOwnedForms(entry) {
   const candidates = [entry.unicode];
   for (const v of entry.variants || []) {
@@ -329,10 +326,7 @@ function generateScholarsPage(templeId, manifestOverride) {
     SECONDARY: palette.secondary,
     EFFECT: getEffect(templeId),
     TIER_LABEL: getTierLabel(entry),
-    TIER_BADGES:
-      entry.tier === 'dual'
-        ? '<span class="meta-badge">Tier-1</span> <span class="meta-badge">Tier-2</span>'
-        : `<span class="meta-badge">${getTierLabel(entry)}</span>`,
+    TIER_BADGES: `<span class="meta-badge">${getTierLabel(entry)}</span>`,
     DOMAINS_TEXT: getDomainsText(entry),
     PUNYCODE: getPunycodeExplainer(entry),
     EXTENDED_TAB: buildExtendedTab(),

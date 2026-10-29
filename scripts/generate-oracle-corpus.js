@@ -16,6 +16,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const { createRng } = require('./rng');
 
 Math.random = createRng();
@@ -116,7 +117,7 @@ function buildRestorationExamples(entries, persona, count, rng) {
       punycode: e.punycodeDomain || '',
     };
     const user = formatTemplate(template, vars);
-    const assistant = `${e.unicode} is the scholarly Unicode restoration of ${e.ascii}. It encodes to punycode as ${e.punycodeDomain || '[unavailable]'}. The restoration preserves ${e.tierLabel || 'the original orthography'} and means “${e.meaning}” in the ${e.pantheon} tradition. When you see the ASCII form ${e.ascii}, remember that the Unicode form ${e.unicode} is the philologically informed spelling, not merely decoration.`;
+    const assistant = `${e.unicode} is the scholarly Unicode restoration of ${e.ascii}. It encodes to punycode as ${e.punycodeDomain || '[unavailable]'}. The restoration ${preservationLabel(e.unicode).toLowerCase()} and means “${e.meaning}” in the ${e.pantheon} tradition. When you see the ASCII form ${e.ascii}, remember that the Unicode form ${e.unicode} is the philologically informed spelling, not merely decoration.`;
     examples.push({
       id: makeId(e.id, 'oracle_restoration', i + 1),
       entryId: e.id,
@@ -337,7 +338,7 @@ function buildDomainAdviceExamples(entries, persona, count, rng) {
     const vars = { unicode: e.unicode, ascii: e.ascii };
     const template = templates[i % templates.length];
     const user = formatTemplate(template, vars);
-    const assistant = `${e.unicode}.com is a philologically interesting restoration, but before registering it you should consider three things. First, does the restoration have scholarly authority? ${e.unicode} means “${e.meaning}” and is classified as ${e.tierLabel || 'a standard restoration'}. Second, are you using it in good faith—clearly distinct from any existing brand? Third, this is not legal advice; for trademark questions, consult a qualified attorney. If all three are satisfied, it can be a beautiful and defensible domain.`;
+    const assistant = `${e.unicode}.com is a philologically interesting restoration, but before registering it you should consider three things. First, does the restoration have scholarly authority? ${e.unicode} means “${e.meaning}” and is a restoration that ${preservationLabel(e.unicode).toLowerCase()}. Second, are you using it in good faith—clearly distinct from any existing brand? Third, this is not legal advice; for trademark questions, consult a qualified attorney. If all three are satisfied, it can be a beautiful and defensible domain.`;
     examples.push({
       id: makeId(e.id, 'oracle_domain_advice', i + 1),
       entryId: e.id,

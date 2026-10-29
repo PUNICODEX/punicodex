@@ -5,6 +5,7 @@
  */
 
 const fs = require('node:fs');
+const { preservationLabel } = require('../../scripts/lib/preservation-label.js');
 const path = require('node:path');
 
 // Use the root project's better-sqlite3
@@ -47,8 +48,7 @@ const enrichedEntries = entries.map((e) => ({
   unicode: e.unicode,
   greek: e.greek,
   pantheon: e.pantheon,
-  tier: e.tier,
-  tierLabel: e.tier_label,
+  preservation: preservationLabel(e.unicode),
   meaning: e.meaning,
   sources: parseSources(e.sources),
   domain: e.domain,

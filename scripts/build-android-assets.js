@@ -38,7 +38,6 @@ const slimLexicon = LEXICON.map(e => ({
     scriptLabel: getOriginalScriptLabel(e),
     scriptName: e.pantheon ? getScriptName(e) : "",
     pantheon: e.pantheon,
-    tier: e.tier,
     id: e.id || e.ascii,
     variants: (e.variants || []).map(v => ({
         unicode: v.unicode,

@@ -107,7 +107,7 @@ async function run() {
   await test('loadTemple resolves canonical data; unknown slugs return null', () => {
     const temple = loadTemple('quetzalcoatl');
     assert.strictEqual(temple.unicode, 'Quetzalcōātl');
-    assert.strictEqual(temple.tierLabel, 'TIER 1');
+    assert.strictEqual(temple.preservation, 'PRESERVES VOWEL LENGTH');
     assert.strictEqual(loadTemple('not-a-temple'), null);
   });
 

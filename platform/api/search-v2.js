@@ -100,7 +100,6 @@ const API_ENDPOINTS = [
     description: 'Original writing system',
   },
   { method: 'GET', path: '/api/v1/pantheons', description: 'List pantheons' },
-  { method: 'GET', path: '/api/v1/tiers', description: 'Tier system documentation' },
   { method: 'GET', path: '/api/v1/autocomplete', description: 'Autocomplete suggestions' },
   { method: 'GET', path: '/api/v1/convert', description: 'Convert a query to punycode' },
   { method: 'POST', path: '/api/v1/convert/batch', description: 'Batch conversion' },
@@ -118,7 +117,7 @@ const API_ENDPOINTS = [
 ];
 
 const VALID_VERTICALS = ['all', 'sites', 'domains', 'lore', 'api', 'images', 'history', 'ads'];
-const VALID_SORTS = ['relevance', 'alphabetical', 'tier', 'recently_crawled', 'quality'];
+const VALID_SORTS = ['relevance', 'alphabetical', 'recently_crawled', 'quality'];
 const RANK_VARIANTS = ['control', 'freshness', 'authority', 'engagement', 'keyword'];
 
 function getSessionToken(req) {
@@ -225,7 +224,6 @@ async function searchV2(q, options = {}, req = null) {
   const sort = VALID_SORTS.includes(options.sort) ? options.sort : 'relevance';
   const filters = {
     pantheon: options.pantheon || null,
-    tier: options.tier || null,
     unicodeOnly: options.unicodeOnly === 'true' || options.unicodeOnly === true,
     hasSite: options.hasSite === 'true' || options.hasSite === true,
     concept: options.concept || null,
@@ -587,22 +585,25 @@ function computeFacets(q) {
       `)
       .all(like, like, like, keyLike);
 
-    const tiers = db
+    const matchedRows = db
       .prepare(`
-        SELECT e.tier, COUNT(*) as count
+        SELECT e.unicode
         FROM entries e
         WHERE (LOWER(e.ascii) LIKE ? OR LOWER(e.unicode) LIKE ? OR LOWER(e.id) LIKE ? OR e.search_key LIKE ?)
-        GROUP BY e.tier
-        ORDER BY CASE e.tier WHEN 'dual' THEN 1 WHEN '1' THEN 2 WHEN '2' THEN 3 ELSE 4 END
       `)
       .all(like, like, like, keyLike);
+    const { preservedFeatures } = require('../../type/js/engine.js');
+    const marked = matchedRows.filter(
+      (r) => preservedFeatures(r.unicode || '').features.length > 0
+    ).length;
 
     return {
       pantheons: pantheons.map((p) => ({ id: p.pantheon, count: p.count })),
-      tiers: tiers.map((t) => ({ id: t.tier, count: t.count })),
+      marks: { id: 'marked', count: marked },
+      plain: matchedRows.length - marked,
     };
   } catch (_e) {
-    return { pantheons: [], tiers: [] };
+    return { pantheons: [], marks: 0, plain: 0 };
   }
 }
 
@@ -641,16 +642,16 @@ function computeInstantAnswer(q) {
     return buildAvailabilityAnswer(availMatch[1].trim());
   }
 
-  // Tier system question
+  // Restoration-preservation question
   if (
-    lower.includes('tier') &&
-    (lower.includes('what') || lower.includes('how') || lower.includes('system'))
+    lower.includes('restoration') &&
+    (lower.includes('what') || lower.includes('how') || lower.includes('preserve'))
   ) {
     return {
-      type: 'tier-system',
-      title: 'The Definitive Tier System',
-      body: 'PUNICODEX classifies Unicode name restorations into Dual-Tier (3 names with multiple historically valid spellings), Tier-1 (13 names with the only historically valid stress+length spelling), and Tier-2 (single-feature or unmarked forms).',
-      link: '/tiers/',
+      type: 'restoration-preservation',
+      title: 'What the Restorations Preserve',
+      body: 'Every PUNICODEX restoration is described by what its displayed form preserves that ASCII cannot show — stress, vowel length, distinctive letters — computed mechanically from the form itself. Names with multiple historically valid owned spellings (Apóllōn, Hekátē, Níkē) present the pair.',
+      link: '/rulebook/',
     };
   }
 
@@ -685,12 +686,12 @@ function buildAvailabilityAnswer(target) {
   const rows = db
     .prepare(
       `SELECT a.entry_id, a.domain, a.punycode, a.status,
-              e.unicode, e.ascii, e.meaning, e.pantheon, e.tier
+              e.unicode, e.ascii, e.meaning, e.pantheon
        FROM availability a
        JOIN entries e ON a.entry_id = e.id
        WHERE (LOWER(e.ascii) = ? OR LOWER(e.unicode) = ? OR LOWER(e.id) = ? OR e.search_key = ?
               OR LOWER(a.domain) LIKE ? OR LOWER(e.ascii) LIKE ? OR e.search_key LIKE ?)
-       ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC
+       ORDER BY e.unicode ASC
        LIMIT 3`
     )
     .all(
@@ -717,7 +718,6 @@ function buildAvailabilityAnswer(target) {
       status: r.status,
       meaning: r.meaning,
       pantheon: r.pantheon,
-      tier: r.tier,
       link: `/${r.entry_id}/`,
     })),
   };
@@ -731,7 +731,7 @@ function searchDomains(q, { limit, offset, filters }) {
   const keyLike = `%${searchKey}%`;
   const params = [query, query, query, searchKey, keyLike, like];
   let sql = `SELECT a.entry_id, a.domain, a.punycode, a.status, a.registrar_links,
-                    e.unicode, e.ascii, e.meaning, e.pantheon, e.tier
+                    e.unicode, e.ascii, e.meaning, e.pantheon
              FROM availability a
              JOIN entries e ON a.entry_id = e.id
              WHERE (LOWER(e.ascii) = ? OR LOWER(e.unicode) = ? OR LOWER(e.id) = ? OR e.search_key = ?
@@ -741,10 +741,7 @@ function searchDomains(q, { limit, offset, filters }) {
     sql += ' AND e.pantheon = ?';
     params.push(filters.pantheon);
   }
-  if (filters.tier) {
-    sql += ' AND e.tier = ?';
-    params.push(filters.tier);
-  }
+
   if (filters.hasSite) {
     sql += ` AND EXISTS (
       SELECT 1 FROM indexed_sites s
@@ -755,7 +752,7 @@ function searchDomains(q, { limit, offset, filters }) {
   const countSql = sql.replace(/SELECT[\s\S]+?FROM/, 'SELECT COUNT(*) AS total FROM');
   const { total } = db.prepare(countSql).get(...params);
 
-  sql += " ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC, e.unicode ASC LIMIT ? OFFSET ?";
+  sql += ' ORDER BY e.unicode ASC LIMIT ? OFFSET ?';
   const rows = db.prepare(sql).all(...params, limit, offset);
 
   return {
@@ -768,7 +765,6 @@ function searchDomains(q, { limit, offset, filters }) {
       status: r.status,
       meaning: r.meaning,
       pantheon: r.pantheon,
-      tier: r.tier,
       registrarLinks: parseJson(r.registrar_links, {}),
       link: `/${r.entry_id}/`,
     })),
@@ -843,7 +839,7 @@ function searchImages(q, { limit, offset, filters }) {
   const like = `%${q.toLowerCase()}%`;
   const params = [like, like, like, like, like];
   let sql = `SELECT s.id, s.domain, s.punycode, s.title, s.og_image_path, s.favicon_path,
-                    s.lexicon_entry_id, s.pantheon, s.tier, e.unicode, e.ascii
+                    s.lexicon_entry_id, s.pantheon, e.unicode, e.ascii
              FROM indexed_sites s
              LEFT JOIN entries e ON s.lexicon_entry_id = e.id
              WHERE s.status = 'active'
@@ -855,10 +851,7 @@ function searchImages(q, { limit, offset, filters }) {
     sql += ' AND s.pantheon = ?';
     params.push(filters.pantheon);
   }
-  if (filters.tier) {
-    sql += ' AND s.tier = ?';
-    params.push(filters.tier);
-  }
+
   if (filters.unicodeOnly) {
     sql += " AND s.punycode LIKE 'xn--%'";
   }
@@ -866,7 +859,7 @@ function searchImages(q, { limit, offset, filters }) {
   const countSql = sql.replace(/SELECT[\s\S]+?FROM/, 'SELECT COUNT(*) AS total FROM');
   const { total } = db.prepare(countSql).get(...params);
 
-  sql += " ORDER BY s.is_flagship DESC, s.tier = 'dual' DESC, s.tier = '1' DESC LIMIT ? OFFSET ?";
+  sql += ' ORDER BY s.is_flagship DESC LIMIT ? OFFSET ?';
   const rows = db.prepare(sql).all(...params, limit, offset);
 
   return {
@@ -885,7 +878,6 @@ function searchImages(q, { limit, offset, filters }) {
       unicode: r.unicode,
       ascii: r.ascii,
       pantheon: r.pantheon,
-      tier: r.tier,
       link: `https://${r.punycode}`,
     })),
     total,

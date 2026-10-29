@@ -24,7 +24,7 @@ const NAV_REPLACEMENT = `    <!-- Global Nav -->
                 <a href="https://punicodex.com/pantheon/" class="nav-link">Pantheon</a>
                 <a href="https://punicodex.com/realms/" class="nav-link">Realms</a>
                 <a href="https://punicodex.com/lexicon/" class="nav-link">Lexicon</a>
-                <a href="https://punicodex.com/tiers/" class="nav-link">Tier System</a>
+                <a href="https://punicodex.com/rulebook/" class="nav-link">The Rules</a>
                 <a href="https://punicodex.com/type/" class="nav-link">Type</a>
                 <a href="https://punicodex.com/search.html" class="nav-link">Search</a>
                 <a href="https://punicodex.com/codex/" class="nav-link">Codex</a>
@@ -48,7 +48,7 @@ const NAV_REPLACEMENT = `    <!-- Global Nav -->
         <a href="https://punicodex.com/pantheon/">Pantheon</a>
         <a href="https://punicodex.com/realms/">Realms</a>
         <a href="https://punicodex.com/lexicon/">Lexicon</a>
-        <a href="https://punicodex.com/tiers/">Tier System</a>
+        <a href="https://punicodex.com/rulebook/">The Rules</a>
         <a href="https://punicodex.com/type/">Type</a>
         <a href="https://punicodex.com/search.html">Search</a>
         <a href="https://punicodex.com/codex/">Codex</a>
@@ -72,7 +72,7 @@ const FOOTER_REPLACEMENT = `    <footer class="site-footer">
                     <a href="https://punicodex.com/pantheon/">Pantheon</a>
                     <a href="https://punicodex.com/realms/">Realms</a>
                     <a href="https://punicodex.com/lexicon/">Lexicon</a>
-                    <a href="https://punicodex.com/tiers/">Tier System</a>
+                    <a href="https://punicodex.com/rulebook/">The Rules</a>
                     <a href="https://punicodex.com/type/">Type</a>
                     <a href="https://punicodex.com/search.html">Search</a>
                 </div>

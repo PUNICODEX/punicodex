@@ -526,7 +526,6 @@ router.get(
             entryId: row.entry_id,
             name: row.name,
             pantheon: row.pantheon,
-            tier: row.tier,
             isFrozen: Boolean(row.is_frozen),
           },
           sections: [],

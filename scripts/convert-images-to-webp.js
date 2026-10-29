@@ -316,7 +316,6 @@ function main() {
     'privacy/index.html',
     'realms/index.html',
     'store/index.html',
-    'tiers/index.html',
     'type/index.html',
   ];
 

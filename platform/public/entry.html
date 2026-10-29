@@ -507,8 +507,19 @@
 
     function renderEntry() {
       const entry = entryData;
-      const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';
-      const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
+      function preservationBadge(unicode) {
+        const nfd = (unicode || '').normalize('NFD');
+        const circumflex = nfd.includes('̂');
+        const stress = circumflex || /[̀́́]/.test(nfd);
+        const length = circumflex || /[̄̆]/.test(nfd);
+        if (stress && length) return 'Preserves stress & length';
+        if (stress) return 'Preserves stress';
+        if (length) return 'Preserves length';
+        if (/[̀-ͯ]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd)) return 'Preserves marks';
+        return 'ASCII form';
+      }
+      const tierLabel = preservationBadge(entry.unicode);
+      
       const etymology = parseJson(entry.etymology);
       const variants = parseJson(entry.variants) || [];
 

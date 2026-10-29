@@ -1,12 +1,12 @@
 const { safeJsonParse } = require('./safe-json');
+const { preservationLabel } = require('../../scripts/lib/preservation-label.js');
 
 function generateTemple(entry) {
   const breakdownRows = (entry.breakdown || [])
     .map((b) => `<tr><td>${b.char}</td><td>${b.to}</td><td>${b.type}</td><td>${b.note}</td></tr>`)
     .join('');
 
-  const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';
-  const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
+  const preservationBadge = preservationLabel(entry.unicode);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -22,9 +22,6 @@ function generateTemple(entry) {
       --text-dim: #8a87a0;
       --accent: #c9a96e;
       --border: #2a2a3a;
-      --tier-dual: #c9a96e;
-      --tier-1: #7ec9a0;
-      --tier-2: #87aee8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -73,9 +70,6 @@ function generateTemple(entry) {
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .tier-dual { background: rgba(201,169,110,0.15); color: var(--tier-dual); }
-    .tier-1 { background: rgba(126,201,160,0.15); color: var(--tier-1); }
-    .tier-2 { background: rgba(135,174,232,0.15); color: var(--tier-2); }
     .pantheon-badge { background: var(--surface); color: var(--text-dim); border: 1px solid var(--border); }
     .section {
       background: var(--surface);
@@ -126,7 +120,7 @@ function generateTemple(entry) {
       <div class="unicode-name">${entry.unicode}</div>
       <div class="greek-name">${entry.greek || ''}</div>
       <div class="meta">
-        <span class="badge ${tierClass}">${tierLabel}</span>
+        <span class="badge preservation-badge">${preservationBadge}</span>
         <span class="badge pantheon-badge">${entry.pantheon}</span>
         ${entry.domain ? `<span class="badge pantheon-badge">${entry.domain}</span>` : ''}
       </div>

@@ -13,6 +13,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 
 const ROOT = path.join(__dirname, '..');
 const ENTRIES_PATH = path.join(ROOT, 'data', 'corpus', 'entries.jsonl');
@@ -46,8 +47,8 @@ function buildMascotExample(entry, index) {
     image: `/${mascotPath}`,
     instruction: `Describe the mascot image for ${entry.unicode} and explain how it reflects the deity's domain.`,
     input: entry.unicode,
-    output: `${entry.unicode} is the ${entry.pantheon} deity of ${entry.domain}. The mascot visual captures attributes associated with this identity: ${entry.meaning}. Tier: ${entry.tierLabel}.`,
-    metadata: { pantheon: entry.pantheon, tier: entry.tier, asset: mascotPath },
+    output: `${entry.unicode} is the ${entry.pantheon} deity of ${entry.domain}. The mascot visual captures attributes associated with this identity: ${entry.meaning}..`,
+    metadata: { pantheon: entry.pantheon, asset: mascotPath },
   };
 }
 
@@ -62,8 +63,8 @@ function buildLogomarkExample(entry, index) {
     image: `/${logomarkPath}`,
     instruction: `What name does this logomark represent, and what is its scholarly Unicode restoration?`,
     input: entry.ascii,
-    output: `The logomark represents ${entry.unicode} (${entry.ascii}), a ${entry.tierLabel} ${entry.pantheon} name meaning “${entry.meaning}”.`,
-    metadata: { pantheon: entry.pantheon, tier: entry.tier, asset: logomarkPath },
+    output: `The logomark represents ${entry.unicode} (${entry.ascii}), a ${preservationLabel(entry.unicode)} ${entry.pantheon} name meaning “${entry.meaning}”.`,
+    metadata: { pantheon: entry.pantheon, asset: logomarkPath },
   };
 }
 

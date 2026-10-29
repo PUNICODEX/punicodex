@@ -48,7 +48,7 @@ function isGodEntry(entry) {
  *
  * Keyword gating: a bare request (no query and no browse-intent filter) must
  * not dump the whole entries table — it returns an empty result set instead.
- * Filters (`type` other than 'all', `pantheon`, `tier`, `hasSite`, `trust`
+ * Filters (`type` other than 'all', `pantheon`, `hasSite`, `trust`
  * other than the default 'safe') signal browse intent and keep the previous
  * full-listing behavior. Callers with a legitimate browse-all contract (the
  * v1 names listing) pass `browseAll: true` to opt out.
@@ -56,7 +56,6 @@ function isGodEntry(entry) {
 function search({
   q,
   pantheon,
-  tier,
   hasSite,
   type = 'all',
   sort = 'relevance',
@@ -67,7 +66,6 @@ function search({
 }) {
   const hasBrowseFilter = Boolean(
     pantheon ||
-      tier ||
       (hasSite !== undefined && hasSite !== null && hasSite !== '') ||
       (type && type !== 'all') ||
       (trust && trust !== 'safe')
@@ -88,7 +86,6 @@ function search({
       s.description as site_description,
       s.content_snippet as site_snippet,
       s.status as site_status,
-      s.tier_label as site_tier_label,
       s.is_flagship as site_is_flagship,
       s.last_crawled as site_last_crawled,
       a.status as avail_status
@@ -122,8 +119,7 @@ function search({
         s.description as site_description,
         s.content_snippet as site_snippet,
         s.status as site_status,
-        s.tier_label as site_tier_label,
-        s.is_flagship as site_is_flagship,
+          s.is_flagship as site_is_flagship,
         s.last_crawled as site_last_crawled,
         a.status as avail_status
       FROM entries e
@@ -146,12 +142,6 @@ function search({
     sql += ' AND e.pantheon = ?';
     countSql += ' AND e.pantheon = ?';
     params.push(pantheon);
-  }
-
-  if (tier) {
-    sql += ' AND e.tier = ?';
-    countSql += ' AND e.tier = ?';
-    params.push(tier);
   }
 
   if (hasSite === true || hasSite === 'true') {
@@ -180,9 +170,8 @@ function search({
 
   // Ordering (whitelisted to prevent SQL injection)
   const allowedSorts = {
-    relevance: "s.is_flagship DESC, e.tier = 'dual' DESC, e.tier = '1' DESC, e.unicode ASC",
+    relevance: 's.is_flagship DESC, e.unicode ASC',
     alphabetical: 'e.unicode ASC',
-    tier: "e.tier = 'dual' DESC, e.tier = '1' DESC, e.tier = '2' DESC, e.unicode ASC",
     recently_crawled: 's.last_crawled DESC, e.unicode ASC',
     confidence: 'e.confidence_score DESC, e.unicode ASC',
   };
@@ -307,7 +296,6 @@ function enrichEntry(row, trust = {}) {
         description: row.site_description,
         snippet: row.site_snippet,
         status: row.site_status,
-        tierLabel: row.site_tier_label,
         isFlagship: row.site_is_flagship,
         trustTier: trust.trustTier || null,
         trustReason: trust.trustReason || null,
@@ -327,8 +315,6 @@ function enrichEntry(row, trust = {}) {
     unicode: row.unicode,
     greek: row.greek,
     pantheon: row.pantheon,
-    tier: row.tier,
-    tierLabel: row.tier_label,
     meaning: row.meaning,
     sources: parseSources(row.sources),
     domain: row.domain,
@@ -353,7 +339,6 @@ function getEntry(id) {
   const punycode = computePunycode(entry.unicode);
   return {
     ...entry,
-    tierLabel: entry.tier_label,
     sources: parseSources(entry.sources),
     punycode,
     breakdown,
@@ -371,12 +356,14 @@ function getStats() {
     flagships: db.prepare('SELECT COUNT(*) as c FROM entries WHERE has_flagship = 1').get().c,
     pantheons: db.prepare('SELECT COUNT(DISTINCT pantheon) as c FROM entries').get().c,
     breakdown: [], // stats table removed in crawler migration
-    tiers: db
-      .prepare(`
-      SELECT tier, COUNT(*) as count FROM entries GROUP BY tier ORDER BY
-      CASE tier WHEN 'dual' THEN 1 WHEN '1' THEN 2 WHEN '2' THEN 3 ELSE 4 END
-    `)
-      .all(),
+    marks: (() => {
+      const { preservedFeatures } = require('../../type/js/engine.js');
+      const rows = db.prepare('SELECT unicode FROM entries').all();
+      const marked = rows.filter(
+        (r) => preservedFeatures(r.unicode || '').features.length > 0
+      ).length;
+      return { marked, plain: rows.length - marked };
+    })(),
     sites: {
       indexed: db.prepare('SELECT COUNT(*) as c FROM indexed_sites').get().c,
       active: db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status = 'active'").get().c,
@@ -447,8 +434,6 @@ function getVariants(id) {
       unicode: row.unicode,
       greek: row.greek,
       pantheon: row.pantheon,
-      tier: row.tier,
-      tierLabel: row.tier_label,
       meaning: row.meaning,
       sources: parseSources(row.sources),
       domain: row.domain,
@@ -487,8 +472,6 @@ function getVariantsByAscii(ascii) {
       unicode: row.unicode,
       greek: row.greek,
       pantheon: row.pantheon,
-      tier: row.tier,
-      tierLabel: row.tier_label,
       meaning: row.meaning,
       sources: parseSources(row.sources),
       domain: row.domain,

@@ -16,6 +16,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
@@ -87,7 +88,7 @@ function frameHtml(card, idx, total) {
           <div class="mcard-inner">
             <div class="mcard-banner"><span class="mcard-name">${esc(card.name)}</span><span class="mcard-sigil" title="${esc(card.pantheon)}">${esc(card.categoryIcon || '✦')}</span></div>
             <div class="mcard-art">
-              <span class="mcard-tier">${esc(card.tierLabel || '')}</span>
+              <span class="mcard-tier">${esc(card.preservation || '')}</span>
               <span class="mcard-cat" title="${esc(card.categoryLabel || '')}">${esc(card.categoryIcon || '')}</span>
               ${
                 art
@@ -134,7 +135,7 @@ function main() {
     pantheon: c.pantheon,
     categoryIcon: c.categoryIcon,
     categoryLabel: c.categoryLabel,
-    tierLabel: c.tierLabel,
+    preservation: c.preservation,
     domain: c.domain,
     rarity: c.rarity,
     edition: c.edition || 'archive',

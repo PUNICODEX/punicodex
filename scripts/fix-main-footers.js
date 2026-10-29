@@ -16,7 +16,6 @@ const FILES = [
   'store/index.html',
   'type/index.html',
   'pantheon/index.html',
-  'tiers/index.html',
   'appraise/index.html',
   '404.html',
 ];
@@ -35,7 +34,7 @@ const FOOTER = `    <footer class="site-footer">
                     <a href="/pantheon/">Pantheon</a>
                     <a href="/realms/">Realms</a>
                     <a href="/lexicon/">Lexicon</a>
-                    <a href="/tiers/">Tier System</a>
+                    <a href="/rulebook/">The Rules</a>
                     <a href="/type/">Type</a>
                     <a href="/search.html">Search</a>
                 </div>

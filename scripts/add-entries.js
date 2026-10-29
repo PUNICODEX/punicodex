@@ -22,7 +22,6 @@ const C = {
 };
 
 const ALLOWED_PANTHEONS = ['greek', 'greek-location', 'norse', 'egyptian', 'sanskrit', 'celtic', 'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan', 'chinese', 'buddhist', 'taoist', 'korean', 'phoenician', 'hittite', 'mayan', 'canaanite', 'arabian-pagan', 'akan', 'zulu-xhosa'];
-const ALLOWED_TIERS = ['dual', '1', '2'];
 const ASCII_REGEX = /^[a-z]+$/;
 
 const existingIds = new Set(LEXICON.map(e => e.id));
@@ -38,8 +37,6 @@ function validateEntry(entry, i) {
     if (!entry.unicode) errors.push(`[${label}] missing unicode`);
     if (!entry.greek) errors.push(`[${label}] missing greek`);
     if (!entry.pantheon) errors.push(`[${label}] missing pantheon`);
-    if (!entry.tier) errors.push(`[${label}] missing tier`);
-    if (!entry.tierLabel) errors.push(`[${label}] missing tierLabel`);
     if (!entry.domain) errors.push(`[${label}] missing domain`);
     if (!entry.meaning) errors.push(`[${label}] missing meaning`);
     if (!Array.isArray(entry.sources) || entry.sources.length === 0) errors.push(`[${label}] missing or empty sources`);
@@ -50,9 +47,6 @@ function validateEntry(entry, i) {
     }
     if (entry.pantheon && !ALLOWED_PANTHEONS.includes(entry.pantheon)) {
         errors.push(`[${label}] pantheon "${entry.pantheon}" not allowed`);
-    }
-    if (entry.tier && !ALLOWED_TIERS.includes(entry.tier)) {
-        errors.push(`[${label}] tier "${entry.tier}" not allowed`);
     }
     if (entry.unicode && entry.unicode !== entry.unicode.normalize('NFC')) {
         errors.push(`[${label}] unicode "${entry.unicode}" is not NFC-normalized`);
@@ -141,8 +135,6 @@ function addEntries(newEntries) {
     unicode: '${e.unicode}',
     greek: '${e.greek}',
     pantheon: '${e.pantheon}',
-    tier: '${e.tier}',
-    tierLabel: '${e.tierLabel}',
     domain: '${e.domain.replace(/'/g, "\\'")}',
     meaning: '${e.meaning.replace(/'/g, "\\'")}',
     sources: [${e.sources.map(s => `'${s}'`).join(', ')}],

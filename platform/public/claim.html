@@ -186,14 +186,25 @@
         if (!res.ok) throw new Error('Entry not found');
         entryData = await res.json();
 
-        const tierClass = entryData.tier === 'dual' ? 'tier-dual' : entryData.tier === '1' ? 'tier-1' : 'tier-2';
-        const tierLabel = entryData.tier === 'dual' ? 'Dual-Tier' : `Tier ${entryData.tier}`;
+        function preservationBadge(unicode) {
+          const nfd = (unicode || '').normalize('NFD');
+          const circumflex = nfd.includes('̂');
+          const stress = circumflex || /[̀́́]/.test(nfd);
+          const length = circumflex || /[̄̆]/.test(nfd);
+          if (stress && length) return 'Preserves stress & length';
+          if (stress) return 'Preserves stress';
+          if (length) return 'Preserves length';
+          if (/[̀-ͯ]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd)) return 'Preserves marks';
+          return 'ASCII form';
+        }
+        const tierLabel = preservationBadge(entryData.unicode);
+        
 
         document.getElementById('entryPreview').innerHTML = `
           <div class="unicode-name">${entryData.unicode}</div>
           <div class="greek-name">${entryData.greek || ''}</div>
           <div class="meta">
-            <span class="badge ${tierClass}">${tierLabel}</span>
+            <span class="badge">${tierLabel}</span>
             <span class="badge pantheon-badge">${entryData.pantheon}</span>
           </div>
           <div style="margin-top:1rem;color:var(--text-dim);font-size:0.9rem;">${entryData.meaning || ''}</div>

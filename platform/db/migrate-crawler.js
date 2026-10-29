@@ -20,8 +20,6 @@ db.exec(`
     content_snippet TEXT,
     lexicon_entry_id TEXT,
     pantheon TEXT,
-    tier TEXT,
-    tier_label TEXT,
     status TEXT DEFAULT 'pending' CHECK (status IN ('active', 'unresolved', 'error', 'pending', 'spam')),
     is_flagship INTEGER DEFAULT 0,
     tenant_name TEXT,
@@ -245,7 +243,6 @@ db.exec(`
     mention_count INTEGER DEFAULT 1,
     contexts TEXT,
     pantheon TEXT,
-    tier TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(site_id, entry_id),
     FOREIGN KEY (site_id) REFERENCES indexed_sites(id) ON DELETE CASCADE,
@@ -444,19 +441,17 @@ const flagships = ARCHETYPES.filter((a) => a.built).map((a) => ({
   domain: a.domainUnicode,
   punycode: a.domainPunycode,
   pantheon: a.pantheon,
-  tier: a.tier === 'dual-tier' ? 'dual' : a.tier === 'tier-1' ? '1' : '2',
-  tier_label: a.tier === 'dual-tier' ? 'Dual-Tier' : a.tier === 'tier-1' ? 'Tier-1' : 'Tier-2',
 }));
 
 const insertSite = db.prepare(`
   INSERT OR REPLACE INTO indexed_sites
-  (domain, punycode, lexicon_entry_id, pantheon, tier, tier_label, status, is_flagship,
+  (domain, punycode, lexicon_entry_id, pantheon, status, is_flagship,
    title, description, h1, first_p, content_snippet,
    og_title, og_description, og_type, og_site_name,
    lang, h1_count, word_count, content_length,
    response_time_ms, meta_robots, canonical_url,
    next_crawl_after, crawl_interval_days)
-  VALUES (?, ?, ?, ?, ?, ?, 'active', 1,
+  VALUES (?, ?, ?, ?, 'active', 1,
     ?, ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?,
@@ -473,8 +468,6 @@ for (const f of flagships) {
     f.punycode || f.domain,
     f.id,
     f.pantheon,
-    f.tier,
-    f.tier_label,
     title,
     desc,
     title,
@@ -497,7 +490,7 @@ for (const f of flagships) {
 // Populate availability table with all lexicon entries that have no site
 const entries = db
   .prepare(`
-  SELECT e.id, e.ascii, e.unicode, e.pantheon, e.tier
+  SELECT e.id, e.ascii, e.unicode, e.pantheon
   FROM entries e
   LEFT JOIN indexed_sites s ON e.id = s.lexicon_entry_id
   WHERE s.id IS NULL

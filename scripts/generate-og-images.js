@@ -34,6 +34,7 @@ const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'assets', 'og');
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
+const { preservationLabel } = require('./lib/preservation-label.js');
 
 const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
 const ARCHETYPES = vm.runInNewContext(`(function(){${archetypeSrc}\nreturn ARCHETYPES;\n})()`);
@@ -63,8 +64,7 @@ async function pngDataUri(file) {
 }
 
 function tierLabelOf(entry) {
-  if (entry.tier === 'dual') return 'Dual-Tier';
-  return entry.tierLabel || `Tier ${entry.tier}`;
+  return preservationLabel(entry.unicode);
 }
 
 function cardSvg({ entry, meta, mascotUri, emblemUri, flagship }) {

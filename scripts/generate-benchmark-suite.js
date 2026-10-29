@@ -13,6 +13,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const crypto = require('node:crypto');
 
 const ROOT = path.join(__dirname, '..');
@@ -66,7 +67,7 @@ function buildRestorationBenchmark(entry, index) {
     input: entry.ascii,
     answer: entry.unicode,
     acceptable: [entry.unicode, entry.unicode.toLowerCase()],
-    metadata: { pantheon: entry.pantheon, tier: entry.tier },
+    metadata: { pantheon: entry.pantheon },
   };
 }
 
@@ -100,17 +101,14 @@ function buildMeaningBenchmark(entry, index) {
   };
 }
 
-function buildTierBenchmark(entry, index) {
+function buildPreservationBenchmark(entry, index) {
   return {
-    id: makeId(entry.id, 'tier', index),
-    entryId: entry.id,
-    task: 'benchmark_tier',
-    type: 'exact_match',
-    question: `What tier is ${entry.unicode}?`,
-    input: entry.unicode,
-    answer: entry.tierLabel,
-    acceptable: [entry.tierLabel, entry.tierLabel.toLowerCase()],
-    metadata: { tier: entry.tier },
+    id: makeId(entry.id, 'preservation', index),
+    task: 'benchmark_preservation',
+    question: `What does the restoration ${entry.unicode} preserve that ASCII cannot show?`,
+    answer: preservationLabel(entry.unicode),
+    acceptable: [preservationLabel(entry.unicode), preservationLabel(entry.unicode).toLowerCase()],
+    metadata: { pantheon: entry.pantheon },
   };
 }
 
@@ -170,7 +168,7 @@ function main() {
       buildRestorationBenchmark(entry, i + 1),
       buildPronunciationBenchmark(entry, i + 1),
       buildMeaningBenchmark(entry, i + 1),
-      buildTierBenchmark(entry, i + 1),
+      buildPreservationBenchmark(entry, i + 1),
       buildPunycodeBenchmark(entry, i + 1),
       buildOriginalScriptBenchmark(entry, i + 1)
     );

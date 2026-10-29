@@ -56,12 +56,6 @@ test('lexicon browse page exists and loads lexicon data', () => {
   assert.ok(html.includes('js/lexicon.js') || html.includes('renderer/lexicon.json'));
 });
 
-test('tiers page exists and references tier data', () => {
-  const html = readHtml('tiers/index.html');
-  assert.ok(html.includes('<title>'));
-  assert.ok(html.includes('tiers') || html.includes('Tier'));
-});
-
 test('public search page exists and references search scripts', () => {
   const html = readHtml('search/index.html');
   assert.ok(html.includes('<title>'));

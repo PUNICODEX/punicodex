@@ -23,6 +23,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -101,11 +102,8 @@ function textEntries(pantheon) {
     .map((id) => TEXT_BY_ID.get(id));
 }
 
-function badgeText(tier) {
-  if (tier === 'tier-1') return 'Tier 1';
-  if (tier === 'tier-2') return 'Tier 2';
-  if (tier === 'dual-tier') return 'Dual';
-  return tier;
+function badgeText(archetype) {
+  return preservationLabel(archetype.name);
 }
 
 function scriptLabelHtml(archetype) {
@@ -130,7 +128,7 @@ function templeCardHtml(archetype) {
                 <p class="card-greek">${scriptLabelHtml(archetype)}</p>
                 <p class="card-domain">${escapeHtml(archetype.domain)}</p>
                 <p class="card-punycode">${escapeHtml(archetype.domainUnicode)} &rarr; ${escapeHtml(archetype.domainPunycode)}</p>
-                <span class="card-badge ${escapeHtml(archetype.tier)}">${escapeHtml(badgeText(archetype.tier))}</span>
+                <span class="card-badge">${escapeHtml(badgeText(archetype))}</span>
             </a>`;
 }
 

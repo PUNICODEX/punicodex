@@ -1,8 +1,8 @@
 # PUNICODEX — Owned Domain Inventory
 > Canonical record of all domains owned by PUNICODEX.
-> Auto-generated: 2026-10-08
+> Auto-generated: 2026-10-29
 > Source: `platform/db/owned-domains.json` + `js/archetypes-v2.js` + `middleware.js` DOMAIN_MAP
-> Tier system: The Definitive Tier System (CANONICAL) — see AGENTS.md
+> Restorations are described by what they preserve (computed from the form) — see AGENTS.md
 
 ---
 
@@ -14,25 +14,44 @@
     - **Variant / alternate domains:** 26
   - **Platform domains:** 1
 - **Flagship temples covered:** 332
-  - Dual-tier: 3
-  - Single-tier Tier-1: 297
-  - Single-tier Tier-2: 32
+  - Multi-form names: 22
+  - With preserved marks: 306
+  - ASCII-equivalent forms: 4
 - **Base temples covered:** 1
 - **Unmapped owned domains:** 0
 
-## Dual-Tier Names
+## Multi-Form Names
 
-A name is dual-tier when the Greek original has BOTH stress AND long vowel, multiple historically valid Unicode spellings exist, and we own multiple domain variants.
+Multiple historically valid Unicode spellings exist and we own more than one domain variant for the name.
 
 | Archetype | Display Name | Domains (owned redirects) | Pantheon | Rental Tier |
 |-----------|--------------|---------------------------|----------|-------------|
 | hekate | Hekátē | `hekatē.com`<br>`hekátē.com` | chthonic | S |
+| hp | Ḥꜥpy | `ḥp.com`<br>`ḥꜥpy.com` | egyptian | B |
+| ra | Rꜥ | `rá.com`<br>`rꜥ.com` | egyptian | S |
+| sia | Sjꜣ | `sjꜣ.com`<br>`sꜣ.com` | egyptian | B |
+| apep | ꜥꜣpp | `ꜥpp.com`<br>`ꜥꜣpp.com` | egyptian | A |
+| eos | Ēōs | `eōs.com`<br>`ēōs.com` | greek | A |
+| europe | Eurṓpē | `eurōpē.com`<br>`eurṓpē.com` | greek | S |
+| iris | Îris | `íris.com`<br>`îris.com` | greek | SSS |
+| pandora | Pandōra | `pandōra.com`<br>`pandṓra.com` | greek | SSS |
+| ea | Ēa | `ēa.com`<br>`𒀭𒂍.com` | mesopotamian | SSS |
+| tezcatlipoca | Tēzcatlīpōca | `tezcatlipōca.com`<br>`tēzcatlīpōca.com`<br>`tēzcatlīpohca.com` | nahuatl | A |
+| aphrodite | Aphrodítē | `aphrodítē.com`<br>`aphrodītē.com` | olympian | S |
 | apollon | Apóllōn | `apollōn.com`<br>`apóllōn.com` | olympian | S |
+| athena | Athēnâ | `athénā.com`<br>`athēnâ.com`<br>`athēnā.com` | olympian | S |
+| hermes | Hermēs | `hermês.com`<br>`hermēs.com` | olympian | SSS |
 | nike | Níkē | `nikē.com`<br>`níkê.com`<br>`níkē.com`<br>`νίκη.com` | olympian | SSS |
+| poseidon | Poseidōn | `poseidôn.com`<br>`poseidōn.com` | olympian | S |
+| dagan | Dāgān | `dāgan.com`<br>`dāgān.com` | phoenician | B |
+| mot | Mūt | `mōt.com`<br>`mūt.com` | phoenician | A |
+| om | Oṃ | `oṁ.com`<br>`oṃ.com` | sanskrit | S |
+| yinyang | Yīnyáng | `yīn-yáng.com`<br>`yīnyáng.com` | taoist | S |
+| prometheus | Promētheús | `promētheus.com`<br>`promētheús.com` | titan | S |
 
-## Single-Tier Tier-1 Names
+## Restorations With Preserved Marks
 
-Mechanically information-rich: Greek has both stress AND long vowel; non-Greek preserves a distinctive diacritic or atomic letter.
+The displayed form preserves at least one feature ASCII cannot show — a diacritic or a distinctive letter — computed mechanically from the form itself.
 
 | Archetype | Display Name | Domains (owned redirects) | Pantheon | Rental Tier |
 |-----------|--------------|---------------------------|----------|-------------|
@@ -95,15 +114,12 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | thoth | Ḏḥwtj | `ḏḥwtj.com` | egyptian | A |
 | heka | Ḥkꜣ | `ḥkꜣ.com` | egyptian | B |
 | horus | Ḥr | `ḥr.com` | egyptian | S |
-| hp | Ḥꜥpy | `ḥp.com`<br>`ḥꜥpy.com` | egyptian | B |
 | ka | Kꜣ | `kꜣ.com` | egyptian | C |
 | ma | Mꜣ | `mꜣ.com` | egyptian | C |
 | maa | Mꜥ | `mꜥ.com` | egyptian | C |
 | nht | Nḫt | `nḫt.com` | egyptian | B |
 | ptah | Ptḥ | `ptḥ.com` | egyptian | A |
-| ra | Rꜥ | `rá.com`<br>`rꜥ.com` | egyptian | S |
 | sekhmet | Sḫmt | `sḫmt.com` | egyptian | A |
-| sia | Sjꜣ | `sjꜣ.com`<br>`sꜣ.com` | egyptian | B |
 | seshat | Sšꜣt | `sšꜣt.com` | egyptian | A |
 | seth | Stḫ | `stḫ.com` | egyptian | B |
 | shu | Šw | `šw.com` | egyptian | B |
@@ -114,9 +130,9 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | anubis | ꜣnpw | `ꜣnpw.com` | egyptian | A |
 | isis | Ꜣst | `ꜣst.com` | egyptian | S |
 | ankh | ꜥnḫ | `ꜥnḫ.com` | egyptian | A |
-| apep | ꜥꜣpp | `ꜥpp.com`<br>`ꜥꜣpp.com` | egyptian | A |
 | acheron | Achérōn | `achérōn.com` | greek | A |
 | achilleus | Achilleús | `achilleús.com` | greek | A |
+| adamas | Adámas | `adámas.com` | greek | B |
 | adonis | Ádōnis | `ádōnis.com` | greek | A |
 | aer | Aḗr | `aḗr.com` | greek | B |
 | aigyptos | Aígyptos | `aígyptos.com` | greek | S |
@@ -125,59 +141,79 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | andromeda | Andromedē | `andromedē.com` | greek | A |
 | arachne | Arachnē | `arachnē.com` | greek | A |
 | arche | Archḗ | `archḗ.com` | greek | B |
+| argos | Árgos | `árgos.com` | greek | B |
 | asklepios | Asklēpiós | `asklēpiós.com` | greek | S |
+| atropos | Átropos | `átropos.com` | greek | B |
+| chaos | Cháos | `cháos.com` | greek | A |
 | chiron | Cheírōn | `cheírōn.com` | greek | A |
 | chimaira | Chímaira | `chímaira.com` | greek | A |
 | drakon | Drákōn | `drákōn.com` | greek | A |
-| eos | Ēōs | `eōs.com`<br>`ēōs.com` | greek | A |
 | epimetheus | Epimētheús | `epimētheús.com` | greek | A |
+| erebus | Érebos | `érebos.com` | greek | S |
+| eris | Éris | `éris.com` | greek | A |
 | eros | Érōs | `érōs.com` | greek | A |
-| europe | Eurṓpē | `eurōpē.com`<br>`eurṓpē.com` | greek | S |
 | gaia | Gaîa | `gaîa.com` | greek | S |
 | ge | Gē | `gē.com` | greek | A |
+| he | Hē | `hē.com` | greek | B |
 | helene | Helénē | `helénē.com` | greek | SSS |
 | helios | Hēlios | `hēlios.com` | greek | A |
 | hemera | Hēméra | `hēmera.com` | greek | A |
+| hen | Hén | `Hén.com` | greek | B |
 | herakles | Hēraklēs | `hēraklēs.com` | greek | S |
+| hydra | Hýdra | `hýdra.com` | greek | S |
 | hygieia | Hygíeia | `hygíeia.com` | greek | A |
 | hyperion | Hyperíōn | `hyperíōn.com` | greek | A |
+| hypnos | Hýpnos | `hýpnos.com` | greek | A |
 | iason | Iásōn | `iásōn.com` | greek | A |
-| iris | Îris | `íris.com`<br>`îris.com` | greek | SSS |
+| keraunos | Keraunós | `keraunós.com` | greek | A |
+| cerberus | Kérberos | `kérberos.com` | greek | S |
 | circe | Kírkē | `kírkē.com` | greek | A |
 | kleio | Kleiṓ | `kleiṓ.com` | greek | B |
 | coeus | Koîos | `koîos.com` | greek | B |
+| kratos | Krátos | `krátos.com` | greek | S |
+| kronos | Krónos | `krónos.com` | greek | SSS |
 | leto | Lētō | `lētō.com` | greek | B |
 | libye | Libyē | `libyē.com` | greek | S |
 | medousa | Médousa | `médousa.com` | greek | S |
+| midas | Mídas | `mídas.com` | greek | A |
 | mnemosyne | Mnēmosýnē | `mnēmosýnē.com` | greek | B |
 | monokeros | Monókerōs | `monókerōs.com` | greek | B |
 | odysseus | Odysseús | `odysseús.com` | greek | S |
 | oidipous | Oidípous | `oidípous.com` | greek | A |
 | okeanos | Ōkeanós | `ōkeanós.com` | greek | A |
+| omphalos | Omphalós | `omphalós.com` | greek | A |
 | oneiros | Óneiros | `óneiros.com` | greek | A |
 | orpheus | Orpheús | `orpheús.com` | greek | A |
 | ourania | Ouranía | `ouranía.com` | greek | B |
 | ouranos | Ouranós | `ouranós.com` | greek | A |
 | pallas | Pállas | `pállas.com` | greek | A |
-| pandora | Pandōra | `pandōra.com`<br>`pandṓra.com` | greek | SSS |
+| pan | Pān | `pān.com` | greek | S |
 | pegasos | Pḗgasos | `pḗgasos.com` | greek | S |
 | phanes | Phánēs | `phánēs.com` | greek | B |
 | phoebe | Phoíbē | `phoíbē.com` | greek | B |
 | phoenix | Phoînix | `phoînix.com` | greek | S |
+| pontos | Póntos | `póntos.com` | greek | A |
 | psyche | Psychḗ | `psychḗ.com` | greek | SSS |
 | pyr | Pŷr | `pŷr.com` | greek | B |
 | python | Pýthōn | `pýthōn.com` | greek | B |
 | rhea | Rhéā | `rhéā.com` | greek | A |
 | seiren | Seirḗn | `seirḗn.com` | greek | A |
+| sphinx | Sphínx | `sphínx.com` | greek | S |
+| styx | Stýx | `stýx.com` | greek | A |
+| tartaros | Tártaros | `tártaros.com` | greek | A |
 | thaleia | Tháleia | `tháleia.com` | greek | B |
+| thanatos | Thánatos | `thánatos.com` | greek | A |
 | theia | Theía | `theía.com` | greek | B |
 | theseus | Thēseus | `thēseus.com` | greek | SSS |
 | tyche | Týchē | `týchē.com` | greek | S |
 | typhon | Typhōn | `typhōn.com` | greek | A |
+| zephyros | Zéphyros | `zéphyros.com` | greek | B |
 | asia | Asía | `asía.com` | greek-location | S |
 | athenai | Athēnai | `athēnai.com` | greek-location | A |
+| atlantis | Atlantís | `atlantís.com` | greek-location | S |
 | delos | Dêlos | `dêlos.com` | greek-location | A |
 | delphoi | Delphoí | `delphoí.com` | greek-location | A |
+| olympos | Ólympos | `ólympos.com` | greek-location | A |
 | sparte | Spártē | `spártē.com` | greek-location | A |
 | troia | Troíā | `troíā.com` | greek-location | A |
 | fujin | Fūjin | `fūjin.com` | japanese | A |
@@ -194,7 +230,6 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | anu | Anû | `Anû.com` | mesopotamian | A |
 | apsu | Apsû | `apsû.com` | mesopotamian | A |
 | ashur | Aššur | `aššur.com` | mesopotamian | A |
-| ea | Ēa | `ēa.com`<br>`𒀭𒂍.com` | mesopotamian | SSS |
 | enlil | Enlīl | `enlīl.com` | mesopotamian | A |
 | ereshkigal | Ereškigal | `ereškigal.com` | mesopotamian | S |
 | gilgamesh | Gilgameš | `gilgameš.com` | mesopotamian | S |
@@ -208,7 +243,6 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | mictlantecutli | Mictlāntēcutli | `mictlāntēcutli.com` | nahuatl | A |
 | mixcoatl | Mixcōātl | `mixcōātl.com` | nahuatl | B |
 | quetzalcoatl | Quetzalcōātl | `quetzalcōātl.com` | nahuatl | S |
-| tezcatlipoca | Tēzcatlīpōca | `tezcatlipōca.com`<br>`tēzcatlīpōca.com`<br>`tēzcatlīpohca.com` | nahuatl | A |
 | tlaloc | Tlāloc | `tlāloc.com` | nahuatl | A |
 | tlaltecuhtli | Tlāltēcuhtli | `tlaltecuhtli.com` | nahuatl | B |
 | tonatiuh | Tōnatiuh | `tōnatiuh.com` | nahuatl | S |
@@ -243,21 +277,18 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | vor | Vǫr | `vǫr.com` | norse | A |
 | thor | Þórr | `þórr.com` | norse | S |
 | thrudr | Þrúðr | `þrúðr.com` | norse | A |
-| aphrodite | Aphrodítē | `aphrodítē.com`<br>`aphrodītē.com` | olympian | S |
 | ares | Árēs | `árēs.com` | olympian | SSS |
-| athena | Athēnâ | `athénā.com`<br>`athēnâ.com`<br>`athēnā.com` | olympian | S |
+| artemis | Ártemis | `ártemis.com` | olympian | S |
 | demeter | Dēmētēr | `dēmētēr.com` | olympian | A |
+| dionysos | Diónysos | `diónysos.com` | olympian | S |
 | hades | Hádēs | `hádēs.com` | olympian | S |
 | hephaistos | Hēphaistos | `hēphaistos.com` | olympian | A |
 | hera | Hēra | `hēra.com` | olympian | A |
-| hermes | Hermēs | `hermês.com`<br>`hermēs.com` | olympian | SSS |
-| poseidon | Poseidōn | `poseidôn.com`<br>`poseidōn.com` | olympian | S |
+| hestia | Hestía | `hestía.com` | olympian | B |
 | selene | Selēnē | `selēnē.com` | olympian | A |
 | zeus | Zeús | `zeús.com` | olympian | SSS |
 | aseratu | Ašeratu | `ašeratu.com` | phoenician | A |
 | astart | Aštart | `aštart.com` | phoenician | A |
-| dagan | Dāgān | `dāgan.com`<br>`dāgān.com` | phoenician | B |
-| mot | Mūt | `mōt.com`<br>`mūt.com` | phoenician | A |
 | papatuanuku | Papatūānuku | `papatūānuku.com` | polynesian | B |
 | tane | Tāne | `tāne.com` | polynesian | B |
 | tumatauenga | Tūmatauenga | `tūmatauenga.com` | polynesian | B |
@@ -286,7 +317,6 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | lakshmi | Lakṣmī | `lakṣmī.com` | sanskrit | S |
 | narasimha | Narasiṃha | `narasiṃha.com` | sanskrit | S |
 | nirmata | Nirmātā | `nirmātā.com` | sanskrit | A |
-| om | Oṃ | `oṁ.com`<br>`oṃ.com` | sanskrit | S |
 | parvati | Pārvatī | `pārvatī.com` | sanskrit | S |
 | prajapati | Prajāpati | `prajāpati.com` | sanskrit | B |
 | pusan | Pūṣan | `pūṣan.com` | sanskrit | B |
@@ -310,9 +340,7 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | laozi | Lǎozǐ | `lǎozǐ.com` | taoist | S |
 | wuji | Wújí | `wújí.com` | taoist | B |
 | xiwangmu | Xīwángmǔ | `xīwángmǔ.com` | taoist | S |
-| yinyang | Yīnyáng | `yīn-yáng.com`<br>`yīnyáng.com` | taoist | S |
 | atlas | Átlas | `átlas.com` | titan | S |
-| prometheus | Promētheús | `promētheus.com`<br>`promētheús.com` | titan | S |
 | aganju | Aganjú | `aganjú.com` | yoruba | B |
 | eshu | Ẹṣù | `ẹṣù.com` | yoruba | B |
 | oba | Ọbà | `ọbà.com` | yoruba | B |
@@ -334,43 +362,15 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | ashavahista | Ašavahišta | `ašavahišta.com` | zoroastrian | B |
 | haurvatat | Haurvatāt | `haurvatāt.com` | zoroastrian | B |
 
-## Single-Tier Tier-2 Names
+## ASCII-Equivalent Restorations
 
-Greek has only stress OR length (or neither); non-Greek preserves nothing distinctive vs ASCII.
+The scholarly form is identical to ASCII — faithful without added marks.
 
 | Archetype | Display Name | Domains (owned redirects) | Pantheon | Rental Tier |
 |-----------|--------------|---------------------------|----------|-------------|
-| adamas | Adámas | `adámas.com` | greek | B |
-| argos | Árgos | `árgos.com` | greek | B |
-| atropos | Átropos | `átropos.com` | greek | B |
-| chaos | Cháos | `cháos.com` | greek | A |
-| erebus | Érebos | `érebos.com` | greek | S |
-| eris | Éris | `éris.com` | greek | A |
-| he | Hē | `hē.com` | greek | B |
-| hen | Hén | `Hén.com` | greek | B |
-| hydra | Hýdra | `hýdra.com` | greek | S |
-| hypnos | Hýpnos | `hýpnos.com` | greek | A |
-| keraunos | Keraunós | `keraunós.com` | greek | A |
-| cerberus | Kérberos | `kérberos.com` | greek | S |
-| kratos | Krátos | `krátos.com` | greek | S |
-| kronos | Krónos | `krónos.com` | greek | SSS |
-| midas | Mídas | `mídas.com` | greek | A |
-| omphalos | Omphalós | `omphalós.com` | greek | A |
-| pan | Pān | `pān.com` | greek | S |
-| pontos | Póntos | `póntos.com` | greek | A |
-| sphinx | Sphínx | `sphínx.com` | greek | S |
-| styx | Stýx | `stýx.com` | greek | A |
-| tartaros | Tártaros | `tártaros.com` | greek | A |
-| thanatos | Thánatos | `thánatos.com` | greek | A |
-| zephyros | Zéphyros | `zéphyros.com` | greek | B |
-| atlantis | Atlantís | `atlantís.com` | greek-location | S |
-| olympos | Ólympos | `ólympos.com` | greek-location | A |
 | trengtreng | Trengtreng | `Trengtreng.com` | mapuche | B |
 | helheimr | Helheimr | `helheimr.com` | norse | B |
 | muspellheimr | Muspellheimr | `muspellheimr.com` | norse | B |
-| artemis | Ártemis | `ártemis.com` | olympian | S |
-| dionysos | Diónysos | `diónysos.com` | olympian | S |
-| hestia | Hestía | `hestía.com` | olympian | B |
 | kanaloa | Kanaloa | `kānāloa.com` | polynesian | B |
 
 ## Base Temple Domains
@@ -388,8 +388,6 @@ These are the extra owned domains beyond the primary canonical domain for each t
 | Archetype | Primary Domain | Variant Domains |
 |-----------|----------------|-----------------|
 | hekate | `hekátē.com` | `hekatē.com` |
-| apollon | `apóllōn.com` | `apollōn.com` |
-| nike | `níkē.com` | `nikē.com`<br>`níkê.com`<br>`νίκη.com` |
 | hp | `ḥꜥpy.com` | `ḥp.com` |
 | ra | `rꜥ.com` | `rá.com` |
 | sia | `sjꜣ.com` | `sꜣ.com` |
@@ -401,8 +399,10 @@ These are the extra owned domains beyond the primary canonical domain for each t
 | ea | `ēa.com` | `𒀭𒂍.com` |
 | tezcatlipoca | `tēzcatlīpōca.com` | `tezcatlipōca.com`<br>`tēzcatlīpohca.com` |
 | aphrodite | `aphrodítē.com` | `aphrodītē.com` |
+| apollon | `apóllōn.com` | `apollōn.com` |
 | athena | `athēnâ.com` | `athénā.com`<br>`athēnā.com` |
 | hermes | `hermēs.com` | `hermês.com` |
+| nike | `níkē.com` | `nikē.com`<br>`níkê.com`<br>`νίκη.com` |
 | poseidon | `poseidōn.com` | `poseidôn.com` |
 | dagan | `dāgān.com` | `dāgan.com` |
 | mot | `mūt.com` | `mōt.com` |

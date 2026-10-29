@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    const { q, limit, mode, type, pantheon, tier, sort, variant, unicodeOnly } = req.query;
+    const { q, limit, mode, type, pantheon, sort, variant, unicodeOnly } = req.query;
     if (!q?.trim()) return res.status(400).json({ error: 'q parameter required' });
 
     const results = await searchWeb(q, {
@@ -19,7 +19,6 @@ module.exports = async (req, res) => {
       mode: mode || 'all',
       type: type || 'all',
       pantheon,
-      tier,
       sort: sort || 'relevance',
       variant: variant || 'default',
       unicodeOnly: unicodeOnly === 'true' || unicodeOnly === '1',

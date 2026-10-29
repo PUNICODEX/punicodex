@@ -69,7 +69,7 @@ function buildRestorationDialogue(entry, index) {
           : `No punycode domain is recorded for ${entry.unicode} in the corpus.`,
       },
     ],
-    metadata: { pantheon: entry.pantheon, tier: entry.tier },
+    metadata: { pantheon: entry.pantheon },
   };
 }
 

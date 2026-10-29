@@ -214,8 +214,6 @@ const _Omnibox = (function () {
         const globalIdx = results.indexOf(r);
         const isActive = globalIdx === activeIndex;
         const s = r.site;
-        const tierClass = s.tier === 'dual' ? 'dual' : s.tier === '1' ? 'tier-1' : 'tier-2';
-        const tierLabel = s.tier === 'dual' ? 'Dual' : `T${s.tier}`;
         const domain = s.entry_unicode || s.domain;
         const puny = s.punycode;
         const isFlagship = s.is_flagship;
@@ -223,7 +221,8 @@ const _Omnibox = (function () {
         const snippet = s.description || s.content_snippet || s.entry_meaning || '';
         const inscribed = s.last_crawled ? formatDate(s.last_crawled) : '—';
 
-        let badges = `<span class="di-badge ${tierClass}">${tierLabel}</span>`;
+        const _marked = s.entry_unicode && /[̀-ͯ]/.test(s.entry_unicode.normalize('NFD'));
+        let badges = `<span class="di-badge">${_marked ? 'Preserves marks' : 'ASCII form'}</span>`;
         if (isFlagship) badges += ` <span class="di-badge flagship">Flagship</span>`;
 
         html += `
@@ -399,7 +398,6 @@ const _Omnibox = (function () {
     const unicode = data.unicode || data.entry_unicode || '';
     const puny = data.punycode || '';
     const _tier = data.tier || '';
-    const tierLabel = data.tier_label || '';
     const pantheon = data.pantheon || '';
     const title = data.title || '';
     const desc = data.description || data.meaning || '';
@@ -412,7 +410,7 @@ const _Omnibox = (function () {
       html += `<div style="margin:0.5rem 0;color:var(--ink-dim);font-size:0.82rem;">${escapeHtml(title)}</div>`;
 
     html += `<div style="margin-top:0.75rem;">`;
-    if (tierLabel) html += renderPopupRow('Tier', tierLabel);
+
     if (pantheon) html += renderPopupRow('Pantheon', pantheon);
     if (isFlagship) html += renderPopupRow('Status', 'Flagship');
     html += renderPopupRow('Inscribed', inscribed);

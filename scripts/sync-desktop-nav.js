@@ -146,7 +146,6 @@ const TARGETS = [
   { page: path.join('extension', 'index.html'), active: '/extension/' },
   { page: path.join('app', 'index.html'), active: '/app/' },
   { page: path.join('innovation', 'index.html'), active: null },
-  { page: path.join('tiers', 'index.html'), active: '/tiers/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
   { page: path.join('university-sponsorship', 'index.html'), active: null },
   { page: path.join('screen', 'index.html'), active: '/screen/' },

@@ -9,7 +9,7 @@
  *
  * Canonical inputs (never edit the output by hand):
  *   type/js/everyday-words.js  — the curated word registry
- *   type/js/lexicon.js         — entry names, pantheons, tiers
+ *   type/js/lexicon.js         — entry names, pantheons
  *   type/js/pronunciation-rules.js — respellings
  *   type/js/pantheon-meta.js   — pantheon display labels
  *
@@ -20,6 +20,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
@@ -45,11 +46,9 @@ function pantheonLabel(p) {
   return meta ? meta.label : p;
 }
 
-function tierBadge(t) {
-  if (t === 'dual') return 'DUAL-TIER';
-  if (t === '1') return 'TIER 1';
-  if (t === '2') return 'TIER 2';
-  return '';
+function tierBadge(unicode) {
+  const label = preservationLabel(unicode);
+  return label === 'ASCII-equivalent form' ? '' : label.toUpperCase();
 }
 
 const BANDS = [
@@ -97,7 +96,7 @@ function cardHtml(card) {
           ${card.note ? `<p class="ed-note">${esc(card.note)}</p>` : ''}
           <a class="ed-deity" href="${temple}">
             <span class="ed-deity-name">${esc(entry.unicode)}</span>
-            <span class="ed-deity-meta">${esc(pantheonLabel(entry.pantheon))}${tierBadge(entry.tier) ? ` · ${tierBadge(entry.tier)}` : ''}</span>
+            <span class="ed-deity-meta">${esc(pantheonLabel(entry.pantheon))}${tierBadge(entry.unicode) ? ` · ${tierBadge(entry.unicode)}` : ''}</span>
             ${pron.respelling ? `<span class="ed-deity-say">Say it: <b>${esc(pron.respelling)}</b></span>` : ''}
             <span class="ed-deity-cta">Enter the temple →</span>
           </a>
@@ -214,7 +213,7 @@ function main() {
                     <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
                     <div class="nav-more-menu">
                         <a href="/patterns/" class="nav-link">Patterns</a>
-                        <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/rulebook/" class="nav-link">The Rules</a>
                         <a href="/rulebook/" class="nav-link">Rulebook</a>
                         <a href="/pronunciation/" class="nav-link">Pronunciation</a>
                         <a href="/everyday/" class="nav-link active" aria-current="page">Words</a>
@@ -263,7 +262,7 @@ function main() {
             <div class="mobile-menu-group">
                 <a href="/type/">Type</a>
                 <a href="/search/">Search</a>
-                <a href="/tiers/">Tier System</a>
+                <a href="/rulebook/">The Rules</a>
                 <a href="/rulebook/">Rulebook</a>
                 <a href="/pronunciation/">Pronunciation</a>
                 <a href="/everyday/" class="active">Words</a>

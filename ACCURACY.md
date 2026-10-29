@@ -42,9 +42,9 @@ any generated temple must pass the following review.
 1. **Confirm the name belongs in the canon.** It must be a theonym, mythic
    figure, mythic location, or culturally significant term already attested in
    the relevant tradition.
-2. **Fix the pantheon and tier.** Follow the canonical tier rules documented
-   in `AGENTS.md`. Never flatten a dual-tier name or dual-tier a single-tier
-   name.
+2. **Fix the pantheon.** Assign the canonical pantheon; restoration forms
+   follow the fallback hierarchy documented in `AGENTS.md`. (The former
+   tier system was retired — see `archive/tier-system/`.)
 3. **Reconstruct the `unicode` form from the source.** Prefer the most
    accurate, registrable Latin-with-diacritics representation. Do not invent
    macrons or accents that are not supported by the source.
@@ -110,8 +110,8 @@ any generated temple must pass the following review.
 ### 3.4 Greek
 
 - Use the original Greek form as the `greek` field; do not invent accents.
-- If a name has multiple attested accentuations, follow the dual-tier rules in
-  `AGENTS.md`.
+- If a name has multiple attested accentuations, register each attested form
+  as a variant and present the owned pair on the temple (see `AGENTS.md`).
 
 ---
 

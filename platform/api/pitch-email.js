@@ -96,7 +96,7 @@ function slotLine(codeRow) {
  *
  * @param {object} opts
  * @param {object} opts.codeRow   — a row from discount-service (snake_case fields)
- * @param {object} opts.temple    — { slug, unicode, script, domain, tierLabel }
+ * @param {object} opts.temple    — { slug, unicode, script, domain, preservation }
  * @param {string} opts.businessName
  * @param {string} [opts.recipientSite] — the prospect's domain, shown in the hero
  * @param {string} [opts.customNote]    — one personal paragraph, placed as the final resonance bullet
@@ -127,7 +127,7 @@ function buildPitchEmail({
   const headline = escapeHtml(offerHeadline(codeRow));
   const sentence = escapeHtml(offerSentence(codeRow, frameRef));
   const scope = escapeHtml(slotLine(codeRow));
-  const tier = escapeHtml(temple.tierLabel || '');
+  const preservation = escapeHtml(temple.preservation || '');
   const templeUrl = `https://punicodex.com/${temple.slug}/`;
   const patternsUrl = `https://punicodex.com/${temple.slug}/patterns/`;
   // Live counts from the canonical sources — never a stale hand-typed number.
@@ -328,7 +328,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
           <tr>
             <td align="center" style="background-color:#1d1810; border:1px solid #6b5a33; padding:30px 28px;">
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:26px; letter-spacing:3px; color:#e8c860;">${headline}</div>
-              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:2px; color:#c9b584; padding-top:10px;">FOUNDING PATRON PLACEMENT · ${scope}${tier ? ` · ${tier}` : ''}${slots?.length ? ` · ${slots.length > 1 ? 'FRAMES' : 'FRAME'}: ${escapeHtml(slots.map((s) => s.name.toUpperCase()).join(' · '))}` : ''}</div>
+              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:2px; color:#c9b584; padding-top:10px;">FOUNDING PATRON PLACEMENT · ${scope}${preservation ? ` · ${preservation}` : ''}${slots?.length ? ` · ${slots.length > 1 ? 'FRAMES' : 'FRAME'}: ${escapeHtml(slots.map((s) => s.name.toUpperCase()).join(' · '))}` : ''}</div>
               <div style="width:48px; border-top:1px solid #6b5a33; margin:18px auto;"></div>
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:14px; line-height:1.9; color:#d8cfb8;">
                 As a founding sponsor, ${sentence}.<br/>
@@ -408,7 +408,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:4px; color:#8a7a52;">PUNICODEX — THE UNICODE PANTHEON</div>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; color:#6b6046; line-height:1.8; padding-top:8px;">
           ${stats.flagships} temples · ${stats.pantheons} pantheons · ${stats.temples} restored names<br/>
-          <a href="https://punicodex.com/terms/advertising/" style="color:#6b6046; text-decoration:underline;">Advertising Terms</a> &nbsp;·&nbsp; <a href="https://punicodex.com/tiers/" style="color:#6b6046; text-decoration:underline;">The Tier System</a>
+          <a href="https://punicodex.com/terms/advertising/" style="color:#6b6046; text-decoration:underline;">Advertising Terms</a> &nbsp;·&nbsp; <a href="https://punicodex.com/rulebook/" style="color:#6b6046; text-decoration:underline;">Why the Names Are Spelled This Way</a>
         </div>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:10px; color:#4d4433; line-height:1.7; padding-top:12px;">
           This is a personal, one-time founding invitation extended to ${biz}. Placement is subject to manual content review and the advertising terms above. The founding code is single-use and bound to its temple; no payment details are collected at redemption. If this has reached the wrong desk, reply with 'not for us' and we will not write again.
@@ -461,22 +461,15 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
 /** Resolve a temple descriptor from the canonical lexicon. */
 function loadTemple(slug) {
   const { LEXICON } = require('../../type/js/lexicon.js');
+  const { preservationLabel } = require('../../scripts/lib/preservation-label.js');
   const entry = (LEXICON || []).find((e) => e.id === slug);
   if (!entry) return null;
-  const tierLabel =
-    entry.tier === 'dual'
-      ? 'DUAL-TIER'
-      : entry.tier === '1'
-        ? 'TIER 1'
-        : entry.tier === '2'
-          ? 'TIER 2'
-          : '';
   return {
     slug: entry.id,
     unicode: entry.unicode,
     script: entry.greek && entry.greek !== '—' ? entry.greek : null,
     domain: entry.domain || '',
-    tierLabel,
+    preservation: preservationLabel(entry.unicode).toUpperCase(),
   };
 }
 

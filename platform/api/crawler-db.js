@@ -45,7 +45,6 @@ function cacheKey(q, options) {
     mode: options.mode,
     type: options.type,
     pantheon: options.pantheon,
-    tier: options.tier,
     sort: options.sort,
     unicodeOnly: options.unicodeOnly,
     concept: options.concept,
@@ -194,8 +193,7 @@ function getSites({ status, pantheon, entryId, trust = 'all', limit = 50, offset
     countSql += " AND trust_tier IN ('canonical', 'ascii-fallback', 'styled')";
   }
 
-  sql +=
-    " ORDER BY is_flagship DESC, status = 'active' DESC, tier = 'dual' DESC, tier = '1' DESC, domain ASC";
+  sql += " ORDER BY is_flagship DESC, status = 'active' DESC, domain ASC";
   sql += ' LIMIT ? OFFSET ?';
 
   const sites = db.prepare(sql).all(...params, limit, offset);
@@ -230,11 +228,11 @@ function searchSites(q, limit = 20) {
  *
  * SCORING FORMULA (Phase 3 — Content Quality):
  *   composite_score = bm25(fts) * multiplier
- *   multiplier = 1.0 + tier_bonus + flagship_bonus + archetype_bonus + freshness_bonus + quality_bonus
+ *   multiplier = 1.0 + preservation_bonus + flagship_bonus + archetype_bonus + freshness_bonus + quality_bonus
  *
  * Where:
  *   - bm25: SQLite FTS5 BM25 score (negative, lower = better match)
- *   - tier_bonus: dual=0.5, tier-1=0.3, tier-2=0.1
+ *   - preservation_bonus: 0.45 when the entry restoration preserves marks (unicode != ascii)
  *   - flagship_bonus: 0.2 if is_flagship
  *   - archetype_bonus: 0.0-1.0 from indexed_sites.archetype_score
  *   - freshness_bonus: 0.0-0.15 from freshness_score (0-1 scale)
@@ -252,7 +250,6 @@ async function searchWeb(q, options = {}) {
     mode = 'all',
     type = 'all',
     pantheon,
-    tier,
     sort = 'relevance',
     variant = 'default',
     unicodeOnly = false,
@@ -295,17 +292,12 @@ async function searchWeb(q, options = {}) {
     filters.push("AND COALESCE(e.pantheon, s.pantheon) = 'greek-location'");
   }
 
-  // The indexed_sites.pantheon/tier columns use the archetype taxonomy
+  // The indexed_sites.pantheon column uses the archetype taxonomy
   // (olympian, chthonic, titan, …) which does not match the lexicon pantheon
   // list the UI filters by. Prefer the canonical entry classification.
   if (pantheon) {
     filters.push('AND COALESCE(e.pantheon, s.pantheon) = ?');
     params.push(pantheon);
-  }
-
-  if (tier) {
-    filters.push('AND COALESCE(e.tier, s.tier) = ?');
-    params.push(tier);
   }
 
   if (unicodeOnly) {
@@ -345,7 +337,6 @@ async function searchWeb(q, options = {}) {
   const allowedSorts = {
     relevance: 'rank_score DESC',
     alphabetical: 's.title ASC',
-    tier: "s.tier = 'dual' DESC, s.tier = '1' DESC, s.tier = '2' DESC",
     recently_crawled: 's.last_crawled DESC',
     quality: 's.quality_score DESC',
   };
@@ -396,11 +387,10 @@ async function searchWeb(q, options = {}) {
         (
           /* BM25 text relevance (inverted so higher = better) */
           -bm25(indexed_sites_fts) * 1.0
-          /* Tier signal */
-          + CASE 
-              WHEN s.tier = 'dual' THEN 0.60
-              WHEN s.tier = '1' THEN 0.35
-              WHEN s.tier = '2' THEN 0.15
+          /* Preservation signal: mechanical, from the entry's displayed form */
+          + CASE
+              WHEN e.unicode IS NOT NULL AND e.unicode != LOWER(e.unicode) THEN 0.45
+              WHEN e.unicode IS NOT NULL AND e.unicode != e.ascii THEN 0.45
               ELSE 0.0
             END
           /* Flagship curated domain */
@@ -477,8 +467,6 @@ async function searchWeb(q, options = {}) {
         url: `https://${row.punycode}`,
         lexiconEntryId: row.lexicon_entry_id,
         pantheon: row.pantheon,
-        tier: row.tier,
-        tierLabel: row.tier_label,
         status: row.status,
         lastCrawled: row.last_crawled,
         publishedDate: row.published_date,
@@ -490,7 +478,12 @@ async function searchWeb(q, options = {}) {
         rankScore: row.rank_score,
         scoreBreakdown: {
           bm25: parseFloat(row.bm25_score.toFixed(4)),
-          tier: row.tier === 'dual' ? 0.6 : row.tier === '1' ? 0.35 : row.tier === '2' ? 0.15 : 0,
+          preservation:
+            row.entry_unicode &&
+            (row.entry_unicode !== row.entry_ascii ||
+              row.entry_unicode !== row.entry_unicode.toLowerCase())
+              ? 0.45
+              : 0,
           flagship: row.is_flagship === 1 ? 1.5 : 0,
           tenant: row.tenant_name ? 0.75 : 0,
           archetype: parseFloat((row.archetype_score || 0).toFixed(4)),
@@ -596,8 +589,6 @@ async function searchWeb(q, options = {}) {
           url: `https://${row.punycode}`,
           lexiconEntryId: row.lexicon_entry_id,
           pantheon: row.pantheon,
-          tier: row.tier,
-          tierLabel: row.tier_label,
           isFlagship: row.is_flagship === 1,
           status: row.status,
           lastCrawled: row.last_crawled,
@@ -663,8 +654,6 @@ async function searchWeb(q, options = {}) {
                 url: `https://${row.punycode}`,
                 lexiconEntryId: row.lexicon_entry_id,
                 pantheon: row.pantheon,
-                tier: row.tier,
-                tierLabel: row.tier_label,
                 isFlagship: row.is_flagship === 1,
                 status: row.status,
                 lastCrawled: row.last_crawled,
@@ -745,7 +734,7 @@ async function searchWeb(q, options = {}) {
           OR s.twitter_title LIKE ? OR s.twitter_description LIKE ?
           OR e.unicode LIKE ? OR e.ascii LIKE ?)
         ${unicodeFilter}
-      ORDER BY s.is_flagship DESC, COALESCE(s.authority_score, 0) DESC, s.tier = 'dual' DESC, s.tier = '1' DESC
+      ORDER BY s.is_flagship DESC, COALESCE(s.authority_score, 0) DESC
       LIMIT ? OFFSET ?
     `)
       .all(...likeParams, limitNum, offsetNum);
@@ -769,8 +758,6 @@ async function searchWeb(q, options = {}) {
         url: `https://${row.punycode}`,
         lexiconEntryId: row.lexicon_entry_id,
         pantheon: row.pantheon,
-        tier: row.tier,
-        tierLabel: row.tier_label,
         isFlagship: row.is_flagship === 1,
         status: row.status,
         lastCrawled: row.last_crawled,
@@ -808,7 +795,7 @@ async function searchWeb(q, options = {}) {
         .prepare(`
         SELECT id, pantheon FROM entries
         WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
-        ORDER BY tier = 'dual' DESC, tier = '1' DESC
+        ORDER BY has_flagship DESC
         LIMIT 1
       `)
         .get(`%${query}%`, `%${query}%`);
@@ -954,13 +941,13 @@ async function searchWeb(q, options = {}) {
       const availRows = db
         .prepare(`
         SELECT a.entry_id, a.domain, a.punycode, a.status, a.registrar_links,
-               e.unicode, e.ascii, e.meaning, e.tier, e.pantheon
+               e.unicode, e.ascii, e.meaning, e.pantheon
         FROM availability a
         JOIN entries e ON a.entry_id = e.id
         WHERE (LOWER(e.ascii) = ? OR LOWER(e.unicode) = ? OR LOWER(e.id) = ?
                OR LOWER(e.ascii) LIKE ? OR LOWER(e.unicode) LIKE ?)
           AND a.status = 'available'
-        ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC
+        ORDER BY e.unicode ASC
         LIMIT 5
       `)
         .all(query, query, query, `%${query}%`, `%${query}%`);
@@ -973,7 +960,6 @@ async function searchWeb(q, options = {}) {
           unicode: row.unicode,
           ascii: row.ascii,
           meaning: row.meaning,
-          tier: row.tier,
           pantheon: row.pantheon,
           registrarLinks: row.registrar_links ? JSON.parse(row.registrar_links) : {},
         });
@@ -1332,7 +1318,6 @@ function getKnowledgePanelData(q) {
       ascii: entry.ascii,
       greek: entry.greek,
       meaning: entry.meaning,
-      tier: entry.tier,
       pantheon: entry.pantheon,
       etymology: entry.etymology,
       notes: entry.notes,
@@ -1390,7 +1375,7 @@ function generatePeopleAlsoAsk(q, limit = 4) {
   // Find best matching lexicon entry (with search_key fallback)
   let entry = db
     .prepare(`
-    SELECT id, unicode, ascii, greek, original_script, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
+    SELECT id, unicode, ascii, greek, original_script, meaning, pantheon, domain, etymology, variants, has_flagship
     FROM entries
     WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(id) = ? OR search_key = ?
     LIMIT 1
@@ -1400,10 +1385,10 @@ function generatePeopleAlsoAsk(q, limit = 4) {
   if (!entry) {
     entry = db
       .prepare(`
-      SELECT id, unicode, ascii, greek, original_script, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
+      SELECT id, unicode, ascii, greek, original_script, meaning, pantheon, domain, etymology, variants, has_flagship
       FROM entries
       WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ? OR LOWER(meaning) LIKE ? OR LOWER(domain) LIKE ? OR search_key LIKE ?
-      ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+      ORDER BY has_flagship DESC, ascii ASC
       LIMIT 1
     `)
       .get(`%${query}%`, `%${query}%`, `%${query}%`, `%${query}%`, `%${toSearchKey(raw)}%`);
@@ -1520,20 +1505,12 @@ function generatePeopleAlsoAsk(q, limit = 4) {
       );
     }
 
-    // Unicode tier
-    if (entry.tier) {
-      const tierLabel =
-        entry.tier_label || (entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`);
-      let tierExplanation = '';
-      if (entry.tier === 'dual')
-        tierExplanation = 'it has multiple historically valid Unicode spellings.';
-      else if (entry.tier === '1')
-        tierExplanation =
-          'it contains both stress and long vowels with a single valid restoration.';
-      else tierExplanation = 'it preserves one scholarly feature (stress or length).';
+    // Restoration preservation — mechanical, from the displayed form
+    {
+      const { preservationLabel } = require('../../scripts/lib/preservation-label.js');
       add(
-        `What is the Unicode tier of ${name}?`,
-        `${name} is classified as ${tierLabel} — ${tierExplanation}`
+        `What does the restoration of ${name} preserve?`,
+        `${name} ${preservationLabel(entry.unicode).toLowerCase()} — a description computed from the displayed form itself.`
       );
     }
 

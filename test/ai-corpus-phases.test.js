@@ -200,7 +200,7 @@ test('reasoning tasks cover expected categories', () => {
   const tasks = new Set(examples.map((e) => e.task));
   const expected = [
     'reasoning_breakdown',
-    'reasoning_tier',
+    'reasoning_preservation',
     'reasoning_etymology',
     'reasoning_safety',
     'reasoning_original_script',
@@ -226,7 +226,7 @@ test('benchmark covers scholarly and safety tasks', () => {
     'benchmark_restoration',
     'benchmark_pronunciation',
     'benchmark_meaning',
-    'benchmark_tier',
+    'benchmark_preservation',
     'benchmark_punycode',
     'benchmark_original_script',
     'benchmark_safety',

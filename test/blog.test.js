@@ -35,6 +35,7 @@ function readUtf8(...parts) {
 function stripTags(html) {
   return html
     .replace(/<[^>]+>/g, ' ')
+    .replace(/[​-‍]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -157,7 +158,6 @@ for (const id of BUILT_IDS) {
       'sites',
       'store',
       'texts',
-      'tiers',
       'trending',
       'type',
     ]);

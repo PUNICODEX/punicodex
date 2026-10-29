@@ -33,7 +33,7 @@ function findGaps() {
   const db = getDb();
   const catalog = loadLoreCatalog();
   const entries = db
-    .prepare('SELECT id, unicode, pantheon, tier, greek, original_script, variants FROM entries')
+    .prepare('SELECT id, unicode, pantheon, greek, original_script, variants FROM entries')
     .all();
   const gaps = [];
 

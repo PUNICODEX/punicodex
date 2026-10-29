@@ -15,8 +15,6 @@ const LEXICON = [
     "unicode": "Apóllōn",
     "greek": "Ἀπόλλων",
     "pantheon": "greek",
-    "tier": "dual",
-    "tierLabel": "Dual-Tier",
     "domain": "Light, Music, Prophecy",
     "meaning": "Possibly 'destroyer' or 'purifier' (from ἀπόλλυμι)",
     "sources": [
@@ -104,8 +102,6 @@ const LEXICON = [
     "unicode": "Hádēs",
     "greek": "Ἅιδης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Underworld, Wealth",
     "meaning": "The Unseen One (from ἀ- + εἶδον)",
     "sources": [
@@ -181,8 +177,6 @@ const LEXICON = [
     "unicode": "Hekátē",
     "greek": "Ἑκάτη",
     "pantheon": "greek",
-    "tier": "dual",
-    "tierLabel": "Dual-Tier",
     "domain": "Magic, Crossroads, Moon",
     "meaning": "She who works from afar (from ἑκάς)",
     "sources": [
@@ -251,8 +245,6 @@ const LEXICON = [
     "hasAdSite": true,
     "greek": "Νίκη",
     "pantheon": "greek",
-    "tier": "dual",
-    "tierLabel": "Dual-Tier",
     "domain": "Victory",
     "meaning": "Victory, conquest",
     "sources": [
@@ -322,8 +314,6 @@ const LEXICON = [
     "unicode": "Zeús",
     "greek": "Ζεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sky, Thunder, King of Gods",
     "meaning": "Bright, day (from Proto-Indo-European *dyēus)",
     "sources": [
@@ -393,8 +383,6 @@ const LEXICON = [
     "unicode": "Árēs",
     "greek": "Ἄρης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Courage, Battle Fury",
     "meaning": "Bane, ruin (possibly from ἀρά)",
     "sources": [
@@ -459,8 +447,6 @@ const LEXICON = [
     "unicode": "Aphrodítē",
     "greek": "Ἀφροδίτη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love, Beauty, Pleasure",
     "meaning": "Born of sea foam (from ἀφρός)",
     "sources": [
@@ -555,8 +541,6 @@ const LEXICON = [
     "unicode": "Athēnâ",
     "greek": "Ἀθηνᾶ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, War Strategy, Crafts",
     "meaning": "Unknown; possibly pre-Greek",
     "sources": [
@@ -632,8 +616,6 @@ const LEXICON = [
     "unicode": "Dēmētēr",
     "greek": "Δημήτηρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Harvest, Agriculture, Fertility",
     "meaning": "Earth Mother (from Δᾶ + μήτηρ)",
     "sources": [
@@ -713,8 +695,6 @@ const LEXICON = [
     "unicode": "Hēra",
     "greek": "Ἥρα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Marriage, Women, Queen of Gods",
     "meaning": "Lady, mistress (possibly related to ἥρως)",
     "sources": [
@@ -783,8 +763,6 @@ const LEXICON = [
     "hasAdSite": true,
     "greek": "Ἑρμῆς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Messengers, Commerce, Thieves",
     "meaning": "Heap of stones, boundary marker",
     "sources": [
@@ -854,8 +832,6 @@ const LEXICON = [
     "unicode": "Hēphaistos",
     "greek": "Ἥφαιστος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fire, Forge, Craftsmen",
     "meaning": "Unknown; possibly pre-Greek",
     "sources": [
@@ -953,8 +929,6 @@ const LEXICON = [
     "unicode": "Hestía",
     "greek": "Ἑστία",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hearth, Home, Family",
     "meaning": "Hearth, fireplace",
     "sources": [
@@ -1024,8 +998,6 @@ const LEXICON = [
     "unicode": "Poseidôn",
     "greek": "Ποσειδῶν",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Earthquakes, Horses",
     "meaning": "Lord of the Earth (from πόσις + δᾶ)",
     "sources": [
@@ -1107,8 +1079,6 @@ const LEXICON = [
     "unicode": "Persephonē",
     "greek": "Περσεφόνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Spring, Underworld, Vegetation",
     "meaning": "She who destroys the light (possibly)",
     "sources": [
@@ -1206,8 +1176,6 @@ const LEXICON = [
     "unicode": "Promētheús",
     "greek": "Προμηθεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Forethought, Fire, Craft",
     "meaning": "Forethinker (from πρό + μῆτις)",
     "sources": [
@@ -1294,8 +1262,6 @@ const LEXICON = [
     "unicode": "Gaîa",
     "greek": "Γαῖα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth, Mother of All",
     "meaning": "Earth (from γαῖα)",
     "sources": [
@@ -1353,8 +1319,6 @@ const LEXICON = [
     "unicode": "Cháos",
     "greek": "Χάος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "The First Void",
     "meaning": "Gap, yawning void (from χάος)",
     "sources": [
@@ -1408,8 +1372,6 @@ const LEXICON = [
     "unicode": "Tártaros",
     "greek": "Τάρταρος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "The Primordial Abyss",
     "meaning": "Deep place (from τάρταρος)",
     "sources": [
@@ -1481,8 +1443,6 @@ const LEXICON = [
     "unicode": "Póntos",
     "greek": "Πόντος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "The Primordial Sea",
     "meaning": "Sea (from πόντος)",
     "sources": [
@@ -1550,8 +1510,6 @@ const LEXICON = [
     "unicode": "Tēthýs",
     "greek": "Τηθύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fresh Water, Nursing",
     "meaning": "Grandmother (from τήθη)",
     "sources": [
@@ -1611,8 +1569,6 @@ const LEXICON = [
     "unicode": "Hyperíōn",
     "greek": "Ὑπερίων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Light, Heavenly Watch",
     "meaning": "He who goes above (from ὑπέρ)",
     "sources": [
@@ -1696,8 +1652,6 @@ const LEXICON = [
     "unicode": "Lētō",
     "greek": "Λητώ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Motherhood, Night",
     "meaning": "Lady, forgotten one",
     "sources": [
@@ -1739,8 +1693,6 @@ const LEXICON = [
     "unicode": "Epimētheús",
     "greek": "Ἐπιμηθεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Afterthought, Hindsight",
     "meaning": "Afterthinker (from ἐπί + μῆτις)",
     "sources": [
@@ -1817,8 +1769,6 @@ const LEXICON = [
     "unicode": "Hēraklēs",
     "greek": "Ἡρακλῆς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Strength, Labours, Heroism",
     "meaning": "Glory of Hera (from Ἥρα + κλέος)",
     "sources": [
@@ -1885,8 +1835,6 @@ const LEXICON = [
     "unicode": "Érōs",
     "greek": "Ἔρως",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love, Desire, Attraction",
     "meaning": "Love, desire (from ἔραμαι)",
     "sources": [
@@ -1943,8 +1891,6 @@ const LEXICON = [
     "unicode": "Hēlios",
     "greek": "Ἥλιος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Sight, Oaths",
     "meaning": "Sun (from PIE *seh₂wel-)",
     "sources": [
@@ -2031,8 +1977,6 @@ const LEXICON = [
     "unicode": "Selēnē",
     "greek": "Σελήνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Moon, Night Light",
     "meaning": "Moon, light (from σέλας)",
     "sources": [
@@ -2106,8 +2050,6 @@ const LEXICON = [
     "unicode": "Ēōs",
     "greek": "Ἠώς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dawn, Morning Red",
     "meaning": "Dawn (from ἠώς)",
     "sources": [
@@ -2154,8 +2096,6 @@ const LEXICON = [
     "unicode": "Bellerophōn",
     "greek": "Βελλεροφῶν",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Monster-Slayer, Hero",
     "meaning": "Slayer of Belleros (possibly)",
     "sources": [
@@ -2238,8 +2178,6 @@ const LEXICON = [
     "unicode": "Thēseus",
     "greek": "Θησεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Heroism, Athens, Labours",
     "meaning": "The Gatherer (from τίθημι)",
     "sources": [
@@ -2326,8 +2264,6 @@ const LEXICON = [
     "unicode": "Mnēmosýnē",
     "greek": "Μνημοσύνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Memory, Muses' Mother",
     "meaning": "Memory (from μνήμη)",
     "sources": [
@@ -2405,8 +2341,6 @@ const LEXICON = [
     "unicode": "Ártemis",
     "greek": "Ἄρτεμις",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hunt, Wilderness, Moon",
     "meaning": "Safe, unharmed (from ἀρτεμής)",
     "sources": [
@@ -2475,8 +2409,6 @@ const LEXICON = [
     "unicode": "Átlas",
     "greek": "Ἄτλας",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Bearer of the Heavens",
     "meaning": "Enduring, suffering (from τλάω)",
     "sources": [
@@ -2531,8 +2463,6 @@ const LEXICON = [
     "unicode": "Diónysos",
     "greek": "Διόνυσος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wine, Ecstasy, Theatre",
     "meaning": "God of Nysa (mountain of ecstasy)",
     "sources": [
@@ -2607,8 +2537,6 @@ const LEXICON = [
     "unicode": "Médousa",
     "greek": "Μέδουσα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Gorgon, Guardian",
     "meaning": "Guardian, ruler (from μέδω)",
     "sources": [
@@ -2675,8 +2603,6 @@ const LEXICON = [
     "unicode": "Krónos",
     "greek": "Κρόνος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Time, Harvest, Titans",
     "meaning": "Youngest Titan, personification of time, who castrated and deposed his father Uranus before being overthrown by his son Zeus",
     "sources": [
@@ -2766,8 +2692,6 @@ const LEXICON = [
     "unicode": "Rhéā",
     "greek": "Ῥέα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Motherhood, Fertility, Titans",
     "meaning": "Flow, ease (from ῥέω)",
     "sources": [
@@ -2808,8 +2732,6 @@ const LEXICON = [
     "unicode": "Thémis",
     "greek": "Θέμις",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Divine Law, Order, Custom",
     "meaning": "A Titaness, the personification of divine order, law, and established custom; a consort of Zeus and mother of the Seasons (Horae) and the Fates (Moirai).",
     "senses": [
@@ -2875,8 +2797,6 @@ const LEXICON = [
     "unicode": "Hebe",
     "greek": "Ἥβη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Youth, Cupbearer",
     "meaning": "Youth (from ἥβη)",
     "sources": [
@@ -2930,8 +2850,6 @@ const LEXICON = [
     "unicode": "Pān",
     "greek": "Πάν",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wilderness, Shepherds, Flocks",
     "meaning": "God of shepherds, flocks, mountain wilds, and the panic that strikes lonely places; his name was popularly derived from Greek πᾶν (\"all\") but likely originated in Arcadian Πάων (\"shepherd\")",
     "sources": [
@@ -3004,8 +2922,6 @@ const LEXICON = [
     "unicode": "Moirai",
     "greek": "Μοῖραι",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fate, Destiny, Thread",
     "meaning": "Apportioners (from μείρομαι)",
     "sources": [
@@ -3066,8 +2982,6 @@ const LEXICON = [
     "unicode": "Ólympos",
     "greek": "Ὄλυμπος",
     "pantheon": "greek-location",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mountain of the Gods",
     "meaning": "Bright, shining mountain",
     "sources": [
@@ -3134,8 +3048,6 @@ const LEXICON = [
     "unicode": "Athēnai",
     "greek": "Ἀθῆναι",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "City of Wisdom",
     "meaning": "Of Athena",
     "sources": [
@@ -3202,8 +3114,6 @@ const LEXICON = [
     "unicode": "Spártē",
     "greek": "Σπάρτη",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Warrior City",
     "meaning": "Sown land (from σπείρω)",
     "sources": [
@@ -3274,8 +3184,6 @@ const LEXICON = [
     "unicode": "Delphoí",
     "greek": "Δελφοί",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Oracle of Apollo",
     "meaning": "Womb (from δελφύς)",
     "sources": [
@@ -3348,8 +3256,6 @@ const LEXICON = [
     "unicode": "Kórinthos",
     "greek": "Κόρινθος",
     "pantheon": "greek-location",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wealthy Port City",
     "meaning": "Unknown; possibly pre-Greek",
     "sources": [
@@ -3419,8 +3325,6 @@ const LEXICON = [
     "unicode": "Troíā",
     "greek": "Τροία",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "City of Priam",
     "meaning": "Unknown; possibly from Τρωός",
     "sources": [
@@ -3467,8 +3371,6 @@ const LEXICON = [
     "unicode": "Thêbai",
     "greek": "Θῆβαι",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "City of Seven Gates",
     "meaning": "Unknown; possibly Egyptian origin",
     "sources": [
@@ -3520,8 +3422,6 @@ const LEXICON = [
     "unicode": "Krḗtē",
     "greek": "Κρήτη",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Island of Minos",
     "meaning": "Unknown; possibly pre-Greek",
     "sources": [
@@ -3567,8 +3467,6 @@ const LEXICON = [
     "unicode": "Ithákē",
     "greek": "Ἰθάκη",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Island of Odysseus",
     "meaning": "Unknown",
     "sources": [
@@ -3620,8 +3518,6 @@ const LEXICON = [
     "unicode": "Mykēnai",
     "greek": "Μυκῆναι",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Citadel of Agamemnon",
     "meaning": "Mushroom-shaped? (etymology disputed)",
     "sources": [
@@ -3679,8 +3575,6 @@ const LEXICON = [
     "unicode": "Dêlos",
     "greek": "Δῆλος",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Birthplace of Apollo",
     "meaning": "Clear, visible (from δῆλος)",
     "sources": [
@@ -3727,8 +3621,6 @@ const LEXICON = [
     "unicode": "Boiōtia",
     "greek": "Βοιωτία",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Land of Thebes, Hesiod",
     "meaning": "Cow-land (from βοῦς)",
     "sources": [
@@ -3786,8 +3678,6 @@ const LEXICON = [
     "unicode": "Phōkis",
     "greek": "Φωκίς",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Region of Delphi",
     "meaning": "Seal (from φώκη)",
     "sources": [
@@ -3839,8 +3729,6 @@ const LEXICON = [
     "unicode": "Aitōlia",
     "greek": "Αἰτωλία",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Western Greece, Calydon",
     "meaning": "Etholian? (etymology uncertain)",
     "sources": [
@@ -3898,8 +3786,6 @@ const LEXICON = [
     "unicode": "Ēpeiros",
     "greek": "Ἤπειρος",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Northwestern Greece, Dodona",
     "meaning": "Mainland (from ἤπειρος)",
     "sources": [
@@ -3957,8 +3843,6 @@ const LEXICON = [
     "unicode": "Thrákē",
     "greek": "Θράκη",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Northeast Frontier, Orpheus",
     "meaning": "Wild, fierce land",
     "sources": [
@@ -4010,8 +3894,6 @@ const LEXICON = [
     "unicode": "Sikyōn",
     "greek": "Σικυών",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Peloponnesian City",
     "meaning": "Unknown; possibly pre-Greek",
     "sources": [
@@ -4063,8 +3945,6 @@ const LEXICON = [
     "unicode": "Ásgarðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Realm of the Æsir",
     "meaning": "Enclosure of the gods (from áss + garðr)",
     "sources": [
@@ -4122,8 +4002,6 @@ const LEXICON = [
     "unicode": "Valhǫll",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hall of the Slain",
     "meaning": "Hall of the slain warriors",
     "sources": [
@@ -4183,8 +4061,6 @@ const LEXICON = [
     "unicode": "Ragnarǫk",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Doom of the Gods",
     "meaning": "Twilight of the gods (from ragna + rǫk)",
     "sources": [
@@ -4257,8 +4133,6 @@ const LEXICON = [
     "unicode": "Miðgarðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Middle Enclosure (Earth)",
     "meaning": "Middle enclosure (from mið + garðr)",
     "sources": [
@@ -4338,8 +4212,6 @@ const LEXICON = [
     "unicode": "Álfheimr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Realm of the Light Elves",
     "meaning": "Elf-home (from álfr + heimr)",
     "sources": [
@@ -4412,8 +4284,6 @@ const LEXICON = [
     "unicode": "Jötunheimr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Land of the Giants",
     "meaning": "Giant-home (from jötunn + heimr)",
     "sources": [
@@ -4498,8 +4368,6 @@ const LEXICON = [
     "unicode": "Helheimr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Realm of the Dead",
     "meaning": "Hel's home (from Hel + heimr)",
     "sources": [
@@ -4572,8 +4440,6 @@ const LEXICON = [
     "unicode": "Jǫrmungandr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "World Serpent",
     "meaning": "Huge monster (from jǫrmun + gandr)",
     "sources": [
@@ -4655,8 +4521,6 @@ const LEXICON = [
     "unicode": "Týr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Law, Oaths",
     "meaning": "God (cognate with Greek Zeus, Latin Jove)",
     "sources": [
@@ -4711,8 +4575,6 @@ const LEXICON = [
     "unicode": "Þórr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Thunder, Storms, Oak",
     "meaning": "Thunder (from *þunraz)",
     "sources": [
@@ -4785,8 +4647,6 @@ const LEXICON = [
     "unicode": "Óðinn",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, War, Death, Poetry",
     "meaning": "Fury, possession (from *wōđanaz)",
     "sources": [
@@ -4867,8 +4727,6 @@ const LEXICON = [
     "unicode": "Baldr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Light, Beauty, Purity",
     "meaning": "Lord, prince (from *balþraz)",
     "sources": [
@@ -4922,8 +4780,6 @@ const LEXICON = [
     "unicode": "Freyr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fertility, Sunshine, Rain",
     "meaning": "Lord (from *frawjaz)",
     "sources": [
@@ -4977,8 +4833,6 @@ const LEXICON = [
     "unicode": "Freyja",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Love, Fertility, Seiðr",
     "meaning": "Lady (from *frawjōn)",
     "sources": [
@@ -5039,8 +4893,6 @@ const LEXICON = [
     "unicode": "Frigg",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Marriage, Motherhood, Queenship",
     "meaning": "Beloved (from *frijjō)",
     "sources": [
@@ -5094,8 +4946,6 @@ const LEXICON = [
     "unicode": "Njǫrðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Wind, Fishing, Wealth",
     "meaning": "Vigorous (from *nerþuz)",
     "sources": [
@@ -5155,8 +5005,6 @@ const LEXICON = [
     "unicode": "Skaði",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Winter, Mountains, Hunting",
     "meaning": "Shadow, harm (from *skadwō)",
     "sources": [
@@ -5210,8 +5058,6 @@ const LEXICON = [
     "unicode": "Heimdallr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Foreknowledge, Watchman, Bifrost",
     "meaning": "World-brightener (from heimr + dallr)",
     "sources": [
@@ -5283,8 +5129,6 @@ const LEXICON = [
     "unicode": "Víðarr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Vengeance, Silence, Survival",
     "meaning": "Wide-ruler (from víðr + arr)",
     "sources": [
@@ -5336,8 +5180,6 @@ const LEXICON = [
     "unicode": "Hel",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Death, Underworld, Souls",
     "meaning": "Hidden one (from *heljan)",
     "sources": [
@@ -5379,8 +5221,6 @@ const LEXICON = [
     "unicode": "Níðhǫggr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Corruption, Tree-Root Dragon",
     "meaning": "Dread-biter (from níð + hǫgg)",
     "sources": [
@@ -5438,8 +5278,6 @@ const LEXICON = [
     "unicode": "Auðumla",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Primordial Cow, Nourishment",
     "meaning": "Rich-honeyed (from auðr + humla)",
     "sources": [
@@ -5497,8 +5335,6 @@ const LEXICON = [
     "unicode": "Ymir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Primordial Giant, Chaos",
     "meaning": "Twin, screamer (from *ymijaz)",
     "sources": [
@@ -5546,8 +5382,6 @@ const LEXICON = [
     "unicode": "Fenrir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wolf, Destruction, Binding",
     "meaning": "Fen-dweller (from fen + -ir)",
     "sources": [
@@ -5601,8 +5435,6 @@ const LEXICON = [
     "unicode": "Rꜥ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Creation, Kingship",
     "meaning": "Sun (from Egyptian rꜥ)",
     "sources": [
@@ -5650,8 +5482,6 @@ const LEXICON = [
     "unicode": "Wsjr",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Afterlife, Resurrection, Vegetation",
     "meaning": "Mighty One (Egyptian wsjr)",
     "sources": [
@@ -5714,8 +5544,6 @@ const LEXICON = [
     "unicode": "ꜣnpw",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mummification, Afterlife, Jackals",
     "meaning": "Egyptian god of embalming and the necropolis; the name's etymology is uncertain (his epithet tpy-ḏw=f means He who is upon his mountain)",
     "sources": [
@@ -5779,8 +5607,6 @@ const LEXICON = [
     "unicode": "Ḥr",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sky, Kingship, Falcon",
     "meaning": "The Distant One (Egyptian ḥr)",
     "sources": [
@@ -5834,8 +5660,6 @@ const LEXICON = [
     "unicode": "Ꜣst",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Magic, Motherhood, Throne",
     "meaning": "Throne (Egyptian ꜣst)",
     "sources": [
@@ -5887,8 +5711,6 @@ const LEXICON = [
     "unicode": "Ḏḥwtj",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Writing, Wisdom, Moon",
     "meaning": "He who is like the ibis",
     "sources": [
@@ -5946,8 +5768,6 @@ const LEXICON = [
     "greek": "—",
     "originalScript": "𓇋𓏠𓈖",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wind, Kingship, Thebes",
     "meaning": "Hidden One (Egyptian jmn; vocalized Ꜣmun)",
     "sources": [
@@ -6015,8 +5835,6 @@ const LEXICON = [
     "unicode": "Ptḥ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Craftsmen, Creation, Memphis",
     "meaning": "Sculptor (Egyptian ptḥ)",
     "sources": [
@@ -6058,8 +5876,6 @@ const LEXICON = [
     "unicode": "Sḫmt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Vengeance, Healing",
     "meaning": "The Powerful One (Egyptian sḫmt)",
     "sources": [
@@ -6118,8 +5934,6 @@ const LEXICON = [
     "unicode": "Bꜣstt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Home, Fertility, Cats",
     "meaning": "She of the ointment jar (Egyptian bꜣstt)",
     "sources": [
@@ -6173,8 +5987,6 @@ const LEXICON = [
     "unicode": "Ḥwt-ḥr",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love, Beauty, Music, Motherhood",
     "meaning": "House of Horus (Egyptian ḥwt-ḥr)",
     "sources": [
@@ -6226,8 +6038,6 @@ const LEXICON = [
     "unicode": "Nwt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sky, Stars, Cosmos",
     "meaning": "Water-pot, sky (Egyptian nwt)",
     "sources": [
@@ -6261,8 +6071,6 @@ const LEXICON = [
     "unicode": "Gb",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Earth, Vegetation, Snakes",
     "meaning": "Earth, goose (Egyptian gb)",
     "sources": [
@@ -6297,8 +6105,6 @@ const LEXICON = [
     "unicode": "Mꜣꜥt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Truth, Justice, Order",
     "meaning": "Truth, straightness (Egyptian mꜣꜥt)",
     "sources": [
@@ -6346,8 +6152,6 @@ const LEXICON = [
     "unicode": "Ḫnsw",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Moon, Time, Healing",
     "meaning": "Traveller (Egyptian ḫnsw)",
     "sources": [
@@ -6399,8 +6203,6 @@ const LEXICON = [
     "unicode": "Sbk",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Nile, Fertility, Crocodiles",
     "meaning": "He who causes to be fertile (Egyptian sbk)",
     "sources": [
@@ -6447,8 +6249,6 @@ const LEXICON = [
     "unicode": "Rāma",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Virtue, Kingship, Avatar of Vishnu",
     "meaning": "The beloved prince of Ayodhyā — hero of the Rāmāyaṇa and seventh avatāra of Viṣṇu (from √ram, to delight)",
     "senses": [
@@ -6495,8 +6295,6 @@ const LEXICON = [
     "unicode": "Durgā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Protection, Strength, War",
     "meaning": "'The Inaccessible One' — the warrior goddess, daughter of Himavat and consort of Śiva, slayer of the buffalo-demon Mahiṣa",
     "senses": [
@@ -6550,8 +6348,6 @@ const LEXICON = [
     "unicode": "Śiva",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Destruction, Transformation, Dance",
     "meaning": "The auspicious one; the deity of destruction, transformation, and regeneration, the third member of the Hindu Trimūrti alongside Brahmā and Viṣṇu.",
     "senses": [
@@ -6623,8 +6419,6 @@ const LEXICON = [
     "unicode": "Viṣṇu",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Preservation, Protection, Universe",
     "meaning": "The Preserver — the principal Hindu deity who descends as avatāras to sustain cosmic order (from √viṣ, 'to pervade')",
     "senses": [
@@ -6691,8 +6485,6 @@ const LEXICON = [
     "unicode": "Kṛṣṇa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love, Compassion, Avatar of Vishnu",
     "meaning": "The Black One — a celebrated avatāra of the god Viṣṇu, sometimes identified with Viṣṇu himself.",
     "senses": [
@@ -6758,8 +6550,6 @@ const LEXICON = [
     "unicode": "Gaṇeśa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, Beginnings, Obstacle-Removal",
     "meaning": "Lord of the gaṇas (from गणेश)",
     "sources": [
@@ -6839,8 +6629,6 @@ const LEXICON = [
     "unicode": "Lakṣmī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wealth, Fortune, Beauty",
     "meaning": "The goddess of fortune and beauty — Viṣṇu's consort, born from the churning of the ocean",
     "senses": [
@@ -6905,8 +6693,6 @@ const LEXICON = [
     "unicode": "Sarasvatī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Knowledge, Music, Arts, Speech",
     "meaning": "The goddess of eloquence and learning — river of sacred speech (saras 'flowing water' + vatī 'possessing')",
     "senses": [
@@ -6983,8 +6769,6 @@ const LEXICON = [
     "unicode": "Brahmā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Creation, Vedas, Cosmology",
     "meaning": "The one impersonal universal Spirit manifested as a personal Creator, and the first of the triad of personal gods, with Viṣṇu and Śiva.",
     "senses": [
@@ -7043,8 +6827,6 @@ const LEXICON = [
     "unicode": "Sūrya",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Light, Health",
     "meaning": "The Sun — the Vedic solar deity who rides the one-wheeled chariot of seven mares",
     "senses": [
@@ -7098,8 +6880,6 @@ const LEXICON = [
     "unicode": "Indra",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Storms, War, Kingship",
     "meaning": "the god of the atmosphere and sky",
     "senses": [
@@ -7151,8 +6931,6 @@ const LEXICON = [
     "unicode": "Agni",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fire, Sacrifice, Messenger",
     "meaning": "the god of fire, the fire of the stomach, digestive faculty, gastric fluid",
     "senses": [
@@ -7198,8 +6976,6 @@ const LEXICON = [
     "unicode": "Yama",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Death, Justice, Underworld",
     "meaning": "The god who presides over the Pitṛs (the departed fathers) and rules the spirits of the dead.",
     "senses": [
@@ -7245,8 +7021,6 @@ const LEXICON = [
     "unicode": "Kubera",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wealth, Treasure, North",
     "meaning": "Originally a chief of the evil spirits of darkness, bearing the name Vaiśravaṇa; in later mythology the god of riches and treasure, regent of the northern quarter.",
     "senses": [
@@ -7304,8 +7078,6 @@ const LEXICON = [
     "unicode": "Hanumān",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Devotion, Strength, Messenger",
     "meaning": "The Large-Jawed One — the monkey-god of devotion and strength, Rāma's peerless servant",
     "senses": [
@@ -7370,8 +7142,6 @@ const LEXICON = [
     "unicode": "Lúg",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Light, Crafts, Skills",
     "meaning": "Oath (from Old Irish lúg)",
     "sources": [
@@ -7410,8 +7180,6 @@ const LEXICON = [
     "unicode": "Morrígan",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Fate, Death, Sovereignty",
     "meaning": "Phantom Queen (from Old Irish Morrígan)",
     "sources": [
@@ -7474,8 +7242,6 @@ const LEXICON = [
     "unicode": "Manannán",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Otherworld, Mist",
     "meaning": "Son of the sea (from Old Irish Manannán)",
     "sources": [
@@ -7539,8 +7305,6 @@ const LEXICON = [
     "unicode": "Cernunnos",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wilderness, Animals, Fertility",
     "meaning": "The Horned One (from Gaulish)",
     "sources": [
@@ -7610,8 +7374,6 @@ const LEXICON = [
     "unicode": "Brigid",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Poetry, Healing, Smithcraft, Fire",
     "meaning": "The Exalted One (from Old Irish Brigit)",
     "sources": [
@@ -7663,8 +7425,6 @@ const LEXICON = [
     "unicode": "Dagda",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Abundance, Strength, Magic",
     "meaning": "The Good God (from Old Irish Dagde)",
     "sources": [
@@ -7711,8 +7471,6 @@ const LEXICON = [
     "unicode": "Ištar",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love, War, Fertility, Venus",
     "meaning": "Lady of Heaven (Akkadian Ištar)",
     "sources": [
@@ -7800,8 +7558,6 @@ const LEXICON = [
     "unicode": "Aššur",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Kingship, Assyrian Patron",
     "meaning": "National god of Assyria (Akkadian Aššur)",
     "sources": [
@@ -7848,8 +7604,6 @@ const LEXICON = [
     "unicode": "Šamaš",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Justice, Law",
     "meaning": "Sun (Akkadian Šamaš)",
     "sources": [
@@ -7909,8 +7663,6 @@ const LEXICON = [
     "unicode": "Marduk",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creation, Babylon, Storms",
     "meaning": "Solar calf (Akkadian Marduk)",
     "sources": [
@@ -7963,8 +7715,6 @@ const LEXICON = [
     "unicode": "Enlīl",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Phonological Reconstruction, Wind, Air, Storms, Kingship",
     "meaning": "Reconstruction node for the Sumerian/Akkadian deity Enlil: the macron marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
@@ -8060,8 +7810,6 @@ const LEXICON = [
     "unicode": "Ēa",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Phonological Reconstruction, Water, Wisdom",
     "meaning": "Reconstruction node for the Akkadian deity Ea (Sumerian Enki): the macron marks a discussable vowel length, not a canonical spelling.",
     "sources": [
@@ -8104,8 +7852,6 @@ const LEXICON = [
     "unicode": "Tāne",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Forests, Birds, First Man",
     "meaning": "Man (from Proto-Polynesian *tane)",
     "sources": [
@@ -8152,8 +7898,6 @@ const LEXICON = [
     "unicode": "Tū",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Standing, Stability",
     "meaning": "Stand, erect (from Proto-Polynesian *tuu)",
     "sources": [
@@ -8187,8 +7931,6 @@ const LEXICON = [
     "unicode": "Māui",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Trickery, Fishing, Fire, Islands",
     "meaning": "Trickster hero (from Proto-Polynesian *maaui)",
     "sources": [
@@ -8234,8 +7976,6 @@ const LEXICON = [
     "unicode": "Rongo",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Agriculture, Peace, Cultivated Foods",
     "meaning": "Peace, news (from Proto-Polynesian *longo)",
     "sources": [
@@ -8288,8 +8028,6 @@ const LEXICON = [
     "unicode": "Tangaroa",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Ocean, Sea Creatures, Fishing",
     "meaning": "God of the sea (from Proto-Polynesian *Taŋaroa)",
     "sources": [
@@ -8360,8 +8098,6 @@ const LEXICON = [
     "unicode": "Pele",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Volcanoes, Fire, Lightning, Dance",
     "meaning": "One who shapes the sacred land (Hawaiian)",
     "sources": [
@@ -8401,8 +8137,6 @@ const LEXICON = [
     "unicode": "Tōkyō",
     "greek": "東京",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Capital, Kanto Region",
     "meaning": "Eastern capital",
     "sources": [
@@ -8449,8 +8183,6 @@ const LEXICON = [
     "unicode": "Ōsaka",
     "greek": "大阪",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Merchant City, Kansai",
     "meaning": "Large hill or slope",
     "sources": [
@@ -8505,8 +8237,6 @@ const LEXICON = [
     "unicode": "Kyōto",
     "greek": "京都",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Imperial Capital, Kansai",
     "meaning": "Capital city",
     "sources": [
@@ -8561,8 +8291,6 @@ const LEXICON = [
     "unicode": "Kōbe",
     "greek": "神戸",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Port City, Hyōgo",
     "meaning": "Door to the gods or support door",
     "sources": [
@@ -8610,8 +8338,6 @@ const LEXICON = [
     "unicode": "Nikkō",
     "greek": "日光",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Site, Tochigi",
     "meaning": "Sunlight",
     "sources": [
@@ -8658,8 +8384,6 @@ const LEXICON = [
     "unicode": "Hokkaidō",
     "greek": "北海道",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Northern Island",
     "meaning": "Northern sea circuit",
     "sources": [
@@ -8724,8 +8448,6 @@ const LEXICON = [
     "unicode": "Shikoku",
     "greek": "四国",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Smallest Main Island",
     "meaning": "Four provinces",
     "sources": [
@@ -8784,8 +8506,6 @@ const LEXICON = [
     "unicode": "Nagoya",
     "greek": "名古屋",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Industrial Hub, Chūbu",
     "meaning": "Peaceful ancient house",
     "sources": [
@@ -8838,8 +8558,6 @@ const LEXICON = [
     "unicode": "Amaterasu",
     "greek": "天照",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sun Goddess, Shintō",
     "meaning": "Sun goddess in Shinto",
     "senses": [
@@ -8916,8 +8634,6 @@ const LEXICON = [
     "unicode": "Tsukuyomi",
     "greek": "月読",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Moon God, Shintō",
     "meaning": "Moon reader",
     "sources": [
@@ -8988,8 +8704,6 @@ const LEXICON = [
     "unicode": "Izanagi",
     "greek": "伊邪那岐",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creator God, Shintō",
     "meaning": "He who invites",
     "sources": [
@@ -9048,8 +8762,6 @@ const LEXICON = [
     "unicode": "Inari",
     "greek": "稲荷",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Rice, Fertility, Foxes",
     "meaning": "Rice load",
     "sources": [
@@ -9096,8 +8808,6 @@ const LEXICON = [
     "unicode": "Hachiman",
     "greek": "八幡",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, Archery, Protection",
     "meaning": "Eight banners",
     "sources": [
@@ -9162,8 +8872,6 @@ const LEXICON = [
     "unicode": "Benzaiten",
     "greek": "弁財天",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Music, Wealth, Eloquence",
     "meaning": "Argumentation talent heaven",
     "sources": [
@@ -9234,8 +8942,6 @@ const LEXICON = [
     "unicode": "Quetzalcōātl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wind, Wisdom, Morning Star",
     "meaning": "Feathered serpent",
     "sources": [
@@ -9333,8 +9039,6 @@ const LEXICON = [
     "unicode": "Tēzcatlīpōca",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Night, Sorcery, Fate",
     "meaning": "Smoking mirror",
     "sources": [
@@ -9430,8 +9134,6 @@ const LEXICON = [
     "unicode": "Tlāloc",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Rain, Water, Lightning",
     "meaning": "He who is made of earth",
     "sources": [
@@ -9482,8 +9184,6 @@ const LEXICON = [
     "unicode": "Cōātlīcue",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth, Mother of Gods",
     "meaning": "She of the serpent skirt",
     "sources": [
@@ -9553,8 +9253,6 @@ const LEXICON = [
     "unicode": "Chicōmecōātl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Agriculture, Maize",
     "meaning": "Seven snakes",
     "sources": [
@@ -9641,8 +9339,6 @@ const LEXICON = [
     "unicode": "Xōchiquetzal",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Beauty, Love, Flowers",
     "meaning": "Flower feather",
     "sources": [
@@ -9729,8 +9425,6 @@ const LEXICON = [
     "unicode": "Coyolxāuhqui",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Moon, Leader of Centzon",
     "meaning": "Golden bells",
     "sources": [
@@ -9817,8 +9511,6 @@ const LEXICON = [
     "unicode": "Huītzilōpōchtli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, War, Hummingbird",
     "meaning": "Left-handed hummingbird",
     "sources": [
@@ -9924,8 +9616,6 @@ const LEXICON = [
     "unicode": "Xipe",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Spring, Agriculture, Flayed",
     "meaning": "The flayed one",
     "sources": [
@@ -9965,8 +9655,6 @@ const LEXICON = [
     "unicode": "Metztli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Moon",
     "meaning": "Moon",
     "sources": [
@@ -10025,8 +9713,6 @@ const LEXICON = [
     "unicode": "Ṣàngó",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Thunder, Fire, Justice",
     "meaning": "He who strikes",
     "sources": [
@@ -10085,8 +9771,6 @@ const LEXICON = [
     "unicode": "Ọya",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wind, Storms, Change",
     "meaning": "She who tore",
     "sources": [
@@ -10129,8 +9813,6 @@ const LEXICON = [
     "unicode": "Ọṣun",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love, Freshwater, Fertility",
     "meaning": "Sweet river",
     "sources": [
@@ -10176,8 +9858,6 @@ const LEXICON = [
     "unicode": "Yemọja",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Ocean, Motherhood, Protection",
     "meaning": "Mother whose children are fish",
     "sources": [
@@ -10246,8 +9926,6 @@ const LEXICON = [
     "unicode": "Ẹṣù",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Trickery, Crossroads, Messenger",
     "meaning": "Divine trickster",
     "sources": [
@@ -10287,8 +9965,6 @@ const LEXICON = [
     "unicode": "Ògún",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Iron, War, Labour",
     "meaning": "God of iron",
     "sources": [
@@ -10339,8 +10015,6 @@ const LEXICON = [
     "unicode": "Ọbàtálá",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Creation, Purity, Peace",
     "meaning": "King of the white cloth",
     "sources": [
@@ -10397,8 +10071,6 @@ const LEXICON = [
     "unicode": "Olódùmarè",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Supreme Creator",
     "meaning": "Owner of the universe",
     "sources": [
@@ -10468,8 +10140,6 @@ const LEXICON = [
     "unicode": "Dažbog",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Wealth, Giving",
     "meaning": "Giving god",
     "sources": [
@@ -10527,8 +10197,6 @@ const LEXICON = [
     "unicode": "Černobog",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Darkness, Chaos, Evil",
     "meaning": "Black god",
     "sources": [
@@ -10597,8 +10265,6 @@ const LEXICON = [
     "unicode": "Belobog",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Light, Good, Fortune",
     "meaning": "White god",
     "sources": [
@@ -10656,8 +10322,6 @@ const LEXICON = [
     "unicode": "Perun",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Thunder, Lightning, Oak",
     "meaning": "Thunderer, striker",
     "sources": [
@@ -10703,8 +10367,6 @@ const LEXICON = [
     "unicode": "Veles",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Cattle, Commerce, Underworld",
     "meaning": "Cattle god, possibly wool",
     "sources": [
@@ -10750,8 +10412,6 @@ const LEXICON = [
     "unicode": "Radagast",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hospitality, Animals",
     "meaning": "Council of the gods",
     "sources": [
@@ -10815,8 +10475,6 @@ const LEXICON = [
     "unicode": "Pēleús",
     "greek": "Πηλεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Warrior, Father of Achilles",
     "meaning": "Of the clay earth",
     "sources": [
@@ -10869,8 +10527,6 @@ const LEXICON = [
     "unicode": "Telamōn",
     "greek": "Τελαμών",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Warrior, Father of Ajax",
     "meaning": "Bearer, supporter",
     "sources": [
@@ -10941,8 +10597,6 @@ const LEXICON = [
     "unicode": "Oïleús",
     "greek": "Οἰλεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Warrior, Father of Ajax the Lesser",
     "meaning": "Of Oileus",
     "sources": [
@@ -10995,8 +10649,6 @@ const LEXICON = [
     "unicode": "Diomēdēs",
     "greek": "Διομήδης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Warrior, King of Argos",
     "meaning": "Divine counsel",
     "sources": [
@@ -11073,8 +10725,6 @@ const LEXICON = [
     "unicode": "Philoktētēs",
     "greek": "Φιλοκτήτης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Archer, Bearer of Heracles' bow",
     "meaning": "Loved by hearing",
     "sources": [
@@ -11169,8 +10819,6 @@ const LEXICON = [
     "unicode": "Ēléktra",
     "greek": "Ἠλέκτρα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Princess, Daughter of Agamemnon",
     "meaning": "Amber, shining",
     "sources": [
@@ -11229,8 +10877,6 @@ const LEXICON = [
     "unicode": "Oréstēs",
     "greek": "Ὀρέστης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Prince, Avenger of Agamemnon",
     "meaning": "Mountain dweller",
     "sources": [
@@ -11289,8 +10935,6 @@ const LEXICON = [
     "unicode": "Agamémnōn",
     "greek": "Ἀγαμέμνων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Mycenae, Commander at Troy",
     "meaning": "Very steadfast",
     "sources": [
@@ -11361,8 +11005,6 @@ const LEXICON = [
     "unicode": "Thersítēs",
     "greek": "Θερσίτης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Soldier, Insolent Orator",
     "meaning": "Bold, impudent",
     "sources": [
@@ -11433,8 +11075,6 @@ const LEXICON = [
     "unicode": "Pátroklos",
     "greek": "Πάτροκλος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Warrior, Companion of Achilles",
     "meaning": "Father's glory",
     "sources": [
@@ -11506,8 +11146,6 @@ const LEXICON = [
     "unicode": "Aías",
     "greek": "Αἴας",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Warrior, Bulwark of Achaeans",
     "meaning": "Of the earth",
     "sources": [
@@ -11549,8 +11187,6 @@ const LEXICON = [
     "unicode": "Néstōr",
     "greek": "Νέστωρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Pylos, Wise Counselor",
     "meaning": "He who returns home",
     "sources": [
@@ -11603,8 +11239,6 @@ const LEXICON = [
     "unicode": "Antílochos",
     "greek": "Ἀντίλοχος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Warrior, Son of Nestor",
     "meaning": "Against ambush",
     "sources": [
@@ -11681,8 +11315,6 @@ const LEXICON = [
     "unicode": "Autólykos",
     "greek": "Αὐτόλυκος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Trickster, Grandfather of Odysseus",
     "meaning": "The wolf himself",
     "sources": [
@@ -11753,8 +11385,6 @@ const LEXICON = [
     "unicode": "Mntw",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, Falcons, Thebes",
     "meaning": "Nomad, warrior god",
     "sources": [
@@ -11800,8 +11430,6 @@ const LEXICON = [
     "unicode": "Ꜥnqt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Nile, Cataracts, Nubia",
     "meaning": "Embrace",
     "sources": [
@@ -11853,8 +11481,6 @@ const LEXICON = [
     "unicode": "Srqt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Scorpions, Healing, Poison",
     "meaning": "She who causes the throat to breathe",
     "sources": [
@@ -11906,8 +11532,6 @@ const LEXICON = [
     "unicode": "Nt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Weaving, War, Hunting",
     "meaning": "Water, the terrifying one",
     "sources": [
@@ -11953,8 +11577,6 @@ const LEXICON = [
     "unicode": "ꜥꜣpp",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Chaos, Darkness, Serpent",
     "meaning": "He who was spat out",
     "sources": [
@@ -11995,8 +11617,6 @@ const LEXICON = [
     "unicode": "Tfnt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Moisture, Rain, Lions",
     "meaning": "That water, that spittle",
     "sources": [
@@ -12049,8 +11669,6 @@ const LEXICON = [
     "unicode": "sjꜣ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Perception, Intellect, Divine Understanding",
     "meaning": "Perception, intellect, divine understanding",
     "sources": [
@@ -12093,8 +11711,6 @@ const LEXICON = [
     "unicode": "Šw",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Air, Wind, Lions",
     "meaning": "Emptiness, he who rises up",
     "sources": [
@@ -12136,8 +11752,6 @@ const LEXICON = [
     "unicode": "Ḫnmw",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Potter, Nile Silt, Creation",
     "meaning": "He who joins together",
     "sources": [
@@ -12184,8 +11798,6 @@ const LEXICON = [
     "unicode": "Eir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Healing, Mercy, Medical Skill",
     "meaning": "Help, mercy",
     "sources": [
@@ -12220,8 +11832,6 @@ const LEXICON = [
     "unicode": "Garmr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Guardian, Underworld Hound",
     "meaning": "Howler",
     "sources": [
@@ -12268,8 +11878,6 @@ const LEXICON = [
     "unicode": "Hrungnir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Giant, Duel with Thor",
     "meaning": "Brawler",
     "sources": [
@@ -12334,8 +11942,6 @@ const LEXICON = [
     "unicode": "Surtr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fire, Ragnarök, Muspelheim",
     "meaning": "Black, the swarthy one",
     "sources": [
@@ -12381,8 +11987,6 @@ const LEXICON = [
     "unicode": "Eggþér",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Watchman, Ragnarök Herald",
     "meaning": "Sword guardian",
     "sources": [
@@ -12441,8 +12045,6 @@ const LEXICON = [
     "unicode": "Logi",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fire, Flame, Giant",
     "meaning": "Flame",
     "sources": [
@@ -12483,8 +12085,6 @@ const LEXICON = [
     "unicode": "Hræsvelgr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Giant, Eagle, Wind-maker",
     "meaning": "Corpse swallower",
     "sources": [
@@ -12560,8 +12160,6 @@ const LEXICON = [
     "unicode": "Þjazi",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Giant, Kidnapper of Idun",
     "meaning": "Seething one",
     "sources": [
@@ -12613,8 +12211,6 @@ const LEXICON = [
     "unicode": "Suttungr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Giant, Guardian of Mead",
     "meaning": "Heavy with foundation",
     "sources": [
@@ -12679,8 +12275,6 @@ const LEXICON = [
     "unicode": "Loki",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Trickery, Chaos, Shape-shifter",
     "meaning": "Possibly knot, loop, or flame",
     "sources": [
@@ -12732,8 +12326,6 @@ const LEXICON = [
     "unicode": "Candra",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Moon, Night, Soma",
     "meaning": "Glittering, shining — the moon personified as a god; also a name of Soma in his lunar aspect.",
     "senses": [
@@ -12799,8 +12391,6 @@ const LEXICON = [
     "unicode": "Varuṇa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cosmic Order, Oceans, Law",
     "meaning": "The All-Enveloping Sky — the Vedic Āditya of the waters and of ṛta, paired with Mitra",
     "senses": [
@@ -12873,8 +12463,6 @@ const LEXICON = [
     "unicode": "Gaṅgā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred River, Purification",
     "meaning": "The river Ganges personified — eldest daughter of Himavat, brought from heaven by Bhagīratha's austerities",
     "senses": [
@@ -12927,8 +12515,6 @@ const LEXICON = [
     "unicode": "Pārvatī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mountains, Fertility, Devotion",
     "meaning": "'Daughter of the Mountain' — consort of Śiva, daughter of Himavat, mother of Gaṇeśa and Kārttikeya",
     "senses": [
@@ -12994,8 +12580,6 @@ const LEXICON = [
     "unicode": "Kālī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Time, Destruction, Empowerment",
     "meaning": "The Black One — the fierce goddess of time and destruction, consort of Śiva (fem. of kāla)",
     "senses": [
@@ -13056,8 +12640,6 @@ const LEXICON = [
     "unicode": "Sītā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Virtue, Devotion, Fertility",
     "meaning": "'Furrow' — the field-goddess, wife of Rāma and mother of his twin sons",
     "senses": [
@@ -13104,8 +12686,6 @@ const LEXICON = [
     "unicode": "Arjuna",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Archery, Dharma, Bhagavad Gītā",
     "meaning": "The third of the Pāṇḍava princes, a son of Indra and Kuntī; the great archer of the Mahābhārata, to whom Kṛṣṇa speaks the Bhagavad-gītā.",
     "senses": [
@@ -13163,8 +12743,6 @@ const LEXICON = [
     "unicode": "Bhīma",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Strength, Mace, Wind-son",
     "meaning": "The second of the Pāṇḍu princes, also called Bhīmasena and Vṛkodara; the reputed son of Pāṇḍu, in truth begotten by the wind-god Vāyu on Pāṇḍu's wife Kuntī (Pṛthā).",
     "senses": [
@@ -13216,8 +12794,6 @@ const LEXICON = [
     "unicode": "Draupadī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Queen, Fire-born, Dharma",
     "meaning": "patr.",
     "senses": [
@@ -13287,8 +12863,6 @@ const LEXICON = [
     "unicode": "Karṇa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Charity, Warrior, Sūryaputra",
     "meaning": "A king of Aṅga and the elder half-brother of the Pāṇḍu princes on the mother's side — the son of the sun-god Sūrya by Kuntī (Pṛthā) before her marriage with Pāṇḍu.",
     "senses": [
@@ -13340,8 +12914,6 @@ const LEXICON = [
     "unicode": "AhuraMazdā",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Supreme Creator, Wisdom, Light",
     "meaning": "Wise lord",
     "sources": [
@@ -13418,8 +12990,6 @@ const LEXICON = [
     "unicode": "AŋraMainyu",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Destruction, Evil, Chaos",
     "meaning": "Destructive spirit",
     "sources": [
@@ -13501,8 +13071,6 @@ const LEXICON = [
     "unicode": "Miθra",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Covenant, Light, Truth",
     "meaning": "Contract, covenant",
     "sources": [
@@ -13554,8 +13122,6 @@ const LEXICON = [
     "unicode": "Ahriman",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Evil, Destruction, Lies",
     "meaning": "Evil spirit, destructive mind",
     "sources": [
@@ -13614,8 +13180,6 @@ const LEXICON = [
     "unicode": "Inti",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sun, Empire, Agriculture",
     "meaning": "Sun",
     "sources": [
@@ -13655,8 +13219,6 @@ const LEXICON = [
     "unicode": "Wiraqucha",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creator, Sky, Sea Foam",
     "meaning": "Sea of fat",
     "sources": [
@@ -13726,8 +13288,6 @@ const LEXICON = [
     "unicode": "Pachamama",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Earth, Harvest, Mother",
     "meaning": "Mother Earth",
     "sources": [
@@ -13797,8 +13357,6 @@ const LEXICON = [
     "unicode": "Perseús",
     "greek": "Περσεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hero, Slayer of Medousa",
     "meaning": "Destroyer, possibly Persian",
     "sources": [
@@ -13858,8 +13416,6 @@ const LEXICON = [
     "unicode": "Orpheús",
     "greek": "Ὀρφεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Poet, Musician, Underworld",
     "meaning": "Darkness of the night",
     "sources": [
@@ -13919,8 +13475,6 @@ const LEXICON = [
     "unicode": "Atalántē",
     "greek": "Ἀταλάντη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Huntress, Footrace, Arcadia",
     "meaning": "Equal in weight",
     "sources": [
@@ -13985,8 +13539,6 @@ const LEXICON = [
     "unicode": "Kástōr",
     "greek": "Κάστωρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Horseman, Dioscuri, Gemini",
     "meaning": "Beaver, possibly shining",
     "sources": [
@@ -14039,8 +13591,6 @@ const LEXICON = [
     "unicode": "Polydeúkēs",
     "greek": "Πολυδεύκης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Boxer, Dioscuri, Gemini",
     "meaning": "Very sweet, much wine",
     "sources": [
@@ -14117,8 +13667,6 @@ const LEXICON = [
     "unicode": "Héktōr",
     "greek": "Ἕκτωρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Prince of Troy, Greatest Warrior",
     "meaning": "Holding fast",
     "sources": [
@@ -14171,8 +13719,6 @@ const LEXICON = [
     "unicode": "Aléxandros",
     "greek": "Ἀλέξανδρος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Prince of Troy, Paris",
     "meaning": "Defender of men",
     "sources": [
@@ -14249,8 +13795,6 @@ const LEXICON = [
     "unicode": "Príamos",
     "greek": "Πρίαμος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "King of Troy, Father of Hector",
     "meaning": "Ransomed",
     "sources": [
@@ -14309,8 +13853,6 @@ const LEXICON = [
     "unicode": "Pēnelópē",
     "greek": "Πηνελόπη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Queen of Ithaca, Faithful Wife",
     "meaning": "Weaver, duck",
     "sources": [
@@ -14375,8 +13917,6 @@ const LEXICON = [
     "unicode": "Tēlémachos",
     "greek": "Τηλέμαχος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Prince of Ithaca, Son of Odysseus",
     "meaning": "Far-fighter",
     "sources": [
@@ -14453,8 +13993,6 @@ const LEXICON = [
     "unicode": "Mégara",
     "greek": "Μέγαρα",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Princess, Wife of Herakles",
     "meaning": "Great, fierce",
     "sources": [
@@ -14507,8 +14045,6 @@ const LEXICON = [
     "unicode": "Alkmēnē",
     "greek": "Ἀλκμήνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mother of Herakles, Mycenae",
     "meaning": "Strength of the moon",
     "sources": [
@@ -14579,8 +14115,6 @@ const LEXICON = [
     "unicode": "Ádmētos",
     "greek": "Ἄδμητος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Pherae, Husband of Alcestis",
     "meaning": "Untamed",
     "sources": [
@@ -14639,8 +14173,6 @@ const LEXICON = [
     "unicode": "Íkaros",
     "greek": "Ἴκαρος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Winged, Son of Daedalus",
     "meaning": "Follower",
     "sources": [
@@ -14693,8 +14225,6 @@ const LEXICON = [
     "unicode": "Daídalos",
     "greek": "Δαίδαλος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Craftsman, Inventor, Wings",
     "meaning": "Cunningly wrought",
     "sources": [
@@ -14760,8 +14290,6 @@ const LEXICON = [
     "unicode": "Eurydíkē",
     "greek": "Εὐρυδίκη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Nymph, Wife of Orpheus",
     "meaning": "Wide justice",
     "sources": [
@@ -14827,8 +14355,6 @@ const LEXICON = [
     "unicode": "Typhōn",
     "greek": "Τυφῶν",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Monster, Father of Monsters, Storms",
     "meaning": "Whirlwind, smoke",
     "sources": [
@@ -14920,8 +14446,6 @@ const LEXICON = [
     "unicode": "Pýthōn",
     "greek": "Πύθων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Serpent, Delphi, Slain by Apollo",
     "meaning": "To rot, decay",
     "sources": [
@@ -14974,8 +14498,6 @@ const LEXICON = [
     "unicode": "Kalypsō",
     "greek": "Καλυψώ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Nymph, Ogygia, Detainer of Odysseus",
     "meaning": "She who conceals",
     "sources": [
@@ -15046,8 +14568,6 @@ const LEXICON = [
     "unicode": "Kírkē",
     "greek": "Κίρκη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sorceress, Aeaea, Transformations",
     "meaning": "Falcon, bird of prey",
     "sources": [
@@ -15095,8 +14615,6 @@ const LEXICON = [
     "unicode": "Thétis",
     "greek": "Θέτις",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Nereid, Mother of Achilles",
     "meaning": "Creation, disposal",
     "sources": [
@@ -15149,8 +14667,6 @@ const LEXICON = [
     "unicode": "Skýlla",
     "greek": "Σκύλλα",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Monster, Strait of Messina",
     "meaning": "She who tears",
     "sources": [
@@ -15203,8 +14719,6 @@ const LEXICON = [
     "unicode": "Chárybdis",
     "greek": "Χάρυβδις",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Whirlpool, Strait of Messina",
     "meaning": "Suck down, swallow",
     "sources": [
@@ -15275,8 +14789,6 @@ const LEXICON = [
     "unicode": "Ariádnē",
     "greek": "Ἀριάδνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Princess, Labyrinth, Thread",
     "meaning": "the daughter of Minos in Greek mythology",
     "senses": [
@@ -15341,8 +14853,6 @@ const LEXICON = [
     "unicode": "Ganymēdēs",
     "greek": "Γανυμήδης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Youth, Cupbearer of the Gods",
     "meaning": "son of Tros in Greek mythology",
     "senses": [
@@ -15425,8 +14935,6 @@ const LEXICON = [
     "unicode": "Arachnē",
     "greek": "Ἀράχνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Weaver, Turned into Spider",
     "meaning": "Mythological weaver who was transformed into a spider",
     "senses": [
@@ -15504,8 +15012,6 @@ const LEXICON = [
     "unicode": "Nárkissos",
     "greek": "Νάρκισσος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Youth, Self-love, Flower",
     "meaning": "Numbness, sleep",
     "sources": [
@@ -15576,8 +15082,6 @@ const LEXICON = [
     "unicode": "Pandōra",
     "greek": "Πανδώρα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "First Woman, Box of Evils",
     "meaning": "All-gifted",
     "sources": [
@@ -15656,8 +15160,6 @@ const LEXICON = [
     "unicode": "Sísyphos",
     "greek": "Σίσυφος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Trickster, Eternal Boulder",
     "meaning": "Very wise",
     "sources": [
@@ -15722,8 +15224,6 @@ const LEXICON = [
     "unicode": "Tántalos",
     "greek": "Τάνταλος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "King, Eternal Thirst and Hunger",
     "meaning": "To endure, to bear",
     "sources": [
@@ -15788,8 +15288,6 @@ const LEXICON = [
     "unicode": "Ixíōn",
     "greek": "Ἰξίων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King, Bound to Burning Wheel",
     "meaning": "Strong",
     "sources": [
@@ -15836,8 +15334,6 @@ const LEXICON = [
     "unicode": "Sarpēdōn",
     "greek": "Σαρπηδών",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Prince of Lycia, Son of Zeus",
     "meaning": "Sorely grieving",
     "sources": [
@@ -15914,8 +15410,6 @@ const LEXICON = [
     "unicode": "Prōtesílaos",
     "greek": "Πρωτεσίλαος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "First Greek to Fall at Troy",
     "meaning": "First of the people",
     "sources": [
@@ -15998,8 +15492,6 @@ const LEXICON = [
     "unicode": "Laokóōn",
     "greek": "Λαοκόων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Priest, Warned Against Trojan Horse",
     "meaning": "He who sees the people",
     "sources": [
@@ -16058,8 +15550,6 @@ const LEXICON = [
     "unicode": "Danáē",
     "greek": "Δανάη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Princess, Mother of Perseus",
     "meaning": "She who judges",
     "sources": [
@@ -16106,8 +15596,6 @@ const LEXICON = [
     "unicode": "Andromedē",
     "greek": "Ἀνδρομέδη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Princess, Chained, Rescued by Perseus",
     "meaning": "Ruler of men",
     "sources": [
@@ -16191,8 +15679,6 @@ const LEXICON = [
     "unicode": "Kassiópeia",
     "greek": "Κασσιόπεια",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Queen, Constellation, Boasted of Beauty",
     "meaning": "She whose words excel",
     "sources": [
@@ -16269,8 +15755,6 @@ const LEXICON = [
     "unicode": "Kēpheús",
     "greek": "Κηφεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King, Constellation, Father of Andromeda",
     "meaning": "Gardener",
     "sources": [
@@ -16330,8 +15814,6 @@ const LEXICON = [
     "unicode": "Kēr",
     "greek": "Κήρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Violent Death, Doom, Fate",
     "meaning": "Doom, violent death (from κήρ)",
     "sources": [
@@ -16392,8 +15874,6 @@ const LEXICON = [
     "unicode": "Koîos",
     "greek": "Κοῖος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Titan of Intellect",
     "meaning": "Questioning, inquiry",
     "sources": [
@@ -16439,8 +15919,6 @@ const LEXICON = [
     "unicode": "Kreîos",
     "greek": "Κρεῖος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Titan of Constellations",
     "meaning": "Ram, master",
     "sources": [
@@ -16492,8 +15970,6 @@ const LEXICON = [
     "unicode": "Iapetós",
     "greek": "Ἰαπετός",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Titan of Mortality",
     "meaning": "Piercer, wound",
     "sources": [
@@ -16551,8 +16027,6 @@ const LEXICON = [
     "unicode": "Theía",
     "greek": "Θεία",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Titaness of Sight",
     "meaning": "Goddess, divine",
     "sources": [
@@ -16599,8 +16073,6 @@ const LEXICON = [
     "unicode": "Phoíbē",
     "greek": "Φοίβη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Titaness of Prophecy",
     "meaning": "Bright, shining",
     "sources": [
@@ -16653,8 +16125,6 @@ const LEXICON = [
     "unicode": "Nýx",
     "greek": "Νύξ",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Night",
     "meaning": "Night",
     "sources": [
@@ -16688,8 +16158,6 @@ const LEXICON = [
     "unicode": "Érebos",
     "greek": "Ἔρεβος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Darkness",
     "meaning": "Darkness",
     "sources": [
@@ -16742,8 +16210,6 @@ const LEXICON = [
     "unicode": "Hēméra",
     "greek": "Ἡμέρα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Day",
     "meaning": "Day",
     "sources": [
@@ -16804,8 +16270,6 @@ const LEXICON = [
     "unicode": "Aithḗr",
     "greek": "Αἰθήρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Upper Air, Light",
     "meaning": "Bright upper air",
     "sources": [
@@ -16878,8 +16342,6 @@ const LEXICON = [
     "unicode": "Ouranós",
     "greek": "Οὐρανός",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sky",
     "meaning": "Heaven, sky",
     "sources": [
@@ -16938,8 +16400,6 @@ const LEXICON = [
     "unicode": "Anánkē",
     "greek": "Ἀνάγκη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Necessity, Compulsion",
     "meaning": "Necessity, constraint",
     "sources": [
@@ -16992,8 +16452,6 @@ const LEXICON = [
     "unicode": "Phánēs",
     "greek": "Φάνης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Procreation, Light",
     "meaning": "Bringer of light",
     "sources": [
@@ -17046,8 +16504,6 @@ const LEXICON = [
     "unicode": "Odysseús",
     "greek": "Ὀδυσσεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cunning, Journey",
     "meaning": "Hated, painful",
     "sources": [
@@ -17112,8 +16568,6 @@ const LEXICON = [
     "unicode": "Iásōn",
     "greek": "Ἰάσων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Heroism, the Golden Fleece",
     "meaning": "Healer",
     "sources": [
@@ -17172,8 +16626,6 @@ const LEXICON = [
     "unicode": "Árgos",
     "greek": "Ἄργος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Vigilance, Hera's Watcher",
     "meaning": "Shining, swift",
     "sources": [
@@ -17220,8 +16672,6 @@ const LEXICON = [
     "unicode": "Mídas",
     "greek": "Μίδας",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "King of Phrygia, the Golden Touch",
     "meaning": "Phrygian royal name",
     "sources": [
@@ -17268,8 +16718,6 @@ const LEXICON = [
     "unicode": "Menélaos",
     "greek": "Μενέλαος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "King of Sparta",
     "meaning": "Enduring the people",
     "sources": [
@@ -17333,8 +16781,6 @@ const LEXICON = [
     "unicode": "Aineías",
     "greek": "Αἰνείας",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Trojan Hero, Founder of Rome",
     "meaning": "Praiseworthy",
     "sources": [
@@ -17392,8 +16838,6 @@ const LEXICON = [
     "unicode": "Kádmos",
     "greek": "Κάδμος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Founder of Thebes",
     "meaning": "From the east",
     "sources": [
@@ -17445,8 +16889,6 @@ const LEXICON = [
     "unicode": "Mínōs",
     "greek": "Μίνως",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Crete, Judge of Dead",
     "meaning": "Moon-man",
     "sources": [
@@ -17492,8 +16934,6 @@ const LEXICON = [
     "unicode": "Aigeús",
     "greek": "Αἰγεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Athens",
     "meaning": "Of the goat",
     "sources": [
@@ -17545,8 +16985,6 @@ const LEXICON = [
     "unicode": "Pélops",
     "greek": "Πέλοψ",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "King of Olympia",
     "meaning": "Dark face",
     "sources": [
@@ -17598,8 +17036,6 @@ const LEXICON = [
     "unicode": "Meléagros",
     "greek": "Μελέαγρος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hero of Calydon",
     "meaning": "Hunting, caring for the hunt",
     "sources": [
@@ -17669,8 +17105,6 @@ const LEXICON = [
     "unicode": "Atreús",
     "greek": "Ἀτρεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Mycenae",
     "meaning": "Fearless",
     "sources": [
@@ -17722,8 +17156,6 @@ const LEXICON = [
     "unicode": "Hippólytos",
     "greek": "Ἱππόλυτος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Son of Theseus",
     "meaning": "Horse-looser",
     "sources": [
@@ -17806,8 +17238,6 @@ const LEXICON = [
     "unicode": "Kalliópē",
     "greek": "Καλλιόπη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Epic Poetry",
     "meaning": "Beautiful-voiced",
     "sources": [
@@ -17871,8 +17301,6 @@ const LEXICON = [
     "unicode": "Kleiṓ",
     "greek": "Κλειώ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "History",
     "meaning": "Proclaimer, glorifier",
     "sources": [
@@ -17920,8 +17348,6 @@ const LEXICON = [
     "unicode": "Tháleia",
     "greek": "Θάλεια",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Comedy, Idyll",
     "meaning": "Flourishing, blooming",
     "sources": [
@@ -17980,8 +17406,6 @@ const LEXICON = [
     "unicode": "Eutérpē",
     "greek": "Εὐτέρπη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Music, Lyric Poetry",
     "meaning": "Well-pleasing",
     "sources": [
@@ -18039,8 +17463,6 @@ const LEXICON = [
     "unicode": "Polyhýmnia",
     "greek": "Πολύμνια",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hymns, Sacred Poetry",
     "meaning": "Many hymns",
     "sources": [
@@ -18116,8 +17538,6 @@ const LEXICON = [
     "unicode": "Terpsichórē",
     "greek": "Τερψιχόρη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dance",
     "meaning": "Delight in dancing",
     "sources": [
@@ -18199,8 +17619,6 @@ const LEXICON = [
     "unicode": "Eratṓ",
     "greek": "Ερατώ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love Poetry",
     "meaning": "Beloved, lovely",
     "sources": [
@@ -18246,8 +17664,6 @@ const LEXICON = [
     "unicode": "Melpoménē",
     "greek": "Μελπομένη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Tragedy",
     "meaning": "Singer, chorus-leader",
     "sources": [
@@ -18325,8 +17741,6 @@ const LEXICON = [
     "unicode": "Ouranía",
     "greek": "Οὐρανία",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Astronomy",
     "meaning": "Heavenly",
     "sources": [
@@ -18384,8 +17798,6 @@ const LEXICON = [
     "unicode": "Klōthṓ",
     "greek": "Κλωθώ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Spinner of Life Thread",
     "meaning": "Spinner",
     "sources": [
@@ -18437,8 +17849,6 @@ const LEXICON = [
     "unicode": "Láchesis",
     "greek": "Λάχεσις",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Allotter of Portions",
     "meaning": "Disposer of lots",
     "sources": [
@@ -18502,8 +17912,6 @@ const LEXICON = [
     "unicode": "Átropos",
     "greek": "Ἄτροπος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Cutter of Thread",
     "meaning": "Inflexible, inevitable",
     "sources": [
@@ -18562,8 +17970,6 @@ const LEXICON = [
     "unicode": "Némésis",
     "greek": "Νέμεσις",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Retribution",
     "meaning": "Distribution, righteous anger",
     "sources": [
@@ -18621,8 +18027,6 @@ const LEXICON = [
     "unicode": "Îris",
     "greek": "Ἶρις",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Rainbow, Messenger",
     "meaning": "Rainbow",
     "sources": [
@@ -18670,8 +18074,6 @@ const LEXICON = [
     "unicode": "Éris",
     "greek": "Ἔρις",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Strife, Discord",
     "meaning": "Strife",
     "sources": [
@@ -18712,8 +18114,6 @@ const LEXICON = [
     "unicode": "Hýpnos",
     "greek": "Ὕπνος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sleep",
     "meaning": "Sleep",
     "sources": [
@@ -18774,8 +18174,6 @@ const LEXICON = [
     "unicode": "Thánatos",
     "greek": "Θάνατος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Death",
     "meaning": "Death",
     "sources": [
@@ -18839,8 +18237,6 @@ const LEXICON = [
     "unicode": "Phóbos",
     "greek": "Φόβος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fear, Panic",
     "meaning": "Fear",
     "sources": [
@@ -18892,8 +18288,6 @@ const LEXICON = [
     "unicode": "Deîmos",
     "greek": "Δεῖμος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Terror, Dread",
     "meaning": "Terror",
     "sources": [
@@ -18945,8 +18339,6 @@ const LEXICON = [
     "unicode": "Elpís",
     "greek": "Ἐλπίς",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hope",
     "meaning": "Hope, expectation",
     "sources": [
@@ -18992,8 +18384,6 @@ const LEXICON = [
     "unicode": "Pónos",
     "greek": "Πόνος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hard Labor, Toil",
     "meaning": "Toil, labor",
     "sources": [
@@ -19039,8 +18429,6 @@ const LEXICON = [
     "unicode": "Gêras",
     "greek": "Γῆρας",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Old Age",
     "meaning": "Old age",
     "sources": [
@@ -19086,8 +18474,6 @@ const LEXICON = [
     "unicode": "Kérberos",
     "greek": "Κέρβερος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Underworld Guardian",
     "meaning": "Spot, darkness",
     "sources": [
@@ -19152,8 +18538,6 @@ const LEXICON = [
     "unicode": "Hýdra",
     "greek": "Ὕδρα",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Many-Headed Serpent",
     "meaning": "Water serpent",
     "sources": [
@@ -19200,8 +18584,6 @@ const LEXICON = [
     "unicode": "Minṓtauros",
     "greek": "Μινώταυρος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Beast of Crete",
     "meaning": "Bull of Minos",
     "sources": [
@@ -19277,8 +18659,6 @@ const LEXICON = [
     "unicode": "Chímaira",
     "greek": "Χίμαιρα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fire-Breathing Monster",
     "meaning": "She-goat",
     "sources": [
@@ -19351,8 +18731,6 @@ const LEXICON = [
     "unicode": "Sphínx",
     "greek": "Σφίγξ",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Riddling Monster",
     "meaning": "Strangler",
     "sources": [
@@ -19404,8 +18782,6 @@ const LEXICON = [
     "unicode": "Seirḗn",
     "greek": "Σειρήν",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Enchanting Singer",
     "meaning": "Binder, entangler",
     "sources": [
@@ -19458,8 +18834,6 @@ const LEXICON = [
     "unicode": "Hárpyia",
     "greek": "Ἅρπυια",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Snatcher",
     "meaning": "Snatcher, robber",
     "sources": [
@@ -19517,8 +18891,6 @@ const LEXICON = [
     "unicode": "Phoînix",
     "greek": "Φοῖνιξ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Rebirth, Immortality",
     "meaning": "Purple-red, Phoenician",
     "sources": [
@@ -19577,8 +18949,6 @@ const LEXICON = [
     "unicode": "Grýps",
     "greek": "Γρύψ",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Guardian Beast",
     "meaning": "Hooked-nose",
     "sources": [
@@ -19636,8 +19006,6 @@ const LEXICON = [
     "unicode": "Dáphnē",
     "greek": "Δάφνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Laurel Nymph",
     "meaning": "Laurel",
     "sources": [
@@ -19689,8 +19057,6 @@ const LEXICON = [
     "unicode": "Ēchṓ",
     "greek": "Ἠχώ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sound, Reflection",
     "meaning": "Sound, echo",
     "sources": [
@@ -19730,8 +19096,6 @@ const LEXICON = [
     "unicode": "Lógos",
     "greek": "Λόγος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Word, Reason, Principle",
     "meaning": "Word, speech, reason",
     "sources": [
@@ -19777,8 +19141,6 @@ const LEXICON = [
     "unicode": "Noûs",
     "greek": "Νοῦς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mind, Intellect",
     "meaning": "Mind, intellect",
     "sources": [
@@ -19818,8 +19180,6 @@ const LEXICON = [
     "unicode": "Psychḗ",
     "greek": "Ψυχή",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Soul, Breath, Life",
     "meaning": "Soul, breath",
     "sources": [
@@ -19879,8 +19239,6 @@ const LEXICON = [
     "unicode": "Pneûma",
     "greek": "Πνεῦμα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Spirit, Wind, Breath",
     "meaning": "Wind, breath, spirit",
     "sources": [
@@ -19932,8 +19290,6 @@ const LEXICON = [
     "unicode": "Archḗ",
     "greek": "Ἀρχή",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Origin, First Principle",
     "meaning": "Beginning, origin, rule",
     "sources": [
@@ -19980,8 +19336,6 @@ const LEXICON = [
     "unicode": "Télos",
     "greek": "Τέλος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "End, Purpose, Goal",
     "meaning": "End, completion, purpose",
     "sources": [
@@ -20027,8 +19381,6 @@ const LEXICON = [
     "unicode": "Arete",
     "greek": "Ἀρετή",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Excellence, Virtue",
     "meaning": "Excellence, virtue",
     "sources": [
@@ -20087,8 +19439,6 @@ const LEXICON = [
     "unicode": "Hýbris",
     "greek": "Ὕβρις",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Excess Pride, Insolence",
     "meaning": "Outrage, insolence",
     "sources": [
@@ -20140,8 +19490,6 @@ const LEXICON = [
     "unicode": "Moîra",
     "greek": "Μοῖρα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fate, Allotted Portion",
     "meaning": "Portion, fate",
     "sources": [
@@ -20187,8 +19535,6 @@ const LEXICON = [
     "unicode": "Êthos",
     "greek": "Ἦθος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Character, Habit",
     "meaning": "Habit, custom, character",
     "sources": [
@@ -20234,8 +19580,6 @@ const LEXICON = [
     "unicode": "Páthos",
     "greek": "Πάθος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Suffering, Experience",
     "meaning": "Suffering, experience",
     "sources": [
@@ -20287,8 +19631,6 @@ const LEXICON = [
     "unicode": "Kairós",
     "greek": "Καιρός",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Opportune Moment",
     "meaning": "Right time, opportunity",
     "sources": [
@@ -20340,8 +19682,6 @@ const LEXICON = [
     "unicode": "Kósmos",
     "greek": "Κόσμος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Order, Universe, Beauty",
     "meaning": "Order, ornament, world",
     "sources": [
@@ -20393,8 +19733,6 @@ const LEXICON = [
     "unicode": "Ullr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Archery, Hunting, Skiing",
     "meaning": "Glory, splendor",
     "sources": [
@@ -20435,8 +19773,6 @@ const LEXICON = [
     "unicode": "Forseti",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Justice, Mediation",
     "meaning": "President, chairman",
     "sources": [
@@ -20495,8 +19831,6 @@ const LEXICON = [
     "unicode": "Bragi",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Poetry, Eloquence",
     "meaning": "Poet, first",
     "sources": [
@@ -20543,8 +19877,6 @@ const LEXICON = [
     "unicode": "Iðunn",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Youth, Apples of Immortality",
     "meaning": "Ever young",
     "sources": [
@@ -20590,8 +19922,6 @@ const LEXICON = [
     "unicode": "Gefjun",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fertility, Agriculture",
     "meaning": "Giving",
     "sources": [
@@ -20644,8 +19974,6 @@ const LEXICON = [
     "unicode": "Sif",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Earth, Harvest",
     "meaning": "Relation by marriage",
     "sources": [
@@ -20680,8 +20008,6 @@ const LEXICON = [
     "unicode": "Fulla",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Abundance, Secrets",
     "meaning": "Bountiful",
     "sources": [
@@ -20728,8 +20054,6 @@ const LEXICON = [
     "unicode": "Syn",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Refusal, Defense",
     "meaning": "Refusal, denial",
     "sources": [
@@ -20764,8 +20088,6 @@ const LEXICON = [
     "unicode": "Nanna",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Joy, Wife of Baldr",
     "meaning": "Mother, daring",
     "sources": [
@@ -20812,8 +20134,6 @@ const LEXICON = [
     "unicode": "Brynhildr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Valkyrie, Shieldmaiden",
     "meaning": "Armor battle",
     "sources": [
@@ -20884,8 +20204,6 @@ const LEXICON = [
     "unicode": "Gunnr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Valkyrie of War",
     "meaning": "War",
     "sources": [
@@ -20932,8 +20250,6 @@ const LEXICON = [
     "unicode": "Skuld",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Valkyrie / Norn of Future",
     "meaning": "Debt, future",
     "sources": [
@@ -20980,8 +20296,6 @@ const LEXICON = [
     "unicode": "Urðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Norn of Fate / Past",
     "meaning": "Fate",
     "sources": [
@@ -21021,8 +20335,6 @@ const LEXICON = [
     "unicode": "Verðandi",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Norn of Present",
     "meaning": "Becoming",
     "sources": [
@@ -21086,8 +20398,6 @@ const LEXICON = [
     "unicode": "Þrymr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Giant King",
     "meaning": "Noise, din",
     "sources": [
@@ -21139,8 +20449,6 @@ const LEXICON = [
     "unicode": "Hymir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Giant, Owner of Cauldron",
     "meaning": "Dark one",
     "sources": [
@@ -21187,8 +20495,6 @@ const LEXICON = [
     "unicode": "Geirröðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Giant, Tormentor of Loki",
     "meaning": "Spear-reddener",
     "sources": [
@@ -21252,8 +20558,6 @@ const LEXICON = [
     "unicode": "Baugi",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Giant, Brother of Suttungr",
     "meaning": "Ring-shaped",
     "sources": [
@@ -21300,8 +20604,6 @@ const LEXICON = [
     "unicode": "Andvari",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Dwarf, Guardian of Gold",
     "meaning": "Careful one",
     "sources": [
@@ -21360,8 +20662,6 @@ const LEXICON = [
     "unicode": "Brokkr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Dwarf Smith",
     "meaning": "Badger, panting",
     "sources": [
@@ -21414,8 +20714,6 @@ const LEXICON = [
     "unicode": "Fáfnir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dwarf turned Dragon",
     "meaning": "figure in Germanic heroic legend",
     "senses": [
@@ -21474,8 +20772,6 @@ const LEXICON = [
     "unicode": "Reginn",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Dwarf Smith, Fafnir's Brother",
     "meaning": "The great one",
     "sources": [
@@ -21528,8 +20824,6 @@ const LEXICON = [
     "unicode": "Sindri",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Dwarf Smith",
     "meaning": "Sparkling",
     "sources": [
@@ -21582,8 +20876,6 @@ const LEXICON = [
     "unicode": "Niflheimr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mist World, Realm of Ice",
     "meaning": "Mist-home",
     "sources": [
@@ -21655,8 +20947,6 @@ const LEXICON = [
     "unicode": "Muspellheimr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "World of Fire",
     "meaning": "Muspel-home (world-ender)",
     "sources": [
@@ -21752,8 +21042,6 @@ const LEXICON = [
     "unicode": "Vanaheimr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Home of the Vanir",
     "meaning": "Van-home",
     "sources": [
@@ -21824,8 +21112,6 @@ const LEXICON = [
     "unicode": "Svartálfaheimr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Home of Dark Elves",
     "meaning": "Dark-elf-home",
     "sources": [
@@ -21925,8 +21211,6 @@ const LEXICON = [
     "unicode": "Yggdrasill",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "World Tree",
     "meaning": "Ygg's horse (Odin's gallows)",
     "sources": [
@@ -22003,8 +21287,6 @@ const LEXICON = [
     "unicode": "Ginnungagap",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Primordial Void",
     "meaning": "Magic-gaping-void",
     "sources": [
@@ -22087,8 +21369,6 @@ const LEXICON = [
     "unicode": "Wyrd",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fate, Destiny",
     "meaning": "Fate (cognate with Urðr)",
     "sources": [
@@ -22142,8 +21422,6 @@ const LEXICON = [
     "unicode": "Mnw",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fertility, Harvest",
     "meaning": "The firm one",
     "sources": [
@@ -22177,8 +21455,6 @@ const LEXICON = [
     "unicode": "Bs",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Protection, Childbirth, Joy",
     "meaning": "The protector",
     "sources": [
@@ -22213,8 +21489,6 @@ const LEXICON = [
     "unicode": "Ḥkꜣ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Magic, Medicine",
     "meaning": "Magic, first work",
     "sources": [
@@ -22262,8 +21536,6 @@ const LEXICON = [
     "unicode": "Nbtḥwt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Protection, Death, Mourning",
     "meaning": "Lady of the mansion",
     "sources": [
@@ -22327,8 +21599,6 @@ const LEXICON = [
     "unicode": "Tꜣwrt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Childbirth, Protection",
     "meaning": "The great one",
     "sources": [
@@ -22386,8 +21656,6 @@ const LEXICON = [
     "unicode": "Ḫprj",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sunrise, Rebirth",
     "meaning": "The becoming one",
     "sources": [
@@ -22439,8 +21707,6 @@ const LEXICON = [
     "unicode": "Wpwꜣwt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Opening the Way",
     "meaning": "Opener of the ways",
     "sources": [
@@ -22504,8 +21770,6 @@ const LEXICON = [
     "unicode": "Dwꜣt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Underworld Realm",
     "meaning": "The netherworld",
     "sources": [
@@ -22545,8 +21809,6 @@ const LEXICON = [
     "unicode": "Ꜥꜣrw",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Field of Reeds, Paradise",
     "meaning": "Reeds",
     "sources": [
@@ -22586,8 +21848,6 @@ const LEXICON = [
     "unicode": "Nnw",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Primordial Waters",
     "meaning": "The inert one, waters",
     "sources": [
@@ -22621,8 +21881,6 @@ const LEXICON = [
     "unicode": "Mꜣꜥtkꜣ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Truth and Spirit",
     "meaning": "Truth of the soul",
     "sources": [
@@ -22674,8 +21932,6 @@ const LEXICON = [
     "unicode": "Rnnwtt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Nursing, Harvest",
     "meaning": "The nursing snake",
     "sources": [
@@ -22745,8 +22001,6 @@ const LEXICON = [
     "unicode": "Mḥtwrt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Great Flood, Cow Goddess",
     "meaning": "The great flood",
     "sources": [
@@ -22822,8 +22076,6 @@ const LEXICON = [
     "unicode": "Ḥnḫsšwj",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Placenta, Protection",
     "meaning": "The two placentas",
     "sources": [
@@ -22905,8 +22157,6 @@ const LEXICON = [
     "unicode": "Ḥqt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fertility, Childbirth",
     "meaning": "The frog",
     "sources": [
@@ -22954,8 +22204,6 @@ const LEXICON = [
     "greek": "—",
     "originalScript": "𒀭𒀀𒉡",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Phonological Reconstruction, Sky, Heaven, Kingship",
     "meaning": "Reconstruction node for the Sumerian/Akkadian sky god Anu: the circumflex marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
@@ -23027,8 +22275,6 @@ const LEXICON = [
     "unicode": "Inanna",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Love, War, Venus",
     "meaning": "Lady of heaven",
     "sources": [
@@ -23081,8 +22327,6 @@ const LEXICON = [
     "unicode": "Ninḫursaĝ",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mother Goddess, Mountains",
     "meaning": "Lady of the mountain",
     "sources": [
@@ -23152,8 +22396,6 @@ const LEXICON = [
     "unicode": "Ninlil",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wind, Air",
     "meaning": "Lady of the wind",
     "sources": [
@@ -23206,8 +22448,6 @@ const LEXICON = [
     "unicode": "Nergal",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Underworld, War, Plague",
     "meaning": "Lord of the great city",
     "sources": [
@@ -23260,8 +22500,6 @@ const LEXICON = [
     "unicode": "Ereškigal",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Queen of the Underworld",
     "meaning": "Lady of the great earth",
     "sources": [
@@ -23345,8 +22583,6 @@ const LEXICON = [
     "unicode": "Tiāmat",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Phonological Reconstruction, Salt Water, Chaos",
     "meaning": "Sea",
     "sources": [
@@ -23401,8 +22637,6 @@ const LEXICON = [
     "greek": "—",
     "originalScript": "𒀊𒍪",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Phonological Reconstruction, Fresh Water, Abyss",
     "meaning": "Reconstruction node for the Mesopotamian abyss Apsu (Sumerian Abzu): the circumflex marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
@@ -23475,8 +22709,6 @@ const LEXICON = [
     "unicode": "Dumuzid",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Shepherds, Vegetation",
     "meaning": "Faithful son",
     "sources": [
@@ -23534,8 +22766,6 @@ const LEXICON = [
     "unicode": "Gilgameš",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hero, King of Uruk",
     "meaning": "The old man became young",
     "sources": [
@@ -23606,8 +22836,6 @@ const LEXICON = [
     "unicode": "Enkidu",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wild Man, Hero",
     "meaning": "Lord of the pleasant place",
     "sources": [
@@ -23660,8 +22888,6 @@ const LEXICON = [
     "unicode": "Pazuzu",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wind Demon, Protection",
     "meaning": "Unknown",
     "sources": [
@@ -23714,8 +22940,6 @@ const LEXICON = [
     "unicode": "Ninurta",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, Agriculture, Storms",
     "meaning": "Lord of the earth",
     "sources": [
@@ -23774,8 +22998,6 @@ const LEXICON = [
     "unicode": "Ḫumbaba",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Monster of Cedar Forest",
     "meaning": "Unknown",
     "sources": [
@@ -23833,8 +23055,6 @@ const LEXICON = [
     "unicode": "Kārttikeya",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Commander of Gods",
     "meaning": "Son of Krittika",
     "sources": [
@@ -23905,8 +23125,6 @@ const LEXICON = [
     "unicode": "Rādhā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Divine Love, Consort of Krishna",
     "meaning": "The beloved of Kṛṣṇa, chief of the gopīs (from √rādh, 'to succeed, accomplish')",
     "senses": [
@@ -23967,8 +23185,6 @@ const LEXICON = [
     "unicode": "Satī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Marital Fidelity, First Wife of Shiva",
     "meaning": "The True One — daughter of Dakṣa and first wife of Śiva, who immolated herself at her father's sacrifice",
     "senses": [
@@ -24014,8 +23230,6 @@ const LEXICON = [
     "unicode": "Uṣás",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dawn",
     "meaning": "Dawn, the morning light — personified as a goddess, the daughter of heaven, and celebrated in the hymns of the Ṛg-veda.",
     "senses": [
@@ -24067,8 +23281,6 @@ const LEXICON = [
     "unicode": "Rātrī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Night",
     "meaning": "Night — personified as a goddess, to whom a celebrated hymn of the Ṛg-veda (x, 127) is addressed.",
     "senses": [
@@ -24120,8 +23332,6 @@ const LEXICON = [
     "unicode": "Pṛthivī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth",
     "meaning": "The earth, the wide world — 'the broad and extended One' — personified as a goddess and often invoked together with the sky (Dyaus).",
     "senses": [
@@ -24185,8 +23395,6 @@ const LEXICON = [
     "unicode": "Aditi",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Infinity, Freedom, Mother of Gods",
     "meaning": "Boundlessness, inexhaustible abundance, unimpaired perfection, creative power — 'Infinity', one of the most ancient of the Indian goddesses and the mother of the Ādityas.",
     "senses": [
@@ -24238,8 +23446,6 @@ const LEXICON = [
     "unicode": "Diti",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mother of Demons",
     "meaning": "Daughter of Dakṣa and wife of the sage Kaśyapa, mother of the Daityas, the demon race — the counterpart of her sister Aditi, who is mother of the gods.",
     "senses": [
@@ -24285,8 +23491,6 @@ const LEXICON = [
     "unicode": "Dharma",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Law, Duty, Righteousness",
     "meaning": "That which holds or sustains — law, duty, and righteousness; the moral and religious order that upholds the world (from √dhṛ, 'to hold, sustain').",
     "senses": [
@@ -24344,8 +23548,6 @@ const LEXICON = [
     "unicode": "Karma",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Action, Consequence",
     "meaning": "Deed, action",
     "sources": [
@@ -24391,8 +23593,6 @@ const LEXICON = [
     "unicode": "Mokṣa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Liberation, Release",
     "meaning": "Liberation from the cycle of rebirth — the fourth and highest aim of human life",
     "senses": [
@@ -24450,8 +23650,6 @@ const LEXICON = [
     "unicode": "Saṃsāra",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cycle of Rebirth",
     "meaning": "The circuit of mundane existence — the soul's passage through a succession of births, deaths, and rebirths; transmigration, the world as the sphere of becoming.",
     "senses": [
@@ -24515,8 +23713,6 @@ const LEXICON = [
     "unicode": "Ātman",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Self, Soul",
     "meaning": "The individual soul, the self — in the Upaniṣads, the innermost essence of each being, ultimately identical with Brahman.",
     "senses": [
@@ -24568,8 +23764,6 @@ const LEXICON = [
     "unicode": "Brahman",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Ultimate Reality",
     "meaning": "The sacred utterance that became the Absolute — the power of prayer expanded into the world-ground of the Upaniṣads",
     "senses": [
@@ -24633,8 +23827,6 @@ const LEXICON = [
     "unicode": "Māyā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Illusion, Magic",
     "meaning": "Illusion, magic, supernatural power — in philosophy, the cosmic illusion by which the One appears as the manifold phenomenal world.",
     "senses": [
@@ -24680,8 +23872,6 @@ const LEXICON = [
     "unicode": "Yoga",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Union, Discipline",
     "meaning": "Union, yoking — spiritual and ascetic discipline by which the individual self is joined to the divine; also the name of one of the six orthodox schools of Hindu philosophy.",
     "senses": [
@@ -24727,8 +23917,6 @@ const LEXICON = [
     "unicode": "Mantra",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacred Formula",
     "meaning": "a sacred formula addressed to any individual deity (e.g. om SivAya namaH), RTL. 61",
     "senses": [
@@ -24786,8 +23974,6 @@ const LEXICON = [
     "unicode": "Tantra",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Weaving, Esoteric System",
     "meaning": "A class of works teaching magical and mystical formularies, mostly cast as dialogues between Śiva and Durgā; hence the esoteric systems of doctrine and ritual founded upon them.",
     "senses": [
@@ -24845,8 +24031,6 @@ const LEXICON = [
     "unicode": "Oṃ",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Syllable, Cosmic Sound",
     "meaning": "The sacred syllable of solemn affirmation — the sound from which the Vedas and creation itself proceed",
     "senses": [
@@ -24891,8 +24075,6 @@ const LEXICON = [
     "unicode": "Vyāsa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sage, Compiler of Vedas",
     "meaning": "‘The arranger, the compiler’ — a celebrated mythical sage, often called Vedavyāsa, regarded as the original compiler of the Vedas and the traditional author of the Mahābhārata and the Purāṇas.",
     "senses": [
@@ -24944,8 +24126,6 @@ const LEXICON = [
     "unicode": "Vālmīki",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sage, Author of Ramayana",
     "meaning": "The celebrated author of the Rāmāyaṇa, regarded as the first of poets; so called, according to tradition, because absorbed in meditation he was overrun by ants until he resembled an anthill (valmīka).",
     "senses": [
@@ -25009,8 +24189,6 @@ const LEXICON = [
     "unicode": "Kaśyapa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sage, Progenitor",
     "meaning": "Tortoise",
     "sources": [
@@ -25074,8 +24252,6 @@ const LEXICON = [
     "unicode": "Vasiṣṭha",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Royal Sage",
     "meaning": "‘The most wealthy’ — a celebrated Vedic Ṛṣi, one of the seven sages and family priest of the solar race of kings, owner of Nandinī, the ‘cow of plenty’, offspring of Surabhi, which granted all his desires.",
     "senses": [
@@ -25151,8 +24327,6 @@ const LEXICON = [
     "unicode": "Matsya",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fish Avatar of Vishnu",
     "meaning": "'The Fish' — the first avatāra of Viṣṇu, who saved Manu and the Vedas from the great deluge",
     "senses": [
@@ -25210,8 +24384,6 @@ const LEXICON = [
     "unicode": "Narasiṃha",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Man-Lion Avatar",
     "meaning": "The Man-Lion — the fourth avatāra of Viṣṇu",
     "senses": [
@@ -25295,8 +24467,6 @@ const LEXICON = [
     "unicode": "Nuada",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, King of Tuatha",
     "meaning": "Cloud-maker, hunter",
     "sources": [
@@ -25343,8 +24513,6 @@ const LEXICON = [
     "unicode": "Dían Cécht",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Healing, Medicine",
     "meaning": "Swift power",
     "sources": [
@@ -25414,8 +24582,6 @@ const LEXICON = [
     "unicode": "Aengus",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Love, Youth, Poetry",
     "meaning": "One vigor, true strength",
     "sources": [
@@ -25468,8 +24634,6 @@ const LEXICON = [
     "unicode": "Badb",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Battle, Death, Crow",
     "meaning": "Crow, scald-crow",
     "sources": [
@@ -25510,8 +24674,6 @@ const LEXICON = [
     "unicode": "Macha",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, Sovereignty, Horses",
     "meaning": "Field, plain",
     "sources": [
@@ -25558,8 +24720,6 @@ const LEXICON = [
     "unicode": "Danu",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mother Goddess, Rivers",
     "meaning": "Knowledge, wisdom",
     "sources": [
@@ -25599,8 +24759,6 @@ const LEXICON = [
     "unicode": "CúChulainn",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hero, Hound of Culann",
     "meaning": "Culann's hound",
     "sources": [
@@ -25676,8 +24834,6 @@ const LEXICON = [
     "unicode": "Fionn",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hunter, Seer, Leader",
     "meaning": "Fair, white",
     "sources": [
@@ -25724,8 +24880,6 @@ const LEXICON = [
     "unicode": "Ogma",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Eloquence, Writing",
     "meaning": "The grim one",
     "sources": [
@@ -25766,8 +24920,6 @@ const LEXICON = [
     "unicode": "Arawn",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Otherworld, Annwn",
     "meaning": "Silver-tongued",
     "sources": [
@@ -25814,8 +24966,6 @@ const LEXICON = [
     "unicode": "Gwydion",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Magic, Poetry, Trickery",
     "meaning": "Born of trees",
     "sources": [
@@ -25874,8 +25024,6 @@ const LEXICON = [
     "unicode": "Rhiannon",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Horses, Sovereignty",
     "meaning": "Great queen",
     "sources": [
@@ -25940,8 +25088,6 @@ const LEXICON = [
     "unicode": "Pryderi",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Son of Pwyll, King",
     "meaning": "Care, anxiety",
     "sources": [
@@ -26000,8 +25146,6 @@ const LEXICON = [
     "unicode": "Ceridwen",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Inspiration, Transformation",
     "meaning": "Bent or crooked woman",
     "sources": [
@@ -26066,8 +25210,6 @@ const LEXICON = [
     "unicode": "TírnanÓg",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Land of the Young, Otherworld",
     "meaning": "Land of the young",
     "sources": [
@@ -26131,8 +25273,6 @@ const LEXICON = [
     "unicode": "Annwn",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Otherworld, Underworld",
     "meaning": "The deep, the abyss",
     "sources": [
@@ -26179,8 +25319,6 @@ const LEXICON = [
     "unicode": "Púca",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Shapeshifter, Trickster",
     "meaning": "Goblin, sprite",
     "sources": [
@@ -26226,8 +25364,6 @@ const LEXICON = [
     "unicode": "Banshí",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Death, Lamentation",
     "meaning": "Woman of the fairy mound",
     "sources": [
@@ -26285,8 +25421,6 @@ const LEXICON = [
     "unicode": "Eachuisge",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Water Horse, Drowner",
     "meaning": "Water horse",
     "sources": [
@@ -26357,8 +25491,6 @@ const LEXICON = [
     "unicode": "Leprechán",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mischief, Gold",
     "meaning": "Little body",
     "sources": [
@@ -26434,8 +25566,6 @@ const LEXICON = [
     "unicode": "Izanami",
     "greek": "伊邪那美",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creation, Death, Earth",
     "meaning": "She-who-invites",
     "sources": [
@@ -26494,8 +25624,6 @@ const LEXICON = [
     "unicode": "Ninigi",
     "greek": "邇邇芸命",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Rice, Descendant of Amaterasu",
     "meaning": "The august rice spirit",
     "sources": [
@@ -26548,8 +25676,6 @@ const LEXICON = [
     "unicode": "Raijin",
     "greek": "雷神",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Thunder, Lightning",
     "meaning": "Thunder god",
     "sources": [
@@ -26602,8 +25728,6 @@ const LEXICON = [
     "unicode": "Fūjin",
     "greek": "風神",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wind",
     "meaning": "Wind god",
     "sources": [
@@ -26650,8 +25774,6 @@ const LEXICON = [
     "unicode": "Kannon",
     "greek": "観音",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Compassion, Mercy",
     "meaning": "Perceiver of sounds",
     "sources": [
@@ -26712,8 +25834,6 @@ const LEXICON = [
     "unicode": "Jizō",
     "greek": "地蔵",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Protection of Children, Travelers",
     "meaning": "Earth treasury",
     "sources": [
@@ -26753,8 +25873,6 @@ const LEXICON = [
     "unicode": "Amida",
     "greek": "阿弥陀",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Infinite Light, Pure Land",
     "meaning": "Immeasurable light",
     "sources": [
@@ -26801,8 +25919,6 @@ const LEXICON = [
     "unicode": "Fuji",
     "greek": "富士",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacred Mountain",
     "meaning": "Wealthy warrior",
     "sources": [
@@ -26843,8 +25959,6 @@ const LEXICON = [
     "unicode": "Ise",
     "greek": "伊勢",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacred Shrine",
     "meaning": "Ancient province",
     "sources": [
@@ -26879,8 +25993,6 @@ const LEXICON = [
     "unicode": "Takachiho",
     "greek": "高千穂",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacred Gorge, Descent of Gods",
     "meaning": "High thousand ears",
     "sources": [
@@ -26951,8 +26063,6 @@ const LEXICON = [
     "unicode": "Kumano",
     "greek": "熊野",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacred Region, Three Shrines",
     "meaning": "Bear plain",
     "sources": [
@@ -27005,8 +26115,6 @@ const LEXICON = [
     "unicode": "Ebisu",
     "greek": "恵比寿",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fishermen, Commerce, Luck",
     "meaning": "The foreigner, straggler",
     "sources": [
@@ -27053,8 +26161,6 @@ const LEXICON = [
     "unicode": "Ōkuninushi",
     "greek": "大国主",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Nation-building, Marriage",
     "meaning": "Great land master",
     "sources": [
@@ -27131,8 +26237,6 @@ const LEXICON = [
     "unicode": "Sarutahiko",
     "greek": "猿田彦",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Crossroads, Guidance",
     "meaning": "Monkey-field prince",
     "sources": [
@@ -27209,8 +26313,6 @@ const LEXICON = [
     "unicode": "Kagutsuchi",
     "greek": "迦具土",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fire, Volcanoes",
     "meaning": "The burning force",
     "sources": [
@@ -27287,8 +26389,6 @@ const LEXICON = [
     "unicode": "Kāne",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Creator, Light, Life",
     "meaning": "Man, male",
     "sources": [
@@ -27336,8 +26436,6 @@ const LEXICON = [
     "unicode": "Kanaloa",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Ocean, Underworld",
     "meaning": "Hawaiian god symbolized by the squid or by the octopus, typically associated with Kāne",
     "senses": [
@@ -27401,8 +26499,6 @@ const LEXICON = [
     "unicode": "Lono",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Agriculture, Peace, Rain",
     "meaning": "Hawaiian deity, associated with fertility, agriculture, rainfall, music and peace",
     "senses": [
@@ -27449,8 +26545,6 @@ const LEXICON = [
     "unicode": "Kū",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Forests, Fishing",
     "meaning": "Upright, erect",
     "sources": [
@@ -27478,8 +26572,6 @@ const LEXICON = [
     "unicode": "Hiiaka",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Hula, Magic, Healing",
     "meaning": "patron goddess of Hawaiʻi",
     "senses": [
@@ -27538,8 +26630,6 @@ const LEXICON = [
     "unicode": "Kamapuaa",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Pig God, Agriculture",
     "meaning": "male fertility deity in Hawaiian mythology",
     "senses": [
@@ -27610,8 +26700,6 @@ const LEXICON = [
     "unicode": "Poliahu",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Snow, Mauna Kea",
     "meaning": "Cloaked bosom",
     "sources": [
@@ -27670,8 +26758,6 @@ const LEXICON = [
     "unicode": "Tāwhirimātea",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Storms, Wind",
     "meaning": "Tāwhiri of the seas",
     "sources": [
@@ -27759,8 +26845,6 @@ const LEXICON = [
     "unicode": "Haumiatiketike",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wild Food, Fernroot",
     "meaning": "Haumia tied to the earth",
     "sources": [
@@ -27861,8 +26945,6 @@ const LEXICON = [
     "unicode": "Rūaumoko",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earthquakes, Volcanoes",
     "meaning": "Rūa of the earthquakes",
     "sources": [
@@ -27926,8 +27008,6 @@ const LEXICON = [
     "unicode": "Whiro",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Darkness, Evil",
     "meaning": "The lizard of death",
     "sources": [
@@ -27974,8 +27054,6 @@ const LEXICON = [
     "unicode": "Taaroa",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creator, Supreme Being",
     "meaning": "The distant one",
     "sources": [
@@ -28028,8 +27106,6 @@ const LEXICON = [
     "unicode": "Tagaloa",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creator, Ocean",
     "meaning": "The lord",
     "sources": [
@@ -28088,8 +27164,6 @@ const LEXICON = [
     "unicode": "Nafanua",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, Prophecy, Salvation",
     "meaning": "Hidden in the earth",
     "sources": [
@@ -28148,8 +27222,6 @@ const LEXICON = [
     "unicode": "Makemake",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creator, Fertility, Bird-Man",
     "meaning": "To see, to know",
     "sources": [
@@ -28214,8 +27286,6 @@ const LEXICON = [
     "unicode": "Svarog",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sky, Fire, Smithing",
     "meaning": "Bright, clear",
     "sources": [
@@ -28268,8 +27338,6 @@ const LEXICON = [
     "unicode": "Stribog",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Winds, Storms",
     "meaning": "Father of winds",
     "sources": [
@@ -28328,8 +27396,6 @@ const LEXICON = [
     "unicode": "Simargl",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Winged Guardian, Plant Life",
     "meaning": "From Simurgh (Iranian)",
     "sources": [
@@ -28388,8 +27454,6 @@ const LEXICON = [
     "unicode": "Mokoš",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Weaving, Childbirth, Fate",
     "meaning": "Wet, moist",
     "sources": [
@@ -28441,8 +27505,6 @@ const LEXICON = [
     "unicode": "Lada",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Love, Beauty, Spring",
     "meaning": "Lady, order",
     "sources": [
@@ -28483,8 +27545,6 @@ const LEXICON = [
     "unicode": "Marzanna",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Winter, Death, Rebirth",
     "meaning": "Death goddess",
     "sources": [
@@ -28549,8 +27609,6 @@ const LEXICON = [
     "unicode": "Morana",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Winter, Death",
     "meaning": "Death",
     "sources": [
@@ -28603,8 +27661,6 @@ const LEXICON = [
     "unicode": "Mat' Zemlyá",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth Mother",
     "meaning": "Mother Earth",
     "sources": [
@@ -28674,8 +27730,6 @@ const LEXICON = [
     "unicode": "Léshy",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Forest Spirit",
     "meaning": "Of the forest",
     "sources": [
@@ -28721,8 +27775,6 @@ const LEXICON = [
     "unicode": "Domovój",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Household Spirit",
     "meaning": "Of the house",
     "sources": [
@@ -28780,8 +27832,6 @@ const LEXICON = [
     "unicode": "Vodjanój",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Water Spirit, Drowner",
     "meaning": "Of the water",
     "sources": [
@@ -28845,8 +27895,6 @@ const LEXICON = [
     "unicode": "Rusálka",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Water Nymph, Drowned Maiden",
     "meaning": "Of Rus",
     "sources": [
@@ -28904,8 +27952,6 @@ const LEXICON = [
     "unicode": "Baba Jagá",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Forest Witch, Death",
     "meaning": "Evil woman, serpent",
     "sources": [
@@ -28969,8 +28015,6 @@ const LEXICON = [
     "unicode": "Kikimóra",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "House Spirit, Swamp Hag",
     "meaning": "Unknown",
     "sources": [
@@ -29034,8 +28078,6 @@ const LEXICON = [
     "unicode": "Zmey Gorynych",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Three-Headed Dragon",
     "meaning": "Mountain dragon",
     "sources": [
@@ -29124,8 +28166,6 @@ const LEXICON = [
     "unicode": "Ōmetēcuhtli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lord of Duality",
     "meaning": "Two lord",
     "sources": [
@@ -29207,8 +28247,6 @@ const LEXICON = [
     "unicode": "Ōmecihuātl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lady of Duality",
     "meaning": "Two lady",
     "sources": [
@@ -29284,8 +28322,6 @@ const LEXICON = [
     "unicode": "Tonacatēcuhtli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lord of Sustenance",
     "meaning": "Lord of our food",
     "sources": [
@@ -29385,8 +28421,6 @@ const LEXICON = [
     "unicode": "Chālchiuhtlīcue",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Water, Rivers, Lakes",
     "meaning": "She of the jade skirt",
     "sources": [
@@ -29492,8 +28526,6 @@ const LEXICON = [
     "unicode": "Mayāhuel",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Maguey, Pulque",
     "meaning": "She of the maguey",
     "sources": [
@@ -29557,8 +28589,6 @@ const LEXICON = [
     "unicode": "Xōchipilli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Flowers, Love, Beauty",
     "meaning": "Flower prince",
     "sources": [
@@ -29634,8 +28664,6 @@ const LEXICON = [
     "unicode": "Centeōtl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Maize, Agriculture",
     "meaning": "Maize deity",
     "sources": [
@@ -29699,8 +28727,6 @@ const LEXICON = [
     "unicode": "Xōlōtl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Evening Star, Death, Twins",
     "meaning": "The double, the monster",
     "sources": [
@@ -29753,8 +28779,6 @@ const LEXICON = [
     "unicode": "Mictlāntēcuhtli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lord of Mictlan",
     "meaning": "Lord of the underworld",
     "sources": [
@@ -29860,8 +28884,6 @@ const LEXICON = [
     "unicode": "Mictēcacihuātl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lady of Mictlan",
     "meaning": "Lady of the underworld",
     "sources": [
@@ -29961,8 +28983,6 @@ const LEXICON = [
     "unicode": "Ehēcatl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wind",
     "meaning": "Wind",
     "sources": [
@@ -30028,8 +29048,6 @@ const LEXICON = [
     "unicode": "Ītzpāpālōtl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Obsidian Butterfly, Stars",
     "meaning": "Obsidian butterfly",
     "sources": [
@@ -30111,8 +29129,6 @@ const LEXICON = [
     "unicode": "Ōmeteōtl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Supreme Duality",
     "meaning": "Two divinity",
     "sources": [
@@ -30176,8 +29192,6 @@ const LEXICON = [
     "unicode": "Citlālicue",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Milky Way, Stars",
     "meaning": "Star-skirted",
     "sources": [
@@ -30253,8 +29267,6 @@ const LEXICON = [
     "unicode": "Tlāltēcuhtli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth",
     "meaning": "Lord of the earth",
     "sources": [
@@ -30353,8 +29365,6 @@ const LEXICON = [
     "unicode": "Ọrúnmìlà",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, Divination, Ifá",
     "meaning": "Heaven knows who will succeed",
     "sources": [
@@ -30419,8 +29429,6 @@ const LEXICON = [
     "unicode": "Ọṣọọsì",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hunting, Forest, Justice",
     "meaning": "The hunter — orisha of the hunt, the forest, and deliberate strategy (standard Yoruba Ọ̀ṣọ́ọ̀sì; Cuban Ochosi, Brazilian Oxóssi)",
     "sources": [
@@ -30484,8 +29492,6 @@ const LEXICON = [
     "unicode": "Ọsanyìn",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Herbal Medicine, Small Plants",
     "meaning": "The sorcerer of herbs",
     "sources": [
@@ -30543,8 +29549,6 @@ const LEXICON = [
     "unicode": "Olókun",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wealth, Ocean, Depths",
     "meaning": "Owner of the ocean",
     "sources": [
@@ -30597,8 +29601,6 @@ const LEXICON = [
     "unicode": "Aganjú",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wilderness, Earth, Diaspora Volcano",
     "meaning": "The uninhabited place",
     "sources": [
@@ -30650,8 +29652,6 @@ const LEXICON = [
     "unicode": "Ọbalúayé",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Disease, Healing, Earth",
     "meaning": "Father of the world",
     "sources": [
@@ -30722,8 +29722,6 @@ const LEXICON = [
     "unicode": "Ọṣumàrè",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Rainbow, Regeneration",
     "meaning": "The rainbow serpent",
     "sources": [
@@ -30781,8 +29779,6 @@ const LEXICON = [
     "unicode": "Ajé",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wealth, Trade",
     "meaning": "Wealth",
     "sources": [
@@ -30816,8 +29812,6 @@ const LEXICON = [
     "unicode": "Ìbejì",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Twins, Joy, Abundance",
     "meaning": "The twins",
     "sources": [
@@ -30863,8 +29857,6 @@ const LEXICON = [
     "unicode": "Ọ̀rìṣàoko",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Agriculture, Harvest",
     "meaning": "Orisha of the farm",
     "sources": [
@@ -30934,8 +29926,6 @@ const LEXICON = [
     "unicode": "Baiame",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sky Father, Creator",
     "meaning": "The maker",
     "sources": [
@@ -30988,8 +29978,6 @@ const LEXICON = [
     "unicode": "Bunjil",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creator Eaglehawk",
     "meaning": "The eaglehawk",
     "sources": [
@@ -31042,8 +30030,6 @@ const LEXICON = [
     "unicode": "Daramulum",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sky Hero, Son of Baiame",
     "meaning": "The one-legged",
     "sources": [
@@ -31114,8 +30100,6 @@ const LEXICON = [
     "unicode": "Altjira",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "The Dreaming, Eternal",
     "meaning": "The dreamtime",
     "sources": [
@@ -31174,8 +30158,6 @@ const LEXICON = [
     "unicode": "Ngalyod",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Rainbow Serpent",
     "meaning": "The rainbow",
     "sources": [
@@ -31234,8 +30216,6 @@ const LEXICON = [
     "unicode": "Wandjina",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Cloud, Rain Spirits",
     "meaning": "The cloud spirits",
     "sources": [
@@ -31300,8 +30280,6 @@ const LEXICON = [
     "unicode": "Wawalag",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Two Sisters, Creators",
     "meaning": "The two sisters",
     "sources": [
@@ -31360,8 +30338,6 @@ const LEXICON = [
     "unicode": "Yurlungur",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Copper Snake, Initiator",
     "meaning": "The great copper snake",
     "sources": [
@@ -31432,8 +30408,6 @@ const LEXICON = [
     "unicode": "Tjinimin",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Trickster, Moth Man",
     "meaning": "The moth man",
     "sources": [
@@ -31498,8 +30472,6 @@ const LEXICON = [
     "unicode": "Eingana",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creator Mother Snake",
     "meaning": "The mother",
     "sources": [
@@ -31558,8 +30530,6 @@ const LEXICON = [
     "unicode": "Mamaragan",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Lightning Man",
     "meaning": "The lightning",
     "sources": [
@@ -31630,8 +30600,6 @@ const LEXICON = [
     "unicode": "Gnowee",
     "greek": "—",
     "pantheon": "aboriginal",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sun Goddess",
     "meaning": "The sun",
     "sources": [
@@ -31684,8 +30652,6 @@ const LEXICON = [
     "unicode": "SpəntaMainyu",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Holy Spirit, Bounteous",
     "meaning": "Bounteous spirit",
     "sources": [
@@ -31773,8 +30739,6 @@ const LEXICON = [
     "unicode": "VohuManah",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Good Mind, Cattle",
     "meaning": "Good thought",
     "sources": [
@@ -31845,8 +30809,6 @@ const LEXICON = [
     "unicode": "XšaθraVairya",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Desirable Dominion, Metal",
     "meaning": "Desirable dominion",
     "sources": [
@@ -31952,8 +30914,6 @@ const LEXICON = [
     "unicode": "SpəntaĀrmaiti",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Holy Devotion, Earth",
     "meaning": "Bounteous devotion",
     "sources": [
@@ -32047,8 +31007,6 @@ const LEXICON = [
     "unicode": "Haurvatāt",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wholeness, Health, Water",
     "meaning": "Wholeness",
     "sources": [
@@ -32119,8 +31077,6 @@ const LEXICON = [
     "unicode": "Amərətāt",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Immortality, Plants",
     "meaning": "Immortality",
     "sources": [
@@ -32185,8 +31141,6 @@ const LEXICON = [
     "unicode": "Sraoša",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Obedience, Protection",
     "meaning": "Discipline, obedience",
     "sources": [
@@ -32244,8 +31198,6 @@ const LEXICON = [
     "unicode": "Rašnu",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Justice, Judgment",
     "meaning": "The true one",
     "sources": [
@@ -32297,8 +31249,6 @@ const LEXICON = [
     "unicode": "Anāhitā",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fertility, Water, Wisdom",
     "meaning": "Immaculate, undefiled",
     "sources": [
@@ -32357,8 +31307,6 @@ const LEXICON = [
     "unicode": "Mama Quilla",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Moon, Marriage",
     "meaning": "Mother moon",
     "sources": [
@@ -32435,8 +31383,6 @@ const LEXICON = [
     "unicode": "Mamaqucha",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sea, Fishermen",
     "meaning": "Mother sea",
     "sources": [
@@ -32507,8 +31453,6 @@ const LEXICON = [
     "unicode": "Illapa",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Thunder, Lightning, War",
     "meaning": "Thunder",
     "sources": [
@@ -32561,8 +31505,6 @@ const LEXICON = [
     "unicode": "Pachacámac",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Creator, Earthquake",
     "meaning": "Earth-shaker",
     "sources": [
@@ -32638,8 +31580,6 @@ const LEXICON = [
     "unicode": "Supay",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Underworld, Death",
     "meaning": "The spirit",
     "sources": [
@@ -32686,8 +31626,6 @@ const LEXICON = [
     "unicode": "Urcaguary",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Underworld Jewels",
     "meaning": "He of the underground",
     "sources": [
@@ -32758,8 +31696,6 @@ const LEXICON = [
     "unicode": "Ekkeko",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Luck, Abundance",
     "meaning": "The dwarf",
     "sources": [
@@ -32812,8 +31748,6 @@ const LEXICON = [
     "unicode": "Wamani",
     "greek": "—",
     "pantheon": "incan",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacred Mountain",
     "meaning": "The falcon",
     "sources": [
@@ -32866,8 +31800,6 @@ const LEXICON = [
     "unicode": "Anima",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Soul, Breath, Life Force",
     "meaning": "Breath, air, soul",
     "sources": [
@@ -32914,8 +31846,6 @@ const LEXICON = [
     "unicode": "Animus",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mind, Spirit, Courage",
     "meaning": "Mind, spirit, courage",
     "sources": [
@@ -32968,8 +31898,6 @@ const LEXICON = [
     "unicode": "Nūmen",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Divine Will, Power",
     "meaning": "A nodding, divine power",
     "sources": [
@@ -33015,8 +31943,6 @@ const LEXICON = [
     "unicode": "Fidēs",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Faith, Trust, Promise",
     "meaning": "Trust, faith",
     "sources": [
@@ -33062,8 +31988,6 @@ const LEXICON = [
     "unicode": "Pietās",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Piety, Duty, Devotion",
     "meaning": "Duty, devotion",
     "sources": [
@@ -33115,8 +32039,6 @@ const LEXICON = [
     "unicode": "Virtūs",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Courage, Excellence, Virtue",
     "meaning": "Manliness, courage",
     "sources": [
@@ -33168,8 +32090,6 @@ const LEXICON = [
     "unicode": "Gravitas",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Weight, Seriousness, Dignity",
     "meaning": "Weight, importance",
     "sources": [
@@ -33234,8 +32154,6 @@ const LEXICON = [
     "unicode": "Dignitās",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Worthiness, Rank, Honor",
     "meaning": "Worth, merit",
     "sources": [
@@ -33299,8 +32217,6 @@ const LEXICON = [
     "unicode": "Auctōritās",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Authority, Influence",
     "meaning": "Authority, prestige",
     "sources": [
@@ -33376,8 +32292,6 @@ const LEXICON = [
     "unicode": "Clementia",
     "greek": "—",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mercy, Forgiveness",
     "meaning": "Mildness, mercy",
     "sources": [
@@ -33448,8 +32362,6 @@ const LEXICON = [
     "unicode": "Pŷr",
     "greek": "Πῦρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fire",
     "meaning": "Fire",
     "sources": [
@@ -33484,8 +32396,6 @@ const LEXICON = [
     "unicode": "Hýdōr",
     "greek": "Ὕδωρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Water",
     "meaning": "Water",
     "sources": [
@@ -33531,8 +32441,6 @@ const LEXICON = [
     "unicode": "Gē",
     "greek": "Γῆ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth",
     "meaning": "Earth",
     "sources": [
@@ -33562,8 +32470,6 @@ const LEXICON = [
     "unicode": "Aḗr",
     "greek": "Ἀήρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Air",
     "meaning": "Air, mist",
     "sources": [
@@ -33597,8 +32503,6 @@ const LEXICON = [
     "unicode": "Stýx",
     "greek": "Στύξ",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "River of Hate, Oaths",
     "meaning": "Hateful",
     "sources": [
@@ -33639,8 +32543,6 @@ const LEXICON = [
     "unicode": "Lḗthē",
     "greek": "Λήθη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "River of Forgetfulness",
     "meaning": "Forgetfulness",
     "sources": [
@@ -33686,8 +32588,6 @@ const LEXICON = [
     "unicode": "Achérōn",
     "greek": "Ἀχέρων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "River of Woe",
     "meaning": "River of woe",
     "sources": [
@@ -33746,8 +32646,6 @@ const LEXICON = [
     "unicode": "Kōkytós",
     "greek": "Κωκυτός",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "River of Lamentation",
     "meaning": "Wailing",
     "sources": [
@@ -33805,8 +32703,6 @@ const LEXICON = [
     "unicode": "Phlégethōn",
     "greek": "Φλέγεθων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "River of Fire",
     "meaning": "Flaming",
     "sources": [
@@ -33882,8 +32778,6 @@ const LEXICON = [
     "unicode": "Guānyīn",
     "greek": "觀音",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Compassion, Mercy",
     "meaning": "Perceiver of sounds",
     "sources": [
@@ -33942,8 +32836,6 @@ const LEXICON = [
     "unicode": "Lánlíng",
     "greek": "蘭陵",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Beauty, Mask",
     "meaning": "Orchid mound",
     "sources": [
@@ -34001,8 +32893,6 @@ const LEXICON = [
     "unicode": "Tàishàng",
     "greek": "太上",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Supreme Lord, Dao",
     "meaning": "Supreme, great",
     "sources": [
@@ -34067,8 +32957,6 @@ const LEXICON = [
     "unicode": "Tiānhòu",
     "greek": "天后",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Protection, Seafaring",
     "meaning": "Empress of heaven",
     "sources": [
@@ -34126,8 +33014,6 @@ const LEXICON = [
     "unicode": "Lóngwáng",
     "greek": "龍王",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dragons, Rain, Rivers",
     "meaning": "water deity in Chinese mythology",
     "senses": [
@@ -34198,8 +33084,6 @@ const LEXICON = [
     "unicode": "Yámen",
     "greek": "閻羅",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Underworld, Judgment",
     "meaning": "Yama gate",
     "sources": [
@@ -34245,8 +33129,6 @@ const LEXICON = [
     "unicode": "Bāguà",
     "greek": "八卦",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cosmology, Divination",
     "meaning": "Eight trigrams",
     "sources": [
@@ -34293,8 +33175,6 @@ const LEXICON = [
     "unicode": "Tàijí",
     "greek": "太極",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Supreme Ultimate, Origin",
     "meaning": "Great extreme",
     "sources": [
@@ -34347,8 +33227,6 @@ const LEXICON = [
     "unicode": "Wǔxíng",
     "greek": "五行",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Five Elements, Change",
     "meaning": "Five phases",
     "sources": [
@@ -34401,8 +33279,6 @@ const LEXICON = [
     "unicode": "Qì",
     "greek": "氣",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Life Force, Energy",
     "meaning": "Breath, energy",
     "sources": [
@@ -34430,8 +33306,6 @@ const LEXICON = [
     "unicode": "Dào",
     "greek": "道",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "The Way, Ultimate Principle",
     "meaning": "Way, path",
     "sources": [
@@ -34465,8 +33339,6 @@ const LEXICON = [
     "unicode": "Fúxī",
     "greek": "伏羲",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Culture, Writing, Divination",
     "meaning": "Hidden one",
     "sources": [
@@ -34507,8 +33379,6 @@ const LEXICON = [
     "unicode": "Nǚwā",
     "greek": "女媧",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Creation, Mending Heaven",
     "meaning": "Woman wa",
     "sources": [
@@ -34549,8 +33419,6 @@ const LEXICON = [
     "unicode": "Shénnóng",
     "greek": "神農",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Agriculture, Medicine",
     "meaning": "Divine farmer",
     "sources": [
@@ -34615,8 +33483,6 @@ const LEXICON = [
     "unicode": "Huángdì",
     "greek": "黄帝",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Yellow Emperor, Ancestor",
     "meaning": "Yellow emperor",
     "sources": [
@@ -34674,8 +33540,6 @@ const LEXICON = [
     "unicode": "Zhùróng",
     "greek": "祝融",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fire, South",
     "meaning": "Prayer and melting",
     "sources": [
@@ -34733,8 +33597,6 @@ const LEXICON = [
     "unicode": "Gōnggōng",
     "greek": "共工",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Water, Destruction",
     "meaning": "Common labor",
     "sources": [
@@ -34798,8 +33660,6 @@ const LEXICON = [
     "unicode": "Xiān",
     "greek": "仙",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Immortal, Transcendent",
     "meaning": "Immortal",
     "sources": [
@@ -34840,8 +33700,6 @@ const LEXICON = [
     "unicode": "Māzǔ",
     "greek": "媽祖",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Protection, Seafaring",
     "meaning": "Mother ancestor",
     "sources": [
@@ -34882,8 +33740,6 @@ const LEXICON = [
     "unicode": "Èrláng",
     "greek": "二郎",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Justice, Nephew of Jade Emperor",
     "meaning": "Second son",
     "sources": [
@@ -34935,8 +33791,6 @@ const LEXICON = [
     "unicode": "Nézhā",
     "greek": "哪吒",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Youth, War, Rebellion",
     "meaning": "Nezha (from Sanskrit Nalakuvara)",
     "sources": [
@@ -34983,8 +33837,6 @@ const LEXICON = [
     "unicode": "Chángé",
     "greek": "嫦娥",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Moon, Immortality, Mid-Autumn",
     "meaning": "The Moon goddess who drank the elixir of immortality",
     "sources": [
@@ -35037,8 +33889,6 @@ const LEXICON = [
     "unicode": "Hòuyì",
     "greek": "后羿",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Archery, Suns, Heroism",
     "meaning": "The divine archer who shot down nine suns",
     "sources": [
@@ -35085,8 +33935,6 @@ const LEXICON = [
     "unicode": "Sūnwùkōng",
     "greek": "孙悟空",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Monkey King, Chaos, Enlightenment",
     "meaning": "Monkey awakened to emptiness",
     "sources": [
@@ -35164,8 +34012,6 @@ const LEXICON = [
     "unicode": "Bīngjílán",
     "greek": "冰脊蘭",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mountain, Cold, Purity",
     "meaning": "Ice ridge orchid",
     "sources": [
@@ -35235,8 +34081,6 @@ const LEXICON = [
     "unicode": "Kūnlún",
     "greek": "崑崙",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Mountain, Paradise",
     "meaning": "Kunlun mountain",
     "sources": [
@@ -35288,8 +34132,6 @@ const LEXICON = [
     "unicode": "Eileíthyia",
     "greek": "Εἰλείθυια",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Childbirth",
     "meaning": "She who comes to aid",
     "sources": [
@@ -35365,8 +34207,6 @@ const LEXICON = [
     "unicode": "Enyṓ",
     "greek": "Ἐνυώ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Destruction",
     "meaning": "Warlike",
     "sources": [
@@ -35406,8 +34246,6 @@ const LEXICON = [
     "unicode": "Paiṓn",
     "greek": "Παιών",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Healing Hymn",
     "meaning": "Healer",
     "sources": [
@@ -35453,8 +34291,6 @@ const LEXICON = [
     "unicode": "Hyménaîos",
     "greek": "Ὑμέναιος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Marriage, Wedding",
     "meaning": "Hymen",
     "sources": [
@@ -35524,8 +34360,6 @@ const LEXICON = [
     "unicode": "Automédōn",
     "greek": "Αὐτομέδων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Charioteer of Achilles",
     "meaning": "Self-ruler",
     "sources": [
@@ -35595,8 +34429,6 @@ const LEXICON = [
     "unicode": "Eurýpylos",
     "greek": "Εὐρύπυλος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hero of Thessaly",
     "meaning": "Broad gate",
     "sources": [
@@ -35666,8 +34498,6 @@ const LEXICON = [
     "unicode": "Thóas",
     "greek": "Θόας",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "King of Lemnos",
     "meaning": "Swift",
     "sources": [
@@ -35713,8 +34543,6 @@ const LEXICON = [
     "unicode": "Meriónēs",
     "greek": "Μεριόνης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cretan Hero",
     "meaning": "Unknown",
     "sources": [
@@ -35778,8 +34606,6 @@ const LEXICON = [
     "unicode": "Idomeneús",
     "greek": "Ἰδομενεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Crete",
     "meaning": "Unknown",
     "sources": [
@@ -35849,8 +34675,6 @@ const LEXICON = [
     "unicode": "Teûkros",
     "greek": "Τεῦκρος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Archer, Son of Telamon",
     "meaning": "Unknown",
     "sources": [
@@ -35909,8 +34733,6 @@ const LEXICON = [
     "unicode": "Neoptólemos",
     "greek": "Νεοπτόλεμος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Son of Achilles, Pyrrhus",
     "meaning": "New war",
     "sources": [
@@ -35992,8 +34814,6 @@ const LEXICON = [
     "unicode": "Macháōn",
     "greek": "Μαχάων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Healer, Son of Asclepius",
     "meaning": "Fighter",
     "sources": [
@@ -36051,8 +34871,6 @@ const LEXICON = [
     "unicode": "Podaleírios",
     "greek": "Ποδαλείριος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Healer, Son of Asclepius",
     "meaning": "Dew-foot",
     "sources": [
@@ -36135,8 +34953,6 @@ const LEXICON = [
     "unicode": "Kálchas",
     "greek": "Κάλχας",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Seer, Prophet",
     "meaning": "Bronze-colored",
     "sources": [
@@ -36194,8 +35010,6 @@ const LEXICON = [
     "unicode": "Teiresías",
     "greek": "Τειρεσίας",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Blind Seer of Thebes",
     "meaning": "Sign-bearer",
     "sources": [
@@ -36265,8 +35079,6 @@ const LEXICON = [
     "unicode": "Kassándra",
     "greek": "Κασσάνδρα",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Prophetess, Trojan Princess",
     "meaning": "She who entangles men",
     "sources": [
@@ -36336,8 +35148,6 @@ const LEXICON = [
     "unicode": "Hekábē",
     "greek": "Ἑκάβη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Queen of Troy",
     "meaning": "Far off",
     "sources": [
@@ -36389,8 +35199,6 @@ const LEXICON = [
     "unicode": "Andromáchē",
     "greek": "Ἀνδρομάχη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wife of Hector",
     "meaning": "Man-fighter",
     "sources": [
@@ -36466,8 +35274,6 @@ const LEXICON = [
     "unicode": "Astyánax",
     "greek": "Ἀστυάναξ",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Son of Hector",
     "meaning": "Lord of the city",
     "sources": [
@@ -36531,8 +35337,6 @@ const LEXICON = [
     "unicode": "Polyxénē",
     "greek": "Πολυξένη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Trojan Princess, Sacrifice",
     "meaning": "Hospitable to many",
     "sources": [
@@ -36596,8 +35400,6 @@ const LEXICON = [
     "unicode": "Sínōn",
     "greek": "Σίνων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Trickster, Horse Builder",
     "meaning": "Unknown",
     "sources": [
@@ -36643,8 +35445,6 @@ const LEXICON = [
     "unicode": "Palamḗdēs",
     "greek": "Παλαμήδης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Inventor, Martyr",
     "meaning": "Crafty counsel",
     "sources": [
@@ -36714,8 +35514,6 @@ const LEXICON = [
     "unicode": "Antigónē",
     "greek": "Ἀντιγόνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Defiance, Family Duty",
     "meaning": "Against birth",
     "sources": [
@@ -36779,8 +35577,6 @@ const LEXICON = [
     "unicode": "Ismḗnē",
     "greek": "Ἰσμήνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sister of Antigone",
     "meaning": "Knowledge",
     "sources": [
@@ -36832,8 +35628,6 @@ const LEXICON = [
     "unicode": "Iokástē",
     "greek": "Ἰοκάστη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Queen of Thebes",
     "meaning": "Shining moon",
     "sources": [
@@ -36898,8 +35692,6 @@ const LEXICON = [
     "unicode": "Pentheús",
     "greek": "Πενθεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Thebes",
     "meaning": "Sorrow",
     "sources": [
@@ -36963,8 +35755,6 @@ const LEXICON = [
     "unicode": "Agaúē",
     "greek": "Ἀγαύη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mother of Pentheus",
     "meaning": "Illustrious, noble",
     "sources": [
@@ -37010,8 +35800,6 @@ const LEXICON = [
     "unicode": "Hermiónē",
     "greek": "Ἑρμιόνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Daughter of Helen",
     "meaning": "Messenger, travel",
     "sources": [
@@ -37075,8 +35863,6 @@ const LEXICON = [
     "unicode": "Kréusa",
     "greek": "Κρέουσα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Princess of Corinth",
     "meaning": "Lady, mistress",
     "sources": [
@@ -37135,8 +35921,6 @@ const LEXICON = [
     "unicode": "Mḗdeia",
     "greek": "Μήδεια",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Magic, Revenge",
     "meaning": "Cunning, planning",
     "sources": [
@@ -37189,8 +35973,6 @@ const LEXICON = [
     "unicode": "Aiḗtēs",
     "greek": "Αἰήτης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King of Colchis",
     "meaning": "Eagle",
     "sources": [
@@ -37243,8 +36025,6 @@ const LEXICON = [
     "unicode": "Cheírōn",
     "greek": "Χείρων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wise Centaur, Teacher",
     "meaning": "Hand",
     "sources": [
@@ -37304,8 +36084,6 @@ const LEXICON = [
     "unicode": "Ládōn",
     "greek": "Λάδων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dragon of Hesperides",
     "meaning": "Flowing water",
     "sources": [
@@ -37351,8 +36129,6 @@ const LEXICON = [
     "unicode": "Nemean Léon",
     "greek": "Νεμεῖος Λέων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Invincible Lion",
     "meaning": "Lion of Nemea",
     "sources": [
@@ -37428,8 +36204,6 @@ const LEXICON = [
     "unicode": "Erymánthios Kápros",
     "greek": "Ἐρυμάνθιος Κάπρος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Giant Boar",
     "meaning": "Boar of Erymanthus",
     "sources": [
@@ -37542,8 +36316,6 @@ const LEXICON = [
     "unicode": "Stymphalídes Órnithes",
     "greek": "Στυμφαλίδες Ὄρνιθες",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Man-Eating Birds",
     "meaning": "Birds of Stymphalus",
     "sources": [
@@ -37662,8 +36434,6 @@ const LEXICON = [
     "unicode": "Skanda",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, Commander",
     "meaning": "‘The Attacker’ — a name of Kārttikeya, son of Śiva (or of Agni), the god of war who leads the divine hosts against the enemies of the gods.",
     "senses": [
@@ -37721,8 +36491,6 @@ const LEXICON = [
     "unicode": "Nandí",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Bull, Gatekeeper of Shiva",
     "meaning": "'The Happy One' — Śiva's white bull, his mount and the gatekeeper of his shrine",
     "senses": [
@@ -37774,8 +36542,6 @@ const LEXICON = [
     "unicode": "Garuḍa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Eagle, Mount of Vishnu",
     "meaning": "The mythical king of birds, son of Kaśyapa and Vinatā, chief of the feathered race and sworn enemy of the serpents, who serves as the vehicle of Viṣṇu.",
     "senses": [
@@ -37833,8 +36599,6 @@ const LEXICON = [
     "unicode": "Jaṭāyu",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Vulture, Heroic Bird",
     "meaning": "The king of the vultures, son of Aruṇa and Śyenī and younger brother of Sampāti; out of devotion to Rāma's father Daśaratha he fought Rāvaṇa to rescue the abducted Sītā and died of his wounds.",
     "senses": [
@@ -37892,8 +36656,6 @@ const LEXICON = [
     "unicode": "Kaṃsa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Tyrant, Uncle of Krishna",
     "meaning": "A king of Mathurā, son of Ugrasena and cousin of Devakī, the mother of Kṛṣṇa — the tyrant who imprisoned her to avert the prophecy of his death and was slain by Kṛṣṇa.",
     "senses": [
@@ -37945,8 +36707,6 @@ const LEXICON = [
     "unicode": "Pūtanā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Demoness, Killer of Infants",
     "meaning": "A female demon said to cause disease in children; sent by Kaṃsa, she offered her poisoned breast to the infant Kṛṣṇa, who seized it and sucked away her life.",
     "senses": [
@@ -38004,8 +36764,6 @@ const LEXICON = [
     "unicode": "Śakti",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Power, Energy, Divine Feminine",
     "meaning": "Power, ability, energy — the active power of a deity personified as his consort",
     "senses": [
@@ -38072,8 +36830,6 @@ const LEXICON = [
     "unicode": "Prajāpati",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lord of Creatures",
     "meaning": "'Lord of Creatures' — the creator and progenitor ranked above or among the Vedic gods",
     "senses": [
@@ -38170,8 +36926,6 @@ const LEXICON = [
     "unicode": "Sāvitrī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Solar Goddess, Truth",
     "meaning": "Belonging to the sun (Savitar) — name of the wife of Satyavat, daughter of Aśvapati king of Madra, celebrated as a type of conjugal love; her story forms a famous episode of the Mahābhārata.",
     "senses": [
@@ -38235,8 +36989,6 @@ const LEXICON = [
     "unicode": "Viśvakarman",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Universal Architect",
     "meaning": "All-accomplishing",
     "sources": [
@@ -38324,8 +37076,6 @@ const LEXICON = [
     "unicode": "Bhṛgu",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sage, Ancestor of Priests",
     "meaning": "A mythical race of beings closely connected with fire, which they find and bring to men; also the name of an ancient Ṛṣi, progenitor of the priestly line of the Bhṛgus.",
     "senses": [
@@ -38383,8 +37133,6 @@ const LEXICON = [
     "unicode": "Nārada",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Divine Sage, Messenger",
     "meaning": "Name of a Ṛṣi (a Kāṇva or Kāśyapa), as a Devarṣi often associated with Parvata and regarded as a messenger between gods and men.",
     "senses": [
@@ -38442,8 +37190,6 @@ const LEXICON = [
     "unicode": "Mārkaṇḍeya",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Immortal Sage",
     "meaning": "The deathless sage — the boy devotee whom Śiva saved from Death itself",
     "senses": [
@@ -38525,8 +37271,6 @@ const LEXICON = [
     "unicode": "Bhīṣma",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Vow, Grandfather",
     "meaning": "The Terrible — son of Śāntanu and Gaṅgā, grandsire of the Bharatas, renowned for his vow of continence and his wisdom",
     "senses": [
@@ -38590,8 +37334,6 @@ const LEXICON = [
     "unicode": "Droṇa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Guru, Weapons Master",
     "meaning": "'The Wooden Vessel' — the martial preceptor of the Kuru princes, son of the sage Bharadvāja",
     "senses": [
@@ -38643,8 +37385,6 @@ const LEXICON = [
     "unicode": "Kṛpa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Royal Guru",
     "meaning": "'Compassion' — the martial preceptor of the Kuru princes in the Mahābhārata",
     "senses": [
@@ -38696,8 +37436,6 @@ const LEXICON = [
     "unicode": "Nakula",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Twin, Son of Madri",
     "meaning": "Son of the Aśvins and Mādrī — twin of Sahadeva, fourth of the Pāṇḍu princes, master of horses",
     "senses": [
@@ -38755,8 +37493,6 @@ const LEXICON = [
     "unicode": "Sahadeva",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Twin, Son of Madri",
     "meaning": "Son of the Aśvins and Mādrī — twin of Nakula, youngest of the Pāṇḍu princes, famed for wisdom",
     "senses": [
@@ -38826,8 +37562,6 @@ const LEXICON = [
     "unicode": "Höðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Darkness, Blindness",
     "meaning": "Warrior, killer",
     "sources": [
@@ -38875,8 +37609,6 @@ const LEXICON = [
     "unicode": "Váli",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Vengeance, Son of Odin",
     "meaning": "The chosen",
     "sources": [
@@ -38916,8 +37648,6 @@ const LEXICON = [
     "unicode": "Ríg",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Society, Classes",
     "meaning": "King",
     "sources": [
@@ -38951,8 +37681,6 @@ const LEXICON = [
     "unicode": "Sága",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, History",
     "meaning": "The one who sees",
     "sources": [
@@ -38992,8 +37720,6 @@ const LEXICON = [
     "unicode": "Hermóðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Messenger, Courage",
     "meaning": "War-spirit",
     "sources": [
@@ -39046,8 +37772,6 @@ const LEXICON = [
     "unicode": "Magni",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Strength, Son of Thor",
     "meaning": "The strong one",
     "sources": [
@@ -39094,8 +37818,6 @@ const LEXICON = [
     "unicode": "Móði",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wrath, Son of Thor",
     "meaning": "The angry one",
     "sources": [
@@ -39136,8 +37858,6 @@ const LEXICON = [
     "unicode": "Thrúd",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Strength, Daughter of Thor",
     "meaning": "Power",
     "sources": [
@@ -39183,8 +37903,6 @@ const LEXICON = [
     "unicode": "Gárm",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hel-Hound, Doom",
     "meaning": "The ragged one",
     "sources": [
@@ -39224,8 +37942,6 @@ const LEXICON = [
     "unicode": "Hati",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Moon-Chaser, Chaos",
     "meaning": "The hater",
     "sources": [
@@ -39266,8 +37982,6 @@ const LEXICON = [
     "unicode": "Skǫll",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun-Chaser, Devourer",
     "meaning": "The one who mocks",
     "sources": [
@@ -39313,8 +38027,6 @@ const LEXICON = [
     "unicode": "Ratatoskr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Squirrel of Yggdrasil",
     "meaning": "Drill-tooth",
     "sources": [
@@ -39385,8 +38097,6 @@ const LEXICON = [
     "unicode": "Draupnir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Odin's Ring, Wealth",
     "meaning": "The dripper",
     "sources": [
@@ -39451,8 +38161,6 @@ const LEXICON = [
     "unicode": "Mjǫllnir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Thunder Hammer",
     "meaning": "The grinder",
     "sources": [
@@ -39511,8 +38219,6 @@ const LEXICON = [
     "unicode": "Wꜣḏyt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cobra, Protection, Lower Egypt",
     "meaning": "The green one",
     "sources": [
@@ -39565,8 +38271,6 @@ const LEXICON = [
     "unicode": "Nḫbt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Vulture, Protection, Upper Egypt",
     "meaning": "She of Nekheb",
     "sources": [
@@ -39624,8 +38328,6 @@ const LEXICON = [
     "unicode": "Sšꜣt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Writing, Architecture",
     "meaning": "She who scrivens",
     "sources": [
@@ -39678,8 +38380,6 @@ const LEXICON = [
     "unicode": "Mꜣfdt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Justice, Execution",
     "meaning": "The runner",
     "sources": [
@@ -39731,8 +38431,6 @@ const LEXICON = [
     "unicode": "Mnḥyt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Lioness",
     "meaning": "The slaughterer",
     "sources": [
@@ -39784,8 +38482,6 @@ const LEXICON = [
     "unicode": "Pꜣḫt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hunt, Lioness",
     "meaning": "She who scratches",
     "sources": [
@@ -39837,8 +38533,6 @@ const LEXICON = [
     "unicode": "Manawydan",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sea, Craftsmanship",
     "meaning": "Manannán (Welsh form)",
     "sources": [
@@ -39909,8 +38603,6 @@ const LEXICON = [
     "unicode": "Matholwch",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "King of Ireland",
     "meaning": "Good bear",
     "sources": [
@@ -39981,8 +38673,6 @@ const LEXICON = [
     "unicode": "Efnysien",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Trouble, Mischief",
     "meaning": "Double enemy",
     "sources": [
@@ -40047,8 +38737,6 @@ const LEXICON = [
     "unicode": "Nisien",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Peace, Brother of Efnysien",
     "meaning": "Peaceful one",
     "sources": [
@@ -40101,8 +38789,6 @@ const LEXICON = [
     "unicode": "Blodeuwedd",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Flower Bride, Betrayal",
     "meaning": "Flower face",
     "sources": [
@@ -40179,8 +38865,6 @@ const LEXICON = [
     "unicode": "Gronw Pebr",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Lover of Blodeuwedd",
     "meaning": "Gronw the strong",
     "sources": [
@@ -40250,8 +38934,6 @@ const LEXICON = [
     "unicode": "Taliesin",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Poet, Shapeshifter",
     "meaning": "Welsh bard",
     "senses": [
@@ -40322,8 +39004,6 @@ const LEXICON = [
     "unicode": "Myrddin",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Seer, Wild Man",
     "meaning": "Merlin",
     "sources": [
@@ -40382,8 +39062,6 @@ const LEXICON = [
     "unicode": "Gawain",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Knight, Sun Hero",
     "meaning": "Little falcon",
     "sources": [
@@ -40436,8 +39114,6 @@ const LEXICON = [
     "unicode": "Bedwyr",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Knight, One-handed",
     "meaning": "Unknown",
     "sources": [
@@ -40490,8 +39166,6 @@ const LEXICON = [
     "unicode": "Kai",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Seneschal, Steward",
     "meaning": "Unknown",
     "sources": [
@@ -40526,8 +39200,6 @@ const LEXICON = [
     "unicode": "Don",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mother of Gods",
     "meaning": "Goddess",
     "sources": [
@@ -40562,8 +39234,6 @@ const LEXICON = [
     "unicode": "Beli",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Light, Sun",
     "meaning": "Bright, shining",
     "sources": [
@@ -40604,8 +39274,6 @@ const LEXICON = [
     "unicode": "Math",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Magic, Kingship",
     "meaning": "Bear",
     "sources": [
@@ -40646,8 +39314,6 @@ const LEXICON = [
     "unicode": "Amenóuzume",
     "greek": "天宇受売命",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dance, Revelation, Dawn",
     "meaning": "Heavenly whirling woman",
     "sources": [
@@ -40723,8 +39389,6 @@ const LEXICON = [
     "unicode": "Kotoshironushi",
     "greek": "事代主神",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Oracles, Fishing",
     "meaning": "Lord who substitutes",
     "sources": [
@@ -40825,8 +39489,6 @@ const LEXICON = [
     "unicode": "Omononushi",
     "greek": "大物忌神",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mountains, Deity of Miwa",
     "meaning": "Great thing lord",
     "sources": [
@@ -40903,8 +39565,6 @@ const LEXICON = [
     "unicode": "Sukunahikona",
     "greek": "少彦名神",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Healing, Sake, Smallpox",
     "meaning": "Renowned little prince",
     "sources": [
@@ -40993,8 +39653,6 @@ const LEXICON = [
     "unicode": "Tajikarao",
     "greek": "手力男神",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Strength, Caves",
     "meaning": "Strong hand man",
     "sources": [
@@ -41065,8 +39723,6 @@ const LEXICON = [
     "unicode": "Toyotama",
     "greek": "豊玉毘売命",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sea, Mother of Jimmu",
     "meaning": "Abundant jewel",
     "sources": [
@@ -41131,8 +39787,6 @@ const LEXICON = [
     "unicode": "Ugayafukiaezu",
     "greek": "鵜草葺不合命",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Ancestor of Jimmu",
     "meaning": "Cormorant grass-thatching unfinished",
     "sources": [
@@ -41227,8 +39881,6 @@ const LEXICON = [
     "unicode": "Hoderi",
     "greek": "火照命",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fire, Fisherman",
     "meaning": "Fire-shining",
     "sources": [
@@ -41281,8 +39933,6 @@ const LEXICON = [
     "unicode": "Hoori",
     "greek": "火折命",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Agriculture, Hunter",
     "meaning": "Fire-subduing",
     "sources": [
@@ -41329,8 +39979,6 @@ const LEXICON = [
     "unicode": "Nishinakahime",
     "greek": "日子波邇夜須毘売命",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Rice, Agriculture",
     "meaning": "Day-sun wave princess",
     "sources": [
@@ -41425,8 +40073,6 @@ const LEXICON = [
     "unicode": "Kingu",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Dragon, Consort of Tiamat",
     "meaning": "Unknown",
     "sources": [
@@ -41473,8 +40119,6 @@ const LEXICON = [
     "unicode": "Lahmu",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Primordial Being",
     "meaning": "The hairy one",
     "sources": [
@@ -41521,8 +40165,6 @@ const LEXICON = [
     "unicode": "Lahamu",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Primordial Being",
     "meaning": "The hairy one (fem.)",
     "sources": [
@@ -41575,8 +40217,6 @@ const LEXICON = [
     "unicode": "Anšar",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sky, Circle of Heaven",
     "meaning": "Whole sky",
     "sources": [
@@ -41628,8 +40268,6 @@ const LEXICON = [
     "unicode": "Kišar",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth, Circle of Earth",
     "meaning": "Whole earth",
     "sources": [
@@ -41682,8 +40320,6 @@ const LEXICON = [
     "unicode": "Adad",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Storm, Thunder",
     "meaning": "The thunderer",
     "sources": [
@@ -41723,8 +40359,6 @@ const LEXICON = [
     "unicode": "Sîn",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Moon",
     "meaning": "The moon god",
     "sources": [
@@ -41758,8 +40392,6 @@ const LEXICON = [
     "unicode": "Gnôsis",
     "greek": "Γνῶσις",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Knowledge, Insight",
     "meaning": "Knowledge",
     "sources": [
@@ -41811,8 +40443,6 @@ const LEXICON = [
     "unicode": "Sophía",
     "greek": "Σοφία",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wisdom",
     "meaning": "Wisdom, skill",
     "sources": [
@@ -41864,8 +40494,6 @@ const LEXICON = [
     "unicode": "Dóxa",
     "greek": "Δόξα",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Opinion, Glory",
     "meaning": "Opinion, glory",
     "sources": [
@@ -41905,8 +40533,6 @@ const LEXICON = [
     "unicode": "Epistḗmē",
     "greek": "Ἐπιστήμη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Knowledge, Science",
     "meaning": "Understanding",
     "sources": [
@@ -41970,8 +40596,6 @@ const LEXICON = [
     "unicode": "Theōría",
     "greek": "Θεωρία",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Contemplation",
     "meaning": "Viewing, contemplation",
     "sources": [
@@ -42029,8 +40653,6 @@ const LEXICON = [
     "unicode": "Prâxis",
     "greek": "Πρᾶξις",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Action, Practice",
     "meaning": "Action, deed",
     "sources": [
@@ -42082,8 +40704,6 @@ const LEXICON = [
     "unicode": "Sōtēría",
     "greek": "Σωτηρία",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Salvation, Deliverance",
     "meaning": "Salvation",
     "sources": [
@@ -42141,8 +40761,6 @@ const LEXICON = [
     "unicode": "Eudaimonía",
     "greek": "Εὐδαιμονία",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Happiness, Flourishing",
     "meaning": "Good spirit, happiness",
     "sources": [
@@ -42218,8 +40836,6 @@ const LEXICON = [
     "unicode": "Jñāna",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Knowledge, Wisdom",
     "meaning": "'Knowledge' — the liberating insight that discerns the real from the unreal",
     "senses": [
@@ -42271,8 +40887,6 @@ const LEXICON = [
     "unicode": "Bhakti",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Devotion, Love",
     "meaning": "Devotion, loving attachment, faith — worship and piety directed toward the divine, esp. as a religious principle and means of salvation.",
     "senses": [
@@ -42330,8 +40944,6 @@ const LEXICON = [
     "unicode": "Dhyāna",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Meditation, Absorption",
     "meaning": "mental representation of the personal attributes of a deity, W.",
     "senses": [
@@ -42389,8 +41001,6 @@ const LEXICON = [
     "unicode": "Tapas",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Heat, Austerity, Spiritual Power",
     "meaning": "'Heat' — the generative austerity that burns away impurity and powers creation",
     "senses": [
@@ -42442,8 +41052,6 @@ const LEXICON = [
     "unicode": "Śūnya",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Emptiness, Zero",
     "meaning": "of Brahma, MW.",
     "senses": [
@@ -42501,8 +41109,6 @@ const LEXICON = [
     "unicode": "Língam",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Symbol of Shiva, Cosmos",
     "meaning": "Mark, sign",
     "sources": [
@@ -42554,8 +41160,6 @@ const LEXICON = [
     "unicode": "Yoni",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Source, Womb, Shakti",
     "meaning": "'Womb, source' — the feminine principle, the origin from which all creation flows",
     "senses": [
@@ -42602,8 +41206,6 @@ const LEXICON = [
     "unicode": "Amitābha",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Infinite Light, Pure Land",
     "meaning": "Of unmeasured splendour; infinite light; the Buddha of the Pure Land Sukhāvatī.",
     "senses": [
@@ -42673,8 +41275,6 @@ const LEXICON = [
     "unicode": "Mahāvairocana",
     "greek": "महावैरोचन",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Universal Illumination, Cosmic Buddha",
     "meaning": "‘the Great Illuminator’, the cosmic Buddha at the centre of the Avataṃsaka Sūtra and the Shingon school (mahā ‘great’ + vairocana ‘shining forth’, from vi-√ruc ‘to shine’), MW.",
     "senses": [
@@ -42782,8 +41382,6 @@ const LEXICON = [
     "unicode": "Akṣobhya",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Immovable, East",
     "meaning": "The Unshakable — the immovable Buddha of the eastern pure land Abhirati (from a-√kṣubh)",
     "senses": [
@@ -42860,8 +41458,6 @@ const LEXICON = [
     "unicode": "Ratnasambhava",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Jewel-Born, South",
     "meaning": "'Born of the Jewel' — the Dhyānibuddha of the southern jewel family",
     "senses": [
@@ -42962,8 +41558,6 @@ const LEXICON = [
     "unicode": "Amoghasiddhi",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Infallible Success, North",
     "meaning": "'Unfailing Accomplishment' — the fifth Dhyānibuddha, lord of the karma family",
     "senses": [
@@ -43058,8 +41652,6 @@ const LEXICON = [
     "unicode": "Maitreya",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Future Buddha, Loving-Kindness",
     "meaning": "'The Benevolent One' — the Bodhisattva who will return as the future Buddha",
     "senses": [
@@ -43130,8 +41722,6 @@ const LEXICON = [
     "unicode": "Mañjuśrī",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, Intellect",
     "meaning": "Gentle glory",
     "sources": [
@@ -43202,8 +41792,6 @@ const LEXICON = [
     "unicode": "Samantabhadra",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Universal Good, Practice",
     "meaning": "'Universal Beneficence' — the Bodhisattva of practice, rider of the white elephant",
     "senses": [
@@ -43304,8 +41892,6 @@ const LEXICON = [
     "unicode": "Kṣitigarbha",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth Womb, Savior of Hell Beings",
     "meaning": "The Earth-Womb — bodhisattva of the great vow to empty the hells (kṣiti 'earth' + garbha 'womb')",
     "senses": [
@@ -43394,8 +41980,6 @@ const LEXICON = [
     "unicode": "Vajrapāṇi",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Thunderbolt Holder, Protection",
     "meaning": "The Vajra-Bearer — wielder of the thunderbolt, protector of the Buddha (vajra + pāṇi 'in the hand')",
     "senses": [
@@ -43472,8 +42056,6 @@ const LEXICON = [
     "unicode": "Tārā",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Compassion, Liberation",
     "meaning": "She who saves — the goddess of compassion and liberation in Mahāyāna and Vajrayāna Buddhism, the Savioress who ferries beings across the ocean of saṃsāra.",
     "senses": [
@@ -43519,8 +42101,6 @@ const LEXICON = [
     "unicode": "Mārīci",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dawn, Light, Warrior Goddess",
     "meaning": "w.r. for marIci.",
     "senses": [
@@ -43578,8 +42158,6 @@ const LEXICON = [
     "unicode": "Mahākāla",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Time, Death, Protection",
     "meaning": "'Great Time' — the fierce protector who devours death itself",
     "senses": [
@@ -43649,8 +42227,6 @@ const LEXICON = [
     "unicode": "Nāgārjuna",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Emptiness, Madhyamaka",
     "meaning": "The great Buddhist master of the Middle Way — founder of the Madhyamaka school",
     "senses": [
@@ -43726,8 +42302,6 @@ const LEXICON = [
     "unicode": "Asanga",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Yogacara, Mind-Only",
     "meaning": "Without attachment",
     "sources": [
@@ -43780,8 +42354,6 @@ const LEXICON = [
     "unicode": "Vasubandhu",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Abhidharma, Yogacara",
     "meaning": "The celebrated Buddhist scholar — author of the Abhidharmakośa, co-founder of the Yogācāra school",
     "senses": [
@@ -43864,8 +42436,6 @@ const LEXICON = [
     "unicode": "Bodhisattva",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Enlightenment Being, Compassion",
     "meaning": "'Awakening-being' — one who vows Buddhahood for the sake of all beings",
     "senses": [
@@ -43960,8 +42530,6 @@ const LEXICON = [
     "unicode": "Arhat",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Worthy One, Saint",
     "meaning": "an Arhat or superior divinity with the Jainas",
     "senses": [
@@ -44014,8 +42582,6 @@ const LEXICON = [
     "unicode": "Nirvāṇa",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Extinction, Liberation",
     "meaning": "of an Upaniṣad",
     "senses": [
@@ -44079,8 +42645,6 @@ const LEXICON = [
     "unicode": "Śākyamuni",
     "greek": "शाक्यमुनि",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Enlightenment, Teaching, Historical Buddha",
     "meaning": "‘sage of the Śākya clan’, epithet of the historical Buddha Siddhārtha Gautama, MW.",
     "senses": [
@@ -44163,8 +42727,6 @@ const LEXICON = [
     "unicode": "Māra",
     "greek": "मार",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Death, Temptation, Illusion",
     "meaning": "‘death, the tempter’, the personification of death and desire who assailed the Buddha under the Bodhi tree (from √mṛ ‘to die’), MW.",
     "senses": [
@@ -44211,8 +42773,6 @@ const LEXICON = [
     "unicode": "Lǎozǐ",
     "greek": "老子",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Founder of Daoism, Sage",
     "meaning": "Old master",
     "sources": [
@@ -44259,8 +42819,6 @@ const LEXICON = [
     "unicode": "Zhuāngzǐ",
     "greek": "莊子",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Philosopher, Butterfly Dream",
     "meaning": "Master Zhuang",
     "sources": [
@@ -44324,8 +42882,6 @@ const LEXICON = [
     "unicode": "Zhāng Dàolíng",
     "greek": "張道陵",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "First Celestial Master",
     "meaning": "Zhang Dao Ling",
     "sources": [
@@ -44413,8 +42969,6 @@ const LEXICON = [
     "unicode": "LǚDōngbīn",
     "greek": "呂洞賓",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Immortal, Sword",
     "meaning": "Lu Dong Bin",
     "sources": [
@@ -44484,8 +43038,6 @@ const LEXICON = [
     "unicode": "ZhōnglíQuán",
     "greek": "鐘離權",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Immortal, Fan",
     "meaning": "Zhongli Quan",
     "sources": [
@@ -44567,8 +43119,6 @@ const LEXICON = [
     "unicode": "HéXiāngū",
     "greek": "何仙姑",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Immortal, Lotus",
     "meaning": "He Xian Gu",
     "sources": [
@@ -44632,8 +43182,6 @@ const LEXICON = [
     "unicode": "Xīwángmǔ",
     "greek": "西王母",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Queen Mother of the West",
     "meaning": "Western queen mother",
     "sources": [
@@ -44698,8 +43246,6 @@ const LEXICON = [
     "unicode": "Dōngwánggōng",
     "greek": "東王公",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King Father of the East",
     "meaning": "Eastern king lord",
     "sources": [
@@ -44787,8 +43333,6 @@ const LEXICON = [
     "unicode": "Wénchāng",
     "greek": "文昌",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Literature, Exams",
     "meaning": "Literary prosperity",
     "sources": [
@@ -44852,8 +43396,6 @@ const LEXICON = [
     "unicode": "Zhēnwǔ",
     "greek": "真武",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Perfected Warrior, North",
     "meaning": "Perfected warrior",
     "sources": [
@@ -44905,8 +43447,6 @@ const LEXICON = [
     "unicode": "Hwanin",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Supreme God, Heaven",
     "meaning": "Lord of Heaven",
     "sources": [
@@ -44965,8 +43505,6 @@ const LEXICON = [
     "unicode": "Dangun",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Founder of Korea, First King",
     "meaning": "Lord of the sandalwood",
     "sources": [
@@ -45019,8 +43557,6 @@ const LEXICON = [
     "unicode": "Hwanung",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Son of Heaven, Descended",
     "meaning": "Heavenly prince",
     "sources": [
@@ -45079,8 +43615,6 @@ const LEXICON = [
     "unicode": "Samshin",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Birth, Triple Spirits",
     "meaning": "Three spirits",
     "sources": [
@@ -45139,8 +43673,6 @@ const LEXICON = [
     "unicode": "Halmoni",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Grandmother Spirit, Earth",
     "meaning": "Grandmother",
     "sources": [
@@ -45199,8 +43731,6 @@ const LEXICON = [
     "unicode": "Jowangshin",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Kitchen, Hearth",
     "meaning": "Kitchen king spirit",
     "sources": [
@@ -45277,8 +43807,6 @@ const LEXICON = [
     "unicode": "Seonangshin",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Village Guardian, Boundary",
     "meaning": "Village spirit",
     "sources": [
@@ -45361,8 +43889,6 @@ const LEXICON = [
     "unicode": "Yongwang",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Dragon King, Sea",
     "meaning": "Dragon king",
     "sources": [
@@ -45427,8 +43953,6 @@ const LEXICON = [
     "unicode": "Mago",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Creator Goddess, Earth",
     "meaning": "Great goddess",
     "sources": [
@@ -45469,8 +43993,6 @@ const LEXICON = [
     "unicode": "Chilsong",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Seven Stars, Ursa Major",
     "meaning": "Seven stars",
     "sources": [
@@ -45535,8 +44057,6 @@ const LEXICON = [
     "unicode": "Sosin",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Messenger, Revealer",
     "meaning": "Revealer of things",
     "sources": [
@@ -45583,8 +44103,6 @@ const LEXICON = [
     "unicode": "Baekdusan",
     "greek": "—",
     "pantheon": "korean",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacred Mountain, Origin",
     "meaning": "White head mountain",
     "sources": [
@@ -45656,8 +44174,6 @@ const LEXICON = [
     "unicode": "Baꜥal",
     "greek": "Βαάλ",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Storm God, Lord of the Heavens",
     "meaning": "Canaanite storm and fertility god; the title \"Lord\" (baʿlu) was also applied to local deities",
     "sources": [
@@ -45748,8 +44264,6 @@ const LEXICON = [
     "unicode": "Ēl",
     "greek": "Ἠλ",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Supreme God, Father of Gods",
     "meaning": "The high god of the Canaanite pantheon; the common Semitic word for \"god\" and a divine name",
     "sources": [
@@ -45813,8 +44327,6 @@ const LEXICON = [
     "unicode": "ꜥAnat",
     "greek": "Ἀνάθ",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Goddess of War and the Hunt",
     "meaning": "Canaanite warrior goddess, sister and ally of Baꜥal",
     "sources": [
@@ -45904,8 +44416,6 @@ const LEXICON = [
     "unicode": "Ašeratu",
     "greek": "—",
     "pantheon": "phoenician",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Mother Goddess",
     "meaning": "She who treads on the sea",
     "sources": [
@@ -45964,8 +44474,6 @@ const LEXICON = [
     "unicode": "Mūt",
     "greek": "—",
     "pantheon": "phoenician",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Death, Underworld",
     "meaning": "Death",
     "sources": [
@@ -46000,8 +44508,6 @@ const LEXICON = [
     "unicode": "Yammu",
     "greek": "—",
     "pantheon": "phoenician",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sea, Chaos",
     "meaning": "Sea",
     "sources": [
@@ -46047,8 +44553,6 @@ const LEXICON = [
     "unicode": "Šāpšu",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun",
     "meaning": "The sun",
     "sources": [
@@ -46107,8 +44611,6 @@ const LEXICON = [
     "unicode": "Kôṯaru",
     "greek": "—",
     "pantheon": "phoenician",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Craft, Magic",
     "meaning": "Skilled one",
     "sources": [
@@ -46160,8 +44662,6 @@ const LEXICON = [
     "unicode": "Dāgān",
     "greek": "—",
     "pantheon": "phoenician",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Grain, Fertility",
     "meaning": "Grain",
     "sources": [
@@ -46208,8 +44708,6 @@ const LEXICON = [
     "unicode": "Aštartu",
     "greek": "—",
     "pantheon": "phoenician",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love, War, Venus",
     "meaning": "She of the womb",
     "sources": [
@@ -46267,8 +44765,6 @@ const LEXICON = [
     "unicode": "Tarḫunash",
     "greek": "—",
     "pantheon": "hittite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Storm, Weather, King",
     "meaning": "The conqueror",
     "sources": [
@@ -46338,8 +44834,6 @@ const LEXICON = [
     "unicode": "Arinna",
     "greek": "—",
     "pantheon": "hittite",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sun Goddess, Supreme",
     "meaning": "Of Arinna",
     "sources": [
@@ -46404,8 +44898,6 @@ const LEXICON = [
     "unicode": "Telipinu",
     "greek": "—",
     "pantheon": "hittite",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Agriculture, Vanishing God",
     "meaning": "Unknown",
     "sources": [
@@ -46470,8 +44962,6 @@ const LEXICON = [
     "unicode": "Inaras",
     "greek": "—",
     "pantheon": "hittite",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Wild Animals, Hunt",
     "meaning": "Unknown",
     "sources": [
@@ -46524,8 +45014,6 @@ const LEXICON = [
     "unicode": "Ḫannaḫannas",
     "greek": "—",
     "pantheon": "hittite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mother, Grandmother",
     "meaning": "Grandmother",
     "sources": [
@@ -46607,8 +45095,6 @@ const LEXICON = [
     "unicode": "Wurušemu",
     "greek": "—",
     "pantheon": "hittite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth, Fertility",
     "meaning": "Unknown",
     "sources": [
@@ -46672,8 +45158,6 @@ const LEXICON = [
     "unicode": "Kumarbiš",
     "greek": "—",
     "pantheon": "hittite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Grain, Father of Gods",
     "meaning": "Unknown",
     "sources": [
@@ -46737,8 +45221,6 @@ const LEXICON = [
     "unicode": "Alalu",
     "greek": "—",
     "pantheon": "hittite",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Primordial King, Heaven",
     "meaning": "Unknown",
     "sources": [
@@ -46785,8 +45267,6 @@ const LEXICON = [
     "unicode": "Mèngzǐ",
     "greek": "孟子",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Philosopher, Human Nature",
     "meaning": "Master Meng",
     "sources": [
@@ -46844,8 +45324,6 @@ const LEXICON = [
     "unicode": "Mòzǐ",
     "greek": "墨子",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Philosopher, Universal Love",
     "meaning": "Master Mo",
     "sources": [
@@ -46885,8 +45363,6 @@ const LEXICON = [
     "unicode": "Lǎojūn",
     "greek": "老君",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Deified Laozi, Supreme",
     "meaning": "Old lord",
     "sources": [
@@ -46938,8 +45414,6 @@ const LEXICON = [
     "unicode": "Sānzàng",
     "greek": "三藏",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Tripitaka Master, Journey",
     "meaning": "Three baskets",
     "sources": [
@@ -46997,8 +45471,6 @@ const LEXICON = [
     "unicode": "Bodhidharma",
     "greek": "菩提達磨",
     "pantheon": "chinese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Zen Patriarch, Wall-Gazer",
     "meaning": "Dharma of awakening",
     "sources": [
@@ -47080,8 +45552,6 @@ const LEXICON = [
     "unicode": "Wǔdāng",
     "greek": "武當",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Mountain, Martial Arts",
     "meaning": "Military balance",
     "sources": [
@@ -47133,8 +45603,6 @@ const LEXICON = [
     "unicode": "Wǔtái",
     "greek": "五臺",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Mountain, Manjushri",
     "meaning": "Five terraces",
     "sources": [
@@ -47180,8 +45648,6 @@ const LEXICON = [
     "unicode": "Pǔtuó",
     "greek": "普陀",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Mountain, Guanyin",
     "meaning": "Potalaka",
     "sources": [
@@ -47227,8 +45693,6 @@ const LEXICON = [
     "unicode": "Éméi",
     "greek": "峨眉",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Mountain, Samantabhadra",
     "meaning": "High eyebrow",
     "sources": [
@@ -47268,8 +45732,6 @@ const LEXICON = [
     "unicode": "Jiǔhuá",
     "greek": "九華",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Mountain, Ksitigarbha",
     "meaning": "Nine splendors",
     "sources": [
@@ -47321,8 +45783,6 @@ const LEXICON = [
     "unicode": "Língbǎo",
     "greek": "靈寶",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Numinous Treasure, Dao",
     "meaning": "Spiritual treasure",
     "sources": [
@@ -47380,8 +45840,6 @@ const LEXICON = [
     "unicode": "Shàngqīng",
     "greek": "上清",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Supreme Clarity, Dao",
     "meaning": "Supreme purity",
     "sources": [
@@ -47451,8 +45909,6 @@ const LEXICON = [
     "unicode": "Quánzhēn",
     "greek": "全真",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Complete Perfection, Dao",
     "meaning": "Complete reality",
     "sources": [
@@ -47516,8 +45972,6 @@ const LEXICON = [
     "unicode": "Wénshū",
     "greek": "文殊",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Manjushri in Chinese",
     "meaning": "Cultured mystery",
     "sources": [
@@ -47569,8 +46023,6 @@ const LEXICON = [
     "unicode": "Olympía",
     "greek": "Ὀλυμπία",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Games, Zeus, Sanctuary",
     "meaning": "Of Olympus",
     "sources": [
@@ -47628,8 +46080,6 @@ const LEXICON = [
     "unicode": "Eleusís",
     "greek": "Ἐλευσίς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mysteries, Demeter, Initiation",
     "meaning": "Arrival",
     "sources": [
@@ -47687,8 +46137,6 @@ const LEXICON = [
     "unicode": "Knōssós",
     "greek": "Κνωσσός",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Palace, Minotaur, Labyrinth",
     "meaning": "Unknown",
     "sources": [
@@ -47746,8 +46194,6 @@ const LEXICON = [
     "unicode": "Uppsala",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Temple, Freyr, Sacred Grove",
     "meaning": "Upper halls",
     "sources": [
@@ -47806,8 +46252,6 @@ const LEXICON = [
     "unicode": "Karnak",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Temple Complex, Amun",
     "meaning": "Fortified village",
     "sources": [
@@ -47859,8 +46303,6 @@ const LEXICON = [
     "unicode": "Luxor",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Temple, Thebes, Amun",
     "meaning": "The palaces",
     "sources": [
@@ -47906,8 +46348,6 @@ const LEXICON = [
     "unicode": "Vārāṇasī",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred City, Shiva, Ganges",
     "meaning": "The city Benares (Banāras) — the sacred city of Śiva on the Ganges, said to take its name from the two rivers Varaṇā and Asī that bound it.",
     "senses": [
@@ -47977,8 +46417,6 @@ const LEXICON = [
     "unicode": "Kailāsa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred Mountain, Shiva",
     "meaning": "Name of a mountain — the fabled residence of Kubera and paradise of Śiva, placed in the Himālaya range and regarded as one of the loftiest peaks north of the Mānasa lake.",
     "senses": [
@@ -48042,8 +46480,6 @@ const LEXICON = [
     "unicode": "Meru",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Cosmic Mountain, Axis Mundi",
     "meaning": "Name of a fabulous mountain — the central point of Jambūdvīpa, round which the sun, moon and planets revolve; the Olympus of Hindu mythology and abode of the gods.",
     "senses": [
@@ -48089,8 +46525,6 @@ const LEXICON = [
     "unicode": "Benarés",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred City, Alternative name",
     "meaning": "Same as Varanasi",
     "sources": [
@@ -48148,8 +46582,6 @@ const LEXICON = [
     "unicode": "Yamunā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sacred River, Twin of Yama",
     "meaning": "The Twin River — daughter of Sūrya, twin of Yama, Kṛṣṇa's beloved water",
     "senses": [
@@ -48208,8 +46640,6 @@ const LEXICON = [
     "unicode": "Sarnath",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "First Sermon, Deer Park",
     "meaning": "Lord of the deer",
     "sources": [
@@ -48268,8 +46698,6 @@ const LEXICON = [
     "unicode": "Lumbinī",
     "greek": "—",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Birthplace of Buddha",
     "meaning": "or f(I).",
     "senses": [
@@ -48333,8 +46761,6 @@ const LEXICON = [
     "unicode": "Aíolos",
     "greek": "Αἴολος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Winds, Keeper",
     "meaning": "Changeable, nimble",
     "sources": [
@@ -48386,8 +46812,6 @@ const LEXICON = [
     "unicode": "Boréas",
     "greek": "Βορέας",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "North Wind",
     "meaning": "The devouring one",
     "sources": [
@@ -48439,8 +46863,6 @@ const LEXICON = [
     "unicode": "Nótos",
     "greek": "Νότος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "South Wind",
     "meaning": "The moist one",
     "sources": [
@@ -48486,8 +46908,6 @@ const LEXICON = [
     "unicode": "Eûros",
     "greek": "Εὖρος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "East Wind",
     "meaning": "The burning one",
     "sources": [
@@ -48533,8 +46953,6 @@ const LEXICON = [
     "unicode": "Zéphyros",
     "greek": "Ζέφυρος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "West Wind",
     "meaning": "The west wind",
     "sources": [
@@ -48599,8 +47017,6 @@ const LEXICON = [
     "unicode": "Mómos",
     "greek": "Μόμος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Blame, Mockery, Criticism",
     "meaning": "Blame, disgrace",
     "sources": [
@@ -48646,8 +47062,6 @@ const LEXICON = [
     "unicode": "Oizýs",
     "greek": "Ὀιζύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Misery, Pain, Distress",
     "meaning": "Misery",
     "sources": [
@@ -48693,8 +47107,6 @@ const LEXICON = [
     "unicode": "Alástōr",
     "greek": "Ἀλάστωρ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Avenging Spirit, Nemesis",
     "meaning": "The unforgetting",
     "sources": [
@@ -48752,8 +47164,6 @@ const LEXICON = [
     "unicode": "Ephiálēs",
     "greek": "Ἐφιάλης",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Nightmare, Demon",
     "meaning": "The leaper",
     "sources": [
@@ -48817,8 +47227,6 @@ const LEXICON = [
     "unicode": "Līmós",
     "greek": "Λιμός",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Famine, Starvation",
     "meaning": "Hunger, famine",
     "sources": [
@@ -48864,8 +47272,6 @@ const LEXICON = [
     "unicode": "Phthónos",
     "greek": "Φθόνος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Envy, Jealousy",
     "meaning": "Envy, malice",
     "sources": [
@@ -48929,8 +47335,6 @@ const LEXICON = [
     "unicode": "Alēktṓ",
     "greek": "Ἀληκτώ",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fury, Unceasing Anger",
     "meaning": "The unceasing",
     "sources": [
@@ -48982,8 +47386,6 @@ const LEXICON = [
     "unicode": "Mégaira",
     "greek": "Μέγαιρα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fury, Jealousy",
     "meaning": "The jealous one",
     "sources": [
@@ -49041,8 +47443,6 @@ const LEXICON = [
     "unicode": "Tisiphónē",
     "greek": "Τισιφόνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fury, Avenging Murder",
     "meaning": "Avenging murder",
     "sources": [
@@ -49112,8 +47512,6 @@ const LEXICON = [
     "unicode": "Cāmuṇḍā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Death, Destruction, Yogini",
     "meaning": "A fierce form of Durgā, so named because she slew the demons Caṇḍa and Muṇḍa.",
     "senses": [
@@ -49183,8 +47581,6 @@ const LEXICON = [
     "unicode": "Rāvaṇa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Ten-Headed King, Lanka",
     "meaning": "The ruler of Laṅkā and chief of the Rākṣasas, whose destruction by Rāmacandra forms the subject of the Rāmāyaṇa",
     "senses": [
@@ -49250,8 +47646,6 @@ const LEXICON = [
     "unicode": "Nál",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Needle, Mother of Loki",
     "meaning": "Needle",
     "sources": [
@@ -49285,8 +47679,6 @@ const LEXICON = [
     "unicode": "Sigyn",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Loyalty, Wife of Loki",
     "meaning": "Victorious girl-friend",
     "sources": [
@@ -49333,8 +47725,6 @@ const LEXICON = [
     "unicode": "Angrboða",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Monster Mother, Sorcery",
     "meaning": "She who offers sorrow",
     "sources": [
@@ -49406,8 +47796,6 @@ const LEXICON = [
     "unicode": "Surt",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fire Giant, Ragnarok",
     "meaning": "The black one",
     "sources": [
@@ -49447,8 +47835,6 @@ const LEXICON = [
     "unicode": "Bestla",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Mother of Odin, Giantess",
     "meaning": "Bark, bast",
     "sources": [
@@ -49501,8 +47887,6 @@ const LEXICON = [
     "unicode": "Kebehet",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Embalming, Purification",
     "meaning": "The cooling water",
     "sources": [
@@ -49566,8 +47950,6 @@ const LEXICON = [
     "unicode": "Serapis",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Syncretic God, Underworld",
     "meaning": "Composite of Osiris and Apis",
     "sources": [
@@ -49625,8 +48007,6 @@ const LEXICON = [
     "unicode": "Harpokrátēs",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Child Horus, Silence",
     "meaning": "Horus the child",
     "sources": [
@@ -49708,8 +48088,6 @@ const LEXICON = [
     "unicode": "Onuris",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, Hunting",
     "meaning": "He who brings back the distant one",
     "sources": [
@@ -49761,8 +48139,6 @@ const LEXICON = [
     "unicode": "Skr",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Death, Memphis, Underworld",
     "meaning": "The mysterious one",
     "sources": [
@@ -49808,8 +48184,6 @@ const LEXICON = [
     "unicode": "Esengráin",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Healing",
     "meaning": "Beloved of the sun",
     "sources": [
@@ -49879,8 +48253,6 @@ const LEXICON = [
     "unicode": "Ecne",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Knowledge, Wisdom",
     "meaning": "Knowledge",
     "sources": [
@@ -49921,8 +48293,6 @@ const LEXICON = [
     "unicode": "Midir",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Underworld, Fairy King",
     "meaning": "Judge",
     "sources": [
@@ -49969,8 +48339,6 @@ const LEXICON = [
     "unicode": "Étaín",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Beauty, Shapeshifting",
     "meaning": "Jealousy",
     "sources": [
@@ -50016,8 +48384,6 @@ const LEXICON = [
     "unicode": "Deirdre",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Tragedy, Beauty",
     "meaning": "Sorrowful",
     "sources": [
@@ -50076,8 +48442,6 @@ const LEXICON = [
     "unicode": "Niamh",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Beauty, Otherworld",
     "meaning": "Bright, radiant",
     "sources": [
@@ -50124,8 +48488,6 @@ const LEXICON = [
     "unicode": "Oisín",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Poet, Warrior, Son of Finn",
     "meaning": "Little fawn",
     "sources": [
@@ -50171,8 +48533,6 @@ const LEXICON = [
     "unicode": "Fudō",
     "greek": "不動明王",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Immovable Wisdom King",
     "meaning": "Immovable",
     "sources": [
@@ -50212,8 +48572,6 @@ const LEXICON = [
     "unicode": "Marishiten",
     "greek": "摩利支天",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "War, Invisibility, Sun",
     "meaning": "Marici in Japanese",
     "sources": [
@@ -50290,8 +48648,6 @@ const LEXICON = [
     "unicode": "Goshin",
     "greek": "五神",
     "pantheon": "japanese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Five Deities, Protection",
     "meaning": "Five gods",
     "sources": [
@@ -50344,8 +48700,6 @@ const LEXICON = [
     "unicode": "Nabû",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, Writing",
     "meaning": "The announcer",
     "sources": [
@@ -50385,8 +48739,6 @@ const LEXICON = [
     "unicode": "Gula",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Healing, Medicine",
     "meaning": "The great one",
     "sources": [
@@ -50427,8 +48779,6 @@ const LEXICON = [
     "unicode": "Namtar",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Fate, Death Demon",
     "meaning": "Fate, destiny",
     "sources": [
@@ -50481,8 +48831,6 @@ const LEXICON = [
     "unicode": "Tocî",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Healing, Childbirth",
     "meaning": "Our grandmother",
     "sources": [
@@ -50522,8 +48870,6 @@ const LEXICON = [
     "unicode": "Āθrauuan",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fire Priest, Ritual",
     "meaning": "Fire-possessing",
     "sources": [
@@ -50587,8 +48933,6 @@ const LEXICON = [
     "unicode": "Haoma",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacred Plant, Immortality",
     "meaning": "The pressed one",
     "sources": [
@@ -50635,8 +48979,6 @@ const LEXICON = [
     "unicode": "Vərəθraγna",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Victory, War",
     "meaning": "Smiting of resistance",
     "sources": [
@@ -50718,8 +49060,6 @@ const LEXICON = [
     "unicode": "Mꜣ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Truth, Rightness, Correctness, Measure",
     "meaning": "Truth, rightness, correctness, measure. Root of Maat (mꜣꜥt), the cosmic principle of truth and order",
     "sources": [
@@ -50749,8 +49089,6 @@ const LEXICON = [
     "unicode": "Mꜥ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Vision, Perception, Understanding",
     "meaning": "To see, to perceive, to understand. A core verb root, extremely common in texts",
     "sources": [
@@ -50793,8 +49131,6 @@ const LEXICON = [
     "unicode": "Ꜣḫ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Soul, Afterlife, Transfiguration",
     "meaning": "Akh, transfigured spirit; effective, luminous being. One of the highest forms of the soul",
     "sources": [
@@ -50837,8 +49173,6 @@ const LEXICON = [
     "unicode": "Ꜣb",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Heart, Conscience, Emotion",
     "meaning": "Heart. Central to the weighing of the heart ritual. Represents conscience, emotion, moral worth",
     "sources": [
@@ -50874,8 +49208,6 @@ const LEXICON = [
     "unicode": "Sꜥ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Son, Divine Lineage, Kinship",
     "meaning": "Son. Used constantly in divine titles: Son of Ra, Son of Horus. A very common and important kinship term",
     "sources": [
@@ -50903,8 +49235,6 @@ const LEXICON = [
     "unicode": "Ḥm",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Majesty, Servant, Priest",
     "meaning": "Majesty; servant; priest. Appears in royal titulary (His Majesty). Also used for attendants or servants of gods",
     "sources": [
@@ -50932,8 +49262,6 @@ const LEXICON = [
     "unicode": "Ḫp",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Form, Appearance, Manifestation",
     "meaning": "Form; appearance; shape; manifestation. Important in magical and ritual contexts. Related to transformation and manifestation",
     "sources": [
@@ -50967,8 +49295,6 @@ const LEXICON = [
     "unicode": "Njord",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sea, Wind, Wealth",
     "meaning": "Variant: plain anglicization (no o-slash)",
     "sources": [
@@ -51015,8 +49341,6 @@ const LEXICON = [
     "unicode": "Libyē",
     "greek": "Λιβύη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Personified Continent of Africa",
     "meaning": "The African continent (etymology uncertain)",
     "sources": [
@@ -51083,8 +49407,6 @@ const LEXICON = [
     "unicode": "Aígyptos",
     "greek": "Αἴγυπτος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Personified Egypt, the Black Land",
     "meaning": "From Egyptian Ḥwt-kꜣ-ptḥ (\"House of the Ka of Ptah\")",
     "sources": [
@@ -51157,8 +49479,6 @@ const LEXICON = [
     "unicode": "Asía",
     "greek": "Ἀσία",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Personified Continent of Asia",
     "meaning": "The eastern continent (possibly from Assuwa)",
     "sources": [
@@ -51217,8 +49537,6 @@ const LEXICON = [
     "unicode": "Eurṓpē",
     "greek": "Εὐρώπη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Personified Continent of Europe",
     "meaning": "Broad-faced (from εὐρύς + ὤψ)",
     "sources": [
@@ -51279,8 +49597,6 @@ const LEXICON = [
     "unicode": "Ṛta",
     "greek": "",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cosmic Order, Truth, Law",
     "meaning": "Cosmic order, truth — the Vedic principle of rightness that governs gods and nature (ṛta)",
     "senses": [
@@ -51354,8 +49670,6 @@ const LEXICON = [
     "unicode": "Bꜣ",
     "greek": "",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Soul, Personality, Manifestation",
     "meaning": "The soul, personality, or manifestation of a person. One of the five components of the Egyptian soul.",
     "sources": [
@@ -51394,8 +49708,6 @@ const LEXICON = [
     "unicode": "Kꜣ",
     "greek": "",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Vital Essence, Life Force",
     "meaning": "The vital essence, life force, or double of a person. Created at birth and surviving death.",
     "sources": [
@@ -51434,8 +49746,6 @@ const LEXICON = [
     "unicode": "Aštart",
     "greek": "",
     "pantheon": "phoenician",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Love, War, Fertility, Venus",
     "meaning": "She of the womb. The planet Venus as deity. Queen of heaven.",
     "sources": [
@@ -51531,8 +49841,6 @@ const LEXICON = [
     "unicode": "ʾAṯiratu",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lady of the Sea, Mother of the Gods",
     "meaning": "‘Lady of the Sea’ — the Ugaritic mother of the gods (rbt ʾaṯrt ym), consort of ʾIlu and intercessor for Baʿlu, KTU",
     "sources": [
@@ -51599,8 +49907,6 @@ const LEXICON = [
     "unicode": "ꜥAsherah",
     "greek": "Ἀσερά",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Mother Goddess, Lady of the Sea",
     "meaning": "Canaanite mother goddess, consort of Ēl and patroness of childbirth",
     "sources": [
@@ -51697,8 +50003,6 @@ const LEXICON = [
     "unicode": "Ōkeanós",
     "greek": "Ὠκεανός",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Ocean, Fresh Water",
     "meaning": "The great river encircling the world",
     "sources": [
@@ -51765,8 +50069,6 @@ const LEXICON = [
     "unicode": "Trengtreng",
     "greek": "—",
     "pantheon": "mapuche",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Flood, Land-Shaping",
     "meaning": "Mapuche thunder and war god",
     "sources": [
@@ -51850,8 +50152,6 @@ const LEXICON = [
     "unicode": "Aša",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Truth, Righteousness, Cosmic Order",
     "meaning": "Truth, righteousness, and the cosmic order. The central ethical and metaphysical principle of Zoroastrianism.",
     "sources": [
@@ -51902,8 +50202,6 @@ const LEXICON = [
     "unicode": "Vāc",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Speech, Voice, Sacred Word",
     "meaning": "Speech personified — the Vedic goddess of sacred utterance (Vāc)",
     "senses": [
@@ -51967,8 +50265,6 @@ const LEXICON = [
     "unicode": "Hén",
     "greek": "ἕν",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Unity, The One, Oneness",
     "meaning": "Greek neuter of εἷς, \"one\"; philosophically \"The One\" in Neoplatonism.",
     "sources": [
@@ -52043,8 +50339,6 @@ const LEXICON = [
     "unicode": "Nirmātā",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Creation, The Divine Architect",
     "meaning": "Creator, maker, architect (from Sanskrit निर्मातृ)",
     "sources": [
@@ -52102,8 +50396,6 @@ const LEXICON = [
     "unicode": "Liwyāṯān",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea Serpent, Chaos",
     "meaning": "Coiled sea serpent",
     "sources": [
@@ -52174,8 +50466,6 @@ const LEXICON = [
     "unicode": "ꜥnḫ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Symbol of Life",
     "meaning": "Life; Egyptian ankh sign",
     "sources": [
@@ -52217,8 +50507,6 @@ const LEXICON = [
     "unicode": "Nḫt",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Strength, Victory",
     "meaning": "Strong, mighty, victorious",
     "sources": [
@@ -52270,8 +50558,6 @@ const LEXICON = [
     "unicode": "Mōšeh",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Prophet, Lawgiver",
     "meaning": "Hebrew prophet and lawgiver",
     "sources": [
@@ -52317,8 +50603,6 @@ const LEXICON = [
     "unicode": "Dāwîḏ",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King, Psalmist",
     "meaning": "Second king of Israel",
     "sources": [
@@ -52364,8 +50648,6 @@ const LEXICON = [
     "unicode": "Šəlōmōh",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "King, Sage",
     "meaning": "Third king of Israel, builder of the Temple",
     "sources": [
@@ -52423,8 +50705,6 @@ const LEXICON = [
     "unicode": "Nōaḥ",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Patriarch, Survivor",
     "meaning": "Builder of the ark",
     "sources": [
@@ -52464,8 +50744,6 @@ const LEXICON = [
     "unicode": "Qāyīn",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "First Murderer",
     "meaning": "First son of Adam and Eve",
     "sources": [
@@ -52511,8 +50789,6 @@ const LEXICON = [
     "unicode": "Hāḇel",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "First Victim",
     "meaning": "Second son of Adam and Eve",
     "sources": [
@@ -52558,8 +50834,6 @@ const LEXICON = [
     "unicode": "Lóng",
     "greek": "龍",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dragon",
     "meaning": "Chinese dragon",
     "sources": [
@@ -52600,8 +50874,6 @@ const LEXICON = [
     "unicode": "Wújí",
     "greek": "無極",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Limitless, Ultimate Nothing",
     "meaning": "The primordial state of emptiness",
     "sources": [
@@ -52642,8 +50914,6 @@ const LEXICON = [
     "unicode": "Yīnyáng",
     "greek": "陰陽",
     "pantheon": "taoist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cosmic Duality",
     "meaning": "Interdependence of opposites",
     "sources": [
@@ -52709,8 +50979,6 @@ const LEXICON = [
     "unicode": "Hygíeia",
     "greek": "Ὑγίεια",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Health, Hygiene, Wellness",
     "meaning": "Health, soundness; personified as the goddess of health and cleanliness",
     "sources": [
@@ -52805,8 +51073,6 @@ const LEXICON = [
     "unicode": "Papatūānuku",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth, Creation, Fertility",
     "meaning": "Earth Mother; the land that gives birth to all living things",
     "sources": [
@@ -52931,8 +51197,6 @@ const LEXICON = [
     "unicode": "Tiāndì",
     "greek": "天地",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Cosmology, Heaven and Earth, Order",
     "meaning": "Heaven and Earth; the natural order of the cosmos",
     "sources": [
@@ -53017,8 +51281,6 @@ const LEXICON = [
     "unicode": "Yām",
     "greek": "—",
     "pantheon": "canaanite",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Primordial Waters, Chaos",
     "meaning": "Sea; the deified primordial ocean in Ugaritic and Canaanite myth",
     "sources": [
@@ -53095,8 +51357,6 @@ const LEXICON = [
     "unicode": "Adámas",
     "greek": "ἀδάμας",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Gem, Concept, Invincibility",
     "meaning": "Unbreakable; the adamant; the hardest substance; origin of \"diamond\"",
     "sources": [
@@ -53198,8 +51458,6 @@ const LEXICON = [
     "unicode": "Nárkē",
     "greek": "Νάρκη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Numbness, Sleep, Root Word",
     "meaning": "Numbness, stiffness, torpor; root of \"narcotic\"",
     "sources": [
@@ -53276,8 +51534,6 @@ const LEXICON = [
     "unicode": "Eirḗnē",
     "greek": "Εἰρήνη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Peace, Order, Seasons",
     "meaning": "Peace; personified as a goddess",
     "sources": [
@@ -53361,8 +51617,6 @@ const LEXICON = [
     "unicode": "Atlantís",
     "greek": "Ἀτλαντίς",
     "pantheon": "greek-location",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Lost Island, Legendary Realm, Sea",
     "meaning": "Daughter of Atlas; the legendary lost island civilization",
     "sources": [
@@ -53452,8 +51706,6 @@ const LEXICON = [
     "unicode": "Ēlysion",
     "greek": "Ἠλύσιον",
     "pantheon": "greek-location",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Afterlife, Paradise, Blessed Realm",
     "meaning": "Elysian plain; abode of the blessed dead",
     "sources": [
@@ -53537,8 +51789,6 @@ const LEXICON = [
     "unicode": "Hyperbórea",
     "greek": "Ὑπερβόρεα",
     "pantheon": "greek-location",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Far North, Legendary Land, Sun",
     "meaning": "Beyond the north wind; a legendary northern paradise",
     "sources": [
@@ -53640,8 +51890,6 @@ const LEXICON = [
     "unicode": "Phaéthōn",
     "greek": "Φαέθων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Chariot, Light, Fall",
     "meaning": "Shining one; son of Helios",
     "sources": [
@@ -53731,8 +51979,6 @@ const LEXICON = [
     "unicode": "Smáragdos",
     "greek": "Σμάραγδος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Gem, Green Stone, Jewel",
     "meaning": "Emerald; any green precious stone",
     "sources": [
@@ -53833,8 +52079,6 @@ const LEXICON = [
     "unicode": "Hyákinthos",
     "greek": "Ὑάκινθος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Gem, Flower, Root Word, Apotheosis",
     "meaning": "Hyacinth; blue gem or flower; youth loved by Apollo",
     "sources": [
@@ -53942,8 +52186,6 @@ const LEXICON = [
     "unicode": "Améthystos",
     "greek": "Ἀμέθυστος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Gem, Stone, Sobriety",
     "meaning": "Amethyst; literally \"not drunk\"",
     "sources": [
@@ -54050,8 +52292,6 @@ const LEXICON = [
     "unicode": "Thálassa",
     "greek": "Θάλασσα",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sea, Salt Water, Primordial",
     "meaning": "Sea; the salt sea",
     "sources": [
@@ -54141,8 +52381,6 @@ const LEXICON = [
     "unicode": "Hē",
     "greek": "ἡ",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "The Divine Feminine Principle, She Who Is",
     "meaning": "Feminine nominative singular article in Ancient Greek; in Orphic and Neoplatonic thought, the receptacle of divine overflow and counterpart to τὸ ἕν (Hén).",
     "sources": [
@@ -54206,8 +52444,6 @@ const LEXICON = [
     "unicode": "Perkūnas",
     "greek": "—",
     "pantheon": "baltic",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "God of Thunder, Lightning and Storms",
     "meaning": "Lithuanian/Baltic thunder deity, cognate with Slavic Perun and Indo-Iranian Parjanya.",
     "sources": [
@@ -54305,8 +52541,6 @@ const LEXICON = [
     "unicode": "Búri",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "First God of the Norse Pantheon, Progenitor of the Æsir",
     "meaning": "In the Prose Edda, Búri is the primeval ancestor born from the salty rime, father of Borr and grandfather of Óðinn.",
     "sources": [
@@ -54381,8 +52615,6 @@ const LEXICON = [
     "unicode": "Tiān",
     "greek": "天",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Heaven, Sky, Cosmic Order",
     "meaning": "The supreme celestial force and moral order of the cosmos",
     "sources": [
@@ -54431,8 +52663,6 @@ const LEXICON = [
     "unicode": "Mictlāntēcutli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lord of Mictlān, Death, Underworld",
     "meaning": "Lord of the Land of the Dead",
     "sources": [
@@ -54540,8 +52770,6 @@ const LEXICON = [
     "unicode": "Cihuacōātl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Childbirth, Motherhood, Earth",
     "meaning": "Snake Woman",
     "sources": [
@@ -54618,8 +52846,6 @@ const LEXICON = [
     "unicode": "Achilleús",
     "greek": "Ἀχιλλεύς",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Glory, Rage",
     "meaning": "Possibly 'grief of the people' (from ἄχος + λαός), or a pre-Greek name",
     "sources": [
@@ -54701,8 +52927,6 @@ const LEXICON = [
     "unicode": "Asklēpiós",
     "greek": "Ἀσκληπιός",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Medicine, Healing, Renewal",
     "meaning": "Uncertain; possibly related to ἀσκαλαβώτης (lizard) or a pre-Greek healing root",
     "sources": [
@@ -54781,8 +53005,6 @@ const LEXICON = [
     "unicode": "Drákōn",
     "greek": "Δράκων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Serpent, Guardian, Vigilance",
     "meaning": "'The one who sees clearly' (from δέρκομαι, to see)",
     "sources": [
@@ -54843,8 +53065,6 @@ const LEXICON = [
     "unicode": "Monókerōs",
     "greek": "Μονόκερως",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Rarity, Ferocity, Wonder",
     "meaning": "'Single-horned' (from μόνος + κέρας)",
     "sources": [
@@ -54923,8 +53143,6 @@ const LEXICON = [
     "unicode": "Pḗgasos",
     "greek": "Πήγασος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Flight, Inspiration, Freedom",
     "meaning": "Possibly from πηγή (spring) or a pre-Greek name",
     "sources": [
@@ -54999,8 +53217,6 @@ const LEXICON = [
     "unicode": "Týchē",
     "greek": "Τύχη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fortune, Chance, Turning",
     "meaning": "'That which happens' (from τυγχάνω)",
     "sources": [
@@ -55055,8 +53271,6 @@ const LEXICON = [
     "unicode": "Diāna",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Moon, Hunt, Wilderness",
     "meaning": "'The bright one, goddess' (from the root *dyēu-, to shine)",
     "sources": [
@@ -55105,8 +53319,6 @@ const LEXICON = [
     "unicode": "Iānus",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Beginnings, Doors, Transitions",
     "meaning": "'Passage, arched door' (from ianua)",
     "sources": [
@@ -55155,8 +53367,6 @@ const LEXICON = [
     "unicode": "Iūnō",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Queenship, Marriage, Sky",
     "meaning": "From the same root as Iuppiter, the bright sky",
     "sources": [
@@ -55199,8 +53409,6 @@ const LEXICON = [
     "unicode": "Iūpiter",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sky, Thunder, Sovereignty",
     "meaning": "'Sky-father' (from *Dyēu-pater)",
     "sources": [
@@ -55267,8 +53475,6 @@ const LEXICON = [
     "unicode": "Neptūnus",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Horses, Earthquake",
     "meaning": "Possibly related to nepos (descendant) or a pre-Roman water root",
     "sources": [
@@ -55335,8 +53541,6 @@ const LEXICON = [
     "unicode": "Vulcānus",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fire, Forge, Craft",
     "meaning": "Possibly from fulgere (to flash) or a pre-Roman fire root",
     "sources": [
@@ -55403,8 +53607,6 @@ const LEXICON = [
     "unicode": "Stḫ",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Desert, Storm, Strength",
     "meaning": "The god Seth/Setekh; etymology disputed, possibly \"the one who separates\"",
     "sources": [
@@ -55447,8 +53649,6 @@ const LEXICON = [
     "unicode": "Ḥꜥpy",
     "greek": "—",
     "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Nile, Inundation, Abundance",
     "meaning": "The Nile flood god Hapi; from ḥꜥpj",
     "sources": [
@@ -55479,8 +53679,6 @@ const LEXICON = [
     "unicode": "Aṃśa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Share, Portion, Light",
     "meaning": "'Portion, share' (from aṃśa), one of the twelve Ādityas",
     "sources": [
@@ -55523,8 +53721,6 @@ const LEXICON = [
     "unicode": "Dakṣa",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Skill, Creation, Order",
     "meaning": "'The skilled, the able' (from dakṣa), a Prajāpati",
     "sources": [
@@ -55573,8 +53769,6 @@ const LEXICON = [
     "unicode": "Dhātṛ",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Creation, Ordinance, Support",
     "meaning": "'The Ordainer, the Establisher' (from dhā, to place), an Āditya",
     "sources": [
@@ -55623,8 +53817,6 @@ const LEXICON = [
     "unicode": "Pūṣan",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Journeys, Nourishment, Roads",
     "meaning": "'The Nourisher' (from puṣ, to thrive), Vedic solar guide of roads",
     "sources": [
@@ -55673,8 +53865,6 @@ const LEXICON = [
     "unicode": "Tvaṣṭṛ",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Craft, Making, Form",
     "meaning": "'The Fashioner, the Maker' (from tvaṣ, to form), the divine craftsman",
     "sources": [
@@ -55729,8 +53919,6 @@ const LEXICON = [
     "unicode": "Mèngpó",
     "greek": "孟婆",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Forgetting, Passage, Tea",
     "meaning": "'Old Lady Meng' (孟婆), the goddess who brews the tea of forgetfulness",
     "sources": [
@@ -55785,8 +53973,6 @@ const LEXICON = [
     "unicode": "Pángǔ",
     "greek": "盤古",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Creation, Separation, Foundation",
     "meaning": "'Coiled antiquity' (盤古), the giant who split heaven from earth",
     "sources": [
@@ -55835,8 +54021,6 @@ const LEXICON = [
     "unicode": "Yánluó",
     "greek": "閻羅王",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Judgment, Underworld, Order",
     "meaning": "'King Yan' (閻羅, from Yama), the judge of the dead",
     "sources": [
@@ -55891,8 +54075,6 @@ const LEXICON = [
     "unicode": "Honshū",
     "greek": "本州",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Center, Mainland, Heart",
     "meaning": "'Main island' (本州)",
     "sources": [
@@ -55946,8 +54128,6 @@ const LEXICON = [
     "unicode": "Kyūshū",
     "greek": "九州",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "South, Volcanoes, Origins",
     "meaning": "'Nine provinces' (九州)",
     "sources": [
@@ -56001,8 +54181,6 @@ const LEXICON = [
     "unicode": "Tūmatauenga",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Humanity, Strength",
     "meaning": "'The man of furious face' (tū + mata + ēngā), god of war and of humankind",
     "sources": [
@@ -56086,8 +54264,6 @@ const LEXICON = [
     "unicode": "Guāndì",
     "greek": "關帝",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Loyalty, Protection",
     "meaning": "\"Emperor Guan\" — the deified general Guān Yǔ, god of war, loyalty, and righteousness",
     "breakdown": [
@@ -56146,8 +54322,6 @@ const LEXICON = [
     "unicode": "Gaurī",
     "greek": "गौरी",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Motherhood, Beauty, Austerity",
     "meaning": "\"The Golden One\" — the radiant form of the Great Goddess, mother of the universe",
     "breakdown": [
@@ -56200,8 +54374,6 @@ const LEXICON = [
     "unicode": "Śani",
     "greek": "शनि",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Justice, Saturn, Karma",
     "meaning": "\"The Slow One\" — Saturn as the lord of karma, justice, discipline, and time",
     "breakdown": [
@@ -56248,8 +54420,6 @@ const LEXICON = [
     "unicode": "Ọrun",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sky, Heaven, Destiny",
     "meaning": "\"Heaven\" — the sky-realm of the orisha, the divine order above the world",
     "breakdown": [
@@ -56296,8 +54466,6 @@ const LEXICON = [
     "unicode": "Xiuhtēcuhtli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fire, Time, Hearth",
     "meaning": "\"Fire Lord\" — the Aztec fire god, lord of the hearth and of the year",
     "breakdown": [
@@ -56391,8 +54559,6 @@ const LEXICON = [
     "unicode": "Plūtō",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Underworld, Wealth, the Dead",
     "meaning": "\"The Rich One\" — Roman lord of the underworld and of buried wealth",
     "breakdown": [
@@ -56445,8 +54611,6 @@ const LEXICON = [
     "unicode": "Cerēs",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Agriculture, Grain, Harvest",
     "meaning": "Goddess of grain and growth — the source of the word \"cereal\"",
     "breakdown": [
@@ -56499,8 +54663,6 @@ const LEXICON = [
     "unicode": "Mixcōātl",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Clouds, Hunting, the Milky Way",
     "meaning": "\"Cloud Serpent\" — god of the hunt, of clouds, and of the starry road",
     "breakdown": [
@@ -56580,8 +54742,6 @@ const LEXICON = [
     "unicode": "Ọbà",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "River, Devotion, Sanctuary",
     "meaning": "The river orisha Ọba — co-wife of the thunder god, lady of the sacred waters",
     "breakdown": [
@@ -56622,8 +54782,6 @@ const LEXICON = [
     "unicode": "Ašavahišta",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Truth, Righteousness, Fire",
     "meaning": "\"Best Truth\" — the Amesha Spenta of cosmic order (Aša), guardian of the sacred fire and the moral law",
     "sources": [
@@ -56724,8 +54882,6 @@ const LEXICON = [
     "unicode": "Ádōnis",
     "greek": "Ἄδωνις",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Beauty, Desire, Renewal",
     "meaning": "Lord (from Semitic ʾādōn)",
     "sources": [
@@ -56780,8 +54936,6 @@ const LEXICON = [
     "unicode": "Ægir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Brewing, Feasting",
     "meaning": "Sea (the sea giant who brews ale for the gods)",
     "sources": [
@@ -56829,8 +54983,6 @@ const LEXICON = [
     "unicode": "Amphitrítē",
     "greek": "Ἀμφιτρίτη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Queenship, Waves",
     "meaning": "Likely a pre-Greek sea name",
     "sources": [
@@ -56908,8 +55060,6 @@ const LEXICON = [
     "unicode": "Avalokiteśvara",
     "greek": "अवलोकितेश्वर",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Compassion, Mercy, Bodhisattva",
     "meaning": "Lord who looks down in compassion",
     "sources": [
@@ -57023,8 +55173,6 @@ const LEXICON = [
     "unicode": "Balor",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Destruction, Evil Eye, Fomorians",
     "meaning": "Fomorian king whose destructive eye blasts armies when its lid is raised, slain by his grandson Lúg with a sling-stone at Cath Maige Tuired.",
     "sources": [
@@ -57071,8 +55219,6 @@ const LEXICON = [
     "unicode": "Bhaiṣajyaguru",
     "greek": "भैषज्यगुरु",
     "pantheon": "buddhist",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Healing, Medicine, Lapis-Lazuli Light",
     "meaning": "Medicine master",
     "sources": [
@@ -57174,8 +55320,6 @@ const LEXICON = [
     "unicode": "Bifrǫst",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Rainbow Bridge, Passage, Heimdallr's Watch",
     "meaning": "Trembling pathway (from bifa, to shake, + rǫst, league)",
     "sources": [
@@ -57235,8 +55379,6 @@ const LEXICON = [
     "unicode": "Bùdài",
     "greek": "布袋",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Contentment, Abundance, Joy",
     "meaning": "'Cloth sack' (bù 'cloth' + dài 'sack'), the laughing, sack-carrying monk of the Chinese Buddhist tradition, identified as an incarnation of Maitreya.",
     "sources": [
@@ -57282,8 +55424,6 @@ const LEXICON = [
     "unicode": "Cáishén",
     "greek": "財神",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wealth, Prosperity, New Year",
     "meaning": "God of wealth",
     "sources": [
@@ -57350,8 +55490,6 @@ const LEXICON = [
     "unicode": "Cupīdō",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Desire, Love, Longing",
     "meaning": "The Roman god of desire, son of Venus; from cupīdō, 'desire, longing, passion' (epigraphic CVPIDO)",
     "sources": [
@@ -57404,8 +55542,6 @@ const LEXICON = [
     "unicode": "Duryodhana",
     "greek": "दुर्योधन",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Ambition, Rivalry, War",
     "meaning": "'Hard to Conquer in Battle' (dur- 'hard' + yodhana 'fighting') — the eldest Kaurava, rival of the Pāṇḍavas whose refusal to yield their share of the kingdom brings about the Kurukṣetra war",
     "sources": [
@@ -57481,8 +55617,6 @@ const LEXICON = [
     "unicode": "Helénē",
     "greek": "Ἑλένη",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Beauty, Sparta, Troy",
     "meaning": "Probably pre-Greek; folk-linked to ἑλένη 'torch'",
     "sources": [
@@ -57545,8 +55679,6 @@ const LEXICON = [
     "unicode": "Iphigéneia",
     "greek": "Ἰφιγένεια",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sacrifice, Winds, Aulis",
     "meaning": "Mighty-born (ἶφι \"by might\" + γένος \"birth\")",
     "sources": [
@@ -57625,8 +55757,6 @@ const LEXICON = [
     "unicode": "Kalki",
     "greek": "कल्कि",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Prophecy, Renewal, Avatar of Vishnu",
     "meaning": "The avatāra yet to come — the tenth and final avatāra of Viṣṇu, who appears at the end of the Kali Yuga riding a white horse to destroy unrighteousness and restore the age of truth",
     "sources": [
@@ -57674,8 +55804,6 @@ const LEXICON = [
     "unicode": "Klytaimnḗstra",
     "greek": "Κλυταιμνήστρα",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Revenge, Marriage, Mycenae",
     "meaning": "Famed wooer (κλυτός + μνήστωρ)",
     "sources": [
@@ -57772,8 +55900,6 @@ const LEXICON = [
     "unicode": "Kuāfù",
     "greek": "夸父",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Perseverance",
     "meaning": "Giant who chased the sun",
     "sources": [
@@ -57819,8 +55945,6 @@ const LEXICON = [
     "unicode": "Kūrma",
     "greek": "कूर्म",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Support, Ocean, Avatar of Vishnu",
     "meaning": "The Tortoise — second avatāra of Viṣṇu, who bears Mount Mandara on his back as the pivot during the churning of the ocean of milk",
     "sources": [
@@ -57867,8 +55991,6 @@ const LEXICON = [
     "unicode": "Máni",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Moon, Night, Time",
     "meaning": "Moon (the personified moon, brother of Sól)",
     "sources": [
@@ -57911,8 +56033,6 @@ const LEXICON = [
     "unicode": "Mārs",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Agriculture, Sovereignty",
     "meaning": "The Roman god of war and guardian of agriculture, father of Rōmulus and Rēmus; namesake of the planet Mars and the month of March (epigraphic MARS)",
     "sources": [
@@ -57953,8 +56073,6 @@ const LEXICON = [
     "unicode": "Medb",
     "greek": "—",
     "pantheon": "celtic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sovereignty, War, Intoxication",
     "meaning": "'The intoxicating one' (Old Irish medb, cognate with 'mead'), Queen of Connacht who drives the cattle raid of the Táin Bó Cúailnge.",
     "sources": [
@@ -57995,8 +56113,6 @@ const LEXICON = [
     "unicode": "Mímir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, Memory, Counsel",
     "meaning": "The rememberer (etymology disputed; keeper of the well of wisdom)",
     "sources": [
@@ -58044,8 +56160,6 @@ const LEXICON = [
     "unicode": "Padmasambhava",
     "greek": "पद्मसम्भव",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Lotus-Born, Vajrayana, Tibet",
     "meaning": "'Lotus-born' (padma 'lotus' + sambhava 'born, arisen'), 'Guru Rinpoche', the tantric master revered as the founder-figure of Tibetan Buddhism.",
     "sources": [
@@ -58140,8 +56254,6 @@ const LEXICON = [
     "unicode": "Paraśurāma",
     "greek": "परशुराम",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "War, Vengeance, Avatar of Vishnu",
     "meaning": "'Rāma with the Axe' (paraśu 'axe') — the sixth avatāra of Viṣṇu, the Brahmin warrior who exterminates the kṣatriyas, counted among the immortal Cirañjīvī",
     "sources": [
@@ -58224,8 +56336,6 @@ const LEXICON = [
     "unicode": "Rāhu",
     "greek": "राहु",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Eclipse, Shadow, Deception",
     "meaning": "The Seizer — the asura whose severed head, having drunk the amṛta, swallows the sun and moon to cause eclipses; reckoned among the nine grahas",
     "sources": [
@@ -58266,8 +56376,6 @@ const LEXICON = [
     "unicode": "Rán",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Drowning, Death",
     "meaning": "Theft, plunder (she who nets the drowned, wife of Ægir)",
     "sources": [
@@ -58303,8 +56411,6 @@ const LEXICON = [
     "unicode": "Ranginui",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Sky, Fatherhood, Creation",
     "meaning": "'Great heaven' (Māori rangi 'sky, heavens' + nui 'great'), the sky father prised apart from the earth mother Papatūānuku by their children.",
     "sources": [
@@ -58369,8 +56475,6 @@ const LEXICON = [
     "unicode": "Sigurðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Victory, Dragon-Slaying, Heroism",
     "meaning": "Victory-guardian (from sigr, victory, + vǫrðr, guardian)",
     "sources": [
@@ -58424,8 +56528,6 @@ const LEXICON = [
     "unicode": "Sleipnir",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Eight-Legged Steed, Journey, Offspring of Loki",
     "meaning": "Gliding one (from sleipr, slippery)",
     "sources": [
@@ -58491,8 +56593,6 @@ const LEXICON = [
     "unicode": "Sól",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Light, Day",
     "meaning": "Sun (the personified sun, sister of Máni)",
     "sources": [
@@ -58528,8 +56628,6 @@ const LEXICON = [
     "unicode": "Trítōn",
     "greek": "Τρίτων",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sea, Conch, Waves",
     "meaning": "Sea-god's name, likely pre-Greek",
     "sources": [
@@ -58584,8 +56682,6 @@ const LEXICON = [
     "unicode": "Tǔdìgōng",
     "greek": "土地公",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth, Locality, Village",
     "meaning": "Local earth god",
     "sources": [
@@ -58649,8 +56745,6 @@ const LEXICON = [
     "unicode": "Varāha",
     "greek": "वराह",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Rescue, Earth, Avatar of Vishnu",
     "meaning": "The Boar — third avatāra of Viṣṇu, who dives into the cosmic waters and raises the sunken Earth (Bhūdevī) on his tusks",
     "sources": [
@@ -58702,8 +56796,6 @@ const LEXICON = [
     "unicode": "Venus",
     "greek": "—",
     "pantheon": "roman",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Love, Beauty, Desire",
     "meaning": "The Roman goddess of love and beauty, mother of Aenēās; namesake of the planet Venus (epigraphic VENVS; all vowels short, so the standard form carries no diacritics)",
     "sources": [
@@ -58750,8 +56842,6 @@ const LEXICON = [
     "unicode": "Yándì",
     "greek": "炎帝",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Flame, Agriculture, Sovereignty",
     "meaning": "Flame emperor",
     "sources": [
@@ -58797,8 +56887,6 @@ const LEXICON = [
     "unicode": "Dà Yǔ",
     "greek": "大禹",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Flood, Kingship, Order",
     "meaning": "Great Yu",
     "sources": [
@@ -58838,8 +56926,6 @@ const LEXICON = [
     "unicode": "Yudhiṣṭhira",
     "greek": "युधिष्ठिर",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Justice, Kingship, Truth",
     "meaning": "'Steadfast in Battle' (yudhi 'in battle' + sthira 'firm') — the eldest Pāṇḍava, son of the god Dharma, famed for truthfulness and crowned king at Hāstinapura after the Kurukṣetra war",
     "sources": [
@@ -58921,8 +57007,6 @@ const LEXICON = [
     "unicode": "Zàojūn",
     "greek": "灶君",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Hearth, Kitchen, Household",
     "meaning": "Lord of the hearth",
     "sources": [
@@ -58974,8 +57058,6 @@ const LEXICON = [
     "unicode": "Zaraθuštra",
     "greek": "—",
     "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Prophecy, Truth, Fire",
     "meaning": "Avestan name of Zarathustra (second element uštra 'camel'), the prophet of Ahura Mazdā and traditional composer of the Gāthās.",
     "sources": [
@@ -59064,8 +57146,6 @@ const LEXICON = [
     "unicode": "Zhīnǚ",
     "greek": "織女",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Weaving, Love, Stars",
     "meaning": "Weaver girl",
     "sources": [
@@ -59111,8 +57191,6 @@ const LEXICON = [
     "unicode": "Zhōngkuí",
     "greek": "鍾馗",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Demons, Exorcism, Protection",
     "meaning": "Queller of demons",
     "sources": [
@@ -59175,8 +57253,6 @@ const LEXICON = [
     "unicode": "Omphalós",
     "greek": "ὀμφαλός",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Navel, Center, Delphi",
     "meaning": "Navel (of the earth); the stone at Delphi regarded as the centre of the world",
     "sources": [
@@ -59248,8 +57324,6 @@ const LEXICON = [
     "unicode": "Keraunós",
     "greek": "κεραυνός",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Thunderbolt",
     "meaning": "Thunderbolt (the weapon of Zeus)",
     "sources": [
@@ -59321,8 +57395,6 @@ const LEXICON = [
     "unicode": "Susanō",
     "greek": "須佐之男命",
     "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Storms, Sea, Chaos",
     "meaning": "Swift impetuous male deity; the Shinto storm god",
     "sources": [
@@ -59396,8 +57468,6 @@ const LEXICON = [
     "unicode": "Oidípous",
     "greek": "Οἰδίπους",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Fate, Riddles, Thebes",
     "meaning": "Swollen-foot (from οἰδάω + πούς)",
     "sources": [
@@ -59476,8 +57546,6 @@ const LEXICON = [
     "unicode": "Kǒngzǐ",
     "greek": "孔子",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Confucius, Moral Teaching, Ritual",
     "meaning": "Master Kong",
     "sources": [
@@ -59545,8 +57613,6 @@ const LEXICON = [
     "unicode": "Yùhuáng",
     "greek": "玉皇",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Jade Emperor, Heaven, Sovereignty",
     "meaning": "Jade Emperor",
     "sources": [
@@ -59620,8 +57686,6 @@ const LEXICON = [
     "unicode": "Krátos",
     "greek": "Κράτος",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
     "domain": "Strength, Power, Sovereignty",
     "meaning": "Strength, power",
     "sources": [
@@ -59681,8 +57745,6 @@ const LEXICON = [
     "unicode": "Tōnatiuh",
     "greek": "—",
     "pantheon": "nahuatl",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Sun, Heat, Fifth Age",
     "meaning": "He who goes forth shining; the Nahuatl sun god",
     "sources": [
@@ -59754,8 +57816,6 @@ const LEXICON = [
     "unicode": "Odùduwà",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Progenitor, Ile-Ife, First King",
     "meaning": "Creator of the earth; primordial ancestor of the Yoruba",
     "sources": [
@@ -59821,8 +57881,6 @@ const LEXICON = [
     "unicode": "Shàngdì",
     "greek": "上帝",
     "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Supreme Deity, Heaven, Sovereign",
     "meaning": "Highest Emperor; the supreme god of early Chinese religion",
     "sources": [
@@ -59889,8 +57947,6 @@ const LEXICON = [
     "unicode": "Jagannātha",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Lord of the World, Puri, Devotion",
     "meaning": "Lord of the universe",
     "sources": [
@@ -59974,8 +58030,6 @@ const LEXICON = [
     "unicode": "Jǫrð",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth, Mother of Thor",
     "meaning": "Earth",
     "sources": [
@@ -60024,8 +58078,6 @@ const LEXICON = [
     "unicode": "Auðhumla",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Primeval Cow, Nourisher of Creation",
     "meaning": "Wealth-humla (primeval cow)",
     "sources": [
@@ -60098,8 +58150,6 @@ const LEXICON = [
     "unicode": "Fjǫrgyn",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Earth, Mother of Thor",
     "meaning": "Earth (Fjǫrgyn)",
     "sources": [
@@ -60166,8 +58216,6 @@ const LEXICON = [
     "unicode": "Gná",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Messenger of Frigg",
     "meaning": "To project, to gaze",
     "sources": [
@@ -60209,8 +58257,6 @@ const LEXICON = [
     "unicode": "Þrúðr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Strength, Daughter of Thor",
     "meaning": "Strength, power",
     "sources": [
@@ -60271,8 +58317,6 @@ const LEXICON = [
     "unicode": "Vǫr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Wisdom, Oaths, Knowledge",
     "meaning": "The careful one, oath-goddess",
     "sources": [
@@ -60314,8 +58358,6 @@ const LEXICON = [
     "unicode": "Vár",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Oaths, Marriage Agreements",
     "meaning": "Agreement, vow",
     "sources": [
@@ -60357,8 +58399,6 @@ const LEXICON = [
     "unicode": "Óneiros",
     "greek": "Ὄνειρος",
     "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
     "domain": "Dreams, Dream-Visions",
     "meaning": "Dream",
     "sources": [
@@ -60426,8 +58466,6 @@ const LEXICON = [
     unicode: 'Ambikā',
     greek: '—',
     pantheon: 'sanskrit',
-    tier: '1',
-    tierLabel: 'Tier 1',
     domain: 'Divine Mother, Power, Protection',
     meaning: 'Mother; epithet of Pārvatī/Durgā, the multi-armed goddess with lion',
     sources: ['Monier-Williams', 'Shiva Purana', 'Devi Mahatmya'],
@@ -60446,8 +58484,6 @@ const LEXICON = [
     unicode: 'Bhūdevī',
     greek: '—',
     pantheon: 'sanskrit',
-    tier: '1',
-    tierLabel: 'Tier 1',
     domain: 'Earth, Fertility, Sustenance',
     meaning: 'Earth goddess; seated on a lotus, holding a vessel of grain',
     sources: ['Monier-Williams', 'Vishnu Purana', 'Bhagavata Purana'],
@@ -60467,8 +58503,6 @@ const LEXICON = [
     unicode: 'Pállas',
     greek: 'Πάλλας',
     pantheon: 'greek',
-    tier: '1',
-    tierLabel: 'Tier 1',
     domain: 'Warcraft, Strategy, Celestial Bronze',
     meaning: 'Titan of warcraft; father of Nike, Kratos, Bia, and Zelos',
     sources: ['Hesiod', 'Apollodorus', 'LSJ', 'Pape-Benseler'],

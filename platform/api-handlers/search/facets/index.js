@@ -1,6 +1,6 @@
 /**
  * GET /api/search/facets
- * Return facet aggregations for the search index: pantheon, tier, hasSite.
+ * Return facet aggregations for the search index: pantheon, marks, hasSite.
  */
 
 const Database = require('better-sqlite3');
@@ -31,15 +31,12 @@ module.exports = async function searchFacets(_req, res) {
     `)
     .all();
 
-  // Tier facet
-  const tiers = db
-    .prepare(`
-      SELECT tier, COUNT(*) as count
-      FROM entries
-      GROUP BY tier
-      ORDER BY CASE tier WHEN 'dual' THEN 1 WHEN '1' THEN 2 WHEN '2' THEN 3 ELSE 4 END
-    `)
-    .all();
+  // Preservation facet — mechanical, from the displayed form
+  const { preservedFeatures } = require('../../../../type/js/engine.js');
+  const markRows = db.prepare('SELECT unicode FROM entries').all();
+  const markedCount = markRows.filter(
+    (r) => preservedFeatures(r.unicode || '').features.length > 0
+  ).length;
 
   // Has site facet (active indexed site)
   const hasSite = db
@@ -58,7 +55,7 @@ module.exports = async function searchFacets(_req, res) {
     success: true,
     data: {
       pantheons: pantheons.map((p) => ({ id: p.pantheon, count: p.count })),
-      tiers: tiers.map((t) => ({ id: t.tier, count: t.count })),
+      marks: { marked: markedCount, plain: markRows.length - markedCount },
       hasSite: {
         with: hasSite.withSite || 0,
         without: hasSite.withoutSite || 0,

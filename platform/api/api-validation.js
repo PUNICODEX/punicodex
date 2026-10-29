@@ -30,8 +30,7 @@ const VALID_PANTHEONS = new Set([
   'hittite',
 ]);
 
-const VALID_TIERS = new Set(['dual', '1', '2']);
-const VALID_SORTS = new Set(['relevance', 'alphabetical', 'tier']);
+const VALID_SORTS = new Set(['relevance', 'alphabetical']);
 const MAX_LIMIT = 100;
 const DEFAULT_LIMIT = 20;
 
@@ -96,9 +95,6 @@ function validateListNamesQuery(query) {
   const pantheon = validateString(qparams.pantheon, 'pantheon', { allowed: VALID_PANTHEONS });
   if (pantheon) errors.push(pantheon);
 
-  const tier = validateString(qparams.tier, 'tier', { allowed: VALID_TIERS });
-  if (tier) errors.push(tier);
-
   const hasSite = validateBooleanString(qparams.hasSite, 'hasSite');
   if (hasSite.error) errors.push(hasSite.error);
 
@@ -123,7 +119,6 @@ function validateListNamesQuery(query) {
     params: {
       q: qparams.q || undefined,
       pantheon: qparams.pantheon || undefined,
-      tier: qparams.tier || undefined,
       hasSite: hasSite.value,
       sort: qparams.sort || 'relevance',
       limit: limit.value,
@@ -246,7 +241,6 @@ function validateAppraiseBatchBody(body) {
 
 module.exports = {
   VALID_PANTHEONS,
-  VALID_TIERS,
   VALID_SORTS,
   validateListNamesQuery,
   validateConvertQuery,

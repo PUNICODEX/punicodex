@@ -46,7 +46,7 @@ function lexicon() {
   return lexiconCache;
 }
 
-/** Deduplicated lexicon — dual-tier names appear once per tier row. */
+/** Deduplicated lexicon — each name appears once. */
 let uniqueLexiconCache = null;
 function uniqueLexicon() {
   if (!uniqueLexiconCache) {

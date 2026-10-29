@@ -33,7 +33,7 @@
 ```text
 unicodeValue = IDN_BASE(.com $30, other TLDs lower)
              × lexiconAttestation      (3.0 when attested)
-             × tier                    (dual 2.5 / 1: 2.0 / 2: 1.3)
+             × preservation          (full 2.2 / single 1.4 — mechanical, from the form)
              × flagshipDevelopment     (2.0 owned & operated temple)
              × attestationDepth        (≤1.5 by scholarly sources)
              × pantheonReach           (0.7 + weight×0.5)

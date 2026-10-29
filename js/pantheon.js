@@ -45,8 +45,7 @@
             const tag = 'a';
             const hrefAttr = `href="${url}"`;
             const unbuiltClass = !a.built ? 'unbuilt' : '';
-            const tierClass = a.tier;
-            const badgeText = !a.built ? 'Awaiting' : a.tier === 'tier-1' ? 'Tier 1' : 'Tier 2';
+            const badgeText = !a.built ? 'Awaiting' : preservationBadgeText(a.name);
 
             const scriptInfo = typeof ORIGINAL_SCRIPT_LOOKUP !== 'undefined' ? ORIGINAL_SCRIPT_LOOKUP[a.id] : null;
             const originalScript = scriptInfo ? scriptInfo.originalScript : (a.greek || '');
@@ -64,7 +63,7 @@
                 : `<img src="${thumbPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" width="120" height="120" ${loadingAttr} decoding="async" class="card-portrait-img">`;
 
             return `
-                <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
+                <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-marked="${preservationBadgeText(a.name) === 'ASCII form' ? 0 : 1}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
                     <div class="card-portrait">
                         ${portraitHtml}
                     </div>
@@ -72,7 +71,7 @@
                     <p class="card-greek">${scriptLabel}</p>
                     <p class="card-domain">${a.domain}</p>
                     <p class="card-punycode">${a.domainUnicode} &rarr; ${a.domainPunycode}</p>
-                    <span class="card-badge ${tierClass}">${badgeText}</span>
+                    <span class="card-badge">${badgeText}</span>
                 </${tag}>
             `;
         }).join('');
@@ -112,15 +111,27 @@
         img.src = fallback;
     }
 
+    // Mechanical preservation badge — computed from the displayed form.
+    function preservationBadgeText(unicode) {
+        const nfd = (unicode || '').normalize('NFD');
+        const circumflex = nfd.includes('̂');
+        const stress = circumflex || /[̀́́]/.test(nfd);
+        const length = circumflex || /[̄̆]/.test(nfd);
+        if (stress && length) return 'Preserves stress & length';
+        if (stress) return 'Preserves stress';
+        if (length) return 'Preserves length';
+        if (/[̀-ͯ]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd)) return 'Preserves marks';
+        return 'ASCII form';
+    }
+
     function applyFilter() {
         if (!allCards.length) return;
 
         const q = currentSearch.toLowerCase();
         let visibleCount = 0;
         let builtCount = 0;
-        let tier1Count = 0;
-        let dualCount = 0;
-        let tier2Count = 0;
+        let markedCount = 0;
+        let plainCount = 0;
 
         allCards.forEach(card => {
             const archetype = archetypeMap.get(card.dataset.id);
@@ -131,7 +142,8 @@
             if (currentFilter !== 'all') {
                 if (currentFilter === 'built') filterMatch = archetype.built;
                 else if (currentFilter === 'awaiting') filterMatch = !archetype.built;
-                else if (currentFilter.startsWith('tier-')) filterMatch = archetype.tier === currentFilter;
+                else if (currentFilter === 'marked') filterMatch = preservationBadgeText(archetype.name) !== 'ASCII form';
+                else if (currentFilter === 'plain') filterMatch = preservationBadgeText(archetype.name) === 'ASCII form';
                 else filterMatch = archetype.pantheon === currentFilter;
             }
 
@@ -152,9 +164,8 @@
             if (isVisible) {
                 visibleCount++;
                 if (archetype.built) builtCount++;
-                if (archetype.tier === 'tier-1') tier1Count++;
-                if (archetype.tier === 'tier-2') tier2Count++;
-                if (archetype.tier === 'dual-tier') dualCount++;
+                if (preservationBadgeText(archetype.name) === 'ASCII form') plainCount++;
+                else markedCount++;
 
             }
         });
@@ -162,14 +173,12 @@
         // Update stats (fallback to 0 if elements missing)
         const statTotal = document.getElementById('stat-total');
         const statBuilt = document.getElementById('stat-built');
-        const statTier1 = document.getElementById('stat-tier1');
-        const statTier2 = document.getElementById('stat-tier2');
-        const statDual = document.getElementById('stat-dual');
+        const statMarked = document.getElementById('stat-marked');
+        const statPlain = document.getElementById('stat-plain');
         if (statTotal) statTotal.textContent = visibleCount;
         if (statBuilt) statBuilt.textContent = builtCount;
-        if (statTier1) statTier1.textContent = tier1Count;
-        if (statTier2) statTier2.textContent = tier2Count;
-        if (statDual) statDual.textContent = dualCount;
+        if (statMarked) statMarked.textContent = markedCount;
+        if (statPlain) statPlain.textContent = plainCount;
 
 
         // Show/hide empty state

@@ -13,6 +13,7 @@ const ROOT = path.join(__dirname, '..');
 
 const { ARCHETYPES } = require('../js/archetypes-v2.js');
 const { LEXICON } = require('../type/js/lexicon.js');
+const { preservedFeatures } = require('../type/js/engine.js');
 const OWNED = require('../platform/db/owned-domains.json');
 
 const temples = ARCHETYPES.filter((a) => a.built).length;
@@ -20,9 +21,8 @@ const entries = LEXICON.length;
 const pantheons = new Set(LEXICON.map((e) => e.pantheon)).size;
 const domains = (OWNED.domains || OWNED).length;
 const baseTemples = entries - temples;
-const dual = LEXICON.filter((e) => e.tier === 'dual').length;
-const tier1 = LEXICON.filter((e) => e.tier === '1').length;
-const tier2 = LEXICON.filter((e) => e.tier === '2').length;
+const markedCount = LEXICON.filter((e) => preservedFeatures(e.unicode).features.length > 0).length;
+const plainCount = LEXICON.length - markedCount;
 
 console.log(`Canonical: ${temples} flagships, ${entries} entries, ${pantheons} pantheons, ${domains} domains, ${baseTemples} base temples`);
 
@@ -161,9 +161,8 @@ const replacements = [
       [/<span class="lexicon-stat-value">\d+<\/span>\s*<span class="lexicon-stat-label">Entries<\/span>/g, `<span class="lexicon-stat-value">${entries}</span>\n                    <span class="lexicon-stat-label">Entries</span>`],
       [/<span class="lexicon-stat-value">\d+<\/span>\s*<span class="lexicon-stat-label">Pantheons<\/span>/g, `<span class="lexicon-stat-value">${pantheons}</span>\n                    <span class="lexicon-stat-label">Pantheons</span>`],
       [/<span class="lexicon-stat-value">\d+<\/span>\s*<span class="lexicon-stat-label">Flagships<\/span>/g, `<span class="lexicon-stat-value">${temples}</span>\n                    <span class="lexicon-stat-label">Flagships</span>`],
-      [/<span class="lexicon-stat-value">\d+<\/span>\s*<span class="lexicon-stat-label">Dual-Tier<\/span>/g, `<span class="lexicon-stat-value">${dual}</span>\n                    <span class="lexicon-stat-label">Dual-Tier</span>`],
-      [/<span class="lexicon-stat-value">\d+<\/span>\s*<span class="lexicon-stat-label">Tier-1<\/span>/g, `<span class="lexicon-stat-value">${tier1}</span>\n                    <span class="lexicon-stat-label">Tier-1</span>`],
-      [/<span class="lexicon-stat-value">\d+<\/span>\s*<span class="lexicon-stat-label">Tier-2<\/span>/g, `<span class="lexicon-stat-value">${tier2}</span>\n                    <span class="lexicon-stat-label">Tier-2</span>`],
+      [/<span class="lexicon-stat-value">\d+<\/span>\s*<span class="lexicon-stat-label">With Marks<\/span>/g, `<span class="lexicon-stat-value">${markedCount}</span>\n                    <span class="lexicon-stat-label">With Marks</span>`],
+      [/<span class="lexicon-stat-value">\d+<\/span>\s*<span class="lexicon-stat-label">ASCII Form<\/span>/g, `<span class="lexicon-stat-value">${plainCount}</span>\n                    <span class="lexicon-stat-label">ASCII Form</span>`],
     ],
   },
   // codex restoring-the-names article

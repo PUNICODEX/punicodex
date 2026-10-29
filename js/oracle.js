@@ -139,8 +139,7 @@
   const demoData = {
     apollon: {
       query: 'Restore the name "apollon"',
-      tier: 'dual',
-      tierLabel: 'Dual-Tier',
+      preservation: 'Preserves stress & length',
       unicode: 'Apóllōn / Apollōn',
       punycode: 'xn--aplln-5qae.com',
       script: 'Ἀπόλλων',
@@ -150,8 +149,7 @@
     },
     domain: {
       query: 'Check xn--zes-9na.com',
-      tier: 'tier-2',
-      tierLabel: 'Tier-2',
+      preservation: 'Preserves stress',
       unicode: 'Zeús',
       punycode: 'xn--zes-9na.com',
       script: 'Ζεύς',
@@ -161,8 +159,7 @@
     },
     pronounce: {
       query: 'How is Hádēs pronounced?',
-      tier: 'tier-1',
-      tierLabel: 'Tier-1',
+      preservation: 'Preserves stress & length',
       unicode: 'Hádēs',
       punycode: 'xn--hds-8na.com',
       script: 'Ἅιδης',
@@ -172,8 +169,7 @@
     },
     script: {
       query: 'Original script of Ra',
-      tier: 'tier-1',
-      tierLabel: 'Tier-1',
+      preservation: 'Preserves stress & length',
       unicode: 'Rꜥ',
       punycode: 'xn--r-wjn.com',
       script: '𓇳',
@@ -183,8 +179,7 @@
     },
     compare: {
       query: 'Compare Chaos and the Big Bang',
-      tier: 'tier-2',
-      tierLabel: 'Tier-2',
+      preservation: 'Preserves stress',
       unicode: 'Kháos',
       punycode: 'xn--khs-9na.com',
       script: 'Χάος',
@@ -194,8 +189,7 @@
     },
     correspondences: {
       query: 'Correspondences of Aphrodítē',
-      tier: 'tier-1',
-      tierLabel: 'Tier-1',
+      preservation: 'Preserves stress & length',
       unicode: 'Aphrodítē',
       punycode: 'xn--aphrodtn-0qae.com',
       script: 'Ἀφροδίτη',
@@ -234,11 +228,10 @@
     function renderCanned(key) {
       const data = demoData[key];
       if (!data) return;
-      const tierClass =
-        data.tier === 'dual' ? 'tier-dual' : data.tier === 'tier-1' ? 'tier-1' : 'tier-2';
+
       answerContainer.innerHTML = `
         <div class="answer-meta">
-          <span class="answer-pill ${tierClass}">${data.tierLabel}</span>
+          <span class="answer-pill">${data.preservation}</span>
           <span class="answer-pill safety">Offline preview</span>
         </div>
         <div class="answer-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-5);">
@@ -265,7 +258,7 @@
       answerContainer.innerHTML = `
         <div class="answer-meta">
           <span class="answer-pill safety">Live Oracle</span>
-          <span class="answer-pill tier-1">Citation-backed</span>
+          <span class="answer-pill">Citation-backed</span>
         </div>
         <div class="answer-block oracle-live-answer">${payload.answer}</div>
         ${citations ? `<div class="answer-block"><h4>Sources &amp; Temples</h4><ul class="oracle-demo-citations">${citations}</ul></div>` : ''}

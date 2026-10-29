@@ -12,6 +12,7 @@ const vm = require('vm');
 
 const ROOT = path.join(__dirname, '..');
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
+const { preservedFeatures } = require('../type/js/engine.js');
 
 const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
 const ARCHETYPES = vm.runInNewContext(
@@ -26,11 +27,10 @@ const ownedDomains = JSON.parse(
 const entryCount = LEXICON.length;
 const pantheonCount = new Set(LEXICON.map((e) => e.pantheon)).size;
 const archetypeCount = ARCHETYPES.filter((a) => a.built).length;
-const dualTierCount = LEXICON.filter((e) => e.tier === 'dual').length;
-const tier1Count = LEXICON.filter((e) => e.tier === '1').length;
-const tier2Count = LEXICON.filter((e) => e.tier === '2').length;
+const markedCount = LEXICON.filter((e) => preservedFeatures(e.unicode).features.length > 0).length;
+const plainCount = LEXICON.length - markedCount;
 const domainCount = ownedDomains.length;
-const multiDomainCount = dualTierCount; // Big Three dual-tier names
+const multiDomainCount = 3; // Big Three multi-form names (apollon, hekate, nike)
 const investment = `$${(Math.round(domainCount * 23 / 100) * 100).toLocaleString('en-US')}`; // ~$23 per domain, rounded to nearest hundred
 
 const realmCount = 42; // Norse 12 + Greek 18 + Japanese 9 + Celtic 1 + Korean 1 + Buddhist 1 (sync with realms/index.html cards)
@@ -41,9 +41,8 @@ const syncValues = {
   'archetype-count': String(archetypeCount),
   'temple-count': String(entryCount),
   'flagship-count': String(archetypeCount),
-  'dual-tier-count': String(dualTierCount),
-  'tier-1-count': String(tier1Count),
-  'tier-2-count': String(tier2Count),
+  'marked-count': String(markedCount),
+  'plain-count': String(plainCount),
   'domain-count': String(domainCount),
   'multi-domain-count': String(multiDomainCount),
   'investment': investment,
@@ -116,27 +115,14 @@ const files = [
       '<span class="lexicon-stat-value">850</span>\n                    <span class="lexicon-stat-label">Entries</span>': '<span class="lexicon-stat-value">__SYNC:entry-count__</span>\n                    <span class="lexicon-stat-label">Entries</span>',
       '<span class="lexicon-stat-value">20</span>\n                    <span class="lexicon-stat-label">Pantheons</span>': '<span class="lexicon-stat-value">__SYNC:pantheon-count__</span>\n                    <span class="lexicon-stat-label">Pantheons</span>',
       '<span class="lexicon-stat-value">48</span>\n                    <span class="lexicon-stat-label">Flagships</span>': '<span class="lexicon-stat-value">__SYNC:archetype-count__</span>\n                    <span class="lexicon-stat-label">Flagships</span>',
-      '<span class="lexicon-stat-value">4</span>\n                    <span class="lexicon-stat-label">Dual-Tier</span>': '<span class="lexicon-stat-value">__SYNC:dual-tier-count__</span>\n                    <span class="lexicon-stat-label">Dual-Tier</span>',
-      '<span class="lexicon-stat-value">125</span>\n                    <span class="lexicon-stat-label">Tier-1</span>': '<span class="lexicon-stat-value">__SYNC:tier-1-count__</span>\n                    <span class="lexicon-stat-label">Tier-1</span>',
+      '<span class="lexicon-stat-value">636</span>\n                    <span class="lexicon-stat-label">With Marks</span>': '<span class="lexicon-stat-value">__SYNC:marked-count__</span>\n                    <span class="lexicon-stat-label">With Marks</span>',
+      '<span class="lexicon-stat-value">344</span>\n                    <span class="lexicon-stat-label">ASCII Form</span>': '<span class="lexicon-stat-value">__SYNC:plain-count__</span>\n                    <span class="lexicon-stat-label">ASCII Form</span>',
     },
   },
   {
     path: path.join(ROOT, 'realms', 'index.html'),
     fallbacks: {
       'Explore 36 mythological realms': 'Explore __SYNC:realm-count__ mythological realms',
-    },
-  },
-  {
-    path: path.join(ROOT, 'tiers', 'index.html'),
-    fallbacks: {
-      '<span class="tier-count">28 archetypes</span>': '<span class="tier-count">__SYNC:tier-1-count__ archetypes</span>',
-      '<span class="tier-count">26 archetypes</span>': '<span class="tier-count">__SYNC:tier-2-count__ archetypes</span>',
-      'All 54 archetypes': 'All __SYNC:archetype-count__ archetypes',
-      'All <span class="pill-count">54</span>': 'All <span class="pill-count">__SYNC:archetype-count__</span>',
-      '<span class="pill-count">28</span>': '<span class="pill-count">__SYNC:tier-1-count__</span>',
-      '<span class="pill-count">26</span>': '<span class="pill-count">__SYNC:tier-2-count__</span>',
-      'Four names carry multiple historically valid domain variants': '__SYNC:multi-domain-count__ names carry multiple historically valid domain variants',
-      'Showing <strong id="showing-count">54</strong> of 54 archetypes': 'Showing <strong id="showing-count">__SYNC:archetype-count__</strong> of __SYNC:archetype-count__ archetypes',
     },
   },
 ];

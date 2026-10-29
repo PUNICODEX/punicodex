@@ -12,6 +12,18 @@
     Object.entries(PANTHEON_META).map(([id, meta]) => [id, meta.color])
   );
 
+  // Mechanical restoration label — computed from the displayed form itself.
+  function preservationBadgeText(unicode) {
+    const nfd = (unicode || '').normalize('NFD');
+    const circumflex = nfd.includes('̂');
+    const stress = circumflex || /[̀́́]/.test(nfd);
+    const length = circumflex || /[̄̆]/.test(nfd);
+    if (stress && length) return 'Preserves stress & length';
+    if (stress) return 'Preserves stress';
+    if (length) return 'Preserves length';
+    if (/[̀-ͯ]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd)) return 'Preserves marks';
+    return 'ASCII form';
+  }
   const state = {
     taxonomy: null,
     similarities: { nodes: [], edges: [] },
@@ -526,10 +538,10 @@
               ${script.label ? `<span class="detail-meta-value" style="font-size:0.8rem; color:var(--text-dim)">${escapeHtml(script.label)}</span>` : ''}
             </li>
           ` : ''}
-          ${entry?.tier ? `
+          ${entry?.unicode ? `
             <li class="detail-meta-item">
-              <span class="detail-meta-label">Tier</span>
-              <span class="detail-meta-value">${escapeHtml(String(entry.tier))}</span>
+              <span class="detail-meta-label">Restoration</span>
+              <span class="detail-meta-value">${escapeHtml(preservationBadgeText(entry.unicode))}</span>
             </li>
           ` : ''}
           ${entry?.pantheon ? `

@@ -568,9 +568,6 @@
             "$ref": "#/components/parameters/QueryPantheon"
           },
           {
-            "$ref": "#/components/parameters/QueryTier"
-          },
-          {
             "$ref": "#/components/parameters/QueryHasSite"
           },
           {
@@ -1403,17 +1400,6 @@
         }
       }
     },
-    "/tiers": {
-      "get": {
-        "summary": "Get tier system documentation",
-        "operationId": "listTiers",
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/TiersResponse"
-          }
-        }
-      }
-    },
     "/transparency-report": {
       "get": {
         "summary": "Get the public quarterly transparency report",
@@ -1534,19 +1520,6 @@
         },
         "description": "Filter by pantheon"
       },
-      "QueryTier": {
-        "name": "tier",
-        "in": "query",
-        "schema": {
-          "type": "string",
-          "enum": [
-            "dual",
-            "1",
-            "2"
-          ]
-        },
-        "description": "Filter by tier"
-      },
       "QueryHasSite": {
         "name": "hasSite",
         "in": "query",
@@ -1562,8 +1535,7 @@
           "type": "string",
           "enum": [
             "relevance",
-            "alphabetical",
-            "tier"
+            "alphabetical"
           ],
           "default": "relevance"
         }
@@ -1650,12 +1622,6 @@
             "type": "string"
           },
           "pantheonEmoji": {
-            "type": "string"
-          },
-          "tier": {
-            "type": "string"
-          },
-          "tierLabel": {
             "type": "string"
           },
           "domain": {
@@ -1765,18 +1731,6 @@
           "category": {
             "type": "string",
             "example": "celestial"
-          },
-          "tier": {
-            "type": "string",
-            "enum": [
-              "dual",
-              "1",
-              "2"
-            ]
-          },
-          "tierLabel": {
-            "type": "string",
-            "example": "Tier 1"
           },
           "domain": {
             "type": "string",
@@ -2097,16 +2051,6 @@
       },
       "PantheonDetailResponse": {
         "description": "Pantheon entries",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Envelope"
-            }
-          }
-        }
-      },
-      "TiersResponse": {
-        "description": "Tier documentation",
         "content": {
           "application/json": {
             "schema": {

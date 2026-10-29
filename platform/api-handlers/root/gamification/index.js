@@ -18,7 +18,7 @@ function loadEntries() {
     const Database = require('better-sqlite3');
     const database = new Database(db.getDbPath());
     return database
-      .prepare('SELECT id, ascii, unicode, pantheon, tier, meaning, greek FROM entries')
+      .prepare('SELECT id, ascii, unicode, pantheon, meaning, greek FROM entries')
       .all();
   } catch (_e) {
     return [];

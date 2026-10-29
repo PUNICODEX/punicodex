@@ -16,7 +16,7 @@
  *      ($10–$60); strong single-word .com IDNs reach low-to-mid four
  *      figures. An explicit 50% liquidity discount is applied to every
  *      Unicode valuation.
- *   3. Quality is multiplicative but bounded. Semantic, tier, form,
+ *   3. Quality is multiplicative but bounded. Semantic, preservation, form,
  *      development, and brand signals multiply a small IDN base value;
  *      their product is capped (120×) and the final Unicode value is hard
  *      capped at $10,000 absent verifiable market comps.
@@ -77,10 +77,13 @@ const IDN_INDUSTRY_PRIMARY_WEIGHT = 0.35; // per primary (weight-2) industry sea
 const IDN_INDUSTRY_RESONANT_WEIGHT = 0.08; // per resonant (weight-1) seat
 const IDN_INDUSTRY_DEMAND_CAP = 2.5; // max industry-demand multiplier
 
-// Tier restoration quality: dual-tier names preserve stress AND length and
-// are the strongest restorations; tier-1 preserves both features with a
-// single valid spelling; tier-2 preserves one feature.
-const TIER_IDN_MULTIPLIER = { dual: 2.5, 1: 2.0, 2: 1.3, none: 1.0 };
+// Restoration-preservation quality: computed mechanically from the displayed
+// form (replaces the retired tier system — see archive/tier-system/).
+const PRESERVATION_IDN_MULTIPLIER = { full: 2.2, single: 1.4, none: 1.0 };
+function preservationClass(unicode) {
+  const n = require('../../type/js/engine.js').preservedFeatures(unicode || '').features.length;
+  return n >= 2 ? 'full' : n === 1 ? 'single' : 'none';
+}
 
 // Canonical form is the strongest value signal. An owned, operated form
 // outsells an ideal scholarly restoration, which outsells an attested
@@ -416,7 +419,7 @@ function isFlagshipLexiconEntry(entry) {
 
 // Semantic premium for the ASCII control value. A curated, culturally
 // significant name (dictionary word, deity) trades above the random-letter
-// baseline, but the premium is bounded: tier, attestation, flagship status,
+// baseline, but the premium is bounded: preservation, attestation, flagship status,
 // lore, and pantheon reach add points onto a 1.0 base, capped at
 // SEMANTIC_MULTIPLIER_CAP. This replaces the former open-ended
 // significance × fame × developed stack, which double-counted the same
@@ -424,8 +427,8 @@ function isFlagshipLexiconEntry(entry) {
 function semanticMultiplier(entry) {
   if (!entry) return 1.0;
 
-  const tierPoints =
-    entry.tier === 'dual' ? 1.5 : entry.tier === '1' ? 1.0 : entry.tier === '2' ? 0.5 : 0;
+  const _pc = preservationClass(entry.unicode);
+  const tierPoints = _pc === 'full' ? 1.5 : _pc === 'single' ? 0.75 : 0;
 
   const sources = Array.isArray(entry.sources) ? entry.sources : [];
   const sourcePoints = Math.min(sources.length * 0.15, 0.5);
@@ -818,10 +821,14 @@ function computeUnicodePremium(profile) {
   if (entry) {
     stack.push({ name: 'lexiconAttestation', multiplier: 3.0, note: 'attested lexicon name' });
 
-    const tier = entry.tier || 'none';
-    const tierMultiplier = TIER_IDN_MULTIPLIER[tier] ?? TIER_IDN_MULTIPLIER.none;
+    const preservationClassName = preservationClass(entry.unicode);
+    const tierMultiplier = PRESERVATION_IDN_MULTIPLIER[preservationClassName];
     if (tierMultiplier !== 1.0) {
-      stack.push({ name: 'tier', multiplier: tierMultiplier, note: entry.tierLabel || tier });
+      stack.push({
+        name: 'preservation',
+        multiplier: tierMultiplier,
+        note: require('../../scripts/lib/preservation-label.js').preservationLabel(entry.unicode),
+      });
     }
 
     if (isFlagshipLexiconEntry(entry)) {
@@ -996,7 +1003,7 @@ function confidenceScore(profile) {
   if (!profile.entry) return 0.3;
   let score = 0.5;
   if (profile.entry.availability?.status) score += 0.1;
-  if (profile.entry.tierExplanation) score += 0.1;
+  if (profile.entry.preservationDetail) score += 0.1;
   if (profile.entry.hasFlagship) score += 0.1;
   if (profile.form !== 'unknown') score += 0.1;
   // Never claim >90% confidence: IDN comps are sparse and the market is thin.
@@ -1126,8 +1133,9 @@ function appraise(domain, options = {}) {
           ascii: profile.entry.ascii,
           unicode: profile.entry.unicode,
           pantheon: profile.entry.pantheon,
-          tier: profile.entry.tier,
-          tierLabel: profile.entry.tierLabel,
+          preservation: require('../../scripts/lib/preservation-label.js').preservationLabel(
+            profile.entry.unicode
+          ),
           form: profile.form,
           variantType: profile.variant?.type || null,
         }

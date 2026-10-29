@@ -125,6 +125,24 @@
       : `<span class="restore-source-chip" title="${escapeHtml(src.full)}">${escapeHtml(key)}</span>`;
   }
 
+
+  // Mechanical preservation label — computed from the displayed form.
+  function preservationLabelOf(unicode) {
+    const nfd = (unicode || '').normalize('NFD');
+    const circumflex = nfd.includes('̂');
+    const stress = circumflex || /[̀́́]/.test(nfd);
+    const length = circumflex || /[̄̆]/.test(nfd);
+    if (stress && length) return 'Preserves stress & length';
+    if (stress) return 'Preserves stress';
+    if (length) return 'Preserves length';
+    if (/[̀-ͯ]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd)) return 'Preserves marks';
+    return 'ASCII form';
+  }
+  function preservedMarkCount(unicode) {
+    const label = preservationLabelOf(unicode);
+    return label === 'ASCII form' ? 0 : label === 'Preserves marks' ? 1 : label.includes('&') ? 2 : 1;
+  }
+
   function getAvailabilityBadge(entry) {
     if (!entry.availability) return '';
     const status = entry.availability.status;
@@ -133,9 +151,7 @@
   }
 
   function getTierTooltip(entry) {
-    const docs = lexiconData.tierDocs[entry.tier];
-    if (!docs) return '';
-    return docs.summary;
+    return preservationLabelOf(entry.unicode);
   }
 
   function renderOriginalScript(entry) {
@@ -324,7 +340,6 @@
       ? related.map((e) => `<a href="/sites/${e.id}/" class="restore-related-chip">${escapeHtml(e.unicode)}</a>`).join('')
       : '<span class="restore-related-chip restore-related-chip-none">—</span>';
 
-    const tierClass = `tier-badge tier-${entry.tier}`;
     const availabilityBadge = getAvailabilityBadge(entry);
     const tierTooltip = getTierTooltip(entry);
 
@@ -336,7 +351,7 @@
             <span class="restore-ascii">${escapeHtml(entry.ascii)}</span>
           </div>
           <div class="restore-meta">
-            <span class="${tierClass}" title="${escapeHtml(tierTooltip)}">${escapeHtml(entry.tierLabel)}</span>
+            <span class="tier-badge" title="${escapeHtml(tierTooltip)}">${escapeHtml(tierTooltip)}</span>
             <span class="pantheon-badge pantheon-${entry.pantheon}">${escapeHtml(entry.pantheon)}</span>
             ${availabilityBadge}
             ${entry.isOwned ? '<span class="owned-badge">PUNICODEX Domain</span>' : ''}
@@ -499,12 +514,12 @@
         id: entry.id,
         name: entry.unicode,
         pantheon: entry.pantheon,
-        tier: entry.tier,
+        marks: preservedMarkCount(entry.unicode),
         isOwned: entry.isOwned,
         hasFlagship: entry.hasFlagship,
         availability: entry.availability ? entry.availability.status : null,
         entry,
-        radius: entry.tier === 'dual' ? 7 : entry.tier === '1' ? 5 : 3.5,
+        radius: preservedMarkCount(entry.unicode) >= 2 ? 7 : preservedMarkCount(entry.unicode) === 1 ? 5 : 3.5,
         x: width / 2 + Math.cos(angle) * ringRadius + jitter,
         y: height / 2 + Math.sin(angle) * ringRadius + jitter,
         vx: 0,
@@ -732,7 +747,7 @@
         ctx.fillStyle = nodeColor(node);
         ctx.fill();
 
-        if (hoveredNode === node || selectedNode === node || node.tier === 'dual') {
+        if (hoveredNode === node || selectedNode === node || node.marks >= 2) {
           ctx.strokeStyle = selectedNode === node ? '#d4af37' : hoveredNode === node ? '#fff' : 'rgba(212,175,55,0.5)';
           ctx.lineWidth = hoveredNode === node || selectedNode === node ? 2 : 1;
           ctx.stroke();
@@ -760,8 +775,8 @@
         return lexiconData.pantheonColors[node.pantheon] || '#d4af37';
       }
       if (colorMode === 'tier') {
-        if (node.tier === 'dual') return '#d4af37';
-        if (node.tier === '1') return '#e8e4dc';
+        if (node.marks >= 2) return '#d4af37';
+        if (node.marks === 1) return '#e8e4dc';
         return 'rgba(232,228,220,0.45)';
       }
       if (colorMode === 'ownership') {
@@ -798,7 +813,7 @@
       detailCard.innerHTML = `
         <button class="constellation-detail-close" aria-label="Close">×</button>
         <h4>${escapeHtml(entry.unicode)}</h4>
-        <p class="constellation-detail-sub">${escapeHtml(entry.ascii)} · ${escapeHtml(entry.pantheon)} · ${escapeHtml(entry.tierLabel)}</p>
+        <p class="constellation-detail-sub">${escapeHtml(entry.ascii)} · ${escapeHtml(entry.pantheon)} · ${escapeHtml(preservationLabelOf(entry.unicode))}</p>
         <p class="constellation-detail-meaning">${escapeHtml(entry.meaning || entry.domain)}</p>
         ${os ? `<p class="constellation-detail-script" title="${escapeHtml(os.scriptName)}">${escapeHtml(os.originalScript)}</p>` : ''}
         <div class="constellation-detail-meta">
@@ -824,7 +839,7 @@
       const entry = lexiconData.entryById[node.id];
       tooltip.innerHTML = `
         <strong>${escapeHtml(node.name)}</strong>
-        <span>${escapeHtml(entry.pantheon)} · ${escapeHtml(entry.tierLabel)}${node.isOwned ? ' · Owned' : ''}</span>
+        <span>${escapeHtml(entry.pantheon)} · ${escapeHtml(preservationLabelOf(entry.unicode))}${node.isOwned ? ' · Owned' : ''}</span>
       `;
       tooltip.style.opacity = '1';
       const rect = container.getBoundingClientRect();
@@ -1006,7 +1021,7 @@
     const modeBar = createEl('div', 'constellation-modes');
     modeBar.innerHTML = `
       <button class="constellation-mode active" data-mode="pantheon">Pantheon</button>
-      <button class="constellation-mode" data-mode="tier">Tier</button>
+      <button class="constellation-mode" data-mode="tier">Marks</button>
       <button class="constellation-mode" data-mode="ownership">Ownership</button>
       <button class="constellation-mode" data-mode="availability">Availability</button>
     `;
@@ -1216,37 +1231,23 @@
   function initTierSystem() {
     const container = $('#tier-system-panel');
     if (!container) return;
-
-    const docs = lexiconData.tierDocs;
-    const order = ['dual', '1', '2'];
-    const titles = { dual: 'Dual-Tier', 1: 'Tier 1', 2: 'Tier 2' };
-
-    container.innerHTML = order
-      .map((key) => {
-        const doc = docs[key];
-        const examples = doc.examples
-          .map((id) => {
-            const entry = lexiconData.entryById[id] || lexiconData.entryByAscii[id];
-            if (!entry) return '';
-            return `<a href="/sites/${entry.id}/" class="tier-example">${escapeHtml(entry.unicode)}</a>`;
-          })
-          .join('');
-        const rules = doc.rules.map((r) => `<li>${escapeHtml(r)}</li>`).join('');
-        const subtypes = doc.subtypes
-          ? Object.entries(doc.subtypes)
-              .map(([k, v]) => `<li><strong>${escapeHtml(k)}</strong>: ${escapeHtml(v)}</li>`)
-              .join('')
-          : '';
-        return `
-          <div class="tier-doc tier-doc-${key}">
-            <h4 class="tier-doc-title">${escapeHtml(titles[key])}</h4>
-            <p class="tier-doc-summary">${escapeHtml(doc.summary)}</p>
-            <ul class="tier-doc-rules">${rules}</ul>
-            ${subtypes ? `<ul class="tier-doc-subtypes">${subtypes}</ul>` : ''}
-            <div class="tier-doc-examples">${examples}</div>
-          </div>`;
-      })
+    const docs = lexiconData.preservationDocs;
+    const features = Object.entries(docs.features)
+      .map(([k, v]) => '<li><strong>' + escapeHtml(k) + '</strong>: ' + escapeHtml(v) + '</li>')
       .join('');
+    container.innerHTML =
+      '<div class="tier-doc"><h4 class="tier-doc-title">Computed from the form itself</h4>' +
+      '<p class="tier-doc-summary">' + escapeHtml(docs.summary) + '</p>' +
+      '<ul class="tier-doc-rules">' + features + '</ul>' +
+      '<p class="tier-doc-summary">' + escapeHtml(docs.asciiEquivalent) + '</p>' +
+      '<div class="tier-doc-examples">' +
+      ['apollon', 'hekate', 'nike']
+        .map((id) => {
+          const entry = lexiconData.entryById[id] || lexiconData.entryByAscii[id];
+          return entry ? '<a href="/sites/' + entry.id + '/" class="tier-example">' + escapeHtml(entry.unicode) + '</a>' : '';
+        })
+        .join('') +
+      '</div></div>';
   }
 
   // ═══════════════════════════════════════════════════════════════════════════

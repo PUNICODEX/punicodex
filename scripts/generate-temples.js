@@ -15,6 +15,7 @@ const { LEXICON } = require('../type/js/lexicon.js');
 const { PANTHEON_META: META } = require('../type/js/pantheon-meta.js');
 const { wikidataUrlFor } = require('./lib/wikidata-links.js');
 const { autoLink } = require('./lib/crosslink.js');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const { SOURCE_CATALOG } = require('../type/js/source-catalog.js');
 const {
   getOriginalScript,
@@ -287,20 +288,31 @@ function getAsciiBanner(entry, status) {
   `;
 }
 
-function getTierSubtype(entry) {
-  const hasStress = /[áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]/.test(entry.unicode);
-  const hasLength = /[āēīōūĀĒĪŌŪ]/.test(entry.unicode);
+function getPreservationLabel(entry) {
+  return preservationLabel(entry.unicode);
+}
 
-  if (entry.tier === 'dual') return 'Dual-Tier';
-  // Doctrine: Tier-1 has no subtypes. Subtype labels exist only for Tier-2
-  // (the single preserved feature is cited on the temple).
-  if (entry.tier === '1') return 'Tier-1';
-  if (entry.tier === '2') {
-    if (hasStress) return 'Tier-2 Accent-Preserving';
-    if (hasLength) return 'Tier-2 Macron-Preserving';
-    return 'Tier-2';
+function getPreservationExplanation(entry) {
+  const original = getOriginalScript(entry) || entry.unicode;
+  const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
+  const hasVariants = Array.isArray(entry.variants) && entry.variants.length > 0;
+
+  if (hasVariants) {
+    return `The ${pantheonLabel} original <strong>${original}</strong> supports multiple historically valid Unicode spellings — each corresponds to a real, attested alternate restoration. The PUNICODEX owns the canonical variants, so the temple presents them together.`;
   }
-  return entry.tierLabel;
+  const isGreek = entry.pantheon === 'greek' || entry.pantheon === 'greek-location';
+  if (isAsciiOnlyUnicode(entry)) {
+    const originalScript = getOriginalScript(entry);
+    const hasNonLatinScript = originalScript && /[^�-�]/.test(originalScript);
+    const scriptNote = hasNonLatinScript
+      ? `The ${pantheonLabel} name <strong>${original}</strong> is attested in its original script (shown above) as well as in the Latin alphabet.`
+      : `The ${pantheonLabel} name <strong>${original}</strong> is attested in the Latin alphabet.`;
+    return `${scriptNote} The Unicode restoration is identical to ASCII, so no diacritic or script recovery is needed — a faithful scholarly form.`;
+  }
+  if (isGreek) {
+    return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress AND at least one long vowel, and this restoration carries the full scholarly orthography — the complete restoration of the name.`;
+  }
+  return `The ${pantheonLabel} restoration <strong>${original}</strong> preserves at least one distinctive feature its ASCII form loses — a diacritic or a distinctive letter that marks the original phonology.`;
 }
 
 function buildOriginalScriptBody(entry, originalScript, hasOriginal) {
@@ -315,43 +327,6 @@ function buildOriginalScriptBody(entry, originalScript, hasOriginal) {
     return `The name in its original ${getScriptName(entry)} form. <strong>${escapeHtml(originalScript)}</strong> carries the full phonetic and orthographic weight of the source tradition.`;
   }
   return getNoScriptNote(entry);
-}
-
-function getTierExplanation(entry, subtype) {
-  const original = getOriginalScript(entry) || entry.unicode;
-  const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
-
-  if (entry.tier === 'dual') {
-    return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress (acute/circumflex) and at least one long vowel. Multiple historically valid Unicode spellings exist — each corresponds to a real, attested alternate restoration. The PUNICODEX owns the canonical variants, making this a <strong>Dual-Tier</strong> pair.`;
-  }
-  if (entry.tier === '1') {
-    const isGreek = entry.pantheon === 'greek' || entry.pantheon === 'greek-location';
-
-    if (!isGreek) {
-      return `The ${pantheonLabel} restoration <strong>${original}</strong> preserves at least one distinctive feature its ASCII form loses — a diacritic or a distinctive letter that marks the original phonology. This makes it a <strong>single-tier Tier-1</strong> name.`;
-    }
-    return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress AND at least one long vowel, and one historically dominant Unicode restoration exists. This is the full scholarly orthography — a <strong>single-tier Tier-1</strong> name.`;
-  }
-  if (entry.tier === '2') {
-    if (isAsciiOnlyUnicode(entry)) {
-      const originalScript = getOriginalScript(entry);
-      const hasNonLatinScript = originalScript && /[^\u0000-\u024F]/.test(originalScript);
-      const scriptNote = hasNonLatinScript
-        ? `The ${pantheonLabel} name <strong>${original}</strong> is attested in its original script (shown above) as well as in the Latin alphabet.`
-        : `The ${pantheonLabel} name <strong>${original}</strong> is attested in the Latin alphabet.`;
-      return `${scriptNote} The Unicode restoration is identical to ASCII, so no diacritic or script recovery is needed. It is catalogued as a <strong>single-tier Tier-2</strong> name because the scholarly form carries no stress or length marks.`;
-    }
-    if (subtype === 'Tier-2') {
-      return `The ${pantheonLabel} form <strong>${original}</strong> preserves neither stress nor length in this Unicode restoration. This makes it a <strong>single-tier Tier-2</strong> name — a faithful scholarly form, without the distinctive phonetic features that define Tier-1.`;
-    }
-    const feature = subtype.includes('Accent')
-      ? 'stress (acute accent)'
-      : subtype.includes('Macron')
-        ? 'length (macron vowel)'
-        : 'no distinctive phonetic features';
-    return `The ${pantheonLabel} original <strong>${original}</strong> contains only <strong>${feature}</strong>. This makes it a <strong>single-tier Tier-2</strong> name. The Unicode restoration preserves what can be preserved — honoring the single feature that distinguishes it from plain ASCII.`;
-  }
-  return '';
 }
 
 function sleep(ms) {
@@ -437,12 +412,12 @@ function escapeHtml(str) {
 
 function generateTempleHTML(entry, related) {
   const colors = getColors(entry.pantheon);
-  const subtype = getTierSubtype(entry);
+  const subtype = getPreservationLabel(entry);
   const punycode = getPunycode(entry.unicode);
   const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
   const originalScript = getOriginalScript(entry);
   const hasOriginal = hasOriginalScript(entry);
-  const isDual = entry.tier === 'dual';
+  const isDual = Array.isArray(entry.variants) && entry.variants.length > 0;
 
   // Variants from lexicon
   const hasVariants = entry.variants && entry.variants.length > 0;
@@ -783,7 +758,7 @@ ${JSON.stringify(
             <div class="mobile-menu-group">
                 <a href="https://punicodex.com/type/#${entry.id}">Type</a>
                 <a href="https://punicodex.com/search/">Search</a>
-                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/rulebook/">The Rules</a>
                 <a href="https://punicodex.com/oracle/">Oracle</a>
             </div>
         </div>
@@ -1046,12 +1021,12 @@ ${JSON.stringify(
         <div class="container">
             <div class="section-header reveal-up">
                 <span class="section-number">04</span>
-                <h2 class="section-title">Tier Classification</h2>
+                <h2 class="section-title">What the Restoration Preserves</h2>
                 <p class="section-subtitle">Why ${escapeHtml(entry.unicode)} is classified as ${escapeHtml(subtype)}</p>
             </div>
 
             <div class="tier-explanation reveal-up">
-                <p class="lead-text">${getTierExplanation(entry, subtype)}</p>
+                <p class="lead-text">${getPreservationExplanation(entry)}</p>
             </div>
 
             <div class="tier-feature-grid">
@@ -1065,10 +1040,10 @@ ${JSON.stringify(
                     <div class="tier-feature-value">${hasLength || hasBoth ? 'Preserved' : '—'}</div>
                     <div class="tier-feature-desc">${hasLength || hasBoth ? 'Macron (ō, ē, ā) marks long vowels from the original.' : 'Not present in this restoration.'}</div>
                 </div>
-                <div class="tier-feature-card ${entry.tier === 'dual' ? 'active' : 'inactive'} reveal-up" data-delay="200">
-                    <div class="tier-feature-label">Dual Variant</div>
-                    <div class="tier-feature-value">${entry.tier === 'dual' ? 'Yes' : '—'}</div>
-                    <div class="tier-feature-desc">${entry.tier === 'dual' ? 'Multiple historically valid Unicode spellings exist — each a real, attested restoration.' : 'Only one valid Unicode restoration exists for this name.'}</div>
+                <div class="tier-feature-card ${isDual ? 'active' : 'inactive'} reveal-up" data-delay="200">
+                    <div class="tier-feature-label">Multiple Forms</div>
+                    <div class="tier-feature-value">${isDual ? 'Yes' : '—'}</div>
+                    <div class="tier-feature-desc">${isDual ? 'Multiple historically valid Unicode spellings exist — each a real, attested restoration.' : 'One canonical restoration is presented for this name.'}</div>
                 </div>
             </div>
         </div>
@@ -1120,7 +1095,7 @@ ${JSON.stringify(
                   .map((c) => {
                     const cognateEntry = LEXICON.find((e) => e.id === c.id);
                     if (cognateEntry) {
-                      const cSubtype = getTierSubtype(cognateEntry);
+                      const cSubtype = getPreservationLabel(cognateEntry);
                       return `
                 <a href="https://punicodex.com/${cognateEntry.id}${cognateEntry.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(cognateEntry.unicode)}</span>
@@ -1154,7 +1129,7 @@ ${JSON.stringify(
             <div class="related-grid">
                 ${related
                   .map((r) => {
-                    const rSubtype = getTierSubtype(r);
+                    const rSubtype = getPreservationLabel(r);
                     return `
                 <a href="https://punicodex.com/${r.id}${r.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(r.unicode)}</span>
@@ -1326,7 +1301,7 @@ if (require.main === module) {
 
 module.exports = {
   generateTempleHTML,
-  getTierSubtype,
+  getPreservationLabel,
   getRelatedEntries,
   getPunycode,
   PANTHEON_LABELS,

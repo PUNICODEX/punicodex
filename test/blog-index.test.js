@@ -12,6 +12,7 @@
  */
 
 const test = require('node:test');
+const { preservedFeatures } = require('../type/js/engine.js');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -207,10 +208,10 @@ test(`embedded JSON payload covers all ${EXPECTED_COUNT} posts with canonical fi
 
   const sourceByUid = new Map(EXPECTED_POSTS.map((p) => [p.uid, p]));
 
-  // The payload uses compact keys: id, u (unicode), p (pantheon), t (tier),
+  // The payload uses compact keys: id, u (unicode), p (pantheon), m (marked 1/0),
   // r (read minutes), s (lowercased search string carrying title + description).
   for (const entry of payload) {
-    for (const key of ['id', 'u', 'p', 't', 'r', 's']) {
+    for (const key of ['id', 'u', 'p', 'm', 'r', 's']) {
       assert.ok(Object.hasOwn(entry, key), `payload entry ${entry.id} missing key "${key}"`);
     }
 
@@ -226,7 +227,11 @@ test(`embedded JSON payload covers all ${EXPECTED_COUNT} posts with canonical fi
 
     assert.equal(entry.u, lexiconEntry.unicode, `payload unicode mismatch for ${entry.id}`);
     assert.equal(entry.p, lexiconEntry.pantheon || '', `payload pantheon mismatch for ${entry.id}`);
-    assert.equal(entry.t, lexiconEntry.tier || '2', `payload tier mismatch for ${entry.id}`);
+    assert.equal(
+      entry.m,
+      preservedFeatures(lexiconEntry.unicode || '').features.length > 0 ? 1 : 0,
+      `payload marks mismatch for ${entry.id}`
+    );
     assert.equal(
       entry.r,
       readMinutes(post.readingTime),

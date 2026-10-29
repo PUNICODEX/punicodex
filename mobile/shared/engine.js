@@ -137,6 +137,29 @@ const PUNICODEX_ENGINE = {
   },
 
   /**
+   * Describes what a displayed restoration form preserves that ASCII cannot
+   * say — computed mechanically from the form itself (NFD decomposition), so
+   * the description can never overclaim the text it labels.
+   * Returns { stress, length, marks, label }: stress = accent preserved,
+   * length = vowel quantity preserved (macron/breve; a circumflex counts as
+   * both), marks = other diacritics or distinctive letters preserved.
+   */
+  preservedFeatures(unicode) {
+    const nfd = String(unicode || '').normalize('NFD');
+    const circumflex = nfd.includes('̂');
+    const stress = circumflex || /[̀́́]/.test(nfd);
+    const length = circumflex || /[̄̆]/.test(nfd);
+    const letters = /[ÞþÐðÆæŒœŠšŽžŁłĐđĦħƏəḌḍṬṭṢṣḤḥṚṛṜṝṆṇṂṃṄṅṠṡŚśŹźḪḫḶḷṔṕꜢꜣꜤꜥ]/.test(nfd);
+    const marks = !stress && !length && !letters && /[̀-ͯ]/.test(nfd);
+    const features = [];
+    if (stress) features.push('stress');
+    if (length) features.push('vowel length');
+    if (letters) features.push('distinctive letters');
+    else if (marks) features.push('distinctive marks');
+    const label = features.length ? `Preserves ${features.join(' & ')}` : 'ASCII-equivalent form';
+    return { stress, length, marks, letters, features, label };
+  },
+  /**
    * Splits a string into NFD base+marks clusters so diacritics can be
    * inspected and rewritten without losing marks on untouched characters.
    */
@@ -193,7 +216,7 @@ const PUNICODEX_ENGINE = {
 
   /**
    * Derives the canonical stacked-diacritic form of an entry from its Greek
-   * original, or returns null when the tier doctrine does not support one.
+   * original, or returns null when the original does not support one.
    *
    * Rule: a vowel may carry the stack (macron + acute, e.g. ḗ U+1E17,
    * ṓ U+1E53) only when the Greek original marks that SAME vowel with BOTH

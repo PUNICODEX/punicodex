@@ -173,7 +173,6 @@ function seedTemple(manifest, stats) {
     entryId: manifest.entryId,
     name: manifest.name,
     pantheon: manifest.pantheon,
-    tier: manifest.tier,
     manifestVersion: manifest.taxonomyVersion,
   });
   stats.templesCreated += 1;

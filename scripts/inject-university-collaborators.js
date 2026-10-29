@@ -243,8 +243,7 @@ function main() {
     path.join('terms', 'index.html'),
     path.join('terms', 'advertising', 'index.html'),
     path.join('terms', 'data-use', 'index.html'),
-    path.join('tiers', 'index.html'),
-    path.join('type', 'index.html'),
+      path.join('type', 'index.html'),
     path.join('type', 'test.html'),
   ];
 

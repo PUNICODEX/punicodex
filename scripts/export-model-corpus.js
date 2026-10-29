@@ -224,7 +224,7 @@ function buildEntryRecord(entry, context) {
     .filter((e) => e.pantheon === entry.pantheon && e.id !== entry.id)
     .sort((a, b) => a.unicode.localeCompare(b.unicode))
     .slice(0, 12)
-    .map((e) => ({ id: e.id, ascii: e.ascii, unicode: e.unicode, tierLabel: e.tierLabel }));
+    .map((e) => ({ id: e.id, ascii: e.ascii, unicode: e.unicode }));
 
   return {
     id: entry.id,
@@ -232,8 +232,6 @@ function buildEntryRecord(entry, context) {
     unicode: entry.unicode,
     greek: entry.greek,
     pantheon: entry.pantheon,
-    tier: entry.tier,
-    tierLabel: entry.tierLabel,
     domain: entry.domain,
     meaning: entry.meaning,
     accuracyNote: entry.accuracyNote || '',

@@ -16,6 +16,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -77,8 +78,8 @@ for (const id of BUILT_IDS) {
     ascii: entry.ascii || id,
     pantheon,
     pantheonDisplay: displayPantheon(pantheon),
-    tier: entry.tier || '2',
-    tierLabel: entry.tierLabel || `Tier ${entry.tier || '2'}`,
+    preservation: preservationLabel(entry.unicode || id),
+    marked: preservationLabel(entry.unicode || id) !== 'ASCII-equivalent form',
     title: post.title,
     description: post.description,
     tags: post.tags || [],
@@ -87,7 +88,7 @@ for (const id of BUILT_IDS) {
     readMin: readMinutes(post.readingTime),
     publishedAt: post.publishedAt || '',
     url: `/${id}/blog/`,
-    badge: entry.tierLabel || `Tier ${entry.tier || '2'}`,
+    badge: preservationLabel(entry.unicode || id),
     series: false,
     uid: id,
   });
@@ -113,8 +114,8 @@ for (const series of SERIES) {
       ascii: entry.ascii || id,
       pantheon,
       pantheonDisplay: displayPantheon(pantheon),
-      tier: entry.tier || '2',
-      tierLabel: entry.tierLabel || `Tier ${entry.tier || '2'}`,
+      preservation: preservationLabel(entry.unicode || id),
+      marked: preservationLabel(entry.unicode || id) !== 'ASCII-equivalent form',
       title: post.title,
       description: post.description,
       tags: post.tags || [],
@@ -137,8 +138,8 @@ posts.sort((a, b) => a.unicode.localeCompare(b.unicode, 'en') || Number(a.series
 const pantheonCounts = new Map();
 for (const p of posts) pantheonCounts.set(p.pantheon, (pantheonCounts.get(p.pantheon) || 0) + 1);
 const pantheons = [...pantheonCounts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
-const tierCounts = { dual: 0, 1: 0, 2: 0 };
-for (const p of posts) tierCounts[p.tier] = (tierCounts[p.tier] || 0) + 1;
+const markedCount = posts.filter((p) => p.marked).length;
+const plainCount = posts.length - markedCount;
 const avgRead = posts.length
   ? Math.round(posts.reduce((a, p) => a + p.readMin, 0) / posts.length)
   : 0;
@@ -151,7 +152,7 @@ const cardsHtml = posts
       .slice(0, 4)
       .map((t) => `<span class="blogi-card-tag">${escapeHtml(t)}</span>`)
       .join('');
-    return `                <article class="blogi-card${p.series ? ' blogi-card-series' : ''}" data-id="${escapeHtml(p.uid)}" data-pantheon="${escapeHtml(p.pantheon)}" data-tier="${escapeHtml(p.tier)}" data-read="${p.readMin}">
+    return `                <article class="blogi-card${p.series ? ' blogi-card-series' : ''}" data-id="${escapeHtml(p.uid)}" data-pantheon="${escapeHtml(p.pantheon)}" data-marked="${p.marked ? 1 : 0}" data-read="${p.readMin}">
                     <div class="blogi-card-head">
                         <a class="blogi-card-unicode" href="/${escapeHtml(p.id)}/">${escapeHtml(p.unicode)}</a>
                         <span class="blogi-card-badge">${escapeHtml(p.badge)}</span>
@@ -171,9 +172,9 @@ const payload = posts.map((p) => ({
   id: p.uid,
   u: p.unicode,
   p: p.pantheon,
-  t: p.tier,
+  m: p.marked ? 1 : 0,
   r: p.readMin,
-  s: [p.unicode, p.ascii, p.title, p.description, p.pantheonDisplay, p.tierLabel, ...(p.seriesAlias ? [p.seriesAlias] : []), ...p.tags, ...p.keywords]
+  s: [p.unicode, p.ascii, p.title, p.description, p.pantheonDisplay, p.preservation, ...(p.seriesAlias ? [p.seriesAlias] : []), ...p.tags, ...p.keywords]
     .join(' ')
     .toLowerCase(),
 }));
@@ -327,12 +328,8 @@ const html = `<!DOCTYPE html>
                 <span class="blogi-stat-label">Pantheons</span>
             </div>
             <div class="blogi-stat">
-                <span class="blogi-stat-value">${tierCounts.dual}</span>
-                <span class="blogi-stat-label">Dual-Tier</span>
-            </div>
-            <div class="blogi-stat">
-                <span class="blogi-stat-value">${tierCounts[1]}</span>
-                <span class="blogi-stat-label">Tier-1</span>
+                <span class="blogi-stat-value">${markedCount}</span>
+                <span class="blogi-stat-label">Carry Marks</span>
             </div>
             <div class="blogi-stat">
                 <span class="blogi-stat-value">${avgRead} min</span>
@@ -359,12 +356,11 @@ const html = `<!DOCTYPE html>
                 </select>
             </div>
             <div class="blogi-group">
-                <span class="blogi-group-label">Tier</span>
-                <div class="blogi-pills" id="blogi-tier-pills">
-                    <button class="blogi-pill active" data-tier="all">All</button>
-                    <button class="blogi-pill" data-tier="dual">Dual<span class="count">${tierCounts.dual}</span></button>
-                    <button class="blogi-pill" data-tier="1">Tier 1<span class="count">${tierCounts[1]}</span></button>
-                    <button class="blogi-pill" data-tier="2">Tier 2<span class="count">${tierCounts[2]}</span></button>
+                <span class="blogi-group-label">Restoration</span>
+                <div class="blogi-pills" id="blogi-marks-pills">
+                    <button class="blogi-pill active" data-marks="all">All</button>
+                    <button class="blogi-pill" data-marks="marked">With Marks<span class="count">${markedCount}</span></button>
+                    <button class="blogi-pill" data-marks="plain">ASCII Form<span class="count">${plainCount}</span></button>
                 </div>
             </div>
             <div class="blogi-group">
@@ -416,7 +412,7 @@ ${cardsHtml}
         var sortEl = document.getElementById('blogi-sort');
         var TOTAL = POSTS.length;
 
-        var state = { q: '', pantheon: 'all', tier: 'all', sort: 'alpha' };
+        var state = { q: '', pantheon: 'all', marks: 'all', sort: 'alpha' };
 
         function debounce(fn, ms) {
             var t;
@@ -435,7 +431,7 @@ ${cardsHtml}
                 var ok =
                     (!q || p.s.indexOf(q) !== -1) &&
                     (state.pantheon === 'all' || p.p === state.pantheon) &&
-                    (state.tier === 'all' || p.t === state.tier);
+                    (state.marks === 'all' || (state.marks === 'marked') === (p.m === 1));
                 card.style.display = ok ? '' : 'none';
                 if (ok) visible.push(card);
             });
@@ -453,17 +449,17 @@ ${cardsHtml}
 
             countEl.textContent = 'Showing ' + visible.length + ' of ' + TOTAL + ' essays';
             emptyEl.hidden = visible.length !== 0;
-            var filtered = q || state.pantheon !== 'all' || state.tier !== 'all';
+            var filtered = q || state.pantheon !== 'all' || state.marks !== 'all';
             resetBtn.hidden = !filtered;
         }
 
         function reset() {
             state.q = '';
             state.pantheon = 'all';
-            state.tier = 'all';
+            state.marks = 'all';
             searchEl.value = '';
-            document.querySelectorAll('#blogi-tier-pills .blogi-pill').forEach(function (b) {
-                b.classList.toggle('active', b.getAttribute('data-tier') === 'all');
+            document.querySelectorAll('#blogi-marks-pills .blogi-pill').forEach(function (b) {
+                b.classList.toggle('active', b.getAttribute('data-marks') === 'all');
             });
             document.querySelectorAll('#blogi-pantheon-pills .blogi-pill').forEach(function (b) {
                 b.classList.toggle('active', b.getAttribute('data-pantheon') === 'all');
@@ -479,10 +475,10 @@ ${cardsHtml}
             state.sort = sortEl.value;
             apply();
         });
-        document.getElementById('blogi-tier-pills').addEventListener('click', function (e) {
+        document.getElementById('blogi-marks-pills').addEventListener('click', function (e) {
             var btn = e.target.closest('.blogi-pill');
             if (!btn) return;
-            state.tier = btn.getAttribute('data-tier');
+            state.marks = btn.getAttribute('data-marks');
             this.querySelectorAll('.blogi-pill').forEach(function (b) { b.classList.toggle('active', b === btn); });
             apply();
         });

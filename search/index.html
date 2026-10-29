@@ -156,11 +156,10 @@
         <button class="filter-pill" data-filter="type" data-value="available">Available</button>
       </div>
       <div class="filter-row">
-        <span class="filter-label">Tier</span>
-        <button class="filter-pill active" data-filter="tier" data-value="">Any</button>
-        <button class="filter-pill" data-filter="tier" data-value="dual">Dual</button>
-        <button class="filter-pill" data-filter="tier" data-value="1">Tier 1</button>
-        <button class="filter-pill" data-filter="tier" data-value="2">Tier 2</button>
+        <span class="filter-label">Restoration</span>
+        <button class="filter-pill active" data-filter="marks" data-value="">Any</button>
+        <button class="filter-pill" data-filter="marks" data-value="marked">With Marks</button>
+        <button class="filter-pill" data-filter="marks" data-value="plain">ASCII Form</button>
         <label class="filter-label" style="margin-left: auto;" for="pantheonFilter">Pantheon</label>
         <select class="filter-select" id="pantheonFilter" onchange="setPantheon(this.value)">
           <option value="">All pantheons</option>
@@ -169,7 +168,6 @@
         <select class="filter-select" id="sortFilter" onchange="setSort(this.value)">
           <option value="relevance">Relevance</option>
           <option value="alphabetical">A–Z</option>
-          <option value="tier">Tier</option>
           <option value="recently_crawled">Recently crawled</option>
           <option value="confidence">Confidence</option>
         </select>
@@ -221,7 +219,19 @@
     let debounceTimer;
     let currentMode = 'web';
     let currentType = 'all';
-    let currentTier = '';
+    // Mechanical restoration label — computed from the displayed form.
+    function preservationLabelOf(unicode) {
+      const nfd = (unicode || '').normalize('NFD');
+      const circumflex = nfd.includes('̂');
+      const stress = circumflex || /[̀́́]/.test(nfd);
+      const length = circumflex || /[̄̆]/.test(nfd);
+      if (stress && length) return 'Preserves stress & length';
+      if (stress) return 'Preserves stress';
+      if (length) return 'Preserves length';
+      if (/[̀-ͯ]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd)) return 'Preserves marks';
+      return 'ASCII form';
+    }
+    let currentMarks = '';
     let currentPantheon = '';
     let currentConcept = '';
     let currentSort = 'relevance';
@@ -271,7 +281,7 @@
         document.querySelectorAll(`.filter-pill[data-filter="${filter}"]`).forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         if (filter === 'type') currentType = value;
-        if (filter === 'tier') currentTier = value;
+        if (filter === 'marks') currentMarks = value;
         if (filter === 'concept') currentConcept = value;
         renderActiveFilters();
         triggerSearch();
@@ -297,14 +307,14 @@
 
     function clearFilters() {
       currentType = 'all';
-      currentTier = '';
+      currentMarks = '';
       currentPantheon = '';
       currentConcept = '';
       currentSort = 'relevance';
       document.getElementById('pantheonFilter').value = '';
       document.getElementById('sortFilter').value = 'relevance';
       document.querySelectorAll('.filter-pill[data-filter="type"]').forEach(p => p.classList.toggle('active', p.dataset.value === 'all'));
-      document.querySelectorAll('.filter-pill[data-filter="tier"]').forEach(p => p.classList.toggle('active', p.dataset.value === ''));
+      document.querySelectorAll('.filter-pill[data-filter="marks"]').forEach(p => p.classList.toggle('active', p.dataset.value === ''));
       document.querySelectorAll('.filter-pill[data-filter="concept"]').forEach(p => p.classList.toggle('active', p.dataset.value === ''));
       renderActiveFilters();
       triggerSearch();
@@ -315,7 +325,7 @@
       container.innerHTML = '';
       const chips = [];
       if (currentType && currentType !== 'all') chips.push({ label: capitalize(currentType), clear: () => setFilterPill('type', 'all') });
-      if (currentTier) chips.push({ label: currentTier === 'dual' ? 'Dual-Tier' : `Tier ${currentTier}`, clear: () => setFilterPill('tier', '') });
+      if (currentMarks) chips.push({ label: currentMarks === 'marked' ? 'With Marks' : 'ASCII Form', clear: () => setFilterPill('marks', '') });
       if (currentPantheon) chips.push({ label: capitalize(currentPantheon), clear: () => { document.getElementById('pantheonFilter').value = ''; setPantheon(''); } });
       if (currentConcept) chips.push({ label: capitalize(currentConcept), clear: () => setFilterPill('concept', '') });
       if (currentSort && currentSort !== 'relevance') chips.push({ label: `Sort: ${currentSort.replace('_', ' ')}`, clear: () => { document.getElementById('sortFilter').value = 'relevance'; setSort('relevance'); } });
@@ -355,7 +365,7 @@
     }
 
     // ── Deep-linking: every search state is a shareable URL ──
-    // ?q=…&mode=web|network|domains&pantheon=…&type=…&tier=…&sort=…
+    // ?q=…&mode=web|network|domains&pantheon=…&type=…&marks=…&sort=…
     function syncUrl() {
       const params = new URLSearchParams();
       const q = searchInput.value.trim();
@@ -363,7 +373,7 @@
       if (currentMode && currentMode !== 'web') params.set('mode', currentMode);
       if (currentPantheon) params.set('pantheon', currentPantheon);
       if (currentType && currentType !== 'all') params.set('type', currentType);
-      if (currentTier) params.set('tier', currentTier);
+      if (currentMarks) params.set('marks', currentMarks);
       if (currentSort && currentSort !== 'relevance') params.set('sort', currentSort);
       const qs = params.toString();
       history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
@@ -375,7 +385,7 @@
       const mode = params.get('mode');
       const pantheon = params.get('pantheon') || '';
       const type = params.get('type');
-      const tier = params.get('tier');
+      const marksParam = params.get('marks');
       const sort = params.get('sort');
 
       if (pantheon) {
@@ -400,12 +410,12 @@
           currentType = type;
         }
       }
-      if (tier !== null) {
-        const pill = document.querySelector(`.filter-pill[data-filter="tier"][data-value="${CSS.escape(tier)}"]`);
+      if (marksParam !== null) {
+        const pill = document.querySelector(`.filter-pill[data-filter="marks"][data-value="${CSS.escape(marksParam)}"]`);
         if (pill) {
-          document.querySelectorAll('.filter-pill[data-filter="tier"]').forEach((p) => p.classList.remove('active'));
+          document.querySelectorAll('.filter-pill[data-filter="marks"]').forEach((p) => p.classList.remove('active'));
           pill.classList.add('active');
-          currentTier = tier;
+          currentMarks = marksParam;
         }
       }
       if (q) searchInput.value = q;
@@ -761,7 +771,7 @@
       if (!breakdown) return '';
       const labels = {
         bm25: 'Text match',
-        tier: 'Tier signal',
+        preservation: 'Preservation signal',
         flagship: 'Flagship',
         tenant: 'Tenant',
         archetype: 'Archetype',
@@ -783,8 +793,7 @@
     }
 
     function buildResultCard(r, query, index) {
-      const tierClass = r.tier === 'dual' ? 'tier-dual' : r.tier === '1' ? 'tier-1' : 'tier-2';
-      const tierLabel = r.tier === 'dual' ? 'Dual-Tier' : `Tier ${r.tier}`;
+      const tierLabel = preservationLabelOf(r.unicode);
 
       let html = `<div class="serp-result" tabindex="0" data-index="${index}" data-site-id="${r.id}">`;
       html += `<div class="serp-header">`;
@@ -823,7 +832,7 @@
 
       html += `<div class="serp-meta">`;
       if (r.isFlagship) html += `<span class="serp-badge flagship">Flagship</span>`;
-      if (r.tier && r.tierLabel) html += `<span class="serp-badge ${tierClass}">${tierLabel}</span>`;
+      if (r.unicode) html += `<span class="serp-badge">${preservationLabelOf(r.unicode)}</span>`;
       if (r.pantheon) html += `<span class="serp-badge pantheon">${escapeHtml(r.pantheon)}</span>`;
       if (r.leaseStatus === 'flagship' || r.isFlagship) {
         html += `<span class="lease-badge flagship">Crown Jewel</span>`;
@@ -942,7 +951,7 @@
       params.set('offset', String(currentOffset));
       params.set('mode', apiMode);
       if (currentType !== 'all') params.set('type', currentType);
-      if (currentTier) params.set('tier', currentTier);
+      if (currentMarks) params.set('marks', currentMarks);
       if (currentPantheon) params.set('pantheon', currentPantheon);
       const sort = currentMode === 'web' && currentSort === 'confidence' ? 'relevance' : currentSort;
       if (sort) params.set('sort', sort);
@@ -1018,8 +1027,7 @@
 
       if (knowledgePanel && knowledgePanel.entry) {
         const e = knowledgePanel.entry;
-        const tierClass = e.tier === 'dual' ? 'tier-dual' : e.tier === '1' ? 'tier-1' : 'tier-2';
-        const tierLabel = e.tier === 'dual' ? 'Dual-Tier' : `Tier ${e.tier}`;
+        const tierLabel = preservationLabelOf(e.unicode);
 
         html += `<div class="knowledge-panel">`;
         html += `<div class="kp-header">`;
@@ -1028,7 +1036,7 @@
         if (e.greek && e.greek !== '-') html += `<div class="kp-greek">${escapeHtml(e.greek)}</div>`;
         if (e.meaning) html += `<div class="kp-meaning">${escapeHtml(e.meaning)}</div>`;
         html += `<div class="kp-badges">`;
-        html += `<span class="kp-badge ${tierClass}">${tierLabel}</span>`;
+        html += `<span class="kp-badge">${tierLabel}</span>`;
         html += `<span class="kp-badge pantheon">${escapeHtml(e.pantheon)}</span>`;
         html += `</div>`;
         html += `<div class="kp-actions">`;
@@ -1172,13 +1180,12 @@
         html += `<div class="availability-section">`;
         html += `<div class="availability-title">Available for Registration</div>`;
         data.availability.forEach(avail => {
-          const tierClass = avail.tier === 'dual' ? 'tier-dual' : avail.tier === '1' ? 'tier-1' : 'tier-2';
-          const tierLabel = avail.tier === 'dual' ? 'Dual-Tier' : `Tier ${avail.tier}`;
+          const tierLabel = preservationLabelOf(avail.unicode);
           const puny = avail.punycode || avail.unicode + '.com';
           html += `<div class="avail-card">`;
           html += `<div>`;
           html += `<div class="avail-domain">${escapeHtml(avail.unicode || puny)}</div>`;
-          html += `<div class="avail-meaning">${escapeHtml(puny)}${avail.meaning ? ' — ' + escapeHtml(avail.meaning) : ''} <span class="serp-badge ${tierClass}">${tierLabel}</span></div>`;
+          html += `<div class="avail-meaning">${escapeHtml(puny)}${avail.meaning ? ' — ' + escapeHtml(avail.meaning) : ''} <span class="serp-badge">${tierLabel}</span></div>`;
           html += `</div>`;
           html += `<div class="avail-actions">`;
           html += `<a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="avail-action" title="Check on GoDaddy">GoDaddy</a>`;
@@ -1315,7 +1322,7 @@
         const params = new URLSearchParams();
         if (q) params.set('q', q);
         if (currentType !== 'all') params.set('type', currentType);
-        if (currentTier) params.set('tier', currentTier);
+        if (currentMarks) params.set('marks', currentMarks);
         if (currentPantheon) params.set('pantheon', currentPantheon);
         if (currentSort) params.set('sort', currentSort);
         const res = await fetch(`${API_BASE}/api/search/?${params}`);
@@ -1335,8 +1342,7 @@
       let html = `<div class="result-count">${data.total} result${data.total !== 1 ? 's' : ''}</div>`;
 
       data.entries.forEach(entry => {
-        const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';
-        const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
+        const tierLabel = preservationLabelOf(entry.unicode);
         const hasSite = !!entry.site;
         const cardClass = hasSite ? 'has-site' : (entry.availability ? 'available' : '');
 
@@ -1347,7 +1353,7 @@
             <div class="entry-header">
               <span class="entry-unicode">${entry.unicode}</span>
               ${entry.greek && entry.greek !== '-' ? `<span class="entry-greek">${entry.greek}</span>` : ''}
-              <span class="tier-badge ${tierClass}">${tierLabel}</span>
+              <span class="tier-badge">${tierLabel}</span>
               <span class="pantheon-badge">${entry.pantheon}</span>
             </div>
             <div class="entry-meta">${entry.meaning || ''}</div>
@@ -1561,7 +1567,6 @@
                     <a href="/everyday/">Words</a>
                     <a href="/ink/">Ink</a>
                     <a href="/trending/">Trending</a>
-                    <a href="/tiers/">Tier System</a>
                     <a href="/rulebook/">Rulebook</a>
                     <a href="/type/">Type</a>
                     <a href="/game/">Game</a>

@@ -121,7 +121,6 @@ const _Oracle = (function () {
           </div>
           <div style="text-align:right;">
             <div class="or-status ${statusClass}">${statusText}</div>
-            ${entry.tierLabel ? `<div style="font-size:0.6rem;color:var(--ink-faint);margin-top:0.2rem;text-transform:uppercase;letter-spacing:0.04em;">${escapeHtml(entry.tierLabel)}</div>` : ''}
           </div>
         </div>
       `;

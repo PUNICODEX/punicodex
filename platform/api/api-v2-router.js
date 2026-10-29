@@ -207,14 +207,6 @@ async function handlePantheon(_req, res, name) {
   success(res, rewriteLinks(result));
 }
 
-async function handleTiers(_req, res) {
-  const result = namesService.listTiers();
-  success(res, rewriteLinks(result.items), {
-    meta: { total: result.total },
-    links: { self: '/api/v2/tiers' },
-  });
-}
-
 async function handleAutocomplete(req, res) {
   const q = String(req.query.q || '').trim();
   if (!q) {
@@ -406,7 +398,6 @@ async function handleSearchWeb(req, res) {
     mode: req.query.mode || 'all',
     type: req.query.type || 'all',
     pantheon: req.query.pantheon,
-    tier: req.query.tier,
     sort: req.query.sort || 'relevance',
     variant: req.query.variant || 'default',
   });
@@ -504,7 +495,6 @@ function getOpenApiSpec() {
       '/api/v2/names/{id}/{subresource}': { GET: 'Subresource (variants, breakdown, ...)' },
       '/api/v2/pantheons': { GET: 'List pantheons' },
       '/api/v2/pantheons/{name}': { GET: 'Pantheon entries' },
-      '/api/v2/tiers': { GET: 'Tier documentation' },
       '/api/v2/autocomplete': { GET: 'Autocomplete names' },
       '/api/v2/convert': { GET: 'Convert a query' },
       '/api/v2/convert/batch': { POST: 'Batch convert' },
@@ -656,12 +646,6 @@ async function route(req, res) {
       return;
     }
     if (method === 'GET') return handlePantheon(req, res, identifier);
-    error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
-    return;
-  }
-
-  if (resource === 'tiers') {
-    if (method === 'GET') return handleTiers(req, res);
     error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
     return;
   }

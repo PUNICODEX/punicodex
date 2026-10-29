@@ -11,6 +11,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservedFeatures } = require('../type/js/engine.js');
 const { domainToASCII } = require('node:url');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -258,8 +259,6 @@ function main() {
       unicode: entry.unicode,
       greek: entry.greek,
       pantheon: entry.pantheon,
-      tier: entry.tier,
-      tierLabel: entry.tierLabel,
       meaning: entry.meaning,
       domain: entry.domain,
       domainUnicode: displayDomain,
@@ -346,9 +345,8 @@ function main() {
         count: 0,
         flagships: 0,
         owned: 0,
-        dual: 0,
-        tier1: 0,
-        tier2: 0,
+        marked: 0,
+        plain: 0,
         sources: new Set(),
       };
     }
@@ -356,9 +354,8 @@ function main() {
     p.count++;
     if (entry.hasFlagship) p.flagships++;
     if (entry.isOwned) p.owned++;
-    if (entry.tier === 'dual') p.dual++;
-    if (entry.tier === '1') p.tier1++;
-    if (entry.tier === '2') p.tier2++;
+    if (preservedFeatures(entry.unicode).features.length > 0) p.marked++;
+    else p.plain++;
     for (const src of entry.sources || []) p.sources.add(src);
   }
 
@@ -396,51 +393,26 @@ function main() {
       count: data.count,
       flagships: data.flagships,
       owned: data.owned,
-      dual: data.dual,
-      tier1: data.tier1,
-      tier2: data.tier2,
+      marked: data.marked,
+      plain: data.plain,
       sourceCount: data.sources.size,
     };
   }
 
-  // Tier documentation
-  const tierDocs = {
-    dual: {
-      label: 'Dual-Tier',
-      summary: 'Both stress and length are preserved, and multiple historically valid Unicode spellings exist.',
-      rules: [
-        'Greek original contains both stress (acute/circumflex) and at least one long vowel.',
-        'Multiple historically valid Unicode spellings are attested.',
-        'Each variant corresponds to a real, attested alternate restoration.',
-        'Both spellings are live as owned domain temples.',
-      ],
-      examples: ['apollon', 'hekate', 'nike'],
+  // Restoration-preservation documentation (replaces the retired tier system)
+  const preservationDocs = {
+    summary:
+      'Every restoration is described by what its displayed form preserves that ASCII cannot show — computed mechanically from the form itself (NFD decomposition), never classified by hand and never a claim the form cannot support.',
+    features: {
+      stress: 'An acute, grave, or circumflex accent marks the pitch stress of the original.',
+      'vowel length': 'A macron (or breve) marks vowel quantity; a circumflex counts as both stress and length.',
+      'distinctive letters':
+        'Letters ASCII flattens survive intact — þ, ð, æ, œ, ꜣ, ꜥ, and kindred forms.',
+      'distinctive marks':
+        'Other diacritics the ASCII form drops (caron, ogonek, underdot, tone marks, …).',
     },
-    1: {
-      label: 'Tier 1',
-      summary: 'Full restoration: Greek names preserve both stress and length; other traditions keep at least one distinctive feature ASCII erases.',
-      rules: [
-        'Greek: the original contains both stress (acute/circumflex) and at least one long vowel.',
-        'All other traditions: the Unicode form preserves ≥1 distinctive feature vs ASCII (any diacritic or a distinctive letter).',
-        'Only one historically dominant spelling exists (unlike Dual-Tier).',
-      ],
-      examples: ['zeus', 'ares', 'aphrodite', 'athena', 'demeter', 'hera', 'hermes', 'hephaistos', 'odinn'],
-    },
-    2: {
-      label: 'Tier 2',
-      summary: 'Greek: one feature preserved (stress or length) or neither. Other traditions: no distinctive feature for ASCII to lose.',
-      rules: [
-        'Greek original contains only one feature (stress OR long vowel) or neither.',
-        'Non-Greek: the restoration needs no distinctive letters or diacritics.',
-        'Still historically defensible and registrable as an IDN.',
-      ],
-      subtypes: {
-        'accent-preserving': 'Keeps the stress mark but not vowel length.',
-        'macron-preserving': 'Keeps vowel length but not stress.',
-        'plain': 'Neither stress nor length is preserved; still a culturally meaningful name.',
-      },
-      examples: ['artemis', 'atlas', 'dionysos', 'hestia'],
-    },
+    asciiEquivalent:
+      'Some scholarly forms are identical to ASCII — the restoration is faithful without adding marks.',
   };
 
   // Stats
@@ -450,9 +422,8 @@ function main() {
     pantheons: pantheonSet.size,
     owned: entries.filter((e) => e.isOwned).length,
     flagships: entries.filter((e) => e.hasFlagship).length,
-    tierDual: entries.filter((e) => e.tier === 'dual').length,
-    tier1: entries.filter((e) => e.tier === '1').length,
-    tier2: entries.filter((e) => e.tier === '2').length,
+    restorationsWithMarks: entries.filter((e) => preservedFeatures(e.unicode).features.length > 0).length,
+    asciiEquivalentForms: entries.filter((e) => preservedFeatures(e.unicode).features.length === 0).length,
     available: entries.filter((e) => e.availability && e.availability.status === 'available').length,
     live: entries.filter((e) => e.availability && e.availability.status === 'live').length,
     registered: entries.filter((e) => e.availability && e.availability.status === 'registered').length,
@@ -467,7 +438,7 @@ function main() {
     stats,
     pantheonColors: PANTHEON_COLORS,
     pantheonDocs,
-    tierDocs,
+    preservationDocs,
     entries,
     breakdowns: breakdownsById,
   });

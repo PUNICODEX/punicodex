@@ -1,15 +1,28 @@
 (function (root) {
-  function tierToRarity(tier, hasAdSite) {
-    if (hasAdSite) return 'legendary';
-    if (tier === 'dual') return 'epic';
-    if (tier === '1') return 'rare';
+  // Mechanical preservation classes — computed from the displayed form.
+  function preservedMarkCount(unicode) {
+    const nfd = (unicode || '').normalize('NFD');
+    const circumflex = nfd.includes('̂');
+    const stress = circumflex || /[̀́́]/.test(nfd);
+    const length = circumflex || /[̄̆]/.test(nfd);
+    let n = (stress ? 1 : 0) + (length ? 1 : 0);
+    if (!n && (/[̀-ͯ]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd))) n = 1;
+    return n;
+  }
+
+  function tierToRarity(entry) {
+    if (entry.hasAdSite) return 'legendary';
+    const n = preservedMarkCount(entry.unicode);
+    if (n >= 2) return 'epic';
+    if (n === 1) return 'rare';
     return 'common';
   }
 
   function basePriceCents(entry) {
     if (entry.hasAdSite) return 50000; // $500
-    if (entry.tier === 'dual') return 25000;
-    if (entry.tier === '1') return 12000;
+    const n = preservedMarkCount(entry.unicode);
+    if (n >= 2) return 20000;
+    if (n === 1) return 10000;
     return 3000;
   }
 
@@ -36,7 +49,7 @@
       artist: `Artist ${(index % 12) + 1}`,
       pantheon: entry.pantheon,
       domain: entry.domain || 'Mythic',
-      rarity: tierToRarity(entry.tier, entry.hasAdSite),
+      rarity: tierToRarity(entry),
       color: pantheonColor(entry.pantheon),
       licenses: {
         personal: { priceCents: price, label: 'Personal' },

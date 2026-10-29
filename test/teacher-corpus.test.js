@@ -347,7 +347,7 @@ test('records contradicting canonical fields are rejected with reasons', async (
   const staged = pipeline.loadStaging(stagingDir, 'test-contradictions');
   const allReasons = staged.rejected.flatMap((r) => r.reasons).join('\n');
   assert.ok(allReasons.includes('form-mismatch:'), 'hallucinated form rejected');
-  assert.ok(allReasons.includes('tier-mismatch:'), 'wrong tier rejected');
+  assert.ok(allReasons.includes('stale-vocabulary:'), 'retired tier vocabulary rejected');
   assert.ok(allReasons.includes('pantheon-mismatch:'), 'wrong pantheon rejected');
   assert.ok(allReasons.includes('template-marker:'), 'template leakage rejected');
 });

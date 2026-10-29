@@ -4,7 +4,7 @@ const ids = ['ahuramazda','lakshmi','nikko','nirmata','parvati','ptah','rama','t
 for (const id of ids) {
   const e = LEXICON.find((x) => x.id === id);
   if (e) {
-    console.log(id, '->', e.unicode, '/', e.ascii, '/', e.pantheon, '/ tier', e.tier);
+    console.log(id, '->', e.unicode, '/', e.ascii, '/', e.pantheon);
   } else {
     console.log(id, '-> NOT IN LEXICON');
   }

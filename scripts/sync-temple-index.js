@@ -20,7 +20,6 @@
  *   lexicon/index.html       — every lexicon entry (the full index)
  *   pantheon/index.html      — built flagships, grouped by pantheon
  *   pronunciation/index.html — built flagships (flat)
- *   tiers/index.html         — built flagships (flat)
  */
 
 const fs = require('node:fs');
@@ -38,7 +37,6 @@ const TARGETS = [
   { page: path.join('lexicon', 'index.html'), set: 'all' },
   { page: path.join('pantheon', 'index.html'), set: 'flagships', grouped: true },
   { page: path.join('pronunciation', 'index.html'), set: 'flagships' },
-  { page: path.join('tiers', 'index.html'), set: 'flagships' },
 ];
 
 const esc = (s) =>

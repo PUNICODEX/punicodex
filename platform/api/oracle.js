@@ -759,7 +759,7 @@ function retrieveEntriesFTS(q, limit = 10) {
       SELECT e.* FROM entries e
       JOIN entries_fts fts ON e.rowid = fts.rowid
       WHERE entries_fts MATCH ?
-      ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC, e.confidence_score DESC, e.has_flagship DESC
+      ORDER BY e.confidence_score DESC, e.has_flagship DESC
       LIMIT ?
     `
     )
@@ -773,7 +773,7 @@ function getAllEntries() {
   if (!ALL_ENTRIES) {
     ALL_ENTRIES = getDb()
       .prepare(
-        'SELECT id, ascii, unicode, greek, pantheon, tier, domain, meaning, confidence_score, has_flagship FROM entries'
+        'SELECT id, ascii, unicode, greek, pantheon, domain, meaning, confidence_score, has_flagship FROM entries'
       )
       .all();
   }
@@ -820,7 +820,7 @@ function retrieveEntriesByConcept(q, limit = 5) {
   // to it. Ranking: most concept terms matched; a match in the entry's
   // PRIMARY (first-listed) domain outranks a secondary one (artemis "Hunt,
   // Wilderness, Moon" beats diana "Moon, Hunt, …" for "goddess of the hunt");
-  // tier/confidence only break ties.
+  // confidence only breaks ties.
   const queryTerms = tokens; // the query's own words, before synonym expansion
   const loreMap = loadLoreCatalog();
   const pool = getAllEntries();
@@ -870,9 +870,6 @@ function retrieveEntriesByConcept(q, limit = 5) {
     if (prominence(a.row.id) !== prominence(b.row.id)) {
       return prominence(a.row.id) - prominence(b.row.id);
     }
-    const aTier = a.row.tier === 'dual' ? 3 : a.row.tier === '1' ? 2 : 1;
-    const bTier = b.row.tier === 'dual' ? 3 : b.row.tier === '1' ? 2 : 1;
-    if (aTier !== bTier) return bTier - aTier;
     if ((b.row.has_flagship || 0) !== (a.row.has_flagship || 0)) {
       return (b.row.has_flagship || 0) - (a.row.has_flagship || 0);
     }
@@ -1102,9 +1099,9 @@ function retrievePantheonSiblings(entry, limit = 3) {
   return database
     .prepare(
       `
-      SELECT id, unicode, ascii, meaning, tier, has_flagship FROM entries
+      SELECT id, unicode, ascii, meaning, has_flagship FROM entries
       WHERE pantheon = ? AND id != ?
-      ORDER BY has_flagship DESC, tier = 'dual' DESC, tier = '1' DESC, confidence_score DESC
+      ORDER BY has_flagship DESC, confidence_score DESC
       LIMIT ?
     `
     )
@@ -1941,9 +1938,7 @@ function buildLlmPrompt(q, contexts, intent, productions = []) {
   }
 
   for (const ctx of contexts.slice(0, 2)) {
-    promptParts.push(
-      `- ${ctx.unicode || ctx.ascii} (ASCII: ${ctx.ascii}; ${ctx.pantheon}, ${ctx.tierLabel || ctx.tier})`
-    );
+    promptParts.push(`- ${ctx.unicode || ctx.ascii} (ASCII: ${ctx.ascii}; ${ctx.pantheon})`);
     if (ctx.meaning) promptParts.push(`  Meaning: ${ctx.meaning}`);
 
     // Script honesty: the lookup carries the canonical label ("Original
@@ -2013,11 +2008,10 @@ function buildLlmPrompt(q, contexts, intent, productions = []) {
 function synthesizeQuickAnswer(entry, intent) {
   const name = escapeHtml(entry.unicode || entry.ascii);
   const asciiName = escapeHtml(entry.ascii || name);
-  const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : entry.tier === '1' ? 'Tier-1' : 'Tier-2';
   const ctx = getEntryContext(entry.id);
   const lore = ctx?.lore || {};
 
-  let answer = `<div class="oracle-lead"><p><strong>${name}</strong> is a <strong>${tierLabel}</strong> Unicode restoration of the ${escapeHtml(entry.pantheon)} name <strong>${asciiName}</strong>`;
+  let answer = `<div class="oracle-lead"><p><strong>${name}</strong> is the Unicode restoration of the ${escapeHtml(entry.pantheon)} name <strong>${asciiName}</strong>`;
   if (entry.greek && entry.greek !== '-')
     answer += ` (Greek <em>${escapeHtml(entry.greek.trim())}</em>)`;
   answer += `. `;

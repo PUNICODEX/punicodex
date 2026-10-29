@@ -285,7 +285,7 @@ app.get('/api/entry/:id', searchLimit, async (req, res) => {
       SELECT id, domain, punycode, title, description, favicon_path, is_flagship, tenant_name, status
       FROM indexed_sites
       WHERE lexicon_entry_id = ? AND status = 'active'
-      ORDER BY is_flagship DESC, tier = 'dual' DESC, tier = '1' DESC
+      ORDER BY is_flagship DESC
       LIMIT 5
     `)
       .all(req.params.id);
@@ -365,7 +365,6 @@ const v1Similarities = require('./api-handlers/v1/similarities');
 const v1SimilaritiesRelationships = require('./api-handlers/v1/similarities/relationships');
 const v1Pantheons = require('./api-handlers/v1/pantheons');
 const v1Pantheon = require('./api-handlers/v1/pantheons/[name]');
-const v1Tiers = require('./api-handlers/v1/tiers');
 const v1Autocomplete = require('./api-handlers/v1/autocomplete');
 const v1Convert = require('./api-handlers/v1/convert');
 const v1ConvertBatch = require('./api-handlers/v1/convert/batch');
@@ -395,7 +394,6 @@ app.use('/api/v1/similarities', v1Similarities);
 app.use('/api/v1/names/:id', v1NameDetail);
 app.use('/api/v1/pantheons/:name', v1Pantheon);
 app.use('/api/v1/pantheons', v1Pantheons);
-app.use('/api/v1/tiers', v1Tiers);
 app.use('/api/v1/autocomplete', v1Autocomplete);
 app.use('/api/v1/convert/batch', v1ConvertBatch);
 app.use('/api/v1/convert', v1Convert);

@@ -9,8 +9,6 @@
 const assert = require('node:assert');
 const { LEXICON } = require('../type/js/lexicon');
 
-const VALID_TIERS = new Set(['dual', '1', '2']);
-
 const tests = [];
 
 function test(name, fn) {
@@ -30,8 +28,8 @@ for (const entry of LEXICON) {
       'pantheon must be a non-empty string'
     );
     assert.ok(
-      VALID_TIERS.has(entry.tier),
-      `tier must be one of ${[...VALID_TIERS].join(', ')}; got ${entry.tier}`
+      typeof entry.unicode === 'string',
+      'unicode must be present for the mechanical preservation computation'
     );
   });
 

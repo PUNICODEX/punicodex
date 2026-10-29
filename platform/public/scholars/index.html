@@ -171,7 +171,7 @@
                 <div class="nav-more">
                     <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
                     <div class="nav-more-menu">
-                        <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/rulebook/" class="nav-link">The Rules</a>
                         <a href="/oracle/" class="nav-link">Oracle</a>
                         <a href="/codex/" class="nav-link">Codex</a>
                         <a href="/blog/" class="nav-link">Blog</a>
@@ -209,7 +209,7 @@
             <div class="mobile-menu-group">
                 <a href="/type/">Type</a>
                 <a href="/search/">Search</a>
-                <a href="/tiers/">Tier System</a>
+                <a href="/rulebook/">The Rules</a>
                 <a href="/oracle/">Oracle</a>
             </div>
         </div>
@@ -267,7 +267,7 @@
         </div>
     </main>
 
-    <script src="/js/archetypes-v2.js?v=ab8f9df074"></script>
+    <script src="/js/archetypes-v2.js?v=d7e5566102"></script>
     <script src="/js/pc-fx-core.js?v=1" defer></script>
     <script src="/js/pc-fx-collegium.js?v=1" defer></script>
     <script src="/js/px-core.js?v=perf21" defer></script>
@@ -288,10 +288,20 @@
             pantheonFilter.appendChild(opt);
         }
 
+        // Mechanical preservation badge — computed from the displayed form itself.
         function tierBadge(a) {
-            if (a.tier === 'dual-tier' || a.tier === 'dual') return '<span class="edition-tier dual">Dual-Tier</span>';
-            if (a.tier === 'tier-1' || a.tier === '1') return '<span class="edition-tier">Tier 1</span>';
-            return '<span class="edition-tier">Tier 2</span>';
+            const nfd = (a.name || '').normalize('NFD');
+            const circumflex = nfd.includes('\u0302');
+            const stress = circumflex || /[\u0300\u0301\u0341]/.test(nfd);
+            const length = circumflex || /[\u0304\u0306]/.test(nfd);
+            let label;
+            if (stress && length) label = 'Stress & length';
+            else if (stress) label = 'Stress';
+            else if (length) label = 'Length';
+            else if (/[\u0300-\u036f]/.test(nfd) || /[þðæœÞÐÆŒꜣꜥǫḍṭḥṛš]/.test(nfd)) label = 'Marks';
+            else label = 'ASCII form';
+            const cls = stress && length ? ' edition-tier dual' : 'edition-tier';
+            return '<span class="' + cls.trim() + '">' + esc(label) + '</span>';
         }
         function esc(s) {
             return String(s == null ? '' : s)
@@ -364,7 +374,7 @@
                     <a href="/everyday/">Words</a>
                     <a href="/ink/">Ink</a>
                     <a href="/trending/">Trending</a>
-                    <a href="/tiers/">Tier System</a>
+                    <a href="/rulebook/">The Rules</a>
                     <a href="/rulebook/">Rulebook</a>
                     <a href="/type/">Type</a>
                     <a href="/game/">Game</a>

@@ -7,7 +7,7 @@
  *   - no visible stubs or broken domain cards
  *   - pronunciation, symbols, and mythology meet minimum richness thresholds
  *   - galleries are populated (no placeholder)
- *   - tier/canonical markers are present where expected
+ *   - restoration-preservation explanations are present where expected
  *
  * Run standalone: node test/flagship-content-quality.test.js
  */
@@ -159,22 +159,24 @@ function auditGeneratedPages() {
       ISSUES.emptyGallery.push(id);
     }
 
-    // --- Tier/canonical explanation ---
-    if (entry?.tier) {
+    // --- Restoration-preservation explanation (mechanical) ---
+    {
       const pageText = $lore('body').text();
-      if (entry.tier === 'dual') {
-        if (
-          !pageText.includes('Dual-Tier') &&
-          !pageText.includes('Tier‑1') &&
-          !pageText.includes('Tier-2')
-        ) {
-          ISSUES.tierExplanationMissing.push(`${id}: dual-tier explanation missing`);
-        }
-      } else if (entry.tier === 'tier-1') {
-        // Tier-1 Greek entries should mention stress and length
-        if (entry.pantheon === 'greek' && !/stress.*length|length.*stress/i.test(pageText)) {
-          ISSUES.tierExplanationMissing.push(`${id}: tier-1 stress/length explanation missing`);
-        }
+      const { preservedFeatures } = require('../type/js/engine.js');
+      const feats = preservedFeatures(entry.unicode || '').features;
+      if (
+        feats.length >= 2 &&
+        !/stress|length|macron|acute|accent|distinctive letter|preserves/i.test(pageText)
+      ) {
+        ISSUES.tierExplanationMissing.push(
+          `${id}: full-restoration stress/length explanation missing`
+        );
+      }
+      if (feats.length === 1 && feats[0] === 'stress' && !/stress|acute|accent/i.test(pageText)) {
+        ISSUES.tierExplanationMissing.push(`${id}: stress preservation explanation missing`);
+      }
+      if (feats.length === 1 && feats[0] === 'vowel length' && !/length|macron/i.test(pageText)) {
+        ISSUES.tierExplanationMissing.push(`${id}: length preservation explanation missing`);
       }
     }
   }

@@ -40,9 +40,13 @@ function run() {
     assert.ok(result.entries.every((e) => e.pantheon === 'norse'));
   });
 
-  test('search filters by tier', () => {
-    const result = searchService.search({ tier: 'dual', limit: 10 });
-    assert.ok(result.entries.every((e) => e.tier === 'dual'));
+  test('search no longer accepts a tier filter', () => {
+    const result = searchService.search({ pantheon: 'greek', limit: 10 });
+    assert.ok(result.entries.length > 0);
+    assert.ok(
+      result.entries.every((e) => !('tier' in e)),
+      'entries must not carry tier fields'
+    );
   });
 
   test('search hasSite=true only returns entries with active sites', () => {
@@ -77,13 +81,9 @@ function run() {
     assert.deepStrictEqual(unicode, sorted);
   });
 
-  test('search supports tier sort', () => {
+  test('search rejects the retired tier sort gracefully', () => {
     const result = searchService.search({ sort: 'tier', limit: 20 });
-    const order = { dual: 0, 1: 1, 2: 2 };
-    const ranks = result.entries.map((e) => order[e.tier] ?? 3);
-    for (let i = 1; i < ranks.length; i++) {
-      assert.ok(ranks[i] >= ranks[i - 1], 'tier sort should be non-decreasing');
-    }
+    assert.ok(Array.isArray(result.entries), 'unknown sort falls back to relevance');
   });
 
   test('search trust=canonical returns only canonical results', () => {

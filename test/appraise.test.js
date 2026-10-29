@@ -77,16 +77,16 @@ async function runTests() {
     );
   });
 
-  await test('appraise values canonical dual-tier variant form in a defensible band', () => {
+  await test('appraise values canonical multi-form variant in a defensible band', () => {
     const result = appraise('apṓllōn.com');
     assert.strictEqual(result.lexiconMatch?.id, 'apollon');
     assert.strictEqual(result.lexiconMatch?.form, 'variant');
     assert.strictEqual(result.lexiconMatch?.variantType, 'ideal');
-    // The dual-tier variant is philologically real but not the owned form:
+    // The variant is philologically real but not the owned form:
     // worth roughly half the owned form, in the defensible IDN band.
     assert.ok(
       result.appraisal.unicodeValue >= 300 && result.appraisal.unicodeValue <= 10_000,
-      `variant dual-tier should hold defensible value (got ${result.appraisal.unicodeValue})`
+      `variant should hold defensible value (got ${result.appraisal.unicodeValue})`
     );
     assert.ok(result.appraisal.confidence > 0.5, 'confidence should be reasonable');
   });

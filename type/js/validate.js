@@ -64,8 +64,6 @@ const REQUIRED_FIELDS = [
   'unicode',
   'greek',
   'pantheon',
-  'tier',
-  'tierLabel',
   'domain',
   'meaning',
   'sources',
@@ -75,7 +73,6 @@ const REQUIRED_FIELDS = [
 // allowed set from the meta map makes future pantheon additions one change.
 const { PANTHEON_META } = require('./pantheon-meta.js');
 const ALLOWED_PANTHEONS = Object.keys(PANTHEON_META);
-const ALLOWED_TIERS = ['dual', '1', '2'];
 const ASCII_REGEX = /^[a-z]+$/;
 
 LEXICON.forEach((entry, i) => {
@@ -100,22 +97,6 @@ LEXICON.forEach((entry, i) => {
       ALLOWED_PANTHEONS.includes(entry.pantheon),
       `[${label}] pantheon "${entry.pantheon}" not in allowed set`
     );
-  }
-
-  if (entry.tier !== undefined) {
-    assert(
-      ALLOWED_TIERS.includes(entry.tier),
-      `[${label}] tier "${entry.tier}" not in allowed set`
-    );
-  }
-
-  // Tier label consistency
-  if (entry.tier === 'dual') {
-    assert(entry.tierLabel === 'Dual-Tier', `[${label}] dual-tier must have tierLabel "Dual-Tier"`);
-  } else if (entry.tier === '1') {
-    assert(entry.tierLabel === 'Tier 1', `[${label}] tier-1 must have tierLabel "Tier 1"`);
-  } else if (entry.tier === '2') {
-    assert(entry.tierLabel === 'Tier 2', `[${label}] tier-2 must have tierLabel "Tier 2"`);
   }
 
   // Unicode NFC normalization
@@ -242,17 +223,6 @@ LEXICON.forEach((entry, i) => {
       );
       variantUnicodes.add(v.unicode);
     });
-  }
-
-  // Dual-tier entries must have at least two distinct valid forms
-  // (canonical unicode + at least one variant, or multiple variants).
-  if (entry.tier === 'dual') {
-    const canonicalCount = entry.unicode ? 1 : 0;
-    const variantCount = entry.variants ? entry.variants.length : 0;
-    assert(
-      canonicalCount + variantCount >= 2,
-      `[${label}] dual-tier entry must have at least 2 distinct forms, got ${canonicalCount + variantCount}`
-    );
   }
 
   // Etymology check (optional)

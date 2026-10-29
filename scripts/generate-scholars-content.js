@@ -24,6 +24,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'platform', 'scholars', 'content');
@@ -306,20 +307,11 @@ function traditionLabel(entry) {
   return PANTHEON_LABELS[entry.pantheon] || entry.pantheon.charAt(0).toUpperCase() + entry.pantheon.slice(1);
 }
 
-function tierSentence(tier, entry) {
-  if (tier === 'dual-tier') {
-    return 'The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration.';
-  }
-  const isGreek =
-    entry && (entry.pantheon === 'greek' || entry.pantheon === 'greek-location');
-  if (tier === 'tier-1') {
-    return isGreek
-      ? 'The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.'
-      : 'The restoration preserves at least one distinctive feature — a diacritic or a distinctive letter — that the ASCII form loses, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.';
-  }
-  return isGreek
-    ? 'The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.'
-    : 'The restoration needs no distinctive letters or diacritics its ASCII form would lose, which places the name in Tier 2.';
+function preservationSentence(entry) {
+  // Mechanical, from the displayed form — never a claim the form cannot support.
+  const label = preservationLabel(entry && entry.unicode);
+  const body = label.charAt(0).toLowerCase() + label.slice(1);
+  return `The restoration ${body} — a description computed from the displayed form itself.`;
 }
 
 function templeUrl(archetype) {
@@ -370,13 +362,13 @@ function buildOverview(ctx) {
     ? `[${archetype.domainUnicode}](${templeUrl(archetype)})`
     : `[its temple](${templeUrl(archetype)})`;
   paragraphs.push(
-    `PuniCodex restores the name as **${entry.unicode}** and serves its temple at ${domainLink}. ${tierSentence(archetype.tier, entry)} The plain ASCII form *${entry.ascii}* survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete${cite(pickSource(pool, 2))}.`
+    `PuniCodex restores the name as **${entry.unicode}** and serves its temple at ${domainLink}. ${preservationSentence(entry)} The plain ASCII form *${entry.ascii}* survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete${cite(pickSource(pool, 2))}.`
   );
 
   return {
     body: paragraphs.join('\n\n'),
     sources,
-    generatedFrom: ['lore:domains', 'lexicon:meaning', 'archetype:tier'],
+    generatedFrom: ['lore:domains', 'lexicon:meaning', 'archetype:domain'],
     bespoke: false,
   };
 }
@@ -384,7 +376,7 @@ function buildOverview(ctx) {
 function buildTheName(ctx) {
   const { archetype, entry, pool } = ctx;
   const { cite, sources } = createCiter();
-  const generatedFrom = ['lexicon:greek', 'lexicon:meaning', 'lexicon:breakdown', 'archetype:tier'];
+  const generatedFrom = ['lexicon:greek', 'lexicon:meaning', 'lexicon:breakdown', 'archetype:domain'];
   const parts = [];
 
   if (ctx.originalScript && ctx.scriptLabel === 'Original Script') {
@@ -459,7 +451,7 @@ function buildTheName(ctx) {
     featureSentence = 'the full diacritic detail of the scholarly transliteration';
   }
   parts.push(
-    `The ASCII form *${entry.ascii}* survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration **${entry.unicode}** recovers ${featureSentence} directly in the address bar. ${tierSentence(archetype.tier, entry)}`
+    `The ASCII form *${entry.ascii}* survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration **${entry.unicode}** recovers ${featureSentence} directly in the address bar. ${preservationSentence(entry)}`
   );
 
   parts.push(
@@ -859,7 +851,7 @@ module.exports = {
   unicodeName,
   crosslinkTargets,
   traditionLabel,
-  tierSentence,
+  preservationSentence,
   templeUrl,
   GENERATED_SECTION_KEYS,
   SECTION_BUILDERS,

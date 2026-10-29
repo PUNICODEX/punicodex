@@ -249,8 +249,6 @@ function formatArchetype(a) {
     `        greek: ${JSON.stringify(a.greek ?? '—')},`,
     `        domain: ${JSON.stringify(a.domain)},`,
     `        tagline: ${JSON.stringify(a.tagline)},`,
-    `        tier: ${JSON.stringify(a.tier)},`,
-    `        tierDetail: ${JSON.stringify(a.tierDetail)},`,
     `        pantheon: ${JSON.stringify(a.pantheon)},`,
     `        folder: ${JSON.stringify(a.folder)},`,
   );

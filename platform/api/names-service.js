@@ -13,6 +13,7 @@
  */
 
 const { domainToASCII } = require('node:url');
+const { preservationLabel } = require('../../scripts/lib/preservation-label.js');
 const { LEXICON } = require('../../type/js/lexicon.js');
 const { pantheonLabel: metaLabel } = require('../../type/js/pantheon-meta.js');
 const {
@@ -67,7 +68,7 @@ function resolveSources(sourceKeys) {
   });
 }
 
-function computeTierExplanation(entry, breakdown) {
+function computePreservation(entry, breakdown) {
   if (!entry || !breakdown) return null;
   const counts = breakdown.reduce(
     (acc, step) => {
@@ -82,23 +83,13 @@ function computeTierExplanation(entry, breakdown) {
   const hasLength = counts.length > 0;
 
   return {
-    tier: entry.tier,
-    label: entry.tierLabel,
+    preservation: preservationLabel(entry.unicode),
     hasStress,
     hasLength,
     stressCount: counts.stress,
     lengthCount: counts.length,
-    summary:
-      hasStress && hasLength
-        ? 'The Greek original preserves both stress and vowel length, making this the full scholarly orthography.'
-        : hasStress
-          ? 'This form preserves stress (acute/circumflex) but not vowel length.'
-          : hasLength
-            ? 'This form preserves vowel length (macron/omega) but not stress.'
-            : 'This form uses the standard ASCII root without stress or length marks.',
   };
 }
-
 function buildOriginalScriptBlock(entry) {
   const script = getOriginalScript(entry);
   const label = getOriginalScriptLabel(entry);
@@ -130,8 +121,7 @@ function transformEntry(row) {
     pantheon: row.pantheon,
     pantheonLabel: pantheonLabel(row.pantheon),
     pantheonEmoji: PUNICODEX_ENGINE.getPantheonEmoji(row.pantheon),
-    tier: row.tier,
-    tierLabel: row.tier_label,
+    preservation: preservationLabel(row.unicode),
     domain: row.domain || null,
     meaning: row.meaning || null,
     sources: resolveSources(row.sources || []),
@@ -187,9 +177,8 @@ function transformEntryDetail(row) {
     pantheon: row.pantheon,
     pantheonLabel: pantheonLabel(row.pantheon),
     pantheonEmoji: PUNICODEX_ENGINE.getPantheonEmoji(row.pantheon),
-    tier: row.tier,
-    tierLabel: row.tier_label,
-    tierExplanation: computeTierExplanation(row, row.breakdown),
+    preservation: preservationLabel(row.unicode),
+    preservationDetail: computePreservation(row, row.breakdown),
     domain: row.domain || null,
     meaning: row.meaning || null,
     sources: resolveSources(row.sources || []),
@@ -425,39 +414,27 @@ function getPantheon(name) {
   };
 }
 
-function listTiers() {
+function listPreservation() {
   const stats = searchApi.getStats();
   return {
     total: stats.total,
     items: [
       {
-        id: 'dual',
-        label: 'Dual-Tier',
-        count: stats.tiers.find((t) => t.tier === 'dual')?.count || 0,
+        id: 'marked',
+        label: 'Preserves marks',
+        count: stats.marks?.marked || 0,
         description:
-          'Greek original has both stress and length, with multiple historically valid Unicode spellings and ancient-canonical ASCII fallbacks.',
-        examples: ['apollon', 'hekate', 'nike'],
+          'The displayed restoration preserves at least one feature ASCII cannot show — stress, vowel length, or a distinctive letter. Computed mechanically from the form itself.',
       },
       {
-        id: '1',
-        label: 'Tier 1',
-        count: stats.tiers.find((t) => t.tier === '1')?.count || 0,
-        description:
-          'Greek original has both stress and length, but only one historically valid Unicode restoration.',
-        examples: ['zeus', 'aphrodite', 'athena'],
-      },
-      {
-        id: '2',
-        label: 'Tier 2',
-        count: stats.tiers.find((t) => t.tier === '2')?.count || 0,
-        description:
-          'Preserves only one feature (stress OR length) or neither; includes all non-Greek traditions.',
-        examples: ['artemis', 'thor', 'amun'],
+        id: 'plain',
+        label: 'ASCII-equivalent form',
+        count: stats.marks?.plain || 0,
+        description: 'The scholarly form is identical to ASCII — faithful without added marks.',
       },
     ],
   };
 }
-
 function autocompleteNames(params) {
   const completions = PUNICODEX_ENGINE.getCompletions(trie, params.q, {
     limit: params.limit,
@@ -474,8 +451,7 @@ function autocompleteNames(params) {
       punycode: computePunycode(entry.unicode),
       pantheon: entry.pantheon,
       pantheonLabel: pantheonLabel(entry.pantheon),
-      tier: entry.tier,
-      tierLabel: entry.tierLabel,
+      preservation: preservationLabel(entry.unicode),
       links: buildLinks(entry.id),
     })),
   };
@@ -521,7 +497,7 @@ function convert(query) {
         unicode: entry.unicode,
         punycode: computePunycode(entry.unicode),
         pantheon: entry.pantheon,
-        tier: entry.tier,
+        preservation: preservationLabel(entry.unicode),
         confidence: 'exact',
         links: buildLinks(entry.id),
       })),
@@ -551,7 +527,7 @@ function convert(query) {
             unicode: entry.unicode,
             punycode: entryPunycode,
             pantheon: entry.pantheon,
-            tier: entry.tier,
+            preservation: preservationLabel(entry.unicode),
             confidence: 'exact',
             links: buildLinks(entry.id),
           },
@@ -654,7 +630,7 @@ module.exports = {
   getArchaeology,
   listPantheons,
   getPantheon,
-  listTiers,
+  listPreservation,
   autocompleteNames,
   convert,
   convertBatch,

@@ -74,7 +74,15 @@ function applyCanaryWatermark(text, key = null) {
   const bits = [...FRAMING, ...lengthBits, ...payload, ...FRAMING];
 
   const words = stripped.split(/(\s+)/);
-  const boundaries = words.filter((w) => /^\s+$/.test(w)).length;
+  const isBoundary = (w) => /^\s+$/.test(w);
+  const nextWord = (i) => words[i + 1];
+  // A boundary followed by markdown structure (headings, list markers) cannot
+  // carry bits: a zero-width char ahead of ## or a bullet breaks the
+  // downstream markdown parser's line recognition.
+  const usableBoundary = (i) =>
+    isBoundary(words[i]) &&
+    !(nextWord(i) && /^(#{1,6}|[*-]|\d+\.)(\s|$)/.test(nextWord(i)));
+  const boundaries = words.filter((_, i) => usableBoundary(i)).length;
   // Allow up to 4 bits per whitespace boundary; otherwise the watermark is
   // too dense to be subtle.
   if (boundaries < 1 || boundaries * 4 < bits.length) return text;
@@ -85,7 +93,7 @@ function applyCanaryWatermark(text, key = null) {
   let boundaryIndex = 0;
   for (let i = 0; i < words.length; i++) {
     out += words[i];
-    if (/^\s+$/.test(words[i])) {
+    if (usableBoundary(i)) {
       boundaryIndex++;
       const targetEnd = Math.min(bits.length, Math.round(boundaryIndex * bitsPerBoundary));
       while (bitIndex < targetEnd) {

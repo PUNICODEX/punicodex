@@ -2565,6 +2565,7 @@ const LEXICON_IDS = new Set([
 
 // Legacy canonical paths that have been superseded; redirect to the new path.
 const LEGACY_REDIRECTS = {
+  '/tiers': '/rulebook/',
   '/steh': '/seth',
   '/achilles': '/achilleus',
   '/aether': '/aither',

@@ -27,7 +27,7 @@ let canonicalRowsCache = null;
 function loadCanonicalRows() {
   if (canonicalRowsCache) return canonicalRowsCache;
   const rows = getDb()
-    .prepare(`SELECT id, ascii, unicode, search_key, pantheon, tier, variants FROM entries`)
+    .prepare(`SELECT id, ascii, unicode, search_key, pantheon, variants FROM entries`)
     .all();
   canonicalRowsCache = rows.map((row) => ({
     ...row,

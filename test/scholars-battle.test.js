@@ -137,12 +137,12 @@ test('cross-institution review targets cannot be confused by id reuse', () => {
   // Temple ids are globally unique: a duplicate entry_id must violate the
   // constraint, so cross-institution confusion can never come from id reuse.
   db.prepare(
-    `INSERT INTO scholars_temples (entry_id, name, pantheon, tier, manifest_version) VALUES ('zeus-battle', 'Zeus', 'greek', '1', 'v1')`
+    `INSERT INTO scholars_temples (entry_id, name, pantheon, manifest_version) VALUES ('zeus-battle', 'Zeus', 'greek', 'v1')`
   ).run();
   let dupFailed = false;
   try {
     db.prepare(
-      `INSERT INTO scholars_temples (entry_id, name, pantheon, tier, manifest_version) VALUES ('zeus-battle', 'Zeus Copy', 'greek', '1', 'v1')`
+      `INSERT INTO scholars_temples (entry_id, name, pantheon, manifest_version) VALUES ('zeus-battle', 'Zeus Copy', 'greek', 'v1')`
     ).run();
   } catch {
     dupFailed = true;

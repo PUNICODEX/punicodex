@@ -337,7 +337,7 @@
         breakdownEl.innerHTML = `
             <div class="breakdown-header">
                 <span class="breakdown-title">Restoration Breakdown</span>
-                <span class="breakdown-tier tier-${entry.tier}">${entry.tierLabel}</span>
+                <span class="breakdown-tier">${PUNICODEX_ENGINE.preservedFeatures(entry.unicode).label}</span>
             </div>
             <div class="breakdown-body">${rows}</div>
         `;
@@ -518,8 +518,7 @@
                 resultEtymologyRow.classList.add('hidden');
             }
         }
-        resultTier.textContent = entry.tierLabel;
-        resultTier.className = `result-tier tier-${entry.tier}`;
+        resultTier.textContent = PUNICODEX_ENGINE.preservedFeatures(entry.unicode).label;
 
         if (resultSources) {
             resultSources.innerHTML = entry.sources.map(src =>

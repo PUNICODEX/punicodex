@@ -23,8 +23,6 @@ db.exec(`
     greek TEXT,
     original_script TEXT,
     pantheon TEXT NOT NULL,
-    tier TEXT NOT NULL,
-    tier_label TEXT,
     domain TEXT,
     meaning TEXT,
     sources TEXT,
@@ -79,7 +77,6 @@ db.exec(`
   );
 
   CREATE INDEX idx_pantheon ON entries(pantheon);
-  CREATE INDEX idx_tier ON entries(tier);
   CREATE INDEX idx_flagship ON entries(has_flagship);
   CREATE INDEX idx_entries_search_key ON entries(search_key);
 `);
@@ -100,8 +97,8 @@ const { toSearchKey } = require(path.join(__dirname, '..', 'api', 'query-normali
 
 // Insert entries
 const insertEntry = db.prepare(`
-  INSERT INTO entries (id, ascii, unicode, greek, original_script, pantheon, tier, tier_label, domain, meaning, sources, etymology, variants, has_flagship, search_key, verified_as, canonical_id)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  INSERT INTO entries (id, ascii, unicode, greek, original_script, pantheon, domain, meaning, sources, etymology, variants, has_flagship, search_key, verified_as, canonical_id)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 `);
 
 const insertBreakdown = db.prepare(`
@@ -128,8 +125,6 @@ const insertEntryTxn = db.transaction((entries) => {
       entry.greek || null,
       getOriginalScript(entry) || null,
       entry.pantheon,
-      entry.tier,
-      entry.tierLabel || null,
       entry.domain || null,
       entry.meaning || null,
       entry.sources ? JSON.stringify(entry.sources) : null,
@@ -168,9 +163,6 @@ db.exec(`
   SELECT
     pantheon,
     COUNT(*) as total,
-    SUM(CASE WHEN tier = 'dual' THEN 1 ELSE 0 END) as dual_tier,
-    SUM(CASE WHEN tier = '1' THEN 1 ELSE 0 END) as tier_1,
-    SUM(CASE WHEN tier = '2' THEN 1 ELSE 0 END) as tier_2,
     SUM(CASE WHEN has_flagship = 1 THEN 1 ELSE 0 END) as flagships
   FROM entries
   GROUP BY pantheon

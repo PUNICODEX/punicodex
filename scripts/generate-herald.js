@@ -17,6 +17,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -474,7 +475,7 @@ function renderFlagshipSpread(id, index, edition) {
   const relatedIds = getRelatedTemples(id);
   const relatedHtml = renderRelatedTemples(relatedIds);
 
-  const tierLabel = entry.tierLabel || (entry.tier === 'dual' ? 'Dual-Tier' : entry.tier === '1' ? 'Tier 1' : 'Tier 2');
+  const tierLabel = preservationLabel(entry.unicode);
 
   return (
     `<section class="herald-spread spread-${entry.pantheon}" id="temple-${id}" data-page-left="${leftPage}" data-page-right="${rightPage}">` +
@@ -484,7 +485,7 @@ function renderFlagshipSpread(id, index, edition) {
     `<h2 class="spread-name">${unicode}</h2>` +
     `<div class="spread-script"><span class="script-label">${scriptLabel}</span><span class="script-value"${scriptTitle}>${scriptValue}</span></div>` +
     domainHtml +
-    `<div class="spread-badges"><span class="spread-badge tier-${entry.tier}">${escapeHtml(tierLabel)}</span><span class="spread-badge">${escapeHtml(pantheonName(entry.pantheon))}</span></div>` +
+    `<div class="spread-badges"><span class="spread-badge">${escapeHtml(tierLabel)}</span><span class="spread-badge">${escapeHtml(pantheonName(entry.pantheon))}</span></div>` +
     `</div>` +
     `<div class="spread-visual">` +
     `<img class="spread-mascot" src="${mascotPath(id)}" alt="${unicode} mascot" loading="lazy" onerror="this.style.display='none'">` +

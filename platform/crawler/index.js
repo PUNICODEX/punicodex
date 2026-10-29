@@ -134,14 +134,14 @@ class UnicodeCrawler {
 
     if (existing?.lexicon_entry_id) {
       return this.db
-        .prepare('SELECT id, pantheon, tier, tier_label as tierLabel FROM entries WHERE id = ?')
+        .prepare('SELECT id, pantheon FROM entries WHERE id = ?')
         .get(existing.lexicon_entry_id);
     }
 
     const unicode = require('node:url').domainToUnicode(punycode);
     let entry = this.db
       .prepare(
-        `SELECT id, pantheon, tier, tier_label as tierLabel FROM entries 
+        `SELECT id, pantheon FROM entries 
        WHERE unicode || '.com' = ? OR unicode = ?`
       )
       .get(unicode, unicode);
@@ -153,7 +153,7 @@ class UnicodeCrawler {
         .replace(/-/g, '');
       entry = this.db
         .prepare(
-          `SELECT id, pantheon, tier, tier_label as tierLabel FROM entries 
+          `SELECT id, pantheon FROM entries 
          WHERE ascii = ? OR LOWER(ascii) = LOWER(?)`
         )
         .get(core, core);
@@ -802,9 +802,9 @@ class UnicodeCrawler {
          sitemap_url, sitemap_entries,
          og_video, og_video_type, rating_value, rating_count,
          response_time_ms, content_length, redirect_count, published_date,
-         lexicon_entry_id, pantheon, tier, tier_label, status,
+         lexicon_entry_id, pantheon, status,
          content_hash, last_crawled)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', ?, datetime('now'))
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', ?, datetime('now'))
       ON CONFLICT(domain) DO UPDATE SET
         title = excluded.title,
         description = excluded.description,
@@ -856,8 +856,6 @@ class UnicodeCrawler {
         published_date = excluded.published_date,
         lexicon_entry_id = excluded.lexicon_entry_id,
         pantheon = excluded.pantheon,
-        tier = excluded.tier,
-        tier_label = excluded.tier_label,
         status = excluded.status,
         content_hash = excluded.content_hash,
         last_crawled = datetime('now'),
@@ -917,8 +915,6 @@ class UnicodeCrawler {
       result.published_date,
       entry ? entry.id : null,
       entry ? entry.pantheon : null,
-      entry ? entry.tier : null,
-      entry ? entry.tierLabel : null,
       result.content_hash
     );
 

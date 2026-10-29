@@ -264,7 +264,7 @@ ${items}
         </nav>`;
 }
 
-function buildFooter(id, entry, domainsText, tierLabel, rel) {
+function buildFooter(id, entry, domainsText, preservation, rel) {
   const script = getOriginalScript(entry) || entry?.greek || '—';
   const base = rel || '..';
   return `<footer class="main-footer">
@@ -281,7 +281,7 @@ function buildFooter(id, entry, domainsText, tierLabel, rel) {
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
-                        <span class="footer-value">${escapeHtml(tierLabel)}</span>
+                        <span class="footer-value">${escapeHtml(preservation)}</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Original Script</span>

@@ -12,12 +12,11 @@
  *      valid JSON with name + icons,
  *  (d) every /assets/brand/ file referenced by the edited HTML/CSS/JS/manifests
  *      exists on disk.
- * Body-content wave (page art, tiers, card fallback, admin debt):
+ * Body-content wave (page art, card fallback, admin debt):
  *  (e) the 7 root pages that still lacked favicons (art, authenticity,
  *      university-sponsorship, search.html, search-v2.html, realms, lexicon —
  *      plus terms/ + terms/data-use/, which had none either) now carry the
  *      kit cluster,
- *  (f) the tiers rebuild references the three tier seals, the triad ziggurat,
  *      and the gold .pc-display heading class,
  *  (g) js/pantheon.js + js/home.js reference the empty-portrait fallback,
  *  (h) every /assets/brand/ reference in the body-wave files exists on disk,
@@ -123,7 +122,6 @@ const ROOT_PAGES = [
   'store/index.html',
   'terms/index.html',
   'terms/data-use/index.html',
-  'tiers/index.html',
   'type/index.html',
   'university-sponsorship/index.html',
 ];
@@ -214,7 +212,6 @@ const FAVICON_PAGES = ROOT_PAGES.filter((rel) =>
     'pantheon/index.html',
     'privacy/index.html',
     'store/index.html',
-    'tiers/index.html',
     'type/index.html',
   ].includes(rel)
 );
@@ -244,7 +241,7 @@ test('(a) old span wordmark is gone from all owned canonical files', () => {
 
 test('(a) macron Ū survives only in legitimate non-brand contexts', () => {
   // scripts/generate-temples.js keeps Ū inside the /[āēīōūĀĒĪŌŪ]/ tier
-  // classification regex (long-vowel detection over lexicon names) — that is
+  // detection regex (long-vowel detection over lexicon names) — that is
   // the only permitted capital-Ū context.
   const allowed = new Set(['scripts/generate-temples.js']);
   for (const rel of OWNED_FILES) {
@@ -402,27 +399,6 @@ test('(e) kit favicon cluster present on the pages the first wave missed', () =>
   }
 });
 
-// ---- (f) tiers page rebuild ----------------------------------------------------
-
-test('(f) tiers page references the three seals, the ziggurat, and pc-display', () => {
-  const tiers = read('tiers/index.html');
-  for (const seal of [
-    'punicodex-badge-tier-1.png',
-    'punicodex-badge-tier-2.png',
-    'punicodex-badge-dual-tier.png',
-  ]) {
-    assert.ok(tiers.includes(`/assets/brand/04-badges/${seal}`), `tiers missing ${seal}`);
-  }
-  assert.ok(
-    tiers.includes('/assets/brand/13-page-visuals/tiers/triad-ziggurat.png'),
-    'tiers missing the triad ziggurat'
-  );
-  assert.ok(
-    /class="tier-hero-title pc-display/.test(tiers),
-    'tiers H1 does not carry the gold .pc-display class'
-  );
-});
-
 // ---- (g) empty-portrait card fallback -------------------------------------------
 
 test('(g) js/pantheon.js and js/home.js reference the empty-portrait fallback', () => {
@@ -463,7 +439,6 @@ const BODY_WAVE_FILES = [
   'store/index.html',
   'terms/index.html',
   'terms/data-use/index.html',
-  'tiers/index.html',
   'type/index.html',
   'type/css/type.css',
   'university-sponsorship/index.html',

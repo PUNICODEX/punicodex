@@ -155,13 +155,6 @@ async function runTests() {
     assert.ok(body.data.total > 0);
   });
 
-  await test('GET /api/v2/tiers returns tier docs', async () => {
-    const { status, body } = await invoke('GET', '/api/v2/tiers');
-    assert.strictEqual(status, 200);
-    assertEnvelope(body);
-    assert.ok(Array.isArray(body.data));
-  });
-
   await test('GET /api/v2/autocomplete returns completions', async () => {
     const { status, body } = await invoke('GET', '/api/v2/autocomplete?q=zeu');
     assert.strictEqual(status, 200);

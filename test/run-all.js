@@ -160,7 +160,6 @@ const SUITES = [
     timeout: 300000,
   },
   { name: 'Herald Beacon Tests', cmd: 'node test/herald-beacon.test.js', timeout: 300000 },
-  { name: 'Tier Consistency Tests', cmd: 'node test/tier-consistency.test.js', timeout: 60000 },
   { name: 'Crosslink Tests', cmd: 'node test/crosslink.test.js', timeout: 120000 },
   { name: 'Pantheon Meta Contract', cmd: 'node test/pantheon-meta.test.js', timeout: 60000 },
   {

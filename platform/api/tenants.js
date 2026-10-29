@@ -169,7 +169,7 @@ async function createTenant({ entryId, companyName, category, frontUrl, email, n
 function listTenants({ status, limit = 50, offset = 0 } = {}) {
   let sql = `
     SELECT s.*, e.unicode AS entry_unicode, e.ascii AS entry_ascii, e.greek AS entry_greek,
-           e.meaning AS entry_meaning, e.tier AS entry_tier, e.pantheon AS entry_pantheon
+           e.meaning AS entry_meaning, e.pantheon AS entry_pantheon
     FROM indexed_sites s
     LEFT JOIN entries e ON s.lexicon_entry_id = e.id
     WHERE (s.lease_status = ? OR s.tenant_name IS NOT NULL)
@@ -178,7 +178,7 @@ function listTenants({ status, limit = 50, offset = 0 } = {}) {
   if (status) {
     sql = `
       SELECT s.*, e.unicode AS entry_unicode, e.ascii AS entry_ascii, e.greek AS entry_greek,
-             e.meaning AS entry_meaning, e.tier AS entry_tier, e.pantheon AS entry_pantheon
+             e.meaning AS entry_meaning, e.pantheon AS entry_pantheon
       FROM indexed_sites s
       LEFT JOIN entries e ON s.lexicon_entry_id = e.id
       WHERE s.lease_status = ?

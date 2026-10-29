@@ -63,7 +63,7 @@ function getCanonicalRows() {
   }
 
   const rows = getDb()
-    .prepare(`SELECT id, ascii, unicode, search_key, pantheon, tier, variants FROM entries`)
+    .prepare(`SELECT id, ascii, unicode, search_key, pantheon, variants FROM entries`)
     .all();
 
   canonicalCache = rows.map((row) => ({
@@ -845,7 +845,7 @@ function classifyDomain(domain, _options = {}) {
 
     if (registered) {
       const entry = getDb()
-        .prepare(`SELECT id, ascii, unicode, pantheon, tier FROM entries WHERE id = ?`)
+        .prepare(`SELECT id, ascii, unicode, pantheon FROM entries WHERE id = ?`)
         .get(registered.entry_id);
 
       const analysis = attachDomainMetadata(buildAnalysis(display));

@@ -37,8 +37,6 @@ const entries = LEXICON.map(e => ({
     unicode: e.unicode,
     greek: e.greek,
     pantheon: e.pantheon,
-    tier: e.tier,
-    tierLabel: e.tierLabel,
     meaning: e.meaning,
     sources: e.sources,
     domain: e.domain,

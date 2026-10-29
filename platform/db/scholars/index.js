@@ -585,13 +585,13 @@ function deleteSessionsForUser(userId, { exceptId = null } = {}) {
 // Temples
 // ─────────────────────────────────────────────────────────────
 
-function createTemple({ entryId, name, pantheon, tier, manifestVersion }) {
+function createTemple({ entryId, name, pantheon, manifestVersion }) {
   const db = getDb();
   const stmt = db.prepare(`
-    INSERT INTO scholars_temples (entry_id, name, pantheon, tier, manifest_version)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO scholars_temples (entry_id, name, pantheon, manifest_version)
+    VALUES (?, ?, ?, ?)
   `);
-  return stmt.run(entryId, name, pantheon, tier, manifestVersion);
+  return stmt.run(entryId, name, pantheon, manifestVersion);
 }
 
 function getTempleByEntryId(entryId) {
@@ -724,7 +724,7 @@ function searchSections({ q, pantheon, limit = 20, offset = 0 } = {}) {
 
   const rows = db
     .prepare(`
-    SELECT s.*, t.id AS temple_id, t.entry_id, t.name, t.pantheon, t.tier, t.is_frozen
+    SELECT s.*, t.id AS temple_id, t.entry_id, t.name, t.pantheon, t.is_frozen
     FROM scholars_sections s
     JOIN scholars_temples t ON s.temple_id = t.id
     WHERE ${where}

@@ -16,6 +16,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -445,7 +446,7 @@ function main() {
         'archetype',
         ...industries,
       ],
-      tags: [entry.pantheon, entry.tierLabel || `Tier ${entry.tier || '2'}`, 'patterns', 'The Resonance Files', ...industries.slice(0, 1)],
+      tags: [entry.pantheon, preservationLabel(entry.unicode), 'patterns', 'The Resonance Files', ...industries.slice(0, 1)],
       author: 'PuniCodex Team',
       publishedAt: '2026-07-31',
       readingTime: `${readMin} min read`,

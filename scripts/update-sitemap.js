@@ -13,7 +13,6 @@ const mainPages = [
     { loc: 'https://punicodex.com/', priority: '1.0', changefreq: 'weekly' },
     { loc: 'https://punicodex.com/pantheon/', priority: '0.9', changefreq: 'weekly' },
     { loc: 'https://punicodex.com/type/', priority: '0.9', changefreq: 'weekly' },
-    { loc: 'https://punicodex.com/tiers/', priority: '0.8', changefreq: 'monthly' },
     { loc: 'https://punicodex.com/codex/', priority: '0.7', changefreq: 'weekly' },
     { loc: 'https://punicodex.com/lexicon/', priority: '0.8', changefreq: 'weekly' },
     { loc: 'https://punicodex.com/store/', priority: '0.6', changefreq: 'monthly' },

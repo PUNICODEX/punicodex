@@ -60,7 +60,7 @@ concretely:
 not only the 980 catalogued names. General mythology (Greek, Norse,
 Egyptian, Vedic, Japanese, Yoruba, Aztec, Celtic, Slavic, Māori,
 Zoroastrian, and more) is in scope, always in the scholarly voice. For
-names in the lexicon it answers with full precision (scripts, IPA, tiers,
+names in the lexicon it answers with full precision (scripts, IPA, preservation,
 sources); for names outside the lexicon it answers as a well-read
 classicist would — and may note "this one isn't in our temples *yet*,"
 which is honest and inviting rather than a failure.
@@ -71,17 +71,20 @@ Each lexicon entry has a temple page. **542 flagships** are deep:
 mythology, pronunciation, symbols, domains, a bespoke canvas hero effect,
 and tabs for lore, gallery, patterns, scholars, blog, creatives, and
 patrons. **438 base** temples carry the name card, character breakdown,
-tier, sources, and related entries. Flagship completeness is enforced by a
+preservation, sources, and related entries. Flagship completeness is enforced by a
 validator (lore catalog entry, rental tier, hero effect, curated gallery,
 industry seats, domain form).
 
-### Tiers (canonical doctrine)
-- **Dual-tier** (Apollo, Hekate, Nike): Greek originals with both stress
-  and length, multiple attested spellings — two badges, two name cards.
-- **Single Tier-1**: mechanically information-rich (Greek with stress+length;
-  non-Greek preserving any distinctive feature ASCII loses). Tier is a
-  property of the *restoration*, never of ownership or fame.
-- **Single Tier-2**: preserves nothing distinctive vs ASCII.
+### Restoration preservation (canonical, computed)
+Every restoration is described by what its displayed form preserves that
+ASCII cannot show — derived mechanically from the form itself (NFD
+decomposition), never assigned by hand: stress (acute/grave/circumflex),
+vowel length (macron/breve; a circumflex counts as both), distinctive
+letters (þ, ð, æ, œ, ꜣ, ꜥ, …), other preserved marks, or an ASCII-equivalent
+scholarly form. The description can never claim more than the form shows.
+Names with multiple historically valid owned spellings (Apóllōn, Hekátē,
+Níkē) present the pair on one temple. (The retired Dual/Tier-1/Tier-2
+classification is archived at archive/tier-system/.)
 - Macron-only is a legitimate LSJ/Oxford convention, never "wrong". Wrong
   accent position is worse than none.
 
@@ -185,7 +188,7 @@ temple, get named, keep the scholarship free.
 ## The API (public infrastructure)
 
 `/api/v1/...`: names (+variants, breakdown, original-script, etymology,
-availability, pronunciation), pantheons, tiers, autocomplete, convert
+availability, pronunciation), pantheons, preservation, autocomplete, convert
 (+batch), appraise, authenticity, threat-feed, policy, connections,
 industry-patterns (+match), cards, creatives, scholars, version, docs.
 v2 mirrors core reads. Tiers: free 100 calls/day up to enterprise. API

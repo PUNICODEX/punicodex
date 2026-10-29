@@ -15,6 +15,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 const { autoLink } = require('./lib/crosslink.js');
@@ -121,7 +122,7 @@ for (const series of SERIES) {
     const unicode = entry?.unicode || id;
     const greek = entry?.greek || '';
     const domain = entry?.domain || archetype?.domain || '';
-    const tierLabel = entry?.tierLabel || `Tier ${entry?.tier || '2'}`;
+    const tierLabel = preservationLabel(unicode);
 
     const outDir = path.join(SITES_DIR, id, 'blog', series.id);
     fs.mkdirSync(outDir, { recursive: true });
@@ -141,10 +142,7 @@ for (const series of SERIES) {
       ASCII: escapeHtml(entry?.ascii || id),
       DOMAIN: escapeHtml(domain),
       TIER_LABEL: escapeHtml(tierLabel),
-      TIER_BADGES:
-        entry?.tier === 'dual'
-          ? '<span class="meta-badge">Tier-1</span> <span class="meta-badge">Tier-2</span>'
-          : `<span class="meta-badge">${escapeHtml(tierLabel)}</span>`,
+      TIER_BADGES: `<span class="meta-badge">${escapeHtml(tierLabel)}</span>`,
       DOMAINS_TEXT: escapeHtml(home.domainsText),
       EFFECT: escapeHtml(home.effect),
       PRIMARY: escapeHtml(home.primary),

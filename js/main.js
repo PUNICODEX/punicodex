@@ -135,12 +135,12 @@
         }, { passive: true });
 
         document.addEventListener('mouseover', (e) => {
-            if (e.target.closest('a, button, .archetype-card, .tier-detail-card, .tier-tag, .nav-toggle')) {
+            if (e.target.closest('a, button, .archetype-card, .nav-toggle')) {
                 cursor.classList.add('hover');
             }
         });
         document.addEventListener('mouseout', (e) => {
-            if (e.target.closest('a, button, .archetype-card, .tier-detail-card, .tier-tag, .nav-toggle')) {
+            if (e.target.closest('a, button, .archetype-card, .nav-toggle')) {
                 cursor.classList.remove('hover');
             }
         });

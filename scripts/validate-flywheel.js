@@ -12,6 +12,7 @@ const { domainToASCII } = require('node:url');
 
 const ROOT = path.resolve(__dirname, '..');
 const BASE_URL = 'https://punicodex.com';
+const { preservationLabel } = require('./lib/preservation-label.js');
 
 // ── Canonical sources ──────────────────────────────────────────────────────
 const PATHS = {
@@ -148,8 +149,6 @@ function getRendererEntry(entry, isFlagship) {
     unicode: entry.unicode,
     greek: entry.greek,
     pantheon: entry.pantheon,
-    tier: entry.tier,
-    tierLabel: entry.tierLabel,
     meaning: entry.meaning,
     sources: entry.sources,
     domain: entry.domain,
@@ -207,8 +206,6 @@ for (const entry of lexicon) {
 console.log('\n▸ Archetype ↔ Lexicon');
 let nameMismatches = 0;
 let greekMismatches = 0;
-let tierMismatches = 0;
-let tierDetailMismatches = 0;
 let missingFromLexicon = 0;
 
 for (const a of archetypes) {
@@ -238,24 +235,11 @@ for (const a of archetypes) {
     fail(`Archetype ${a.id} Greek "${a.greek}" does not match lexicon "${entry.greek}"`);
     greekMismatches++;
   }
-
-  // Canonical tier lives in the lexicon; archetypes must derive from it.
-  const expectedTier = entry.tier === 'dual' ? 'dual-tier' : entry.tier === '1' ? 'tier-1' : 'tier-2';
-  const expectedTierDetail = entry.tier === 'dual' ? 'dual-tier' : 'single-tier';
-  if (a.tier !== expectedTier) {
-    fail(`Archetype ${a.id} tier "${a.tier}" does not match lexicon tier "${entry.tier}" (expected "${expectedTier}")`);
-    tierMismatches++;
-  }
-  if (a.tierDetail !== expectedTierDetail) {
-    fail(`Archetype ${a.id} tierDetail "${a.tierDetail}" does not match expected "${expectedTierDetail}"`);
-    tierDetailMismatches++;
-  }
 }
 
 if (missingFromLexicon === 0) pass('All archetype IDs exist in the lexicon');
 if (nameMismatches === 0) pass('Archetype names align with lexicon Unicode restorations');
 if (greekMismatches === 0) pass('Archetype Greek originals align with the lexicon');
-if (tierMismatches === 0 && tierDetailMismatches === 0) pass('Archetype tiers align with the canonical lexicon');
 
 // ── 2. Middleware DOMAIN_MAP coverage ──────────────────────────────────────
 console.log('\n▸ Middleware DOMAIN_MAP');
@@ -401,7 +385,6 @@ const expectedAndroid = lexicon.map(e => ({
   scriptLabel: getOriginalScriptLabel(e),
   scriptName: e.pantheon ? getScriptName(e) : '',
   pantheon: e.pantheon,
-  tier: e.tier,
   id: e.id || e.ascii,
   variants: (e.variants || []).map(v => ({
     unicode: v.unicode,
@@ -644,9 +627,10 @@ for (const a of archetypes) {
     }
   }
 
-  const tierLabel = entry.tierLabel || (entry.tier === 'dual' ? 'Dual-Tier' : `Tier-${entry.tier}`);
-  if (!hasHtmlText(html, tierLabel)) {
-    warn(`Flagship ${a.id} page does not display tier badge "${tierLabel}"`);
+  const preservation = preservationLabel(entry.unicode);
+  const encoded = preservation.replace(/&/g, '&amp;');
+  if (!hasHtmlText(html, preservation) && !hasHtmlText(html, encoded)) {
+    warn(`Flagship ${a.id} page does not display preservation label "${preservation}"`);
     flagshipWarnings++;
   }
 
@@ -733,7 +717,6 @@ if (!fs.existsSync(sitemapPath)) {
   addUrl('/pantheon/');
   addUrl('/lexicon/');
   addUrl('/type/');
-  addUrl('/tiers/');
   addUrl('/realms/');
   addUrl('/codex/');
   // /search/ is noindex,follow — noindexed pages are never sitemap entries.

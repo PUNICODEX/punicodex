@@ -36,7 +36,7 @@ never hand-reorder:
 
 Ownership rules that prevent lore/extended duplication:
 
-- Pronunciation (IPA, phonemes, approximation, tier rule) lives on the LORE
+- Pronunciation (IPA, phonemes, approximation, preservation) lives on the LORE
   page (`#pronunciation`) ONLY — the extended page must not re-render it.
 - Etymological kin lives in extended Etymology ONLY.
 - The mythology cards live on the lore page ONLY; extended FAQ may tease a

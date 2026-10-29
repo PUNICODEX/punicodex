@@ -26,6 +26,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 
 const teacherClient = require('../platform/agents/teacher-client.js');
 
@@ -144,8 +145,7 @@ function assembleContext(entry, getEntryContextFn = defaultGetEntryContext) {
     unicode: entry.unicode,
     greek: entry.greek,
     pantheon: entry.pantheon,
-    tier: entry.tier,
-    tierLabel: entry.tierLabel,
+    preservation: preservationLabel(entry.unicode),
     domain: entry.domain,
     meaning: entry.meaning,
     sources: entry.sources || [],
@@ -211,7 +211,7 @@ function contextPayload(ctx) {
     unicode: ctx.unicode,
     greek: ctx.greek,
     pantheon: ctx.pantheon,
-    tier: ctx.tierLabel || ctx.tier,
+    preservation: ctx.preservation,
     domain: ctx.domain,
     meaning: ctx.meaning,
     sources: sourceStrings(ctx.sources),
@@ -374,21 +374,10 @@ function verifyRecord(record, ctx, { pantheonBases = new Set() } = {}) {
       }
     }
 
-    // (c3) tier check: any tier label mentioned must match the canonical tier.
-    const canonicalTier = String(ctx.tier || '').toLowerCase();
-    const tierMentions = output.matchAll(/\btier[-\s]?(1|2|dual)\b/gi);
-    for (const m of tierMentions) {
-      const mentioned = m[1].toLowerCase();
-      if (mentioned !== canonicalTier) {
-        reasons.push(
-          `tier-mismatch: output says "Tier ${m[1]}" but the canonical tier is "${ctx.tier}"`
-        );
-      }
-    }
-    if (/\bdual[-\s]?tier\b/i.test(output) && canonicalTier !== 'dual') {
-      reasons.push(
-        `tier-mismatch: output says "dual-tier" but the canonical tier is "${ctx.tier}"`
-      );
+    // (c3) stale-vocabulary check: the retired tier system must not leak
+    // into generated teacher outputs.
+    if (/\btier[-\s]?(1|2)\b|dual[-\s]?tier\b/gi.test(output)) {
+      reasons.push('stale-vocabulary: output mentions the retired tier system');
     }
   }
 

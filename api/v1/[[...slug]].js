@@ -210,7 +210,6 @@ const ROUTES = [
     segments: ['threat-feed', 'stats'],
     load: () => require('../../platform/api-handlers/v1/threat-feed/stats/index.js'),
   },
-  { segments: ['tiers'], load: () => require('../../platform/api-handlers/v1/tiers/index.js') },
   {
     segments: ['transparency-report'],
     load: () => require('../../platform/api-handlers/v1/transparency-report/index.js'),

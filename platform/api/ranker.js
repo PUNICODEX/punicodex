@@ -9,7 +9,7 @@
  * - entityGraph: entity_mentions co-occurrence
  * - clickBoost: historical click-through rate for this query/site
  * - tenantQuality: tenant presence, front URL, quality_score
- * - tierBonus: dual/1/2 tier preference
+ * - preservationBonus: mechanical preference for forms that preserve marks
  * - flagshipBonus: flagship sites
  * - authority: authority_score
  * - quality: quality_score
@@ -78,7 +78,7 @@ const VARIANTS = {
     entityGraph: 0.25,
     clickBoost: 0.35,
     tenantQuality: 0.5,
-    tierBonus: 0.2,
+    preservationBonus: 0.2,
     flagshipBonus: 0.35,
     authority: 0.2,
     quality: 0.15,
@@ -92,7 +92,7 @@ const VARIANTS = {
     entityGraph: 0.2,
     clickBoost: 0.2,
     tenantQuality: 0.6,
-    tierBonus: 0.15,
+    preservationBonus: 0.15,
     flagshipBonus: 0.25,
     authority: 0.6,
     quality: 0.4,
@@ -106,7 +106,7 @@ const VARIANTS = {
     entityGraph: 0.5,
     clickBoost: 0.15,
     tenantQuality: 0.3,
-    tierBonus: 0.3,
+    preservationBonus: 0.3,
     flagshipBonus: 0.2,
     authority: 0.1,
     quality: 0.1,
@@ -120,7 +120,7 @@ const VARIANTS = {
     entityGraph: 0.15,
     clickBoost: 0.4,
     tenantQuality: 1.0,
-    tierBonus: 0.1,
+    preservationBonus: 0.1,
     flagshipBonus: 0.5,
     authority: 0.15,
     quality: 0.2,
@@ -145,8 +145,12 @@ function computeScore(row, query, options = {}) {
   breakdown.entityGraph = Math.min(row.entityBonus || 0, 0.25);
   breakdown.clickBoost = Math.min(row.clickBoost || 0, 0.5);
   breakdown.tenantQuality = tenantQualityScore(row);
-  breakdown.tierBonus =
-    row.tier === 'dual' ? 0.5 : row.tier === '1' ? 0.3 : row.tier === '2' ? 0.1 : 0;
+  // Mechanical: computed from the displayed form, not a stored class.
+  const _pf = row.unicode
+    ? require('../../type/js/engine.js').preservedFeatures(row.unicode)
+    : { features: [] };
+  breakdown.preservationBonus =
+    _pf.features.length >= 2 ? 0.5 : _pf.features.length === 1 ? 0.3 : 0.1;
   breakdown.flagshipBonus = row.isFlagship || row.is_flagship ? 0.5 : 0;
   breakdown.authority = (row.authorityScore || row.authority_score || 0) / 100;
   breakdown.quality = (row.qualityScore || row.quality_score || 0) / 100;

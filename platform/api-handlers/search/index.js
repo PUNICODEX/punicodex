@@ -10,11 +10,10 @@ module.exports = async (req, res) => {
   if (!allowed) return;
 
   try {
-    const { q, pantheon, tier, hasSite, type, sort, limit, offset, trust } = req.query;
+    const { q, pantheon, hasSite, type, sort, limit, offset, trust } = req.query;
     const result = search({
       q,
       pantheon,
-      tier,
       hasSite,
       type: type || 'all',
       sort: sort || 'relevance',

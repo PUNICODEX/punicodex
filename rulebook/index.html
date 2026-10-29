@@ -74,10 +74,10 @@
         },
         {
             "@type": "Question",
-            "name": "How does the PuniCodex tier system classify names?",
+            "name": "How is each restoration described?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Every name is classified mechanically — never by ownership or fame — by what its restoration preserves. Dual-Tier names preserve stress and length and admit multiple historically valid spellings, all live as temples. Tier-1 restorations preserve more than the ASCII form can say (stress, length, or a distinctive letter). Tier-2 restorations preserve one decisive feature. The rule is computed from the canonical record; prominence is a display fact, never a rank fact."
+                "text": "Every restoration carries a description computed mechanically from the displayed form itself — never by ownership or fame. The form either preserves stress, vowel length, a distinctive letter (þ, ꜣ, and kindred forms), or other marks the ASCII form loses — or it is an ASCII-equivalent scholarly form. Because the description is derived from the spelling you can see, it can never claim more than the form shows. Names with multiple historically valid owned spellings — Apóllōn, Hekátē, Níkē — present the pair on one temple."
             }
         },
         {
@@ -259,18 +259,19 @@
         </div>
 
         <div class="rb-section">
-            <h2>2. The Tier System in One View</h2>
-            <p>Every name in the lexicon is classified mechanically — never by ownership or fame — by what its restoration preserves:</p>
+            <h2>2. What Each Restoration Preserves — In One View</h2>
+            <p>Every name in the lexicon carries a description computed mechanically from its displayed form — never by ownership or fame. The same test runs on all 983 entries:</p>
             <table class="rb-table">
-                <thead><tr><th>Tier</th><th>Rule</th><th>Example</th></tr></thead>
+                <thead><tr><th>The form shows</th><th>What that means</th><th>Example</th></tr></thead>
                 <tbody>
-                    <tr><td><span class="rb-pill">Dual-Tier</span></td><td>Stress <em>and</em> length preserved, <em>and</em> multiple historically valid Unicode spellings — both live as temples</td><td><strong>Apóllōn / Apollōn</strong> · <strong>Hekatē / Hekátē</strong> · <strong>Nikē / Níkē</strong></td></tr>
-                    <tr><td><span class="rb-pill">Tier-1</span></td><td>Greek: stress <em>and</em> length both preserved. Other traditions: at least one distinctive mark the ASCII form loses</td><td><strong>Athēnâ</strong> — circumflex carries both features, Tier-1</td></tr>
-                    <tr><td><span class="rb-pill">Tier-2</span></td><td>One feature preserved (stress or length), or neither</td><td><strong>Ártemis</strong> (stress only) · <strong>Cháos</strong> (stress only)</td></tr>
+                    <tr><td><span class="rb-pill">Stress &amp; length</span></td><td>A circumflex (or macron + acute) fuses both features on one vowel — the fullest restoration the sources support</td><td><strong>Athēnâ</strong> (Ἀθηνᾶ) · <strong>Hermês</strong> (Ἑρμῆς) · <strong>Poseidôn</strong> (Ποσειδῶν)</td></tr>
+                    <tr><td><span class="rb-pill">Stress or length</span></td><td>One prosodic feature survives where ASCII shows none — the form still says something the fallback alphabet cannot</td><td><strong>Zeús</strong> (stress) · <strong>Hēra</strong> (length) · <strong>Ártemis</strong> (stress)</td></tr>
+                    <tr><td><span class="rb-pill">Distinctive letters</span></td><td>Letters outside the Latin alphabet survive intact — þ, ð, æ, œ, ꜣ, ꜥ and kindred forms</td><td><strong>Þórr</strong> (thorn) · <strong>ꜥnḫ</strong> (Egyptian alef)</td></tr>
+                    <tr><td><span class="rb-pill">Multiple owned forms</span></td><td>More than one historically valid spelling exists — and the temple owns the pair, so both live</td><td><strong>Apóllōn / Apollōn</strong> · <strong>Hekatē / Hekátē</strong> · <strong>Nikē / Níkē</strong></td></tr>
                 </tbody>
             </table>
-            <p>The rule is deliberately mechanical: a circumflex counts as both features because it marks stress and length on the same letter. No editorial judgment calls, no exceptions — the same test for every one of the 983 lexicon entries.</p>
-            <p class="rb-note">Reviewed exceptions are recorded where a rule needs scholarship rather than arithmetic — currently the final long -ā of <strong>Āsíā</strong> (first-declension rule) and of <strong>Átlās</strong> (Ἄτλᾱς, nominative of -αντ- stems), which is why <strong>Átlas</strong> is Tier-1 even though its acute is the only visible mark. <strong>Athēnâ vs Athēnā:</strong> the circumflexed canonical form (Ἀθηνᾶ) is the live primary at <strong>athēnâ.com</strong>; the macron-only LSJ form <strong>athénā.com</strong> remains live as an attested owned variant — the table above is not a disagreement, it is the hierarchy working in public.</p>
+            <p>The description is deliberately mechanical: it is derived from the spelling itself, by decomposition — no editorial judgment calls, and no claim the form cannot support. What you read on a temple is exactly what the temple shows you.</p>
+            <p class="rb-note">Some scholarly forms are identical to ASCII — <strong>Atlas</strong>, <strong>Freyja</strong> — where the restoration is faithful without adding marks; the description says so plainly rather than inventing ornament. And where the ideal form competes with an attested variant — <strong>Athēnâ</strong> primary, <strong>Athēnā</strong> live — both are owned, so the temple presents the pair with the evidence for each.</p>
         </div>
 
         <div class="rb-section">
@@ -312,11 +313,11 @@
             <h2>5. Why It Matters</h2>
             <p><strong>Sound is identity.</strong> A god's name was sung, sworn by, and carved into stone with its stress and length intact. Restoring both is the difference between a label and a name.</p>
             <p><strong>It is also proof of provenance.</strong> These names are older than any company. <em>Níkē</em> is the goddess of victory, named in Hesiod's Theogony two and a half thousand years ago; the accent above her í is her own, not anyone's brand. Every restoration here cites its sources — LSJ and Beekes for Greek, Faulkner for Egyptian, Monier-Williams for Sanskrit, and the primary texts in our <a href="/texts/" style="color:var(--gold)">Sacred Texts library</a>.</p>
-            <p><strong>And it is checkable.</strong> The same mechanical rules run in the open: the lexicon validator, the tier classifier, and this page's examples all agree, because they are all generated from one canonical source. If a restoration ever fails the rules, the build fails — not the reader's trust.</p>
+            <p><strong>And it is checkable.</strong> The same mechanical rules run in the open: the lexicon validator, the restoration descriptions on every temple, and this page's examples all agree, because they are all computed from one canonical source. If a restoration ever fails the rules, the build fails — not the reader's trust.</p>
         </div>
 
         <div class="rb-foot">
-            <p>See the rules applied: <a href="/tiers/">The Tier System</a> · <a href="/codex/why-greek-accents-matter/">Why Greek Accents Matter</a> · <a href="/pantheon/">Enter the Pantheon</a></p>
+            <p>See the rules applied: <a href="/codex/why-greek-accents-matter/">Why Greek Accents Matter</a> · <a href="/pantheon/">Enter the Pantheon</a></p>
         </div>
     </div>
     <script src="/js/px-core.js?v=perf21" defer></script>
@@ -338,7 +339,6 @@
                     <a href="/everyday/">Words</a>
                     <a href="/ink/">Ink</a>
                     <a href="/trending/">Trending</a>
-                    <a href="/tiers/">Tier System</a>
                     <a href="/rulebook/">Rulebook</a>
                     <a href="/type/">Type</a>
                     <a href="/game/">Game</a>

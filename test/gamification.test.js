@@ -60,7 +60,7 @@ test('badges are awarded based on stats', () => {
 test('daily challenge generates clues and accepts correct guess', () => {
   const db = new Database(getDbPath());
   const entries = db
-    .prepare('SELECT id, ascii, unicode, pantheon, tier, meaning, greek FROM entries')
+    .prepare('SELECT id, ascii, unicode, pantheon, meaning, greek FROM entries')
     .all();
   const challenge = getOrCreateChallenge(entries);
   assert.ok(challenge.entryId);
@@ -74,7 +74,7 @@ test('daily challenge generates clues and accepts correct guess', () => {
 test('daily streak tracks solved days', () => {
   const db = new Database(getDbPath());
   const entries = db
-    .prepare('SELECT id, ascii, unicode, pantheon, tier, meaning, greek FROM entries')
+    .prepare('SELECT id, ascii, unicode, pantheon, meaning, greek FROM entries')
     .all();
   const challenge = getOrCreateChallenge(entries);
   const token = unique('session-g5');

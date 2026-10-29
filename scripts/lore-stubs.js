@@ -363,7 +363,7 @@ function getPronunciationStub(entry) {
   const pantheonLabel = entry.pantheon === 'greek-location' ? 'Greek' : entry.pantheon;
   const approx = approximatePronunciation(entry);
   const kin = kinFor(entry);
-  const note = `${entry.unicode} is ${entry.tierLabel || `Tier ${entry.tier}`}. ${marksNote}`;
+  const note = `${entry.unicode} — ${marksNote}`;
 
   return {
     ipa: approx.ipa,

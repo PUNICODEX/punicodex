@@ -58,10 +58,6 @@ function generateClues(entry) {
   const clues = [];
   if (entry.meaning) clues.push(`This name means “${entry.meaning}”.`);
   if (entry.pantheon) clues.push(`It belongs to the ${entry.pantheon} pantheon.`);
-  if (entry.tier)
-    clues.push(
-      `It is classified as ${entry.tier === 'dual' ? 'Dual-Tier' : `Tier-${entry.tier}`}.`
-    );
   if (entry.greek && entry.greek !== '—') clues.push(`In Greek it is written ${entry.greek}.`);
   if (clues.length < 3) clues.push(`Its ASCII spelling is “${entry.ascii}”.`);
   return clues;

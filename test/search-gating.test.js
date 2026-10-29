@@ -88,7 +88,6 @@ async function run() {
 
   await test('empty q with other browse-intent filters still browses', () => {
     assert.ok(searchService.search({ pantheon: 'greek', limit: 5 }).total > 0, 'pantheon');
-    assert.ok(searchService.search({ tier: 'dual', limit: 5 }).total > 0, 'tier');
     assert.ok(searchService.search({ hasSite: false, limit: 5 }).total > 0, 'hasSite');
     assert.ok(searchService.search({ trust: 'all', limit: 5 }).total > 0, 'trust=all');
   });

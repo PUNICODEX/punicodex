@@ -1259,7 +1259,9 @@ test('regression: the battle deck is never double-scaled', () => {
   );
   // And at the data layer: a tier-1 common must hold real battle stats after
   // exactly one transform.
-  const t1 = SET.cards.find((c) => c.flagship && c.edition === 'common' && c.tier === '1');
+  const t1 = SET.cards.find(
+    (c) => c.flagship && c.edition === 'common' && c.preservation === 'Preserves stress'
+  );
   const once = Engine.toBattleCard(t1);
   assert.ok(once.power >= 4 && once.health >= 4, 'single transform keeps battle stats');
   const twice = Engine.toBattleCard(once);

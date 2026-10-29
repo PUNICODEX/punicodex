@@ -13,7 +13,7 @@
 > art, +5/+5, upgraded ability), plus a `secret` original-script foil (232)
 > when a verified script exists. Edition → rarity mirror: common→common,
 > holo→rare, full-art→legendary, secret→mythic. Non-flagship entries enter as
-> single `archive` printings (653, tier-derived rarity) and climb the ladder
+> single `archive` printings (preservation-derived rarity) and climb the ladder
 > the day their domain is acquired. Battle engine: `game/engine.js` (pure UMD,
 > seeded RNG, full ability effect-DSL with `all`/`combo` containers). API:
 > `GET /api/v1/cards`, `GET /api/v1/cards/{id}`. Tests: `test/cards.test.js`
@@ -30,12 +30,12 @@ A deck-building battle game in the tradition of *Pokémon*, *Hearthstone*, and *
 Each card derives its identity from real data:
 - **Name** — Unicode restoration.
 - **Pantheon** — Greek, Norse, Egyptian, etc.
-- **Tier** — Dual-tier and Tier-1 cards are rarer and more powerful.
+- **Preservation** — cards whose form preserves more marks are rarer and more powerful (mechanical).
 - **Domain** — War, Wisdom, Sea, Sky, Death, Love, etc.; determines abilities.
 - **Original script** — displayed on foil/variant cards.
 - **Symbols** — used as ability icons.
 
-The game celebrates the same philology the site does: a card is not just "Zeus"; it is *Zeús* with its Greek form, tier badge, and domain explanation.
+The game celebrates the same philology the site does: a card is not just "Zeus"; it is *Zeús* with its Greek form, preservation stamp, and domain explanation.
 
 ---
 
@@ -44,7 +44,7 @@ The game celebrates the same philology the site does: a card is not just "Zeus";
 ### Base Stats (auto-generated from lexicon)
 | Stat | Source | Notes |
 |------|--------|-------|
-| `power` | Tier + pantheon + domain | Dual-tier = 90-100 base; Tier-1 = 70-85; Tier-2 = 40-65. |
+| `power` | Preservation + pantheon + domain | ≥2 marks = 90-100 base; 1 mark = 70-85; plain = 40-65. |
 | `health` | Domain resilience | e.g., Earth/Sea high, Messenger/Trickster moderate. |
 | `cost` | Rarity + power | 1–10 mana/energy. |
 | `speed` | Pantheon archetype | Norse warriors fast, Egyptian judges slow but durable. |
@@ -66,7 +66,7 @@ Abilities are stored in a `card_abilities` table and can be hand-tuned for balan
 | Holo | rare | Pattern foil, +5/+5 over base | 271 |
 | Full-art | legendary | Borderless composite art, +5/+5, upgraded ability | 271 |
 | Secret | mythic | Original-script foil (verified script required) | 232 |
-| Archive | tier-derived | Non-flagship entries — one printing each until their domain is acquired | 653 |
+| Archive | preservation-derived | Non-flagship entries — one printing each until their domain is acquired | 438 |
 
 Ownership never grants rarity by itself: a temple climbs the ladder when its domain is acquired and `scripts/promote-to-flagship.js` + `npm run generate` re-issue its printings automatically.
 
@@ -119,7 +119,7 @@ Ownership never grants rarity by itself: a temple climbs the ladder when its dom
 - Card art is sourced from the **Art Marketplace** (artists earn royalties per pack sale using their image).
 - Default card art is generated per pantheon with color-coded frames until marketplace art is licensed.
 - Original script is displayed on the card face for the Secret-edition foils.
-- Tier badge is visible as a foil stamp.
+- Preservation stamp is visible as a foil.
 
 ---
 
@@ -131,7 +131,7 @@ Ownership never grants rarity by itself: a temple climbs the ladder when its dom
 | `id` | TEXT PK | entry id + variant suffix |
 | `entry_id` | TEXT FK | |
 | `variant` | TEXT | `standard` / `foil` / `original-script` / `domain-lord` |
-| `rarity` | TEXT | common / rare / legendary / mythic (mirror of `edition`: common / holo / full-art / secret; archive printings derive rarity from tier) |
+| `rarity` | TEXT | common / rare / legendary / mythic (mirror of `edition`: common / holo / full-art / secret; archive printings derive rarity from preservation) |
 | `power` | INTEGER | |
 | `health` | INTEGER | |
 | `cost` | INTEGER | |
@@ -189,5 +189,5 @@ The first playable version is web-based (`/game/`). Later phases:
 
 - Should the game be free-to-play with cosmetic/premium packs, or a one-time purchase?
 - Should cards be tradable between players (secondary market)?
-- How tightly should card stats be coupled to lexicon tier vs. hand-balanced for gameplay?
+- How tightly should card stats be coupled to preservation vs. hand-balanced for gameplay?
 - Do we launch with all 860 entries, or a curated starter set (~100 cards)?

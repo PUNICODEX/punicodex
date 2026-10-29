@@ -83,7 +83,6 @@ const rootPages = [
   path.join('lexicon', 'index.html'),
   path.join('lexicon', 'cognates.html'),
   path.join('realms', 'index.html'),
-  path.join('tiers', 'index.html'),
   path.join('type', 'index.html'),
   path.join('type', 'test.html'),
   path.join('terms', 'index.html'),

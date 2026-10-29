@@ -17,6 +17,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -56,29 +57,11 @@ const TEXT_TITLE = new Map(TEXTS.texts.map((t) => [t.id, t.title]));
 
 // ── Shared fragments ────────────────────────────────────────────────────────
 
-function tierSentence(entry) {
-  const tier = entry.tier;
-  if (tier === 'dual') {
-    return V.pick(entry.id, 101, [
-      'The name preserves both stress and vowel length, and the sources admit more than one historically valid spelling — so the temple presents the pair as a dual-tier restoration, the rarest class in the lexicon.',
-      'Stress and length survive together here, and two attested spellings stand on the same evidence. That combination places the name in the dual tier — the lexicon\u2019s smallest and most scrutinized class.',
-      'Both features — the accent and the long vowel — survive, and the variants are not errors but attested alternatives. The temple holds the pair as a dual-tier restoration.',
-    ]);
-  }
-  if (tier === '1') {
-    return V.pick(entry.id, 102, [
-      'The restoration preserves more than the ASCII form can express — stress, length, or a letter the Latin keyboard lost — which places it, mechanically, in Tier-1.',
-      'What survives here cannot be shown in ASCII: a feature of the original that the fallback alphabet flattens. That is the Tier-1 test, and this name passes it without argument.',
-      'Tier-1 is not a compliment; it is a measurement. This restoration keeps something the ASCII form provably loses, and the measurement is repeatable.',
-    ]);
-  }
-  return V.pick(entry.id, 103, [
-    'One decisive feature survives — a single, honest mark — which places the restoration in Tier-2: exact, and exactly labeled.',
-    'The restoration keeps one feature the ASCII form drops. One is enough to matter, and the label says so plainly: Tier-2.',
-    'Tier-2 here means one preserved truth — not less important, just singular. The temple shows it and names it.',
-  ]);
+function preservationSentence(entry) {
+  // Mechanical, from the displayed form — same computation as the temples.
+  const label = preservationLabel(entry.unicode);
+  return label.charAt(0).toLowerCase() + label.slice(1);
 }
-
 function marksList(entry) {
   const marks = (entry.breakdown || []).filter((b) => b.type === 'stress' || b.type === 'length');
   return marks;
@@ -101,7 +84,7 @@ function glanceBlock(entry, script, extra) {
     `- **Meaning:** "${entry.meaning || 'See the temple record'}"`,
     `- **Domain of influence:** ${entry.domain || 'Mythic'}`,
     `- **Pantheon:** ${V.displayPantheon(entry.pantheon)}`,
-    `- **Classification:** ${entry.tierLabel || `Tier ${entry.tier || '2'}`}`,
+    `- **Restoration:** ${preservationLabel(entry.unicode)}`,
     `- **Original script:** ${script}`,
   ];
   if (extra) rows.push(extra);
@@ -184,7 +167,7 @@ function archLedger(entry, script, lore) {
 
 The restored name is not a plaque; it is an address. The temple of **${u}** lives at [/${entry.id}/](/${entry.id}/), with its mythology in the [lore halls](/${entry.id}/lore/), its peer-reviewed record in the [Scholarly Edition](/${entry.id}/scholars/), and its place in the pattern atlas on the [patterns floor](/${entry.id}/patterns/).
 
-${tierSentence(entry)}`);
+${preservationSentence(entry)}`);
 
   if (arch) {
     parts.push(`## Where the Name Stood First
@@ -263,7 +246,7 @@ function archMythFirst(entry, script, lore) {
 
   parts.push(`## The Address It Earned
 
-The temple of **${u}** stands at [/${entry.id}/](/${entry.id}/) — [lore](/${entry.id}/lore/), [scholars](/${entry.id}/scholars/), [patterns](/${entry.id}/patterns/) — because a name carrying this much story deserves more than a parking page. ${tierSentence(entry)}`);
+The temple of **${u}** stands at [/${entry.id}/](/${entry.id}/) — [lore](/${entry.id}/lore/), [scholars](/${entry.id}/scholars/), [patterns](/${entry.id}/patterns/) — because a name carrying this much story deserves more than a parking page. ${preservationSentence(entry)}`);
 
   if (texts.length > 0) {
     const joined = texts.length === 1 ? texts[0] : `${texts.slice(0, -1).join(', ')}${texts.length > 2 ? ',' : ''} and ${texts[texts.length - 1]}`;
@@ -329,7 +312,7 @@ function archBench(entry, script, lore) {
   parts.push(rejected.join('\n'));
 
   const setDown = ['## What We Set Down', ''];
-  setDown.push(`**${u}** — ${tierSentence(entry)}`);
+  setDown.push(`**${u}** — ${preservationSentence(entry)}`);
   const pron = V.lorePronunciation(lore);
   if (pron && pron.approximation) {
     setDown.push(`\nFor the voice: ${pron.approximation.charAt(0).toLowerCase() + pron.approximation.slice(1)}`);
@@ -381,7 +364,7 @@ function archProvenance(entry, script, lore) {
   if (arch) {
     entries.push(`**${n++}. The physical record.** ${arch}`);
   }
-  entries.push(`**${n++}. The current holding.** The temple at [/${entry.id}/](/${entry.id}/), classified ${entry.tierLabel || `Tier ${entry.tier || '2'}`}. ${tierSentence(entry)}`);
+  entries.push(`**${n++}. The current holding.** The temple at [/${entry.id}/](/${entry.id}/), a temple of the restored name. ${preservationSentence(entry)}`);
   if (seats.length > 0) {
     entries.push(
       `**${n++}. The documented resonances.** ${seats.slice(0, 3).map((s) => `**${s.name}**`).join(', ')} — seats argued and weighted in the [pattern atlas](/patterns/), read through the myths in this temple's [Resonance File](/${entry.id}/blog/resonance/).`
@@ -531,7 +514,7 @@ function main() {
         );
       }
       enrich.push(
-        `## The Discipline It Answers To\n\nThis restoration belongs to ${V.displayPantheon(entry.pantheon)}, ${V.pantheonFlavor(entry.pantheon)}. The rules that govern it are not house style; they are the tradition's own scholarship, applied with the same care here as in any edition — and published, with the sources, so the file can be checked the way an edition can be checked. ${tierSentence(entry)}`
+        `## The Discipline It Answers To\n\nThis restoration belongs to ${V.displayPantheon(entry.pantheon)}, ${V.pantheonFlavor(entry.pantheon)}. The rules that govern it are not house style; they are the tradition's own scholarship, applied with the same care here as in any edition — and published, with the sources, so the file can be checked the way an edition can be checked. ${preservationSentence(entry)}`
       );
       fullBody = fullBody.replace(/\n## The File Continues/, `\n${enrich.join('\n\n')}\n\n## The File Continues`);
     }
@@ -554,7 +537,7 @@ function main() {
         'PuniCodex',
         'philology',
       ],
-      tags: [entry.pantheon, entry.tierLabel || `Tier ${entry.tier || '2'}`, 'restoration', 'The Restoration Files'],
+      tags: [entry.pantheon, 'restoration', 'The Restoration Files'],
       author: 'PuniCodex Team',
       publishedAt: '2026-07-31',
       readingTime: `${readMin} min read`,

@@ -14,13 +14,13 @@
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lexicon — 983 Scholarly Unicode Restorations | PUNICODEX</title>
-    <meta name="description" content="Browse all 983 scholarly Unicode names in the PUNICODEX. Filter by pantheon, tier, or search across Greek, Norse, Egyptian, Sanskrit, Japanese, and more.">
+    <meta name="description" content="Browse all 983 scholarly Unicode names in the PUNICODEX. Filter by pantheon, restoration marks, or search across Greek, Norse, Egyptian, Sanskrit, Japanese, and more.">
     <link rel="canonical" href="https://punicodex.com/lexicon/">
     
     
     <!-- Open Graph -->
     <meta property="og:title" content="Lexicon — 983 Unicode Names | PUNICODEX">
-    <meta property="og:description" content="Browse all 983 scholarly Unicode names. Filter by pantheon, tier, or search across 25 traditions.">
+    <meta property="og:description" content="Browse all 983 scholarly Unicode names. Filter by pantheon, restoration marks, or search across 25 traditions.">
     <meta property="og:url" content="https://punicodex.com/lexicon/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
@@ -540,16 +540,12 @@
                     <span class="lexicon-stat-label">Flagships</span>
                 </div>
                 <div class="lexicon-stat">
-                    <span class="lexicon-stat-value">3</span>
-                    <span class="lexicon-stat-label">Dual-Tier</span>
+                    <span class="lexicon-stat-value">718</span>
+                    <span class="lexicon-stat-label">With Marks</span>
                 </div>
                 <div class="lexicon-stat">
-                    <span class="lexicon-stat-value">636</span>
-                    <span class="lexicon-stat-label">Tier-1</span>
-                </div>
-                <div class="lexicon-stat">
-                    <span class="lexicon-stat-value">344</span>
-                    <span class="lexicon-stat-label">Tier-2</span>
+                    <span class="lexicon-stat-value">265</span>
+                    <span class="lexicon-stat-label">ASCII Form</span>
                 </div>
             </div>
         </div>
@@ -577,7 +573,7 @@
                             <select id="filter-sort" class="filter-select" aria-label="Sort entries">
                                 <option value="alpha">Alphabetical</option>
                                 <option value="pantheon">Pantheon</option>
-                                <option value="tier">Tier</option>
+                                <option value="marks">Marks</option>
                             </select>
                         </div>
                     </div>
@@ -586,12 +582,11 @@
                 <!-- Filter groups -->
                 <div class="filter-groups">
                     <div class="filter-group">
-                        <span class="filter-group__label">Tier</span>
-                        <div class="filter-segment" id="tier-segment" aria-label="Filter by tier">
-                            <button class="filter-segment__btn active" data-filter="tier" data-value="all">All</button>
-                            <button class="filter-segment__btn" data-filter="tier" data-value="dual">Dual</button>
-                            <button class="filter-segment__btn" data-filter="tier" data-value="1">Tier 1</button>
-                            <button class="filter-segment__btn" data-filter="tier" data-value="2">Tier 2</button>
+                        <span class="filter-group__label">Restoration</span>
+                        <div class="filter-segment" id="marks-segment" aria-label="Filter by restoration marks">
+                            <button class="filter-segment__btn active" data-filter="marks" data-value="all">All</button>
+                            <button class="filter-segment__btn" data-filter="marks" data-value="marked">With Marks</button>
+                            <button class="filter-segment__btn" data-filter="marks" data-value="plain">ASCII Form</button>
                         </div>
                     </div>
                     <div class="filter-group filter-group--pantheon">
@@ -667,7 +662,6 @@
                     <a href="/everyday/">Words</a>
                     <a href="/ink/">Ink</a>
                     <a href="/trending/">Trending</a>
-                    <a href="/tiers/">Tier System</a>
                     <a href="/rulebook/">Rulebook</a>
                     <a href="/type/">Type</a>
                     <a href="/game/">Game</a>
@@ -715,6 +709,6 @@
     <script src="/js/owned-entries.js?v=59ede33e90" defer></script>
     <script src="/js/px-core.js?v=perf21" defer></script>
     <script src="/js/temple-base.js?v=59adc4839a" defer></script>
-    <script src="/lexicon/js/lexicon-browse.js?v=perf20" defer></script>
+    <script src="/lexicon/js/lexicon-browse.js?v=1a389eede6" defer></script>
 </body>
 </html>

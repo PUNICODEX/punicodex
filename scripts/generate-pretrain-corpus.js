@@ -20,6 +20,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const crypto = require('node:crypto');
 
 const ROOT = path.join(__dirname, '..');
@@ -98,7 +99,7 @@ function* entryDocs(records) {
     parts.push(`Name: ${r.unicode} (${r.ascii})`);
     if (r.greek) parts.push(`Greek / original script form: ${r.greek}`);
     parts.push(`Pantheon: ${r.pantheon}`);
-    parts.push(`Tier: ${r.tierLabel}`);
+    parts.push(`Restoration: ${preservationLabel(r.unicode)}`);
     parts.push(`Meaning: ${r.meaning}`);
     if (r.etymology) {
       parts.push(`Etymology: ${r.etymology.proto || ''} ${r.etymology.note || ''}`.trim());

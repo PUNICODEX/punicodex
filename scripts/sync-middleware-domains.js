@@ -25,6 +25,7 @@ const BACKUP_PATH = path.join(ROOT, 'middleware.js.backup');
 // current canonical temple id. Every target MUST exist in the lexicon —
 // verified below after the lexicon loads.
 const LEGACY_REDIRECTS = {
+  '/tiers': '/rulebook/', // tier system retired — see archive/tier-system/
   '/steh': '/seth', // renamed entry id
   '/achilles': '/achilleus',
   '/aether': '/aither',
@@ -68,6 +69,13 @@ if (new Set(lexiconIds).size !== lexiconIds.length) {
 // Every legacy redirect target must be a real lexicon entry.
 const lexiconIdSet = new Set(lexiconIds);
 for (const [legacyPath, target] of Object.entries(LEGACY_REDIRECTS)) {
+  if (target.endsWith('/')) {
+    // Non-temple page target (e.g. '/rulebook/') — must exist on disk.
+    if (!fs.existsSync(path.join(ROOT, target, 'index.html'))) {
+      throw new Error(`LEGACY_REDIRECTS page target ${target} (from ${legacyPath}) has no index.html`);
+    }
+    continue;
+  }
   if (!lexiconIdSet.has(target.slice(1))) {
     throw new Error(`LEGACY_REDIRECTS target ${target} (from ${legacyPath}) is not a lexicon id`);
   }

@@ -37,6 +37,8 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
+const { preservedFeatures } = require('../type/js/engine.js');
 const { LEXICON } = require('../type/js/lexicon.js');
 const { getOriginalScript, hasOriginalScript } = require('../type/js/original-scripts.js');
 
@@ -115,8 +117,9 @@ const NOTABLE_DOMAIN_RE =
 
 function deriveRarity(entry, { flagship }) {
   if (flagship) return 'legendary';
-  if (entry.tier === 'dual') return 'epic';
-  if (entry.tier === '1') return 'rare';
+  const marks = preservedFeatures(entry.unicode).features.length;
+  if (marks >= 2) return 'epic';
+  if (marks === 1) return 'rare';
   if (NOTABLE_DOMAIN_RE.test(entry.domain || '')) return 'uncommon';
   return 'common';
 }
@@ -124,11 +127,12 @@ function deriveRarity(entry, { flagship }) {
 const RARITY_ORDER = { common: 1, uncommon: 2, rare: 3, epic: 4, legendary: 5, mythic: 6 };
 
 // ── Stats (spec §2) ─────────────────────────────────────────────────────────
-// power: dual 90–100 · tier-1 70–85 · tier-2 40–65 (deterministic within band)
+// power: ≥2 preserved features 90–100 · 1 feature 70–85 · plain forms 40–65
+// (deterministic within band; features computed mechanically from the form)
 
-function basePower(tier, seed) {
-  if (tier === 'dual') return pickBand(seed, 90, 11);
-  if (tier === '1') return pickBand(seed, 70, 16);
+function basePower(preservedCount, seed) {
+  if (preservedCount >= 2) return pickBand(seed, 90, 11);
+  if (preservedCount === 1) return pickBand(seed, 70, 16);
   return pickBand(seed, 40, 26);
 }
 
@@ -593,7 +597,7 @@ const MASTERS_BASE = 'https://punycodex-masters.vercel.app';
 // ── The Edition Ladder (rarity = printing, never ownership) ─────────────────
 // Every flagship archetype is printed in four editions of escalating scarcity
 // and spectacle: common, holo, full-art, and the original-script secret rare.
-// A character's tier sets stat bands; the EDITION sets the rarity. Base
+// A character's preserved features set stat bands; the EDITION sets the rarity. Base
 // lexicon entries enter as single Archive printings until they are promoted.
 const EDITIONS = ['common', 'holo', 'full-art', 'secret'];
 const EDITION_META = {
@@ -666,7 +670,7 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition 
 
   const baseAbility = deriveAbility(entry, category);
   const ability = edition ? upgradeAbility(baseAbility, edition) : baseAbility;
-  const finalPower = basePower(entry.tier, seed) + bump.power;
+  const finalPower = basePower(preservedFeatures(entry.unicode).features.length, seed) + bump.power;
   const finalHealth = domainHealth(entry.domain, seed) + bump.health;
 
   const card = {
@@ -683,8 +687,7 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition 
     category,
     categoryLabel: categoryMeta.label,
     categoryIcon: categoryMeta.icon,
-    tier: entry.tier,
-    tierLabel: entry.tierLabel || (entry.tier === 'dual' ? 'Dual-Tier' : `Tier-${entry.tier}`),
+    preservation: preservationLabel(entry.unicode),
     domain: entry.domain || 'Mythic',
     rarity: editionRarity,
     rarityOrder: RARITY_ORDER[editionRarity],

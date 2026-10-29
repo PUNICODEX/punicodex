@@ -11,6 +11,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { preservationLabel } = require('./lib/preservation-label.js');
 const { ARCHETYPES } = require('../js/archetypes-v2.js');
 const { generateBlankManifest, validateManifest, getTaxonomyVersion } = require('../platform/scholars/taxonomy');
 
@@ -101,7 +102,7 @@ function main() {
     index.manifests[archetype.id] = {
       name: archetype.name,
       pantheon: archetype.pantheon,
-      tier: archetype.tier,
+      preservation: preservationLabel(archetype.name),
       path: `platform/scholars/manifests/${archetype.id}.json`,
       sectionCount: manifest.sections.length,
     };

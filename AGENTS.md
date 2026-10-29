@@ -44,7 +44,7 @@ All changes to lexicon entries, original scripts, character breakdowns, and gene
 | `docs/` | Specs, model cards, runbooks, security/standards, scholars governance |
 | `test/` + `tools/` | Test suites + runner; one-off scripts |
 
-Also: `data-version.json` (GENERATED manifest), `extended flagship materials/` (business source material, never shipped), and the public feature-page dirs (`lexicon/`, `pantheon/`, `realms/`, `tiers/`, `codex/`, `game/`, `art/`, `creatives/`, `authenticity/`, `appraise/`, `connections/`, `patterns/`).
+Also: `data-version.json` (GENERATED manifest), `extended flagship materials/` (business source material, never shipped), and the public feature-page dirs (`lexicon/`, `pantheon/`, `realms/`, `codex/`, `game/`, `art/`, `creatives/`, `authenticity/`, `appraise/`, `connections/`, `patterns/`).
 
 ## The Generation Flywheel
 
@@ -179,7 +179,7 @@ Most endpoints are served by catch-all routers (`api/[[...slug]].js`, `api/admin
 
 ## Temple Pages
 
-980 pages at `/sites/{id}/`: 542 flagship (myths, pronunciation, symbols, domains, custom canvas, lore/gallery/patterns/scholars/blog/creatives/patron tabs) + 438 base (name cards, breakdown, tier, sources, related). Shared: `css/temple-base.css`, `js/temple-base.js`, `js/flagship-canvas.js`, `templates/flagship/`; `scripts/generate-temples.js` (base; skips existing dirs — preserves flagships); `scripts/create-flagship.js` (validates before writing). Every page: unique title/description, canonical link, OG/Twitter tags, JSON-LD, global nav. Blog tab is in all tab-nav templates EXCEPT `lore/extended/index.html` and `dashboard.html` — intentional.### Sponsor creative pipeline
+980 pages at `/sites/{id}/`: 542 flagship (myths, pronunciation, symbols, domains, custom canvas, lore/gallery/patterns/scholars/blog/creatives/patron tabs) + 438 base (name cards, breakdown, restoration, sources, related). Shared: `css/temple-base.css`, `js/temple-base.js`, `js/flagship-canvas.js`, `templates/flagship/`; `scripts/generate-temples.js` (base; skips existing dirs — preserves flagships); `scripts/create-flagship.js` (validates before writing). Every page: unique title/description, canonical link, OG/Twitter tags, JSON-LD, global nav. Blog tab is in all tab-nav templates EXCEPT `lore/extended/index.html` and `dashboard.html` — intentional.### Sponsor creative pipeline
 
 Booking modal (`templates/flagship/flagship.js`) collects creatives, normalized client-side (`/js/creative-normalize.js`) and server-side (`platform/api/booking-upload.js`, sharp; 4MB base64 cap). Uploads accepted in `pending_upload`, `rejected`, `approved`, `live`, **and** `pending_approval` — a creative under review can always be replaced. Token dashboard (`/sites/{id}/dashboard/?token=…`) is **read-only analytics**; the advertiser panel (`/account/`, Creative Studio `/account/brand/`) is the management surface — editing a live/approved placement returns it to `pending_approval`; Publish/Pause is self-service. Support links → `/contact/` (never raw mailto). **Admin review matrix:** `pending_application` → Approve/Reject; `pending_payment` → Reject/End; `pending_upload` → End; `pending_approval` → **Approve / Approve & Go Live / Reject / End**; `approved`/`trialing`/`live` → Go Live / End (+ Send Report). End cancels billing, frees the slot, emails the sponsor.
 
@@ -187,23 +187,36 @@ Booking modal (`templates/flagship/flagship.js`) collects creatives, normalized 
 
 The legacy `greek` field is reliable only for Greek, Devanagari, CJK; elsewhere it may be `"—"` or a transliteration. Canonical: `type/js/original-scripts.js` + `-extra.json`; generators resolve via `getOriginalScript(entry)`. Label **"Original Script"** only when a real script exists, else **"Scholarly Transliteration"** — never misrepresent Latin-with-diacritics as the original writing system, and never fall back to `entry.unicode` under an "Original Script" label. Non-Greek/CJK scripts differing from the Unicode restoration must carry `provenance` (`original`, `transliteration`, `steps`, `sources`) — validator-enforced.
 
-## The Definitive Tier System (CANONICAL)
+## Restoration Preservation (CANONICAL — replaced the tier system 2026-10-29)
 
-### Dual-Tier (3 total): Apollo, Hekate, Nike
+The Dual/Tier-1/Tier-2 classification was **retired** — archived in full at
+`archive/tier-system/` (doctrine, tools, data snapshot, the old /tiers/ page).
+Rationale: the stored tier described the *Greek original* while being displayed
+as a claim about the *shown form* (66 of 205 Greek "Tier-1" badges overclaimed),
+it required a classifier tool + reviewed exceptions + drift audits, and its
+ranking/appraisal jobs are better done mechanically.
 
-Dual-tier **iff all of**: Greek original has BOTH stress (acute/circumflex) AND a long vowel (η, ω, long α/ι/υ, or long diphthong); MULTIPLE historically valid, attested Unicode spellings exist; both are live as owned domain temples (a display fact, never a criterion). Display: two meta-badges, two name cards, footer **Dual-Tier Pair (Tier-1 & Tier-2)**. Owned: `apóllōn.com` + `apollōn.com`, `hekate.com` + `hekátē.com`, `nike.com` + `níkē.com`.
+The replacement is **computed, never stored**: describe what a displayed form
+preserves that ASCII cannot show, derived by NFD decomposition of the form
+itself (`type/js/engine.js` → `preservedFeatures()`; shared wrapper
+`scripts/lib/preservation-label.js`). A circumflex counts as both stress and
+length; distinctive atomic letters (þ/ð/æ/œ/š/ḍ/ṭ/ḥ/ṛ/ꜣ/ꜥ, ǫ, …) count as
+preserved letters; anything else combining (caron, ogonek, underdot, tones) is
+preserved marks; otherwise the form is "ASCII-equivalent". Because the
+description derives from the spelling, it can never overclaim it — the failure
+class is un-representable.
 
-### Single-Tier Tier-1 (mechanical rule, since 2026-07-20)
+Display conventions: temples, the type tool, the lexicon/blog indexes and the
+cards game all show the computed label (or a With-Marks/ASCII-Form filter).
+Names with multiple historically valid **owned** spellings (apollon, hekate,
+nike — both forms live) present the pair on one temple; that presentation is
+derived from the archetype domain set, never from a class field.
 
-**Iff** mechanically verifiable as information-rich — no editorial judgment: **Greek** — original has BOTH stress AND ≥1 long vowel (a circumflex counts as both); **all other traditions** — the restoration preserves ≥1 distinctive feature ASCII loses: **any** preserved diacritic (detected structurally by NFD decomposition, never a hand-enumerated list) **or** a distinctive atomic letter (þ/ð/æ/œ/š/ḍ/ṭ/ḥ/ṛ/ꜣ/ꜥ, ǫ, …).
-
-Reference: `tools/new-domains/reclassify-tiers.js`; no exceptions beyond reviewed orthographic edge cases (currently only `asia`). **Ownership, prominence, and ASCII-canonicity are display facts, never tier criteria.**
-
-### Single-Tier Tier-2
-
-Greek original has only one feature (stress OR length) or neither; non-Greek preserves nothing distinctive vs ASCII. Dual-tier shows two badges + dual footer; single-tier shows one.
-
-**Never flatten the Big Three. Never dual-tier the single-tier names.**
+Do not reintroduce a stored classification: no `tier`/`tierLabel` fields on
+lexicon entries or archetypes, no tier doctrine pages, no tier filter params.
+(Other "tier" vocabulary that remains is unrelated: API pricing tiers, the
+Authenticity severity/trust tiers, `rentalTier` sponsorship inventory grades,
+and `trust_tier` site classifications.)
 
 ## Multi-Form System
 
@@ -252,12 +265,12 @@ A **search engine for the Unicode web**, not a registrar. Flow: query → lexico
 - **DB:** SQLite `platform/db/punicodex.db` (local) / `/tmp` (Vercel); `npm run db-init` = `init.js` + migrations. Core tables: `entries`, `breakdowns`, `entries_fts` (FTS5), `indexed_sites`, `availability`, `api_keys` (SHA-256 only), `admin_sessions`.
 - **Crawler:** discovery (manual/bulk/CT-log) → normalize → match lexicon → fetch (10s) → extract (title, meta, og, h1, first `<p>`) → upsert with content-hash dedup.
 - **Public API:** `search`, `entry/:id`, `stats`, `crawl` (+`/bulk`, `/recrawl`), `sites` (+`/search`, `/:punycode/spam`), `crawler/stats`, `availability/:entryId`, `slots`, `bookings`, `glyph`, `oracle`, `pantheons`, `marketplace`, `agents`, `analytics`, `flagships`, `verify`, `submit`, `webhook`, `health`, `protocol`, and more (see routers).
-- **`/api/v1`:** `names` (+ variants, breakdown, original-script, etymology, availability, site, slots, pronunciation), `pantheons`, `tiers`, `autocomplete`, `convert` (+`/batch`), `appraise`, `authenticity`, `threat-feed`, `policy`, `canary`, `transparency-report`, `similarities`, `industry-patterns` (+`/industries`, `/match`), `connections`, `cards`, `creatives`, `scholars`, `version`, `docs`, `openapi.json`. **`/api/v2`:** `search`, `names`, `sites`, `pantheons`, `tiers`, `convert`, `autocomplete`, `health`, `version`, `openapi.json`.
-- **Appraisal (`appraise-3.0.0`):** meaning + demand only (attestation, tier, development, industry demand). No brand multiplier; **no ASCII comparison for Unicode names** (`asciiControlValue`/`premiumMultiplier`/`discount` = `null`). Trademark proximity = suppression only (≤0.5). Verdict-only by default; `?explain=1` for breakdown. Docs `docs/appraisal-methodology.md`; `test/appraise.test.js`.
+- **`/api/v1`:** `names` (+ variants, breakdown, original-script, etymology, availability, site, slots, pronunciation), `pantheons`, `autocomplete`, `convert` (+`/batch`), `appraise`, `authenticity`, `threat-feed`, `policy`, `canary`, `transparency-report`, `similarities`, `industry-patterns` (+`/industries`, `/match`), `connections`, `cards`, `creatives`, `scholars`, `version`, `docs`, `openapi.json`. **`/api/v2`:** `search`, `names`, `sites`, `pantheons`, `convert`, `autocomplete`, `health`, `version`, `openapi.json`.
+- **Appraisal (`appraise-3.0.0`):** meaning + demand only (attestation, preservation, development, industry demand). No brand multiplier; **no ASCII comparison for Unicode names** (`asciiControlValue`/`premiumMultiplier`/`discount` = `null`). Trademark proximity = suppression only (≤0.5). Verdict-only by default; `?explain=1` for breakdown. Docs `docs/appraisal-methodology.md`; `test/appraise.test.js`.
 - **Admin:** `x-admin-token`; API keys under `/api/admin/api-keys`. **Unified admin portal:** per-user `admin_users` (bcrypt, roles `superadmin/ops/leasing/scholars/viewer`, lockout, immediate revocation); frontend `/admin-portal/` (canonical `platform/public/admin-portal/`). Bootstrap: empty `admin_users` + `ADMIN_PASSWORD` → one superadmin.
 - **Patrons:** `GET /api/patrons/:templeId` (public), `POST /api/patrons/checkout` (Stripe); `checkout.session.completed` activates via `api/webhook/`.
 - **Auth & limits:** `Authorization: Bearer <key>`; keyless reads at free tier. Per-day: Free 100, Hobby 1,000, Pro 10,000, Enterprise 100,000.
-- **Ranking:** `is_flagship DESC` → `tier='dual' DESC` → `tier='1' DESC` → `unicode ASC`. **Registrars:** GoDaddy, Namecheap, Porkbun, Dynadot, Spaceship.
+- **Ranking:** `is_flagship DESC` → `unicode ASC` (a mechanical preservation bonus may break ties in the ranker). **Registrars:** GoDaddy, Namecheap, Porkbun, Dynadot, Spaceship.
 - **Unicode constraint:** only ~8% of discovered domains are actual `xn--` — compensated by a +0.5 xn-- ranking bonus and a 'Unicode Only' filter.
 
 ## Authenticity / Brand-Protection Subsystem

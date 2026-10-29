@@ -30,7 +30,7 @@ function searchByGlyph(glyph, limit = 10) {
       `SELECT id, ascii, unicode, greek, original_script, pantheon, meaning
        FROM entries
        WHERE unicode LIKE ? OR greek LIKE ? OR original_script LIKE ?
-       ORDER BY tier = 'dual' DESC, tier = '1' DESC
+       ORDER BY unicode ASC
        LIMIT ?`
     )
     .all(like, like, like, limit);
