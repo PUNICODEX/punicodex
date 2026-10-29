@@ -35,7 +35,7 @@ function life(t, start, end) {
 }
 
 function createRenderer() {
-  const options = { antialias: true, preserveDrawingBuffer: true };
+  const options = { antialias: !MOBILE, preserveDrawingBuffer: true };
   try {
     return new THREE.WebGLRenderer({ ...options, powerPreference: 'high-performance' });
   } catch (err) {
@@ -107,7 +107,11 @@ const bootLabel = document.querySelector('#boot p');
 const renderer = createRenderer();
 renderer.setPixelRatio(MOBILE ? 1 : Math.min(devicePixelRatio, 1.5));
 renderer.setSize(innerWidth, innerHeight);
-renderer.shadowMap.enabled = true;
+// The first frame is the most dangerous moment on mobile GPUs: the shadow
+// pass re-renders the whole scene from the light's POV and bloom runs ~13
+// fullscreen blur passes while shaders are still compiling. Mobile skips
+// both entirely; env/rim lighting and the emissive core carry the look.
+renderer.shadowMap.enabled = !MOBILE;
 renderer.shadowMap.type = MOBILE ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 // Mobile GPUs sometimes lose the WebGL context once during warmup and restore
 // it automatically — only treat a loss as fatal if it is not restored quickly.
@@ -176,8 +180,8 @@ scene.add(heartLight);
 
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .38, .62, .94);
-composer.addPass(bloom);
+const bloom = MOBILE ? null : new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .38, .62, .94);
+if (bloom) composer.addPass(bloom);
 const finishingPass = new ShaderPass({
   uniforms: { tDiffuse: { value: null }, uPhase: { value: 0 } },
   vertexShader: `varying vec2 vUv; void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
