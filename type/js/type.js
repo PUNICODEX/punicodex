@@ -26,6 +26,23 @@
 
     const trie = PUNICODEX_ENGINE.buildTrie(LEXICON);
 
+    // Name Variants families (generated; docs/name-variants-design.md) — the
+    // type tool is the richest client of this data: attestation badges and
+    // convention forms straight from the same JSON the temples and API serve.
+    let variantFamilies = null;
+    let variantFamiliesRequested = false;
+    function loadVariantFamilies() {
+        if (variantFamiliesRequested || typeof fetch !== 'function') return;
+        variantFamiliesRequested = true;
+        fetch('/data/variants.json')
+            .then((r) => (r.ok ? r.json() : null))
+            .then((data) => {
+                variantFamilies = (data && data.entries) || {};
+                renderResult(); // re-render with the full attested family
+            })
+            .catch(() => {});
+    }
+
     // ═══════════════════════════════════════════════════════════
     // DOM REFERENCES
     // ═══════════════════════════════════════════════════════════
@@ -415,6 +432,26 @@
             const scholarlyTypes = ['alt-stress', 'alt'];
             const derived = (entry.variants || []).filter(v => derivedTypes.includes(v.type));
             const scholarly = (entry.variants || []).filter(v => scholarlyTypes.includes(v.type) && Array.isArray(v.sources) && v.sources.length > 0);
+            // Enrich from the generated variant family: every sourced attested
+            // form not already listed above (deduped, canonical excluded — it
+            // is the big form at the top of the result panel).
+            const family = variantFamilies ? variantFamilies[entry.id] : null;
+            if (family) {
+                const seenScholarly = new Set(scholarly.map(v => nfc(v.unicode)));
+                for (const f of family.forms) {
+                    if (f.class !== 'attested' || f.relation === 'canonical') continue;
+                    if (!f.sources || !f.sources.length) continue;
+                    const key = nfc(f.form);
+                    if (seenScholarly.has(key)) continue;
+                    seenScholarly.add(key);
+                    scholarly.push({
+                        unicode: f.form,
+                        type: f.relation,
+                        note: f.note || 'Attested scholarly spelling.',
+                        sources: f.sources,
+                    });
+                }
+            }
 
             if (stackedForm) {
                 derived.push({
@@ -480,7 +517,23 @@
                     html += renderVariationItem(v, true);
                 }
                 html += '</div>';
-                html += '<p class="result-variations-hint">Attested alternate spellings. Each chip is backed by the cited source(s).</p>';
+                html += '<p class="result-variations-hint">Attested alternate spellings. Each chip is backed by the cited source(s) — attestation, never convention or derivation.</p>';
+                html += '</div>';
+            }
+            if (family && family.forms.some(f => f.class === 'convention')) {
+                html += '<div class="result-variations-section">';
+                html += '<span class="result-variations-label">Convention Forms</span>';
+                html += '<div class="variations-list">';
+                for (const f of family.forms.filter(x => x.class === 'convention')) {
+                    html += renderVariationItem({
+                        unicode: f.form,
+                        type: 'convention',
+                        note: `Systematic romanization convention (${f.relation}) — a possible scholarly spelling, not an attestation.`,
+                        sources: null,
+                    }, false);
+                }
+                html += '</div>';
+                html += '<p class="result-variations-hint">Systematic alternate romanizations other standards would produce. Convention forms are labelled as such, never presented as citations.</p>';
                 html += '</div>';
             }
 
@@ -776,6 +829,7 @@
 
     readUrlState();
     updateAll();
+    loadVariantFamilies();
     inputField.focus();
 
 })();

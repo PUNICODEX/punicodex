@@ -2825,12 +2825,141 @@ function loreLeadSentence(catalogEntry) {
 }
 
 // ---------------------------------------------------------------------------
-// Name Variations section (lore page) — owned / ideal / ASCII forms, per the
-// Multi-Form System doctrine in AGENTS.md. Degrades to owned vs ASCII when an
-// entry carries no scholarly variants.
-// ---------------------------------------------------------------------------
+// Name Variations section (lore page) — the full variant spelling family per
+// docs/name-variants-design.md: attested forms (sourced) with ownership
+// highlighted, systematic convention forms, and clearly-labelled derived
+// subsets of the canonical restoration. Falls back to the owned/ideal/ASCII
+// rendering when the generated variant data is unavailable (standalone runs).
+
+let VARIANTS_CACHE = null;
+function loadVariantFamily(id) {
+  if (VARIANTS_CACHE === null) {
+    try {
+      VARIANTS_CACHE = JSON.parse(
+        fs.readFileSync(path.join(ROOT, 'data', 'variants.json'), 'utf8')
+      ).entries;
+    } catch (_e) {
+      VARIANTS_CACHE = {};
+    }
+  }
+  return VARIANTS_CACHE[id] || null;
+}
+
+const VARIANT_RELATION_LABELS = {
+  canonical: 'Canonical Restoration',
+  ideal: 'Ideal Form',
+  'macron-only': 'Scholarly Convention',
+  'alt-stress': 'Alternate Stress',
+  ascii: 'ASCII Form',
+  variant: 'Scholarly Variant',
+};
+
+const DERIVED_WHY = {
+  'length-only': 'Macrons kept, stress dropped — the standard LSJ/Oxford convention.',
+  'stress-only': 'Stress kept, vowel-quantity marks dropped.',
+  plain: 'All marks stripped — the plain ASCII fallback DNS and legacy systems see.',
+  stacked: 'Combined stress+length marks on one vowel — philologically ideal, often untypeable.',
+};
 
 function buildNameVariationsSection(entry, sectionNumber) {
+  const family = loadVariantFamily(entry.id);
+  if (!family) return buildLegacyNameVariationsSection(entry, sectionNumber);
+
+  const source = getOriginalScript(entry);
+  const restores = source ? `Restores <strong>${escapeHtml(source)}</strong>. ` : '';
+
+  const cards = [];
+  const seen = new Set();
+  const pushCard = (badge, form, why) => {
+    const key = form.toLowerCase().normalize('NFC');
+    if (seen.has(key)) return;
+    seen.add(key);
+    cards.push(`                <div class="name-card reveal-up">
+                    <h3 class="card-title">${badge}</h3>
+                    <p class="card-unicode">${escapeHtml(form)}</p>
+                    <p class="card-body">${why}</p>
+                </div>`);
+  };
+
+  const isOriginalScriptForm = (form) =>
+    /[^\u0000-\u024F\u0250-\u02AF\u1E00-\u1EFF\uA720-\uA7FF]/.test(form);
+
+  const attested = family.forms.filter((f) => f.class === 'attested');
+  const conventions = family.forms.filter((f) => f.class === 'convention');
+  const derived = family.forms.filter((f) => f.class === 'derived');
+
+  for (const f of attested) {
+    const domain = `${f.form.toLowerCase().normalize('NFC')}.com`;
+    const cited = f.sources?.length ? ` Attested by ${escapeHtml(f.sources.join(', '))}.` : '';
+    if (isOriginalScriptForm(f.form)) {
+      const scriptLabel = source ? escapeHtml(source) : 'the source tradition';
+      pushCard(
+        'Owned · Original Script',
+        f.form,
+        `The original script itself — <strong>${scriptLabel}</strong> — live as a domain: <strong>${escapeHtml(domain)}</strong>.${cited}`
+      );
+      continue;
+    }
+    if (f.owned) {
+      const badge =
+        f.relation === 'canonical'
+          ? 'Owned · Primary'
+          : attested.indexOf(f) === 0
+            ? 'Owned · Primary'
+            : 'Owned';
+      const why =
+        f.relation === 'canonical'
+          ? `${restores}The live temple domain — <strong>${escapeHtml(domain)}</strong>.${cited}`
+          : `A second live spelling — <strong>${escapeHtml(domain)}</strong>.${cited}`;
+      pushCard(badge, f.form, why);
+      continue;
+    }
+    if (f.relation === 'canonical') {
+      // Unowned canonical: honest watched-for-release state.
+      pushCard(
+        'Canonical Restoration',
+        f.form,
+        `${restores}The full Unicode restoration. <strong>${escapeHtml(domain)}</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.${cited}`
+      );
+      continue;
+    }
+    const badge = VARIANT_RELATION_LABELS[f.relation] || 'Scholarly Variant';
+    const note = f.note ? `${escapeHtml(f.note)}.` : 'An attested scholarly spelling.';
+    pushCard(badge, f.form, `${restores}${note}${cited}`);
+  }
+
+  for (const f of conventions) {
+    pushCard(
+      'Convention Form',
+      f.form,
+      `A systematic romanization convention (${escapeHtml(f.relation)}) — a possible scholarly spelling, not an attestation.`
+    );
+  }
+
+  for (const f of derived) {
+    const why = DERIVED_WHY[f.relation] || 'A systematic subset of the canonical restoration.';
+    const feats = f.features?.length ? ` Preserves ${escapeHtml(f.features.join(' & '))}.` : '';
+    pushCard('Systematic Derivation', f.form, `${why}${feats}`);
+  }
+
+  const countNote =
+    family.attestedCount > 1 ? `${family.attestedCount} attested forms of this name.` : null;
+
+  return `<section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">The attested spelling family of ${escapeHtml(entry.unicode)}${countNote ? ` — ${escapeHtml(countNote)}` : ''}</p>
+        </div>
+        <div class="name-grid">
+${cards.join('\n')}
+        </div>
+    </div>
+</section>`;
+}
+
+function buildLegacyNameVariationsSection(entry, sectionNumber) {
   const source = getOriginalScript(entry);
   const variants = Array.isArray(entry.variants) ? entry.variants : [];
   const byType = (t) => variants.filter((v) => v && v.type === t && v.unicode);

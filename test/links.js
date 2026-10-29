@@ -49,6 +49,10 @@ function collectHtml(dir) {
           // External brand-kit source material (untracked, read-only, never
           // shipped) — its kit-internal snippet links are not site links.
           'Kimi_Agent_punicodex扩展',
+          // Retired-system snapshots (archive/tier-system/…) — frozen,
+          // noindexed historical records; their links to since-removed pages
+          // and assets are part of the snapshot, not the live site.
+          'archive',
         ].includes(entry.name)
       )
         continue;

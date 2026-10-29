@@ -232,7 +232,13 @@ A name may have multiple valid restorations; the lexicon stores all attested for
 | 4 | Variant (attested) | `Athēnā` (Ἀθηνᾶ) | Canonical form would hurt recognizability |
 | 5 | Plain ASCII | `Hera` | Last resort, never primary |
 
-Rules: **macron-only is not wrong** (LSJ/Cambridge/Oxford convention); combined marks (`ḗ`) are ideal but often untypeable/unavailable; **wrong accent position is worse than none**; **canonical beats recognizability when both are owned** (`athēnâ.com` is Athena's primary). Every flagship needs a **Name Variations** section (owned / ideal / ASCII, with Greek mapping + why). The type tool shows Scholarly Variants **only when the variant carries `sources`**.
+Rules: **macron-only is not wrong** (LSJ/Cambridge/Oxford convention); combined marks (`ḗ`) are ideal but often untypeable/unavailable; **wrong accent position is worse than none**; **canonical beats recognizability when both are owned** (`athēnâ.com` is Athena's primary). Every flagship needs a **Name Variations** section (the full variant family — see below). The type tool shows Scholarly Variants **only when the variant carries `sources`**.
+
+## Name Variants System
+
+The positive replacement for the retired tier system (see `archive/tier-system/`): instead of classifying a name with one label, `scripts/generate-variants.js` enumerates its spelling space into `data/variants.json` (+ `platform/api/variants.json` copy). Per entry: **attested** forms (sourced scholarly spellings incl. the canonical form; `owned registration` counts as a source), **convention** forms (per-pantheon transliteration engines in `scripts/lib/variant-conventions.js` — Egyptian aleph/ayin-as-a, IAST simplified, Kunrei-shiki, chi-as-kh), and **derived** forms (NFD feature subsetting of the canonical form: length-only / stress-only / plain / stacked; derived forms must NFC round-trip and never equal the canonical form).
+
+Hard rules (design doc `docs/name-variants-design.md`): **no stored counts anywhere** — `attestedCount` and the form list are computed at generate time; **only sourced forms count toward `attestedCount`**; **ownership is an annotation (`owned` flag), never a gate** — knowledge of an unowned spelling publishes exactly the same as an owned one. Served knowledge-first at `GET /api/v1/names/:id/variants` (+ v2 subresource, `?class=attested|derived|convention` filter). Contracts: `test/variants.test.js`. The AI corpus QA family (`variant_class` task in `generate-synthetic-qa.js`) teaches the attested-vs-derived distinction.
 
 ## Pronunciation Engine
 

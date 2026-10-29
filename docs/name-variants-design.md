@@ -1,7 +1,9 @@
 # Name Variants System — Design Plan (v0.1, draft 2026-10-29)
 
-Status: **planned — not implemented**. Precedes all work here: the tier-system
-removal must ship first (see `archive/tier-system/README.md`).
+Status: **implemented** (Phases 1–3 first pass, 2026-10-29). The tier-system
+removal shipped first (see `archive/tier-system/README.md`); this system is its
+positive replacement. Contracts live in `test/variants.test.js`; doctrine in
+`AGENTS.md` → "Name Variants System".
 
 ## Why this exists
 

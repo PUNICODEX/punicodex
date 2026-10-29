@@ -17,12 +17,12 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 65,691 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 16,470 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **82,161** | — |
+| Train | 66,885 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 16,805 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **83,690** | — |
 
 Source corpora:
-- `instructions.jsonl`: 9,440 examples
+- `instructions.jsonl`: 10,969 examples
 - `safety-examples.jsonl`: 45,018 examples
 - `dialogue-examples.jsonl`: 3,733 examples
 - `tool-use-examples.jsonl`: 4,893 examples

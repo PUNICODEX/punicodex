@@ -1022,16 +1022,30 @@
     },
     "/names/{id}/variants": {
       "get": {
-        "summary": "Get variant Unicode forms",
+        "summary": "Get the name's variant spelling space",
+        "description": "The full variant family of an ancient name: attested forms (sourced scholarly spellings, including the canonical form), systematic convention forms, and mechanically derived subsets of the canonical restoration. Ownership is an annotation (`owned` flag), never a gate — this is a knowledge endpoint. `attestedCount` counts only sourced forms. Filter with ?class=attested|derived|convention (default: all).",
         "operationId": "getVariants",
         "parameters": [
           {
             "$ref": "#/components/parameters/PathId"
+          },
+          {
+            "name": "class",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["attested", "derived", "convention"]
+            },
+            "required": false,
+            "description": "Optional form-class filter"
           }
         ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/VariantsResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"

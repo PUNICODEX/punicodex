@@ -51,6 +51,9 @@ const allScripts = [
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
   'scripts/generate-similarities.js',
+  // Name Variants family sets (docs/name-variants-design.md). Same artifact
+  // class as similarities: platform/api JSON consumed by the names handlers.
+  'scripts/generate-variants.js',
   'scripts/generate-industry-patterns.js',
   'scripts/generate-owned-entries.js',
   'scripts/export-codex-data.js',

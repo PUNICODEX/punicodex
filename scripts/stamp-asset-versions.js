@@ -41,6 +41,7 @@ const ASSETS = [
   '/lexicon/js/lexicon-browse.js',
   '/codex/js/codex-atlas.js',
   '/game/game.js',
+  '/type/js/type.js',
   '/js/analytics-beacon.js',
   '/js/herald-beacon.js',
   '/js/newsletter.js',

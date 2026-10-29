@@ -26,7 +26,16 @@ module.exports = createApiHandler(async (req, res) => {
     return;
   }
 
-  const variants = namesService.getVariants(id);
+  const classFilter = req.query?.class || null;
+  if (classFilter && !['attested', 'derived', 'convention'].includes(classFilter)) {
+    error(res, 'VALIDATION_ERROR', `Invalid class filter: ${classFilter}`, {
+      status: 400,
+      details: { allowed: ['attested', 'derived', 'convention'] },
+    });
+    return;
+  }
+
+  const variants = namesService.getVariants(id, { class: classFilter });
   if (variants === null) {
     error(res, 'NOT_FOUND', `No entry found for id: ${id}`, { status: 404 });
     return;

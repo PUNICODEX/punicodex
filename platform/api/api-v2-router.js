@@ -132,9 +132,18 @@ async function handleNameSubresource(req, res, id, subresource) {
   }
   let result;
   switch (subresource) {
-    case 'variants':
-      result = namesService.getVariants(id);
+    case 'variants': {
+      const classFilter = req.query?.class || null;
+      if (classFilter && !['attested', 'derived', 'convention'].includes(classFilter)) {
+        error(res, 'VALIDATION_ERROR', `Invalid class filter: ${classFilter}`, {
+          status: 400,
+          details: { allowed: ['attested', 'derived', 'convention'] },
+        });
+        return;
+      }
+      result = namesService.getVariants(id, { class: classFilter });
       break;
+    }
     case 'breakdown':
       result = namesService.getBreakdown(id);
       break;

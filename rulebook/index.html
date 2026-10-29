@@ -267,7 +267,7 @@
                     <tr><td><span class="rb-pill">Stress &amp; length</span></td><td>A circumflex (or macron + acute) fuses both features on one vowel — the fullest restoration the sources support</td><td><strong>Athēnâ</strong> (Ἀθηνᾶ) · <strong>Hermês</strong> (Ἑρμῆς) · <strong>Poseidôn</strong> (Ποσειδῶν)</td></tr>
                     <tr><td><span class="rb-pill">Stress or length</span></td><td>One prosodic feature survives where ASCII shows none — the form still says something the fallback alphabet cannot</td><td><strong>Zeús</strong> (stress) · <strong>Hēra</strong> (length) · <strong>Ártemis</strong> (stress)</td></tr>
                     <tr><td><span class="rb-pill">Distinctive letters</span></td><td>Letters outside the Latin alphabet survive intact — þ, ð, æ, œ, ꜣ, ꜥ and kindred forms</td><td><strong>Þórr</strong> (thorn) · <strong>ꜥnḫ</strong> (Egyptian alef)</td></tr>
-                    <tr><td><span class="rb-pill">Multiple owned forms</span></td><td>More than one historically valid spelling exists — and the temple owns the pair, so both live</td><td><strong>Apóllōn / Apollōn</strong> · <strong>Hekatē / Hekátē</strong> · <strong>Nikē / Níkē</strong></td></tr>
+                    <tr><td><span class="rb-pill">Multiple attested forms</span></td><td>More than one historically valid spelling exists — the temple's Name Variations section enumerates the family with its sources (ownership is an annotation, not a criterion)</td><td><strong>Apóllōn / Apollōn</strong> · <strong>Hekatē / Hekátē</strong> · <strong>Nikē / Níkē</strong></td></tr>
                 </tbody>
             </table>
             <p>The description is deliberately mechanical: it is derived from the spelling itself, by decomposition — no editorial judgment calls, and no claim the form cannot support. What you read on a temple is exactly what the temple shows you.</p>
@@ -275,7 +275,21 @@
         </div>
 
         <div class="rb-section">
-            <h2>3. When the Ideal Form Can't Be Registered</h2>
+            <h2>3. The Spelling Space — Attested, Convention, Derived</h2>
+            <p>Most ancient names were never spelled one way. Scholarship attests several spellings, conventions generate systematic alternates, and any restoration mechanically implies simpler subsets of itself. PuniCodex enumerates this space for every name — <strong>983 variant families, computed at build time</strong> — and labels each form by exactly how it is known:</p>
+            <table class="rb-table">
+                <thead><tr><th>Class</th><th>What it means</th><th>Counted as attested?</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="rb-pill">Attested</span></td><td>A spelling backed by a named scholarly source — LSJ, Beekes, Faulkner, Monier-Williams — or by a live registration</td><td><strong>Yes</strong> — attestedCount counts only these</td><td><strong>Apóllōn</strong> (LSJ, owned) · <strong>Apollōn</strong> (owned registration) · <strong>Siva</strong> (Monier-Williams, Macdonell)</td></tr>
+                    <tr><td><span class="rb-pill">Convention</span></td><td>A systematic romanization another standard would produce — Egyptological aleph-as-a, IAST simplified, Kunrei-shiki, chi-as-kh</td><td>No — labelled "convention" wherever shown</td><td><strong>Rꜥ → Ra</strong> · <strong>Śiva → Shiva</strong></td></tr>
+                    <tr><td><span class="rb-pill">Derived</span></td><td>A mechanical subset of the canonical form — macron-only (LSJ), stress-only, plain ASCII, stacked marks</td><td>No — labelled "systematic derivation"</td><td><strong>Apóllōn → Apollōn / Apóllon / Apollon / Apṓllōn</strong></td></tr>
+                </tbody>
+            </table>
+            <p>The rule is the same discipline as everything on this page: <strong>a description may never claim more than the data supports.</strong> A form is "attested" only with a source attached; a convention form is never presented as a citation; a derived form never pretends to be anything but arithmetic on the restoration. Ownership is an annotation on the family — it gates nothing, and knowledge of a spelling we do not own is published exactly the same as one we do. Every family is served openly at <code>/api/v1/names/{id}/variants</code>.</p>
+        </div>
+
+        <div class="rb-section">
+            <h2>4. When the Ideal Form Can't Be Registered</h2>
             <p>Unicode domains are scarce. When the ideal restoration is unavailable, the rulebook descends a fixed hierarchy — each step still defensible, never a wrong accent for the sake of availability:</p>
             <table class="rb-table">
                 <thead><tr><th>Priority</th><th>Form</th><th>Example</th><th>When</th></tr></thead>
@@ -293,7 +307,7 @@
         </div>
 
         <div class="rb-section">
-            <h2>4. Every Tradition Gets Its Own Convention</h2>
+            <h2>5. Every Tradition Gets Its Own Convention</h2>
             <p>Greek rules govern Greek names. Other traditions are restored by their own scholarly standards — the same discipline, different alphabets:</p>
             <table class="rb-table">
                 <thead><tr><th>Tradition</th><th>Convention</th><th>Example</th></tr></thead>
@@ -310,7 +324,7 @@
         </div>
 
         <div class="rb-section">
-            <h2>5. Why It Matters</h2>
+            <h2>6. Why It Matters</h2>
             <p><strong>Sound is identity.</strong> A god's name was sung, sworn by, and carved into stone with its stress and length intact. Restoring both is the difference between a label and a name.</p>
             <p><strong>It is also proof of provenance.</strong> These names are older than any company. <em>Níkē</em> is the goddess of victory, named in Hesiod's Theogony two and a half thousand years ago; the accent above her í is her own, not anyone's brand. Every restoration here cites its sources — LSJ and Beekes for Greek, Faulkner for Egyptian, Monier-Williams for Sanskrit, and the primary texts in our <a href="/texts/" style="color:var(--gold)">Sacred Texts library</a>.</p>
             <p><strong>And it is checkable.</strong> The same mechanical rules run in the open: the lexicon validator, the restoration descriptions on every temple, and this page's examples all agree, because they are all computed from one canonical source. If a restoration ever fails the rules, the build fails — not the reader's trust.</p>

@@ -73,6 +73,11 @@ const RULES = [
     suites: ['University Booking Endpoint Tests', 'University Outreach Tests', 'Pitch Email Tests'],
   },
   {
+    pattern:
+      /^scripts\/generate-variants\.js$|^scripts\/lib\/variant-conventions\.js$|^data\/variants\.json$|^platform\/api\/variants\.json$|^test\/variants\.test\.js$|^platform\/api\/names-service\.js$|^platform\/api\/api-v2-router\.js$/,
+    suites: ['Name Variants Contracts', 'API v1 Integration Tests', 'API v2 Integration Tests', 'OpenAPI Contract Tests'],
+  },
+  {
     pattern: /^platform\/api\/sponsor-brain\.js$|^test\/sponsor-brain\.test\.js$/,
     suites: ['Sponsor Brain Tests', 'Pitch Email Tests', 'University Outreach Tests'],
   },

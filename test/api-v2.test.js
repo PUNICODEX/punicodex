@@ -125,7 +125,8 @@ async function runTests() {
     assert.strictEqual(status, 200);
     assertEnvelope(body);
     assert.strictEqual(body.data.id, 'zeus');
-    assert.ok(Array.isArray(body.data.variants));
+    assert.ok(Array.isArray(body.data.forms));
+    assert.ok(Number.isInteger(body.data.attestedCount));
   });
 
   await test('GET /api/v2/names/unknown returns 404', async () => {

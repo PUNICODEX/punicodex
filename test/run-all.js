@@ -445,6 +445,7 @@ const SUITES = [
     timeout: 120000,
   },
   { name: 'Similarity Service Tests', cmd: 'node test/similarity-service.test.js' },
+  { name: 'Name Variants Contracts', cmd: 'node test/variants.test.js' },
   { name: 'Connection Taxonomy Tests', cmd: 'node test/connection-taxonomy.test.js' },
   { name: 'Connections Page Tests', cmd: 'node test/connections-page.test.js' },
   { name: 'Connections Helpers Tests', cmd: 'node test/connections-helpers.test.js' },

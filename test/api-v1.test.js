@@ -199,7 +199,16 @@ async function runTests() {
     assert.strictEqual(status, 200);
     assertEnvelope(body);
     assert.strictEqual(body.data.id, 'apollon');
-    assert.ok(Array.isArray(body.data.variants), 'variants must be an array');
+    assert.strictEqual(body.data.canonical, 'Apóllōn');
+    assert.ok(Number.isInteger(body.data.attestedCount), 'attestedCount must be an integer');
+    assert.ok(Array.isArray(body.data.forms), 'forms must be an array');
+    assert.ok(
+      body.data.forms.every((f) => ['attested', 'derived', 'convention'].includes(f.class)),
+      'every form carries a valid class'
+    );
+    const canonical = body.data.forms.find((f) => f.relation === 'canonical');
+    assert.ok(canonical, 'canonical form must be present');
+    assert.strictEqual(canonical.class, 'attested');
   });
 
   await test('GET /api/v1/names/:id/breakdown returns steps', async () => {
