@@ -604,6 +604,13 @@ const SERIAL_SUITES = new Set([
   'Patterns Atlas Tests', // runs generate-patterns-page.js (writes patterns/*.html)
   'Trending Page Tests', // idempotency check rewrites trending/index.html
   'Everyday + Ink Tests', // idempotency checks rewrite everyday/index.html + data/ink-index.json
+  'Store Structure Tests', // reads store pages while tree-writers rewrite them
+  'Menu Consistency Tests', // reads every nav target page; torn reads false-fail
+  'Mobile Menu Consistency Tests', // same torn-read class as menu consistency
+  'Texts Section Tests', // reads texts pages while injectors rewrite them
+  'Texts Chapters Tests', // byte-exact chapter comparisons; no concurrent writers
+  'Terms Coverage Tests', // scans terms pages while beacon injectors rewrite them
+  'Variant Pricing Tests', // reads store/pricing pages during store rewrites
   // Dies silently under parallel load (no output before the runner marks it
   // failed); always green alone. Cheap suite — serializes for reliability.
   'Vendored Libs Tests',

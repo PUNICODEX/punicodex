@@ -80,6 +80,7 @@ function pageHtml(hubId, hub, active) {
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
+    <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="/css/hub.css?v=1">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <meta name="theme-color" content="#0e0b08">
@@ -113,6 +114,7 @@ function pageHtml(hubId, hub, active) {
     </footer>
     <script src="/js/hub3d.js?v=1" defer></script>
     <script src="/js/px-core.js?v=perf23" defer></script>
+    <script src="${PINS.NAV_HUBS_JS}" defer></script>
     <script>
     window.addEventListener('DOMContentLoaded', function () {
         var canvas = document.getElementById('hub-canvas');

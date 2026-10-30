@@ -14,7 +14,13 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 const { TARGETS, PRIMARY, MORE } = require('../scripts/sync-desktop-nav.js');
-const { HUB_ORDER, HUBS, childrenOf, PANTHEON_CHILDREN, CODEX_CHILDREN } = require('../scripts/nav-tree.js');
+const {
+  HUB_ORDER,
+  HUBS,
+  childrenOf,
+  PANTHEON_CHILDREN,
+  CODEX_CHILDREN,
+} = require('../scripts/nav-tree.js');
 
 let passed = 0;
 let failed = 0;
@@ -65,7 +71,10 @@ test('fan-out panels: Pantheon mega-panel and Codex panel have their destination
   }
   // Store fan-out is Phase B: plain link, no caret/panel until activated.
   const relics = html.slice(html.indexOf('data-hub="relics"'), html.indexOf('data-hub="about"'));
-  assert.ok(relics.includes('<a href="/store/">Store</a>'), 'store must be a plain link until Phase B');
+  assert.ok(
+    relics.includes('<a href="/store/">Store</a>'),
+    'store must be a plain link until Phase B'
+  );
   assert.ok(!relics.includes('nav-hub-panel'), 'store panel must not ship before Phase B');
 });
 

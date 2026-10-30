@@ -85,7 +85,9 @@ test('canonical menu covers all navigation links in 6 wing sections', () => {
   }
   assert.strictEqual((CANONICAL_MENU.match(/mobile-menu-section/g) || []).length, 6);
   assert.ok(
-    CANONICAL_MENU.includes('<a href="/pantheon/" class="mobile-link--featured">Pantheon — overview</a>'),
+    CANONICAL_MENU.includes(
+      '<a href="/pantheon/" class="mobile-link--featured">Pantheon — overview</a>'
+    ),
     'Pantheon overview is featured in the mobile Pantheon accordion'
   );
   assert.ok(
