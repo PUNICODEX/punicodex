@@ -503,8 +503,9 @@ ul, ol {
 .mobile-menu {
     position: fixed;
     top: var(--nav-height);
-    left: 0;
     right: 0;
+    left: auto;
+    width: min(88vw, 420px);
     height: calc(100vh - var(--nav-height));
     /* dvh tracks the visible viewport under mobile browser chrome; without it
        the menu's bottom (last item) sits under the toolbar and can't be scrolled to. */
@@ -519,15 +520,18 @@ ul, ol {
     padding: var(--space-4) var(--space-3);
     /* Keep the last link clear of the screen edge / home indicator. */
     padding-bottom: max(var(--space-5), env(safe-area-inset-bottom, 0px));
-    opacity: 0;
+    opacity: 1;
     pointer-events: none;
-    transition: opacity var(--duration-normal) var(--ease-smooth);
+    transform: translateX(105%);
+    transition: transform var(--duration-normal) var(--ease-smooth);
+    box-shadow: -16px 0 48px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
 }
 
 .mobile-menu.active {
     opacity: 1;
     pointer-events: all;
+    transform: translateX(0);
 }
 
 body.menu-open {

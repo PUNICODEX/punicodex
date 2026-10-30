@@ -161,7 +161,7 @@ test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', 
       console.warn(`    ⚠ ${page} missing, skipping mobile menu check`);
       continue;
     }
-    for (const section of ['Explore', 'Tools', 'Resources', 'About']) {
+    for (const section of ['Pantheon', 'Atlas', 'Relics', 'Library', 'Culture', 'Tools', 'About']) {
       assert.ok(
         html.includes(`<span class="mobile-menu-title">${section}</span>`),
         `${page}: missing mobile section ${section}`

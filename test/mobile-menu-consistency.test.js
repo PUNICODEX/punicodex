@@ -74,11 +74,11 @@ function readPageSafe(rel) {
   return fs.existsSync(full) ? fs.readFileSync(full, 'utf8') : null;
 }
 
-test('canonical menu covers all 34 navigation links in 4 sections', () => {
+test('canonical menu covers all navigation links in 7 super-category sections', () => {
   for (const href of CANONICAL_LINKS) {
     assert.ok(CANONICAL_MENU.includes(`href="${href}"`), `menu links to ${href}`);
   }
-  assert.strictEqual((CANONICAL_MENU.match(/mobile-menu-section/g) || []).length, 4);
+  assert.strictEqual((CANONICAL_MENU.match(/mobile-menu-section/g) || []).length, 7);
   assert.ok(
     CANONICAL_MENU.includes('<a href="/pantheon/" class="mobile-link--featured">Pantheon</a>'),
     'Pantheon is featured in the mobile menu'
@@ -212,7 +212,7 @@ test('mobile-menu.css resets legacy temple-base counters and uppercase transform
 test('realms and lexicon load the cache-busted mobile-menu.css', () => {
   for (const rel of [path.join('realms', 'index.html'), path.join('lexicon', 'index.html')]) {
     const html = readPage(rel);
-    assert.ok(html.includes('/css/mobile-menu.css?v=5'), `${rel} loads mobile-menu.css?v=4`);
+    assert.ok(html.includes('/css/mobile-menu.css?v=6'), `${rel} loads mobile-menu.css?v=6`);
     assert.ok(
       !html.includes('/css/mobile-menu.css?v=1'),
       `${rel} does not load the stale v=1 mobile-menu.css`

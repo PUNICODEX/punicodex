@@ -14,8 +14,9 @@
 .mobile-menu {
     position: fixed;
     top: var(--nav-height, 64px);
-    left: 0;
     right: 0;
+    left: auto;
+    width: min(88vw, 420px);
     height: calc(100vh - var(--nav-height, 64px));
     height: calc(100dvh - var(--nav-height, 64px));
     background: rgba(5, 5, 5, 0.98);
@@ -27,15 +28,18 @@
     gap: var(--space-3, 12px);
     padding: var(--space-4, 16px) var(--space-3, 12px);
     padding-bottom: max(var(--space-5, 24px), env(safe-area-inset-bottom, 0px));
-    opacity: 0;
+    opacity: 1;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transform: translateX(105%);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: -16px 0 48px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
 }
 
 .mobile-menu.active {
     opacity: 1;
     pointer-events: all;
+    transform: translateX(0);
 }
 
 body.menu-open {
