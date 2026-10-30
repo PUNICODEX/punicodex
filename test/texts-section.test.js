@@ -434,10 +434,10 @@ test('texts are wired into sitemap, nav, mobile menu, footer, and analytics', ()
     sitemap.includes('<loc>https://punicodex.com/texts/theogony/</loc>'),
     'sitemap missing /texts/theogony/'
   );
-  const resourcesSection = MORE.find((s) => s.heading === 'Resources');
+  const librarySection = MORE.find((s) => s.heading === 'Library');
   assert.ok(
-    resourcesSection?.links.some(([href, label]) => href === '/texts/' && label === 'Texts'),
-    'Texts must be in the Resources section of the desktop More dropdown'
+    librarySection?.links.some(([href, label]) => href === '/texts/' && label === 'Texts'),
+    'Texts must be in the Library section of the desktop Menu drawer'
   );
   assert.ok(CANONICAL_MENU.includes('<a href="/texts/">Texts</a>'), 'mobile menu missing Texts');
   assert.ok(
