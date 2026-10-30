@@ -180,7 +180,11 @@ function atlasSectorsHtml(graph) {
     .map((s) => {
       const inds = graph.industries
         .filter((g) => g.sector === s.id)
-        .sort((a, b) => b.members.length - a.members.length || a.name.localeCompare(b.name));
+        .sort(
+          (a, b) =>
+            b.members.length - a.members.length ||
+            (a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+        );
       const primary = inds.reduce((n, g) => n + g.members.filter((m) => m.weight === 2).length, 0);
       const resonant = inds.reduce((n, g) => n + g.members.filter((m) => m.weight === 1).length, 0);
       const total = primary + resonant || 1;
@@ -289,7 +293,8 @@ function renderAtlas(graph, registry) {
 <link rel="canonical" href="https://punicodex.com/patterns/">
 ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/main.css?v=perf27">
+<link rel="stylesheet" href="/css/main.css?v=perf29">
+<link rel="stylesheet" href="/css/nav-hubs.css?v=1">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>${ATLAS_CSS}</style>
 ${buildAtlasFaq(graph)}
@@ -348,7 +353,9 @@ ${atlasFaqHtml(graph)}
     <!-- Footer (canonical — built by scripts/sync-footer.js) -->
     ${footerHtml()}
 
-<script src="/js/px-core.js?v=perf21" defer></script>
+<script src="/js/px-core.js?v=perf23" defer></script>
+
+<script src="/js/nav-hubs.js?v=1" defer></script>
 <script src="/js/pc-fx-core.js?v=2" defer></script>
 <script src="/js/pc-fx-lens.js?v=1" defer></script>
 <script>
@@ -396,7 +403,8 @@ function renderMethodology(graph) {
 <meta name="twitter:card" content="summary_large_image">
 ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/main.css?v=perf27">
+<link rel="stylesheet" href="/css/main.css?v=perf29">
+<link rel="stylesheet" href="/css/nav-hubs.css?v=1">
 <link rel="stylesheet" href="/css/codex.css?v=perf9">
 <link rel="stylesheet" href="/css/punicodex-tokens.css">
 <link rel="stylesheet" href="/css/brand-overrides.css">
@@ -463,7 +471,9 @@ ${MARKER_BLOCKS}
     <!-- Footer (canonical — built by scripts/sync-footer.js) -->
     ${footerHtml()}
 
-<script src="/js/px-core.js?v=perf21" defer></script>
+<script src="/js/px-core.js?v=perf23" defer></script>
+
+<script src="/js/nav-hubs.js?v=1" defer></script>
 </body>
 </html>
 `;

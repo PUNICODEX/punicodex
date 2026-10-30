@@ -66,7 +66,8 @@ function render() {
 <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/main.css?v=perf27">
+<link rel="stylesheet" href="/css/main.css?v=perf29">
+<link rel="stylesheet" href="/css/nav-hubs.css?v=1">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>
 .trend-hero{text-align:center;padding:5.5rem 1rem 2rem}
@@ -147,7 +148,9 @@ function render() {
     <!-- Footer (canonical — built by scripts/sync-footer.js) -->
     ${footerHtml()}
 
-<script src="/js/px-core.js?v=perf21" defer></script>
+<script src="/js/px-core.js?v=perf23" defer></script>
+
+<script src="/js/nav-hubs.js?v=1" defer></script>
 <script src="/js/pc-fx-core.js?v=2" defer></script>
 <script src="/js/pc-fx-lens.js?v=1" defer></script>
 <script>

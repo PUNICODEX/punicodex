@@ -793,6 +793,7 @@ function headHtml({ title, description, canonical, ogDescription, jsonLd, jsonLd
     <link rel="stylesheet" href="/css/strip-less-nav.css?v=1">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
+    <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
@@ -935,7 +936,8 @@ ${mentionedHtml(computed)}
     ${footerHtml()}
 
     <div class="tx-toast" id="tx-toast" role="status" aria-live="polite"></div>
-    <script src="/js/px-core.js?v=perf20" defer></script>
+    <script src="/js/px-core.js?v=perf23" defer></script>
+    <script src="/js/nav-hubs.js?v=1" defer></script>
     <script src="/js/temple-base.js?v=perf20" defer></script>
     <script>${PAGE_SCRIPT}    </script>
     <script src="/js/newsletter.js?v=1" defer></script>
@@ -1132,7 +1134,9 @@ ${chaptersMentionedHtml(text, computed)}
     <!-- Footer (canonical — built by scripts/sync-footer.js) -->
     ${footerHtml()}
 
-    <script src="/js/px-core.js?v=perf20" defer></script>
+    <script src="/js/px-core.js?v=perf23" defer></script>
+
+    <script src="/js/nav-hubs.js?v=1" defer></script>
     <script src="/js/temple-base.js?v=perf20" defer></script>
     <script src="/js/newsletter.js?v=1" defer></script>
 </body>
@@ -1305,7 +1309,9 @@ ${faq
     <!-- Footer (canonical — built by scripts/sync-footer.js) -->
     ${footerHtml()}
 
-    <script src="/js/px-core.js?v=perf20" defer></script>
+    <script src="/js/px-core.js?v=perf23" defer></script>
+
+    <script src="/js/nav-hubs.js?v=1" defer></script>
     <script src="/js/temple-base.js?v=perf20" defer></script>
     <script src="/js/newsletter.js?v=1" defer></script>
 </body>

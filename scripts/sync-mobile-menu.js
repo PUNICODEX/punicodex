@@ -130,7 +130,7 @@ const TARGETS = [
 ];
 
 // Per-pantheon landing pages mark the Pantheon section active in the mobile menu.
-for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) {
+for (const id of Object.keys(PANTHEON_META).sort()) {
   TARGETS.push({ page: path.join(id, 'index.html'), active: '/pantheon/' });
 }
 

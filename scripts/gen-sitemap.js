@@ -48,6 +48,12 @@ const BASE_URL = 'https://punicodex.com';
 
 const mainPages = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },
+  // Wing hub pages (scripts/generate-hubs.js).
+  { loc: '/world/', priority: '0.8', changefreq: 'weekly' },
+  { loc: '/culture/', priority: '0.7', changefreq: 'weekly' },
+  { loc: '/instruments/', priority: '0.7', changefreq: 'weekly' },
+  { loc: '/library/', priority: '0.7', changefreq: 'weekly' },
+  { loc: '/relics/', priority: '0.7', changefreq: 'weekly' },
   { loc: '/pantheon/', priority: '0.9', changefreq: 'weekly' },
   { loc: '/lexicon/', priority: '0.9', changefreq: 'weekly' },
   { loc: '/blog/', priority: '0.7', changefreq: 'weekly' },

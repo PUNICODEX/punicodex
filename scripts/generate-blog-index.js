@@ -259,6 +259,7 @@ const html = `<!DOCTYPE html>
     <link rel="stylesheet" href="/css/strip-less-nav.css?v=1">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
+    <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
@@ -401,7 +402,9 @@ ${cardsHtml}
     <!-- Footer (canonical — built by scripts/sync-footer.js) -->
     ${footerHtml()}
 
-    <script src="/js/px-core.js?v=perf20" defer></script>
+    <script src="/js/px-core.js?v=perf23" defer></script>
+
+    <script src="/js/nav-hubs.js?v=1" defer></script>
     <script src="/js/temple-base.js?v=perf20" defer></script>
     <script>
     (function () {

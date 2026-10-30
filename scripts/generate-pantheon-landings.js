@@ -290,7 +290,8 @@ ${themes.map((t) => `                <span class="pl-theme-chip">${escapeHtml(t)
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/main.css?v=perf27">
+    <link rel="stylesheet" href="/css/main.css?v=perf29">
+    <link rel="stylesheet" href="/css/nav-hubs.css?v=1">
     <link rel="stylesheet" href="/css/pantheon.css?v=perf22">
     <link rel="stylesheet" href="/css/pantheon-landing.css?v=1">
 </head>
@@ -362,7 +363,9 @@ ${browseGrid}
 
     ${footerHtml()}
 
-    <script src="/js/px-core.js?v=perf21" defer></script>
+    <script src="/js/px-core.js?v=perf23" defer></script>
+
+    <script src="/js/nav-hubs.js?v=1" defer></script>
     <script src="/js/main.js?v=perf20" defer></script>
     <script src="/js/pc-fx-pantheon.js?v=1" defer></script>
 </body>

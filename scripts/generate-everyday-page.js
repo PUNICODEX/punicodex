@@ -158,9 +158,11 @@ function main() {
     <link rel="stylesheet" href="/css/main.css?v=perf27">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
+    <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <script type="application/ld+json">${JSON.stringify(itemList)}</script>
-    <script src="/js/px-core.js?v=perf21" defer></script>
+    <script src="/js/px-core.js?v=perf23" defer></script>
+    <script src="/js/nav-hubs.js?v=1" defer></script>
     <style>
       .ed-hero { padding: 9rem 1.5rem 3.5rem; text-align: center; background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(212,175,55,0.12), transparent 65%); }
       .ed-kicker { font-size: 0.72rem; letter-spacing: 0.35em; color: #8a7a52; text-transform: uppercase; margin-bottom: 1.2rem; }
