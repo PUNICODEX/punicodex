@@ -31,6 +31,11 @@
     let allCards = [];
     // Build O(1) lookup map to avoid ARCHETYPES.find() in hot loop
     const archetypeMap = new Map((typeof ARCHETYPES !== 'undefined' ? ARCHETYPES : []).map(a => [a.id, a]));
+    // Temples bearing a registered artifact (type/js/artifacts.js) — the
+    // "Artifacts" pill filters to this set.
+    const artifactTempleSet = new Set(
+        (typeof ARTIFACTS !== 'undefined' ? ARTIFACTS : []).map(a => a.temple)
+    );
 
     function buildGrid() {
         if (!grid || typeof ARCHETYPES === 'undefined') return;
@@ -147,6 +152,8 @@
                 else if (currentFilter === 'awaiting') filterMatch = !archetype.built;
                 else if (currentFilter === 'marked') filterMatch = preservationBadgeText(archetype.name) !== 'ASCII form';
                 else if (currentFilter === 'plain') filterMatch = preservationBadgeText(archetype.name) === 'ASCII form';
+                else if (currentFilter === 'realms') filterMatch = /-location$/.test(archetype.pantheon || '');
+                else if (currentFilter === 'artifacts') filterMatch = artifactTempleSet.has(archetype.id);
                 else filterMatch = archetype.pantheon === currentFilter;
             }
 

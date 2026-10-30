@@ -191,6 +191,11 @@
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       };
 
+      // Desktop drawer mode (≥1024px): the menu renders as a left-anchored
+      // half-viewport drawer (css/nav-more.css) — click-only, no hover-open,
+      // and opening moves focus inside for keyboard users.
+      const drawerMode = () => window.matchMedia('(min-width: 1024px)').matches;
+
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -200,12 +205,17 @@
           if (t !== toggle) t.setAttribute('aria-expanded', 'false');
         });
         setOpen(open);
+        if (open && drawerMode()) {
+          const first = menu.querySelector('a');
+          if (first) first.focus({ preventScroll: true });
+        }
       });
 
       // Hover persistence: opening on mouseenter and keeping the menu open
       // while the pointer is anywhere inside .nav-more (including the gap
       // between the toggle and the menu). A short leave delay prevents
       // flicker when crossing the toggle-to-menu gap.
+      // Desktop drawer mode is click-only — hover listeners stay unbound.
       let leaveTimer = null;
       const HOVER_LEAVE_DELAY = 120;
 
@@ -216,22 +226,24 @@
         }
       };
 
-      more.addEventListener('mouseenter', () => {
-        clearLeaveTimer();
-        setOpen(true);
-      });
+      if (!drawerMode()) {
+        more.addEventListener('mouseenter', () => {
+          clearLeaveTimer();
+          setOpen(true);
+        });
 
-      more.addEventListener('mouseleave', () => {
-        clearLeaveTimer();
-        leaveTimer = setTimeout(() => {
-          setOpen(false);
-        }, HOVER_LEAVE_DELAY);
-      });
+        more.addEventListener('mouseleave', () => {
+          clearLeaveTimer();
+          leaveTimer = setTimeout(() => {
+            setOpen(false);
+          }, HOVER_LEAVE_DELAY);
+        });
 
-      menu.addEventListener('mouseenter', () => {
-        clearLeaveTimer();
-        setOpen(true);
-      });
+        menu.addEventListener('mouseenter', () => {
+          clearLeaveTimer();
+          setOpen(true);
+        });
+      }
 
       document.addEventListener('click', (e) => {
         if (!more.contains(e.target)) {

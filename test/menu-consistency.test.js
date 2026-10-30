@@ -2,7 +2,7 @@
  * PuniCodex — Menu Consistency Tests
  *
  * Guards the canonical navigation system: every non-temple page must carry
- * the same desktop nav (6 primary links + sectioned More dropdown + Enter CTA)
+ * the same desktop nav (5 primary links incl. ✦ Herald + sectioned Menu drawer + Enter CTA)
  * and the canonical sectioned mobile menu, with the page's own item marked
  * aria-current. Prevents the hand-maintained drift this audit found
  * (7 different desktop menus across 26 pages).
@@ -36,25 +36,24 @@ function readIfExists(rel) {
   return fs.existsSync(full) ? fs.readFileSync(full, 'utf8') : null;
 }
 
-test('sync-desktop-nav covers every root navigation page (53+ targets)', () => {
-  // Base target list is 53; per-pantheon landing pages are appended at runtime.
-  assert.ok(TARGETS.length >= 53, `expected at least 53 targets, got ${TARGETS.length}`);
-  assert.strictEqual(PRIMARY.length, 6);
+test('sync-desktop-nav covers every root navigation page (54+ targets)', () => {
+  // Base target list is 54; per-pantheon landing pages are appended at runtime.
+  assert.ok(TARGETS.length >= 54, `expected at least 54 targets, got ${TARGETS.length}`);
+  assert.strictEqual(PRIMARY.length, 5);
   assert.deepStrictEqual(
-    PRIMARY.map(([href, label, featured]) => [href, label, !!featured]),
+    PRIMARY.map(([href, label, featured, tag]) => [href, label, !!featured, tag || null]),
     [
-      ['/pantheon/', 'Pantheon', true],
-      ['/realms/', 'Realms', false],
-      ['/patterns/', 'Patterns', false],
-      ['/trending/', 'Trending', false],
-      ['/store/', 'Store', false],
-      ['/connections/', 'Connections', false],
+      ['/pantheon/', 'Pantheon', true, null],
+      ['/connections/', 'Atlas', false, null],
+      ['/cards/', 'Relics', false, null],
+      ['/store/', 'Store', false, null],
+      ['/herald/', 'Herald', false, 'new'],
     ]
   );
-  assert.strictEqual(MORE.length, 4);
+  assert.strictEqual(MORE.length, 6);
   for (const section of MORE) {
-    assert.ok(section.heading, 'every More section must have a heading');
-    assert.ok(Array.isArray(section.links), 'every More section must have a links array');
+    assert.ok(section.heading, 'every drawer section must have a heading');
+    assert.ok(Array.isArray(section.links), 'every drawer section must have a links array');
   }
 });
 

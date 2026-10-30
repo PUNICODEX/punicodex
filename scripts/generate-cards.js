@@ -710,7 +710,17 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition 
           colors: archetype.colors || null,
           artist: null,
         }
-      : { mascot: null, logomark: null, fullArt: null, colors: null, artist: null },
+      : {
+          // Archive printings have no bespoke mascot; the temple OG bake is the
+          // card face so the gallery never falls back to a bare sigil. Colors
+          // fall back to the house palette (the spec requires a palette on any
+          // card carrying brand art).
+          mascot: `/assets/og/${entry.id}.jpg`,
+          logomark: null,
+          fullArt: null,
+          colors: { primary: '#D4AF37', secondary: '#4169E1', glow: 'rgba(212,175,55,0.3)' },
+          artist: null,
+        },
   };
 
   if (variant === 'original-script') {

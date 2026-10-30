@@ -69,6 +69,59 @@
     transform: translateY(0);
 }
 
+/* ─── Desktop drawer (≥1024px): the Menu toggle opens a left-anchored,
+   half-viewport drawer of grouped super-categories instead of the compact
+   dropdown. Hover-open is disabled in this mode (js/px-core.js gates it);
+   Esc / outside-click close. ─── */
+@media (min-width: 1024px) {
+    .nav-more:hover .nav-more-menu {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+    }
+
+    .nav-more-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: auto;
+        bottom: 0;
+        width: min(50vw, 580px);
+        min-width: 0;
+        max-height: none;
+        height: 100dvh;
+        border-radius: 0;
+        border-left: none;
+        border-top: none;
+        border-bottom: none;
+        padding: 28px 32px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-content: start;
+        gap: 22px 28px;
+        opacity: 1;
+        pointer-events: none;
+        transform: translateX(-105%);
+        transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+        box-shadow: 24px 0 64px rgba(0, 0, 0, 0.55);
+        z-index: 1012;
+    }
+
+    .nav-more-toggle[aria-expanded="true"] + .nav-more-menu,
+    .nav-more-menu:focus-within {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateX(0);
+    }
+}
+
+/* Herald's primary slot carries a ✦ tag (settled nav order). */
+.nav-link--new::before {
+    content: '✦';
+    margin-right: 0.35em;
+    color: var(--gold-bright, #f4d03f);
+    font-size: 0.8em;
+}
+
 .nav-more-section {
     display: flex;
     flex-direction: column;
@@ -101,17 +154,16 @@
 }
 
 .nav-link--featured {
-    color: var(--gold-bright, #f4d03f);
-    text-shadow: 0 0 12px rgba(244, 208, 63, 0.35);
+    color: var(--ivory, #f5f0e8);
 }
 
 .nav-link--featured:hover,
 .nav-link--featured.active {
-    color: var(--gold-bright, #f4d03f);
+    color: var(--gold, #d4af37);
 }
 
 .nav-link--featured::after {
-    background: var(--gold-bright, #f4d03f);
+    background: var(--gold, #d4af37);
 }
 
 .nav-cta {

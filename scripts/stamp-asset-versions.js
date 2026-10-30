@@ -35,6 +35,7 @@ const ASSETS = [
   '/js/oracle.js',
   '/js/home.js',
   '/js/pantheon.js',
+  '/type/js/artifacts.js',
   '/js/connections.js',
   '/js/art-marketplace-data.js',
   '/js/main.js',

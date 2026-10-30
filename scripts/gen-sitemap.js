@@ -54,6 +54,7 @@ const mainPages = [
   { loc: '/texts/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/type/', priority: '0.9', changefreq: 'weekly' },
   { loc: '/realms/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/artifacts/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/codex/', priority: '0.7', changefreq: 'weekly' },
   // /search/ carries noindex,follow — a noindexed URL must never appear in
   // the sitemap (Google Search Console flags the conflict).

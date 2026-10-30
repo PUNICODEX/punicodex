@@ -45,6 +45,7 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
             <div class="mobile-menu-group">
                 <a href="/pantheon/" class="mobile-link--featured">Pantheon</a>
                 <a href="/realms/">Realms</a>
+                <a href="/artifacts/">Artifacts</a>
                 <a href="/patterns/">Patterns</a>
                 <a href="/trending/">Trending</a>
                 <a href="/store/">Store</a>
@@ -79,14 +80,13 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/scholars/">Scholars</a>
                 <a href="/herald/">Herald</a>
                 <a href="/rulebook/">Rulebook</a>
-                <a href="/screen/">Screen</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
                 <a href="/about/">About</a>
-                <a href="/university-sponsorship/">Universities</a>
+                <a href="/university-sponsorship/">Academics</a>
                 <a href="/about/founder/">Founder</a>
                 <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
@@ -136,6 +136,7 @@ const TARGETS = [
   { page: path.join('lexicon', 'cognates.html'), active: '/lexicon/' },
   { page: path.join('pantheon', 'index.html'), active: '/pantheon/' },
   { page: path.join('realms', 'index.html'), active: '/realms/' },
+  { page: path.join('artifacts', 'index.html'), active: null },
   { page: path.join('store', 'index.html'), active: '/store/' },
   { page: path.join('rulebook', 'index.html'), active: '/rulebook/' },
   { page: path.join('everyday', 'index.html'), active: '/everyday/' },

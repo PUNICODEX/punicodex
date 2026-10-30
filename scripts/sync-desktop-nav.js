@@ -7,12 +7,15 @@
  * (Connections/Oracle/Appraise appearing and disappearing at random).
  * This script makes the nav canonical everywhere:
  *
- *   Primary : Pantheon (featured), Realms, Patterns, Trending, Store, Connections
- *   More ▾  : sectioned dropdown with Explore, Tools, Resources, About
- *              Explore  : Herald, Search, Words, Screen
- *              Tools    : Type, Ink, Oracle, App, Extension, API, Codex, Appraise
- *              Resources: Lexicon, Texts, Blog, Cards, Creatives, Scholars
- *              About    : About, Contact
+ *   Primary : Pantheon (featured), Atlas, Relics, Store, Herald (✦ new)
+ *   Menu ▾  : hamburger-triggered left drawer (~50 % of viewport) holding
+ *              the grouped super-categories:
+ *              Atlas    : Connections, Patterns, Trending, Realms, Artifacts, Search
+ *              Relics   : Ink, Cards, Game, Art, Creatives
+ *              Library  : Lexicon, Texts, Blog, Scholars, Codex, Rulebook
+ *              Culture  : Screen, Words, Academics
+ *              Tools    : Type, Oracle, App, Extension, API, Appraise, Authenticity
+ *              About    : About, Founder, Careers, Contact, Terms, Privacy
  *   CTA     : Enter
  *
  * Per page it normalizes the wordmark (horizontal gold lockup), replaces
@@ -34,54 +37,68 @@ const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.j
 
 const PRIMARY = [
   ['/pantheon/', 'Pantheon', true],
-  ['/realms/', 'Realms'],
-  ['/patterns/', 'Patterns'],
-  ['/trending/', 'Trending'],
+  ['/connections/', 'Atlas'],
+  ['/cards/', 'Relics'],
   ['/store/', 'Store'],
-  ['/connections/', 'Connections'],
+  ['/herald/', 'Herald', false, 'new'],
 ];
 const MORE = [
   {
-    heading: 'Explore',
+    heading: 'Atlas',
     links: [
-      ['/herald/', 'Herald'],
+      ['/connections/', 'Connections'],
+      ['/patterns/', 'Patterns'],
+      ['/trending/', 'Trending'],
+      ['/realms/', 'Realms'],
+      ['/artifacts/', 'Artifacts'],
       ['/search/', 'Search'],
-      ['/everyday/', 'Words'],
+    ],
+  },
+  {
+    heading: 'Relics',
+    links: [
+      ['/ink/', 'Ink'],
+      ['/cards/', 'Cards'],
+      ['/game/', 'Game'],
+      ['/art/', 'Art'],
+      ['/creatives/', 'Creatives'],
+    ],
+  },
+  {
+    heading: 'Library',
+    links: [
+      ['/lexicon/', 'Lexicon'],
+      ['/texts/', 'Texts'],
+      ['/blog/', 'Blog'],
+      ['/scholars/', 'Scholars'],
+      ['/codex/', 'Codex'],
+      ['/rulebook/', 'Rulebook'],
+    ],
+  },
+  {
+    heading: 'Culture',
+    links: [
       ['/screen/', 'Screen'],
+      ['/everyday/', 'Words'],
+      ['/university-sponsorship/', 'Academics'],
     ],
   },
   {
     heading: 'Tools',
     links: [
       ['/type/', 'Type'],
-      ['/ink/', 'Ink'],
       ['/oracle/', 'Oracle'],
-      ['/authenticity/', 'Authenticity'],
       ['/app/', 'App'],
       ['/extension/', 'Extension'],
       ['/api/v1/docs/', 'API'],
-      ['/codex/', 'Codex'],
       ['/appraise/', 'Appraise'],
-    ],
-  },
-  {
-    heading: 'Resources',
-    links: [
-      ['/lexicon/', 'Lexicon'],
-      ['/texts/', 'Texts'],
-      ['/blog/', 'Blog'],
-      ['/cards/', 'Cards'],
-      ['/creatives/', 'Creatives'],
-      ['/scholars/', 'Scholars'],
-      ['/rulebook/', 'Rulebook'],
-      ['/screen/', 'Screen'],
+      ['/authenticity/', 'Authenticity'],
     ],
   },
   {
     heading: 'About',
     links: [
       ['/about/', 'About'],
-      ['/university-sponsorship/', 'Universities'],
       ['/about/founder/', 'Founder'],
       ['/careers/', 'Careers'],
       ['/contact/', 'Contact'],
@@ -131,6 +148,7 @@ const TARGETS = [
   { page: path.join('pantheon', 'index.html'), active: '/pantheon/' },
   { page: path.join('privacy', 'index.html'), active: null },
   { page: path.join('realms', 'index.html'), active: '/realms/' },
+  { page: path.join('artifacts', 'index.html'), active: null },
   { page: path.join('store', 'index.html'), active: '/store/' },
   { page: path.join('terms', 'index.html'), active: null },
   { page: path.join('terms', 'data-use', 'index.html'), active: null },
@@ -175,9 +193,10 @@ const TOGGLE = `<button class="nav-toggle" id="nav-toggle" aria-label="Toggle me
                 <span></span>
             </button>`;
 
-function linkHtml([href, label, featured], active) {
+function linkHtml([href, label, featured, tag], active) {
   let cls = 'nav-link';
   if (featured) cls += ' nav-link--featured';
+  if (tag === 'new') cls += ' nav-link--new';
   if (href === active) cls += ' active';
   const current = href === active ? ' aria-current="page"' : '';
   return `<a href="${href}" class="${cls}"${current}>${label}</a>`;
@@ -196,7 +215,7 @@ function navLinksHtml(active) {
   return `<div class="nav-links">
                 ${primary}
                 <div class="nav-more">
-                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
+                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">Menu</button>
                     <div class="nav-more-menu">
                         ${sections}
                     </div>
@@ -323,15 +342,15 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
   if (!html.includes('/css/main.css')) {
     // Normalize component-CSS versions (immutable-cached URLs must change
     // when the files change), then ensure they're linked.
-    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=5');
-    html = ensureCssLink(html, '/css/nav-more.css?v=5');
+    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=6');
+    html = ensureCssLink(html, '/css/nav-more.css?v=6');
     if (html.includes('class="mobile-menu"')) {
       html = html.replace(/\/css\/mobile-menu\.css\?v=\d+/g, '/css/mobile-menu.css?v=5');
       html = ensureCssLink(html, '/css/mobile-menu.css?v=5');
     }
   }
   if (!html.includes('/js/px-core.js')) {
-    html = ensureScript(html, '/js/px-core.js?v=perf9');
+    html = ensureScript(html, '/js/px-core.js?v=perf23');
   }
 
   writeFileWithRetry(filePath, html, 'utf8');

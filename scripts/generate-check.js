@@ -21,6 +21,9 @@ function run(cmd, opts = {}) {
     cwd: ROOT,
     encoding: 'utf8',
     stdio: 'pipe',
+    // Large content waves dirty 15k+ files; `update-index --refresh` prints
+    // one line per file and blows the 1 MiB default buffer (ENOBUFS).
+    maxBuffer: 64 * 1024 * 1024,
     ...opts,
   });
 }
