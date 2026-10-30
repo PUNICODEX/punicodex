@@ -50,10 +50,10 @@ Also: `data-version.json` (GENERATED manifest), `extended flagship materials/` (
 
 ### Canonical sources (edit these by hand)
 
-- `type/js/lexicon.js` — the 983-entry lexicon; single source of truth.
+- `type/js/lexicon.js` — the 983-entry lexicon; single source of truth. NOTE: its `domain` field is the **domain-of-influence gloss**, never a domain name; the sparse legacy `domainPunycode` field is retired as a data source (8 corrupt values repaired 2026-10-30 — any consumer needs `scripts/validate-accuracy.js`'s punycode guard green).
 - `type/js/`: `original-scripts.js` (+ `-extra.json`) — original scripts/provenance for non-Greek/CJK traditions; `source-catalog.js` (citations); `glyph-atlas.js`; `pronunciation-atlas.js` + `pronunciation-rules.js` (engine); `everyday-words.js`; `ink-myths.js`; `sign-notes.js`; `industry-patterns.js` + `industry-aliases.js` (53 industries, 700+ terms).
-- `js/archetypes-v2.js` — hand-built flagship archetypes (548) with domains, rentalTier + canvas assignments.
-- `platform/db/owned-domains.json` — the 316 owned Unicode domains; each must be covered by an archetype domain set and routed in `middleware.js`.
+- `js/archetypes-v2.js` — hand-built flagship archetypes (548) with domains, rentalTier + canvas assignments. The **canonical temple-domain pairs** live here (`domainUnicode`/`domainPunycode`), UTS#46-validated by `scripts/validate-accuracy.js` — never derive domains from the lexicon `domain` field.
+- `platform/db/owned-domains.json` — the 359 owned Unicode domains; each must be covered by an archetype domain set and routed in `middleware.js`.
 - `scripts/lore-catalog.json` — scholarly narrative for the 548 flagships; `scripts/gallery-data.json` — curated Wikimedia galleries (+ `_honestZero` exemptions).
 - `platform/blog/content/{id}.json` — one canonical blog post per flagship.
 - `platform/public/scholars/` + `platform/public/admin-portal/` — canonical portal sources (root copies are generated).

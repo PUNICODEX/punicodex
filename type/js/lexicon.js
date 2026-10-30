@@ -54309,7 +54309,7 @@ const LEXICON = [
       "Cambridge"
     ],
     "domainUnicode": "guāndì.com",
-    "domainPunycode": "xn--guand-eua.com",
+    "domainPunycode": "xn--gund-tpa7j.com",
     "hasAdSite": true
   },
   {
@@ -54361,7 +54361,7 @@ const LEXICON = [
       "Cambridge"
     ],
     "domainUnicode": "gaurī.com",
-    "domainPunycode": "xn--gaur-rxa.com",
+    "domainPunycode": "xn--gaur-tya.com",
     "hasAdSite": true
   },
   {
@@ -54407,7 +54407,7 @@ const LEXICON = [
       "Cambridge"
     ],
     "domainUnicode": "śani.com",
-    "domainPunycode": "xn--ani-9qa.com",
+    "domainPunycode": "xn--ani-bza.com",
     "hasAdSite": true
   },
   {
@@ -54453,7 +54453,7 @@ const LEXICON = [
       "Oxford"
     ],
     "domainUnicode": "ọrun.com",
-    "domainPunycode": "xn--run-9ua.com",
+    "domainPunycode": "xn--run-slz.com",
     "hasAdSite": true
   },
   {
@@ -54598,7 +54598,7 @@ const LEXICON = [
       "Cambridge"
     ],
     "domainUnicode": "plūtō.com",
-    "domainPunycode": "xn--plt-2ua.com",
+    "domainPunycode": "xn--plt-sxa2m.com",
     "hasAdSite": true
   },
   {
@@ -54650,7 +54650,7 @@ const LEXICON = [
       "Cambridge"
     ],
     "domainUnicode": "cerēs.com",
-    "domainPunycode": "xn--cers-g8a.com",
+    "domainPunycode": "xn--cers-dva.com",
     "hasAdSite": true
   },
   {
@@ -54719,7 +54719,7 @@ const LEXICON = [
       "Cambridge"
     ],
     "domainUnicode": "mixcōātl.com",
-    "domainPunycode": "xn--mixcatl-01a.com",
+    "domainPunycode": "xn--mixctl-6za12d.com",
     "hasAdSite": true
   },
   {
@@ -54769,7 +54769,7 @@ const LEXICON = [
       "Oxford"
     ],
     "domainUnicode": "ọba.com",
-    "domainPunycode": "xn--oba-5ua.com",
+    "domainPunycode": "xn--b-sfa590u.com",
     "hasAdSite": true
   },
   {

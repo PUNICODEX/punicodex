@@ -17,7 +17,7 @@ const ROOT = process.cwd();
 // Public, crawlable surfaces only. App portals, generated client bundles,
 // documentation, tooling, and root stub pages are out of scope.
 const EXCLUDE_RE =
-  /^\.git\/|^\.vercel\/|node_modules|^Marketing\/|^tools\/|^scripts\/|^templates\/|^docs\/|^admin-portal\/|^account\/|^android\/|^platform\/|^extension\/|^extension-v2\/|^mobile\/|\.backup|\.venv|\.venv_hieropy|build\/intermediates|^404\.html$|^admin\.html$|^browser\.html$|^entry\.html$|^interstitial\.html$/;
+  /^\.git\/|^\.vercel\/|node_modules|^Marketing\/|^tools\/|^scripts\/|^templates\/|^docs\/|^admin-portal\/|^account\/|^android\/|^platform\/|^extension\/|^extension-v2\/|^mobile\/|^session-debug\/|^Kimi_Agent_|\.backup|\.venv|\.venv_hieropy|build\/intermediates|^404\.html$|^admin\.html$|^browser\.html$|^entry\.html$|^interstitial\.html$/;
 
 function walk(dir, cb) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {

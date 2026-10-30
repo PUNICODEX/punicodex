@@ -3217,7 +3217,7 @@ const ARCHETYPES = [
         pantheon: "egyptian",
         folder: "thoth",
         domainUnicode: "ḏḥwtj.com",
-        domainPunycode: "xn--wty-2yy4e.com",
+        domainPunycode: "xn--wtj-2yy4e.com",
         domainAlt: [],
         colors: { primary: "#D4AF37", secondary: "#1E3A5F", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/thoth/assets/thoth_mascot.webp",

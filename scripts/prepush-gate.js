@@ -65,7 +65,12 @@ const ALWAYS_SUITES = ['Format Check', 'Biome Lint'];
 const CANONICAL_PATTERN =
   /^(type\/js\/|js\/archetypes-v2\.js$|platform\/db\/owned-domains\.json$|templates\/|scripts\/(generate|sync-|inject-|create-flagship|generate-temples|validate-flywheel)|platform\/blog\/content\/|platform\/scholars\/content\/|platform\/public\/|platform\/texts\/|scripts\/lore-catalog\.json$|scripts\/gallery-data\.json$)/;
 
-const CANONICAL_SUITES = ['Lexicon Validator', 'Generated Artifacts Tests', 'Flywheel Integrity'];
+const CANONICAL_SUITES = [
+  'Lexicon Validator',
+  'Generated Artifacts Tests',
+  'Flywheel Integrity',
+  'Finetune Drills Tests',
+];
 
 const RULES = [
   {
@@ -100,6 +105,10 @@ const RULES = [
       'AI Corpus Phases Tests',
       'Oracle Doctrine Corpus Tests',
     ],
+  },
+  {
+    pattern: /^scripts\/prepare-finetune-data\.js$|^data\/finetune\/|^test\/finetune-drills\.test\.js$/,
+    suites: ['Finetune Drills Tests'],
   },
   {
     pattern: /^platform\/db\/(?!owned-domains)/,

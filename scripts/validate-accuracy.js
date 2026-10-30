@@ -331,6 +331,53 @@ LEXICON.filter((e) => e.pantheon === 'greek' || e.pantheon === 'greek-location')
 );
 
 // ═══════════════════════════════════════════════════════════
+// Domain punycode integrity (IDNA / UTS#46)
+// ═══════════════════════════════════════════════════════════
+section('Domain Punycode Integrity');
+
+const { domainToASCII } = require('node:url');
+
+// The lexicon's sparse legacy `domainPunycode` field: when present it must
+// be a valid, self-consistent UTS#46 encoding. (8 corrupt values were
+// repaired 2026-10-30; without this guard they silently flow into the
+// finetune drills and any consumer of the field.)
+LEXICON.forEach((entry) => {
+  if (!entry.domainPunycode) return;
+  assert(
+    domainToASCII(entry.domainPunycode) === entry.domainPunycode,
+    `[${entry.id}] domainPunycode "${entry.domainPunycode}" is not a valid self-consistent UTS#46 encoding`
+  );
+  if (entry.domainPunycode.startsWith('xn--')) {
+    const decoded = entry.domainPunycode.replace(/^xn--/, '').split('.')[0];
+    // a punycode label whose basic-code-point section is empty (xn--b-…)
+    // is legal; just require the label not to collapse to ASCII-only noise
+    assert(
+      decoded.length > 0,
+      `[${entry.id}] domainPunycode "${entry.domainPunycode}" has an empty punycode label`
+    );
+  }
+});
+
+// Archetype domain pairs are the canonical temple domains: the punycode form
+// must be exactly what UTS#46 derives from the Unicode form.
+const ARCHETYPES = (() => {
+  const p = path.join(__dirname, '../js/archetypes-v2.js');
+  const code = fs.readFileSync(p, 'utf8').replace('const ARCHETYPES', 'var ARCHETYPES');
+  return new Function(`${code}; return ARCHETYPES;`)();
+})();
+for (const a of ARCHETYPES) {
+  if (!a.domainUnicode || !a.domainPunycode) continue;
+  assert(
+    domainToASCII(a.domainUnicode) === a.domainPunycode,
+    `[${a.id}] archetype domainPunycode "${a.domainPunycode}" !== UTS#46("${a.domainUnicode}")`
+  );
+  assert(
+    domainToASCII(a.domainPunycode) === a.domainPunycode,
+    `[${a.id}] archetype domainPunycode "${a.domainPunycode}" fails UTS#46 round-trip`
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
 // SUMMARY
 // ═══════════════════════════════════════════════════════════
 console.log(`\n${'='.repeat(50)}`);

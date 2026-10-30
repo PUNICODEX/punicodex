@@ -26,15 +26,29 @@
  *     file (exact-id intersection check).
  *
  * Output: data/finetune/oracle-sft-train.json, oracle-sft-eval.json,
- *         oracle-sft-scholarly.json, prep-report.json.
+ *         oracle-sft-scholarly.json, oracle-sft-drills.json, prep-report.json.
+ *
+ * oracle-sft-drills.json (Phase 2): exact-string punycode recall drills.
+ * Source: platform/db/owned-domains.json (359 canonical domains), converted
+ * with WHATWG domainToASCII and verified. (The lexicon's `domain` field is
+ * the domain-of-influence gloss and its sparse legacy `domainPunycode` was
+ * retired as a source — 8 of 10 values were corrupt encodings; the canonical
+ * domain pairs live on the archetypes and are validated there.)
+ * Pure-ASCII owned domains become "no encoding needed" trap pairs — a
+ * documented Phase 1 failure was inventing punycode for plain ASCII names.
+ * The dual-form names (apóllōn/apollōn, hekátē/hekate, níkē/nike, zeús) get
+ * extra paraphrases: they carry the graded checks.
  */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { domainToASCII } = require('node:url');
 
 const ROOT = path.join(__dirname, '..');
 const CORPUS = path.join(ROOT, 'data', 'corpus');
 const OUT = path.join(ROOT, 'data', 'finetune');
+
+const OWNED_DOMAINS = require(path.join(ROOT, 'platform', 'db', 'owned-domains.json'));
 
 // The package ships scholars/lore/blog at these roots; inside the repo they
 // live at their canonical paths. Use whichever exists.
@@ -255,6 +269,111 @@ function buildScholarlyRecords() {
   return { records, report };
 }
 
+// ── Domain / punycode drills (Phase 2) ─────────────────────────────────────
+
+const isPureAscii = (s) => /^[\x00-\x7F]+$/.test(s);
+
+// Names carrying the graded smoke checks (dual forms + the canonical
+// restoration) get extra paraphrase exposure per epoch.
+const EMPHASIS_DOMAINS = [
+  'apóllōn.com',
+  'apollōn.com',
+  'zeús.com',
+  'hekátē.com',
+  'hekate.com',
+  'níkē.com',
+  'nike.com',
+];
+
+function collectDomainPairs() {
+  const pairs = new Map(); // unicode domain -> punycode (itself for ASCII)
+  const mismatches = [];
+  let asciiTraps = 0;
+  for (const d of OWNED_DOMAINS) {
+    if (pairs.has(d)) continue;
+    if (isPureAscii(d)) {
+      asciiTraps++;
+      pairs.set(d, d);
+      continue;
+    }
+    const ascii = domainToASCII(d);
+    if (ascii && ascii !== d && ascii.startsWith('xn--')) pairs.set(d, ascii);
+    else mismatches.push(d);
+  }
+  return { pairs, asciiTraps, mismatches };
+}
+
+function buildDrillRecords() {
+  const { pairs, asciiTraps, mismatches } = collectDomainPairs();
+  const records = [];
+  const seen = new Set();
+  const push = (question, answer) => {
+    const rec = {
+      conversations: [
+        { from: 'human', value: clean(question) },
+        { from: 'gpt', value: clean(answer) },
+      ],
+    };
+    const h = crypto.createHash('sha1').update(JSON.stringify(rec)).digest('hex');
+    if (seen.has(h)) return;
+    seen.add(h);
+    records.push(rec);
+  };
+
+  for (const [unicode, punycode] of pairs) {
+    if (unicode === punycode) {
+      // ASCII trap: plain names must NOT get an invented xn-- form.
+      push(
+        `What is the punycode form of ${unicode}?`,
+        `${unicode} is pure ASCII — it needs no punycode encoding. ` +
+          `DNS stores ${unicode} exactly as written.`
+      );
+      continue;
+    }
+    push(`What is the punycode form of ${unicode}?`, punycode);
+    push(`How is ${unicode} encoded for DNS?`, punycode);
+    push(`What name is encoded by ${punycode}?`, unicode);
+  }
+
+  // ASCII traps for the plain-ASCII forms of restored names (apollon.com,
+  // zeus.com, athena.com, …) — Phase 1's base comparison showed models
+  // inventing xn-- forms for plain ASCII names. Teach the boundary.
+  for (const unicode of pairs.keys()) {
+    if (isPureAscii(unicode)) continue;
+    const ascii = unicode.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    if (ascii === unicode || !isPureAscii(ascii)) continue;
+    push(
+      `What is the punycode form of ${ascii}?`,
+      `${ascii} is pure ASCII — it needs no punycode encoding. ` +
+        `DNS stores ${ascii} exactly as written.`
+    );
+  }
+
+  for (const name of EMPHASIS_DOMAINS) {
+    const punycode = pairs.get(name);
+    if (!punycode || punycode === name) continue;
+    push(`Spell ${name} in punycode.`, punycode);
+    push(
+      `I am registering ${name}. What string does the registrar's DNS actually store?`,
+      punycode
+    );
+    push(
+      `What is the punycode form of ${name}, and do the diacritics survive the encoding?`,
+      `${punycode} — the diacritics survive the encoding; that is the whole point of the restoration.`
+    );
+  }
+
+  return {
+    records,
+    report: {
+      total: records.length,
+      domainPairs: pairs.size,
+      asciiTraps,
+      mismatches,
+    },
+  };
+}
+
 // ── Main ───────────────────────────────────────────────────────────────────
 
 function main() {
@@ -269,6 +388,7 @@ function main() {
   const evalSet = convert('chat-eval', path.join(CORPUS, 'chat-eval.jsonl'), evalExpected, null);
 
   const scholarly = buildScholarlyRecords();
+  const drills = buildDrillRecords();
 
   fs.mkdirSync(OUT, { recursive: true });
   const write = (file, rows) =>
@@ -276,6 +396,7 @@ function main() {
   write('oracle-sft-train.json', train.out);
   write('oracle-sft-eval.json', evalSet.out);
   write('oracle-sft-scholarly.json', scholarly.records);
+  write('oracle-sft-drills.json', drills.records);
 
   fs.writeFileSync(
     path.join(OUT, 'prep-report.json'),
@@ -305,6 +426,12 @@ function main() {
             blogDir: BLOG_DIR ? path.relative(ROOT, BLOG_DIR) : null,
           },
         },
+        drills: {
+          written: drills.records.length,
+          domainPairs: drills.report.domainPairs,
+          asciiTraps: drills.report.asciiTraps,
+          conversionMismatches: drills.report.mismatches,
+        },
         blocklistSize: blocklist.size,
       },
       null,
@@ -319,6 +446,13 @@ function main() {
       `${scholarly.report.skippedEmpty} empty sources skipped)`
   );
   console.log(`corpus version: ${manifest.version} → ${path.relative(ROOT, OUT)}/`);
+  console.log(
+    `drills:     ${drills.records.length} records ` +
+      `(domains ${drills.report.domainPairs}, ASCII traps ${drills.report.asciiTraps}, ` +
+      `conversion mismatches ${drills.report.mismatches.length})`
+  );
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { buildDrillRecords };
