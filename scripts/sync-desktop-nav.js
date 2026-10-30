@@ -35,79 +35,32 @@ const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
+const { HUB_ORDER, HUBS, childrenOf } = require('./nav-tree.js');
 
-const PRIMARY = [
-  ['/pantheon/', 'Pantheon', true],
-  ['/connections/', 'Atlas'],
-  ['/cards/', 'Relics'],
-  ['/store/', 'Store'],
-  ['/herald/', 'Herald', false, 'new'],
-];
-const MORE = [
-  {
-    heading: 'Atlas',
-    links: [
-      ['/connections/', 'Connections'],
-      ['/patterns/', 'Patterns'],
-      ['/trending/', 'Trending'],
-      ['/realms/', 'Realms'],
-      ['/artifacts/', 'Artifacts'],
-      ['/search/', 'Search'],
-    ],
-  },
-  {
-    heading: 'Relics',
-    links: [
-      ['/ink/', 'Ink'],
-      ['/cards/', 'Cards'],
-      ['/game/', 'Game'],
-      ['/art/', 'Art'],
-      ['/creatives/', 'Creatives'],
-    ],
-  },
-  {
-    heading: 'Library',
-    links: [
-      ['/lexicon/', 'Lexicon'],
-      ['/texts/', 'Texts'],
-      ['/blog/', 'Blog'],
-      ['/scholars/', 'Scholars'],
-      ['/codex/', 'Codex'],
-      ['/rulebook/', 'Rulebook'],
-    ],
-  },
-  {
-    heading: 'Culture',
-    links: [
-      ['/screen/', 'Screen'],
-      ['/everyday/', 'Words'],
-      ['/university-sponsorship/', 'Academics'],
-    ],
-  },
-  {
-    heading: 'Tools',
-    links: [
-      ['/type/', 'Type'],
-      ['/oracle/', 'Oracle'],
-      ['/app/', 'App'],
-      ['/extension/', 'Extension'],
-      ['/api/v1/docs/', 'API'],
-      ['/appraise/', 'Appraise'],
-      ['/authenticity/', 'Authenticity'],
-    ],
-  },
-  {
-    heading: 'About',
-    links: [
-      ['/about/', 'About'],
-      ['/about/founder/', 'Founder'],
-      ['/careers/', 'Careers'],
-      ['/contact/', 'Contact'],
-      ['/terms/', 'Terms'],
-      ['/privacy/', 'Privacy'],
-    ],
-  },
-];
+/* Legacy shapes re-exported for existing consumers/tests: PRIMARY is the
+   six wing hubs in bar order; MORE is each wing's flat item list. The
+   markup below is driven directly off nav-tree.js. */
+const PRIMARY = HUB_ORDER.map((id) => [HUBS[id].href, HUBS[id].label]);
+const MORE = HUB_ORDER.map((id) => ({
+  heading: HUBS[id].label,
+  links: HUBS[id].items
+    .filter((it) => childrenOf(it).length === 0)
+    .map((it) => [it.href, it.label]),
+}));
+
+/* Which wing (if any) owns a given href — used to highlight the parent
+   hub when a visitor is on a dropdown or fan-out destination. */
+function hubForHref(href) {
+  for (const id of HUB_ORDER) {
+    const hub = HUBS[id];
+    if (hub.href === href) return id;
+    for (const item of hub.items) {
+      if (item.href === href) return id;
+      if (childrenOf(item).some((c) => c.href === href)) return id;
+    }
+  }
+  return null;
+}
 
 // Every root page carrying the canonical nav. `active` marks the page's own
 // link (aria-current). null → no item is current on that page.
@@ -168,6 +121,12 @@ const TARGETS = [
   { page: path.join('type', 'index.html'), active: '/type/' },
   { page: path.join('university-sponsorship', 'index.html'), active: null },
   { page: path.join('screen', 'index.html'), active: '/screen/' },
+  // Wing hub pages (scripts/generate-hubs.js): the hub itself is current.
+  { page: path.join('world', 'index.html'), active: '/world/' },
+  { page: path.join('culture', 'index.html'), active: '/culture/' },
+  { page: path.join('instruments', 'index.html'), active: '/instruments/' },
+  { page: path.join('library', 'index.html'), active: '/library/' },
+  { page: path.join('relics', 'index.html'), active: '/relics/' },
 ];
 
 // Per-pantheon landing pages are not in the top nav, but the Pantheon item is
@@ -194,33 +153,54 @@ const TOGGLE = `<button class="nav-toggle" id="nav-toggle" aria-label="Toggle me
                 <span></span>
             </button>`;
 
-function linkHtml([href, label, featured, tag], active) {
-  let cls = 'nav-link';
-  if (featured) cls += ' nav-link--featured';
-  if (tag === 'new') cls += ' nav-link--new';
-  if (href === active) cls += ' active';
-  const current = href === active ? ' aria-current="page"' : '';
-  return `<a href="${href}" class="${cls}"${current}>${label}</a>`;
+function tagHtml(tag) {
+  return tag ? `<span class="nav-hub-tag">${tag}</span>` : '';
 }
 
-function sectionHtml(section, active) {
-  const links = section.links.map((l) => linkHtml(l, active)).join('\n                            ');
-  return `<div class="nav-more-section"><span class="nav-more-section-title">${section.heading}</span>
-                            ${links}
-                        </div>`;
+function currentAttr(href, active) {
+  return href === active ? ' aria-current="page"' : '';
+}
+
+function panelHtml(children, mega, active) {
+  const links = children
+    .map((c) => `<a href="${c.href}"${currentAttr(c.href, active)}>${c.label}</a>`)
+    .join('\n                                    ');
+  return `<div class="nav-hub-panel${mega ? ' nav-hub-panel--mega' : ''}">
+                                    ${links}
+                                </div>`;
+}
+
+function itemHtml(item, active) {
+  const kids = childrenOf(item);
+  if (kids.length) {
+    const mega = kids.length > 8;
+    return `<div class="nav-hub-item">
+                                <a href="${item.href}"${currentAttr(item.href, active)}>${item.label}<span class="nav-hub-caret">▸</span>${tagHtml(item.tag)}</a>
+                                ${panelHtml(kids, mega, active)}
+                            </div>`;
+  }
+  return `<a href="${item.href}"${currentAttr(item.href, active)}>${item.label}${tagHtml(item.tag)}</a>`;
+}
+
+function hubHtml(id, active) {
+  const hub = HUBS[id];
+  const items = hub.items.map((it) => itemHtml(it, active)).join('\n                    ');
+  const owns = hubForHref(active);
+  let cls = 'nav-link';
+  if (owns === id) cls += ' active';
+  const current = hub.href === active ? ' aria-current="page"' : '';
+  return `<div class="nav-hub" data-hub="${id}">
+                    <a href="${hub.href}" class="${cls}" aria-haspopup="true" aria-expanded="false"${current}>${hub.label}</a>
+                    <div class="nav-hub-menu">
+                    ${items}
+                    </div>
+                </div>`;
 }
 
 function navLinksHtml(active) {
-  const primary = PRIMARY.map((l) => linkHtml(l, active)).join('\n                ');
-  const sections = MORE.map((s) => sectionHtml(s, active)).join('\n                        ');
+  const hubs = HUB_ORDER.map((id) => hubHtml(id, active)).join('\n                ');
   return `<div class="nav-links">
-                ${primary}
-                <div class="nav-more">
-                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">Menu</button>
-                    <div class="nav-more-menu">
-                        ${sections}
-                    </div>
-                </div>
+                ${hubs}
             </div>`;
 }
 
@@ -339,7 +319,11 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
 
   // Shared stylesheets + behavior: nav-more.css (dropdown/CTA) when main.css
   // is absent; mobile-menu.css when the page carries the overlay without
-  // main.css; px-core.js for dropdown/toggle behavior.
+  // main.css; nav-hubs.css/JS on EVERY page (the dropdown styles at desktop
+  // and the drawer-hide rules at mobile both come from it);
+  // px-core.js for dropdown/toggle behavior.
+  html = html.replace(/\/css\/nav-hubs\.css\?v=\d+/g, PINS.NAV_HUBS_CSS);
+  html = ensureCssLink(html, PINS.NAV_HUBS_CSS);
   if (!html.includes('/css/main.css')) {
     // Normalize component-CSS versions (immutable-cached URLs must change
     // when the files change), then ensure they're linked.
@@ -353,6 +337,8 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
   if (!html.includes('/js/px-core.js')) {
     html = ensureScript(html, '/js/px-core.js?v=perf23');
   }
+  html = html.replace(/\/js\/nav-hubs\.js\?v=\d+/g, PINS.NAV_HUBS_JS);
+  html = ensureScript(html, PINS.NAV_HUBS_JS);
 
   writeFileWithRetry(filePath, html, 'utf8');
   return 'synced';

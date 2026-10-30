@@ -39,78 +39,38 @@ function withRetry(fn, attempts = 5, delayMs = 100) {
   throw lastErr;
 }
 
+const { HUB_ORDER, HUBS, childrenOf } = require('./nav-tree.js');
+
+function buildSubMenu(item, kids) {
+  const kidLinks = [
+    `<a href="${item.href}" class="mobile-link--featured">${item.label} — overview</a>`,
+    ...kids.map((k) => `<a href="${k.href}">${k.label}</a>`),
+  ].join('\n                    ');
+  return `<details class="mobile-sub">
+                <summary>${item.label}<span class="mobile-sub-caret">▾</span></summary>
+                <div class="mobile-sub-group">
+                    ${kidLinks}
+                </div>
+            </details>`;
+}
+
+function buildSection(id) {
+  const hub = HUBS[id];
+  const parts = [`<a href="${hub.href}" class="mobile-link--featured">${hub.label}</a>`];
+  for (const item of hub.items) {
+    const kids = childrenOf(item);
+    parts.push(kids.length ? buildSubMenu(item, kids) : `<a href="${item.href}">${item.label}</a>`);
+  }
+  return `<div class="mobile-menu-section">
+            <span class="mobile-menu-title">${hub.label}</span>
+            <div class="mobile-menu-group">
+                ${parts.join('\n                ')}
+            </div>
+        </div>`;
+}
+
 const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Pantheon</span>
-            <div class="mobile-menu-group">
-                <a href="/pantheon/" class="mobile-link--featured">Pantheon</a>
-                <a href="/realms/">Realms</a>
-                <a href="/artifacts/">Artifacts</a>
-                <a href="/store/">Store</a>
-                <a href="/herald/">Herald</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Atlas</span>
-            <div class="mobile-menu-group">
-                <a href="/connections/">Connections</a>
-                <a href="/patterns/">Patterns</a>
-                <a href="/trending/">Trending</a>
-                <a href="/search/">Search</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Relics</span>
-            <div class="mobile-menu-group">
-                <a href="/ink/">Ink</a>
-                <a href="/cards/">Cards</a>
-                <a href="/game/">Game</a>
-                <a href="/art/">Art</a>
-                <a href="/creatives/">Creatives</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Library</span>
-            <div class="mobile-menu-group">
-                <a href="/lexicon/">Lexicon</a>
-                <a href="/texts/">Texts</a>
-                <a href="/blog/">Blog</a>
-                <a href="/scholars/">Scholars</a>
-                <a href="/codex/">Codex</a>
-                <a href="/rulebook/">Rulebook</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Culture</span>
-            <div class="mobile-menu-group">
-                <a href="/screen/">Screen</a>
-                <a href="/everyday/">Words</a>
-                <a href="/university-sponsorship/">Academics</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Tools</span>
-            <div class="mobile-menu-group">
-                <a href="/type/">Type</a>
-                <a href="/oracle/">Oracle</a>
-                <a href="/app/">App</a>
-                <a href="/extension/">Extension</a>
-                <a href="/api/v1/docs/">API</a>
-                <a href="/appraise/">Appraise</a>
-                <a href="/authenticity/">Authenticity</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">About</span>
-            <div class="mobile-menu-group">
-                <a href="/about/">About</a>
-                <a href="/about/founder/">Founder</a>
-                <a href="/careers/">Careers</a>
-                <a href="/contact/">Contact</a>
-                <a href="/terms/">Terms</a>
-                <a href="/privacy/">Privacy</a>
-            </div>
-        </div>
+        ${HUB_ORDER.map(buildSection).join('\n        ')}
     </div>`;
 
 const MENU_OPEN = '<div class="mobile-menu" id="mobile-menu">';
@@ -161,6 +121,12 @@ const TARGETS = [
   { page: path.join('cards', 'index.html'), active: '/cards/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
   { page: path.join('screen', 'index.html'), active: '/screen/' },
+  // Wing hub pages carry the overlay too.
+  { page: path.join('world', 'index.html'), active: '/world/' },
+  { page: path.join('culture', 'index.html'), active: '/culture/' },
+  { page: path.join('instruments', 'index.html'), active: '/instruments/' },
+  { page: path.join('library', 'index.html'), active: '/library/' },
+  { page: path.join('relics', 'index.html'), active: '/relics/' },
 ];
 
 // Per-pantheon landing pages mark the Pantheon section active in the mobile menu.

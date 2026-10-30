@@ -1388,3 +1388,51 @@ body.menu-open {
     outline: 2px solid var(--gold);
     outline-offset: 2px;
 }
+
+/* Nested fan-out accordions (Atlas → Pantheon, Library → Codex) */
+.mobile-menu#mobile-menu .mobile-sub {
+    grid-column: 1 / -1;
+}
+
+.mobile-menu#mobile-menu .mobile-sub summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(18px, 4.5vw, 24px);
+    letter-spacing: 0.03em;
+    color: var(--text-primary, #f4efe4);
+    padding: 0.35rem 0;
+    cursor: pointer;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu#mobile-menu .mobile-sub summary::-webkit-details-marker {
+    display: none;
+}
+
+.mobile-menu#mobile-menu .mobile-sub-caret {
+    font-size: 12px;
+    opacity: 0.55;
+    transition: transform 0.2s ease;
+}
+
+.mobile-menu#mobile-menu .mobile-sub[open] .mobile-sub-caret {
+    transform: rotate(180deg);
+}
+
+.mobile-menu#mobile-menu .mobile-sub-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 1rem;
+    margin: 0.1rem 0 0.5rem;
+    padding: 0.2rem 0 0.5rem 0.9rem;
+    border-left: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.mobile-menu#mobile-menu .mobile-sub-group a {
+    font-size: clamp(15px, 3.6vw, 19px);
+    padding: 0.28rem 0;
+}

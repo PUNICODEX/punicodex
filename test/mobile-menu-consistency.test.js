@@ -25,44 +25,49 @@ const {
 } = require('../scripts/sync-mobile-menu.js');
 
 const CANONICAL_LINKS = [
-  // Explore
+  // Atlas
+  '/world/',
   '/pantheon/',
   '/realms/',
+  '/artifacts/',
+  '/connections/',
   '/patterns/',
   '/trending/',
-  '/store/',
-  '/connections/',
   '/search/',
+  // Culture
+  '/culture/',
   '/everyday/',
   '/screen/',
+  '/university-sponsorship/',
+  '/herald/',
   // Tools
+  '/instruments/',
   '/type/',
-  '/ink/',
   '/oracle/',
   '/authenticity/',
   '/app/',
   '/extension/',
   '/api/v1/docs/',
-  '/codex/',
   '/appraise/',
-  // Resources
+  // Library
+  '/library/',
   '/lexicon/',
   '/texts/',
   '/blog/',
-  '/cards/',
-  '/creatives/',
   '/scholars/',
-  '/herald/',
+  '/codex/',
   '/rulebook/',
-  '/screen/',
+  // Relics
+  '/relics/',
+  '/store/',
+  '/cards/',
+  '/game/',
+  '/ink/',
   // About
   '/about/',
-  '/university-sponsorship/',
   '/about/founder/',
   '/careers/',
   '/contact/',
-  '/terms/',
-  '/privacy/',
 ];
 
 function readPage(rel) {
@@ -74,14 +79,18 @@ function readPageSafe(rel) {
   return fs.existsSync(full) ? fs.readFileSync(full, 'utf8') : null;
 }
 
-test('canonical menu covers all navigation links in 7 super-category sections', () => {
+test('canonical menu covers all navigation links in 6 wing sections', () => {
   for (const href of CANONICAL_LINKS) {
     assert.ok(CANONICAL_MENU.includes(`href="${href}"`), `menu links to ${href}`);
   }
-  assert.strictEqual((CANONICAL_MENU.match(/mobile-menu-section/g) || []).length, 7);
+  assert.strictEqual((CANONICAL_MENU.match(/mobile-menu-section/g) || []).length, 6);
   assert.ok(
-    CANONICAL_MENU.includes('<a href="/pantheon/" class="mobile-link--featured">Pantheon</a>'),
-    'Pantheon is featured in the mobile menu'
+    CANONICAL_MENU.includes('<a href="/pantheon/" class="mobile-link--featured">Pantheon — overview</a>'),
+    'Pantheon overview is featured in the mobile Pantheon accordion'
+  );
+  assert.ok(
+    CANONICAL_MENU.includes('<details class="mobile-sub">'),
+    'mobile menu carries the nested fan-out accordions'
   );
 });
 
@@ -212,7 +221,7 @@ test('mobile-menu.css resets legacy temple-base counters and uppercase transform
 test('realms and lexicon load the cache-busted mobile-menu.css', () => {
   for (const rel of [path.join('realms', 'index.html'), path.join('lexicon', 'index.html')]) {
     const html = readPage(rel);
-    assert.ok(html.includes('/css/mobile-menu.css?v=6'), `${rel} loads mobile-menu.css?v=6`);
+    assert.ok(html.includes('/css/mobile-menu.css?v=7'), `${rel} loads mobile-menu.css?v=7`);
     assert.ok(
       !html.includes('/css/mobile-menu.css?v=1'),
       `${rel} does not load the stale v=1 mobile-menu.css`

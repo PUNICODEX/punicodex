@@ -14,6 +14,7 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 const { TARGETS, PRIMARY, MORE } = require('../scripts/sync-desktop-nav.js');
+const { HUB_ORDER, HUBS, childrenOf, PANTHEON_CHILDREN, CODEX_CHILDREN } = require('../scripts/nav-tree.js');
 
 let passed = 0;
 let failed = 0;
@@ -37,24 +38,35 @@ function readIfExists(rel) {
 }
 
 test('sync-desktop-nav covers every root navigation page (54+ targets)', () => {
-  // Base target list is 54; per-pantheon landing pages are appended at runtime.
+  // Base target list is 54; per-pantheon landing pages and wing hub pages
+  // are appended at runtime.
   assert.ok(TARGETS.length >= 54, `expected at least 54 targets, got ${TARGETS.length}`);
-  assert.strictEqual(PRIMARY.length, 5);
+  assert.strictEqual(PRIMARY.length, 6);
   assert.deepStrictEqual(
-    PRIMARY.map(([href, label, featured, tag]) => [href, label, !!featured, tag || null]),
-    [
-      ['/pantheon/', 'Pantheon', true, null],
-      ['/connections/', 'Atlas', false, null],
-      ['/cards/', 'Relics', false, null],
-      ['/store/', 'Store', false, null],
-      ['/herald/', 'Herald', false, 'new'],
-    ]
+    PRIMARY.map(([href, label]) => [href, label]),
+    HUB_ORDER.map((id) => [HUBS[id].href, HUBS[id].label])
   );
   assert.strictEqual(MORE.length, 6);
   for (const section of MORE) {
-    assert.ok(section.heading, 'every drawer section must have a heading');
-    assert.ok(Array.isArray(section.links), 'every drawer section must have a links array');
+    assert.ok(section.heading, 'every wing must have a heading');
+    assert.ok(Array.isArray(section.links), 'every wing must have a links array');
   }
+});
+
+test('fan-out panels: Pantheon mega-panel and Codex panel have their destinations', () => {
+  const { navLinksHtml } = require('../scripts/sync-desktop-nav.js');
+  const html = navLinksHtml(null);
+  assert.ok(html.includes('nav-hub-panel--mega'), 'pantheon mega-panel missing');
+  for (const c of PANTHEON_CHILDREN) {
+    assert.ok(html.includes(`href="${c.href}"`), `mega-panel missing ${c.label} (${c.href})`);
+  }
+  for (const c of CODEX_CHILDREN) {
+    assert.ok(html.includes(`href="${c.href}"`), `codex panel missing ${c.label} (${c.href})`);
+  }
+  // Store fan-out is Phase B: plain link, no caret/panel until activated.
+  const relics = html.slice(html.indexOf('data-hub="relics"'), html.indexOf('data-hub="about"'));
+  assert.ok(relics.includes('<a href="/store/">Store</a>'), 'store must be a plain link until Phase B');
+  assert.ok(!relics.includes('nav-hub-panel'), 'store panel must not ship before Phase B');
 });
 
 test('Pronunciation is footer-only (not in desktop nav menus)', () => {
@@ -85,24 +97,30 @@ test('every target page carries the canonical primary links in order', () => {
   }
 });
 
-test('every target page carries the sectioned More dropdown with required links', () => {
+test('every target page carries the wing dropdowns with their destinations', () => {
   for (const { page } of TARGETS) {
     const html = readIfExists(page);
     if (!html) {
-      console.warn(`    ⚠ ${page} missing, skipping More dropdown check`);
+      console.warn(`    ⚠ ${page} missing, skipping dropdown check`);
       continue;
     }
-    assert.ok(html.includes('class="nav-more-toggle"'), `${page}: missing More toggle`);
-    for (const section of MORE) {
-      assert.ok(
-        html.includes(`<span class="nav-more-section-title">${section.heading}</span>`),
-        `${page}: missing More section ${section.heading}`
-      );
-      for (const [href, label] of section.links) {
+    assert.ok(
+      (html.match(/class="nav-hub"/g) || []).length === 6,
+      `${page}: expected 6 wing dropdowns`
+    );
+    for (const id of HUB_ORDER) {
+      const hub = HUBS[id];
+      for (const item of hub.items) {
         assert.ok(
-          html.includes(`<a href="${href}" class="nav-link`),
-          `${page}: missing More link ${label} (${href})`
+          html.includes(`href="${item.href}"`),
+          `${page}: missing ${hub.label} dropdown link ${item.label} (${item.href})`
         );
+        for (const c of childrenOf(item)) {
+          assert.ok(
+            html.includes(`href="${c.href}"`),
+            `${page}: missing fan-out link ${c.label} (${c.href})`
+          );
+        }
       }
     }
   }
@@ -125,28 +143,33 @@ test('every target page has the wordmark lockup, Enter CTA, and nav toggle', () 
 test('pages mark their own item aria-current="page"', () => {
   const cases = TARGETS.filter((t) => t.active);
   assert.ok(cases.length >= 15, 'expected most pages to have an active item');
-  const navHrefs = new Set([
-    ...PRIMARY.map(([href]) => href),
-    ...MORE.flatMap((s) => s.links.map(([href]) => href)),
-  ]);
+  const navHrefs = new Set();
+  for (const id of HUB_ORDER) {
+    navHrefs.add(HUBS[id].href);
+    for (const item of HUBS[id].items) {
+      navHrefs.add(item.href);
+      for (const c of childrenOf(item)) navHrefs.add(c.href);
+    }
+  }
   for (const { page, active } of cases) {
-    // Footer-only pages (Rulebook, Pronunciation) and per-pantheon landings
-    // marked active on /pantheon/ are not expected to carry aria-current in
-    // the desktop nav menus.
+    // Footer-only pages (Rulebook, Pronunciation) are not expected to carry
+    // aria-current in the desktop nav menus.
     if (!navHrefs.has(active)) continue;
     const html = readIfExists(page);
     if (!html) {
       console.warn(`    ⚠ ${page} missing, skipping aria-current check`);
       continue;
     }
+    // Hub links carry class="nav-link…"; dropdown and fan-out links are
+    // class-less, so the class group is optional.
     const tagRe = new RegExp(
-      `<a href="${active.replace(/[./]/g, '\\$&')}" class="nav-link[^"]*"[^>]*aria-current="page"`
+      `<a href="${active.replace(/[./]/g, '\\$&')}"( class="nav-link[^"]*")?[^>]*aria-current="page"`
     );
     assert.ok(tagRe.test(html), `${page}: expected aria-current="page" on ${active}`);
   }
-  // Spot: codex articles inherit the codex hub's current marker.
+  // Spot: codex articles inherit the codex item's current marker.
   const article = read(path.join('codex', 'anatomy-of-a-punycode-domain', 'index.html'));
-  assert.ok(/<a href="\/codex\/" class="nav-link[^"]*"[^>]*aria-current="page"/.test(article));
+  assert.ok(/<a href="\/codex\/"[^>]*aria-current="page"/.test(article));
 });
 
 test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', () => {
@@ -161,7 +184,7 @@ test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', 
       console.warn(`    ⚠ ${page} missing, skipping mobile menu check`);
       continue;
     }
-    for (const section of ['Pantheon', 'Atlas', 'Relics', 'Library', 'Culture', 'Tools', 'About']) {
+    for (const section of HUB_ORDER.map((id) => HUBS[id].label)) {
       assert.ok(
         html.includes(`<span class="mobile-menu-title">${section}</span>`),
         `${page}: missing mobile section ${section}`
@@ -171,6 +194,15 @@ test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', 
     assert.ok(
       html.includes('<a href="/pantheon/" class="mobile-link--featured'),
       `${page}: mobile Pantheon link missing featured class`
+    );
+    // Nested fan-out: the Pantheon accordion carries the pantheon landings.
+    assert.ok(
+      html.includes('<details class="mobile-sub">'),
+      `${page}: mobile menu missing the Pantheon accordion`
+    );
+    assert.ok(
+      html.includes('<a href="/greek/">Greek</a>'),
+      `${page}: mobile Pantheon accordion missing landings`
     );
   }
 });
@@ -188,6 +220,10 @@ test('component stylesheets are linked where main.css is absent', () => {
         assert.ok(html.includes('/css/mobile-menu.css'), `${page}: mobile-menu.css not linked`);
       }
     }
+    // The hub dropdown styles load on EVERY page: desktop dropdowns at ≥1024px
+    // and the drawer-hide rules below that both come from nav-hubs.css.
+    assert.ok(html.includes('/css/nav-hubs.css'), `${page}: nav-hubs.css not linked`);
+    assert.ok(html.includes('/js/nav-hubs.js'), `${page}: nav-hubs.js not loaded`);
   }
 });
 
@@ -217,7 +253,7 @@ test('no target page still carries retired variant link sets', () => {
       continue;
     }
     for (const href of ['/connections/', '/oracle/', '/app/', '/extension/']) {
-      assert.ok(html.includes(`<a href="${href}" class="nav-link`), `${page}: missing ${href}`);
+      assert.ok(html.includes(`href="${href}"`), `${page}: missing ${href}`);
     }
   }
 });

@@ -1,0 +1,257 @@
+/* ═══════════════════════════════════════════════════════════
+   PuniCodex — Hub pages (Atlas/World, Culture, Tools, Library,
+   Relics, About). Geometric chamfered cards over a 3D tetrahedral
+   hero. Loaded alongside temple-base.css; nav injected by the
+   desktop/mobile syncers.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --hub-bronze: #b87333;
+  --hub-gold: #d4af37;
+  --hub-ivory: #e8e0d5;
+  --hub-obsidian: #0e0b08;
+}
+
+.hub-hero {
+  position: relative;
+  min-height: min(88vh, 820px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 70% 10%, rgba(184, 115, 51, 0.14), transparent 55%),
+    radial-gradient(90% 70% at 20% 90%, rgba(212, 175, 55, 0.08), transparent 60%),
+    var(--hub-obsidian);
+}
+
+.hub-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hub-hero-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+      rgba(14, 11, 8, 0.55) 0%,
+      rgba(14, 11, 8, 0.05) 34%,
+      rgba(14, 11, 8, 0.18) 62%,
+      rgba(14, 11, 8, 0.92) 100%);
+}
+
+.hub-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(96px, 16vh, 180px) 24px 56px;
+}
+
+.hub-kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--hub-gold);
+  margin: 0 0 14px;
+}
+
+.hub-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: clamp(44px, 8vw, 104px);
+  line-height: 0.98;
+  color: var(--hub-ivory);
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+
+.hub-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(19px, 2.4vw, 27px);
+  color: rgba(232, 224, 213, 0.82);
+  margin: 0 0 14px;
+  max-width: 34ch;
+}
+
+.hub-blurb {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: rgba(232, 224, 213, 0.62);
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* ── Card grid ─────────────────────────────────────────────── */
+
+.hub-section {
+  position: relative;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: clamp(48px, 8vh, 88px) 24px 96px;
+}
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+}
+
+.hub-card {
+  --sheen: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px 24px 22px;
+  color: var(--hub-ivory);
+  text-decoration: none;
+  background:
+    linear-gradient(160deg, rgba(232, 224, 213, 0.055), rgba(232, 224, 213, 0.015)),
+    #14100c;
+  clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0));
+  transition: transform 0.25s ease, background 0.25s ease;
+  will-change: transform;
+}
+
+.hub-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(212, 175, 55, 0.55), rgba(184, 115, 51, 0.18) 38%, rgba(232, 224, 213, 0.08));
+  clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px,
+      1px 19px, 1px calc(100% - 1px), calc(100% - 19px) calc(100% - 1px), calc(100% - 1px) calc(100% - 19px),
+      calc(100% - 1px) 1px, 19px 1px);
+  pointer-events: none;
+}
+
+.hub-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(212, 175, 55, calc(var(--sheen) * 0.22)) 48%, transparent 62%);
+  pointer-events: none;
+  opacity: var(--sheen);
+  transition: opacity 0.3s ease;
+}
+
+.hub-card:hover,
+.hub-card:focus-visible {
+  --ty: -4px;
+  background:
+    linear-gradient(160deg, rgba(232, 224, 213, 0.09), rgba(232, 224, 213, 0.03)),
+    #181209;
+}
+
+.hub-card:hover::after,
+.hub-card:focus-visible::after {
+  opacity: 1;
+}
+
+.hub-card:focus-visible {
+  outline: 2px solid var(--hub-gold);
+  outline-offset: 3px;
+}
+
+.hub-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hub-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.hub-card-tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #0e0b08;
+  background: var(--hub-gold);
+  padding: 3px 8px;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+
+.hub-card-blurb {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(232, 224, 213, 0.6);
+  margin: 0;
+  flex: 1;
+}
+
+.hub-card-go {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--hub-bronze);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hub-card-go::after {
+  content: '→';
+  transition: transform 0.25s ease;
+}
+
+.hub-card:hover .hub-card-go::after {
+  transform: translateX(5px);
+}
+
+/* ── Entrance reveal ───────────────────────────────────────── */
+
+.hub-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hub-reveal.hub-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hub-card {
+    transform: none !important;
+  }
+}
+
+/* ── Mobile ────────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .hub-hero {
+    min-height: 68vh;
+  }
+  .hub-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .hub-card {
+    padding: 22px 20px 18px;
+  }
+}

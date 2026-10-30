@@ -1,0 +1,167 @@
+/* ═══════════════════════════════════════════════════════════
+   PuniCodex — Hub dropdown nav (desktop, ≥1024px).
+   Six wing categories; each is a link to its hub page AND a
+   hover/focus target revealing its dropdown. Fan-out entries
+   (Pantheon, Codex, Store when enabled) cascade a second panel.
+   Hover-intent behavior lives in js/px-core.js — these styles
+   are state-only (.open / .active / [data-open]).
+   ═══════════════════════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+  .nav-links {
+    gap: 4px;
+  }
+
+  /* The retired "More" drawer stays in the markup (mobile uses its own
+     overlay) but must never surface on desktop. */
+  .nav-more {
+    display: none !important;
+  }
+
+  .nav-hub {
+    position: relative;
+  }
+
+  .nav-hub > .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 13px;
+    white-space: nowrap;
+  }
+
+  .nav-hub > .nav-link::after {
+    content: '▾';
+    font-size: 9px;
+    opacity: 0.55;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-hub[data-open] > .nav-link::after {
+    transform: rotate(180deg);
+  }
+
+  /* ── Level 1: the wing dropdown ─────────────────────────── */
+
+  .nav-hub-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    translate: -50% 0;
+    min-width: 240px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: rgba(10, 8, 6, 0.97);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    translate: -50% 6px;
+    transition: opacity 0.18s ease, translate 0.18s ease, visibility 0.18s;
+    z-index: 1010;
+  }
+
+  .nav-hub[data-open] > .nav-hub-menu {
+    opacity: 1;
+    visibility: visible;
+    translate: -50% 0;
+  }
+
+  .nav-hub-menu a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 9px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: rgba(232, 224, 213, 0.82);
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .nav-hub-menu a:hover,
+  .nav-hub-menu a:focus-visible {
+    color: #e8e0d5;
+    background: rgba(184, 115, 51, 0.16);
+  }
+
+  .nav-hub-menu a[aria-current='page'] {
+    color: #d4af37;
+  }
+
+  .nav-hub-caret {
+    font-size: 10px;
+    opacity: 0.5;
+  }
+
+  .nav-hub-tag {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #0e0b08;
+    background: #d4af37;
+    padding: 2px 6px;
+    margin-left: 8px;
+    clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  }
+
+  /* ── Level 2: fan-out panels (Pantheon / Codex / Store) ── */
+
+  .nav-hub-panel {
+    position: absolute;
+    top: -11px;
+    left: calc(100% + 10px);
+    padding: 16px;
+    background: rgba(10, 8, 6, 0.97);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    translate: -6px 0;
+    transition: opacity 0.18s ease, translate 0.18s ease, visibility 0.18s;
+    z-index: 1011;
+  }
+
+  .nav-hub-panel[data-open] {
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+  }
+
+  /* The pantheon mega-panel: multi-column grid of the 27 destinations. */
+  .nav-hub-panel--mega {
+    width: min(640px, 62vw);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px 18px;
+  }
+
+  .nav-hub-panel--mega a {
+    padding: 7px 10px;
+    font-size: 12.5px;
+  }
+
+  .nav-hub-panel:not(.nav-hub-panel--mega) {
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  /* Panels near the right edge flip left so they never overflow. */
+  .nav-hub-panel[data-flip] {
+    left: auto;
+    right: calc(100% + 10px);
+    translate: 6px 0;
+  }
+
+  .nav-hub-panel[data-flip][data-open] {
+    translate: 0 0;
+  }
+}

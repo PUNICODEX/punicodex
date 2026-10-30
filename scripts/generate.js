@@ -132,6 +132,9 @@ const allScripts = [
   'scripts/sync-hero-stats.js',
   // Stale counter sweep for hand-edited marketing/pitch pages.
   'scripts/sync-stale-counters.js',
+  // Wing hub pages (/world/, /culture/, /instruments/, /library/, /relics/):
+  // generated from scripts/nav-tree.js before the sitemap and nav syncers.
+  'scripts/generate-hubs.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',
@@ -155,6 +158,11 @@ const allScripts = [
   // Merchant feed consumes products.json + the mockup fleet; must run after
   // the store pages so its prices/imagery match the freshly built PDPs.
   'scripts/generate-merchant-feed.js',
+  // Store pages regenerate the canonical nav from the syncer module but never
+  // pass through syncPage's asset-ensure step, so the desktop sync re-runs
+  // here (idempotent) to attach nav-hubs.css/JS + normalize pins — the same
+  // reason the injectors re-run after the store.
+  'scripts/sync-desktop-nav.js',
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',
   'scripts/inject-herald-beacon.js',

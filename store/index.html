@@ -107,6 +107,7 @@ a:hover{color:var(--gold-bright)}
   .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
 .store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}</style>
+    <link rel="stylesheet" href="/css/nav-hubs.css?v=1">
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -123,59 +124,102 @@ a:hover{color:var(--gold-bright)}
         <div class="nav-inner">
             <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
             <div class="nav-links">
-                <a href="/pantheon/" class="nav-link nav-link--featured">Pantheon</a>
-                <a href="/connections/" class="nav-link">Atlas</a>
-                <a href="/cards/" class="nav-link">Relics</a>
-                <a href="/store/" class="nav-link active" aria-current="page">Store</a>
-                <a href="/herald/" class="nav-link nav-link--new">Herald</a>
-                <div class="nav-more">
-                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">Menu</button>
-                    <div class="nav-more-menu">
-                        <div class="nav-more-section"><span class="nav-more-section-title">Atlas</span>
-                            <a href="/connections/" class="nav-link">Connections</a>
-                            <a href="/patterns/" class="nav-link">Patterns</a>
-                            <a href="/trending/" class="nav-link">Trending</a>
-                            <a href="/realms/" class="nav-link">Realms</a>
-                            <a href="/artifacts/" class="nav-link">Artifacts</a>
-                            <a href="/search/" class="nav-link">Search</a>
-                        </div>
-                        <div class="nav-more-section"><span class="nav-more-section-title">Relics</span>
-                            <a href="/ink/" class="nav-link">Ink</a>
-                            <a href="/cards/" class="nav-link">Cards</a>
-                            <a href="/game/" class="nav-link">Game</a>
-                            <a href="/art/" class="nav-link">Art</a>
-                            <a href="/creatives/" class="nav-link">Creatives</a>
-                        </div>
-                        <div class="nav-more-section"><span class="nav-more-section-title">Library</span>
-                            <a href="/lexicon/" class="nav-link">Lexicon</a>
-                            <a href="/texts/" class="nav-link">Texts</a>
-                            <a href="/blog/" class="nav-link">Blog</a>
-                            <a href="/scholars/" class="nav-link">Scholars</a>
-                            <a href="/codex/" class="nav-link">Codex</a>
-                            <a href="/rulebook/" class="nav-link">Rulebook</a>
-                        </div>
-                        <div class="nav-more-section"><span class="nav-more-section-title">Culture</span>
-                            <a href="/screen/" class="nav-link">Screen</a>
-                            <a href="/everyday/" class="nav-link">Words</a>
-                            <a href="/university-sponsorship/" class="nav-link">Academics</a>
-                        </div>
-                        <div class="nav-more-section"><span class="nav-more-section-title">Tools</span>
-                            <a href="/type/" class="nav-link">Type</a>
-                            <a href="/oracle/" class="nav-link">Oracle</a>
-                            <a href="/app/" class="nav-link">App</a>
-                            <a href="/extension/" class="nav-link">Extension</a>
-                            <a href="/api/v1/docs/" class="nav-link">API</a>
-                            <a href="/appraise/" class="nav-link">Appraise</a>
-                            <a href="/authenticity/" class="nav-link">Authenticity</a>
-                        </div>
-                        <div class="nav-more-section"><span class="nav-more-section-title">About</span>
-                            <a href="/about/" class="nav-link">About</a>
-                            <a href="/about/founder/" class="nav-link">Founder</a>
-                            <a href="/careers/" class="nav-link">Careers</a>
-                            <a href="/contact/" class="nav-link">Contact</a>
-                            <a href="/terms/" class="nav-link">Terms</a>
-                            <a href="/privacy/" class="nav-link">Privacy</a>
-                        </div>
+                <div class="nav-hub" data-hub="atlas">
+                    <a href="/world/" class="nav-link" aria-haspopup="true" aria-expanded="false">Atlas</a>
+                    <div class="nav-hub-menu">
+                    <div class="nav-hub-item">
+                                <a href="/pantheon/">Pantheon<span class="nav-hub-caret">▸</span></a>
+                                <div class="nav-hub-panel nav-hub-panel--mega">
+                                    <a href="/realms/">Realms</a>
+                                    <a href="/artifacts/">Artifacts</a>
+                                    <a href="/aboriginal/">Aboriginal</a>
+                                    <a href="/baltic/">Baltic</a>
+                                    <a href="/buddhist/">Buddhist</a>
+                                    <a href="/canaanite/">Canaanite</a>
+                                    <a href="/celtic/">Celtic</a>
+                                    <a href="/chinese/">Chinese</a>
+                                    <a href="/egyptian/">Egyptian</a>
+                                    <a href="/greek/">Greek</a>
+                                    <a href="/greek-location/">Greek Locations</a>
+                                    <a href="/hittite/">Hittite</a>
+                                    <a href="/incan/">Incan</a>
+                                    <a href="/japanese/">Japanese</a>
+                                    <a href="/korean/">Korean</a>
+                                    <a href="/mapuche/">Mapuche</a>
+                                    <a href="/mesopotamian/">Mesopotamian</a>
+                                    <a href="/nahuatl/">Nahuatl</a>
+                                    <a href="/norse/">Norse</a>
+                                    <a href="/phoenician/">Phoenician</a>
+                                    <a href="/polynesian/">Polynesian</a>
+                                    <a href="/roman/">Roman</a>
+                                    <a href="/sanskrit/">Sanskrit</a>
+                                    <a href="/slavic/">Slavic</a>
+                                    <a href="/taoist/">Taoist</a>
+                                    <a href="/yoruba/">Yoruba</a>
+                                    <a href="/zoroastrian/">Zoroastrian</a>
+                                </div>
+                            </div>
+                    <a href="/connections/">Connections</a>
+                    <a href="/patterns/">Patterns</a>
+                    <a href="/trending/">Trending</a>
+                    <a href="/search/">Search</a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="culture">
+                    <a href="/culture/" class="nav-link" aria-haspopup="true" aria-expanded="false">Culture</a>
+                    <div class="nav-hub-menu">
+                    <a href="/screen/">Screen</a>
+                    <a href="/everyday/">Words</a>
+                    <a href="/university-sponsorship/">Academics</a>
+                    <a href="/herald/">Herald<span class="nav-hub-tag">new</span></a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="tools">
+                    <a href="/instruments/" class="nav-link" aria-haspopup="true" aria-expanded="false">Tools</a>
+                    <div class="nav-hub-menu">
+                    <a href="/type/">Type</a>
+                    <a href="/oracle/">Oracle</a>
+                    <a href="/app/">App</a>
+                    <a href="/extension/">Extension</a>
+                    <a href="/api/v1/docs/">API</a>
+                    <a href="/appraise/">Appraise</a>
+                    <a href="/authenticity/">Authenticity</a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="library">
+                    <a href="/library/" class="nav-link" aria-haspopup="true" aria-expanded="false">Library</a>
+                    <div class="nav-hub-menu">
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/texts/">Texts</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/scholars/">Scholars</a>
+                    <div class="nav-hub-item">
+                                <a href="/codex/">Codex<span class="nav-hub-caret">▸</span></a>
+                                <div class="nav-hub-panel">
+                                    <a href="/codex/anatomy-of-a-punycode-domain/">Anatomy of a Punycode Domain</a>
+                                    <a href="/codex/building-the-temple/">Building the Temple</a>
+                                    <a href="/codex/why-greek-accents-matter/">Why Greek Accents Matter</a>
+                                </div>
+                            </div>
+                    <a href="/rulebook/">Rulebook</a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="relics">
+                    <a href="/relics/" class="nav-link active" aria-haspopup="true" aria-expanded="false">Relics</a>
+                    <div class="nav-hub-menu">
+                    <a href="/store/" aria-current="page">Store</a>
+                    <a href="/cards/">Cards</a>
+                    <a href="/game/">Game</a>
+                    <a href="/ink/">Ink</a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="about">
+                    <a href="/about/" class="nav-link" aria-haspopup="true" aria-expanded="false">About</a>
+                    <div class="nav-hub-menu">
+                    <a href="/about/">About</a>
+                    <a href="/about/founder/">Founder</a>
+                    <a href="/careers/">Careers</a>
+                    <a href="/contact/">Contact</a>
                     </div>
                 </div>
             </div>
@@ -189,18 +233,42 @@ a:hover{color:var(--gold-bright)}
     </nav>
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Pantheon</span>
-            <div class="mobile-menu-group">
-                <a href="/pantheon/" class="mobile-link--featured">Pantheon</a>
-                <a href="/realms/">Realms</a>
-                <a href="/artifacts/">Artifacts</a>
-                <a href="/store/" class="active">Store</a>
-                <a href="/herald/">Herald</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
             <span class="mobile-menu-title">Atlas</span>
             <div class="mobile-menu-group">
+                <a href="/world/" class="mobile-link--featured">Atlas</a>
+                <details class="mobile-sub">
+                <summary>Pantheon<span class="mobile-sub-caret">▾</span></summary>
+                <div class="mobile-sub-group">
+                    <a href="/pantheon/" class="mobile-link--featured">Pantheon — overview</a>
+                    <a href="/realms/">Realms</a>
+                    <a href="/artifacts/">Artifacts</a>
+                    <a href="/aboriginal/">Aboriginal</a>
+                    <a href="/baltic/">Baltic</a>
+                    <a href="/buddhist/">Buddhist</a>
+                    <a href="/canaanite/">Canaanite</a>
+                    <a href="/celtic/">Celtic</a>
+                    <a href="/chinese/">Chinese</a>
+                    <a href="/egyptian/">Egyptian</a>
+                    <a href="/greek/">Greek</a>
+                    <a href="/greek-location/">Greek Locations</a>
+                    <a href="/hittite/">Hittite</a>
+                    <a href="/incan/">Incan</a>
+                    <a href="/japanese/">Japanese</a>
+                    <a href="/korean/">Korean</a>
+                    <a href="/mapuche/">Mapuche</a>
+                    <a href="/mesopotamian/">Mesopotamian</a>
+                    <a href="/nahuatl/">Nahuatl</a>
+                    <a href="/norse/">Norse</a>
+                    <a href="/phoenician/">Phoenician</a>
+                    <a href="/polynesian/">Polynesian</a>
+                    <a href="/roman/">Roman</a>
+                    <a href="/sanskrit/">Sanskrit</a>
+                    <a href="/slavic/">Slavic</a>
+                    <a href="/taoist/">Taoist</a>
+                    <a href="/yoruba/">Yoruba</a>
+                    <a href="/zoroastrian/">Zoroastrian</a>
+                </div>
+            </details>
                 <a href="/connections/">Connections</a>
                 <a href="/patterns/">Patterns</a>
                 <a href="/trending/">Trending</a>
@@ -208,37 +276,19 @@ a:hover{color:var(--gold-bright)}
             </div>
         </div>
         <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Relics</span>
-            <div class="mobile-menu-group">
-                <a href="/ink/">Ink</a>
-                <a href="/cards/">Cards</a>
-                <a href="/game/">Game</a>
-                <a href="/art/">Art</a>
-                <a href="/creatives/">Creatives</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Library</span>
-            <div class="mobile-menu-group">
-                <a href="/lexicon/">Lexicon</a>
-                <a href="/texts/">Texts</a>
-                <a href="/blog/">Blog</a>
-                <a href="/scholars/">Scholars</a>
-                <a href="/codex/">Codex</a>
-                <a href="/rulebook/">Rulebook</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
             <span class="mobile-menu-title">Culture</span>
             <div class="mobile-menu-group">
+                <a href="/culture/" class="mobile-link--featured">Culture</a>
                 <a href="/screen/">Screen</a>
                 <a href="/everyday/">Words</a>
                 <a href="/university-sponsorship/">Academics</a>
+                <a href="/herald/">Herald</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Tools</span>
             <div class="mobile-menu-group">
+                <a href="/instruments/" class="mobile-link--featured">Tools</a>
                 <a href="/type/">Type</a>
                 <a href="/oracle/">Oracle</a>
                 <a href="/app/">App</a>
@@ -249,14 +299,43 @@ a:hover{color:var(--gold-bright)}
             </div>
         </div>
         <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Library</span>
+            <div class="mobile-menu-group">
+                <a href="/library/" class="mobile-link--featured">Library</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/texts/">Texts</a>
+                <a href="/blog/">Blog</a>
+                <a href="/scholars/">Scholars</a>
+                <details class="mobile-sub">
+                <summary>Codex<span class="mobile-sub-caret">▾</span></summary>
+                <div class="mobile-sub-group">
+                    <a href="/codex/" class="mobile-link--featured">Codex — overview</a>
+                    <a href="/codex/anatomy-of-a-punycode-domain/">Anatomy of a Punycode Domain</a>
+                    <a href="/codex/building-the-temple/">Building the Temple</a>
+                    <a href="/codex/why-greek-accents-matter/">Why Greek Accents Matter</a>
+                </div>
+            </details>
+                <a href="/rulebook/">Rulebook</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Relics</span>
+            <div class="mobile-menu-group">
+                <a href="/relics/" class="mobile-link--featured">Relics</a>
+                <a href="/store/" class="active">Store</a>
+                <a href="/cards/">Cards</a>
+                <a href="/game/">Game</a>
+                <a href="/ink/">Ink</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
+                <a href="/about/" class="mobile-link--featured">About</a>
                 <a href="/about/">About</a>
                 <a href="/about/founder/">Founder</a>
                 <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
-                <a href="/terms/">Terms</a>
-                <a href="/privacy/">Privacy</a>
             </div>
         </div>
     </div>
@@ -4835,4 +4914,5 @@ a:hover{color:var(--gold-bright)}
             </div>
         </div>
     </footer>
+    <script src="/js/nav-hubs.js?v=1" defer></script>
 </body></html>
