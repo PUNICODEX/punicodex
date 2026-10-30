@@ -22,6 +22,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { preservationLabel } = require('./lib/preservation-label.js');
 const { writeFileWithRetry } = require('./write-file-retry.js');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
@@ -155,8 +156,8 @@ function main() {
     <meta name="twitter:image" content="https://punicodex.com/assets/og/everyday.jpg">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/main.css?v=perf27">
-    <link rel="stylesheet" href="/css/nav-more.css?v=6">
-    <link rel="stylesheet" href="/css/mobile-menu.css?v=5">
+    <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
+    <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <script type="application/ld+json">${JSON.stringify(itemList)}</script>
     <script src="/js/px-core.js?v=perf21" defer></script>

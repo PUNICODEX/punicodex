@@ -185,17 +185,24 @@ async function run() {
       if (!(await toggle.count())) throw new Error('mobile menu toggle not found');
       await toggle.click();
       await mp.waitForTimeout(400);
-      // The menu hides via opacity:0 + pointer-events:none, so assert on
-      // computed style, not bounding-box visibility.
+      // The right-side drawer hides via transform:translateX(105%) with
+      // opacity kept at 1, so assert on the .active class + transform +
+      // pointer-events, not on opacity.
       const menuState = () =>
         mp.evaluate(() => {
           const el = document.getElementById('mobile-menu');
           if (!el) return { missing: true };
           const cs = getComputedStyle(el);
-          return { opacity: cs.opacity, pointerEvents: cs.pointerEvents };
+          return {
+            active: el.classList.contains('active'),
+            transform: cs.transform,
+            pointerEvents: cs.pointerEvents,
+          };
         });
+      const isOpen = (s) =>
+        !!s.active || s.transform === 'none' || s.transform === 'matrix(1, 0, 0, 1, 0, 0)';
       const opened = await menuState();
-      if (opened.opacity !== '1' && opened.pointerEvents === 'none') {
+      if (!isOpen(opened)) {
         throw new Error(`menu did not open: ${JSON.stringify(opened)}`);
       }
       const link = mp.locator('#mobile-menu a[href^="/"]').first();
@@ -207,7 +214,7 @@ async function run() {
       await mp.waitForTimeout(800);
       // After navigation the menu must be hidden again (fresh page state).
       const after = await menuState();
-      if (!after.missing && after.opacity !== '0') {
+      if (!after.missing && isOpen(after)) {
         throw new Error(
           `menu persisted after navigation (T3 regression): ${JSON.stringify(after)}`
         );

@@ -31,6 +31,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { writeFileWithRetry } = require('./write-file-retry.js');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
@@ -342,11 +343,11 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
   if (!html.includes('/css/main.css')) {
     // Normalize component-CSS versions (immutable-cached URLs must change
     // when the files change), then ensure they're linked.
-    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=7');
-    html = ensureCssLink(html, '/css/nav-more.css?v=7');
+    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, PINS.NAV_MORE_CSS);
+    html = ensureCssLink(html, PINS.NAV_MORE_CSS);
     if (html.includes('class="mobile-menu"')) {
-      html = html.replace(/\/css\/mobile-menu\.css\?v=\d+/g, '/css/mobile-menu.css?v=6');
-      html = ensureCssLink(html, '/css/mobile-menu.css?v=6');
+      html = html.replace(/\/css\/mobile-menu\.css\?v=\d+/g, PINS.MOBILE_MENU_CSS);
+      html = ensureCssLink(html, PINS.MOBILE_MENU_CSS);
     }
   }
   if (!html.includes('/js/px-core.js')) {

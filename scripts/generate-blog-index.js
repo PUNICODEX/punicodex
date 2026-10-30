@@ -18,6 +18,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const BLOG_DIR = path.join(ROOT, 'platform', 'blog', 'content');
@@ -256,8 +257,8 @@ const html = `<!DOCTYPE html>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
     <link rel="stylesheet" href="/css/strip-less-nav.css?v=1">
-    <link rel="stylesheet" href="/css/nav-more.css?v=6">
-    <link rel="stylesheet" href="/css/mobile-menu.css?v=5">
+    <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
+    <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
