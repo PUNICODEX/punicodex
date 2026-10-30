@@ -155,7 +155,7 @@ function main() {
     <meta name="twitter:image" content="https://punicodex.com/assets/og/everyday.jpg">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/main.css?v=perf27">
-    <link rel="stylesheet" href="/css/nav-more.css?v=5">
+    <link rel="stylesheet" href="/css/nav-more.css?v=6">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=5">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <script type="application/ld+json">${JSON.stringify(itemList)}</script>
