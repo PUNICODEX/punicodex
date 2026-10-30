@@ -112,10 +112,16 @@ jobs:
           script: |
             const { execSync } = require('child_process');
             let diff = '';
+            let patch = '';
             try {
               diff = execSync('git status --porcelain | head -40', { encoding: 'utf8' });
             } catch (err) {
               diff = `git status failed: ${err.message}`;
+            }
+            try {
+              patch = execSync('git diff | head -160', { encoding: 'utf8', maxBuffer: 8 * 1024 * 1024 });
+            } catch (err) {
+              patch = `git diff failed: ${err.message}`;
             }
             const body = [
               `Commit: ${context.sha}`,
@@ -124,6 +130,11 @@ jobs:
               'Dirty files after `npm run generate` (first 40):',
               '```',
               diff || '(git status empty)',
+              '```',
+              '',
+              'Patch (first 160 lines):',
+              '```',
+              patch || '(git diff empty)',
               '```',
             ].join('\n');
             try {

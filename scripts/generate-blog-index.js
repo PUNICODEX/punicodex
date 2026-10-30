@@ -131,13 +131,20 @@ for (const series of SERIES) {
     });
   }
 }
-posts.sort((a, b) => a.unicode.localeCompare(b.unicode, 'en') || Number(a.series) - Number(b.series));
+// ICU-independent codepoint comparator: localeCompare('en') orders these
+// restorations differently across ICU versions (CI's Node vs local), which
+// made the baked card/payload order — and thus the page bytes — platform
+// dependent. Codepoint order is identical on every Node/ICU combination.
+const byCodepoint = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+posts.sort(
+  (a, b) => byCodepoint(a.unicode, b.unicode) || Number(a.series) - Number(b.series)
+);
 
 // ── Stats ───────────────────────────────────────────────────────────────────
 
 const pantheonCounts = new Map();
 for (const p of posts) pantheonCounts.set(p.pantheon, (pantheonCounts.get(p.pantheon) || 0) + 1);
-const pantheons = [...pantheonCounts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+const pantheons = [...pantheonCounts.entries()].sort((a, b) => byCodepoint(a[0], b[0]));
 const markedCount = posts.filter((p) => p.marked).length;
 const plainCount = posts.length - markedCount;
 const avgRead = posts.length
