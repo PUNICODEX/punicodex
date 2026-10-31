@@ -20,6 +20,7 @@ const {
   childrenOf,
   PANTHEON_CHILDREN,
   CODEX_CHILDREN,
+  STORE_CHILDREN,
 } = require('../scripts/nav-tree.js');
 
 let passed = 0;
@@ -69,13 +70,13 @@ test('fan-out panels: Pantheon mega-panel and Codex panel have their destination
   for (const c of CODEX_CHILDREN) {
     assert.ok(html.includes(`href="${c.href}"`), `codex panel missing ${c.label} (${c.href})`);
   }
-  // Store fan-out is Phase B: plain link, no caret/panel until activated.
+  // Store fan-out (Phase B Reliquary): Store is a caret item whose panel
+  // carries the live departments (Merch, Art).
   const relics = html.slice(html.indexOf('data-hub="relics"'), html.indexOf('data-hub="about"'));
-  assert.ok(
-    relics.includes('<a href="/store/">Store</a>'),
-    'store must be a plain link until Phase B'
-  );
-  assert.ok(!relics.includes('nav-hub-panel'), 'store panel must not ship before Phase B');
+  assert.ok(relics.includes('nav-hub-panel'), 'store fan-out panel must ship in Phase B');
+  for (const c of STORE_CHILDREN) {
+    assert.ok(relics.includes(`href="${c.href}"`), `store panel missing ${c.label} (${c.href})`);
+  }
 });
 
 test('Pronunciation is footer-only (not in desktop nav menus)', () => {

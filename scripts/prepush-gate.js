@@ -266,6 +266,18 @@ const RULES = [
     suites: ['Mobile Menu Consistency Tests', 'Mobile Share Extension Tests'],
   },
   {
+    pattern:
+      /^scripts\/(nav-tree|asset-pins|sync-desktop-nav|sync-mobile-menu|sync-footer|generate-hubs|generate-store-pages|sync-temple-store-links|sync-middleware-domains)\.js$|^css\/(nav-hubs|mobile-menu|hub)\.css$|^js\/(nav-hubs|hub3d)\.js$|^middleware\.js$|^test\/nav-hubs-regression\.test\.js$|^store\/products\.json$/,
+    suites: [
+      'Nav & Hub Regression Tests',
+      'Menu Consistency Tests',
+      'Mobile Menu Consistency Tests',
+      'Footer Consistency Tests',
+      'Middleware Execution Tests',
+      'Store Structure Tests',
+    ],
+  },
+  {
     pattern: /^sdk\//,
     suites: ['iOS SDK Contract Tests', 'Android SDK Contract Tests'],
   },

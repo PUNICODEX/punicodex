@@ -11,6 +11,7 @@ const { HUB_ORDER, HUBS, childrenOf } = require('./nav-tree.js');
 
 const ROOT = path.join(__dirname, '..');
 const { fullNavHtml } = require('./sync-desktop-nav.js');
+const { footerHtml } = require('./sync-footer.js');
 
 // Per-hub deterministic seed — stable scenes across regenerations.
 function seedFrom(str) {
@@ -81,7 +82,7 @@ function pageHtml(hubId, hub, active) {
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-    <link rel="stylesheet" href="/css/hub.css?v=1">
+    <link rel="stylesheet" href="/css/hub.css?v=2">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <meta name="theme-color" content="#0e0b08">
     <meta name="color-scheme" content="dark">
@@ -94,7 +95,7 @@ function pageHtml(hubId, hub, active) {
             <canvas class="hub-hero-canvas" id="hub-canvas" aria-hidden="true"></canvas>
             <div class="hub-hero-veil"></div>
             <div class="hub-hero-copy">
-                <p class="hub-kicker">PuniCodex · Wing of the Pantheon</p>
+                <p class="hub-kicker">PuniCodex · ${esc(hub.role || 'Wing of the Pantheon')}</p>
                 <h1 class="hub-title">${esc(hub.label)}</h1>
                 <p class="hub-tagline">${esc(hub.tagline)}</p>
                 <p class="hub-blurb">${esc(hub.blurb)}</p>
@@ -106,19 +107,15 @@ function pageHtml(hubId, hub, active) {
             </div>
         </section>
     </main>
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <p class="footer-line"><a href="/">PuniCodex</a> — The Unicode Pantheon. 980 names, restored and defended.</p>
-            <p class="footer-line"><a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a></p>
-        </div>
-    </footer>
-    <script src="/js/hub3d.js?v=1" defer></script>
+    ${footerHtml()}
+    <script src="/js/hub3d.js?v=2" defer></script>
     <script src="/js/px-core.js?v=perf23" defer></script>
     <script src="${PINS.NAV_HUBS_JS}" defer></script>
     <script>
     window.addEventListener('DOMContentLoaded', function () {
         var canvas = document.getElementById('hub-canvas');
-        var engine = window.Hub3D ? Hub3D.create(canvas, { scene: '${hub.scene}', seed: ${seed} }) : null;
+        var engine = null;
+        try { engine = window.Hub3D ? Hub3D.create(canvas, { scene: '${hub.scene}', seed: ${seed} }) : null; } catch (e) { engine = null; }
         document.querySelectorAll('[data-hub-card]').forEach(function (card) {
             card.addEventListener('mouseenter', function () { if (engine) engine.pulse(0.55); });
             if (window.matchMedia('(pointer: fine)').matches) {

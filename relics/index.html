@@ -17,9 +17,9 @@
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
     <link rel="stylesheet" href="/css/nav-more.css?v=7">
-    <link rel="stylesheet" href="/css/mobile-menu.css?v=7">
-    <link rel="stylesheet" href="/css/nav-hubs.css?v=1">
-    <link rel="stylesheet" href="/css/hub.css?v=1">
+    <link rel="stylesheet" href="/css/mobile-menu.css?v=8">
+    <link rel="stylesheet" href="/css/nav-hubs.css?v=2">
+    <link rel="stylesheet" href="/css/hub.css?v=2">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <meta name="theme-color" content="#0e0b08">
     <meta name="color-scheme" content="dark">
@@ -123,7 +123,13 @@
                 <div class="nav-hub" data-hub="relics">
                     <a href="/relics/" class="nav-link active" aria-haspopup="true" aria-expanded="false" aria-current="page">Relics</a>
                     <div class="nav-hub-menu">
-                    <a href="/store/">Store</a>
+                    <div class="nav-hub-item">
+                                <a href="/store/">Store<span class="nav-hub-caret">▸</span></a>
+                                <div class="nav-hub-panel">
+                                    <a href="/store/merch/">Merch</a>
+                                    <a href="/store/art/">Art</a>
+                                </div>
+                            </div>
                     <a href="/cards/">Cards</a>
                     <a href="/game/">Game</a>
                     <a href="/ink/">Ink</a>
@@ -154,7 +160,7 @@
             <div class="mobile-menu-group">
                 <a href="/world/" class="mobile-link--featured">Atlas</a>
                 <details class="mobile-sub">
-                <summary>Pantheon<span class="mobile-sub-caret">▾</span></summary>
+                <summary><a href="/pantheon/" class="mobile-sub-link">Pantheon</a><span class="mobile-sub-caret">▾</span></summary>
                 <div class="mobile-sub-group">
                     <a href="/pantheon/" class="mobile-link--featured">Pantheon — overview</a>
                     <a href="/realms/">Realms</a>
@@ -224,7 +230,7 @@
                 <a href="/blog/">Blog</a>
                 <a href="/scholars/">Scholars</a>
                 <details class="mobile-sub">
-                <summary>Codex<span class="mobile-sub-caret">▾</span></summary>
+                <summary><a href="/codex/" class="mobile-sub-link">Codex</a><span class="mobile-sub-caret">▾</span></summary>
                 <div class="mobile-sub-group">
                     <a href="/codex/" class="mobile-link--featured">Codex — overview</a>
                     <a href="/codex/anatomy-of-a-punycode-domain/">Anatomy of a Punycode Domain</a>
@@ -239,7 +245,14 @@
             <span class="mobile-menu-title">Relics</span>
             <div class="mobile-menu-group">
                 <a href="/relics/" class="mobile-link--featured active">Relics</a>
-                <a href="/store/">Store</a>
+                <details class="mobile-sub">
+                <summary><a href="/store/" class="mobile-sub-link">Store</a><span class="mobile-sub-caret">▾</span></summary>
+                <div class="mobile-sub-group">
+                    <a href="/store/" class="mobile-link--featured">Store — overview</a>
+                    <a href="/store/merch/">Merch</a>
+                    <a href="/store/art/">Art</a>
+                </div>
+            </details>
                 <a href="/cards/">Cards</a>
                 <a href="/game/">Game</a>
                 <a href="/ink/">Ink</a>
@@ -261,7 +274,7 @@
             <canvas class="hub-hero-canvas" id="hub-canvas" aria-hidden="true"></canvas>
             <div class="hub-hero-veil"></div>
             <div class="hub-hero-copy">
-                <p class="hub-kicker">PuniCodex · Wing of the Pantheon</p>
+                <p class="hub-kicker">PuniCodex · The Vault of the Pantheon</p>
                 <h1 class="hub-title">Relics</h1>
                 <p class="hub-tagline">Objects of the pantheon</p>
                 <p class="hub-blurb">Things you can hold — the trading cards, the duel, the ink on skin, and the Reliquary: merchandise and art from the temples.</p>
@@ -275,7 +288,7 @@
   <path d="M15 10 L22 23 L8 23 Z" stroke="#d4af37" stroke-width="1"/>
 </svg></div>
       <p class="hub-card-blurb">The Reliquary — merch and art.</p>
-      <span class="hub-card-go">Enter</span>
+      <span class="hub-card-go">Explore 2 destinations</span>
     </a>
         <a class="hub-card hub-reveal" href="/cards/" data-hub-card>
       <div class="hub-card-top"><h2 class="hub-card-title">Cards</h2><svg class="hub-sigil" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
@@ -305,18 +318,72 @@
         </section>
     </main>
     <footer class="site-footer">
-        <div class="footer-inner">
-            <p class="footer-line"><a href="/">PuniCodex</a> — The Unicode Pantheon. 980 names, restored and defended.</p>
-            <p class="footer-line"><a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a></p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
+                </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Explore</h2>
+                    <a href="/pantheon/">Pantheon</a>
+                    <a href="/realms/">Realms</a>
+                    <a href="/artifacts/">Artifacts</a>
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/connections/">Connections</a>
+                    <a href="/patterns/">Patterns</a>
+                    <a href="/everyday/">Words</a>
+                    <a href="/ink/">Ink</a>
+                    <a href="/trending/">Trending</a>
+                    <a href="/rulebook/">Rulebook</a>
+                    <a href="/type/">Type</a>
+                    <a href="/game/">Game</a>
+                    <a href="/search/">Search</a>
+                    <a href="/store/">Store</a>
+                </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Resources</h2>
+                    <a href="/texts/">Texts</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/cards/">Cards</a>
+                    <a href="/creatives/">Creatives</a>
+                    <a href="/scholars/">Scholars</a>
+                    <a href="/herald/">Herald</a>
+                    <a href="/screen/">Screen</a>
+                    <a href="/authenticity/">Authenticity</a>
+                    <a href="/pronunciation/">Pronunciation</a>
+                    <a href="/innovation/">Innovation</a>
+                    <a href="/arbitrage/">Arbitrage</a>
+                </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Connect</h2>
+                    <a href="/about/">About</a>
+                    <a href="/about/founder/">Founder</a>
+                    <a href="/art/">Art</a>
+                    <a href="/careers/">Careers</a>
+                    <a href="/university-sponsorship/">Academics</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 PuniCodex. All rites reserved.</p>
+                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
+                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
+                    <span class="hekaweb-name">HEKAWEB</span>
+                </a>
+            </div>
         </div>
     </footer>
-    <script src="/js/hub3d.js?v=1" defer></script>
+    <script src="/js/hub3d.js?v=2" defer></script>
     <script src="/js/px-core.js?v=perf23" defer></script>
-    <script src="/js/nav-hubs.js?v=1" defer></script>
+    <script src="/js/nav-hubs.js?v=2" defer></script>
     <script>
     window.addEventListener('DOMContentLoaded', function () {
         var canvas = document.getElementById('hub-canvas');
-        var engine = window.Hub3D ? Hub3D.create(canvas, { scene: 'lattice', seed: 3987157357 }) : null;
+        var engine = null;
+        try { engine = window.Hub3D ? Hub3D.create(canvas, { scene: 'lattice', seed: 3987157357 }) : null; } catch (e) { engine = null; }
         document.querySelectorAll('[data-hub-card]').forEach(function (card) {
             card.addEventListener('mouseenter', function () { if (engine) engine.pulse(0.55); });
             if (window.matchMedia('(pointer: fine)').matches) {

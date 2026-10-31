@@ -60,6 +60,8 @@ const CANONICAL_LINKS = [
   // Relics
   '/relics/',
   '/store/',
+  '/store/merch/',
+  '/store/art/',
   '/cards/',
   '/game/',
   '/ink/',
@@ -221,9 +223,10 @@ test('mobile-menu.css resets legacy temple-base counters and uppercase transform
 });
 
 test('realms and lexicon load the cache-busted mobile-menu.css', () => {
+  const { MOBILE_MENU_CSS } = require('../scripts/asset-pins.js');
   for (const rel of [path.join('realms', 'index.html'), path.join('lexicon', 'index.html')]) {
     const html = readPage(rel);
-    assert.ok(html.includes('/css/mobile-menu.css?v=7'), `${rel} loads mobile-menu.css?v=7`);
+    assert.ok(html.includes(MOBILE_MENU_CSS), `${rel} loads the pinned mobile-menu.css`);
     assert.ok(
       !html.includes('/css/mobile-menu.css?v=1'),
       `${rel} does not load the stale v=1 mobile-menu.css`

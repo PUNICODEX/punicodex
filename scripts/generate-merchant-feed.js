@@ -109,7 +109,7 @@ function itemXml(p) {
   // generator buckets them under the 'punicodex' collection.
   const temple = p.temple || 'punicodex';
   const kind = String(p.id).split('-').pop();
-  const link = `${SITE_ORIGIN}/store/${temple}/${kind}/`;
+  const link = `${SITE_ORIGIN}/store/merch/${temple}/${kind}/`;
   const title = p.name;
   const description = `${p.blurb || p.name} Printed on demand by the PUNICODEX Reliquary — made to order, shipped worldwide.`;
   const priceCents = feedPriceCents(p);

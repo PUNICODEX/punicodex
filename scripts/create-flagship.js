@@ -1778,7 +1778,7 @@ function buildZeusFooter(entry, assetPrefix) {
     ['Ink', 'https://punicodex.com/ink/'],
     ['Pronunciation', 'https://punicodex.com/pronunciation/'],
     ['Blog', 'https://punicodex.com/blog/'],
-    ['Reliquary', `https://punicodex.com/store/${entry.id}/`],
+    ['Reliquary', `https://punicodex.com/store/merch/${entry.id}/`],
   ]
     .map(
       ([label, href]) =>

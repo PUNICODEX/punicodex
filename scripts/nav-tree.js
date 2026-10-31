@@ -18,6 +18,7 @@ const HUBS = {
     label: 'Atlas',
     href: '/world/',
     scene: 'sphere',
+    role: 'The Mind of the Pantheon',
     tagline: 'The mapped world of names',
     blurb:
       'Every name in the pantheon, charted — the beings themselves, the threads that connect them, the patterns they form, and the live frontier of the Unicode web.',
@@ -33,6 +34,7 @@ const HUBS = {
     label: 'Culture',
     href: '/culture/',
     scene: 'compound',
+    role: 'The Voice of the Pantheon',
     tagline: 'How myth lives in the world today',
     blurb:
       'The names did not stay in antiquity — they walk around in film, in ordinary speech, in university departments, and in the Herald’s chronicle of the restoration.',
@@ -47,6 +49,7 @@ const HUBS = {
     label: 'Tools',
     href: '/instruments/',
     scene: 'gears',
+    role: 'The Hand of the Pantheon',
     tagline: 'Instruments for the Unicode web',
     blurb:
       'Type a name and get its true spelling, ask the oracle, appraise a name, or wire the whole lexicon into your own systems.',
@@ -64,6 +67,7 @@ const HUBS = {
     label: 'Library',
     href: '/library/',
     scene: 'columns',
+    role: 'The Memory of the Pantheon',
     tagline: 'The scholarship',
     blurb:
       'The evidence behind every restoration — the lexicon and its sources, primary texts in the original languages, the codex essays, and the university-edited scholarly edition.',
@@ -80,6 +84,7 @@ const HUBS = {
     label: 'Relics',
     href: '/relics/',
     scene: 'lattice',
+    role: 'The Vault of the Pantheon',
     tagline: 'Objects of the pantheon',
     blurb:
       'Things you can hold — the trading cards, the duel, the ink on skin, and the Reliquary: merchandise and art from the temples.',
@@ -94,6 +99,7 @@ const HUBS = {
     label: 'About',
     href: '/about/',
     scene: 'monolith',
+    role: 'The Story of the Pantheon',
     tagline: 'The project',
     blurb: 'Who is restoring the names, and why.',
     items: [
@@ -124,14 +130,13 @@ const CODEX_CHILDREN = [
   { label: 'Why Greek Accents Matter', href: '/codex/why-greek-accents-matter/' },
 ];
 
-/* Relics → Store fan-out. Phase B of the Reliquary restructure — these
-   URLs do not exist yet, so syncers must not emit them until activated. */
-const STORE_CHILDREN_ENABLED = false;
+/* Relics → Store fan-out (Phase B of the Reliquary restructure — live).
+   Only departments with real pages are listed: Gallery and Commons join
+   the fan-out when their generators land. */
+const STORE_CHILDREN_ENABLED = true;
 const STORE_CHILDREN = [
   { label: 'Merch', href: '/store/merch/' },
   { label: 'Art', href: '/store/art/' },
-  { label: 'Gallery', href: '/store/art/gallery/' },
-  { label: 'Commons', href: '/store/art/commons/' },
 ];
 
 const CHILD_SETS = {

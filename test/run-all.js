@@ -267,6 +267,10 @@ const SUITES = [
   { name: 'Patron Contract Tests', cmd: 'node --test test/patron-contract.test.js' },
   { name: 'Collaborators Strip Tests', cmd: 'node test/collaborators-strip.test.js' },
   { name: 'Menu Consistency Tests', cmd: 'node test/menu-consistency.test.js' },
+  {
+    name: 'Nav & Hub Regression Tests',
+    cmd: 'node test/nav-hubs-regression.test.js',
+  },
   { name: 'Footer Consistency Tests', cmd: 'node test/footer-consistency.test.js' },
   { name: 'Stale Counter Tests', cmd: 'node test/stale-counters.test.js' },
   { name: 'Texts Section Tests', cmd: 'node test/texts-section.test.js' },
@@ -606,6 +610,7 @@ const SERIAL_SUITES = new Set([
   'Everyday + Ink Tests', // idempotency checks rewrite everyday/index.html + data/ink-index.json
   'Store Structure Tests', // reads store pages while tree-writers rewrite them
   'Menu Consistency Tests', // reads every nav target page; torn reads false-fail
+  'Nav & Hub Regression Tests', // same torn-read class as menu consistency
   'Mobile Menu Consistency Tests', // same torn-read class as menu consistency
   'Texts Section Tests', // reads texts pages while injectors rewrite them
   'Texts Chapters Tests', // byte-exact chapter comparisons; no concurrent writers

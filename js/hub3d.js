@@ -769,12 +769,20 @@
     }
 
     if (!fallbackForced && !reduceMotion) {
-      renderer = WebGLRenderer(canvas, objects, () => {
+      // A dying driver can throw from getContext/buffer setup rather than
+      // returning null — never let the engine boot take the page's other
+      // scripts down with it (the herald first-frame crash class).
+      try {
+        renderer = WebGLRenderer(canvas, objects, () => {
+          renderer = null;
+          try { window.localStorage.setItem('hub3d-renderer', '2d'); } catch (e) { /* ok */ }
+          boot2D();
+          resize();
+        });
+      } catch (e) {
         renderer = null;
-        try { window.localStorage.setItem('hub3d-renderer', '2d'); } catch (e) { /* ok */ }
-        boot2D();
-        resize();
-      });
+        try { window.localStorage.setItem('hub3d-renderer', '2d'); } catch (e2) { /* ok */ }
+      }
     }
     if (!renderer) boot2D();
     if (!renderer) return null;

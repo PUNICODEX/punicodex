@@ -50,14 +50,17 @@ function* walk(dir) {
 
 const COLLECTION_IDS = [...new Set(CATALOG.products.map((p) => p.temple || 'punicodex'))];
 
-test('store index + every collection + every product page exists', () => {
+test('store entrance + art department + every collection + every product page exists', () => {
   assert.ok(exists('store/index.html'), 'store/index.html missing');
+  assert.ok(exists('store/art/index.html'), 'store/art/index.html missing');
+  assert.ok(exists('store/merch/index.html'), 'store/merch/index.html missing');
   const missing = [];
   for (const id of COLLECTION_IDS) {
-    if (!exists(`store/${id}/index.html`)) missing.push(`store/${id}/`);
+    if (!exists(`store/merch/${id}/index.html`)) missing.push(`store/merch/${id}/`);
     for (const p of CATALOG.products.filter((x) => (x.temple || 'punicodex') === id)) {
       const kind = p.id.split('-').pop();
-      if (!exists(`store/${id}/${kind}/index.html`)) missing.push(`store/${id}/${kind}/`);
+      if (!exists(`store/merch/${id}/${kind}/index.html`))
+        missing.push(`store/merch/${id}/${kind}/`);
     }
   }
   assert.deepStrictEqual(
@@ -66,6 +69,22 @@ test('store index + every collection + every product page exists', () => {
     `missing pages: ${missing.slice(0, 10).join(', ')}`
   );
   assert.strictEqual(missing.length, 0, `${missing.length} pages missing`);
+});
+
+test('the store entrance presents the Merch and Art departments', () => {
+  const html = read('store/index.html');
+  assert.ok(html.includes('href="/store/merch/"'), 'entrance: no Merch department link');
+  assert.ok(html.includes('href="/store/art/"'), 'entrance: no Art department link');
+  // The merch tree must not be rooted at /store/ anymore.
+  assert.ok(!html.includes('id="grid"'), 'entrance must not carry the collections grid');
+});
+
+test('the art department links only live destinations and never dead hrefs', () => {
+  const html = read('store/art/index.html');
+  assert.ok(html.includes('href="/creatives/"'), 'art: no creatives link');
+  assert.ok(html.includes('href="/ink/"'), 'art: no ink link');
+  // Gallery and Commons ship as honest "opening soon" cards — spans, not hrefs.
+  assert.ok(!/href="\/store\/art\/(gallery|commons)\/"/.test(html), 'art: dead department hrefs');
 });
 
 test('every store page has title, meta description, and a matching canonical', () => {
@@ -85,7 +104,7 @@ test('every store page has title, meta description, and a matching canonical', (
 
 test('collection pages embed valid CollectionPage JSON-LD; product pages embed Product JSON-LD', () => {
   for (const id of COLLECTION_IDS.slice(0, 25)) {
-    const html = read(`store/${id}/index.html`);
+    const html = read(`store/merch/${id}/index.html`);
     const m = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
     assert.ok(m, `store/${id}: missing JSON-LD`);
     const doc = JSON.parse(m[1]);
@@ -99,7 +118,7 @@ test('collection pages embed valid CollectionPage JSON-LD; product pages embed P
   for (const id of COLLECTION_IDS.slice(0, 10)) {
     const p = CATALOG.products.find((x) => (x.temple || 'punicodex') === id);
     const kind = p.id.split('-').pop();
-    const html = read(`store/${id}/${kind}/index.html`);
+    const html = read(`store/merch/${id}/${kind}/index.html`);
     const m = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
     assert.ok(m, `store/${id}/${kind}: missing JSON-LD`);
     const doc = JSON.parse(m[1]);
@@ -126,12 +145,12 @@ test('every store page has exactly one h1 and every image has alt', () => {
 });
 
 test('interactive elements carry accessible names', () => {
-  const html = read('store/index.html');
+  const html = read('store/merch/index.html');
   assert.ok(/aria-label="Search collections"/.test(html), 'search input lacks aria-label');
   for (const id of COLLECTION_IDS.slice(0, 15)) {
     const p = CATALOG.products.find((x) => (x.temple || 'punicodex') === id);
     const kind = p.id.split('-').pop();
-    const pdp = read(`store/${id}/${kind}/index.html`);
+    const pdp = read(`store/merch/${id}/${kind}/index.html`);
     for (const btn of pdp.match(/<button\b[^>]*>([^<]*)/g) || []) {
       const text = btn.replace(/<button\b[^>]*>/, '').trim();
       if (!/aria-label/.test(btn) && !text) assert.fail(`${id}/${kind}: unnamed button ${btn}`);
@@ -145,7 +164,7 @@ test('product pages embed a checkout contract that maps to a real sync variant',
   for (const p of CATALOG.products) {
     const id = p.temple || 'punicodex';
     const kind = p.id.split('-').pop();
-    const html = read(`store/${id}/${kind}/index.html`);
+    const html = read(`store/merch/${id}/${kind}/index.html`);
     assert.ok(
       html.includes(`productId: ${JSON.stringify(p.id)}`),
       `${p.id}: wrong productId in buy flow`
@@ -164,7 +183,7 @@ test('product pages embed a checkout contract that maps to a real sync variant',
 
 test('collection pages link only to product pages that exist on disk', () => {
   for (const id of COLLECTION_IDS) {
-    const html = read(`store/${id}/index.html`);
+    const html = read(`store/merch/${id}/index.html`);
     const hrefs = [...html.matchAll(/href="(\/store\/[^"]+)"/g)].map((m) => m[1]);
     for (const href of hrefs) {
       const file = `store${href.replace(/^\/store/, '')}index.html`;
@@ -175,7 +194,7 @@ test('collection pages link only to product pages that exist on disk', () => {
 
 test('collection pages separate the Foundation Collection from Creator Editions', () => {
   for (const id of COLLECTION_IDS.slice(0, 25)) {
-    const html = read(`store/${id}/index.html`);
+    const html = read(`store/merch/${id}/index.html`);
     assert.ok(html.includes('The Foundation Collection'), `store/${id}: no foundation header`);
     assert.ok(html.includes('Creator Editions'), `store/${id}: no creator editions band`);
     assert.ok(html.includes('id="ce-grid"'), `store/${id}: no hydration container`);
@@ -187,19 +206,19 @@ test('collection pages separate the Foundation Collection from Creator Editions'
 
 test('collection product grids are strictly alphabetical A–Z', () => {
   for (const id of COLLECTION_IDS.slice(0, 25)) {
-    const html = read(`store/${id}/index.html`);
-    const kinds = [...html.matchAll(/href="\/store\/[^/]+\/([a-z]+)\//g)].map((m) => m[1]);
+    const html = read(`store/merch/${id}/index.html`);
+    const kinds = [...html.matchAll(/href="\/store\/merch\/[^/]+\/([a-z]+)\//g)].map((m) => m[1]);
     const grid = kinds.slice(0, 13); // the 13 foundation kinds, in page order
     const sorted = [...grid].sort((a, b) => a.localeCompare(b));
     assert.deepStrictEqual(grid, sorted, `store/${id}: not alphabetical (${grid.join(',')})`);
   }
 });
 
-test('the store index lists temple collections strictly A–Z', () => {
-  const html = read('store/index.html');
+test('the merch hall lists temple collections strictly A–Z', () => {
+  const html = read('store/merch/index.html');
   // Filter to real collections — the page also links the shipping/returns
   // policy pages, which are not part of the A–Z temple grid.
-  const ids = [...html.matchAll(/href="\/store\/([a-z0-9-]+)\/"/g)]
+  const ids = [...html.matchAll(/href="\/store\/merch\/([a-z0-9-]+)\/"/g)]
     .map((m) => m[1])
     .filter((id) => COLLECTION_IDS.includes(id));
   assert.ok(ids.length >= 500, `expected 500+ collections, got ${ids.length}`);
@@ -306,12 +325,14 @@ test('POD product generator preserves mockupImage and variantPricing', () => {
 });
 
 test('store pages carry the responsive breakpoint and canonical site nav', () => {
-  const html = read('store/index.html');
-  assert.ok(html.includes('@media(max-width:820px)'), 'missing mobile breakpoint');
-  assert.ok(html.includes('<nav class="main-nav"'), 'missing canonical main nav');
-  assert.ok(html.includes('id="mobile-menu"'), 'missing canonical mobile menu');
+  for (const page of ['store/index.html', 'store/merch/index.html', 'store/art/index.html']) {
+    const html = read(page);
+    assert.ok(html.includes('@media(max-width:820px)'), `${page}: missing mobile breakpoint`);
+    assert.ok(html.includes('<nav class="main-nav"'), `${page}: missing canonical main nav`);
+    assert.ok(html.includes('id="mobile-menu"'), `${page}: missing canonical mobile menu`);
+  }
   for (const id of COLLECTION_IDS.slice(0, 10)) {
-    const pdp = read(`store/${id}/index.html`);
+    const pdp = read(`store/merch/${id}/index.html`);
     assert.ok(pdp.includes('@media(max-width:820px)'), `store/${id}: no breakpoint`);
   }
 });
@@ -377,10 +398,10 @@ test('merchant feed exists with one item per catalog product', () => {
 
 test('every feed link resolves to a real product page on disk', () => {
   for (const item of parseFeedItems()) {
-    assert.ok(item.link.startsWith('https://punicodex.com/store/'), `${item.id}: bad link`);
-    assert.ok(!item.link.includes('/store/null/'), `${item.id}: null temple link`);
-    const rel = item.link.replace('https://punicodex.com/store/', '').replace(/\/$/, '');
-    const file = `store/${rel}/index.html`;
+    assert.ok(item.link.startsWith('https://punicodex.com/store/merch/'), `${item.id}: bad link`);
+    assert.ok(!item.link.includes('/store/merch/null/'), `${item.id}: null temple link`);
+    const rel = item.link.replace('https://punicodex.com/store/merch/', '').replace(/\/$/, '');
+    const file = `store/merch/${rel}/index.html`;
     assert.ok(exists(file), `${item.id}: link target missing: ${file}`);
   }
 });
@@ -429,10 +450,12 @@ test('shipping + returns policy pages exist with canonical chrome and contact ro
   }
 });
 
-test('store index links the policy pages', () => {
-  const html = read('store/index.html');
-  assert.ok(html.includes('href="/store/shipping/"'), 'store index: no shipping link');
-  assert.ok(html.includes('href="/store/returns/"'), 'store index: no returns link');
+test('the store entrance and merch hall link the policy pages', () => {
+  for (const page of ['store/index.html', 'store/merch/index.html']) {
+    const html = read(page);
+    assert.ok(html.includes('href="/store/shipping/"'), `${page}: no shipping link`);
+    assert.ok(html.includes('href="/store/returns/"'), `${page}: no returns link`);
+  }
 });
 
 test('generator + stamper are idempotent (second run writes zero files)', () => {

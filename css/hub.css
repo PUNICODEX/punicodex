@@ -12,6 +12,57 @@
   --hub-obsidian: #0e0b08;
 }
 
+/* ── Nav strip: identical geometry to the home page (css/main.css) ──
+   temple-base reserves --global-strip-height (54–72px) for the retired
+   global announcement strip that hub pages never render — that dead space
+   was the visible "gap above the menu". The temple nav is also 110px tall
+   vs the home page's 72px. Reset both here so the hub strip IS the home
+   strip on every viewport, and retire the Enter CTA (hubs are the
+   navigation surface themselves). */
+:root {
+  --global-strip-height: 0px;
+  --nav-height: 72px;
+}
+
+.hub-body .main-nav,
+.main-nav {
+  top: 0;
+  padding: 0;
+}
+
+.nav-cta {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .main-nav .nav-links,
+  .main-nav .nav-cta {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1003;
+    position: relative;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--hub-gold);
+  }
+}
+
 .hub-hero {
   position: relative;
   min-height: min(88vh, 820px);
@@ -50,6 +101,9 @@
   width: 100%;
   margin: 0 auto;
   padding: clamp(96px, 16vh, 180px) 24px 56px;
+  /* Legibility over the animated tetrahedral canvas — especially the
+     letter-spaced kicker, which dissolved into the scene on phones. */
+  text-shadow: 0 2px 18px rgba(14, 11, 8, 0.9), 0 0 42px rgba(14, 11, 8, 0.55);
 }
 
 .hub-kicker {
@@ -59,6 +113,7 @@
   text-transform: uppercase;
   color: var(--hub-gold);
   margin: 0 0 14px;
+  text-shadow: 0 1px 10px rgba(14, 11, 8, 0.95), 0 0 24px rgba(14, 11, 8, 0.8);
 }
 
 .hub-title {
@@ -246,6 +301,23 @@
 @media (max-width: 720px) {
   .hub-hero {
     min-height: 68vh;
+  }
+  /* The bottom scrim deepens so the copy sits on near-solid ground,
+     and the kicker gains real presence instead of dissolving into
+     the canvas. */
+  .hub-hero-veil {
+    background: linear-gradient(180deg,
+        rgba(14, 11, 8, 0.6) 0%,
+        rgba(14, 11, 8, 0.18) 40%,
+        rgba(14, 11, 8, 0.42) 66%,
+        rgba(14, 11, 8, 0.96) 100%);
+  }
+  .hub-hero-copy {
+    padding: clamp(72px, 12vh, 120px) 20px 44px;
+  }
+  .hub-kicker {
+    font-size: 13px;
+    letter-spacing: 0.24em;
   }
   .hub-grid {
     grid-template-columns: 1fr;

@@ -682,7 +682,7 @@ async function notifyStoreOrderConfirmation({
   quantity,
   status,
 }) {
-  const orderUrl = `${PLATFORM_URL}/store/?order=${encodeURIComponent(orderRef)}`;
+  const orderUrl = `${PLATFORM_URL}/store/merch/?order=${encodeURIComponent(orderRef)}`;
   const failed = status === 'fulfillment_failed';
   // Honest failure copy: fulfillment_failed must never read as "confirmed".
   const statusLine = failed

@@ -138,11 +138,11 @@ test('the placement audit fixture math: content fits inside the garment box', ()
 test('no generated store page references a mockup URL outside the verified fleet', () => {
   const fleet = JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'mockup-fleet.json'), 'utf8'));
   const pages = [
-    path.join(ROOT, 'store', 'index.html'),
-    path.join(ROOT, 'store', 'aigyptos', 'index.html'),
-    path.join(ROOT, 'store', 'zeus', 'index.html'),
-    path.join(ROOT, 'store', 'aigyptos', 'tee', 'index.html'),
-    path.join(ROOT, 'store', 'zeus', 'mug', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'aigyptos', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'zeus', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'aigyptos', 'tee', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'zeus', 'mug', 'index.html'),
   ];
   let checked = 0;
   for (const page of pages) {
@@ -163,10 +163,10 @@ test('no generated store page references a mockup URL outside the verified fleet
 
 test('store card and stage imagery resolves to real local assets or fleet composites', () => {
   const pages = [
-    path.join(ROOT, 'store', 'aigyptos', 'index.html'),
-    path.join(ROOT, 'store', 'aigyptos', 'tee', 'index.html'),
-    path.join(ROOT, 'store', 'zeus', 'mug', 'index.html'),
-    path.join(ROOT, 'store', 'adonis', 'tee', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'aigyptos', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'aigyptos', 'tee', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'zeus', 'mug', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'adonis', 'tee', 'index.html'),
   ];
   for (const page of pages) {
     const html = fs.readFileSync(page, 'utf8');
@@ -189,12 +189,12 @@ test('every collection card shows the temple art — fleet composite or build-ti
   // URL-liveness and asset-existence guards both passed on a blank card;
   // this guard asserts the user-visible outcome instead.
   const pages = [
-    path.join(ROOT, 'store', 'index.html'),
-    path.join(ROOT, 'store', 'aigyptos', 'index.html'),
-    path.join(ROOT, 'store', 'zeus', 'index.html'),
-    path.join(ROOT, 'store', 'adonis', 'index.html'),
-    path.join(ROOT, 'store', 'athena', 'index.html'),
-    path.join(ROOT, 'store', 'punicodex', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'aigyptos', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'zeus', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'adonis', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'athena', 'index.html'),
+    path.join(ROOT, 'store', 'merch', 'punicodex', 'index.html'),
   ];
   let cards = 0;
   for (const page of pages) {

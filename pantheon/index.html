@@ -48,7 +48,7 @@
     
     <link rel="stylesheet" href="/css/nav-more.css?v=7">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=7">
-    <link rel="stylesheet" href="/css/nav-hubs.css?v=1">
+    <link rel="stylesheet" href="/css/nav-hubs.css?v=2">
     <!-- PUNICODEX-ITEMLIST-START -->
 <script type="application/ld+json">
 {
@@ -460,7 +460,13 @@
                 <div class="nav-hub" data-hub="relics">
                     <a href="/relics/" class="nav-link" aria-haspopup="true" aria-expanded="false">Relics</a>
                     <div class="nav-hub-menu">
-                    <a href="/store/">Store</a>
+                    <div class="nav-hub-item">
+                                <a href="/store/">Store<span class="nav-hub-caret">▸</span></a>
+                                <div class="nav-hub-panel">
+                                    <a href="/store/merch/">Merch</a>
+                                    <a href="/store/art/">Art</a>
+                                </div>
+                            </div>
                     <a href="/cards/">Cards</a>
                     <a href="/game/">Game</a>
                     <a href="/ink/">Ink</a>
@@ -490,7 +496,7 @@
             <div class="mobile-menu-group">
                 <a href="/world/" class="mobile-link--featured">Atlas</a>
                 <details class="mobile-sub">
-                <summary>Pantheon<span class="mobile-sub-caret">▾</span></summary>
+                <summary><a href="/pantheon/" class="mobile-sub-link">Pantheon</a><span class="mobile-sub-caret">▾</span></summary>
                 <div class="mobile-sub-group">
                     <a href="/pantheon/" class="mobile-link--featured active">Pantheon — overview</a>
                     <a href="/realms/">Realms</a>
@@ -560,7 +566,7 @@
                 <a href="/blog/">Blog</a>
                 <a href="/scholars/">Scholars</a>
                 <details class="mobile-sub">
-                <summary>Codex<span class="mobile-sub-caret">▾</span></summary>
+                <summary><a href="/codex/" class="mobile-sub-link">Codex</a><span class="mobile-sub-caret">▾</span></summary>
                 <div class="mobile-sub-group">
                     <a href="/codex/" class="mobile-link--featured">Codex — overview</a>
                     <a href="/codex/anatomy-of-a-punycode-domain/">Anatomy of a Punycode Domain</a>
@@ -575,7 +581,14 @@
             <span class="mobile-menu-title">Relics</span>
             <div class="mobile-menu-group">
                 <a href="/relics/" class="mobile-link--featured">Relics</a>
-                <a href="/store/">Store</a>
+                <details class="mobile-sub">
+                <summary><a href="/store/" class="mobile-sub-link">Store</a><span class="mobile-sub-caret">▾</span></summary>
+                <div class="mobile-sub-group">
+                    <a href="/store/" class="mobile-link--featured">Store — overview</a>
+                    <a href="/store/merch/">Merch</a>
+                    <a href="/store/art/">Art</a>
+                </div>
+            </details>
                 <a href="/cards/">Cards</a>
                 <a href="/game/">Game</a>
                 <a href="/ink/">Ink</a>
@@ -768,6 +781,6 @@
     <script src="/js/px-core.js?v=perf23" defer></script>
     <script src="/js/main.js?v=bb046cae59" defer></script>
     <script src="/js/pantheon.js?v=f270195834" defer></script>
-    <script src="/js/nav-hubs.js?v=1" defer></script>
+    <script src="/js/nav-hubs.js?v=2" defer></script>
 </body>
 </html>

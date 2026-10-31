@@ -208,7 +208,10 @@ test('a canvas product page shows "from $" with the baked variant map', () => {
   );
   assert.ok(p, 'no priced canvas product in the catalog');
   const temple = p.temple || 'punicodex';
-  const html = fs.readFileSync(path.join(ROOT, 'store', temple, 'canvas', 'index.html'), 'utf8');
+  const html = fs.readFileSync(
+    path.join(ROOT, 'store', 'merch', temple, 'canvas', 'index.html'),
+    'utf8'
+  );
   const pricedLabels = Object.keys(p.variantPricing).filter((l) =>
     Object.keys(p.printfulVariants).includes(l)
   );

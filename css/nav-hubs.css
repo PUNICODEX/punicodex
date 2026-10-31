@@ -112,6 +112,14 @@
 
   /* ── Level 2: fan-out panels (Pantheon / Codex / Store) ── */
 
+  /* The panel anchors to its ITEM row — without this relative anchor the
+     absolute panel resolves against the whole .nav-hub and opens detached
+     from the hovered row (2026-08 bug: hovering Pantheon showed nothing
+     usable). */
+  .nav-hub-item {
+    position: relative;
+  }
+
   .nav-hub-panel {
     position: absolute;
     top: -11px;

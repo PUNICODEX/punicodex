@@ -128,4 +128,22 @@
       if (!window.matchMedia('(min-width: 1024px)').matches) closeAll();
     });
   });
+
+  /* Mobile drawer: a fan-out summary's label is ALSO a link. Tapping the
+     label navigates to the section (e.g. Pantheon → /pantheon/); tapping
+     the caret toggles the accordion. Capture-phase preventDefault stops
+     both the anchor navigation and the native <summary> toggle, then we
+     navigate by hand — deterministic across browsers (some toggle the
+     <details> anyway when an interactive descendant is clicked). */
+  ready(function () {
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      var a = t && t.closest ? t.closest('a.mobile-sub-link') : null;
+      if (!a) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var href = a.getAttribute('href');
+      if (href) window.location.href = href;
+    }, true);
+  });
 })();

@@ -109,6 +109,12 @@ const TARGETS = [
   path.join('everyday', 'index.html'),
   path.join('ink', 'index.html'),
   path.join('screen', 'index.html'),
+  // Wing hub pages (scripts/generate-hubs.js emits this same builder).
+  path.join('world', 'index.html'),
+  path.join('culture', 'index.html'),
+  path.join('instruments', 'index.html'),
+  path.join('library', 'index.html'),
+  path.join('relics', 'index.html'),
 ];
 
 // Per-pantheon landing pages receive the canonical footer.

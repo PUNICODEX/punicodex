@@ -249,7 +249,7 @@ test('store HTML has no double-escaped entities', () => {
 });
 
 test('store product pages: absolute JSON-LD image, BreadcrumbList, OG, stage CWV attrs', () => {
-  const html = read('store/zeus/tee/index.html');
+  const html = read('store/merch/zeus/tee/index.html');
   const blocks = [
     ...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
   ].map((m) => JSON.parse(m[1]));
@@ -274,13 +274,24 @@ test('store product pages: absolute JSON-LD image, BreadcrumbList, OG, stage CWV
   );
 });
 
-test('store index carries CollectionPage+ItemList JSON-LD', () => {
-  const html = read('store/index.html');
+test('store pages carry their collection JSON-LD (merch hall ItemList, entrance departments)', () => {
+  const merch = read('store/merch/index.html');
   assert.ok(
-    html.includes('"@type":"ItemList"') || html.includes('"@type": "ItemList"'),
-    'store index missing ItemList'
+    merch.includes('"@type":"ItemList"') || merch.includes('"@type": "ItemList"'),
+    'merch hall missing ItemList'
   );
-  assert.ok(html.includes('property="og:title"'), 'store index missing OG');
+  assert.ok(merch.includes('property="og:title"'), 'merch hall missing OG');
+  const entrance = read('store/index.html');
+  assert.ok(
+    entrance.includes('"@type":"CollectionPage"') || entrance.includes('"@type": "CollectionPage"'),
+    'store entrance missing CollectionPage'
+  );
+  assert.ok(entrance.includes('property="og:title"'), 'store entrance missing OG');
+  const art = read('store/art/index.html');
+  assert.ok(
+    art.includes('"@type":"CollectionPage"') || art.includes('"@type": "CollectionPage"'),
+    'art department missing CollectionPage'
+  );
 });
 
 /* ----------------------------- sitemap/robots ---------------------------- */

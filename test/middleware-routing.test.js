@@ -206,6 +206,61 @@ async function run() {
     assert.ok(res.__fetched.includes('/sites/zeus/assets/mascot.png'), res.__fetched);
   });
 
+  await test('legacy /store/{collection}/* 301s to the merch tree (Phase B Reliquary)', async () => {
+    const cases = [
+      ['https://punicodex.com/store/ab/', 'https://punicodex.com/store/merch/ab/'],
+      ['https://punicodex.com/store/ab/tee/', 'https://punicodex.com/store/merch/ab/tee/'],
+      [
+        'https://punicodex.com/store/ab/tee/index.html',
+        'https://punicodex.com/store/merch/ab/tee/',
+      ],
+      [
+        'https://punicodex.com/store/zeus/hoodie/?utm=x',
+        'https://punicodex.com/store/merch/zeus/hoodie/?utm=x',
+      ],
+      ['https://punicodex.com/store/punicodex/', 'https://punicodex.com/store/merch/punicodex/'],
+    ];
+    for (const [from, to] of cases) {
+      const res = await middleware(req(from));
+      assert.strictEqual(res.status, 301, `${from}: status ${res.status}`);
+      assert.strictEqual(
+        res.headers.get('Location'),
+        to,
+        `${from} -> ${res.headers.get('Location')}`
+      );
+    }
+  });
+
+  await test('store entrance, departments, policies and unknown store paths are never redirected', async () => {
+    for (const p of [
+      '/store/',
+      '/store/merch/',
+      '/store/art/',
+      '/store/shipping/',
+      '/store/returns/',
+      '/store/no-such-collection/',
+    ]) {
+      const res = await middleware(req(`https://punicodex.com${p}`));
+      assert.ok(res.__fetched, `${p}: must pass through, got status ${res.status}`);
+    }
+  });
+
+  await test('STORE_LEGACY_IDS matches the catalog collections exhaustively', async () => {
+    const src = fs.readFileSync(SRC, 'utf8');
+    const m = src.match(/const STORE_LEGACY_IDS = new Set\(\[([\s\S]*?)\]\);/);
+    assert.ok(m, 'STORE_LEGACY_IDS block missing from middleware.js');
+    const ids = new Set([...m[1].matchAll(/'([^']+)'/g)].map((x) => x[1]));
+    const CATALOG = require('../store/products.json');
+    const expected = new Set(CATALOG.products.map((p) => p.temple || 'punicodex'));
+    assert.strictEqual(ids.size, expected.size, 'STORE_LEGACY_IDS size != collections size');
+    const missing = [...expected].filter((id) => !ids.has(id));
+    assert.deepStrictEqual(
+      missing.slice(0, 10),
+      [],
+      `${missing.length} collections not redirected`
+    );
+  });
+
   await test('legacy stale dirs 301 to their current temple ids', async () => {
     const stale = {
       achilles: 'achilleus',

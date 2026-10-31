@@ -276,8 +276,8 @@ async function createStoreCheckoutSession({ order, product }) {
     ],
     mode: 'payment',
     shipping_address_collection: { allowed_countries: ['US', 'GB', 'AU', 'CA', 'DE', 'FR', 'NZ'] },
-    success_url: `${base}/store/?order=${order.order_ref}&session_id={CHECKOUT_SESSION_ID}&paid=1`,
-    cancel_url: `${base}/store/?order=${order.order_ref}&canceled=1`,
+    success_url: `${base}/store/merch/?order=${order.order_ref}&session_id={CHECKOUT_SESSION_ID}&paid=1`,
+    cancel_url: `${base}/store/merch/?order=${order.order_ref}&canceled=1`,
     customer_email: order.customer_email || undefined,
     metadata: {
       type: 'store_order',

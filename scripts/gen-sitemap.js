@@ -67,6 +67,8 @@ const mainPages = [
   { loc: '/about/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/contact/', priority: '0.5', changefreq: 'monthly' },
   { loc: '/store/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/store/merch/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/store/art/', priority: '0.6', changefreq: 'weekly' },
   { loc: '/store/shipping/', priority: '0.3', changefreq: 'yearly' },
   { loc: '/store/returns/', priority: '0.3', changefreq: 'yearly' },
   { loc: '/university/book/', priority: '0.5', changefreq: 'monthly' },
@@ -238,9 +240,9 @@ for (const product of POD.products) {
   const templeId = product.temple || 'punicodex';
   if (!storeCollectionIds.has(templeId)) {
     storeCollectionIds.add(templeId);
-    xml += urlEntry(`/store/${templeId}/`, '0.6', 'weekly');
+    xml += urlEntry(`/store/merch/${templeId}/`, '0.6', 'weekly');
   }
-  xml += urlEntry(`/store/${templeId}/${product.id.split('-').pop()}/`, '0.5', 'weekly');
+  xml += urlEntry(`/store/merch/${templeId}/${product.id.split('-').pop()}/`, '0.5', 'weekly');
 }
 
 xml += '</urlset>\n';

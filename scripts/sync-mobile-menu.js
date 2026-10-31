@@ -46,8 +46,11 @@ function buildSubMenu(item, kids) {
     `<a href="${item.href}" class="mobile-link--featured">${item.label} — overview</a>`,
     ...kids.map((k) => `<a href="${k.href}">${k.label}</a>`),
   ].join('\n                    ');
+  /* The summary label is itself a link (tap → navigate to the section);
+     only the caret toggles the accordion. js/nav-hubs.js handles the
+     tap-to-navigate so the <details> never toggles on label taps. */
   return `<details class="mobile-sub">
-                <summary>${item.label}<span class="mobile-sub-caret">▾</span></summary>
+                <summary><a href="${item.href}" class="mobile-sub-link">${item.label}</a><span class="mobile-sub-caret">▾</span></summary>
                 <div class="mobile-sub-group">
                     ${kidLinks}
                 </div>

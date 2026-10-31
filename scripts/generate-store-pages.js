@@ -62,6 +62,11 @@ const SITE_ORIGIN = 'https://punicodex.com';
 const MASTERS_ORIGIN = 'https://punycodex-masters.vercel.app';
 const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/assets/brand/05-social/punicodex-og-image-1200x630.png`;
 
+// Phase B Reliquary restructure: /store/ is the department entrance; the
+// print-on-demand merch tree lives under /store/merch/. Legacy /store/{id}/*
+// URLs 301 to the merch form (middleware.js STORE_LEGACY_IDS).
+const MERCH = '/store/merch';
+
 // Schema.org and OG image URLs must be absolute; card imagery may be
 // root-relative.
 const absUrl = (src) => new URL(src, `${SITE_ORIGIN}/`).href;
@@ -475,8 +480,134 @@ ${
     <script src="/js/main.js?v=perf12" defer></script>`;
 }
 
-// ─── Collections index ───
-function renderStoreIndex(colls) {
+// ─── Department entrance (/store/) ───
+// Phase B Reliquary restructure: the store is a department store. The
+// entrance page presents the departments; the merch grid itself lives at
+// /store/merch/ (renderMerchIndex) and the art department at /store/art/.
+function renderEntrance(colls) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'The Reliquary — Store of the Unicode Pantheon',
+    url: `${SITE_ORIGIN}/store/`,
+    hasPart: [
+      {
+        '@type': 'ProductCollection',
+        name: 'Merch',
+        url: `${SITE_ORIGIN}/store/merch/`,
+        description: 'Print-on-demand apparel, prints, drinkware and relics from every temple.',
+      },
+      {
+        '@type': 'ProductCollection',
+        name: 'Art',
+        url: `${SITE_ORIGIN}/store/art/`,
+        description: 'Scholarly creatives, tattoo art, temple galleries and the Commons.',
+      },
+    ],
+  };
+
+  return `${head({
+    title: 'The Reliquary — Store of the Unicode Pantheon | PUNICODEX',
+    description: `The store of the Unicode Pantheon — ${colls.size} temple merch collections under Merch, and the Art department: scholarly creatives, tattoo art, temple galleries and the Commons.`,
+    path: '/store/',
+    css: `.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;padding:2rem 0 4rem}.dept{position:relative;display:flex;flex-direction:column;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2rem 1.75rem;transition:transform .25s ease,border-color .25s ease}.dept:hover{transform:translateY(-4px);border-color:var(--gold)}.dept .glyph{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);line-height:1}.dept h2{font-size:1.5rem;margin:.4rem 0 .2rem}.dept p{color:var(--dim);font-size:.95rem;flex:1}.dept .go{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.dept--soon{opacity:.85}.dept .soon{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#0a0a0c;background:var(--gold);padding:2px 8px;border-radius:999px;width:max-content}`,
+  })}
+<link rel="stylesheet" href="/css/pc-fx.css?v=1">
+<div class="wrap">
+  <div class="store-hero">
+    <div class="pc-fx-stage pc-fx-brilliant-stage" role="img" aria-label="The Golden Brilliant — a faceted gem cut in gold, its facets catching the light">
+      <canvas class="pc-fx-brilliant" aria-hidden="true"></canvas>
+    </div>
+    <span class="pill">Orders Open</span>
+    <h1>THE RELIQUARY</h1>
+    <p class="tag">The store of the Unicode Pantheon. Two departments: <strong>Merch</strong> — every temple's line of apparel, prints, drinkware and relics, printed on demand — and <strong>Art</strong> — the visual life of the pantheon, from scholarly creatives to tattoo art to the galleries of the temples themselves.</p>
+  </div>
+  <div class="dept-grid">
+    <a class="dept" href="${MERCH}/">
+      <span class="glyph" aria-hidden="true">◈</span>
+      <h2>Merch</h2>
+      <p>${colls.size} temple collections — tees, hoodies, prints, canvases, mugs, stickers and relics, each built from the temple's own mascot, seal and name lockup. Printed to order, shipped worldwide.</p>
+      <span class="go">Enter the Merch Hall →</span>
+    </a>
+    <a class="dept" href="/store/art/">
+      <span class="glyph" aria-hidden="true">❖</span>
+      <h2>Art</h2>
+      <p>Scholarly creatives from verified university creators, tattoo art checked against the attested scripts, the curated galleries of the flagship temples — and the Commons, where contributors leave offerings of their own.</p>
+      <span class="go">Enter the Art Department →</span>
+    </a>
+  </div>
+  <p class="wrap" style="padding-bottom:2rem;color:var(--dim);font-size:.85rem;text-align:center">Every piece is printed to order and shipped worldwide. <a href="/store/shipping/">Shipping</a> · <a href="/store/returns/">Returns &amp; refunds</a></p>
+</div>
+<script src="/js/pc-fx-core.js?v=1" defer></script>
+<script src="/js/pc-fx-brilliant.js?v=1" defer></script>
+<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+${footerHtml()}
+</body></html>
+`;
+}
+
+// ─── Art department (/store/art/) ───
+// Filter pills mirror the /pantheon categories so a visitor can travel the
+// art the same way they travel the names. Destinations that have not opened
+// yet (Gallery story-scroll, Commons contributor platform) render as honest
+// "opening soon" cards without hrefs — never dead links.
+function renderArtDepartment() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Art — PuniCodex Reliquary',
+    url: `${SITE_ORIGIN}/store/art/`,
+    hasPart: [
+      { '@type': 'WebPage', name: 'Creatives', url: `${SITE_ORIGIN}/creatives/` },
+      { '@type': 'WebPage', name: 'Ink — Check Before You Ink', url: `${SITE_ORIGIN}/ink/` },
+    ],
+  };
+
+  return `${head({
+    title: 'Art — Creatives, Tattoo Art, Galleries & the Commons | PUNICODEX',
+    description: 'The Art department of the Reliquary: scholarly creatives from verified university creators, tattoo art checked against attested scripts, flagship temple galleries, and the Commons — the free mythology image library.',
+    path: '/store/art/',
+    css: `.store-hero{text-align:center;padding:5rem 0 2rem}.store-hero h1{font-size:2.4rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:64ch;margin:0 auto}.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;padding:2rem 0 4rem}.dept{display:flex;flex-direction:column;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.9rem 1.6rem;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease}.dept:hover{transform:translateY(-4px);border-color:var(--gold);color:var(--ink)}.dept h2{font-size:1.3rem;margin:.2rem 0}.dept p{color:var(--dim);font-size:.93rem;flex:1}.dept .go{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.dept .soon{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#0a0a0c;background:var(--gold);padding:2px 8px;border-radius:999px;width:max-content}`,
+  })}
+<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <span style="color:var(--gold)">Art</span></div>
+<div class="wrap">
+  <div class="store-hero">
+    <h1>ART</h1>
+    <p class="tag">The visual life of the pantheon. Four rooms: scholarly creatives from verified university creators, tattoo art verified against the attested scripts, the curated galleries inside the flagship temples, and the Commons — where the mythology image library grows by contribution.</p>
+  </div>
+  <div class="dept-grid">
+    <a class="dept" href="/creatives/">
+      <span class="soon">Open</span>
+      <h2>Creatives</h2>
+      <p>Mythological artwork from verified university creators — filterable by tattoo-ready pieces, pantheon and style (realism, anime, classical and more). Half of every sale goes to the creator.</p>
+      <span class="go">Browse the creatives →</span>
+    </a>
+    <a class="dept" href="/ink/">
+      <span class="soon">Open</span>
+      <h2>Tattoo Art</h2>
+      <p>Check a name or a script before it goes on skin. The ink engine verifies against the attested original scripts — absence of evidence is never sold as proof of error.</p>
+      <span class="go">Check before you ink →</span>
+    </a>
+    <div class="dept">
+      <span class="soon">Opening soon</span>
+      <h2>Temple Galleries</h2>
+      <p>Every flagship temple's curated gallery — the myths of each name told through art, scrollable as one long story from temple to temple.</p>
+    </div>
+    <div class="dept">
+      <span class="soon">Opening soon</span>
+      <h2>The Commons</h2>
+      <p>The free mythology image library — contributor-hosted, license-tagged, moderated. The Pixabay of mythology: leave an offering, take what you need.</p>
+    </div>
+  </div>
+</div>
+<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+${footerHtml()}
+</body></html>
+`;
+}
+
+// ─── Merch hall (/store/merch/) — the collections grid ───
+function renderMerchIndex(colls) {
   // Strict A–Z by temple id: all the A temples first, then B, and so on.
   const entries = [...colls.entries()].sort((a, b) => a[0].localeCompare(b[0]));
   const cards = entries
@@ -484,7 +615,7 @@ function renderStoreIndex(colls) {
       const meta = templeMeta(id);
       const sorted = products.slice().sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
       const img = cardImage(sorted[0], meta);
-      return `<a class="card" href="/store/${id}/" data-product-id="${esc(id)}" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
+      return `<a class="card" href="${MERCH}/${id}/" data-product-id="${esc(id)}" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
   <div class="imgbox" style="position:relative">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}${cardArtOverlay(sorted[0], id, products)}</div>
   <div class="body">
     <div class="sub">${esc(meta.pantheon)}${meta.rentalTier ? ` · Tier ${meta.rentalTier}` : ''}</div>
@@ -501,34 +632,35 @@ function renderStoreIndex(colls) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'The Reliquary — Temple Collections & Prints',
-    url: `${SITE_ORIGIN}/store/`,
+    name: 'Merch — Temple Collections & Prints',
+    url: `${SITE_ORIGIN}${MERCH}/`,
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: entries.map(([id], i) => ({
         '@type': 'ListItem',
         position: i + 1,
         name: templeMeta(id).name,
-        url: `${SITE_ORIGIN}/store/${id}/`,
+        url: `${SITE_ORIGIN}${MERCH}/${id}/`,
       })),
     },
   };
 
   return `${head({
-    title: 'The Reliquary — Temple Collections & Prints | PUNICODEX',
+    title: 'Merch — Temple Collections & Prints | PUNICODEX',
     description: `Print-on-demand relics of the Unicode Pantheon — ${colls.size} temple collections, each with its own line of apparel, prints, drinkware and relics.`,
-    path: '/store/',
+    path: `${MERCH}/`,
     css: `.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}`,
     collaborators: true,
   })}
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <span style="color:var(--gold)">Merch</span></div>
 <div class="wrap">
   <div class="store-hero">
     <div class="pc-fx-stage pc-fx-brilliant-stage" role="img" aria-label="The Golden Brilliant — a faceted gem cut in gold, its facets catching the light">
       <canvas class="pc-fx-brilliant" aria-hidden="true"></canvas>
     </div>
     <span class="pill">Orders Open</span>
-    <h1>THE RELIQUARY</h1>
+    <h1>MERCH</h1>
     <p class="tag">Sacred artifacts from the Pantheon, printed on demand. Every temple keeps a collection — choose one, and its whole line of apparel, prints, drinkware and relics opens to you.</p>
   </div>
   <div class="filters" id="filters">
@@ -640,7 +772,7 @@ function renderCollection(id, products) {
   });
   const cardHtml = (p) => {
     const kind = p.id.split('-').pop();
-    return `<a class="card" href="/store/${id}/${kind}/" data-product-id="${esc(p.id)}">
+    return `<a class="card" href="${MERCH}/${id}/${kind}/" data-product-id="${esc(p.id)}">
   <div class="imgbox" style="position:relative">${imgTag(cardImage(p, meta), p.name)}${cardArtOverlay(p, id, products)}</div>
   <div class="body">
     <div class="sub">${esc(kindLabel(kind))}</div>
@@ -658,11 +790,11 @@ ${sorted.map(cardHtml).join('\n')}
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${meta.name} Collection — PuniCodex Reliquary`,
-    url: `https://punicodex.com/store/${id}/`,
+    url: `https://punicodex.com${MERCH}/${id}/`,
     hasPart: sorted.map((p) => ({
       '@type': 'Product',
       name: p.name,
-      url: `https://punicodex.com/store/${id}/${p.id.split('-').pop()}/`,
+      url: `https://punicodex.com${MERCH}/${id}/${p.id.split('-').pop()}/`,
       offers: { '@type': 'Offer', price: p.price.toFixed(2), priceCurrency: 'USD' },
     })),
   };
@@ -675,12 +807,12 @@ ${sorted.map(cardHtml).join('\n')}
     description: clampDescription(
       `The complete ${meta.name} line — ${products.length} print-on-demand pieces: ${meta.tagline}`
     ),
-    path: `/store/${id}/`,
+    path: `${MERCH}/${id}/`,
     image: absUrl(heroImg),
     imageWidth: heroDims[0],
     imageHeight: heroDims[1],
   })}
-<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <span style="color:var(--gold)">${esc(meta.name)}</span></div>
+<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="${MERCH}/">Merch</a> · <span style="color:var(--gold)">${esc(meta.name)}</span></div>
 <div class="wrap">
   <div class="hero">
     <img src="${esc(heroImg)}" alt="${esc(`${meta.name} — restored temple mascot artwork`)}" width="${heroDims[0]}" height="${heroDims[1]}">
@@ -741,7 +873,8 @@ ${groupsHtml}
 ${breadcrumbScript([
   ['Home', `${SITE_ORIGIN}/`],
   ['The Reliquary', `${SITE_ORIGIN}/store/`],
-  [meta.name, `${SITE_ORIGIN}/store/${id}/`],
+  ['Merch', `${SITE_ORIGIN}${MERCH}/`],
+  [meta.name, `${SITE_ORIGIN}${MERCH}/${id}/`],
 ])}
     ${footerHtml()}
 </body></html>
@@ -778,7 +911,7 @@ function renderProduct(id, kind, product) {
 
   const stageImg = stageImage(product, meta);
   const stageDims = imageDims(stageImg);
-  const pageUrl = `${SITE_ORIGIN}/store/${id}/${kind}/`;
+  const pageUrl = `${SITE_ORIGIN}${MERCH}/${id}/${kind}/`;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -869,7 +1002,7 @@ function renderProduct(id, kind, product) {
   return `${head({
     title: `${product.name} | PUNICODEX Reliquary`,
     description: `${product.blurb} — ${product.name}, printed on demand. ${priceRange([product])} USD.`,
-    path: `/store/${id}/${kind}/`,
+    path: `${MERCH}/${id}/${kind}/`,
     type: 'product',
     image: absUrl(stageImg),
     imageWidth: stageDims[0],
@@ -877,7 +1010,7 @@ function renderProduct(id, kind, product) {
     css: `.pdp .stage{aspect-ratio:${stageDims[0]} / ${stageDims[1]}}`,
   })}
 <link rel="stylesheet" href="/css/store-configurator.css?v=1">
-<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/${id}/">${esc(meta.name)}</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
+<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="${MERCH}/">Merch</a> · <a href="${MERCH}/${id}/">${esc(meta.name)}</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
 <div class="wrap pdp">
   <div><div class="stage"><img id="stage-img" src="${esc(stageImg)}" alt="${esc(product.name)}" width="${stageDims[0]}" height="${stageDims[1]}" fetchpriority="high" decoding="async"></div>${colourNote}</div>
   <div>
@@ -899,7 +1032,7 @@ function renderProduct(id, kind, product) {
       <ul>
 ${placements}
       </ul>
-      <p style="color:var(--dim);font-size:.82rem;margin-top:1rem">Printed on demand and shipped worldwide. Part of the <a href="/store/${id}/">${esc(meta.name)} collection</a> · <a href="${esc(meta.url)}">the temple itself</a>.</p>
+      <p style="color:var(--dim);font-size:.82rem;margin-top:1rem">Printed on demand and shipped worldwide. Part of the <a href="${MERCH}/${id}/">${esc(meta.name)} collection</a> · <a href="${esc(meta.url)}">the temple itself</a>.</p>
     </div>
   </div>
 </div>
@@ -907,7 +1040,8 @@ ${placements}
 ${breadcrumbScript([
   ['Home', `${SITE_ORIGIN}/`],
   ['The Reliquary', `${SITE_ORIGIN}/store/`],
-  [meta.name, `${SITE_ORIGIN}/store/${id}/`],
+  ['Merch', `${SITE_ORIGIN}${MERCH}/`],
+  [meta.name, `${SITE_ORIGIN}${MERCH}/${id}/`],
   [product.name, pageUrl],
 ])}
 <script>
@@ -1094,7 +1228,16 @@ const POLICY_PAGES = [
 function main() {
   const colls = collections();
   let written = 0;
-  written += writeIfChanged(path.join(ROOT, 'store', 'index.html'), renderStoreIndex(colls)) ? 1 : 0;
+  // Phase B Reliquary: /store/ is the department entrance; the merch tree
+  // lives under /store/merch/ and the art department at /store/art/.
+  written += writeIfChanged(path.join(ROOT, 'store', 'index.html'), renderEntrance(colls)) ? 1 : 0;
+  written += writeIfChanged(path.join(ROOT, 'store', 'art', 'index.html'), renderArtDepartment()) ? 1 : 0;
+  written += writeIfChanged(
+    path.join(ROOT, 'store', 'merch', 'index.html'),
+    renderMerchIndex(colls)
+  )
+    ? 1
+    : 0;
   for (const policy of POLICY_PAGES) {
     written += writeIfChanged(
       path.join(ROOT, 'store', policy.dir, 'index.html'),
@@ -1110,18 +1253,36 @@ function main() {
       : 0;
   }
   for (const [id, products] of colls) {
-    written += writeIfChanged(path.join(ROOT, 'store', id, 'index.html'), renderCollection(id, products)) ? 1 : 0;
+    written += writeIfChanged(
+      path.join(ROOT, 'store', 'merch', id, 'index.html'),
+      renderCollection(id, products)
+    )
+      ? 1
+      : 0;
     for (const p of products) {
       const kind = p.id.split('-').pop();
       written += writeIfChanged(
-        path.join(ROOT, 'store', id, kind, 'index.html'),
+        path.join(ROOT, 'store', 'merch', id, kind, 'index.html'),
         renderProduct(id, kind, p)
       )
         ? 1
         : 0;
     }
   }
-  console.log(`Store pages: ${written} written (${colls.size} collections, ${CATALOG.count} products).`);
+  // Legacy cleanup: the pre-Phase-B tree lived directly under store/{id}/.
+  // Those directories are git-tracked generated output — remove them so a
+  // fresh generate converges (the divergence gate diffs the working tree).
+  let removed = 0;
+  for (const id of colls.keys()) {
+    const legacy = path.join(ROOT, 'store', id);
+    if (fs.existsSync(legacy) && fs.statSync(legacy).isDirectory()) {
+      fs.rmSync(legacy, { recursive: true, force: true });
+      removed++;
+    }
+  }
+  console.log(
+    `Store pages: ${written} written (${colls.size} collections, ${CATALOG.count} products), ${removed} legacy dirs removed.`
+  );
 }
 
 if (require.main === module) main();

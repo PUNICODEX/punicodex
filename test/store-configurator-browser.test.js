@@ -167,7 +167,7 @@ async function clickAndSettle(page, el) {
 
 test('tee: BLACK chip preselected at init (composite truthfulness)', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/zeus/tee/`, { waitUntil: 'load' });
+  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
   await page.waitForTimeout(400);
   const s = await snap(page);
   assert.strictEqual(s.activeColor, 'Black', `expected Black active, got ${s.activeColor}`);
@@ -178,7 +178,7 @@ test('tee: BLACK chip preselected at init (composite truthfulness)', async () =>
 
 test('tee: every colour click visibly changes the stage, box stays constant', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/zeus/tee/`, { waitUntil: 'load' });
+  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
   await page.waitForTimeout(400);
   const init = await snap(page);
   const COMPOSITE_COLOUR = 'Black'; // compositeColor in the zeus-tee payload
@@ -232,7 +232,7 @@ test('tee: every colour click visibly changes the stage, box stays constant', as
 
 test('tee: composite is only kept for its own colour (Black); other colours use the base mockup', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/zeus/tee/`, { waitUntil: 'load' });
+  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
   await page.waitForTimeout(400);
   const chips = await colourChips(page);
   const byLabel = async (label) => {
@@ -260,7 +260,7 @@ test('tee: composite is only kept for its own colour (Black); other colours use 
 
 test('tee: artwork pick swaps the print, never overlaps the composite', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/zeus/tee/`, { waitUntil: 'load' });
+  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
   await page.waitForTimeout(400);
   const arts = await artChips(page);
   assert.ok(arts.length >= 2, 'expected artwork chips');
@@ -292,7 +292,7 @@ test('tee: artwork pick swaps the print, never overlaps the composite', async ()
 
 test('mug: "As shown" default; colour/art flows keep checkout honest', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/zeus/mug/`, { waitUntil: 'load' });
+  await page.goto(`${base}/store/merch/zeus/mug/`, { waitUntil: 'load' });
   await page.waitForTimeout(400);
   let s = await snap(page);
   assert.ok(s.src.includes('mockups'), 'mug init shows the composite');
@@ -314,7 +314,7 @@ test('mug: "As shown" default; colour/art flows keep checkout honest', async () 
 
 test('tote: "As shown" + colour pick gives visible tint feedback; exact preview after art pick', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/zeus/tote/`, { waitUntil: 'load' });
+  await page.goto(`${base}/store/merch/zeus/tote/`, { waitUntil: 'load' });
   await page.waitForTimeout(400);
   const chips = await colourChips(page);
   assert.ok(chips.length >= 2, 'tote should have colour chips');
@@ -340,7 +340,7 @@ test('tote: "As shown" + colour pick gives visible tint feedback; exact preview 
 
 test('mobile viewport: stage box constant across colour picks', async () => {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-  await page.goto(`${base}/store/zeus/tee/`, { waitUntil: 'load' });
+  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
   await page.waitForTimeout(400);
   const init = await snap(page);
   const boxes = new Set([JSON.stringify(init.stageBox)]);

@@ -47,7 +47,7 @@
 
     <link rel="stylesheet" href="/css/nav-more.css?v=7">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=7">
-    <link rel="stylesheet" href="/css/nav-hubs.css?v=1">
+    <link rel="stylesheet" href="/css/nav-hubs.css?v=2">
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -148,7 +148,13 @@
                 <div class="nav-hub" data-hub="relics">
                     <a href="/relics/" class="nav-link" aria-haspopup="true" aria-expanded="false">Relics</a>
                     <div class="nav-hub-menu">
-                    <a href="/store/">Store</a>
+                    <div class="nav-hub-item">
+                                <a href="/store/">Store<span class="nav-hub-caret">▸</span></a>
+                                <div class="nav-hub-panel">
+                                    <a href="/store/merch/">Merch</a>
+                                    <a href="/store/art/">Art</a>
+                                </div>
+                            </div>
                     <a href="/cards/">Cards</a>
                     <a href="/game/">Game</a>
                     <a href="/ink/">Ink</a>
@@ -289,6 +295,6 @@
     </footer>
 
     <script src="/js/px-core.js?v=perf23"></script>
-    <script src="/js/nav-hubs.js?v=1" defer></script>
+    <script src="/js/nav-hubs.js?v=2" defer></script>
 </body>
 </html>

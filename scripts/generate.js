@@ -155,6 +155,9 @@ const allScripts = [
   // must run after it; the injectors then re-run (idempotent) so the fresh
   // pages also receive analytics, collaborators, and beacon blocks.
   'scripts/generate-store-pages.js',
+  // Temple pages carry baked-in absolute Reliquary collection links; point
+  // them at the merch tree (idempotent rewrite).
+  'scripts/sync-temple-store-links.js',
   // Merchant feed consumes products.json + the mockup fleet; must run after
   // the store pages so its prices/imagery match the freshly built PDPs.
   'scripts/generate-merchant-feed.js',

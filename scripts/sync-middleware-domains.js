@@ -41,6 +41,8 @@ const LEGACY_REDIRECTS = {
 
 const IDS_BEGIN = '// === BEGIN GENERATED LEXICON_IDS + LEGACY_REDIRECTS (scripts/sync-middleware-domains.js) ===';
 const IDS_END = '// === END GENERATED LEXICON_IDS + LEGACY_REDIRECTS ===';
+const STORE_BEGIN = '// === BEGIN GENERATED STORE_LEGACY_IDS (scripts/sync-middleware-domains.js) ===';
+const STORE_END = '// === END GENERATED STORE_LEGACY_IDS ===';
 
 function puny(d) {
   try {
@@ -204,17 +206,42 @@ if (!idsRe.test(newMiddleware)) {
 }
 const finalMiddleware = newMiddleware.replace(idsRe, idsBlock);
 
+// ─── STORE_LEGACY_IDS block ──────────────────────────────────────────────────
+// Phase B Reliquary restructure: merch collections moved from /store/{id}/* to
+// /store/merch/{id}/*. The middleware 301s legacy collection/product URLs.
+// Source of truth: store/products.json (temple keys). Plain code-unit sort for
+// CI determinism.
+const PRODUCTS_PATH = path.join(ROOT, 'store', 'products.json');
+const catalog = JSON.parse(fs.readFileSync(PRODUCTS_PATH, 'utf8'));
+const storeIds = [...new Set(catalog.products.map((p) => p.temple || 'punicodex'))].sort();
+const storeBody = storeIds.map((id) => `  '${id}',`).join('\n');
+const storeBlock = `${STORE_BEGIN}
+// Source of truth: store/products.json. Run \`npm run generate\` to regenerate.
+const STORE_LEGACY_IDS = new Set([
+${storeBody}
+]);
+${STORE_END}`;
+
+const storeRe = new RegExp(
+  `${STORE_BEGIN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${STORE_END.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`
+);
+if (!storeRe.test(finalMiddleware)) {
+  throw new Error('Could not find the STORE_LEGACY_IDS generated block in middleware.js');
+}
+const withStore = finalMiddleware.replace(storeRe, storeBlock);
+
 const atomicWrite = (filePath, data) => {
   const tmp = `${filePath}.tmp.${process.pid}`;
   fs.writeFileSync(tmp, data, 'utf8');
   fs.renameSync(tmp, filePath);
 };
 
-atomicWrite(MIDDLEWARE_PATH, finalMiddleware.replace(/\r\n/g, '\n'));
+atomicWrite(MIDDLEWARE_PATH, withStore.replace(/\r\n/g, '\n'));
 console.log(`✓ middleware.js synced`);
 console.log(`  Previous domains: ${Object.keys(currentMap).length}`);
 console.log(`  Desired domains:  ${desired.size}`);
 console.log(`  Added:            ${desired.size - Object.keys(currentMap).length}`);
 console.log(`  Lexicon ids:      ${lexiconIds.length}`);
 console.log(`  Legacy redirects: ${Object.keys(LEGACY_REDIRECTS).length}`);
+console.log(`  Store legacy ids: ${storeIds.length}`);
 console.log(`  Backup:           ${BACKUP_PATH}`);
