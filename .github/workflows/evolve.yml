@@ -66,6 +66,12 @@ jobs:
           # GitHub-hosted runner (silent process exit / flaky suites), and CI
           # frequently runs concurrently with this cycle on the same push.
           PUNICODEX_TEST_PARALLELISM: 1
+          # The battery's Divergence Gate suite runs `npm run generate` twice
+          # INSIDE the test runner — redundant with this cycle's own generate
+          # (step 1) and its closing `git diff --exit-code` (step 4), and it
+          # pushed the job over the runner's time/memory budget once the tree
+          # passed ~15k files. Skip it here; the cycle's own gate still runs.
+          PUNICODEX_CI_SKIP_DIVERGENCE: 1
           NODE_OPTIONS: --max-old-space-size=5120
         run: |
           FLAGS=""
