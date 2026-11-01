@@ -24,7 +24,7 @@
  */
 
 const crypto = require('node:crypto');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { get, all, run } = require('../db/operational');
 const { getDb } = require('../db/connection');
 const { migrate: migrateAdminUsers } = require('../db/migrate-admin-users');

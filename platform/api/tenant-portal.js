@@ -27,7 +27,7 @@
 
 const crypto = require('node:crypto');
 const path = require('node:path');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { imageSize } = require('image-size');
 const { get, all, run, insert, transaction } = require('../db/operational');
 const { getDb } = require('../db/connection');
