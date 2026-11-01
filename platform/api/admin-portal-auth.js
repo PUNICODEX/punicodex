@@ -59,15 +59,16 @@ let authSchemaReady = false;
 // SQLite schema and login 500s on column drift without this.
 async function ensureAuthSchema() {
   if (authSchemaReady) return;
-  try {
-    migrateAdminUsers(getDb());
-  } catch (err) {
-    throw Object.assign(new Error(`sqlite-schema: ${err.message}`), { cause: err });
-  }
-  try {
+  if (process.env.DATABASE_URL) {
+    // Production: Postgres is the operational store — never construct the
+    // SQLite connection here. The better-sqlite3 native binding is a
+    // NODE_MODULE_VERSION landmine in the serverless bundle (the 2026-10-31
+    // admin-login outage: getDb() dlopened an ABI-mismatched binary and took
+    // every login down with ERR_DLOPEN_FAILED / ABI 137-vs-147).
     await ensureAdminSchemaPostgres();
-  } catch (err) {
-    throw Object.assign(new Error(`postgres-schema: ${err.message}`), { cause: err });
+  } else {
+    // Local dev / tests: SQLite owns the schema.
+    migrateAdminUsers(getDb());
   }
   authSchemaReady = true;
 }
