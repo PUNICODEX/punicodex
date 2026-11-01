@@ -50,7 +50,10 @@ module.exports = async (req, res) => {
     try {
       return res.status(500).json({
         error: 'Internal server error',
-        debug: process.env.VERCEL === '1' ? String(err && (err.code || err.message)).slice(0, 300) : undefined,
+        debug:
+          process.env.VERCEL === '1'
+            ? String(err && (err.code || err.message)).slice(0, 300)
+            : undefined,
       });
     } catch (e) {
       sendError(res, err);
