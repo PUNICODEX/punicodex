@@ -23,6 +23,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
@@ -294,7 +295,7 @@ function renderAtlas(graph, registry) {
 ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/css/main.css?v=perf29">
-<link rel="stylesheet" href="/css/nav-hubs.css?v=1">
+<link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>${ATLAS_CSS}</style>
 ${buildAtlasFaq(graph)}
@@ -355,7 +356,7 @@ ${atlasFaqHtml(graph)}
 
 <script src="/js/px-core.js?v=perf23" defer></script>
 
-<script src="/js/nav-hubs.js?v=1" defer></script>
+<script src="${PINS.NAV_HUBS_JS}" defer></script>
 <script src="/js/pc-fx-core.js?v=2" defer></script>
 <script src="/js/pc-fx-lens.js?v=1" defer></script>
 <script>
@@ -404,7 +405,7 @@ function renderMethodology(graph) {
 ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/css/main.css?v=perf29">
-<link rel="stylesheet" href="/css/nav-hubs.css?v=1">
+<link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <link rel="stylesheet" href="/css/codex.css?v=perf9">
 <link rel="stylesheet" href="/css/punicodex-tokens.css">
 <link rel="stylesheet" href="/css/brand-overrides.css">
@@ -473,7 +474,7 @@ ${MARKER_BLOCKS}
 
 <script src="/js/px-core.js?v=perf23" defer></script>
 
-<script src="/js/nav-hubs.js?v=1" defer></script>
+<script src="${PINS.NAV_HUBS_JS}" defer></script>
 </body>
 </html>
 `;

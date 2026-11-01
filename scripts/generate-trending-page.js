@@ -16,6 +16,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
@@ -67,7 +68,7 @@ function render() {
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/css/main.css?v=perf29">
-<link rel="stylesheet" href="/css/nav-hubs.css?v=1">
+<link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>
 .trend-hero{text-align:center;padding:5.5rem 1rem 2rem}
@@ -150,7 +151,7 @@ function render() {
 
 <script src="/js/px-core.js?v=perf23" defer></script>
 
-<script src="/js/nav-hubs.js?v=1" defer></script>
+<script src="${PINS.NAV_HUBS_JS}" defer></script>
 <script src="/js/pc-fx-core.js?v=2" defer></script>
 <script src="/js/pc-fx-lens.js?v=1" defer></script>
 <script>

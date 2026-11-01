@@ -19,6 +19,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -199,7 +200,7 @@ ${ldBlocks}
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/main.css?v=perf29">
-    <link rel="stylesheet" href="/css/nav-hubs.css?v=1">
+    <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="/css/screen-guide.css?v=1">
 </head>`;
 }
@@ -337,7 +338,7 @@ ${groupsHtml}
 
     <script src="/js/px-core.js?v=perf23" defer></script>
 
-    <script src="/js/nav-hubs.js?v=1" defer></script>
+    <script src="${PINS.NAV_HUBS_JS}" defer></script>
     <script src="/js/main.js?v=perf20" defer></script>
     <script>
     (function () {
@@ -479,7 +480,7 @@ ${relatedList}
 
     <script src="/js/px-core.js?v=perf23" defer></script>
 
-    <script src="/js/nav-hubs.js?v=1" defer></script>
+    <script src="${PINS.NAV_HUBS_JS}" defer></script>
     <script src="/js/main.js?v=perf20" defer></script>
 </body>
 </html>

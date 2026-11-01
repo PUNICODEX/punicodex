@@ -18,8 +18,14 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  if (!(await checkPublicRateLimitByReq(req, res, 'admin-login'))) {
-    return;
+  // Rate limiting is defense-in-depth — a limiter outage (Redis down, config
+  // drift) must never take the login surface down with it. Fail open and log.
+  try {
+    if (!(await checkPublicRateLimitByReq(req, res, 'admin-login'))) {
+      return;
+    }
+  } catch (err) {
+    console.error('admin-login rate limiter error (fail-open):', err && err.message);
   }
 
   try {

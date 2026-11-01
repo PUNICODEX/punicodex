@@ -459,7 +459,7 @@ ${
 <link rel="preload" href="/assets/fonts/cormorant-garamond-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css?v=perf29">
-<link rel="stylesheet" href="/css/nav-hubs.css?v=1">
+<link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <style>${BASE_CSS}${css}</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
@@ -476,7 +476,7 @@ ${
     ${fullNavHtml('/store/')}
     ${menuForPage('/store/')}
     <script src="/js/px-core.js?v=perf23" defer></script>
-    <script src="/js/nav-hubs.js?v=1" defer></script>
+    <script src="${PINS.NAV_HUBS_JS}" defer></script>
     <script src="/js/main.js?v=perf12" defer></script>`;
 }
 

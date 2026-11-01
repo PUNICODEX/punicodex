@@ -404,7 +404,7 @@ ${cardsHtml}
 
     <script src="/js/px-core.js?v=perf23" defer></script>
 
-    <script src="/js/nav-hubs.js?v=1" defer></script>
+    <script src="${PINS.NAV_HUBS_JS}" defer></script>
     <script src="/js/temple-base.js?v=perf20" defer></script>
     <script>
     (function () {

@@ -13,6 +13,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
@@ -57,7 +58,7 @@ function render() {
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/css/main.css?v=perf29">
-<link rel="stylesheet" href="/css/nav-hubs.css?v=1">
+<link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <style>
 .tt-wrap{max-width:1080px;margin:0 auto;padding:5.5rem 1.25rem 4rem}
 .tt-back{color:#8a8577;font-size:.8rem;text-decoration:none;letter-spacing:.06em;text-transform:uppercase}
@@ -170,7 +171,7 @@ function render() {
 
 <script src="/js/px-core.js?v=perf23" defer></script>
 
-<script src="/js/nav-hubs.js?v=1" defer></script>
+<script src="${PINS.NAV_HUBS_JS}" defer></script>
 <script>
 window.TRENDING_REGISTRY = ${registryJson};
 </script>

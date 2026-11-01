@@ -278,6 +278,15 @@ const RULES = [
     ],
   },
   {
+    pattern: /^platform\/(api\/admin-portal-auth\.js|api-handlers\/admin\/portal\/|db\/ensure-admin-schema-postgres\.js|db\/migrate-admin-users\.js)$|^test\/admin-(portal|schema-postgres)\.test\.js$|^api\/admin\//,
+    suites: [
+      'Admin Portal Tests',
+      'Admin Schema Self-Heal Tests',
+      'Portal Endpoints Tests',
+      'API Security Contracts',
+    ],
+  },
+  {
     pattern: /^sdk\//,
     suites: ['iOS SDK Contract Tests', 'Android SDK Contract Tests'],
   },

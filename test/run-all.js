@@ -208,6 +208,10 @@ const SUITES = [
   { name: 'Admin Tests', cmd: 'node test/admin.test.js' },
   { name: 'Admin Booking Routes', cmd: 'node test/admin-bookings.test.js' },
   { name: 'Admin Portal Tests', cmd: 'node test/admin-portal.test.js', timeout: 60000 },
+  {
+    name: 'Admin Schema Self-Heal Tests',
+    cmd: 'node --test test/admin-schema-postgres.test.js',
+  },
   { name: 'Admin Role Floor Tests', cmd: 'node test/admin-role-floor.test.js', timeout: 60000 },
   {
     name: 'Admin Portal Growth Tests',

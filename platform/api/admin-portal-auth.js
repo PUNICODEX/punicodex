@@ -28,6 +28,7 @@ const bcrypt = require('bcrypt');
 const { get, all, run } = require('../db/operational');
 const { getDb } = require('../db/connection');
 const { migrate: migrateAdminUsers } = require('../db/migrate-admin-users');
+const { ensureAdminSchemaPostgres } = require('../db/ensure-admin-schema-postgres');
 const { hashToken } = require('./admin');
 const { logAction } = require('./admin-actions');
 const emailModule = require('./email');
@@ -52,9 +53,14 @@ const ROLE_PERMISSIONS = {
 // per serverless instance) instead of at require time, so importing this
 // module stays cheap on cold start.
 let authSchemaReady = false;
-function ensureAuthSchema() {
+// Async since 2026-10-31: in addition to the SQLite migration (local dev and
+// the ephemeral Vercel /tmp DB), the Postgres operational store self-heals
+// its admin identity schema — Neon was provisioned manually from an older
+// SQLite schema and login 500s on column drift without this.
+async function ensureAuthSchema() {
   if (authSchemaReady) return;
   migrateAdminUsers(getDb());
+  await ensureAdminSchemaPostgres();
   authSchemaReady = true;
 }
 
@@ -90,7 +96,7 @@ function generateTempPassword(length = 16) {
 // ─────────────────────────────────────────────────────────────
 
 async function countAdminUsers() {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const row = await get('SELECT COUNT(*) as c FROM admin_users');
   // Postgres returns COUNT(*) as a string; SQLite returns a number. Normalize
   // so strict comparisons (e.g. === 0) behave identically on both drivers.
@@ -98,12 +104,12 @@ async function countAdminUsers() {
 }
 
 async function getUserByEmail(email) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   return get('SELECT * FROM admin_users WHERE email = $1', [email]);
 }
 
 async function getUserById(id) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   return get('SELECT * FROM admin_users WHERE id = $1', [id]);
 }
 
@@ -112,7 +118,7 @@ async function getUserById(id) {
  * Never seeds a default/known password: without ADMIN_PASSWORD this skips.
  */
 async function bootstrap() {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const count = await countAdminUsers();
   if (count > 0) return { seeded: false, reason: 'already_provisioned' };
 
@@ -178,7 +184,7 @@ function invalidateSessionCacheForUser(userId) {
 }
 
 async function createSession(userId) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const token = crypto.randomBytes(32).toString('hex');
   const tokenHash = hashToken(token);
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS).toISOString();
@@ -191,14 +197,14 @@ async function createSession(userId) {
 }
 
 async function deleteSession(token) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const tokenHash = hashToken(token);
   await run('DELETE FROM admin_sessions WHERE token = $1', [tokenHash]);
   sessionCache.delete(tokenHash);
 }
 
 async function deleteSessionsForUser(userId) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   await run('DELETE FROM admin_sessions WHERE admin_user_id = $1', [userId]);
   invalidateSessionCacheForUser(userId);
 }
@@ -212,7 +218,7 @@ async function deleteSessionsForUser(userId) {
  */
 async function getSessionAdminUserId(token) {
   if (!token || typeof token !== 'string') return null;
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const row = await get('SELECT admin_user_id FROM admin_sessions WHERE token = $1', [
     hashToken(token),
   ]);
@@ -226,7 +232,7 @@ async function getSessionAdminUserId(token) {
  */
 async function resolveUser(token) {
   if (!token || typeof token !== 'string') return null;
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const tokenHash = hashToken(token);
 
   const cached = sessionCache.get(tokenHash);
@@ -328,7 +334,7 @@ async function logLoginLocked(email) {
 }
 
 async function login(email, password) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   // Type guard: a truthy non-string email throws on .toLowerCase() and a
   // truthy non-string password crashes bcrypt.compareSync — both surfaced as
   // 500s. Reject them with the same invalid-credentials failure the route
@@ -424,13 +430,13 @@ async function logout(token) {
 // ─────────────────────────────────────────────────────────────
 
 async function listUsers() {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const rows = await all('SELECT * FROM admin_users ORDER BY created_at ASC');
   return rows.map(sanitizeUser);
 }
 
 async function countActiveSuperadmins() {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const row = await get(
     "SELECT COUNT(*) as c FROM admin_users WHERE role = 'superadmin' AND status = 'active'"
   );
@@ -446,7 +452,7 @@ function validateRole(role) {
 }
 
 async function createUser({ email, password, displayName, role } = {}, actor) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   // Same type guard as login(): non-string truthy emails crash .toLowerCase(),
   // and non-string display names crash the SQL bind below.
   const normalized = typeof email === 'string' ? email.toLowerCase().trim() : '';
@@ -491,7 +497,7 @@ async function createUser({ email, password, displayName, role } = {}, actor) {
 }
 
 async function updateUser(id, { displayName, role, status } = {}, actor) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const target = await getUserById(id);
   if (!target) throw portalError(404, 'User not found');
 
@@ -553,7 +559,7 @@ async function updateUser(id, { displayName, role, status } = {}, actor) {
 }
 
 async function disableUser(id, actor) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const target = await getUserById(id);
   if (!target) throw portalError(404, 'User not found');
   if (actor?.user?.id === target.id) throw portalError(400, 'You cannot disable your own account');
@@ -578,7 +584,7 @@ async function disableUser(id, actor) {
 }
 
 async function resetPassword(id, actor) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const target = await getUserById(id);
   if (!target) throw portalError(404, 'User not found');
 
@@ -606,7 +612,7 @@ async function resetPassword(id, actor) {
 }
 
 async function changePassword(userId, { currentPassword, newPassword } = {}) {
-  ensureAuthSchema();
+  await ensureAuthSchema();
   const target = await getUserById(userId);
   if (!target) throw portalError(404, 'User not found');
   // typeof guard first: a truthy non-string currentPassword crashes
