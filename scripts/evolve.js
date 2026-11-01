@@ -24,12 +24,29 @@ const skipDivergence = args.includes('--skip-divergence');
 function run(label, cmd, opts = {}) {
   console.log(`\n▶ ${label}`);
   console.log(`  $ ${cmd}`);
-  execSync(cmd, {
-    cwd: root,
-    stdio: 'inherit',
-    env: { ...process.env, FORCE_COLOR: '1' },
-    ...opts,
-  });
+  try {
+    execSync(cmd, {
+      cwd: root,
+      stdio: 'inherit',
+      env: { ...process.env, FORCE_COLOR: '1' },
+      ...opts,
+    });
+  } catch (err) {
+    // Self-diagnosis: the GitHub job log for this cycle is a single opaque
+    // step ("Run evolution cycle") — record WHICH sub-step died (plus the
+    // exec error tail) to a file the workflow uploads as an artifact, so the
+    // next cycle names its own failure.
+    try {
+      const fs = require('fs');
+      fs.writeFileSync(
+        path.join(root, 'evolve-failure.txt'),
+        `FAILED STEP: ${label}\nCOMMAND: ${cmd}\n\n${err.message || err}\n`
+      );
+    } catch (e) {
+      /* diagnosis is best-effort */
+    }
+    throw err;
+  }
 }
 
 async function main() {
