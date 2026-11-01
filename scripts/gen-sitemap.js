@@ -85,7 +85,6 @@ const mainPages = [
   { loc: '/art/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/game/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/connections/', priority: '0.6', changefreq: 'monthly' },
-  { loc: '/store/art/', priority: '0.6', changefreq: 'weekly' },
   { loc: '/store/art/galleries/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/about/authenticity/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/codex/anatomy-of-a-punycode-domain/', priority: '0.6', changefreq: 'monthly' },
