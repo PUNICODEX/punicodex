@@ -59,8 +59,16 @@ let authSchemaReady = false;
 // SQLite schema and login 500s on column drift without this.
 async function ensureAuthSchema() {
   if (authSchemaReady) return;
-  migrateAdminUsers(getDb());
-  await ensureAdminSchemaPostgres();
+  try {
+    migrateAdminUsers(getDb());
+  } catch (err) {
+    throw Object.assign(new Error(`sqlite-schema: ${err.message}`), { cause: err });
+  }
+  try {
+    await ensureAdminSchemaPostgres();
+  } catch (err) {
+    throw Object.assign(new Error(`postgres-schema: ${err.message}`), { cause: err });
+  }
   authSchemaReady = true;
 }
 

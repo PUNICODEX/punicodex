@@ -43,6 +43,20 @@ module.exports = async (req, res) => {
       requirePasswordChange: result.requirePasswordChange,
     });
   } catch (err) {
-    sendError(res, err);
+    // TEMPORARY diagnostic (admin-login 500 investigation, round 2): the
+    // bcryptjs swap did not cure the 500 — surface the full stack so the
+    // remaining failing dependency is identifiable. Remove once fixed.
+    console.error('admin-portal login error:', err);
+    try {
+      return res.status(500).json({
+        error: 'Internal server error',
+        debug:
+          process.env.VERCEL === '1'
+            ? String((err && (err.stack || err.code || err.message)) || err).slice(0, 900)
+            : undefined,
+      });
+    } catch (e) {
+      sendError(res, err);
+    }
   }
 };
