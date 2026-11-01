@@ -66,7 +66,11 @@ async function main() {
   run('Running linter', 'npm run lint');
 
   // 4. Divergence gate: generated files must match canonical sources.
+  // The test matrix re-runs generator suites that rewrite pages; converge
+  // again AFTER the battery so the diff sees only true canonical drift
+  // (ci.yml runs its sync step after the battery for the same reason).
   if (!skipDivergence) {
+    run('Converging post-test generator drift', 'npm run generate');
     run('Divergence gate: checking for uncommitted generated changes', 'git diff --exit-code');
   } else {
     console.log('\n⏭ Skipping divergence gate.');
