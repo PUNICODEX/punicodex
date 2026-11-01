@@ -15,6 +15,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { imageSize } = require('image-size');
 const { writeFileWithRetry } = require('./write-file-retry.js');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const CATALOG = require(path.join(ROOT, 'store', 'products.json'));
