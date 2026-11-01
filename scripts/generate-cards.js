@@ -711,11 +711,12 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition 
           artist: null,
         }
       : {
-          // Archive printings have no bespoke mascot; the temple OG bake is the
-          // card face so the gallery never falls back to a bare sigil. Colors
-          // fall back to the house palette (the spec requires a palette on any
-          // card carrying brand art).
-          mascot: `/assets/og/${entry.id}.jpg`,
+          // Archive printings have no bespoke mascot — and the temple OG bake
+          // is AI-styled composite art that reads as "strange generated art"
+          // on a card face (reverted 2026-11-01 after live feedback). Leave
+          // the face null; the gallery's sigil fallback renders the pantheon
+          // sigil, which is the honest archive treatment.
+          mascot: null,
           logomark: null,
           fullArt: null,
           colors: { primary: '#D4AF37', secondary: '#4169E1', glow: 'rgba(212,175,55,0.3)' },

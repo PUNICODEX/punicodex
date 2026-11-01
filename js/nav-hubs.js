@@ -73,8 +73,8 @@
     }
 
     function scheduleOpen(hub) {
+      clearTimers(); // always — even when already open, a pending close must die
       if (hub.hasAttribute(OPEN)) return;
-      clearTimers();
       pendingHub = hub;
       openTimer = setTimeout(function () {
         openTimer = 0;
@@ -102,6 +102,17 @@
         if (!hub.contains(e.relatedTarget)) scheduleClose();
       });
 
+      /* The dropdown itself is a safe zone: ANY entry into the menu cancels a
+         pending close (previously only fan-out items did, so moving onto a
+         plain link item left the 420ms close timer armed and the menu died
+         under the pointer — the "second option kills the menu" bug). The
+         close arms only when the pointer leaves the whole menu. */
+      var menu = hub.querySelector(':scope > .nav-hub-menu');
+      if (menu) {
+        menu.addEventListener('mouseenter', clearTimers);
+        menu.addEventListener('mouseleave', scheduleClose);
+      }
+
       /* Fan-out items: hovering the item opens its panel (intent handled
          by the shared timers — re-entry cancels the close). */
       Array.prototype.forEach.call(hub.querySelectorAll('.nav-hub-item'), function (item) {
@@ -114,7 +125,6 @@
           });
           panel.setAttribute(OPEN, '');
         });
-        item.addEventListener('mouseleave', scheduleClose);
       });
     });
 

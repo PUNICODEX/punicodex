@@ -1390,7 +1390,10 @@ body.menu-open {
 }
 
 /* Nested fan-out accordions (Atlas → Pantheon, Library → Codex) */
-.mobile-menu#mobile-menu .mobile-sub {
+/* Collapsed, a fan-out accordion occupies ONE grid cell like a plain link
+   (Pantheon beside Connections, Codex beside Rulebook); open, it spans the
+   full row. Mirrored from css/mobile-menu.css — keep the two in sync. */
+.mobile-menu#mobile-menu .mobile-sub[open] {
     grid-column: 1 / -1;
 }
 
@@ -1409,6 +1412,17 @@ body.menu-open {
     -webkit-tap-highlight-color: transparent;
 }
 
+/* The summary label is a real link (tap → navigate, caret → toggle). */
+.mobile-menu#mobile-menu .mobile-sub-link {
+    flex: 1;
+    color: inherit;
+    text-decoration: none;
+}
+
+.mobile-menu#mobile-menu .mobile-sub-link:hover {
+    color: var(--gold, #d4af37);
+}
+
 .mobile-menu#mobile-menu .mobile-sub summary::-webkit-details-marker {
     display: none;
 }
@@ -1417,6 +1431,7 @@ body.menu-open {
     font-size: 12px;
     opacity: 0.55;
     transition: transform 0.2s ease;
+    padding: 0.35rem 0 0.35rem 0.75rem;
 }
 
 .mobile-menu#mobile-menu .mobile-sub[open] .mobile-sub-caret {
@@ -1435,4 +1450,18 @@ body.menu-open {
 .mobile-menu#mobile-menu .mobile-sub-group a {
     font-size: clamp(15px, 3.6vw, 19px);
     padding: 0.28rem 0;
+}
+
+/* The "Pantheon — overview" heading spans the full width of the expanded
+   accordion, reading as a section heading above the 2-column destination
+   grid. Mirrored from css/mobile-menu.css. */
+.mobile-menu#mobile-menu .mobile-sub-group a.mobile-link--featured {
+    grid-column: 1 / -1;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold, #d4af37);
+    padding: 0.4rem 0 0.1rem;
 }
