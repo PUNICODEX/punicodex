@@ -43,6 +43,17 @@ module.exports = async (req, res) => {
       requirePasswordChange: result.requirePasswordChange,
     });
   } catch (err) {
-    sendError(res, err);
+    // TEMPORARY diagnostic (2026-10-31 admin-login 500 investigation): surface
+    // the exception detail so the failing dependency is identifiable from the
+    // response. Remove once the root cause is fixed.
+    console.error('admin-portal login error:', err);
+    try {
+      return res.status(500).json({
+        error: 'Internal server error',
+        debug: process.env.VERCEL === '1' ? String(err && (err.code || err.message)).slice(0, 300) : undefined,
+      });
+    } catch (e) {
+      sendError(res, err);
+    }
   }
 };
