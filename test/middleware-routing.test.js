@@ -245,6 +245,14 @@ async function run() {
     }
   });
 
+  await test('legacy /art/ 301s to the Art Directory; /creatives/ keeps serving', async () => {
+    const res = await middleware(req('https://punicodex.com/art/'));
+    assert.strictEqual(res.status, 301);
+    assert.strictEqual(res.headers.get('Location'), 'https://punicodex.com/store/art/');
+    const creatives = await middleware(req('https://punicodex.com/creatives/'));
+    assert.ok(creatives.__fetched, '/creatives/ must pass through (licensing surface)');
+  });
+
   await test('STORE_LEGACY_IDS matches the catalog collections exhaustively', async () => {
     const src = fs.readFileSync(SRC, 'utf8');
     const m = src.match(/const STORE_LEGACY_IDS = new Set\(\[([\s\S]*?)\]\);/);

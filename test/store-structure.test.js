@@ -79,12 +79,34 @@ test('the store entrance presents the Merch and Art departments', () => {
   assert.ok(!html.includes('id="grid"'), 'entrance must not carry the collections grid');
 });
 
-test('the art department links only live destinations and never dead hrefs', () => {
+test('the art directory shows art immediately and links only live destinations', () => {
   const html = read('store/art/index.html');
-  assert.ok(html.includes('href="/creatives/"'), 'art: no creatives link');
-  assert.ok(html.includes('href="/ink/"'), 'art: no ink link');
-  // Gallery and Commons ship as honest "opening soon" cards — spans, not hrefs.
+  // Art is shown immediately: the directory mounts and fetches the artworks.
+  assert.ok(html.includes('id="art-grid"'), 'art: no artwork grid');
+  assert.ok(html.includes('/api/v1/creatives/'), 'art: no artwork API source');
+  // Categories are FILTERS, not dead hrefs.
+  for (const cat of ['tattoo', 'commons', 'galleries']) {
+    assert.ok(html.includes(`data-cat="${cat}"`), `art: missing ${cat} filter`);
+  }
   assert.ok(!/href="\/store\/art\/(gallery|commons)\/"/.test(html), 'art: dead department hrefs');
+  assert.ok(html.includes('href="/store/art/galleries/"'), 'art: no Temple Galleries page link');
+  // The Muse Flame hero animation ships with the page.
+  assert.ok(html.includes('pc-fx-muse'), 'art: hero animation missing');
+});
+
+test('the Temple Galleries page scrolls every curated temple in order', () => {
+  assert.ok(exists('store/art/galleries/index.html'), 'galleries page missing');
+  const html = read('store/art/galleries/index.html');
+  assert.ok(html.includes('id="gal-data"'), 'galleries: no embedded data');
+  assert.ok(html.includes('id="gal-scroll"'), 'galleries: no scroll container');
+  const GALLERY_DATA = require('../scripts/gallery-data.json');
+  const { LEXICON } = require('../type/js/lexicon.js');
+  const lex = new Set(LEXICON.map((e) => e.id));
+  const expected = Object.keys(GALLERY_DATA).filter(
+    (id) => lex.has(id) && (GALLERY_DATA[id].images || []).length > 0
+  ).length;
+  const embedded = (html.match(/"id":"/g) || []).length;
+  assert.ok(embedded >= expected - 1, `galleries: ${embedded} embedded vs ${expected} expected`);
 });
 
 test('every store page has title, meta description, and a matching canonical', () => {

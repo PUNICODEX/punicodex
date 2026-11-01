@@ -3249,6 +3249,21 @@ export default function middleware(request) {
     }
   }
 
+  // ─── 3d. Legacy /art → the Art Directory ───────────────────────────
+  // Phase B Reliquary: the old standalone /art/ teaser now lives in the
+  // store as the Art Directory. /creatives/ intentionally keeps serving —
+  // it is the licensing + purchase surface the Art Directory links into.
+  if (url.pathname === '/art' || url.pathname === '/art/') {
+    url.pathname = '/store/art/';
+    return new Response(null, {
+      status: 301,
+      headers: {
+        'Location': url.toString(),
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+      },
+    });
+  }
+
   // Redirect .html extension URLs to clean trailing-slash URLs. Vercel's
   // cleanUrls:true serves the file at the extensionless path, but it does not
   // 301 the .html variant, so both URLs can be crawled as duplicate content.

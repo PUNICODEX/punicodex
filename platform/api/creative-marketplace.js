@@ -91,7 +91,6 @@ const {
 
 const PLATFORM_FEE_PERCENT = 0.3;
 const CREATOR_PERCENT = 0.7;
-const ALL_ACCESS_PASS_PRICE_CENTS = 99900; // $999.00
 
 const router = express.Router();
 
@@ -681,41 +680,9 @@ router.post(
   })
 );
 
-router.post(
-  '/all-access',
-  asyncHandler(async (req, res) => {
-    const { email } = req.body || {};
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
-      return res.status(400).json(error('A valid licensee email is required'));
-    }
-
-    const priceCents = ALL_ACCESS_PASS_PRICE_CENTS;
-    const { platformFeeCents, creatorPayoutCents } = calculatePayouts(priceCents);
-
-    const purchaseResult = createCreativePurchase({
-      assetId: null,
-      licenseeBookingId: null,
-      licenseeEmail: email.toLowerCase().trim(),
-      licenseType: 'all_access_pass',
-      priceCents,
-      platformFeeCents,
-      creatorPayoutCents,
-      universityCreditCents: creatorPayoutCents,
-    });
-    const purchaseId = purchaseResult.lastInsertRowid;
-
-    const checkout = await createCreativeCheckoutSession({
-      purchaseId,
-      email: email.toLowerCase().trim(),
-      assetTitle: 'All-Access Sponsorship Pass',
-      amountCents: priceCents,
-    });
-
-    updateCreativePurchaseStatus(purchaseId, { stripeSessionId: checkout.sessionId });
-
-    res.json(success({ purchaseId, checkoutUrl: checkout.sessionUrl }));
-  })
-);
+// The all-access sponsorship pass was retired 2026-11-01 (the program no
+// longer exists). The POST /all-access checkout route is gone; previously
+// issued passes still validate on download (license_type='all_access_pass').
 
 router.get(
   '/purchases/verify',

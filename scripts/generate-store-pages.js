@@ -547,60 +547,247 @@ ${footerHtml()}
 `;
 }
 
-// ─── Art department (/store/art/) ───
-// Filter pills mirror the /pantheon categories so a visitor can travel the
-// art the same way they travel the names. Destinations that have not opened
-// yet (Gallery story-scroll, Commons contributor platform) render as honest
-// "opening soon" cards without hrefs — never dead links.
+// ─── Art department (/store/art/) — the Art Directory ───
+// The /creatives marketplace redesigned as the Reliquary's art room: the
+// artworks themselves front and center, with categories as FILTERS (not
+// destinations): Tattoo Art, The Commons, and Temple Galleries all live in
+// the one directory. Temple Galleries additionally has its own ordered page
+// at /store/art/galleries/ (the full story-scroll).
+const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
+const GALLERY_DATA = require(path.join(ROOT, 'scripts', 'gallery-data.json'));
+
+function galleryTemples() {
+  const lex = new Map(LEXICON.map((e) => [e.id, e]));
+  return Object.keys(GALLERY_DATA)
+    .filter((id) => lex.has(id) && (GALLERY_DATA[id].images || []).length)
+    .map((id) => {
+      const e = lex.get(id);
+      return {
+        id,
+        name: e.unicode || e.name || id,
+        script: getOriginalScript(e) || '',
+        images: GALLERY_DATA[id].images,
+      };
+    })
+    .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+}
+
 function renderArtDepartment() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Art — PuniCodex Reliquary',
+    name: 'Art — the Art Directory of the Unicode Pantheon',
     url: `${SITE_ORIGIN}/store/art/`,
     hasPart: [
-      { '@type': 'WebPage', name: 'Creatives', url: `${SITE_ORIGIN}/creatives/` },
-      { '@type': 'WebPage', name: 'Ink — Check Before You Ink', url: `${SITE_ORIGIN}/ink/` },
+      { '@type': 'WebPage', name: 'Temple Galleries', url: `${SITE_ORIGIN}/store/art/galleries/` },
     ],
   };
+  const traditions = Object.keys(PANTHEON_META)
+    .map((id) => PANTHEON_META[id].label || id)
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+  const galleryCovers = galleryTemples()
+    .map(
+      (t) => `<a class="art-card" href="/store/art/galleries/#${t.id}" data-gid="${t.id}">
+      <div class="imgbox"><img src="${esc(t.images[0].src)}" alt="${esc(t.images[0].alt || t.name)}" loading="lazy"></div>
+      <div class="body"><div class="sub">Temple Gallery</div><h3>${esc(t.name)}</h3>
+      <div class="sub" style="text-transform:none;letter-spacing:0">${t.images.length} works${t.script ? ` · ${esc(t.script)}` : ''}</div></div>
+    </a>`
+    )
+    .join('\n    ');
 
   return `${head({
-    title: 'Art — Creatives, Tattoo Art, Galleries & the Commons | PUNICODEX',
-    description: 'The Art department of the Reliquary: scholarly creatives from verified university creators, tattoo art checked against attested scripts, flagship temple galleries, and the Commons — the free mythology image library.',
+    title: 'Art — Tattoo Art, Creatives, the Commons & Temple Galleries | PUNICODEX',
+    description:
+      'The Art Directory of the Unicode Pantheon: licensed mythological artwork from verified university creators — filter by tradition, style and tattoo-ready pieces — plus the Commons and the curated Temple Galleries.',
     path: '/store/art/',
-    css: `.store-hero{text-align:center;padding:5rem 0 2rem}.store-hero h1{font-size:2.4rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:64ch;margin:0 auto}.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;padding:2rem 0 4rem}.dept{display:flex;flex-direction:column;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.9rem 1.6rem;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease}.dept:hover{transform:translateY(-4px);border-color:var(--gold);color:var(--ink)}.dept h2{font-size:1.3rem;margin:.2rem 0}.dept p{color:var(--dim);font-size:.93rem;flex:1}.dept .go{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.dept .soon{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#0a0a0c;background:var(--gold);padding:2px 8px;border-radius:999px;width:max-content}`,
+    css: `.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-card .price{color:var(--gold);font-family:'Cinzel',serif;margin-top:.35rem;font-size:1rem}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8}`,
   })}
-<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <span style="color:var(--gold)">Art</span></div>
+<link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <div class="wrap">
-  <div class="store-hero">
-    <h1>ART</h1>
-    <p class="tag">The visual life of the pantheon. Four rooms: scholarly creatives from verified university creators, tattoo art verified against the attested scripts, the curated galleries inside the flagship temples, and the Commons — where the mythology image library grows by contribution.</p>
-  </div>
-  <div class="dept-grid">
-    <a class="dept" href="/creatives/">
-      <span class="soon">Open</span>
-      <h2>Creatives</h2>
-      <p>Mythological artwork from verified university creators — filterable by tattoo-ready pieces, pantheon and style (realism, anime, classical and more). Half of every sale goes to the creator.</p>
-      <span class="go">Browse the creatives →</span>
-    </a>
-    <a class="dept" href="/ink/">
-      <span class="soon">Open</span>
-      <h2>Tattoo Art</h2>
-      <p>Check a name or a script before it goes on skin. The ink engine verifies against the attested original scripts — absence of evidence is never sold as proof of error.</p>
-      <span class="go">Check before you ink →</span>
-    </a>
-    <div class="dept">
-      <span class="soon">Opening soon</span>
-      <h2>Temple Galleries</h2>
-      <p>Every flagship temple's curated gallery — the myths of each name told through art, scrollable as one long story from temple to temple.</p>
+  <div class="art-hero">
+    <div class="pc-fx-stage pc-fx-muse-stage" role="img" aria-label="The Muse Flame — a living flame of inspiration">
+      <canvas class="pc-fx-muse" aria-hidden="true"></canvas>
     </div>
-    <div class="dept">
-      <span class="soon">Opening soon</span>
-      <h2>The Commons</h2>
-      <p>The free mythology image library — contributor-hosted, license-tagged, moderated. The Pixabay of mythology: leave an offering, take what you need.</p>
+    <span class="pill">The Art Directory</span>
+    <h1>ART</h1>
+    <p class="tag">Every visual thread of the pantheon in one directory — licensed artwork from verified university creators, tattoo-ready pieces, the growing Commons, and the curated galleries of the temples themselves.</p>
+  </div>
+  <div class="art-cats" role="tablist" aria-label="Art categories">
+    <button class="art-cat active" data-cat="all" role="tab">All Art</button>
+    <button class="art-cat" data-cat="tattoo" role="tab">Tattoo Art</button>
+    <button class="art-cat" data-cat="commons" role="tab">The Commons</button>
+    <button class="art-cat" data-cat="galleries" role="tab">Temple Galleries</button>
+  </div>
+  <div id="art-directory">
+    <div class="art-filters">
+      <input id="art-q" type="search" placeholder="Search by title, myth, or style…" aria-label="Search artworks">
+      <select id="art-tradition" aria-label="Filter by tradition">
+        <option value="">All Traditions</option>
+        ${traditions.map((t) => `<option value="${esc(t.toLowerCase())}">${esc(t)}</option>`).join('')}
+      </select>
+      <select id="art-tag" aria-label="Filter by tag">
+        <option value="">All Tags</option>
+        <option value="tattoo">Tattoo-ready</option>
+      </select>
+      <select id="art-sort" aria-label="Sort artworks">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="az">A – Z</option>
+      </select>
+    </div>
+    <div class="art-grid" id="art-grid"></div>
+    <div class="art-empty" id="art-empty" hidden></div>
+  </div>
+  <div id="art-galleries" hidden>
+    <p style="color:var(--dim);padding:1rem 0 0;max-width:70ch">One cover from every flagship temple's curated gallery — the full, in-order story lives on the <a href="/store/art/galleries/">Temple Galleries page</a>.</p>
+    <div class="art-grid">
+    ${galleryCovers}
+    </div>
+  </div>
+  <div id="art-commons" hidden>
+    <div class="art-empty">
+      <strong>The Commons</strong> — the free mythology image library — opens soon.<br>
+      Contributors will leave offerings under free licenses (CC0, CC-BY, CC-BY-SA); every piece is moderated and tagged by tradition, so the Pixabay of mythology grows here.<br>
+      Until the doors open, browse the <a href="/store/art/galleries/">Temple Galleries</a>.
     </div>
   </div>
 </div>
+<script src="/js/pc-fx-core.js?v=1" defer></script>
+<script src="/js/pc-fx-muse.js?v=1" defer></script>
+<script>
+(function () {
+  var API = '/api/v1/creatives/';
+  var state = { cat: 'all', q: '', tradition: '', tag: '', sort: 'newest', assets: [] };
+  var grid = document.getElementById('art-grid');
+  var empty = document.getElementById('art-empty');
+  var dirEl = document.getElementById('art-directory');
+  var galEl = document.getElementById('art-galleries');
+  var comEl = document.getElementById('art-commons');
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function showView() {
+    dirEl.hidden = state.cat !== 'all' && state.cat !== 'tattoo';
+    galEl.hidden = state.cat !== 'galleries';
+    comEl.hidden = state.cat !== 'commons';
+    if (!dirEl.hidden) render();
+  }
+
+  function card(a) {
+    var price = (a.priceCents > 0) ? '$' + (a.priceCents / 100).toFixed(2) : 'Free';
+    var meta = [a.creatorName, a.department].filter(Boolean).join(' · ');
+    return '<a class="art-card" href="/creatives/?asset=' + encodeURIComponent(a.id) + '">' +
+      '<div class="imgbox"><img src="' + esc(a.thumbnailUrl || a.previewUrl || '') + '" alt="' + esc(a.title) + '" loading="lazy"></div>' +
+      '<div class="body"><div class="sub">' + esc(meta) + '</div><h3>' + esc(a.title) + '</h3>' +
+      '<div class="price">' + price + '</div></div></a>';
+  }
+
+  function render() {
+    var list = state.assets.slice();
+    var q = state.q.toLowerCase();
+    if (q) list = list.filter(function (a) { return (a.title + ' ' + (a.description || '') + ' ' + (a.tags || []).join(' ')).toLowerCase().indexOf(q) !== -1; });
+    if (state.tradition) list = list.filter(function (a) { return (a.department || '').toLowerCase() === state.tradition; });
+    if (state.cat === 'tattoo' || state.tag === 'tattoo') list = list.filter(function (a) { return (a.tags || []).indexOf('tattoo') !== -1 || /tattoo/i.test((a.tags || []).join(' ')); });
+    if (state.sort === 'az') list.sort(function (a, b) { return a.title < b.title ? -1 : 1; });
+    if (state.sort === 'newest') list.sort(function (a, b) { return String(b.createdAt || '').localeCompare(String(a.createdAt || '')); });
+    if (state.sort === 'oldest') list.sort(function (a, b) { return String(a.createdAt || '').localeCompare(String(b.createdAt || '')); });
+    grid.innerHTML = list.map(card).join('');
+    var isEmpty = !list.length;
+    empty.hidden = !isEmpty;
+    empty.innerHTML = state.cat === 'tattoo'
+      ? 'No tattoo-ready pieces are published yet. Verified creators tag their work <strong>tattoo-ready</strong> and it appears here.'
+      : 'No artworks match these filters yet. Try a broader search.';
+  }
+
+  async function load() {
+    try {
+      var res = await fetch(API + '?limit=500');
+      var json = await res.json();
+      state.assets = (json.success && json.data && json.data.assets) || [];
+    } catch (e) { state.assets = []; }
+    render();
+  }
+
+  document.querySelectorAll('.art-cat').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.art-cat').forEach(function (x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      state.cat = b.getAttribute('data-cat');
+      showView();
+    });
+  });
+  document.getElementById('art-q').addEventListener('input', function (e) { state.q = e.target.value; render(); });
+  document.getElementById('art-tradition').addEventListener('change', function (e) { state.tradition = e.target.value; render(); });
+  document.getElementById('art-tag').addEventListener('change', function (e) { state.tag = e.target.value; render(); });
+  document.getElementById('art-sort').addEventListener('change', function (e) { state.sort = e.target.value; render(); });
+
+  load();
+  showView();
+})();
+</script>
+<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+${footerHtml()}
+</body></html>
+`;
+}
+
+// ─── Temple Galleries (/store/art/galleries/) — the ordered story-scroll ───
+// Every flagship temple's curated gallery, in alphabetical order — walk the
+// pantheon through its art. Data: scripts/gallery-data.json (canonical).
+function renderArtGalleries() {
+  const temples = galleryTemples();
+  const payload = temples.map((t) => ({
+    id: t.id,
+    name: t.name,
+    script: t.script,
+    count: t.images.length,
+  }));
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Temple Galleries — the pantheon in art',
+    url: `${SITE_ORIGIN}/store/art/galleries/`,
+  };
+
+  return `${head({
+    title: 'Temple Galleries — the Pantheon in Art | PUNICODEX',
+    description: `Every flagship temple's curated gallery in one long scroll, A–Z — ${temples.length} temples, ${temples.reduce((n, t) => n + t.images.length, 0)} works of mythology in art.`,
+    path: '/store/art/galleries/',
+    css: `.gal-hero{text-align:center;padding:4.5rem 0 2rem}.gal-hero h1{font-size:2.4rem;margin:.4rem 0 .6rem}.gal-hero .tag{max-width:64ch;margin:0 auto}.gal-temple{padding:2.2rem 0;border-top:1px solid var(--line)}.gal-temple-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem;margin-bottom:1.1rem}.gal-temple-head h2{font-size:1.5rem;margin:0}.gal-script{color:var(--gold);font-size:1.05rem}.gal-count{color:var(--dim);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase}.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}.gal-fig{margin:0}.gal-fig img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block;background:#0c0c10}.gal-fig figcaption{font-size:.78rem;color:var(--dim);line-height:1.5;padding:.5rem .1rem 0}.gal-enter{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-decoration:none;white-space:nowrap}.gal-enter:hover{color:var(--gold-bright)}`,
+  })}
+<div class="wrap">
+  <div class="gal-hero">
+    <span class="pill">The Reliquary · Art</span>
+    <h1>TEMPLE GALLERIES</h1>
+    <p class="tag">The pantheon told through its art — every flagship temple's curated gallery in one continuous scroll, from the first name to the last.</p>
+  </div>
+  <div id="gal-scroll"></div>
+  <p class="wrap" style="padding:2rem 0 3rem;color:var(--dim);font-size:.85rem;text-align:center">Images are curated from Wikimedia Commons and link back to their sources. Back to the <a href="/store/art/">Art Directory</a>.</p>
+</div>
+<script type="application/json" id="gal-data">${JSON.stringify(temples).replace(/</g, '\\u003c')}</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('gal-data').textContent);
+  var host = document.getElementById('gal-scroll');
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  host.innerHTML = data.map(function (t) {
+    var figs = t.images.map(function (im) {
+      return '<figure class="gal-fig"><img src="' + esc(im.src) + '" alt="' + esc(im.alt || t.name) + '" loading="lazy">' +
+        (im.alt ? '<figcaption>' + esc(im.alt) + '</figcaption>' : '') + '</figure>';
+    }).join('');
+    return '<section class="gal-temple" id="' + esc(t.id) + '">' +
+      '<div class="gal-temple-head"><h2>' + esc(t.name) + '</h2>' +
+      (t.script ? '<span class="gal-script">' + esc(t.script) + '</span>' : '') +
+      '<span class="gal-count">' + t.images.length + ' works</span>' +
+      '<a class="gal-enter" href="/sites/' + esc(t.id) + '/">Enter the temple →</a></div>' +
+      '<div class="gal-grid">' + figs + '</div></section>';
+  }).join('');
+  if (location.hash) {
+    var el = document.getElementById(location.hash.slice(1));
+    if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
+  }
+})();
+</script>
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 ${footerHtml()}
 </body></html>
@@ -1233,6 +1420,12 @@ function main() {
   // lives under /store/merch/ and the art department at /store/art/.
   written += writeIfChanged(path.join(ROOT, 'store', 'index.html'), renderEntrance(colls)) ? 1 : 0;
   written += writeIfChanged(path.join(ROOT, 'store', 'art', 'index.html'), renderArtDepartment()) ? 1 : 0;
+  written += writeIfChanged(
+    path.join(ROOT, 'store', 'art', 'galleries', 'index.html'),
+    renderArtGalleries()
+  )
+    ? 1
+    : 0;
   written += writeIfChanged(
     path.join(ROOT, 'store', 'merch', 'index.html'),
     renderMerchIndex(colls)

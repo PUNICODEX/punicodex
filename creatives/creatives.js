@@ -14,8 +14,6 @@
   const modalBody = document.getElementById('creatives-modal-body');
   const globalToggle = document.getElementById('global-toggle');
   const globalLinks = document.getElementById('global-links');
-  const sponsorshipForm = document.getElementById('sponsorship-form');
-  const sponsorshipMessage = document.getElementById('sponsorship-message');
 
   let state = {
     assets: [],
@@ -168,13 +166,6 @@
         <input type="email" id="purchase-email" placeholder="Your email address" required>
         <button type="submit" class="creatives-btn primary">License This Asset</button>
       </form>
-      <div class="creatives-pass-form">
-        <p class="creatives-modal-note">Have an all-access sponsorship pass?</p>
-        <form class="creatives-modal-form" id="pass-form">
-          <input type="email" id="pass-email" placeholder="Your pass email address" required>
-          <button type="submit" class="creatives-btn">Download with Pass</button>
-        </form>
-      </div>
       <p class="creatives-modal-note">
         <strong>Single-use license</strong> for myth-inspired student creative work.
         You will receive a secure download link after payment. Watermarked previews protect the artist's work.
@@ -186,37 +177,6 @@
     document.body.style.overflow = 'hidden';
 
     const form = document.getElementById('purchase-form');
-    const passForm = document.getElementById('pass-form');
-
-    passForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('pass-email').value.trim();
-      const messageEl = document.getElementById('purchase-message');
-      const submitBtn = passForm.querySelector('button');
-      messageEl.textContent = '';
-      messageEl.className = 'creatives-status';
-      submitBtn.disabled = true;
-
-      try {
-        const res = await fetch(`${API_BASE}/${asset.id}/download?email=${encodeURIComponent(email)}`);
-        if (!res.ok) {
-          const json = await res.json().catch(() => ({}));
-          throw new Error(json.error || 'Pass check failed');
-        }
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = asset.title.replace(/\s+/g, '_');
-        a.click();
-        URL.revokeObjectURL(url);
-        messageEl.textContent = 'Download started.';
-      } catch (err) {
-        messageEl.textContent = err.message;
-        messageEl.classList.add('error');
-      }
-      submitBtn.disabled = false;
-    });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -282,34 +242,6 @@
   if (globalToggle && globalLinks) {
     globalToggle.addEventListener('click', () => {
       globalLinks.classList.toggle('open');
-    });
-  }
-
-  if (sponsorshipForm) {
-    sponsorshipForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('sponsorship-email').value.trim();
-      const btn = sponsorshipForm.querySelector('button');
-      btn.disabled = true;
-      sponsorshipMessage.textContent = '';
-      sponsorshipMessage.className = 'creatives-message';
-
-      try {
-        const res = await fetch(`${API_BASE}/all-access`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
-        const json = await res.json();
-        if (!json.success) {
-          throw new Error(json.error || 'Reservation failed');
-        }
-        window.location.href = json.data.checkoutUrl;
-      } catch (err) {
-        sponsorshipMessage.textContent = err.message;
-        sponsorshipMessage.className = 'creatives-message error';
-        btn.disabled = false;
-      }
     });
   }
 

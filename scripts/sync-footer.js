@@ -41,7 +41,7 @@ const RESOURCES = [
   ['/texts/', 'Texts'],
   ['/blog/', 'Blog'],
   ['/cards/', 'Cards'],
-  ['/creatives/', 'Creatives'],
+  ['/store/art/', 'Art'],
   ['/scholars/', 'Scholars'],
   ['/herald/', 'Herald'],
   ['/screen/', 'Screen'],

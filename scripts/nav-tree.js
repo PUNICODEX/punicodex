@@ -137,6 +137,7 @@ const STORE_CHILDREN_ENABLED = true;
 const STORE_CHILDREN = [
   { label: 'Merch', href: '/store/merch/' },
   { label: 'Art', href: '/store/art/' },
+  { label: 'Galleries', href: '/store/art/galleries/' },
 ];
 
 const CHILD_SETS = {
