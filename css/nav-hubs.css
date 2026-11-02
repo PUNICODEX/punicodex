@@ -55,7 +55,9 @@
     gap: 2px;
     background: rgba(10, 8, 6, 0.97);
     border: 1px solid rgba(212, 175, 55, 0.22);
-    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    /* No clip-path here: clip-path clips absolutely-positioned descendants
+       too, which made every fan-out panel (Pantheon/Codex/Store) invisible —
+       it rendered entirely outside the menu box and was cut off. */
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
     opacity: 0;
     visibility: hidden;

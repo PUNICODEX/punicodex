@@ -58,12 +58,14 @@
       current = { hub: hub, item: null, panel: null };
     }
 
-    /* Flip panels that would overflow the right edge. */
+    /* Flip panels that would overflow the right edge. The listener is bound
+       once per item — openHub runs on every hover, so without the guard each
+       hub switch stacked another identical listener on every fan-out item. */
     function positionPanels(hub) {
       Array.prototype.forEach.call(hub.querySelectorAll('.nav-hub-item'), function (item) {
         var panel = item.querySelector(':scope > .nav-hub-panel');
-        if (!panel) return;
-        panel.removeAttribute('data-flip');
+        if (!panel || item.getAttribute('data-flip-bound') === '1') return;
+        item.setAttribute('data-flip-bound', '1');
         item.addEventListener('mouseenter', function () {
           var r = panel.getBoundingClientRect();
           if (r.right > window.innerWidth - 12) panel.setAttribute('data-flip', '');
