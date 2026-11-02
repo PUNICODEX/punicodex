@@ -1,11 +1,12 @@
 name: PUNICODEX Evolution
 
 on:
-  # Run on every push while we stabilize; later this can become nightly + dispatch.
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  # Nightly + manual dispatch only. Evolution intentionally does NOT run on
+  # push/PR: the cycle (generate + full battery + format + lint + diff)
+  # duplicates ci.yml's deployment gate step-for-step, and running both on
+  # every push meant every transient battery flake surfaced twice and any
+  # evolve-only failure read as a deploy failure. Deployment protection lives
+  # exclusively in ci.yml; evolve is the scheduled gardener, not a gate.
   schedule:
     # 04:17 UTC — off-peak, avoids the :00/:30 herd.
     - cron: '17 4 * * *'
