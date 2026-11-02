@@ -108,6 +108,20 @@ const ALIASES = {
     'Dame licorne',
     'Monoceros',
   ],
+  // 2026-11 ASCII-batch wave: bare 'nut'/'min'/'nun'/'bes' are English
+  // nouns, 'geb' is a name fragment — only multi-word mythic descriptors
+  // pass the topicality gate.
+  nut: ['Nut goddess', 'Nut sky goddess', 'Nut Egypt', 'Nut ancient Egyptian', 'Nuit Egyptian'],
+  geb: ['Geb god', 'Geb Egypt', 'Seb god Egypt', 'Geb ancient Egyptian'],
+  min: ['Min god', 'Min Egypt', 'Min ancient Egyptian', 'Min fertility god'],
+  nun: ['Nun god', 'Nun Egypt', 'Nun primordial', 'Nu ancient Egyptian'],
+  kebechet: ['Kebechet', 'Kabechet', 'Qebhet', 'Kebehut', 'Kebechet serpent'],
+  karnak: ['Karnak temple', 'Karnak complex', 'Karnak Egypt', 'Precinct Amun', 'Temple Amun Karnak'],
+  bes: ['Bes god', 'Bes Egypt', 'Bes deity', 'Bes amulet', 'Bes ancient Egyptian'],
+  aditi: ['Aditi goddess', 'Aditi Vedas', 'Aditi Devi', 'Adityas'],
+  diti: ['Diti goddess', 'Diti Kashyapa', 'Diti Devi'],
+  gronwpebr: ['Gronw Pebyr', 'Gronw', 'Blodeuwedd', 'Lleu Llaw Gyffes'],
+  yammu: ['Yam sea god', 'Yam Ugarit', 'Yam Baal', 'Yammu god'],
 };
 
 // Pantheon-specific query context to keep results on-topic.
@@ -496,6 +510,39 @@ const MANUAL = {
     'File:Pontus Euxinus - Autore N. Sanson Filio ; de la Place sculp. - btv1b53214037t (1 of 2).jpg',
     "File:Mosaïque d'Océan d'Acholla - Tunisia-4752 - Pontus.jpg",
     'File:Sunrise over the Black Sea (AP4P0489) (11194862636).jpg',
+  ],
+  // 2026-11 ASCII-batch wave: short-name collisions (nut/min/nun/bes/geb) and
+  // sparse-coverage figures (karnak, aditi) whose usable Commons files never
+  // survive the search gate. All titles verified via the Commons API
+  // (existence + license + dimensions, 2026-11-02).
+  geb: [
+    'File:Geb and Nut03.png',
+    'File:Geb (God).png',
+    'File:Egyptian god Geb and goddess Nut, from the Greenfield papyrus.jpg',
+    'File:Shu separating Geb and Nut.svg',
+  ],
+  min: [
+    'File:Predynastic statue of Min (Egyptian Museum, Cairo).JPG',
+    'File:Amulet of Min MET LC-17 6 129 EGDP024539.jpg',
+    'File:Amulet Depicting the God Min MET 04.18.15.jpg',
+    'File:Min.svg',
+  ],
+  nun: [
+    'File:Nu (God).png',
+    'File:Nun budge.gif',
+    'File:Nun Raises the Sun.jpg',
+    'File:Nun and Naunet.jpg',
+  ],
+  karnak: [
+    'File:Karnak temple complex 12.jpg',
+    'File:Karnak Khonsu Temple R01.jpg',
+    'File:Karnak Temple Complex, Egypt18.jpg',
+    'File:Templo de Karnak, Luxor, Egipto, 2022-04-03, DD 144.jpg',
+    'File:Luxor, Egypt, Karnak.jpg',
+  ],
+  aditi: [
+    'File:Lord Brahma and Adhiti - 19th Century Illustration.jpg',
+    'File:Goddess Aditi.jpg',
   ],
 };
 

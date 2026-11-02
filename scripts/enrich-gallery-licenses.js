@@ -24,10 +24,21 @@ function fileTitleFromSrc(src) {
     const u = new URL(src);
     const parts = u.pathname.split('/').filter(Boolean);
     const last = parts[parts.length - 1];
-    if (/^\d+px-/.test(last)) {
-      let t = last.replace(/^\d+px-/, '');
+    // thumb render names: {w}px-Name.jpg, page1-{w}px-Name.pdf.jpg,
+    // lossy-page1-{w}px-Name.tif.jpg — cut everything up to the {w}px- marker.
+    // `?width=` requests render as {w}px-thumbnail.jpg, losing the title —
+    // recover it from the original-name path segment before it.
+    const m = last.match(/^(?:lossy-|lossless-)?(?:page\d+-)?\d+px-(.+)$/);
+    if (m) {
+      let t = m[1];
+      if (/^thumbnail\.[a-z]+$/i.test(t)) {
+        const orig = parts[parts.length - 2] || '';
+        if (orig) t = orig;
+      }
       t = t.replace(/\.webp$/, '');
-      return t.replace(/_/g, ' ');
+      // multi-page renders append .jpg/.png to the true extension
+      t = t.replace(/\.(svg|tif|tiff|pdf|djvu)\.(jpg|png|webp)$/i, '.$1');
+      return decodeURIComponent(t).replace(/_/g, ' ');
     }
     // direct original upload
     return decodeURIComponent(last).replace(/_/g, ' ');
