@@ -716,12 +716,12 @@ ${JSON.stringify(
         <div class="global-strip-inner">
             <a href="https://punicodex.com/" class="global-brand"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></a>
             <div class="global-links">
-                <a href="https://punicodex.com/pantheon/">Pantheon</a>
-                <a href="https://punicodex.com/realms/">Realms</a>
-                <a href="https://punicodex.com/patterns/">Patterns</a>
-                <a href="https://punicodex.com/trending/">Trending</a>
-                <a href="https://punicodex.com/store/">Store</a>
-                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/world/">Atlas</a>
+                <a href="https://punicodex.com/culture/">Culture</a>
+                <a href="https://punicodex.com/instruments/">Tools</a>
+                <a href="https://punicodex.com/library/">Library</a>
+                <a href="https://punicodex.com/relics/">Relics</a>
+                <a href="https://punicodex.com/about/">About</a>
             </div>
         </div>
     </div>
