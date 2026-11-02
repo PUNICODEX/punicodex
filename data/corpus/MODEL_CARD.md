@@ -1,8 +1,8 @@
 # PuniCodex Oracle — Model Card
 
 **Model family:** PuniCodex Oracle (specialized language model)  
-**Data version:** 2.0.162  
-**Generated:** 2026-10-30T04:11:31.271Z  
+**Data version:** 2.0.163  
+**Generated:** 2026-11-02T11:00:56.783Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -17,16 +17,16 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 66,885 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 16,805 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **83,690** | — |
+| Train | 67,038 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 16,848 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **83,886** | — |
 
 Source corpora:
-- `instructions.jsonl`: 10,969 examples
+- `instructions.jsonl`: 11,018 examples
 - `safety-examples.jsonl`: 45,018 examples
-- `dialogue-examples.jsonl`: 3,733 examples
+- `dialogue-examples.jsonl`: 3,782 examples
 - `tool-use-examples.jsonl`: 4,893 examples
-- `multimodal-examples.jsonl`: 2,672 examples
+- `multimodal-examples.jsonl`: 2,770 examples
 - `preference-examples.jsonl`: 4,014 examples
 - `reasoning-examples.jsonl`: 3,895 examples
 - `mythology-synthesis.jsonl`: 404 examples
@@ -72,8 +72,8 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 6,011 training documents (1,097,099 whitespace tokens).
-- `data/corpus/pretrain-validation.jsonl` — 310 validation documents (56,162 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 6,043 training documents (1,127,290 whitespace tokens).
+- `data/corpus/pretrain-validation.jsonl` — 327 validation documents (60,357 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 
 Documents are drawn from structured entry records, flagship lore, original-script provenance, pronunciation notes, the source catalog, mythology synthesis, oracle reflections, symbolic correspondences, and scientific analogies. Strip HTML and normalize whitespace before tokenization. This step teaches the model the domain's scripts, diacritics, scholarly vocabulary, and canonical source style before chat-format SFT.

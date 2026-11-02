@@ -100,13 +100,16 @@ const HUBS = {
     href: '/about/',
     scene: 'monolith',
     role: 'The Story of the Pantheon',
-    tagline: 'The project',
-    blurb: 'Who is restoring the names, and why.',
+    tagline: 'The project and its keepers',
+    blurb:
+      'Who is restoring the names, and why — the mission and the method, the founder, the people hiring, and the legal record of the project.',
     items: [
-      { label: 'About', href: '/about/', blurb: 'The mission and the method.' },
+      { label: 'Project', href: '/about/project/', blurb: 'The mission and the method.' },
       { label: 'Founder', href: '/about/founder/', blurb: 'The person behind the restoration.' },
       { label: 'Careers', href: '/careers/', blurb: 'Join the work.' },
       { label: 'Contact', href: '/contact/', blurb: 'Reach the temple.' },
+      { label: 'Privacy', href: '/privacy/', blurb: 'The privacy policy, in plain language.' },
+      { label: 'Terms', href: '/terms/', blurb: 'The terms and conditions.' },
     ],
   },
 };

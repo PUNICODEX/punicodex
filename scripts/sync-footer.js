@@ -23,8 +23,6 @@ const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.j
 
 const EXPLORE = [
   ['/pantheon/', 'Pantheon'],
-  ['/realms/', 'Realms'],
-  ['/artifacts/', 'Artifacts'],
   ['/lexicon/', 'Lexicon'],
   ['/connections/', 'Connections'],
   ['/patterns/', 'Patterns'],

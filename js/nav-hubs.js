@@ -128,6 +128,20 @@
           panel.setAttribute(OPEN, '');
         });
       });
+
+      /* Plain links in the same menu (Connections, Patterns, Search…):
+         hovering them must collapse any open fan-out panel — the cursor has
+         left the item tree, so the panel no longer describes anything. */
+      if (menu) {
+        Array.prototype.forEach.call(menu.children, function (child) {
+          if (child.classList.contains('nav-hub-item')) return;
+          child.addEventListener('mouseenter', function () {
+            Array.prototype.forEach.call(hub.querySelectorAll('.nav-hub-panel[' + OPEN + ']'), function (p) {
+              p.removeAttribute(OPEN);
+            });
+          });
+        });
+      }
     });
 
     document.addEventListener('keydown', function (e) {

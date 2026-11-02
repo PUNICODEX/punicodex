@@ -46,6 +46,10 @@ test('every failure path resolves to a guaranteed Response', () => {
     sw.includes('.catch(() => offlineDocumentResponse())'),
     'final catch guarantees Response'
   );
+  assert.ok(
+    !sw.includes("caches.match('/')"),
+    'document failure path must never fall back to the home shell — a cached home page served at /screen/-shaped URLs reads as a phantom redirect to home'
+  );
 });
 
 test('cache revision is bumped so broken workers are flushed', () => {

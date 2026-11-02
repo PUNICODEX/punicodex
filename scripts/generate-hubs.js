@@ -1,7 +1,7 @@
 /* Generates the six wing hub pages from scripts/nav-tree.js:
-   /world/ (Atlas), /culture/, /tools/, /library/, /relics/.
-   /about/ already exists as a page and is not overwritten — it only
-   gains its dropdown through the nav syncers. */
+   /world/ (Atlas), /culture/, /tools/, /library/, /relics/, /about/.
+   The former hand-written /about/ page moved to /about/project/ when the
+   About hub shipped — the hub generator owns /about/ now. */
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -158,6 +158,7 @@ const OUT_DIRS = {
   tools: 'instruments',
   library: 'library',
   relics: 'relics',
+  about: 'about',
 };
 
 function writeIfChanged(file, content) {
@@ -172,7 +173,7 @@ function main() {
   let written = 0;
   for (const hubId of HUB_ORDER) {
     const dir = OUT_DIRS[hubId];
-    if (!dir) continue; // about — existing page, not regenerated
+    if (!dir) continue;
     const hub = HUBS[hubId];
     const outDir = path.join(ROOT, dir);
     fs.mkdirSync(outDir, { recursive: true });

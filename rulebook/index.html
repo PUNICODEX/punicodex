@@ -32,31 +32,76 @@
   <style>
     :root { --gold: #D4AF37; --gold-bright: #F0D878; --ink: #E8E4DC; --dim: #9a948a; --line: rgba(212,175,55,.18); --card: #121216; }
     body { background: #0A0A0C; color: var(--ink); }
-    .rb-wrap { max-width: 880px; margin: 0 auto; padding: 9rem 1.5rem 4rem; }
-    .rb-eyebrow { font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin: 0 0 1rem; text-align: center; }
-    .rb-hero { text-align: center; margin-bottom: 3.5rem; }
-    .rb-hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.2rem, 5.5vw, 3.6rem); color: var(--gold); margin: 0 0 1.2rem; }
-    .rb-hero .lede { max-width: 46rem; margin: 0 auto; color: var(--ink); line-height: 1.8; font-size: 1.08rem; }
-    .rb-section { margin-bottom: 3rem; }
-    .rb-section h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold); margin: 0 0 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); }
-    .rb-section p { color: var(--dim); line-height: 1.85; margin-bottom: 1rem; }
-    .rb-section p strong, .rb-section li strong { color: var(--ink); }
-    .rb-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem 1.4rem; margin: 1rem 0; }
-    .rb-card h3 { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--gold); margin: 0 0 0.5rem; }
-    .rb-example { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; margin: 0.6rem 0; font-size: 1.05rem; }
+    .rb-wrap { max-width: 940px; margin: 0 auto; padding: 8rem 1.5rem 4rem; }
+
+    /* ——— Frontispiece ——— */
+    .rb-eyebrow { font-size: 0.75rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--gold); margin: 0 0 1.4rem; text-align: center; }
+    .rb-hero { text-align: center; margin-bottom: 2.5rem; }
+    .rb-hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.4rem, 6vw, 4rem); color: var(--ink); margin: 0 0 0.6rem; line-height: 1.08; }
+    .rb-hero h1 .rb-gold { color: var(--gold); }
+    .rb-hero .lede { max-width: 44rem; margin: 1.4rem auto 0; color: var(--dim); line-height: 1.85; font-size: 1.06rem; }
+    .rb-edition { margin-top: 1.6rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    .rb-edition time { color: var(--dim); }
+
+    /* Chapter index — the table of chapters */
+    .rb-toc { margin: 3.5rem auto 5rem; max-width: 620px; border-top: 1px solid var(--line); }
+    .rb-toc a { display: flex; align-items: baseline; gap: 1.1rem; padding: 0.85rem 0.2rem; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: background 0.15s ease; }
+    .rb-toc a:hover { background: rgba(212,175,55,0.05); }
+    .rb-toc .rb-toc-num { font-family: 'Cinzel', serif; color: var(--gold); font-size: 0.95rem; min-width: 2.2rem; }
+    .rb-toc .rb-toc-title { font-family: 'Cinzel', serif; font-size: 1.02rem; letter-spacing: 0.02em; }
+    .rb-toc .rb-toc-desc { margin-left: auto; color: var(--dim); font-size: 0.82rem; text-align: right; max-width: 46%; }
+
+    /* ——— Chapters ——— */
+    .rb-chapter { margin-bottom: 4.5rem; }
+    .rb-chapter-head { display: flex; align-items: baseline; gap: 1.25rem; border-bottom: 1px solid var(--line); padding-bottom: 0.9rem; margin-bottom: 1.8rem; }
+    .rb-chapter-num { font-family: 'Cinzel', serif; font-size: 2.6rem; color: transparent; -webkit-text-stroke: 1px var(--gold); line-height: 1; }
+    .rb-chapter-head h2 { font-family: 'Cinzel', serif; font-size: 1.55rem; color: var(--ink); margin: 0; letter-spacing: 0.01em; }
+    .rb-chapter-epigraph { color: var(--dim); font-style: italic; margin: 0.5rem 0 1.4rem; font-size: 0.95rem; }
+    .rb-chapter p { color: var(--dim); line-height: 1.9; margin-bottom: 1.1rem; max-width: 46rem; }
+    .rb-chapter p strong, .rb-chapter li strong { color: var(--ink); }
+    .rb-chapter p.rb-dropcap::first-letter { font-family: 'Cinzel', serif; font-size: 3.1em; float: left; line-height: 0.82; padding: 0.06em 0.12em 0 0; color: var(--gold); }
+
+    /* Articles — the codex numbering */
+    .rb-article { margin: 2rem 0; }
+    .rb-article h3 { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--gold); margin: 0 0 0.7rem; font-weight: 600; }
+    .rb-article h3 .rb-article-num { color: var(--dim); font-size: 0.8rem; letter-spacing: 0.12em; margin-right: 0.7rem; }
+
+    /* Evidence cards (restoration examples) */
+    .rb-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.3rem 1.5rem; margin: 1.4rem 0; max-width: 46rem; }
+    .rb-example { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; margin: 0.65rem 0; font-size: 1.05rem; }
     .rb-form { color: var(--ink); font-weight: 600; }
     .rb-form.gold { color: var(--gold); font-size: 1.25rem; }
     .rb-arrow { color: var(--dim); }
     .rb-src { color: var(--dim); font-size: 0.85rem; }
-    .rb-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem; }
-    .rb-table th { text-align: left; color: var(--gold); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--line); }
-    .rb-table td { color: var(--dim); padding: 0.55rem 0.75rem; border-bottom: 1px solid rgba(212,175,55,0.08); vertical-align: top; }
+
+    /* Plates — the data tables, presented as book plates */
+    .rb-plate { margin: 2rem 0; max-width: 46rem; }
+    .rb-plate-caption { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .rb-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .rb-table th { text-align: left; color: var(--gold); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--line); background: rgba(212,175,55,0.04); }
+    .rb-table td { color: var(--dim); padding: 0.65rem 0.9rem; border-bottom: 1px solid rgba(212,175,55,0.08); vertical-align: top; line-height: 1.6; }
+    .rb-table tr:last-child td { border-bottom: none; }
     .rb-table td:first-child { color: var(--ink); white-space: nowrap; }
-    .rb-note { border-left: 3px solid var(--gold); background: rgba(212,175,55,0.06); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1.25rem 0; color: var(--dim); line-height: 1.75; }
-    .rb-pill { display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--line); border-radius: 999px; padding: 0.2rem 0.7rem; color: var(--gold); margin-right: 0.4rem; }
-    .rb-foot { text-align: center; margin-top: 3rem; }
+
+    /* Marginalia — side notes, book-margin style */
+    .rb-note { border-left: 2px solid var(--gold); background: rgba(212,175,55,0.05); padding: 1rem 1.25rem; margin: 1.5rem 0; color: var(--dim); line-height: 1.8; max-width: 44rem; font-size: 0.94rem; }
+    .rb-note strong { color: var(--ink); }
+    .rb-pill { display: inline-block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--line); border-radius: 999px; padding: 0.18rem 0.65rem; color: var(--gold); margin-right: 0.4rem; }
+
+    /* Colophon — the end matter */
+    .rb-colophon { text-align: center; margin-top: 5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+    .rb-colophon .rb-seal { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.6rem; margin-bottom: 0.8rem; }
+    .rb-colophon p { color: var(--dim); max-width: 40rem; margin: 0 auto 1rem; line-height: 1.85; }
+    .rb-foot { text-align: center; margin-top: 2.5rem; }
     .rb-foot a { color: var(--gold); }
-    @media (max-width: 640px) { .rb-wrap { padding-top: 6.5rem; } .rb-table { font-size: 0.82rem; } }
+
+    @media (max-width: 720px) {
+      .rb-wrap { padding-top: 6rem; }
+      .rb-toc .rb-toc-desc { display: none; }
+      .rb-chapter-head { gap: 0.8rem; }
+      .rb-chapter-num { font-size: 1.9rem; }
+      .rb-table { font-size: 0.82rem; display: block; overflow-x: auto; }
+    }
   </style>
 
     <script type="application/ld+json">
@@ -223,10 +268,12 @@
                 <div class="nav-hub" data-hub="about">
                     <a href="/about/" class="nav-link" aria-haspopup="true" aria-expanded="false">About</a>
                     <div class="nav-hub-menu">
-                    <a href="/about/">About</a>
+                    <a href="/about/project/">Project</a>
                     <a href="/about/founder/">Founder</a>
                     <a href="/careers/">Careers</a>
                     <a href="/contact/">Contact</a>
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
                     </div>
                 </div>
             </div>
@@ -349,104 +396,173 @@
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
                 <a href="/about/" class="mobile-link--featured">About</a>
-                <a href="/about/">About</a>
+                <a href="/about/project/">Project</a>
                 <a href="/about/founder/">Founder</a>
                 <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
             </div>
         </div>
     </div>
 
     <div class="rb-wrap">
         <div class="rb-hero">
-            <p class="rb-eyebrow">The Restoration Rulebook</p>
-            <h1>Why the Names Are Spelled This Way</h1>
-            <p class="lede">Every name in the Pantheon is a <strong>scholarly restoration</strong>, not an invention and never a brand. The marks above the letters are not decoration: they are the original sound of the name — its stress and its long vowels — recovered from the sources and carried into the digital realm. This page is the rulebook every restoration follows.</p>
-            <p class="rb-updated" style="margin-top:1rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-dim,#b8963e)">Doctrine, published and dated: last updated <time datetime="2026-11-02">2 November 2026</time></p>
+            <p class="rb-eyebrow">PuniCodex · Doctrine</p>
+            <h1>The Restoration <span class="rb-gold">Rulebook</span></h1>
+            <p class="lede">Every name in the Pantheon is a <strong>scholarly restoration</strong>, not an invention and never a brand. The marks above the letters are not decoration: they are the original sound of the name — its stress and its long vowels — recovered from the sources and carried into the digital realm. This rulebook is the doctrine every one of the 983 restorations follows, and it is binding on us before it is binding on anyone else.</p>
+            <p class="rb-edition">Edition II · Revised <time datetime="2026-11-02">2 November 2026</time></p>
         </div>
 
-        <div class="rb-section">
-            <h2>1. The Restoration Principle</h2>
-            <p>Greek names were written for over two thousand years with <strong>pitch accent</strong> (the acute and circumflex marks) and <strong>vowel quantity</strong> (long ē and ō beside short e and o). Schoolbooks dropped both; the alphabet of screens dropped the rest. What remained was a flattened echo — <em>apollon, nike, hera</em> — that loses how the name actually sounded in the mouths of the people who worshipped these gods.</p>
-            <p>A restoration puts the sound back, using the same conventions as the critical editions scholars read (Liddell–Scott–Jones, Beekes' <em>Etymological Dictionary of Greek</em>, and their peers in every tradition):</p>
+        <nav class="rb-toc" aria-label="Chapters">
+            <a href="#chapter-1"><span class="rb-toc-num">I</span><span class="rb-toc-title">The Restoration Principle</span><span class="rb-toc-desc">What was lost, and what a restoration recovers</span></a>
+            <a href="#chapter-2"><span class="rb-toc-num">II</span><span class="rb-toc-title">What Each Restoration Preserves</span><span class="rb-toc-desc">The mechanical description, in one view</span></a>
+            <a href="#chapter-3"><span class="rb-toc-num">III</span><span class="rb-toc-title">The Spelling Space</span><span class="rb-toc-desc">Attested, convention, derived — and nothing else</span></a>
+            <a href="#chapter-4"><span class="rb-toc-num">IV</span><span class="rb-toc-title">When the Ideal Form Can't Be Registered</span><span class="rb-toc-desc">The fallback hierarchy, step by step</span></a>
+            <a href="#chapter-5"><span class="rb-toc-num">V</span><span class="rb-toc-title">Every Tradition Its Own Convention</span><span class="rb-toc-desc">One discipline, different alphabets</span></a>
+            <a href="#chapter-6"><span class="rb-toc-num">VI</span><span class="rb-toc-title">The Registration Constraint</span><span class="rb-toc-desc">Where the rule bends, and why it is on the record</span></a>
+            <a href="#chapter-7"><span class="rb-toc-num">VII</span><span class="rb-toc-title">Why It Matters</span><span class="rb-toc-desc">Sound, provenance, and proof</span></a>
+        </nav>
+
+        <section class="rb-chapter" id="chapter-1">
+            <header class="rb-chapter-head">
+                <span class="rb-chapter-num" aria-hidden="true">I</span>
+                <h2>The Restoration Principle</h2>
+            </header>
+            <p class="rb-chapter-epigraph">The names were sung with their marks intact. The marks are the name.</p>
+            <p class="rb-dropcap">Greek names were written for over two thousand years with <strong>pitch accent</strong> (the acute and circumflex marks) and <strong>vowel quantity</strong> (long ē and ō beside short e and o). Schoolbooks dropped both; the alphabet of screens dropped the rest. What remained was a flattened echo — <em>apollon, nike, hera</em> — that loses how the name actually sounded in the mouths of the people who worshipped these gods.</p>
+            <p>A restoration puts the sound back, using the same conventions as the critical editions scholars read — Liddell–Scott–Jones, Beekes' <em>Etymological Dictionary of Greek</em>, and their peers in every tradition:</p>
             <div class="rb-card">
                 <div class="rb-example"><span class="rb-form">Ἀπόλλων</span><span class="rb-arrow">→</span><span class="rb-form">apollon</span><span class="rb-arrow">→</span><span class="rb-form gold">Apóllōn</span><span class="rb-src">stress on the penult, long ō</span></div>
                 <div class="rb-example"><span class="rb-form">Νίκη</span><span class="rb-arrow">→</span><span class="rb-form">nike</span><span class="rb-arrow">→</span><span class="rb-form gold">Níkē</span><span class="rb-src">stress on the first syllable, long ē</span></div>
                 <div class="rb-example"><span class="rb-form">Ἑκάτη</span><span class="rb-arrow">→</span><span class="rb-form">hekate</span><span class="rb-arrow">→</span><span class="rb-form gold">Hekátē</span><span class="rb-src">stress on the penult, long final ē</span></div>
             </div>
-            <p>These forms are <strong>restored-stress, length-preserving transliterations</strong>: the acute or circumflex carries the original stress position, the macron (ā, ē, ī, ō, ū) carries the original vowel length. Nothing is added that the sources do not contain; nothing the sources contain is silently discarded.</p>
-        </div>
+            <p>These forms are <strong>restored-stress, length-preserving transliterations</strong>: the acute or circumflex carries the original stress position; the macron (ā, ē, ī, ō, ū) carries the original vowel length. Nothing is added that the sources do not contain; nothing the sources contain is silently discarded.</p>
+        </section>
 
-        <div class="rb-section">
-            <h2>2. What Each Restoration Preserves — In One View</h2>
-            <p>Every name in the lexicon carries a description computed mechanically from its displayed form — never by ownership or fame. The same test runs on all 983 entries:</p>
-            <table class="rb-table">
-                <thead><tr><th>The form shows</th><th>What that means</th><th>Example</th></tr></thead>
-                <tbody>
-                    <tr><td><span class="rb-pill">Stress &amp; length</span></td><td>A circumflex (or macron + acute) fuses both features on one vowel — the fullest restoration the sources support</td><td><strong>Athēnâ</strong> (Ἀθηνᾶ) · <strong>Hermês</strong> (Ἑρμῆς) · <strong>Poseidôn</strong> (Ποσειδῶν)</td></tr>
-                    <tr><td><span class="rb-pill">Stress or length</span></td><td>One prosodic feature survives where ASCII shows none — the form still says something the fallback alphabet cannot</td><td><strong>Zeús</strong> (stress) · <strong>Hēra</strong> (length) · <strong>Ártemis</strong> (stress)</td></tr>
-                    <tr><td><span class="rb-pill">Distinctive letters</span></td><td>Letters outside the Latin alphabet survive intact — þ, ð, æ, œ, ꜣ, ꜥ and kindred forms</td><td><strong>Þórr</strong> (thorn) · <strong>ꜥnḫ</strong> (Egyptian ayin)</td></tr>
-                    <tr><td><span class="rb-pill">Multiple forms in the family</span></td><td>More than one historically valid spelling exists — attested, conventional, or derived — and the temple's Name Variations section enumerates the family with its sources (ownership is an annotation, not a criterion)</td><td><strong>Apóllōn / Apollōn</strong> · <strong>Hekátē / Hekatē</strong> · <strong>Níkē / Nikē</strong></td></tr>
-                </tbody>
-            </table>
-            <p>The description is deliberately mechanical: it is derived from the spelling itself, by decomposition — no editorial judgment calls, and no claim the form cannot support. What you read on a temple is exactly what the temple shows you.</p>
+        <section class="rb-chapter" id="chapter-2">
+            <header class="rb-chapter-head">
+                <span class="rb-chapter-num" aria-hidden="true">II</span>
+                <h2>What Each Restoration Preserves</h2>
+            </header>
+            <p class="rb-chapter-epigraph">The description is computed from the spelling, never assigned by ownership or fame.</p>
+            <p>Every name in the lexicon carries a description computed mechanically from its displayed form. The same test runs on all 983 entries, and it can never claim more than the form shows:</p>
+            <div class="rb-plate">
+                <p class="rb-plate-caption">Plate 1 · The four descriptions</p>
+                <table class="rb-table">
+                    <thead><tr><th>The form shows</th><th>What that means</th><th>Example</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="rb-pill">Stress &amp; length</span></td><td>A circumflex (or macron + acute) fuses both features on one vowel — the fullest restoration the sources support</td><td><strong>Athēnâ</strong> (Ἀθηνᾶ) · <strong>Hermês</strong> (Ἑρμῆς) · <strong>Poseidôn</strong> (Ποσειδῶν)</td></tr>
+                        <tr><td><span class="rb-pill">Stress or length</span></td><td>One prosodic feature survives where ASCII shows none — the form still says something the fallback alphabet cannot</td><td><strong>Zeús</strong> (stress) · <strong>Hēra</strong> (length) · <strong>Ártemis</strong> (stress)</td></tr>
+                        <tr><td><span class="rb-pill">Distinctive letters</span></td><td>Letters outside the Latin alphabet survive intact — þ, ð, æ, œ, ꜣ, ꜥ and kindred forms</td><td><strong>Þórr</strong> (thorn) · <strong>ꜥnḫ</strong> (Egyptian ayin)</td></tr>
+                        <tr><td><span class="rb-pill">Multiple forms in the family</span></td><td>More than one historically valid spelling exists — attested, conventional, or derived — and the temple's Name Variations section enumerates the family with its sources (ownership is an annotation, not a criterion)</td><td><strong>Apóllōn / Apollōn</strong> · <strong>Hekátē / Hekatē</strong> · <strong>Níkē / Nikē</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
             <p class="rb-note">Some scholarly forms are identical to ASCII — <strong>Freyja</strong>, <strong>Loki</strong>, <strong>Ymir</strong> — where the restoration is faithful without adding marks; the description says so plainly rather than inventing ornament. And where the ideal form competes with an attested variant — <strong>Athēnâ</strong> primary, <strong>Athēnā</strong> live — both are owned, so the temple presents the pair with the evidence for each.</p>
-        </div>
+        </section>
 
-        <div class="rb-section">
-            <h2>3. The Spelling Space — Attested, Convention, Derived</h2>
+        <section class="rb-chapter" id="chapter-3">
+            <header class="rb-chapter-head">
+                <span class="rb-chapter-num" aria-hidden="true">III</span>
+                <h2>The Spelling Space</h2>
+            </header>
+            <p class="rb-chapter-epigraph">A form is known in exactly one of three ways. There is no fourth.</p>
             <p>Most ancient names were never spelled one way. Scholarship attests several spellings, conventions generate systematic alternates, and any restoration mechanically implies simpler subsets of itself. PuniCodex enumerates this space for every name — <strong>983 variant families, computed at build time</strong> — and labels each form by exactly how it is known:</p>
-            <table class="rb-table">
-                <thead><tr><th>Class</th><th>What it means</th><th>Counted as attested?</th><th>Example</th></tr></thead>
-                <tbody>
-                    <tr><td><span class="rb-pill">Attested</span></td><td>A spelling backed by a named scholarly source — LSJ, Beekes, Faulkner, Monier-Williams — or by a live registration</td><td><strong>Yes</strong> — attestedCount counts only these</td><td><strong>Apóllōn</strong> (primary, owned) · <strong>Apollōn</strong> (LSJ convention, owned) · <strong>Siva</strong> (Monier-Williams, Macdonell)</td></tr>
-                    <tr><td><span class="rb-pill">Convention</span></td><td>A systematic romanization another standard would produce — Egyptological aleph-as-a, IAST simplified, Kunrei-shiki, chi-as-kh</td><td>No — labelled "convention" wherever shown</td><td><strong>Rꜥ → Ra</strong> · <strong>Śiva → Shiva</strong></td></tr>
-                    <tr><td><span class="rb-pill">Derived</span></td><td>A mechanical subset of the canonical form — macron-only (LSJ), stress-only, plain ASCII, stacked marks</td><td>No — labelled "systematic derivation"</td><td><strong>Apóllōn → Apollōn / Apóllon / Apollon / Apṓllōn</strong></td></tr>
-                </tbody>
-            </table>
-            <p>The rule is the same discipline as everything on this page: <strong>a description may never claim more than the data supports.</strong> A form is "attested" only with a source attached; a convention form is never presented as a citation; a derived form never pretends to be anything but arithmetic on the restoration. Ownership is an annotation on the family — it gates nothing, and knowledge of a spelling we do not own is published exactly the same as one we do. Every family is served openly at <code>/api/v1/names/{id}/variants</code>.</p>
-        </div>
+            <div class="rb-plate">
+                <p class="rb-plate-caption">Plate 2 · The three classes of knowing</p>
+                <table class="rb-table">
+                    <thead><tr><th>Class</th><th>What it means</th><th>Counted as attested?</th><th>Example</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="rb-pill">Attested</span></td><td>A spelling backed by a named scholarly source — LSJ, Beekes, Faulkner, Monier-Williams — or by a live registration</td><td><strong>Yes</strong> — attestedCount counts only these</td><td><strong>Apóllōn</strong> (primary, owned) · <strong>Apollōn</strong> (LSJ convention, owned) · <strong>Siva</strong> (Monier-Williams, Macdonell)</td></tr>
+                        <tr><td><span class="rb-pill">Convention</span></td><td>A systematic romanization another standard would produce — Egyptological aleph-as-a, IAST simplified, Kunrei-shiki, chi-as-kh</td><td>No — labelled "convention" wherever shown</td><td><strong>Rꜥ → Ra</strong> · <strong>Śiva → Shiva</strong></td></tr>
+                        <tr><td><span class="rb-pill">Derived</span></td><td>A mechanical subset of the canonical form — macron-only (LSJ), stress-only, plain ASCII, stacked marks</td><td>No — labelled "systematic derivation"</td><td><strong>Apóllōn → Apollōn / Apóllon / Apollon / Apṓllōn</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The rule is the discipline that governs every chapter of this book: <strong>a description may never claim more than the data supports.</strong> A form is "attested" only with a source attached; a convention form is never presented as a citation; a derived form never pretends to be anything but arithmetic on the restoration. Ownership is an annotation on the family — it gates nothing, and knowledge of a spelling we do not own is published exactly the same as one we do. Every family is served openly at <code>/api/v1/names/{id}/variants</code>.</p>
+        </section>
 
-        <div class="rb-section">
-            <h2>4. When the Ideal Form Can't Be Registered</h2>
+        <section class="rb-chapter" id="chapter-4">
+            <header class="rb-chapter-head">
+                <span class="rb-chapter-num" aria-hidden="true">IV</span>
+                <h2>When the Ideal Form Can't Be Registered</h2>
+            </header>
+            <p class="rb-chapter-epigraph">Availability negotiates. Philology does not.</p>
             <p>Unicode domains are scarce. When the ideal restoration is unavailable, the rulebook descends a fixed hierarchy — each step still defensible, never a wrong accent for the sake of availability:</p>
-            <table class="rb-table">
-                <thead><tr><th>Priority</th><th>Form</th><th>Example</th><th>When</th></tr></thead>
-                <tbody>
-                    <tr><td>1</td><td>Full restoration</td><td><strong>Aphrodítē</strong>, <strong>Hḗra</strong>, <strong>Pandṓra</strong></td><td>Stress and length both preserved; macron + acute when Greek has an acute on a long vowel</td></tr>
-                    <tr><td>2</td><td>Circumflex</td><td><strong>Hermês</strong>, <strong>Poseidôn</strong>, <strong>Athēnâ</strong></td><td>Greek has a circumflex — stress and length in one typeable letter</td></tr>
-                    <tr><td>3</td><td>Macron-only</td><td><strong>Hēra</strong>, <strong>Persephonē</strong>, <strong>Pandōra</strong></td><td>The standard LSJ convention; used as the registrable, typeable fallback when the ideal stacked form is impractical</td></tr>
-                    <tr><td>4</td><td>Attested variant</td><td><strong>Athēnā</strong> (Ἀθηνᾶ)</td><td>The canonical form would hurt recognizability; the variant is attested</td></tr>
-                    <tr><td>5</td><td>Plain ASCII</td><td><strong>Hera</strong></td><td>Last resort, never the primary form</td></tr>
-                </tbody>
-            </table>
+            <div class="rb-plate">
+                <p class="rb-plate-caption">Plate 3 · The fallback hierarchy</p>
+                <table class="rb-table">
+                    <thead><tr><th>Priority</th><th>Form</th><th>Example</th><th>When</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Full restoration</td><td><strong>Aphrodítē</strong>, <strong>Hḗra</strong>, <strong>Pandṓra</strong></td><td>Stress and length both preserved; macron + acute when Greek has an acute on a long vowel</td></tr>
+                        <tr><td>2</td><td>Circumflex</td><td><strong>Hermês</strong>, <strong>Poseidôn</strong>, <strong>Athēnâ</strong></td><td>Greek has a circumflex — stress and length in one typeable letter</td></tr>
+                        <tr><td>3</td><td>Macron-only</td><td><strong>Hēra</strong>, <strong>Persephonē</strong>, <strong>Pandōra</strong></td><td>The standard LSJ convention; used as the registrable, typeable fallback when the ideal stacked form is impractical</td></tr>
+                        <tr><td>4</td><td>Attested variant</td><td><strong>Athēnā</strong> (Ἀθηνᾶ)</td><td>The canonical form would hurt recognizability; the variant is attested</td></tr>
+                        <tr><td>5</td><td>Plain ASCII</td><td><strong>Hera</strong></td><td>Last resort, never the primary form</td></tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="rb-note"><strong>Acute on a long vowel is not a circumflex.</strong> Greek Πανδώρα has an acute, not a circumflex, so the fullest form is <strong>Pandṓra</strong> (macron + acute), never <strong>Pandôra</strong>. Where the ideal stacked form is hard to type or render, the project falls back to the macron-only LSJ convention — but the ideal variant is always preserved in the lexicon.</div>
             <div class="rb-note"><strong>A wrong accent is worse than no accent.</strong> The form <em>ápollōn</em> was scrapped in favour of plain <em>apollōn</em> — a misplaced mark misreads the name's sound, which is the one thing a restoration must never do.</div>
             <div class="rb-note"><strong>The historical circumflex transliteration.</strong> You may occasionally see older European philology write <strong>Athênê</strong>, <strong>Hêraklês</strong>, or <strong>Nikê</strong> — especially in the French tradition, where the circumflex wrote the long vowels η and ω (ê, ô) as a convention for vowel quantity, folding length into a single letter. That convention was common in 19th–early 20th century scholarship, and it remains academically intelligible, but it is <em>not</em> the modern standard: today's critical editions, LSJ, the Oxford Classical Dictionary, Cambridge Greek, and Unicode transliteration standards separate length (macron: ē, ō) from stress (acute: é, ṓ) rather than folding quantity into the vowel letter. PuniCodex follows the modern standard; the older circumflex forms are noted as historical variants, not canonical restorations.</div>
-        </div>
+        </section>
 
-        <div class="rb-section">
-            <h2>5. Every Tradition Gets Its Own Convention</h2>
-            <p>Greek rules govern Greek names. Other traditions are restored by their own scholarly standards — the same discipline, different alphabets:</p>
-            <table class="rb-table">
-                <thead><tr><th>Tradition</th><th>Convention</th><th>Example</th></tr></thead>
-                <tbody>
-                    <tr><td>Sanskrit</td><td>IAST — macrons for long vowels, underdots for retroflexes</td><td><strong>Gaṅgā</strong>, <strong>Pūṣan</strong>, <strong>Sarasvatī</strong>, <strong>Tvaṣṭṛ</strong></td></tr>
-                    <tr><td>Egyptian</td><td>Egyptological transliteration — ꜣ, ꜥ, ḥ, ṯ, ḏ</td><td><strong>ꜣnpw</strong> (Anubis), <strong>Sšꜣt</strong> (Seshat), <strong>Ḥꜥpy</strong> (Hapi)</td></tr>
-                    <tr><td>Chinese</td><td>Pinyin with tone marks</td><td><strong>Māzǔ</strong>, <strong>Fúxī</strong>, <strong>Guānyīn</strong></td></tr>
-                    <tr><td>Yoruba</td><td>Underdot vowels (ẹ, ọ, ṣ) and tone marks where attested</td><td><strong>Ọṣun</strong>, <strong>Ẹṣù</strong>, <strong>Ṣàngó</strong></td></tr>
-                    <tr><td>Nahuatl</td><td>Classical Nahuatl orthography with macrons</td><td><strong>Tēzcatlīpōca</strong>, <strong>Mixcōātl</strong></td></tr>
-                    <tr><td>Norse</td><td>Old Norse letters preserved (þ, ð, ǫ, ø)</td><td><strong>Valhǫll</strong>, <strong>Ásgarðr</strong></td></tr>
-                </tbody>
-            </table>
-            <div class="rb-note"><strong>The registration constraint.</strong> Internationalized domain names accept every mark this rulebook defends — macrons, acutes, underdots, thorn, ogonek, and the Egyptological aleph and ayin themselves: <strong>Rꜥ.com</strong> is a live temple. The practical limits are the DNS itself and registry policy: a single label must stay in one script, and individual registrars apply their own character filters on top of the standard. Where the philologically ideal form hits one of those constraints, the temple uses the closest registrable form and documents the compromise openly — the restoration rule bends only where the registration system forces it, and always on the record.</div>
-        </div>
+        <section class="rb-chapter" id="chapter-5">
+            <header class="rb-chapter-head">
+                <span class="rb-chapter-num" aria-hidden="true">V</span>
+                <h2>Every Tradition Its Own Convention</h2>
+            </header>
+            <p class="rb-chapter-epigraph">Greek rules govern Greek names. Every other tradition is judged by its own literature.</p>
+            <p>Other traditions are restored by their own scholarly standards — the same discipline, different alphabets:</p>
+            <div class="rb-plate">
+                <p class="rb-plate-caption">Plate 4 · The traditions</p>
+                <table class="rb-table">
+                    <thead><tr><th>Tradition</th><th>Convention</th><th>Example</th></tr></thead>
+                    <tbody>
+                        <tr><td>Sanskrit</td><td>IAST — macrons for long vowels, underdots for retroflexes</td><td><strong>Gaṅgā</strong>, <strong>Pūṣan</strong>, <strong>Sarasvatī</strong>, <strong>Tvaṣṭṛ</strong></td></tr>
+                        <tr><td>Egyptian</td><td>Egyptological transliteration — ꜣ, ꜥ, ḥ, ṯ, ḏ</td><td><strong>ꜣnpw</strong> (Anubis), <strong>Sšꜣt</strong> (Seshat), <strong>Ḥꜥpy</strong> (Hapi)</td></tr>
+                        <tr><td>Chinese</td><td>Pinyin with tone marks</td><td><strong>Māzǔ</strong>, <strong>Fúxī</strong>, <strong>Guānyīn</strong></td></tr>
+                        <tr><td>Yoruba</td><td>Underdot vowels (ẹ, ọ, ṣ) and tone marks where attested</td><td><strong>Ọṣun</strong>, <strong>Ẹṣù</strong>, <strong>Ṣàngó</strong></td></tr>
+                        <tr><td>Nahuatl</td><td>Classical Nahuatl orthography with macrons</td><td><strong>Tēzcatlīpōca</strong>, <strong>Mixcōātl</strong></td></tr>
+                        <tr><td>Norse</td><td>Old Norse letters preserved (þ, ð, ǫ, ø)</td><td><strong>Valhǫll</strong>, <strong>Ásgarðr</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-        <div class="rb-section">
-            <h2>6. Why It Matters</h2>
-            <p><strong>Sound is identity.</strong> A god's name was sung, sworn by, and carved into stone with its stress and length intact. Restoring both is the difference between a label and a name.</p>
-            <p><strong>It is also proof of provenance.</strong> These names are older than any company. <em>Níkē</em> is the goddess of victory, named in Hesiod's Theogony some twenty-seven centuries ago; the accent above her í is her own, not anyone's brand. Every restoration here cites its sources — LSJ and Beekes for Greek, Faulkner for Egyptian, Monier-Williams for Sanskrit, and the primary texts in our <a href="/texts/" style="color:var(--gold)">Sacred Texts library</a>.</p>
-            <p><strong>And it is checkable.</strong> The same mechanical rules run in the open: the lexicon validator, the restoration descriptions on every temple, and this page's examples all agree, because they are all computed from one canonical source. If a restoration ever fails the rules, the build fails — not the reader's trust.</p>
+        <section class="rb-chapter" id="chapter-6">
+            <header class="rb-chapter-head">
+                <span class="rb-chapter-num" aria-hidden="true">VI</span>
+                <h2>The Registration Constraint</h2>
+            </header>
+            <p class="rb-chapter-epigraph">The rule bends only where the registration system forces it — and always on the record.</p>
+            <div class="rb-note"><strong>Internationalized domain names accept every mark this rulebook defends</strong> — macrons, acutes, underdots, thorn, ogonek, and the Egyptological aleph and ayin themselves: <strong>Rꜥ.com</strong> is a live temple. The practical limits are the DNS itself and registry policy: a single label must stay in one script, and individual registrars apply their own character filters on top of the standard. Where the philologically ideal form hits one of those constraints, the temple uses the closest registrable form and documents the compromise openly.</div>
+        </section>
+
+        <section class="rb-chapter" id="chapter-7">
+            <header class="rb-chapter-head">
+                <span class="rb-chapter-num" aria-hidden="true">VII</span>
+                <h2>Why It Matters</h2>
+            </header>
+            <p class="rb-chapter-epigraph">A restoration is a claim about the world. It must be checkable.</p>
+            <div class="rb-article">
+                <h3><span class="rb-article-num">7.1</span>Sound is identity</h3>
+                <p>A god's name was sung, sworn by, and carved into stone with its stress and length intact. Restoring both is the difference between a label and a name.</p>
+            </div>
+            <div class="rb-article">
+                <h3><span class="rb-article-num">7.2</span>Provenance is prior art</h3>
+                <p>These names are older than any company. <em>Níkē</em> is the goddess of victory, named in Hesiod's Theogony some twenty-seven centuries ago; the accent above her í is her own, not anyone's brand. Every restoration here cites its sources — LSJ and Beekes for Greek, Faulkner for Egyptian, Monier-Williams for Sanskrit, and the primary texts in our <a href="/texts/" style="color:var(--gold)">Sacred Texts library</a>.</p>
+            </div>
+            <div class="rb-article">
+                <h3><span class="rb-article-num">7.3</span>The rules are load-bearing</h3>
+                <p>The same mechanical rules run in the open: the lexicon validator, the restoration descriptions on every temple, and this page's examples all agree, because they are all computed from one canonical source. If a restoration ever fails the rules, the build fails — not the reader's trust.</p>
+            </div>
+        </section>
+
+        <div class="rb-colophon">
+            <p class="rb-seal">✦</p>
+            <p>Thus the rulebook. It applies to the 983 names in the lexicon, to every temple page, to every API response — and to any name that joins the pantheon hereafter. The doctrine is dated, the edition numbered, and the machinery public; what changes, changes on the record.</p>
         </div>
 
         <div class="rb-foot">
@@ -465,8 +581,6 @@
                 <div class="footer-column">
                     <h2 class="footer-heading">Explore</h2>
                     <a href="/pantheon/">Pantheon</a>
-                    <a href="/realms/">Realms</a>
-                    <a href="/artifacts/">Artifacts</a>
                     <a href="/lexicon/">Lexicon</a>
                     <a href="/connections/">Connections</a>
                     <a href="/patterns/">Patterns</a>
@@ -514,6 +628,6 @@
             </div>
         </div>
     </footer>
-    <script src="/js/nav-hubs.js?v=5" defer></script>
+    <script src="/js/nav-hubs.js?v=6" defer></script>
 </body>
 </html>

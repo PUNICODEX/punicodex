@@ -1,7 +1,7 @@
 /**
  * PUNICODEX — Service Worker
  * Lightweight: precache shell pages, stale-while-revalidate for assets.
- * Cache-bust revision: v5-2026-08-02 (document branch no longer caches error pages)
+ * Cache-bust revision: v6-2026-11-02 (document branch no longer falls back to the home shell)
  *
  * Hard rules (learned from production failures):
  * - NEVER intercept /api/ or /admin-portal/ requests. Admin tooling and
@@ -95,7 +95,8 @@ self.addEventListener('fetch', (event) => {
         .catch(() =>
           caches
             .match(request)
-            .then(r => r || caches.match('/'))
+            // Never fall back to '/': a cached home shell served at
+            // /screen/-shaped URLs reads as a phantom redirect to home.
             .then(r => r || offlineDocumentResponse())
             .catch(() => offlineDocumentResponse())
         )

@@ -22,6 +22,11 @@ const CATALOG_FILE = path.join(ROOT, 'store', 'products.json');
 const STATE_FILE = path.join(ROOT, 'session-debug', 'printful-mockup-state.json');
 const OUT_DIR = path.join(ROOT, '.masters', 'mockups');
 const MASTERS_BASE = 'https://punycodex-masters.vercel.app';
+// Design fetch URLs are overridable so a preview .masters deployment can serve
+// design files for first-time syncs (the prod host can't be redeployed until
+// the mockup fleet covers the full catalog — see scripts/deploy-masters.sh).
+// Written mockupImage URLs always use the prod MASTERS_BASE.
+const DESIGN_BASE = process.env.PRINTFUL_DESIGN_BASE || MASTERS_BASE;
 
 const KEY = process.env.PRINTFUL_API_KEY;
 const args = process.argv.slice(2);
@@ -63,7 +68,7 @@ function assetUrlFor(product, assetKey) {
   const webp = product.assets && product.assets[assetKey];
   if (!webp) return null;
   const png = webp.replace(/\.webp$/, '.png');
-  if (png.startsWith('/sites/')) return `${MASTERS_BASE}/${path.posix.basename(png)}`;
+  if (png.startsWith('/sites/')) return `${DESIGN_BASE}/${path.posix.basename(png)}`;
   return `https://punicodex.com${png}`;
 }
 
@@ -75,7 +80,7 @@ function assetUrlFor(product, assetKey) {
  * will include it. Returns false when the asset cannot be resolved locally.
  */
 function ensureMastersAsset(url) {
-  if (!url || !url.startsWith(MASTERS_BASE)) return true;
+  if (!url || ![MASTERS_BASE, DESIGN_BASE].some((b) => url.startsWith(b))) return true;
   const file = path.basename(url);
   const mastersPath = path.join(OUT_DIR, '..', file);
   if (fs.existsSync(mastersPath)) return true;
