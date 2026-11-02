@@ -93,7 +93,7 @@ test('base temple generator loads px-core.js before temple-base.js', () => {
 });
 
 test('every base temple has a global strip with required global links', () => {
-  const required = ['Pantheon', 'Realms', 'Patterns', 'Trending', 'Store', 'Connections'];
+  const required = ['Atlas', 'Culture', 'Tools', 'Library', 'Relics', 'About'];
   for (const id of ids.slice(0, 50)) {
     const $ = loadHomePage(id);
     assert.ok($, `${id}: home page missing`);
