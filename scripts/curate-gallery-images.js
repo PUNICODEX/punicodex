@@ -899,23 +899,49 @@ async function main() {
   const onlyIdx = args.indexOf('--only');
   const only = onlyIdx >= 0 ? args[onlyIdx + 1].split(',') : null;
   const dryRun = args.includes('--dry-run');
+  // --top-up N: refill galleries that LOST images (e.g. --verify --purge
+  // stripping off-topic entries) back to N through the same filtered
+  // pipeline. Without it, --only only fills completely empty galleries.
+  const topUpIdx = args.indexOf('--top-up');
+  const topUp = topUpIdx >= 0 ? parseInt(args[topUpIdx + 1], 10) : 0;
 
-  const missing = list.filter(
-    (a) => (!gallery[a.id] || !(gallery[a.id].images || []).length) && (!only || only.includes(a.id)),
+  const missing = topUp
+    ? list.filter(
+        (a) =>
+          gallery[a.id] &&
+          (gallery[a.id].images || []).length > 0 &&
+          (gallery[a.id].images || []).length < topUp &&
+          (!only || only.includes(a.id)),
+      )
+    : list.filter(
+        (a) => (!gallery[a.id] || !(gallery[a.id].images || []).length) && (!only || only.includes(a.id)),
+      );
+  console.log(
+    `Flagships without curated gallery: ${missing.length}${only ? ` (filtered to ${only.length})` : ''}${topUp ? ` [top-up to ${topUp}]` : ''}`
   );
-  console.log(`Flagships without curated gallery: ${missing.length}${only ? ` (filtered to ${only.length})` : ''}`);
 
   let added = 0;
   for (const a of missing) {
     process.stdout.write(`→ ${a.id} … `);
     const entry = await curateOne(a.id, a, dryRun);
     if (entry) {
-      console.log(`${entry.images.length} images`);
-      if (!dryRun) {
-        gallery[a.id] = entry;
-        added++;
-        // Write after every temple so a kill/timeout never loses progress.
-        fs.writeFileSync(GALLERY_PATH, `${JSON.stringify(gallery, null, 2)}\n`);
+      if (topUp && gallery[a.id]) {
+        const have = new Set((gallery[a.id].images || []).map((i) => i.src));
+        const fresh = entry.images.filter((i) => !have.has(i.src));
+        gallery[a.id].images = (gallery[a.id].images || []).concat(fresh);
+        console.log(`+${fresh.length} images (${gallery[a.id].images.length} total)`);
+        if (!dryRun && fresh.length) {
+          added++;
+          fs.writeFileSync(GALLERY_PATH, `${JSON.stringify(gallery, null, 2)}\n`);
+        }
+      } else {
+        console.log(`${entry.images.length} images`);
+        if (!dryRun) {
+          gallery[a.id] = entry;
+          added++;
+          // Write after every temple so a kill/timeout never loses progress.
+          fs.writeFileSync(GALLERY_PATH, `${JSON.stringify(gallery, null, 2)}\n`);
+        }
       }
     }
     await new Promise((r) => setTimeout(r, 300));

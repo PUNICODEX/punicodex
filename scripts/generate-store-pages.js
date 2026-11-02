@@ -753,7 +753,7 @@ function renderArtGalleries() {
     title: 'Temple Galleries — the Pantheon in Art | PUNICODEX',
     description: `Every flagship temple's curated gallery in one long scroll, A–Z — ${temples.length} temples, ${temples.reduce((n, t) => n + t.images.length, 0)} works of mythology in art.`,
     path: '/store/art/galleries/',
-    css: `.gal-hero{text-align:center;padding:4.5rem 0 2rem}.gal-hero h1{font-size:2.4rem;margin:.4rem 0 .6rem}.gal-hero .tag{max-width:64ch;margin:0 auto}.gal-temple{padding:2.2rem 0;border-top:1px solid var(--line)}.gal-temple-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem;margin-bottom:1.1rem}.gal-temple-head h2{font-size:1.5rem;margin:0}.gal-script{color:var(--gold);font-size:1.05rem}.gal-count{color:var(--dim);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase}.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}.gal-fig{margin:0}.gal-fig img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block;background:#0c0c10}.gal-fig figcaption{font-size:.78rem;color:var(--dim);line-height:1.5;padding:.5rem .1rem 0}.gal-enter{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-decoration:none;white-space:nowrap}.gal-enter:hover{color:var(--gold-bright)}`,
+    css: `.gal-hero{text-align:center;padding:4.5rem 0 2rem}.gal-hero h1{font-size:2.4rem;margin:.4rem 0 .6rem}.gal-hero .tag{max-width:64ch;margin:0 auto}.gal-temple{padding:2.2rem 0;border-top:1px solid var(--line)}.gal-temple-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem;margin-bottom:1.1rem}.gal-temple-head h2{font-size:1.5rem;margin:0}.gal-script{color:var(--gold);font-size:1.05rem}.gal-count{color:var(--dim);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase}.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}.gal-fig{margin:0}.gal-fig img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block;background:#0c0c10}.gal-fig figcaption{font-size:.78rem;color:var(--dim);line-height:1.5;padding:.5rem .1rem 0}.gal-enter{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-decoration:none;white-space:nowrap}.gal-enter:hover{color:var(--gold-bright)}.gal-fig{cursor:zoom-in}.gal-fig img{transition:transform .25s ease}.gal-fig:hover img{transform:scale(1.015)}.gal-lightbox{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:2.5rem 1.25rem;background:rgba(5,5,6,.92);backdrop-filter:blur(8px)}.gal-lightbox[hidden]{display:none}.gal-lb-panel{max-width:min(1080px,94vw);max-height:92vh;overflow:auto;background:#121216;border:1px solid var(--line);border-radius:14px;padding:1.1rem}.gal-lb-panel img{width:100%;height:auto;display:block;border-radius:8px}.gal-lb-meta{padding:1rem .2rem .2rem;font-size:.85rem;color:var(--dim);line-height:1.7}.gal-lb-meta strong{color:var(--ink)}.gal-lb-license{display:inline-block;margin-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.2rem .7rem;color:var(--gold)}.gal-lb-links{margin-top:.7rem;display:flex;gap:1.1rem;flex-wrap:wrap}.gal-lb-links a{color:var(--gold);text-decoration:none}.gal-lb-links a:hover{text-decoration:underline}.gal-lb-close{position:absolute;top:.9rem;right:1.1rem;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;font-size:1.15rem;width:2.4rem;height:2.4rem;cursor:pointer}`,
   })}
 <div class="wrap">
   <div class="gal-hero">
@@ -770,9 +770,49 @@ function renderArtGalleries() {
   var data = JSON.parse(document.getElementById('gal-data').textContent);
   var host = document.getElementById('gal-scroll');
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function ix2t(ix) { return ix; }
+  data.forEach(function (t, ix) { t.ix = ix; });
+  // ── Lightbox: expand any artwork, with honest licensing details ──
+  var lb = document.createElement('div');
+  lb.className = 'gal-lightbox';
+  lb.hidden = true;
+  lb.innerHTML = '<button class="gal-lb-close" aria-label="Close">×</button><div class="gal-lb-panel" role="dialog" aria-modal="true"><img alt=""><div class="gal-lb-meta"></div></div>';
+  document.body.appendChild(lb);
+  var lbImg = lb.querySelector('img');
+  var lbMeta = lb.querySelector('.gal-lb-meta');
+  function larger(src) { return src.replace(/(\d+)px-/, '1600px-'); }
+  function openLightbox(tIx, iIx) {
+    var t = data[tIx]; var im = t.images[iIx];
+    if (!t || !im) return;
+    lbImg.src = larger(im.src);
+    lbImg.alt = im.alt || t.name;
+    var license = im.license ? '<span class="gal-lb-license">' + esc(im.license) + '</span>' : '';
+    var artist = im.artist ? '<div><strong>Artist:</strong> ' + esc(im.artist) + '</div>' : '';
+    lbMeta.innerHTML =
+      '<div><strong>' + esc(t.name) + (t.script ? ' · ' + esc(t.script) : '') + '</strong></div>' +
+      (im.alt ? '<div>' + esc(im.alt) + '</div>' : '') + artist +
+      '<div>' + license + '</div>' +
+      '<div class="gal-lb-links">' +
+      (im.sourceUrl ? '<a href="' + esc(im.sourceUrl) + '" target="_blank" rel="noopener">Source &amp; full license on Wikimedia Commons →</a>' : '') +
+      '<a href="/sites/' + esc(t.id) + '/">Enter the ' + esc(t.name) + ' temple →</a></div>';
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() { lb.hidden = true; document.body.style.overflow = ''; }
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.closest('.gal-lb-close')) closeLightbox(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+  host.addEventListener('click', function (e) {
+    var f = e.target.closest('.gal-fig');
+    if (f) openLightbox(+f.getAttribute('data-t'), +f.getAttribute('data-i'));
+  });
+  host.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    var f = e.target.closest('.gal-fig');
+    if (f) openLightbox(+f.getAttribute('data-t'), +f.getAttribute('data-i'));
+  });
   host.innerHTML = data.map(function (t) {
-    var figs = t.images.map(function (im) {
-      return '<figure class="gal-fig"><img src="' + esc(im.src) + '" alt="' + esc(im.alt || t.name) + '" loading="lazy">' +
+    var figs = t.images.map(function (im, ix) {
+      return '<figure class="gal-fig" data-t="' + ix2t(t.ix) + '" data-i="' + ix + '" tabindex="0" role="button" aria-label="Enlarge: ' + esc(im.alt || t.name) + '"><img src="' + esc(im.src) + '" alt="' + esc(im.alt || t.name) + '" loading="lazy">' +
         (im.alt ? '<figcaption>' + esc(im.alt) + '</figcaption>' : '') + '</figure>';
     }).join('');
     return '<section class="gal-temple" id="' + esc(t.id) + '">' +
