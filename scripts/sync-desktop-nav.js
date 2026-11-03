@@ -69,7 +69,7 @@ const TARGETS = [
   { page: '404.html', active: null },
   { page: path.join('oracle', 'index.html'), active: '/oracle/' },
   { page: path.join('search', 'index.html'), active: '/search/' },
-  { page: path.join('search-v2', 'index.html'), active: '/search/' },
+  { page: path.join('search-v2', 'index.html'), active: '/search/', chrome: 'search' },
   { page: path.join('about', 'index.html'), active: '/about/' },
   { page: path.join('about', 'authenticity.html'), active: null, replaceNav: true },
   { page: path.join('appraise', 'index.html'), active: '/appraise/' },
