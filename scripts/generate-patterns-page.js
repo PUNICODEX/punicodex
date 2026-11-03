@@ -299,6 +299,7 @@ ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>${ATLAS_CSS}</style>
 ${buildAtlasFaq(graph)}
+    <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
 ${MARKER_BLOCKS}
 </head>
 <body>
@@ -409,6 +410,7 @@ ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/css/codex.css?v=perf9">
 <link rel="stylesheet" href="/css/punicodex-tokens.css">
 <link rel="stylesheet" href="/css/brand-overrides.css">
+    <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
 ${MARKER_BLOCKS}
 </head>
 <body>

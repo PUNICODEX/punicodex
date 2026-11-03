@@ -101,6 +101,7 @@ function render() {
 .trend-note b{color:#9a948a;font-weight:600}
 @media(max-width:640px){.trend-row{grid-template-columns:2.2rem 2.8rem 1fr auto;gap:.6rem}.trend-mascot{width:2.8rem;height:2.8rem}.trend-hero{padding-top:4rem}}
 </style>
+    <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
