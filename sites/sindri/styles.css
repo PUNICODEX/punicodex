@@ -88,15 +88,19 @@
 }
 .global-links {
     display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    max-width: 780px;
     gap: 1.5rem;
 }
 .global-links a {
     font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--white-dim);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 .global-links a:hover {
     color: var(--primary);

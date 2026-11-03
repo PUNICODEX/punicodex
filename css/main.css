@@ -1105,6 +1105,15 @@ body.menu-open {
     transform: translateY(0);
 }
 
+/* Touch devices have no hover — the manifest text must always be visible,
+   otherwise it only flashes briefly between tap and navigation. */
+@media (hover: none), (max-width: 768px) {
+    .archetype-card .card-domain {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 .archetype-card .card-badge {
     display: inline-block;
     margin-top: var(--space-2);

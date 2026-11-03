@@ -1,7 +1,7 @@
 /**
  * PUNICODEX — Service Worker
  * Lightweight: precache shell pages, stale-while-revalidate for assets.
- * Cache-bust revision: v6-2026-11-02 (document branch no longer falls back to the home shell)
+ * Cache-bust revision: v6-2026-11-03 (nav pins bumped: mobile-menu v10, nav-hubs v7, main perf31; card manifest always-on for touch)
  *
  * Hard rules (learned from production failures):
  * - NEVER intercept /api/ or /admin-portal/ requests. Admin tooling and
@@ -13,8 +13,8 @@
  *   and breaks the page's own fetch handling.
  */
 
-const SHELL_CACHE = 'punicodex-shell-v5';
-const ASSET_CACHE = 'punicodex-assets-v5';
+const SHELL_CACHE = 'punicodex-shell-v6';
+const ASSET_CACHE = 'punicodex-assets-v6';
 
 // Precache critical shell HTML pages only.
 // Versioned JS/CSS are fetched on demand and will update when their query

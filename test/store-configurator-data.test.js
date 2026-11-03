@@ -40,7 +40,7 @@ function kindOf(p) {
 
 test('products.json parses and the count matches the product array', () => {
   const raw = JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'products.json'), 'utf8'));
-  assert.strictEqual(raw.count, 7132, `expected 7132 products, got ${raw.count}`);
+  assert.strictEqual(raw.count, 7769, `expected 7769 products, got ${raw.count}`);
   assert.strictEqual(raw.products.length, raw.count, 'products.length !== count');
   assert.strictEqual(CATALOG.products.length, raw.count);
 });

@@ -23,7 +23,6 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const { preservationLabel } = require('./lib/preservation-label.js');
 const vm = require('node:vm');
 const PINS = require('./asset-pins.js');
 
@@ -103,10 +102,6 @@ function textEntries(pantheon) {
     .map((id) => TEXT_BY_ID.get(id));
 }
 
-function badgeText(archetype) {
-  return preservationLabel(archetype.name);
-}
-
 function scriptLabelHtml(archetype) {
   const info = ORIGINAL_SCRIPT_LOOKUP[archetype.id];
   const originalScript = info ? info.originalScript : archetype.greek;
@@ -129,7 +124,6 @@ function templeCardHtml(archetype) {
                 <p class="card-greek">${scriptLabelHtml(archetype)}</p>
                 <p class="card-domain">${escapeHtml(archetype.domain)}</p>
                 <p class="card-punycode">${escapeHtml(archetype.domainUnicode)} &rarr; ${escapeHtml(archetype.domainPunycode)}</p>
-                <span class="card-badge">${escapeHtml(badgeText(archetype))}</span>
             </a>`;
 }
 

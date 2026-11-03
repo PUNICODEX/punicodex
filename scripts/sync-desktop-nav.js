@@ -329,10 +329,13 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
     // when the files change), then ensure they're linked.
     html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, PINS.NAV_MORE_CSS);
     html = ensureCssLink(html, PINS.NAV_MORE_CSS);
-    if (html.includes('class="mobile-menu"')) {
-      html = html.replace(/\/css\/mobile-menu\.css\?v=\d+/g, PINS.MOBILE_MENU_CSS);
-      html = ensureCssLink(html, PINS.MOBILE_MENU_CSS);
-    }
+  }
+  // mobile-menu.css: normalized on EVERY page that carries the overlay —
+  // main.css pages (home, hubs, blog) hand-version this link, and the old
+  // conditional left them pinned to stale versions forever.
+  if (html.includes('class="mobile-menu"')) {
+    html = html.replace(/\/css\/mobile-menu\.css\?v=\d+/g, PINS.MOBILE_MENU_CSS);
+    html = ensureCssLink(html, PINS.MOBILE_MENU_CSS);
   }
   if (!html.includes('/js/px-core.js')) {
     html = ensureScript(html, '/js/px-core.js?v=perf23');

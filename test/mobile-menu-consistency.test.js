@@ -224,36 +224,26 @@ test('mobile-menu.css resets legacy temple-base counters and uppercase transform
 
 test('realms and lexicon load the cache-busted mobile-menu.css', () => {
   const { MOBILE_MENU_CSS } = require('../scripts/asset-pins.js');
+  // Exact-version match: "v=1" is a PREFIX of "v=10" — a naive substring
+  // check flags every cache-busted page as stale.
+  const stale = (v) => new RegExp(`mobile-menu\\.css\\?v=${v}(?!\\d)`);
   for (const rel of [path.join('realms', 'index.html'), path.join('lexicon', 'index.html')]) {
     const html = readPage(rel);
     assert.ok(html.includes(MOBILE_MENU_CSS), `${rel} loads the pinned mobile-menu.css`);
-    assert.ok(
-      !html.includes('/css/mobile-menu.css?v=1'),
-      `${rel} does not load the stale v=1 mobile-menu.css`
-    );
-    assert.ok(
-      !html.includes('/css/mobile-menu.css?v=2'),
-      `${rel} does not load the stale v=2 mobile-menu.css`
-    );
-    assert.ok(
-      !html.includes('/css/mobile-menu.css?v=3'),
-      `${rel} does not load the stale v=3 mobile-menu.css`
-    );
+    for (const v of [1, 2, 3]) {
+      assert.ok(!stale(v).test(html), `${rel} does not load the stale v=${v} mobile-menu.css`);
+    }
   }
 });
 
 test('no navigation page loads a stale mobile-menu.css version', () => {
+  const stale = (v) => new RegExp(`mobile-menu\\.css\\?v=${v}(?!\\d)`);
   for (const target of TARGETS) {
     const html = readPageSafe(target.page);
     if (!html?.includes('/css/mobile-menu.css')) continue;
-    assert.ok(
-      !html.includes('/css/mobile-menu.css?v=1'),
-      `${target.page} must not load mobile-menu.css?v=1`
-    );
-    assert.ok(
-      !html.includes('/css/mobile-menu.css?v=2'),
-      `${target.page} must not load mobile-menu.css?v=2`
-    );
+    for (const v of [1, 2]) {
+      assert.ok(!stale(v).test(html), `${target.page} must not load mobile-menu.css?v=${v}`);
+    }
   }
 });
 

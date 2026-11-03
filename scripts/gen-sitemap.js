@@ -65,6 +65,7 @@ const mainPages = [
   // /search/ carries noindex,follow — a noindexed URL must never appear in
   // the sitemap (Google Search Console flags the conflict).
   { loc: '/about/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/about/project/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/contact/', priority: '0.5', changefreq: 'monthly' },
   { loc: '/store/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/store/merch/', priority: '0.6', changefreq: 'monthly' },
