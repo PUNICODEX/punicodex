@@ -1,6 +1,6 @@
 /* Generates the six wing hub pages from scripts/nav-tree.js:
    /world/ (Atlas), /culture/, /tools/, /library/, /relics/, /about/.
-   The former hand-written /about/ page moved to /about/project/ when the
+   The former hand-written /about/ page moved to /about/origins/ when the
    About hub shipped — the hub generator owns /about/ now. */
 
 const fs = require('node:fs');

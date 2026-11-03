@@ -104,7 +104,7 @@ const HUBS = {
     blurb:
       'Who is restoring the names, and why — the mission and the method, the founder, the people hiring, and the legal record of the project.',
     items: [
-      { label: 'Project', href: '/about/project/', blurb: 'The mission and the method.' },
+      { label: 'Origins', href: '/about/origins/', blurb: 'The mission and the method.' },
       { label: 'Founder', href: '/about/founder/', blurb: 'The person behind the restoration.' },
       { label: 'Careers', href: '/careers/', blurb: 'Join the work.' },
       { label: 'Contact', href: '/contact/', blurb: 'Reach the temple.' },

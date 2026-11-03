@@ -26,6 +26,7 @@ const BACKUP_PATH = path.join(ROOT, 'middleware.js.backup');
 // verified below after the lexicon loads.
 const LEGACY_REDIRECTS = {
   '/tiers': '/rulebook/', // tier system retired — see archive/tier-system/
+  '/about/project': '/about/origins/', // about page became the About hub; content moved to Origins
   '/steh': '/seth', // renamed entry id
   '/achilles': '/achilleus',
   '/aether': '/aither',

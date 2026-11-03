@@ -95,6 +95,8 @@ const TARGETS = [
   { page: path.join('patterns', 'index.html'), active: '/patterns/' },
   { page: path.join('careers', 'index.html'), active: '/careers/' },
   { page: path.join('about', 'founder', 'index.html'), active: '/about/' },
+  { page: path.join('about', 'origins', 'index.html'), active: '/about/' },
+  { page: path.join('search', 'index.html'), active: '/search/' },
   { page: path.join('arbitrage', 'index.html'), active: null },
   { page: path.join('connections', 'index.html'), active: '/connections/' },
   { page: path.join('contact', 'index.html'), active: '/contact/' },
