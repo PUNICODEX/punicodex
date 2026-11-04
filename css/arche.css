@@ -346,9 +346,34 @@ body[data-fx='thunder'] { --arche-gold: #c9d4e0; --arche-gold-dim: #8a97a8; }
 
 .arche-tendril-svg path {
   fill: none;
-  stroke: var(--arche-gold-dim);
-  stroke-width: 1.2;
-  opacity: 0.55;
+  stroke: rgba(5, 5, 5, 0.55);
+  stroke-width: 1.5;
+  opacity: 0.8;
+}
+
+/* The ancient seats beside each industry — the concrete lineup. */
+.arche-seats {
+  display: block;
+  margin-top: 0.55rem;
+}
+
+.arche-seat {
+  display: inline-block;
+  margin: 0 0.3rem 0.3rem 0;
+  padding: 0.2rem 0.6rem;
+  font-family: var(--arche-font-display);
+  font-size: 0.78rem;
+  color: var(--arche-gold-dim);
+  text-decoration: none;
+  border: 1px solid rgba(5, 5, 5, 0.22);
+  border-radius: 999px;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.arche-seat:hover,
+.arche-seat:focus-visible {
+  border-color: var(--arche-gold-dim);
+  color: var(--arche-ink);
 }
 
 .arche-tendril {
@@ -424,6 +449,11 @@ body[data-fx='thunder'] { --arche-gold: #c9d4e0; --arche-gold-dim: #8a97a8; }
   z-index: 10;
   opacity: 0.85;
   transition: opacity 0.3s ease;
+}
+
+/* The wordmark is ivory — after The Turn the world is ivory too. Flip it. */
+.arche-body.arche-turned .arche-exit img {
+  filter: invert(0.92) hue-rotate(180deg);
 }
 
 .arche-exit:hover,
@@ -627,6 +657,21 @@ body[data-fx='thunder'] { --arche-gold: #c9d4e0; --arche-gold-dim: #8a97a8; }
   .arche-live .arche-scene--turn.is-active .arche-scene-inner {
     animation: none !important;
   }
+}
+
+/* Act II: full-strength text — the ivory world must read as clearly as
+ * the obsidian one. */
+.arche-body.arche-turned .arche-thesis,
+.arche-body.arche-turned .arche-verse-line {
+  opacity: 1;
+}
+
+.arche-body.arche-turned .arche-choir-label {
+  color: rgba(5, 5, 5, 0.65);
+}
+
+.arche-body.arche-turned .arche-outro {
+  color: rgba(5, 5, 5, 0.55);
 }
 
 /* ─── Finale additions: claim widget, oracle, loop ───────────────────── */

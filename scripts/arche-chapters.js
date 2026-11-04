@@ -490,7 +490,7 @@ const DESCENT = [
     id: 'd-end',
     echoes: 'the-end',
     title: 'The End → The Risk',
-    thesis: 'The last battle became a balance sheet. Eschatology is now an industry with actuarial tables.',
+    thesis: 'The end became risk: insurance, defence planning, climate modelling and memorial — the last battle, priced and prepared for.',
     tendrils: [
       { industry: 'insurance', line: 'The wager on the apocalypse — selling cover for the day the wolf breaks loose.' },
       { industry: 'defense', line: 'The final battle, deterred — Ragnarök with procurement and treaties.' },
@@ -502,7 +502,7 @@ const DESCENT = [
     id: 'd-chaos',
     echoes: 'chaos',
     title: 'The Unshaped → The New',
-    thesis: 'Chaos was never the enemy — it was the workshop. Every new thing begins as the unshaped, and someone must fund the void.',
+    thesis: 'Chaos became the laboratory: every startup, every AI model, every experiment is the unshaped under contract — funded, scheduled, and aimed at the future.',
     tendrils: [
       { industry: 'startups-venture', line: 'Venture capital is the modern void: capital thrown into the unshaped, betting a world emerges.' },
       { industry: 'ai-forecasting', line: 'Machine learning models the chaos of everything — weather, markets, language.' },
@@ -514,7 +514,7 @@ const DESCENT = [
     id: 'd-rebel',
     echoes: 'the-rebel',
     title: 'The Rebel → The Disruptor',
-    thesis: 'The adversary never lost — it pivoted. Every industry that promises to break the old order is the rebel, employed.',
+    thesis: 'The adversary became a profession: hackers probe every wall, disruption is a business plan, and every game’s final boss is the old world resisting the new one.',
     tendrils: [
       { industry: 'cybersecurity', line: 'The serpent in the wires — every defence industry is Apep, paid hourly.' },
       { industry: 'gaming-entertainment', line: 'The rehearsed rebellion — every player is Prometheus for an evening.' },
@@ -526,7 +526,7 @@ const DESCENT = [
     id: 'd-clay',
     echoes: 'the-clay',
     title: 'The Clay → The Maker',
-    thesis: 'The gods shared the work; industry took the whole shift. Everything made today is still the fashioning of mortals.',
+    thesis: 'Making mortals became making everything: factories shape products, biotech shapes bodies, and schools still finish the work the gods began.',
     tendrils: [
       { industry: 'manufacturing-craft', line: 'The workshop never closed — Prometheus runs it now, with QA.' },
       { industry: 'biotech-longevity', line: 'Molding bodies still — Nuwa’s clay now comes with a clinical protocol.' },
@@ -538,7 +538,7 @@ const DESCENT = [
     id: 'd-one',
     echoes: 'the-one',
     title: 'The Creator → The Platform',
-    thesis: 'Unity became the platform: the single system everything else must pass through.',
+    thesis: 'The One became the platform: one operating system, one network, one brand spanning every market — unity, incorporated.',
     tendrils: [
       { industry: 'software-tech', line: 'Operating systems and platforms — the one thing that runs all things.' },
       { industry: 'global-pantheon-brands', line: 'The monolith brand: one name spanning every market, the way Atum held all.' },
@@ -549,7 +549,7 @@ const DESCENT = [
     id: 'd-separation',
     echoes: 'separation',
     title: 'Earth & Sky → The Vertical World',
-    thesis: 'The great parting never stopped. We still build the split — upward into towers and orbit, downward into mines and foundations.',
+    thesis: 'Earth and Sky became the built world: towers, airports, orbital launches, suburbs and mines — the vertical split, permanently under construction.',
     tendrils: [
       { industry: 'construction-engineering', line: 'The separation as a profession: foundations, towers, and everything holding them apart.' },
       { industry: 'aviation-aerospace', line: 'The sky, permanently occupied — the aviation industry sails what Ouranos once kept.' },
@@ -563,7 +563,7 @@ const DESCENT = [
     id: 'd-light',
     echoes: 'light',
     title: 'The First Dawn → The Grid',
-    thesis: 'Light is still truth and power at once. The sun god became the utility.',
+    thesis: 'The sun became the grid: solar farms, power stations and the camera — light as energy, light as record, light on demand.',
     tendrils: [
       { industry: 'solar-energy', line: 'Helios, industrialised — the sun’s wage finally paid in watts.' },
       { industry: 'thermal-energy', line: 'Fire housed, banked, and metered — the hearth that powers a city.' },
@@ -575,7 +575,7 @@ const DESCENT = [
     id: 'd-water',
     echoes: 'water',
     title: 'The Deep → The Flow',
-    thesis: 'Water is still the road and the wall. Civilisation is plumbing with a flag.',
+    thesis: 'The deep became logistics: pipes, ports, shipping lanes and the water trade — civilisation is plumbing with a flag.',
     tendrils: [
       { industry: 'water-utilities', line: 'The world’s most critical infrastructure — the Nile, piped and billed.' },
       { industry: 'maritime', line: 'Oceanus never closed: ninety percent of everything still sails the deep.' },
@@ -587,7 +587,7 @@ const DESCENT = [
     id: 'd-thunder',
     echoes: 'thunder',
     title: 'The Wielded Sky → The Signal',
-    thesis: 'Thunder was the first long-distance message. We kept the lightning and gave it syntax.',
+    thesis: 'Thunder became the network: telecom grids, storm forecasting, wind farms and cyber-defence — the sky’s voice, tamed into signal.',
     tendrils: [
       { industry: 'telecom-logistics', line: 'The bolt tamed into the signal — every phone call is a small thunder.' },
       { industry: 'storm-forecasting', line: 'Reading the sky before it speaks — meteorology is Indra, reversed.' },
@@ -599,7 +599,7 @@ const DESCENT = [
     id: 'd-wild',
     echoes: 'the-wild',
     title: 'The Wild → The Preserve',
-    thesis: 'The wild was never conquered — it was zoned. Every park, reserve, and pet is the old country under new management.',
+    thesis: 'The wild became the preserve: national parks, conservation, pets and eco-tourism — the old country, zoned but never defeated.',
     tendrils: [
       { industry: 'forestry-conservation', line: 'The managed forest — Artemis still owns it; we just bill for the stewardship.' },
       { industry: 'petcare', line: 'The wolf at the hearth — the first domestication, still the largest.' },
@@ -610,7 +610,7 @@ const DESCENT = [
     id: 'd-order',
     echoes: 'order',
     title: 'Law & Justice → The Institution',
-    thesis: 'The measure of things became the market, the court, and the state — Ma’at, incorporated.',
+    thesis: 'Law became the institution: courts, banks, insurers and parliaments — the straight measure, running the world quietly.',
     tendrils: [
       { industry: 'legal-justice', line: 'Themis’s scale, monetised — the straight measure is now billable.' },
       { industry: 'finance-commerce', line: 'Trust at scale — every transaction is a tiny contract with Mithra watching.' },
@@ -624,7 +624,7 @@ const DESCENT = [
     id: 'd-wisdom',
     echoes: 'wisdom',
     title: 'Wisdom & Craft → The Engine',
-    thesis: 'Knowing and making finally merged into one industry: the machine that learns, and the hand that builds it.',
+    thesis: 'Knowing became the engine: AI, software, maps and schools — wisdom and craft merged into a single industry.',
     tendrils: [
       { industry: 'ai-forecasting', line: 'The owl of Athena, deployed — reasoning itself is now a product.' },
       { industry: 'software-tech', line: 'The forge that never cools — every screen is a Hephaestian workshop.' },
@@ -637,7 +637,7 @@ const DESCENT = [
     id: 'd-song',
     echoes: 'the-song',
     title: 'The Song → The Feed',
-    thesis: 'The song never stopped — it multiplied. Every stream, gallery, and feed is the Muses on shift work.',
+    thesis: 'The song became the feed: streaming, publishing, photography and games — the Muses, industrialised and everywhere at once.',
     tendrils: [
       { industry: 'music-arts', line: 'Apollo’s lyre, streaming — the hymn is now a playlist a billion voices long.' },
       { industry: 'publishing-media', line: 'The epic, serialized — the bard became the feed, and the fire became the algorithm.' },
@@ -649,7 +649,7 @@ const DESCENT = [
     id: 'd-love',
     echoes: 'love',
     title: 'Love & Fertility → The Marketplace of Longing',
-    thesis: 'The pull between things became the largest economy on earth — desire, packaged and delivered.',
+    thesis: 'Love became the market: fashion, weddings, dating, food and family — the oldest economy, still the largest.',
     tendrils: [
       { industry: 'beauty-fashion', line: 'Aphrodite’s mirror, mass-produced — the industry of being seen.' },
       { industry: 'wedding-family', line: 'The vow, catered — Eros with a venue deposit.' },
@@ -666,7 +666,7 @@ const DESCENT = [
     id: 'd-child',
     echoes: 'the-child',
     title: 'The Child → The Future',
-    thesis: 'Every society is a promise to its children. The child is the only principle that is entirely about tomorrow.',
+    thesis: 'The child became the future: education, paediatrics, family services — every society is a promise made to its children.',
     tendrils: [
       { industry: 'education', line: 'The raising of the child — the promise, institutionalised as curriculum.' },
       { industry: 'healthcare-pharma', line: 'The child kept alive — paediatrics is the healer’s covenant renewed.' },
@@ -677,7 +677,7 @@ const DESCENT = [
     id: 'd-war',
     echoes: 'war',
     title: 'Force → The Shield & The Spectacle',
-    thesis: 'War never ended; it changed costume — the shield became the firewall, the duel became the broadcast.',
+    thesis: 'War became the shield and the spectacle: defence, cybersecurity, sport and gaming — force, contained and broadcast.',
     tendrils: [
       { industry: 'defense', line: 'Ares with procurement — the oldest budget line in every state.' },
       { industry: 'automotive-mobility', line: 'Armoured motion — the war-chariot became the motorcade.' },
@@ -690,7 +690,7 @@ const DESCENT = [
     id: 'd-death',
     echoes: 'death',
     title: 'The Shadow Realm → The Archive',
-    thesis: 'The road down became the record, the resting place, and the right to be forgotten.',
+    thesis: 'The underworld became the archive: funerals, genealogy, records and rest — the dead, filed and remembered.',
     tendrils: [
       { industry: 'funerary-memorial', line: 'Anubis, licensed — the last journey is still the most planned one.' },
       { industry: 'history-archives', line: 'The memory of the dead, institutionalised — the archive is the modern underworld.' },
@@ -703,7 +703,7 @@ const DESCENT = [
     id: 'd-trickery',
     echoes: 'trickery',
     title: 'The Shifters → The Story-Sellers',
-    thesis: 'The boundary-crossers won. They run the feeds, the brands, and every story that sells.',
+    thesis: 'The shifter became the story-seller: media, retail, travel and hidden persuasion — every brand is an old trickster at work.',
     tendrils: [
       { industry: 'publishing-media', line: 'Hermes at scale — the messenger is now the medium, and the medium is monetised.' },
       { industry: 'music-arts', line: 'Dionysus, distributed — the dissolution of boundaries is the entertainment industry.' },
@@ -716,7 +716,7 @@ const DESCENT = [
     id: 'd-renewal',
     echoes: 'renewal',
     title: 'The Wheel → The Second Life',
-    thesis: 'The wheel is now an industry of its own: everything is restored, renewed, restarted, re-branded.',
+    thesis: 'The wheel became the second life: medicine, wellness, conservation and repair — renewal, scheduled and sold.',
     tendrils: [
       { industry: 'horology', line: 'Kronos, miniaturised — the watch is the scythe worn on the wrist.' },
       { industry: 'environment-climate', line: 'The world’s second chance, scheduled — renewal as policy.' },

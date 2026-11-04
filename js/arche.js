@@ -549,6 +549,291 @@
   };
 
   // Act II descent systems: a circuit grid with travelling pulses.
+  // Act II bespoke systems: each descent principle gets its own film language
+  // (the ascent has sixteen; the descent refuses to share one circuit grid).
+  var ACT2 = {
+    // Vortex — chaos and the rebel: a slow spiral pulling inward.
+    vortex: function (c, t, dt, P) {
+      var col = colors();
+      var cx = W / 2;
+      var cy = H / 2;
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+        p.p += dt * (0.12 + (i % 5) * 0.02);
+        var r = ((p.r * 40 + t * 12) % (Math.min(W, H) * 0.55)) + 20;
+        var x = cx + Math.cos(p.p + r * 0.012) * r;
+        var y = cy + Math.sin(p.p + r * 0.012) * r * 0.7;
+        c.globalAlpha = p.a * 0.7 * (1 - r / (Math.min(W, H) * 0.6));
+        c.fillStyle = col.ink + '0.8)';
+        c.beginPath();
+        c.arc(x, y, 1.4, 0, 6.2832);
+        c.fill();
+      }
+      c.globalAlpha = 1;
+    },
+    // Skyline — the built vertical world: towers rising from the base.
+    skyline: function (c, t) {
+      var col = colors();
+      var n = 16;
+      var base = H * 0.92;
+      for (var i = 0; i < n; i++) {
+        var bw = W / n;
+        var x = i * bw + 2;
+        var h = (Math.sin(i * 2.7) * 0.5 + 0.5) * H * 0.4 + H * 0.08;
+        var grow = Math.min(1, Math.max(0, (t * 0.25 - i * 0.06) % 2));
+        c.globalAlpha = 0.5;
+        c.fillStyle = col.ink + '0.5)';
+        c.fillRect(x, base - h * grow, bw - 4, h * grow);
+        c.globalAlpha = 0.9;
+        c.strokeStyle = col.gold + '0.8)';
+        c.strokeRect(x, base - h * grow, bw - 4, h * grow);
+      }
+      c.globalAlpha = 0.25;
+      c.strokeStyle = col.ink + '1)';
+      c.beginPath();
+      c.moveTo(0, base);
+      c.lineTo(W, base);
+      c.stroke();
+      c.globalAlpha = 1;
+    },
+    // Equalizer — the song as industry: bars pulsing to a silent beat.
+    equalizer: function (c, t) {
+      var col = colors();
+      var n = 24;
+      var bw = W / n;
+      for (var i = 0; i < n; i++) {
+        var h =
+          (Math.abs(Math.sin(t * 2.2 + i * 0.7)) * 0.5 + Math.abs(Math.sin(t * 3.7 + i * 1.9)) * 0.5) *
+          H *
+          0.3;
+        c.globalAlpha = 0.5;
+        c.fillStyle = col.gold + '0.7)';
+        c.fillRect(i * bw + bw * 0.2, H * 0.85 - h, bw * 0.6, h);
+      }
+      c.globalAlpha = 0.2;
+      c.fillStyle = col.ink + '1)';
+      c.fillRect(0, H * 0.85, W, 1);
+      c.globalAlpha = 1;
+    },
+    // Pulse — love and the child: soft radiating heartbeats.
+    pulse: function (c, t) {
+      var col = colors();
+      var cx = W / 2;
+      var cy = H / 2;
+      for (var i = 0; i < 4; i++) {
+        var phase = (t * 0.5 + i / 4) % 1;
+        var beat = phase < 0.12 ? 1.15 : 1;
+        var r = phase * Math.min(W, H) * 0.45 * beat;
+        c.globalAlpha = (1 - phase) * 0.35;
+        c.strokeStyle = col.gold + '0.9)';
+        c.lineWidth = 1.4;
+        c.beginPath();
+        c.arc(cx, cy, Math.max(r, 1), 0, 6.2832);
+        c.stroke();
+      }
+      c.globalAlpha = 1;
+    },
+    // Arcs — thunder as network: electricity jumping between grid nodes.
+    arcs: function (c, t, dt, P) {
+      var col = colors();
+      var nodes = [];
+      for (var i = 0; i < 7; i++) {
+        var a = (i / 7) * Math.PI * 2 + t * 0.05;
+        nodes.push({ x: W / 2 + Math.cos(a) * W * 0.32, y: H / 2 + Math.sin(a) * H * 0.3 });
+      }
+      c.globalAlpha = 0.5;
+      c.fillStyle = col.ink + '1)';
+      for (var k = 0; k < nodes.length; k++) {
+        c.beginPath();
+        c.arc(nodes[k].x, nodes[k].y, 2.4, 0, 6.2832);
+        c.fill();
+      }
+      var flash = (t % 1.7) < 0.12;
+      if (flash) {
+        c.globalAlpha = 0.85;
+        c.strokeStyle = col.gold + '1)';
+        c.lineWidth = 1.4;
+        for (var j = 0; j < 3; j++) {
+          var a2 = nodes[(j * 2) % nodes.length];
+          var b2 = nodes[(j * 2 + 3) % nodes.length];
+          c.beginPath();
+          c.moveTo(a2.x, a2.y);
+          var segs = 6;
+          for (var s2 = 1; s2 < segs; s2++) {
+            var f = s2 / segs;
+            c.lineTo(a2.x + (b2.x - a2.x) * f + rnd(-14, 14), a2.y + (b2.y - a2.y) * f + rnd(-14, 14));
+          }
+          c.lineTo(b2.x, b2.y);
+          c.stroke();
+        }
+      }
+      c.globalAlpha = 1;
+    },
+    // Radar — war and the end: a sweep with returning blips.
+    radar: function (c, t) {
+      var col = colors();
+      var cx = W / 2;
+      var cy = H / 2;
+      var R = Math.min(W, H) * 0.42;
+      c.strokeStyle = col.ink + '0.25)';
+      c.lineWidth = 1;
+      for (var r = 1; r <= 3; r++) {
+        c.beginPath();
+        c.arc(cx, cy, (R * r) / 3, 0, 6.2832);
+        c.stroke();
+      }
+      var ang = t * 0.9;
+      var g = c.createLinearGradient(cx, cy, cx + Math.cos(ang) * R, cy + Math.sin(ang) * R);
+      g.addColorStop(0, col.gold + '0.35)');
+      g.addColorStop(1, col.gold + '0)');
+      c.strokeStyle = g;
+      c.beginPath();
+      c.moveTo(cx, cy);
+      c.lineTo(cx + Math.cos(ang) * R, cy + Math.sin(ang) * R);
+      c.stroke();
+      for (var i = 0; i < 4; i++) {
+        var ba = i * 1.7 + 0.6;
+        var fade = 1 - ((ang - ba) % 6.2832 + 6.2832) % 6.2832 / 6.2832;
+        if (fade > 0.55) {
+          c.globalAlpha = fade - 0.4;
+          c.fillStyle = col.gold + '1)';
+          c.beginPath();
+          c.arc(cx + Math.cos(ba) * R * 0.6, cy + Math.sin(ba) * R * 0.6, 3, 0, 6.2832);
+          c.fill();
+        }
+      }
+      c.globalAlpha = 1;
+    },
+    // Forge — clay and wisdom: sparks and assembling squares.
+    forge: function (c, t, dt, P) {
+      var col = colors();
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+        p.y -= p.s * dt;
+        if (p.y < -8) {
+          p.y = H + 8;
+          p.x = rnd(0, W);
+        }
+        var snap = Math.round(p.x / 22) * 22;
+        c.globalAlpha = p.a * 0.75;
+        c.fillStyle = (i % 4 === 0 ? col.gold : col.ink) + '0.85)';
+        c.fillRect(snap, Math.round(p.y / 22) * 22, 3, 3);
+      }
+      c.globalAlpha = 1;
+    },
+    // Seeds — the wild and renewal: drifting spores taking root.
+    seeds: function (c, t, dt, P) {
+      var col = colors();
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+        p.x += Math.sin(t * 0.6 + p.p) * 16 * dt;
+        p.y += Math.cos(t * 0.4 + p.p * 2) * 10 * dt;
+        if (p.y > H + 10) p.y = -10;
+        if (p.y < -10) p.y = H + 10;
+        var root = Math.abs(Math.sin(t * 0.5 + p.p));
+        c.globalAlpha = p.a * 0.7;
+        c.strokeStyle = col.ink + '0.7)';
+        c.beginPath();
+        c.moveTo(p.x, p.y);
+        c.lineTo(p.x + Math.sin(p.p + t) * 6 * root, p.y - 10 * root);
+        c.stroke();
+        c.fillStyle = col.gold + '0.9)';
+        c.beginPath();
+        c.arc(p.x, p.y, 1.6, 0, 6.2832);
+        c.fill();
+      }
+      c.globalAlpha = 1;
+    },
+    // Settle — death as archive: dust drifting down and filing itself away.
+    settle: function (c, t, dt, P) {
+      var col = colors();
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+        p.y += p.s * dt * 0.4;
+        if (p.y > H + 8) {
+          p.y = -8;
+          p.x = rnd(0, W);
+        }
+        var fileX = Math.round(p.x / 30) * 30;
+        c.globalAlpha = p.a * 0.5;
+        c.fillStyle = col.ink + '0.7)';
+        c.fillRect(fileX, p.y, 2.5, 2.5);
+      }
+      c.globalAlpha = 0.15;
+      c.strokeStyle = col.ink + '1)';
+      for (var gx = 0; gx < W; gx += 30) {
+        c.beginPath();
+        c.moveTo(gx, H * 0.75);
+        c.lineTo(gx, H);
+        c.stroke();
+      }
+      c.globalAlpha = 1;
+    },
+    // Shimmer — trickery as media: signboards flickering on and off.
+    shimmer: function (c, t) {
+      var col = colors();
+      var n = 10;
+      for (var i = 0; i < n; i++) {
+        var on = Math.sin(t * (1.1 + (i % 3) * 0.5) + i * 2.3) > -0.25;
+        if (!on) continue;
+        var bw = W / n;
+        var x = i * bw + bw * 0.15;
+        var h = H * (0.08 + (Math.sin(i * 5.1) * 0.5 + 0.5) * 0.1);
+        var y = H * 0.75 - h;
+        c.globalAlpha = 0.35 + 0.25 * Math.sin(t * 2 + i);
+        c.strokeStyle = col.gold + '0.9)';
+        c.lineWidth = 1.2;
+        c.strokeRect(x, y, bw * 0.7, h);
+        c.globalAlpha = 0.2;
+        c.fillStyle = col.gold + '0.8)';
+        c.fillRect(x, y, bw * 0.7, h);
+      }
+      c.globalAlpha = 1;
+    },
+  };
+
+  // Descent scene → bespoke system (fallbacks reuse the ascent language with
+  // the inverted Act II palette, which reads as a completely different film).
+  var ACT2_MAP = {
+    'd-chaos': 'vortex',
+    'd-rebel': 'vortex',
+    'd-clay': 'forge',
+    'd-one': 'skyline',
+    'd-separation': 'skyline',
+    'd-light': 'pulse',
+    'd-water': 'water',
+    'd-thunder': 'arcs',
+    'd-wild': 'seeds',
+    'd-order': 'order',
+    'd-wisdom': 'forge',
+    'd-song': 'equalizer',
+    'd-love': 'pulse',
+    'd-child': 'pulse',
+    'd-war': 'radar',
+    'd-death': 'settle',
+    'd-trickery': 'shimmer',
+    'd-renewal': 'seeds',
+    'd-end': 'radar',
+  };
+
+  function act2System(id) {
+    var key = ACT2_MAP[id] || 'circuit';
+    if (ACT2[key]) {
+      return { draw: ACT2[key], spawn: defaultSpawn };
+    }
+    var sys = SYSTEMS[key];
+    if (sys) return { draw: sys, spawn: defaultSpawn };
+    return { draw: descentSystem, spawn: descentSpawn };
+  }
+
+  function defaultSpawn() {
+    return { x: rnd(0, W), y: rnd(0, H), r: rnd(1, 3.2), s: rnd(6, 26), a: rnd(0.2, 0.75), p: rnd(0, 6.28) };
+  }
+
+  function descentSpawn() {
+    return { path: makePulsePath(), d: rnd(0, 400), s: rnd(0.6, 1.6) };
+  }
+
   function descentSystem(c, t, dt, P) {
     var col = colors();
     var step = 56;
@@ -619,12 +904,7 @@
   // Spawn table: fx id → system + particle factory.
   function fxFor(id) {
     if (id.indexOf('d-') === 0) {
-      return {
-        draw: descentSystem,
-        spawn: function () {
-          return { path: makePulsePath(), d: rnd(0, 400), s: rnd(0.6, 1.6) };
-        },
-      };
+      return act2System(id);
     }
     switch (id) {
       case 'prologue':
@@ -684,7 +964,13 @@
     for (var i = 0; i < railDots.length; i++) {
       railDots[i].classList.toggle('is-current', railDots[i].getAttribute('data-goto') === sceneId);
     }
-    if (scene.querySelector('[data-tendrils]')) drawTendrils(scene);
+    if (scene.querySelector('[data-tendrils]')) {
+      drawTendrils(scene);
+      // Fonts/layout settle after activation — redraw so paths land true.
+      setTimeout(function () {
+        if (activeScene === scene) drawTendrils(scene);
+      }, 450);
+    }
     if (soundOn) retuneDrone(id);
   }
 

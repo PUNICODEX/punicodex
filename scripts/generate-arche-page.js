@@ -25,7 +25,22 @@ const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'genesis', 'index.html');
 
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
+const { INDUSTRY_GROUPS } = require(path.join(ROOT, 'type', 'js', 'industry-patterns.js'));
 const byId = new Map(LEXICON.map((e) => [e.id, e]));
+
+/* Industry → its strongest temple seats (the concrete ancient↔modern lineup
+ * the Act II tendrils point at). Primary (weight 2) members first, in
+ * canonical order, capped so cards stay scannable. */
+const industrySeats = new Map();
+for (const g of INDUSTRY_GROUPS) {
+  const entries = g.entries || [];
+  const primaries = entries.filter((m) => m.weight === 2).slice(0, 3);
+  const seats = (primaries.length ? primaries : entries.slice(0, 3)).slice(0, 3);
+  industrySeats.set(
+    g.industry,
+    seats.map((m) => m.id).filter((id) => byId.has(id))
+  );
+}
 
 const ROMAN = [
   'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
@@ -47,9 +62,21 @@ const deityCard = (d, i) => {
                 </a>`;
 };
 
+const templeChips = (industry) => {
+  const ids = industrySeats.get(industry) || [];
+  if (!ids.length) return '';
+  const chips = ids
+    .map((id) => {
+      const e = byId.get(id);
+      return `<a class="arche-seat" href="/${id}/">${esc(e.unicode)}</a>`;
+    })
+    .join('');
+  return `<span class="arche-seats" aria-label="Temples seated in ${esc(industry)}">${chips}</span>`;
+};
+
 const tendrilCard = (t, i) => `                <a class="arche-tendril" href="/patterns/#pa-panel-${esc(t.industry)}" data-industry="${esc(t.industry)}" style="--d:${i}">
                     <span class="arche-tendril-dot" aria-hidden="true"></span>
-                    <span class="arche-tendril-line">${esc(t.line)}</span>
+                    <span class="arche-tendril-line">${esc(t.line)}${templeChips(t.industry)}</span>
                 </a>`;
 
 const verseHtml = (verse) =>
@@ -98,6 +125,7 @@ const descentScene = (ch, i) => {
                 </header>
                 <div class="arche-tendrils" data-tendrils>
                     <svg class="arche-tendril-svg" aria-hidden="true"></svg>
+                    <p class="arche-choir-label">The pattern atlas, live — each industry beside its ancient seats</p>
 ${ch.tendrils.map(tendrilCard).join('\n')}
                 </div>
             </div>

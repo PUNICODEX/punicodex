@@ -161,6 +161,28 @@ test('every chapter holds a real congregation (no token chapters)', () => {
 // 2. Page structure
 // ---------------------------------------------------------------------------
 
+test('every descent tendril carries its ancient seats (concrete lineup)', () => {
+  const html = read('genesis/index.html');
+  const seats = (html.match(/class="arche-seat"/g) || []).length;
+  assert.ok(seats >= 40, `expected 40+ temple seats across Act II, found ${seats}`);
+  for (const ch of DESCENT) {
+    for (const t of ch.tendrils) {
+      assert.ok(
+        html.includes(`data-industry="${t.industry}"`) &&
+          html.indexOf(`data-industry="${t.industry}"`) < html.length,
+        `${t.industry}: tendril missing`
+      );
+    }
+  }
+  // Every thesis states the concrete mapping — no vague metaphor may regress.
+  for (const ch of DESCENT) {
+    assert.ok(
+      /became|is now|are the/i.test(ch.thesis),
+      `${ch.id}: thesis must state the concrete ancient→modern mapping`
+    );
+  }
+});
+
 test('page exists with a scene per chapter plus prologue, turn, finale', () => {
   const html = read('genesis/index.html');
   const want = [
