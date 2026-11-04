@@ -183,6 +183,11 @@ function writeFileAtomic(filePath, content) {
 
 function injectIntoFile(filePath) {
   let html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
+  // Cross-platform determinism: Windows pipeline steps may hand us CRLF
+  // bytes; the committed convention is LF (gitattributes enforces it) and
+  // the newline arithmetic below only understands '\n'. Normalize first so
+  // the injector produces identical bytes on every OS.
+  html = html.replace(/\r\n/g, '\n');
 
   // Committed convention: temple pages (sites/) carry the university block
   // before analytics; every other page carries analytics right after <head>.
