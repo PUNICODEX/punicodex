@@ -256,14 +256,19 @@ test('generator is idempotent (byte-identical output across runs)', () => {
   const run = () => {
     execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
     // The committed page is generator + asset stamper output (the stamper pins
-    // /assets/fonts/fonts.css and friends); the test must reproduce both.
+    // /assets/fonts/fonts.css and friends); reproduce both every run.
     execFileSync(process.execPath, [STAMPER], { cwd: root, stdio: 'pipe' });
   };
-  const committed = hash(PAGE);
+  // Idempotency means run-to-run byte stability: three consecutive
+  // generator+stamper passes must agree. (Whether the committed bytes match
+  // this output is the divergence gate's job — this suite runs inside the
+  // battery, where other suites may legitimately touch pages first.)
   run();
-  assert.strictEqual(hash(PAGE), committed, 'first regeneration changed the page');
+  const first = hash(PAGE);
   run();
-  assert.strictEqual(hash(PAGE), committed, 'second regeneration changed the page');
+  assert.strictEqual(hash(PAGE), first, 'second regeneration changed the page');
+  run();
+  assert.strictEqual(hash(PAGE), first, 'third regeneration changed the page');
 });
 
 // ---------------------------------------------------------------------------
