@@ -37,6 +37,17 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # The repo tree + .vercel/output copy can exceed the runner disk.
+      # .git is not needed by the prebuilt build; the big toolchain dirs
+      # neither. (2026-11: ENOSPC killed a deploy mid-build.)
+      - name: Free runner disk
+        run: |
+          rm -rf .git
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup 2>/dev/null || true
+          df -h /
 
       - uses: actions/setup-node@v4
         with:
