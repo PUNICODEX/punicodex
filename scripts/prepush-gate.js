@@ -485,6 +485,7 @@ function main() {
   // expensive check) — but it runs even when fast suites failed, so a push
   // with both a suite failure and drift reports both classes in one pass
   // instead of serializing them into separate blocked rounds.
+  let suiteFailures = failed;
   if (canonical) {
     const start = Date.now();
     try {
@@ -524,6 +525,27 @@ function main() {
       console.log(
         `    ${C.dim}Remediation: npm run generate, then git add/commit the regenerated files — see AGENTS.md “Pre-push gate”.${C.reset}`
       );
+      // --fix: when suites are green and ONLY drift failed, run the full
+      // pipeline ourselves, stage the regenerated files, and re-verify.
+      // Hand-patching generated pages with standalone scripts is what causes
+      // repeat blocks — this makes the full pipeline the only repair path.
+      if (!suiteFailures && process.argv.includes('--fix')) {
+        console.log(`\n  ${C.cyan}▸ --fix: running npm run generate…${C.reset}`);
+        try {
+          execFileSync(NPM, ['run', 'generate'], { cwd: ROOT, stdio: 'inherit', ...SHELL_OPT });
+          execFileSync('git', ['add', '-A', '--', ':!Kimi_Agent_Unicode Pantheon Animation Plan'], {
+            cwd: ROOT,
+            stdio: 'inherit',
+          });
+          execFileSync(NPM, ['run', 'generate:check'], { cwd: ROOT, stdio: 'inherit', maxBuffer: 64 * 1024 * 1024, ...SHELL_OPT });
+          console.log(
+            `\n  ${C.green}✓ Regenerated, staged, and divergence-clean.${C.reset}` +
+              `\n  ${C.dim}Commit the staged files and push again.${C.reset}\n`
+          );
+        } catch (fixErr) {
+          console.log(`  ${C.red}✗ --fix failed: ${fixErr.message}${C.reset}`);
+        }
+      }
     }
   }
 
