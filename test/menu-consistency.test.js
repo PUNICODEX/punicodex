@@ -195,9 +195,13 @@ test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', 
       continue;
     }
     for (const section of HUB_ORDER.map((id) => HUBS[id].label)) {
+      const hub = HUBS[HUB_ORDER.find((id) => HUBS[id].label === section)];
       assert.ok(
-        html.includes(`<span class="mobile-menu-title">${section}</span>`),
-        `${page}: missing mobile section ${section}`
+        html.includes(
+          `<a href="${hub.href}" class="mobile-menu-title mobile-menu-title--hub">${section}</a>`
+        ) ||
+          html.includes(`<a href="${hub.href}" class="mobile-menu-title mobile-menu-title--hub active">${section}</a>`),
+        `${page}: missing clickable mobile hub title ${section}`
       );
     }
     assert.ok(html.includes('<a href="/blog/">Blog</a>'), `${page}: mobile menu missing Blog`);

@@ -149,7 +149,10 @@ test('pages whose own link is in the menu carry the active marker', () => {
     }
     const hasActiveMarker =
       html.includes(`<a href="${target.active}" class="active">`) ||
-      html.includes(`<a href="${target.active}" class="mobile-link--featured active">`);
+      html.includes(`<a href="${target.active}" class="mobile-link--featured active">`) ||
+      html.includes(
+        `<a href="${target.active}" class="mobile-menu-title mobile-menu-title--hub active">`
+      );
     assert.ok(hasActiveMarker, `${target.page} marks ${target.active} active in its menu`);
   }
 });

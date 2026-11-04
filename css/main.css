@@ -573,6 +573,43 @@ body.menu-open {
     margin-bottom: var(--space-2);
 }
 
+/* The hub title is the hub link: same font as the section title, larger,
+   sitting above its spokes. One clickable instance — no duplicate below. */
+.mobile-menu-title--hub {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-decoration: none;
+    margin-bottom: var(--space-3);
+}
+
+.mobile-menu-title--hub:hover,
+.mobile-menu-title--hub:focus-visible,
+.mobile-menu-title--hub.active {
+    color: var(--gold-bright, var(--gold));
+    text-decoration: none;
+}
+
+/* The Archē entry — the mobile home of the Enter CTA. */
+.mobile-menu-begin {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(18px, 4.5vw, 24px);
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: var(--space-4);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 10px;
+    background: rgba(212, 175, 55, 0.06);
+}
+
+.mobile-menu-begin:hover,
+.mobile-menu-begin:focus-visible {
+    background: rgba(212, 175, 55, 0.14);
+}
+
 .mobile-menu-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

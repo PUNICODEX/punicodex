@@ -59,13 +59,15 @@ function buildSubMenu(item, kids) {
 
 function buildSection(id) {
   const hub = HUBS[id];
-  const parts = [`<a href="${hub.href}" class="mobile-link--featured">${hub.label}</a>`];
+  const parts = [];
   for (const item of hub.items) {
     const kids = childrenOf(item);
     parts.push(kids.length ? buildSubMenu(item, kids) : `<a href="${item.href}">${item.label}</a>`);
   }
+  // The hub title IS the hub link — one clickable instance, larger type,
+  // spokes beneath. (A second featured link used to duplicate it; removed.)
   return `<div class="mobile-menu-section">
-            <span class="mobile-menu-title">${hub.label}</span>
+            <a href="${hub.href}" class="mobile-menu-title mobile-menu-title--hub">${hub.label}</a>
             <div class="mobile-menu-group">
                 ${parts.join('\n                ')}
             </div>
@@ -73,6 +75,7 @@ function buildSection(id) {
 }
 
 const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
+        <a href="/arche/" class="mobile-menu-begin">✦ Begin — The First Principles</a>
         ${HUB_ORDER.map(buildSection).join('\n        ')}
     </div>`;
 
@@ -148,6 +151,10 @@ function menuForPage(activeHref) {
   if (!activeHref) return CANONICAL_MENU;
   const plainNeedle = `<a href="${activeHref}">`;
   const featuredNeedle = `<a href="${activeHref}" class="mobile-link--featured">`;
+  const hubTitleNeedle = `<a href="${activeHref}" class="mobile-menu-title mobile-menu-title--hub">`;
+  if (CANONICAL_MENU.includes(hubTitleNeedle)) {
+    return CANONICAL_MENU.replace(hubTitleNeedle, `<a href="${activeHref}" class="mobile-menu-title mobile-menu-title--hub active">`);
+  }
   if (CANONICAL_MENU.includes(plainNeedle)) {
     return CANONICAL_MENU.replace(plainNeedle, `<a href="${activeHref}" class="active">`);
   }
