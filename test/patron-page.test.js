@@ -69,7 +69,9 @@ test('every patron page links required stylesheets', () => {
 });
 
 test('every patron page has a global strip with required links', () => {
-  const required = ['pantheon/', 'realms/', 'patterns/', 'trending/', 'store/', 'connections/'];
+  // The temple strip carries the six wing hubs (Atlas → About) — see
+  // templates/flagship/index.html and the chrome-drift sweep.
+  const required = ['world/', 'culture/', 'instruments/', 'library/', 'relics/', 'about/'];
   for (const id of ids) {
     const $ = loadPatronPage(id);
     const strip = $('.global-strip');
