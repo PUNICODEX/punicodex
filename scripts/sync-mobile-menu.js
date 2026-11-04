@@ -75,7 +75,7 @@ function buildSection(id) {
 }
 
 const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
-        <a href="/arche/" class="mobile-menu-begin">✦ Begin — The First Principles</a>
+        <a href="/genesis/" class="mobile-menu-begin">✦ Begin — The First Principles</a>
         ${HUB_ORDER.map(buildSection).join('\n        ')}
     </div>`;
 

@@ -120,7 +120,7 @@ const allScripts = [
   // industry-patterns.json produced at step 5; before the injectors so the
   // fresh pages keep their beacon/consent blocks.
   'scripts/generate-patterns-page.js',
-  // The Archē (/arche/): the scroll-driven cosmogony — canonical data in
+  // The Archē (/genesis/): the scroll-driven cosmogony — canonical data in
   // scripts/arche-chapters.js; nav-free immersive page (like /game/); before
   // the sitemap and injectors so the fresh page keeps its marker blocks.
   'scripts/generate-arche-page.js',
@@ -131,7 +131,6 @@ const allScripts = [
   // Tattoo-artist reference cards (assets/ink/*.png|svg): reads the ink
   // index; skips existing bakes (platform fonts — committed artifacts).
   'scripts/generate-ink-downloads.js',
-  'scripts/sync-scholars-portal.js',
   // Home-page fleet stats from canonical sources (never hand-maintained).
   'scripts/sync-hero-stats.js',
   // Stale counter sweep for hand-edited marketing/pitch pages.
@@ -151,6 +150,11 @@ const allScripts = [
   'scripts/sync-desktop-nav.js',
   'scripts/sync-mobile-menu.js',
   'scripts/sync-footer.js',
+  // Scholars portal copy: runs AFTER the chrome syncers — it copies
+  // platform/public/scholars (a menu/nav TARGET) into root scholars/, and
+  // must not snapshot a pre-sync canonical (drift caught by Mobile Menu
+  // Drift Tests when ordered before them).
+  'scripts/sync-scholars-portal.js',
   // Static crawlable temple index on the hub pages (lexicon/pantheon grids
   // are JS-rendered; without this the long tail has no static inbounds).
   'scripts/sync-temple-index.js',

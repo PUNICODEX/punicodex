@@ -1,7 +1,7 @@
 /**
  * PuniCodex — The Archē experience tests.
  *
- * Guards the interactive cosmogony at /arche/:
+ * Guards the interactive cosmogony at /genesis/:
  *   1. Canonical data integrity — every deity id resolves in the lexicon,
  *      every tendril industry resolves in the pattern graph, deities appear
  *      exactly once across the ascent, every descent chapter echoes a real
@@ -40,7 +40,7 @@ function test(name, fn) {
 }
 
 const GENERATOR = path.join(root, 'scripts', 'generate-arche-page.js');
-const PAGE = path.join(root, 'arche', 'index.html');
+const PAGE = path.join(root, 'genesis', 'index.html');
 
 // ---------------------------------------------------------------------------
 // 1. Canonical data integrity
@@ -84,7 +84,7 @@ test('every descent tendril resolves in the industry pattern graph', () => {
   assert.strictEqual(DESCENT.length, ASCENT.length, 'descent must mirror the ascent');
   // Comprehensive: all 61 industries are claimed by some principle — scanned
   // from the rendered page so the finale's own industries count too.
-  const html = read('arche/index.html');
+  const html = read('genesis/index.html');
   const usedOnPage = new Set([...html.matchAll(/#pa-panel-([a-z-]+)"/g)].map((m) => m[1]));
   const unclaimed = [...inds].filter((i) => !usedOnPage.has(i));
   assert.deepStrictEqual(unclaimed, [], `industries with no principle: ${unclaimed.join(', ')}`);
@@ -127,7 +127,7 @@ test('EVERY lexicon entry appears exactly once: voiced, choir, or finale', () =>
     assert.ok(targets.has(target), `${id} assigned to unknown chapter "${target}"`);
   }
   // The page renders every one: voiced cards + choir chips + finale chorus.
-  const html = read('arche/index.html');
+  const html = read('genesis/index.html');
   const cards = new Set(
     [...html.matchAll(/class="arche-card" href="\/([a-z0-9-]+)\//g)].map((m) => m[1])
   );
@@ -162,7 +162,7 @@ test('every chapter holds a real congregation (no token chapters)', () => {
 // ---------------------------------------------------------------------------
 
 test('page exists with a scene per chapter plus prologue, turn, finale', () => {
-  const html = read('arche/index.html');
+  const html = read('genesis/index.html');
   const want = [
     'prologue',
     'turn',
@@ -177,7 +177,7 @@ test('page exists with a scene per chapter plus prologue, turn, finale', () => {
 });
 
 test('every deity card links a live temple; every tendril anchors a real atlas panel', () => {
-  const html = read('arche/index.html');
+  const html = read('genesis/index.html');
   const ids = new Set(LEXICON.map((e) => e.id));
   for (const m of html.matchAll(/class="arche-card" href="\/([a-z0-9-]+)\//g)) {
     assert.ok(ids.has(m[1]), `card links unknown temple "/${m[1]}/"`);
@@ -189,9 +189,9 @@ test('every deity card links a live temple; every tendril anchors a real atlas p
 });
 
 test('page carries canonical chrome, SEO meta, and JSON-LD without JS dependency', () => {
-  const html = read('arche/index.html');
+  const html = read('genesis/index.html');
   for (const marker of [
-    '<link rel="canonical" href="https://punicodex.com/arche/">',
+    '<link rel="canonical" href="https://punicodex.com/genesis/">',
     'property="og:title"',
     'application/ld+json',
     '<h1 class="arche-title arche-title--huge">The First Principles</h1>',
@@ -232,7 +232,7 @@ test('engine is Canvas 2D with quality governor and reduced-motion path (no WebG
 
 test('engine exposes a system for every scene fx id used by the page', () => {
   const js = read('js/arche.js');
-  const html = read('arche/index.html');
+  const html = read('genesis/index.html');
   const used = new Set([...html.matchAll(/data-fx="([a-z-]+)"/g)].map((m) => m[1]));
   for (const id of used) {
     if (id.indexOf('d-') === 0) continue; // descent scenes share the circuit system
@@ -275,14 +275,14 @@ test('generator is idempotent (byte-identical output across runs)', () => {
 // 5. Per-chapter pages, widgets, sound, loop, grading, tracking
 // ---------------------------------------------------------------------------
 
-test('every chapter has a crawlable share page at /arche/{id}/', () => {
+test('every chapter has a crawlable share page at /genesis/{id}/', () => {
   for (let i = 0; i < ASCENT.length; i++) {
     const ch = ASCENT[i];
-    const file = path.join(root, 'arche', ch.id, 'index.html');
+    const file = path.join(root, 'genesis', ch.id, 'index.html');
     assert.ok(fs.existsSync(file), `missing chapter page for ${ch.id}`);
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(
-      html.includes(`<link rel="canonical" href="https://punicodex.com/arche/${ch.id}/">`),
+      html.includes(`<link rel="canonical" href="https://punicodex.com/genesis/${ch.id}/">`),
       `${ch.id}: canonical`
     );
     assert.ok(html.includes(esc(ch.verse[0])), `${ch.id}: verse`);
@@ -293,12 +293,12 @@ test('every chapter has a crawlable share page at /arche/{id}/', () => {
     }
   }
   // First and last chapters link back into the experience.
-  const first = fs.readFileSync(path.join(root, 'arche', ASCENT[0].id, 'index.html'), 'utf8');
-  assert.ok(first.includes('href="/arche/"'), 'first chapter must link the full experience');
+  const first = fs.readFileSync(path.join(root, 'genesis', ASCENT[0].id, 'index.html'), 'utf8');
+  assert.ok(first.includes('href="/genesis/"'), 'first chapter must link the full experience');
 });
 
 test('main page carries the claim widget, oracle hand-off, loop, and sound control', () => {
-  const html = read('arche/index.html');
+  const html = read('genesis/index.html');
   for (const marker of [
     'data-claim-form',
     'data-oracle-form',

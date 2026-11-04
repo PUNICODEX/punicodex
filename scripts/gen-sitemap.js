@@ -66,9 +66,9 @@ const mainPages = [
   // the sitemap (Google Search Console flags the conflict).
   { loc: '/about/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/about/origins/', priority: '0.6', changefreq: 'monthly' },
-  { loc: '/arche/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/genesis/', priority: '0.9', changefreq: 'monthly' },
   ...require('../scripts/arche-chapters.js').ASCENT.map((c) => ({
-    loc: `/arche/${c.id}/`,
+    loc: `/genesis/${c.id}/`,
     priority: '0.7',
     changefreq: 'monthly',
   })),

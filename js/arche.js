@@ -988,11 +988,11 @@
       var scene = document.getElementById('scene-' + ch.id);
       var cards = scene ? scene.querySelectorAll('.arche-card-name') : [];
       var deity = cards.length ? cards[h % cards.length].textContent : '';
-      var share = 'The Archē claims me: ' + ch.title + (deity ? ' — my deity is ' + deity : '') + '. Discover yours: https://punicodex.com/arche/';
+      var share = 'The Archē claims me: ' + ch.title + (deity ? ' — my deity is ' + deity : '') + '. Discover yours: https://punicodex.com/genesis/';
       claimResult.hidden = false;
       claimResult.innerHTML =
         '<p class="arche-claim-principle">' + ch.title + '</p>' +
-        (deity ? '<p class="arche-claim-deity">' + name + ' — your deity in this principle is <a href="/arche/' + ch.id + '/">' + deity + '</a>.</p>' : '') +
+        (deity ? '<p class="arche-claim-deity">' + name + ' — your deity in this principle is <a href="/genesis/' + ch.id + '/">' + deity + '</a>.</p>' : '') +
         '<button class="arche-claim-copy" type="button">Copy your claim</button>';
       var copyBtn = claimResult.querySelector('.arche-claim-copy');
       copyBtn.addEventListener('click', function () {

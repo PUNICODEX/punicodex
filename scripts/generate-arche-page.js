@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* PuniCodex — The Archē experience page generator.
  *
- * Builds /arche/index.html: an immersive, scroll-driven cosmogony.
+ * Builds /genesis/index.html: an immersive, scroll-driven cosmogony.
  * Act I (The Ascent) walks the first principles from Chaos to the Wheel,
  * each summoning every pantheon's bearers. The Turn inverts the world.
  * Act II (The Descent) fans each principle into the modern industries it
@@ -22,7 +22,7 @@ const { PROLOGUE, ASCENT, TURN, DESCENT, FINALE } = require('./arche-chapters.js
 const { chapterRoster, finaleRoster } = require('./arche-assignments.js');
 
 const ROOT = path.join(__dirname, '..');
-const OUT = path.join(ROOT, 'arche', 'index.html');
+const OUT = path.join(ROOT, 'genesis', 'index.html');
 
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const byId = new Map(LEXICON.map((e) => [e.id, e]));
@@ -74,7 +74,7 @@ const ascentScene = (ch, i) => `        <section class="arche-scene arche-scene-
             <div class="arche-scene-inner">
                 <header class="arche-scene-head">
                     <span class="arche-kicker">${ROMAN[i]} · ${esc(ch.epigraph)}</span>
-                    <h2 class="arche-title"><a class="arche-title-link" href="/arche/${ch.id}/">${esc(ch.title)}</a></h2>
+                    <h2 class="arche-title"><a class="arche-title-link" href="/genesis/${ch.id}/">${esc(ch.title)}</a></h2>
                 </header>
                 <div class="arche-verse">
 ${verseHtml(ch.verse)}
@@ -122,14 +122,14 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'The Archē — From the First Chaos to the Modern World',
-  url: 'https://punicodex.com/arche/',
+  url: 'https://punicodex.com/genesis/',
   description:
     'An interactive cosmogony: the first principles from Chaos to the Wheel, every pantheon answering the same first questions — then the turn, where each principle descends into the modern industries it powers.',
   isPartOf: { '@type': 'WebSite', name: 'PuniCodex', url: 'https://punicodex.com/' },
   about: ASCENT.map((ch) => ({ '@type': 'Thing', name: ch.title, alternateName: ch.epigraph })),
 };
 
-// Per-chapter share/index pages: /arche/{id}/ — the ascent scene with its
+// Per-chapter share/index pages: /genesis/{id}/ — the ascent scene with its
 // Act II twin, crawlable and shareable, deep-linking into the experience.
 const chapterPage = (ch, i) => {
   const twin = DESCENT.find((d) => d.echoes === ch.id);
@@ -143,11 +143,11 @@ const chapterPage = (ch, i) => {
     <meta name="theme-color" content="#050505">
     <title>${ROMAN[i]}. ${esc(ch.title)} — The Archē | PuniCodex</title>
     <meta name="description" content="${esc(ch.epigraph)} — ${esc(ch.verse[0])}">
-    <link rel="canonical" href="https://punicodex.com/arche/${ch.id}/">
+    <link rel="canonical" href="https://punicodex.com/genesis/${ch.id}/">
     <meta property="og:type" content="article">
     <meta property="og:title" content="${ROMAN[i]}. ${esc(ch.title)} — The Archē">
     <meta property="og:description" content="${esc(ch.verse.join(' '))}">
-    <meta property="og:url" content="https://punicodex.com/arche/${ch.id}/">
+    <meta property="og:url" content="https://punicodex.com/genesis/${ch.id}/">
     <meta property="og:image" content="https://punicodex.com/assets/images/og-default.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
@@ -155,14 +155,14 @@ const chapterPage = (ch, i) => {
     <link rel="stylesheet" href="/css/arche.css">
 </head>
 <body class="arche-body arche-chapter">
-    <a class="arche-exit" href="/arche/" aria-label="The full Archē experience">
+    <a class="arche-exit" href="/genesis/" aria-label="The full Archē experience">
         <img src="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png" alt="PuniCodex" width="173" height="18">
     </a>
     <main class="arche-stage">
         <section class="arche-scene is-active">
             <div class="arche-scene-inner">
                 <header class="arche-scene-head">
-                    <span class="arche-kicker">${ROMAN[i]} · ${esc(ch.epigraph)} · <a href="/arche/#scene-${ch.id}">enter the experience ↓</a></span>
+                    <span class="arche-kicker">${ROMAN[i]} · ${esc(ch.epigraph)} · <a href="/genesis/#scene-${ch.id}">enter the experience ↓</a></span>
                     <h1 class="arche-title">${esc(ch.title)}</h1>
                 </header>
                 <div class="arche-verse">
@@ -183,8 +183,8 @@ ${twin.tendrils.map(tendrilCard).join('\n')}
     : ''
 }
                 <nav class="arche-chapter-nav" aria-label="Chapters">
-                    ${prev ? `<a class="arche-begin" href="/arche/${prev.id}/">← ${esc(prev.title)}</a>` : '<a class="arche-begin" href="/arche/">ΑΡΧΗ</a>'}
-                    ${next ? `<a class="arche-begin" href="/arche/${next.id}/">${esc(next.title)} →</a>` : '<a class="arche-begin" href="/arche/the-end/">ΤΕΛΟΣ →</a>'}
+                    ${prev ? `<a class="arche-begin" href="/genesis/${prev.id}/">← ${esc(prev.title)}</a>` : '<a class="arche-begin" href="/genesis/">ΑΡΧΗ</a>'}
+                    ${next ? `<a class="arche-begin" href="/genesis/${next.id}/">${esc(next.title)} →</a>` : '<a class="arche-begin" href="/genesis/the-end/">ΤΕΛΟΣ →</a>'}
                 </nav>
             </div>
         </section>
@@ -202,11 +202,11 @@ const page = `<!DOCTYPE html>
     <meta name="theme-color" content="#050505">
     <title>The Archē — From the First Chaos to the Modern World | PuniCodex</title>
     <meta name="description" content="An interactive cosmogony: Chaos, the One, Earth and Sky, Light, the Deep, Thunder, Order, Wisdom, Love, War, Death, Trickery, the Wheel — every pantheon's answer to the first questions, then the turn, where each principle descends into the modern industries it powers.">
-    <link rel="canonical" href="https://punicodex.com/arche/">
+    <link rel="canonical" href="https://punicodex.com/genesis/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="The Archē — From the First Chaos to the Modern World">
     <meta property="og:description" content="Every pantheon's answer to the first questions — then the turn, where each principle descends into the modern industries it powers.">
-    <meta property="og:url" content="https://punicodex.com/arche/">
+    <meta property="og:url" content="https://punicodex.com/genesis/">
     <meta property="og:image" content="https://punicodex.com/assets/images/og-default.png">
     <meta property="og:site_name" content="PuniCodex">
     <meta name="twitter:card" content="summary_large_image">
@@ -335,7 +335,7 @@ if (fs.existsSync(OUT) && fs.readFileSync(OUT, 'utf8') === page) {
 let chaptersWritten = 0;
 for (let i = 0; i < ASCENT.length; i++) {
   const ch = ASCENT[i];
-  const out = path.join(ROOT, 'arche', ch.id, 'index.html');
+  const out = path.join(ROOT, 'genesis', ch.id, 'index.html');
   const html = chapterPage(ch, i);
   if (fs.existsSync(out) && fs.readFileSync(out, 'utf8') === html) continue;
   fs.mkdirSync(path.dirname(out), { recursive: true });

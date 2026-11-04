@@ -34,7 +34,7 @@ const NAV_REPLACEMENT = `    <!-- Global Nav -->
                 <a href="https://punicodex.com/about/" class="nav-link">About</a>
                 <a href="https://punicodex.com/contact/" class="nav-link">Contact</a>
             </div>
-            <a href="https://punicodex.com/arche/" class="nav-cta" title="The Archē — the first principles, from Chaos to the modern world"><span>Enter</span></a>
+            <a href="https://punicodex.com/genesis/" class="nav-cta" title="The Archē — the first principles, from Chaos to the modern world"><span>Enter</span></a>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>

@@ -74,7 +74,7 @@ const CANONICAL_SUITES = [
 
 const RULES = [
   {
-    pattern: /^scripts\/(arche-chapters|generate-arche-page)\.js$|^js\/arche\.js$|^css\/arche\.css$|^arche\/|^test\/arche\.test\.js$/,
+    pattern: /^scripts\/(arche-chapters|generate-arche-page)\.js$|^js\/arche\.js$|^css\/arche\.css$|^genesis\/|^test\/arche\.test\.js$/,
     suites: ['Archē Tests'],
   },
   {
