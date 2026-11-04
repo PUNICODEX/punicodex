@@ -26,7 +26,9 @@ const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 const esc = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const { PROLOGUE, ASCENT, TURN, DESCENT, FINALE } = require(path.join(root, 'scripts', 'arche-chapters.js'));
+const { PROLOGUE, ASCENT, TURN, DESCENT, FINALE } = require(
+  path.join(root, 'scripts', 'arche-chapters.js')
+);
 const { LEXICON } = require(path.join(root, 'type', 'js', 'lexicon.js'));
 const { INDUSTRY_GROUPS } = require(path.join(root, 'type', 'js', 'industry-patterns.js'));
 
@@ -101,7 +103,10 @@ test('ascent is cross-pantheon: every chapter spans at least 3 pantheons', () =>
 
 test('prologue, turn, and finale carry the narrative frame', () => {
   assert.ok(PROLOGUE.verse.length >= 3, 'prologue verse missing');
-  assert.ok(TURN.verse.some((l) => /work/i.test(l)), 'the turn must land the "went to work" thesis');
+  assert.ok(
+    TURN.verse.some((l) => /work/i.test(l)),
+    'the turn must land the "went to work" thesis'
+  );
   assert.ok(FINALE.links.length >= 3, 'finale must offer onward paths');
 });
 
@@ -123,8 +128,12 @@ test('EVERY lexicon entry appears exactly once: voiced, choir, or finale', () =>
   }
   // The page renders every one: voiced cards + choir chips + finale chorus.
   const html = read('arche/index.html');
-  const cards = new Set([...html.matchAll(/class="arche-card" href="\/([a-z0-9-]+)\//g)].map((m) => m[1]));
-  const chips = new Set([...html.matchAll(/class="arche-chip[^"]*" href="\/([a-z0-9-]+)\//g)].map((m) => m[1]));
+  const cards = new Set(
+    [...html.matchAll(/class="arche-card" href="\/([a-z0-9-]+)\//g)].map((m) => m[1])
+  );
+  const chips = new Set(
+    [...html.matchAll(/class="arche-chip[^"]*" href="\/([a-z0-9-]+)\//g)].map((m) => m[1])
+  );
   const rendered = new Set([...cards, ...chips]);
   const missing = [...ids].filter((id) => !rendered.has(id));
   assert.deepStrictEqual(missing, [], `${missing.length} entries missing from the page`);
@@ -154,7 +163,13 @@ test('every chapter holds a real congregation (no token chapters)', () => {
 
 test('page exists with a scene per chapter plus prologue, turn, finale', () => {
   const html = read('arche/index.html');
-  const want = ['prologue', 'turn', 'finale', ...ASCENT.map((c) => `scene-${c.id}`), ...DESCENT.map((c) => `scene-${c.id}`)];
+  const want = [
+    'prologue',
+    'turn',
+    'finale',
+    ...ASCENT.map((c) => `scene-${c.id}`),
+    ...DESCENT.map((c) => `scene-${c.id}`),
+  ];
   for (const id of want) {
     assert.ok(html.includes(`id="${id}"`), `missing scene ${id}`);
   }
@@ -236,11 +251,18 @@ test('engine exposes a system for every scene fx id used by the page', () => {
 // ---------------------------------------------------------------------------
 
 test('generator is idempotent (byte-identical output across runs)', () => {
+  const STAMPER = path.join(root, 'scripts', 'stamp-asset-versions.js');
   const hash = (p) => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  const run = () => {
+    execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+    // The committed page is generator + asset stamper output (the stamper pins
+    // /assets/fonts/fonts.css and friends); the test must reproduce both.
+    execFileSync(process.execPath, [STAMPER], { cwd: root, stdio: 'pipe' });
+  };
   const committed = hash(PAGE);
-  execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  run();
   assert.strictEqual(hash(PAGE), committed, 'first regeneration changed the page');
-  execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  run();
   assert.strictEqual(hash(PAGE), committed, 'second regeneration changed the page');
 });
 
@@ -254,7 +276,10 @@ test('every chapter has a crawlable share page at /arche/{id}/', () => {
     const file = path.join(root, 'arche', ch.id, 'index.html');
     assert.ok(fs.existsSync(file), `missing chapter page for ${ch.id}`);
     const html = fs.readFileSync(file, 'utf8');
-    assert.ok(html.includes(`<link rel="canonical" href="https://punicodex.com/arche/${ch.id}/">`), `${ch.id}: canonical`);
+    assert.ok(
+      html.includes(`<link rel="canonical" href="https://punicodex.com/arche/${ch.id}/">`),
+      `${ch.id}: canonical`
+    );
     assert.ok(html.includes(esc(ch.verse[0])), `${ch.id}: verse`);
     assert.ok(html.includes('arche-chapter-nav'), `${ch.id}: prev/next nav`);
     const ids = new Set(LEXICON.map((e) => e.id));
@@ -301,7 +326,16 @@ test('engine: transitions, sound design, widgets, and journey tracking', () => {
 
 test('colour grading rules exist for the graded principles', () => {
   const css = read('css/arche.css');
-  const graded = ['water', 'love', 'death', 'the-song', 'the-wild', 'the-child', 'trickery', 'wisdom'];
+  const graded = [
+    'water',
+    'love',
+    'death',
+    'the-song',
+    'the-wild',
+    'the-child',
+    'trickery',
+    'wisdom',
+  ];
   for (const id of graded) {
     assert.ok(css.includes(`body[data-fx='${id}']`), `no grading rule for ${id}`);
   }
