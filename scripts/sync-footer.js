@@ -103,6 +103,7 @@ const TARGETS = [
   path.join('type', 'index.html'),
   path.join('university-sponsorship', 'index.html'),
   path.join('scholars', 'index.html'),
+  path.join('platform', 'public', 'scholars', 'index.html'),
   path.join('pronunciation', 'index.html'),
   path.join('everyday', 'index.html'),
   path.join('ink', 'index.html'),
