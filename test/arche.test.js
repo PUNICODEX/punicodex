@@ -275,22 +275,33 @@ test('engine exposes a system for every scene fx id used by the page', () => {
 test('generator is idempotent (byte-identical output across runs)', () => {
   const STAMPER = path.join(root, 'scripts', 'stamp-asset-versions.js');
   const hash = (p) => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  // The committed pages carry post-pipeline injection blocks; the raw
+  // generator+stamper does not. Capture and restore every emitted page so
+  // this suite leaves the tree exactly as it found it (battery hygiene).
+  const emitted = [PAGE, ...ASCENT.map((c) => path.join(root, 'genesis', c.id, 'index.html'))];
+  const snapshot = new Map(emitted.map((p) => [p, fs.readFileSync(p)]));
   const run = () => {
     execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
     // The committed page is generator + asset stamper output (the stamper pins
     // /assets/fonts/fonts.css and friends); reproduce both every run.
     execFileSync(process.execPath, [STAMPER], { cwd: root, stdio: 'pipe' });
   };
-  // Idempotency means run-to-run byte stability: three consecutive
-  // generator+stamper passes must agree. (Whether the committed bytes match
-  // this output is the divergence gate's job — this suite runs inside the
-  // battery, where other suites may legitimately touch pages first.)
-  run();
-  const first = hash(PAGE);
-  run();
-  assert.strictEqual(hash(PAGE), first, 'second regeneration changed the page');
-  run();
-  assert.strictEqual(hash(PAGE), first, 'third regeneration changed the page');
+  try {
+    // Idempotency means run-to-run byte stability: three consecutive
+    // generator+stamper passes must agree. (Whether the committed bytes match
+    // this output is the divergence gate's job — this suite runs inside the
+    // battery, where other suites may legitimately touch pages first.)
+    run();
+    const first = hash(PAGE);
+    run();
+    assert.strictEqual(hash(PAGE), first, 'second regeneration changed the page');
+    run();
+    assert.strictEqual(hash(PAGE), first, 'third regeneration changed the page');
+  } finally {
+    for (const [p, bytes] of snapshot) {
+      if (fs.existsSync(p)) fs.writeFileSync(p, bytes);
+    }
+  }
 });
 
 // ---------------------------------------------------------------------------
