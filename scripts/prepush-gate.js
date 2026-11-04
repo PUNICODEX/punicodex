@@ -78,6 +78,14 @@ const RULES = [
     suites: ['Archē Tests'],
   },
   {
+    pattern: /^scripts\/sync-mobile-menu\.js$|^scripts\/nav-tree\.js$|^scripts\/generate-herald\.js$|^templates\/herald\/|^platform\/public\/scholars\/|^test\/mobile-menu-drift\.test\.js$/,
+    suites: [
+      'Mobile Menu Drift Tests',
+      'Mobile Menu Consistency Tests',
+      'Menu Consistency Tests',
+    ],
+  },
+  {
     pattern: /^platform\/api-handlers\/root\/university\/|^platform\/api\/(university-call-reminders|university-pitch-email|email)\.js$|^platform\/db\/migrate-university-bookings\.js$|^university\/book\/|^api\/cron\/university-call-reminders\/|^test\/university-booking\.test\.js$/,
     suites: ['University Booking Endpoint Tests', 'University Outreach Tests', 'Pitch Email Tests'],
   },
@@ -361,6 +369,21 @@ function selectSuites(files, suiteCommands) {
 
 // ── Runner ───────────────────────────────────────────────────────────────────
 
+const LOG_FILE = (() => {
+  try {
+    return path.join(ROOT, '.git', 'prepush-last-run.log');
+  } catch {
+    return null;
+  }
+})();
+
+function appendLog(text) {
+  if (!LOG_FILE) return;
+  try {
+    fs.appendFileSync(LOG_FILE, text + '\n');
+  } catch {}
+}
+
 function runSuite(name, cmd) {
   const start = Date.now();
   try {
@@ -382,6 +405,7 @@ function runSuite(name, cmd) {
       .filter(Boolean)
       .map((b) => b.toString())
       .join('\n');
+    appendLog(`\n===== FAILED SUITE: ${name} (${cmd}) =====\n${out}`);
     console.log(
       out
         .split('\n')
@@ -390,6 +414,7 @@ function runSuite(name, cmd) {
         .map((l) => `    ${C.dim}${l}${C.reset}`)
         .join('\n')
     );
+    console.log(`    ${C.dim}Full failure output: ${LOG_FILE}${C.reset}`);
     return false;
   }
 }
@@ -409,6 +434,14 @@ function selfTest(suiteCommands) {
 
 function main() {
   console.log(`\n${C.bold}${C.cyan}▸ Pre-Push Gate${C.reset}`);
+  console.log(
+    `  ${C.dim}Full failure output is written to ${LOG_FILE} — do not pipe this gate through tail/head.${C.reset}`
+  );
+  if (LOG_FILE) {
+    try {
+      fs.writeFileSync(LOG_FILE, `Pre-push gate run — ${new Date().toISOString()}\n`);
+    } catch {}
+  }
 
   const suiteCommands = loadSuiteCommands();
   if (!selfTest(suiteCommands)) {
@@ -448,9 +481,11 @@ function main() {
     if (!runSuite(name, cmd)) failed = true;
   }
 
-  if (canonical && !failed) {
-    // Divergence gate last: it regenerates everything and diffs — the most
-    // expensive check, only worth running once the fast gates are green.
+  // Divergence gate LAST (it regenerates everything and diffs — the most
+  // expensive check) — but it runs even when fast suites failed, so a push
+  // with both a suite failure and drift reports both classes in one pass
+  // instead of serializing them into separate blocked rounds.
+  if (canonical) {
     const start = Date.now();
     try {
       execFileSync(NPM, ['run', 'generate:check'], {
@@ -469,13 +504,27 @@ function main() {
       failed = true;
       console.log(`  ${C.red}✗ Divergence Gate — generated artifacts out of sync${C.reset}`);
       const out = [err.stdout, err.stderr]
-      .filter(Boolean)
-      .map((b) => b.toString())
-      .join('\n');
-      console.log(out.split('\n').slice(-15).map((l) => `    ${C.dim}${l}${C.reset}`).join('\n'));
+        .filter(Boolean)
+        .map((b) => b.toString())
+        .join('\n');
+      appendLog(`\n===== DIVERGENCE GATE FAILED =====\n${out}`);
+      // Surface the actual drifted files directly — the generate log tail
+      // scrolls them off. A second porcelain read is cheap and robust.
+      try {
+        const drift = execFileSync('git', ['status', '--porcelain'], { cwd: ROOT, encoding: 'utf8' })
+          .split('\n')
+          .filter((l) => l && !l.startsWith('??'))
+          .slice(0, 60);
+        if (drift.length) {
+          console.log(`    ${C.red}Drifted files:${C.reset}`);
+          for (const d of drift) console.log(`    ${C.red} ${d}${C.reset}`);
+        }
+      } catch {}
+      console.log(`    ${C.dim}Full failure output: ${LOG_FILE}${C.reset}`);
+      console.log(
+        `    ${C.dim}Remediation: npm run generate, then git add/commit the regenerated files — see AGENTS.md “Pre-push gate”.${C.reset}`
+      );
     }
-  } else if (canonical && failed) {
-    console.log(`  ${C.yellow}⚠ divergence gate skipped (fix the failures above first)${C.reset}`);
   }
 
   if (failed) {

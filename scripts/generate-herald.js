@@ -807,6 +807,31 @@ function main() {
   const fullBook = renderFullBook(edition);
   writeFile(path.join(OUT_DIR, edition.id, 'book', 'index.html'), fullBook);
 
+  // Chrome self-heal: the inline templates drift from the canonical nav/menu/
+  // footer over time, so every emitted herald page that carries them is
+  // normalized here (same treatment the pipeline's post-steps give the
+  // edition cover). The Restoration experience (herald/index.html) has no
+  // chrome and is untouched.
+  const { syncOne } = require('./sync-mobile-menu');
+  const { syncPage } = require('./sync-desktop-nav');
+  const { syncPage: syncFooterPage } = require('./sync-footer');
+  const walk = (dir) => {
+    for (const name of fs.readdirSync(dir)) {
+      const full = path.join(dir, name);
+      if (fs.statSync(full).isDirectory()) {
+        walk(full);
+        continue;
+      }
+      if (!name.endsWith('.html')) continue;
+      const rel = path.relative(ROOT, full);
+      const html = fs.readFileSync(full, 'utf8');
+      if (html.includes('id="mobile-menu"')) syncOne(full, '/herald/');
+      if (/class="main-nav/.test(html)) syncPage(rel, { active: '/herald/', replaceNav: true });
+      if (html.includes('<footer')) syncFooterPage(rel);
+    }
+  };
+  walk(OUT_DIR);
+
   console.log(
     `Herald generated: landing page + edition ${edition.id} with ${edition.chapters.length} chapters + ${ARCHETYPES.filter((a) => a.built).length} flagship spreads (${fmtNumber(fullBook.length)} bytes)`
   );

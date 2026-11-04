@@ -131,6 +131,20 @@ const TARGETS = [
   { page: path.join('screen', 'index.html'), active: '/screen/' },
   // Wing hub pages carry the overlay too.
   { page: path.join('world', 'index.html'), active: '/world/' },
+  // Hand-maintained pages that carry the standard overlay (sync normalizes
+  // their menus; they were found by the chrome-drift audit).
+  { page: path.join('codex', 'anatomy-of-a-punycode-domain', 'index.html'), active: '/codex/' },
+  { page: path.join('codex', 'building-the-temple', 'index.html'), active: '/codex/' },
+  { page: path.join('codex', 'restoring-the-names', 'index.html'), active: '/codex/' },
+  { page: path.join('codex', 'why-greek-accents-matter', 'index.html'), active: '/codex/' },
+  { page: path.join('engineering', 'index.html'), active: null },
+  { page: path.join('privacy', 'index.html'), active: null },
+  { page: path.join('terms', 'advertising', 'index.html'), active: null },
+  { page: path.join('terms', 'analytics', 'index.html'), active: null },
+  { page: path.join('terms', 'data-use', 'index.html'), active: null },
+  { page: path.join('university-sponsorship', 'index.html'), active: null },
+  { page: path.join('university', 'book', 'index.html'), active: null },
+  { page: path.join('platform', 'public', 'scholars', 'index.html'), active: '/scholars/' },
   { page: path.join('culture', 'index.html'), active: '/culture/' },
   { page: path.join('instruments', 'index.html'), active: '/instruments/' },
   { page: path.join('library', 'index.html'), active: '/library/' },

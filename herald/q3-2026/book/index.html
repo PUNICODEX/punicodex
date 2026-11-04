@@ -51,95 +51,245 @@
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
+    <link rel="stylesheet" href="/css/nav-hubs.css?v=4">
 </head>
 <body class="herald-book-body">
-    <nav class="main-nav screen-only" id="main-nav">
+    <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
             <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
             <div class="nav-links">
-                <a href="/pantheon/" class="nav-link">Pantheon</a>
-                <a href="/realms/" class="nav-link">Realms</a>
-                <a href="/lexicon/" class="nav-link">Lexicon</a>
-                <a href="/connections/" class="nav-link">Connections</a>
-                <a href="/type/" class="nav-link">Type</a>
-                <a href="/search/" class="nav-link">Search</a>
-                <div class="nav-more">
-                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
-                    <div class="nav-more-menu">
-                        <a href="/patterns/" class="nav-link">Patterns</a>
-                        <a href="/everyday/" class="nav-link">Words</a>
-                        <a href="/ink/" class="nav-link">Ink</a>
-                        <a href="/cards/" class="nav-link">Cards</a>
-                        <a href="/innovation/" class="nav-link">Innovation</a>
-                        <a href="/texts/" class="nav-link">Texts</a>
-                        <a href="/trending/" class="nav-link">Trending</a>
-                        <a href="/codex/" class="nav-link">Codex</a>
-                        <a href="/blog/" class="nav-link">Blog</a>
-                        <a href="/creatives/" class="nav-link">Creatives</a>
-                        <a href="/scholars/" class="nav-link">Scholars</a>
-                        <a href="/api/v1/docs/" class="nav-link">API</a>
-                        <a href="/appraise/" class="nav-link">Appraise</a>
-                        <a href="/herald/edition/" class="nav-link active" aria-current="page">Herald</a>
-                        <a href="/store/" class="nav-link">Store</a>
-                        <a href="/about/" class="nav-link">About</a>
-                        <a href="/contact/" class="nav-link">Contact</a>
+                <div class="nav-hub" data-hub="atlas">
+                    <a href="/world/" class="nav-link" aria-haspopup="true" aria-expanded="false">Atlas</a>
+                    <div class="nav-hub-menu">
+                    <div class="nav-hub-item">
+                                <a href="/pantheon/">Pantheon<span class="nav-hub-caret">▸</span></a>
+                                <div class="nav-hub-panel nav-hub-panel--mega">
+                                    <a href="/realms/">Realms</a>
+                                    <a href="/artifacts/">Artifacts</a>
+                                    <a href="/aboriginal/">Aboriginal</a>
+                                    <a href="/baltic/">Baltic</a>
+                                    <a href="/buddhist/">Buddhist</a>
+                                    <a href="/canaanite/">Canaanite</a>
+                                    <a href="/celtic/">Celtic</a>
+                                    <a href="/chinese/">Chinese</a>
+                                    <a href="/egyptian/">Egyptian</a>
+                                    <a href="/greek/">Greek</a>
+                                    <a href="/greek-location/">Greek Locations</a>
+                                    <a href="/hittite/">Hittite</a>
+                                    <a href="/incan/">Incan</a>
+                                    <a href="/japanese/">Japanese</a>
+                                    <a href="/korean/">Korean</a>
+                                    <a href="/mapuche/">Mapuche</a>
+                                    <a href="/mesopotamian/">Mesopotamian</a>
+                                    <a href="/nahuatl/">Nahuatl</a>
+                                    <a href="/norse/">Norse</a>
+                                    <a href="/phoenician/">Phoenician</a>
+                                    <a href="/polynesian/">Polynesian</a>
+                                    <a href="/roman/">Roman</a>
+                                    <a href="/sanskrit/">Sanskrit</a>
+                                    <a href="/slavic/">Slavic</a>
+                                    <a href="/taoist/">Taoist</a>
+                                    <a href="/yoruba/">Yoruba</a>
+                                    <a href="/zoroastrian/">Zoroastrian</a>
+                                </div>
+                            </div>
+                    <a href="/connections/">Connections</a>
+                    <a href="/patterns/">Patterns</a>
+                    <a href="/trending/">Trending</a>
+                    <a href="/search/">Search</a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="culture">
+                    <a href="/culture/" class="nav-link active" aria-haspopup="true" aria-expanded="false">Culture</a>
+                    <div class="nav-hub-menu">
+                    <a href="/screen/">Screen</a>
+                    <a href="/everyday/">Words</a>
+                    <a href="/university-sponsorship/">Academics</a>
+                    <a href="/herald/" aria-current="page">Herald<span class="nav-hub-tag">new</span></a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="tools">
+                    <a href="/instruments/" class="nav-link" aria-haspopup="true" aria-expanded="false">Tools</a>
+                    <div class="nav-hub-menu">
+                    <a href="/type/">Type</a>
+                    <a href="/oracle/">Oracle</a>
+                    <a href="/app/">App</a>
+                    <a href="/extension/">Extension</a>
+                    <a href="/api/v1/docs/">API</a>
+                    <a href="/appraise/">Appraise</a>
+                    <a href="/authenticity/">Authenticity</a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="library">
+                    <a href="/library/" class="nav-link" aria-haspopup="true" aria-expanded="false">Library</a>
+                    <div class="nav-hub-menu">
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/texts/">Texts</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/scholars/">Scholars</a>
+                    <div class="nav-hub-item">
+                                <a href="/codex/">Codex<span class="nav-hub-caret">▸</span></a>
+                                <div class="nav-hub-panel">
+                                    <a href="/codex/anatomy-of-a-punycode-domain/">Anatomy of a Punycode Domain</a>
+                                    <a href="/codex/building-the-temple/">Building the Temple</a>
+                                    <a href="/codex/why-greek-accents-matter/">Why Greek Accents Matter</a>
+                                </div>
+                            </div>
+                    <a href="/rulebook/">Rulebook</a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="relics">
+                    <a href="/relics/" class="nav-link" aria-haspopup="true" aria-expanded="false">Relics</a>
+                    <div class="nav-hub-menu">
+                    <div class="nav-hub-item">
+                                <a href="/store/">Store<span class="nav-hub-caret">▸</span></a>
+                                <div class="nav-hub-panel">
+                                    <a href="/store/merch/">Merch</a>
+                                    <a href="/store/art/">Art</a>
+                                    <a href="/store/art/galleries/">Galleries</a>
+                                </div>
+                            </div>
+                    <a href="/cards/">Cards</a>
+                    <a href="/game/">Game</a>
+                    <a href="/ink/">Ink</a>
+                    </div>
+                </div>
+                <div class="nav-hub" data-hub="about">
+                    <a href="/about/" class="nav-link" aria-haspopup="true" aria-expanded="false">About</a>
+                    <div class="nav-hub-menu">
+                    <a href="/about/origins/">Origins</a>
+                    <a href="/about/founder/">Founder</a>
+                    <a href="/careers/">Careers</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
                     </div>
                 </div>
             </div>
             <a href="/arche/" class="nav-cta" title="The Archē — the first principles, from Chaos to the modern world"><span>Enter</span></a>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </nav>
 
-    <div class="mobile-menu screen-only" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/arche/" class="mobile-menu-begin">✦ Begin — The First Principles</a>
         <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Explore</span>
+            <a href="/world/" class="mobile-menu-title mobile-menu-title--hub">Atlas</a>
             <div class="mobile-menu-group">
-                <a href="/pantheon/">Pantheon</a>
-                <a href="/realms/">Realms</a>
-                <a href="/lexicon/">Lexicon</a>
+                <details class="mobile-sub">
+                <summary><a href="/pantheon/" class="mobile-sub-link">Pantheon</a><span class="mobile-sub-caret">▾</span></summary>
+                <div class="mobile-sub-group">
+                    <a href="/pantheon/" class="mobile-link--featured">Pantheon — overview</a>
+                    <a href="/realms/">Realms</a>
+                    <a href="/artifacts/">Artifacts</a>
+                    <a href="/aboriginal/">Aboriginal</a>
+                    <a href="/baltic/">Baltic</a>
+                    <a href="/buddhist/">Buddhist</a>
+                    <a href="/canaanite/">Canaanite</a>
+                    <a href="/celtic/">Celtic</a>
+                    <a href="/chinese/">Chinese</a>
+                    <a href="/egyptian/">Egyptian</a>
+                    <a href="/greek/">Greek</a>
+                    <a href="/greek-location/">Greek Locations</a>
+                    <a href="/hittite/">Hittite</a>
+                    <a href="/incan/">Incan</a>
+                    <a href="/japanese/">Japanese</a>
+                    <a href="/korean/">Korean</a>
+                    <a href="/mapuche/">Mapuche</a>
+                    <a href="/mesopotamian/">Mesopotamian</a>
+                    <a href="/nahuatl/">Nahuatl</a>
+                    <a href="/norse/">Norse</a>
+                    <a href="/phoenician/">Phoenician</a>
+                    <a href="/polynesian/">Polynesian</a>
+                    <a href="/roman/">Roman</a>
+                    <a href="/sanskrit/">Sanskrit</a>
+                    <a href="/slavic/">Slavic</a>
+                    <a href="/taoist/">Taoist</a>
+                    <a href="/yoruba/">Yoruba</a>
+                    <a href="/zoroastrian/">Zoroastrian</a>
+                </div>
+            </details>
                 <a href="/connections/">Connections</a>
                 <a href="/patterns/">Patterns</a>
                 <a href="/trending/">Trending</a>
-                <a href="/store/">Store</a>
+                <a href="/search/">Search</a>
             </div>
         </div>
         <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Tools</span>
+            <a href="/culture/" class="mobile-menu-title mobile-menu-title--hub">Culture</a>
+            <div class="mobile-menu-group">
+                <a href="/screen/">Screen</a>
+                <a href="/everyday/">Words</a>
+                <a href="/university-sponsorship/">Academics</a>
+                <a href="/herald/" class="active">Herald</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <a href="/instruments/" class="mobile-menu-title mobile-menu-title--hub">Tools</a>
             <div class="mobile-menu-group">
                 <a href="/type/">Type</a>
-                <a href="/search/">Search</a>
-                <a href="/everyday/">Words</a>
-                <a href="/ink/">Ink</a>
-                <a href="/cards/">Cards</a>
-                <a href="/innovation/">Innovation</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Resources</span>
-            <div class="mobile-menu-group">
-                <a href="/texts/">Texts</a>
-                <a href="/codex/">Codex</a>
-                <a href="/blog/">Blog</a>
-                <a href="/creatives/">Creatives</a>
-                <a href="/scholars/">Scholars</a>
+                <a href="/oracle/">Oracle</a>
+                <a href="/app/">App</a>
+                <a href="/extension/">Extension</a>
                 <a href="/api/v1/docs/">API</a>
                 <a href="/appraise/">Appraise</a>
-                <a href="/herald/edition/" class="active">Herald</a>
+                <a href="/authenticity/">Authenticity</a>
             </div>
         </div>
         <div class="mobile-menu-section">
-            <span class="mobile-menu-title">About</span>
+            <a href="/library/" class="mobile-menu-title mobile-menu-title--hub">Library</a>
             <div class="mobile-menu-group">
-                <a href="/about/">About</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/texts/">Texts</a>
+                <a href="/blog/">Blog</a>
+                <a href="/scholars/">Scholars</a>
+                <details class="mobile-sub">
+                <summary><a href="/codex/" class="mobile-sub-link">Codex</a><span class="mobile-sub-caret">▾</span></summary>
+                <div class="mobile-sub-group">
+                    <a href="/codex/" class="mobile-link--featured">Codex — overview</a>
+                    <a href="/codex/anatomy-of-a-punycode-domain/">Anatomy of a Punycode Domain</a>
+                    <a href="/codex/building-the-temple/">Building the Temple</a>
+                    <a href="/codex/why-greek-accents-matter/">Why Greek Accents Matter</a>
+                </div>
+            </details>
+                <a href="/rulebook/">Rulebook</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <a href="/relics/" class="mobile-menu-title mobile-menu-title--hub">Relics</a>
+            <div class="mobile-menu-group">
+                <details class="mobile-sub">
+                <summary><a href="/store/" class="mobile-sub-link">Store</a><span class="mobile-sub-caret">▾</span></summary>
+                <div class="mobile-sub-group">
+                    <a href="/store/" class="mobile-link--featured">Store — overview</a>
+                    <a href="/store/merch/">Merch</a>
+                    <a href="/store/art/">Art</a>
+                    <a href="/store/art/galleries/">Galleries</a>
+                </div>
+            </details>
+                <a href="/cards/">Cards</a>
+                <a href="/game/">Game</a>
+                <a href="/ink/">Ink</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <a href="/about/" class="mobile-menu-title mobile-menu-title--hub">About</a>
+            <div class="mobile-menu-group">
+                <a href="/about/origins/">Origins</a>
                 <a href="/about/founder/">Founder</a>
                 <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
             </div>
         </div>
     </div>
+
+    
 
     <main class="herald-book-main">
         <!-- Front cover -->
@@ -211,7 +361,63 @@
         </section>
 
         <!-- Flagship spreads -->
-        <section class="herald-spread spread-egyptian" id="temple-ab" data-page-left="51" data-page-right="52"><section class="spread-page spread-left" style="--spread-accent:#228B22;--spread-ink:#f0f5e8"><header class="spread-running-header"><span class="spread-pantheon">Egyptian</span><span class="spread-page-num">51</span></header><div class="spread-hero"><h2 class="spread-name">Ꜣb</h2><div class="spread-script"><span class="script-label">Original Script</span><span class="script-value" title="𓍋𓃀𓂻">𓍋𓃀𓂻</span></div><div class="spread-domain">Heart, Conscience, Emotion</div><div class="spread-badges"><span class="spread-badge">Preserves distinctive letters</span><span class="spread-badge">Egyptian</span></div></div><div class="spread-visual"><img class="spread-mascot" src="/sites/ab/assets/ab_mascot.webp" alt="Ꜣb mascot" loading="lazy" onerror="this.style.display='none'"><div class="spread-mark-row"><img class="spread-logomark" src="/sites/ab/assets/ab_logomark.webp" alt="Ꜣb logomark" loading="lazy" onerror="this.style.display='none'"><img class="spread-wordmark" src="/sites/ab/assets/ab_logolockup.webp" alt="Ꜣb wordmark" loading="lazy" onerror="this.style.display='none'"></div></div><div class="spread-gallery"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Heart_scarab%2C_Egyptian_blue_-_Museo_Egizio%2C_Turin_C_6016_p01.jpg/960px-Heart_scarab%2C_Egyptian_blue_-_Museo_Egizio%2C_Turin_C_6016_p01.jpg.webp" alt="Egyptian heart scarab of Egyptian blue." loading="lazy"><figcaption>The Heart (Ib/Ab) — Heart scarab of Egyptian blue. The seat of emotion, intellect, and morality in Egyptian belief.</figcaption></figure><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Book_of_the_Dead%2C_Anubis_weighing_the_heart._Wellcome_L0005449.jpg/960px-Book_of_the_Dead%2C_Anubis_weighing_the_heart._Wellcome_L0005449.jpg.webp" alt="Anubis weighing the heart against the feather of Maat." loading="lazy"><figcaption>The Heart in Judgement — Anubis weighs the heart against Maat&#39;s feather in the Hall of Judgement.</figcaption></figure></div><div class="spread-motif">Motif: papyrus &amp; gold</div><footer class="spread-running-footer"><span class="spread-page-num">51</span></footer></section><section class="spread-page spread-right" style="--spread-accent:#228B22;--spread-ink:#f0f5e8"><header class="spread-running-header"><span class="spread-pantheon">Egyptian</span><span class="spread-page-num">52</span></header><p class="spread-tagline">Heart. Central to the weighing of the heart ritual. Represents conscience, emotion, moral worth</p><div class="spread-lore"><p class='lead-text'>The Egyptian <strong>Ꜣb</strong> is far more than a physical organ. It is the seat of intelligence, memory, emotion, and moral character — the only organ left inside the mummy at embalming, because it must speak for the deceased in the Hall of the Two Truths.</p></div><div class="spread-modern-bridge"><span class="modern-label">Modern resonance</span><p>Ꜣb—Heart, Conscience, Emotion—resonates today across Mental Health &amp; Emotional Wellness, Gems, Jewelry &amp; Luxury Materials, Healthcare, Pharma &amp; Medicine; the egyptian ꜣb is far more than a physical organ. The restored Unicode form preserves distinctions flattened by the plain ASCII name.</p></div><div class="spread-name-variations"><span class="variations-label">Name variations</span><ul><li><span class="variation-form">Ꜣb</span> <span class="variation-role">Canonical</span></li><li><span class="variation-form">ab</span> <span class="variation-role">ASCII</span></li></ul></div><div class="spread-pronunciation"><span class="pron-label">Egyptological Reconstruction</span><span class="pron-ipa">/ʔaːb/</span><span class="pron-approx">&#39;AHB&#39; — begin with a catch deep in the throat, then close firmly on b.</span><span class="pron-detail">2 phonemes</span></div><div class="spread-patterns"><span class="patterns-label">Aligned industries</span><span class="patterns-list">Mental Health &amp; Emotional Wellness · Gems, Jewelry &amp; Luxury Materials · Healthcare, Pharma &amp; Medicine · Philosophy, Ethics &amp; Standards</span></div><div class="spread-meaning"><span class="meaning-label">Meaning</span><span>Heart. Central to the weighing of the heart ritual. Represents conscience, emotion, moral worth</span></div><div class="spread-related-temples"><span class="related-label">Kindred temples</span><div class="related-grid"><a class="related-item" href="#temple-akh"><img class="related-mascot" src="/sites/akh/assets/akh_mascot.webp" alt="Ꜣḫ" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Ꜣḫ</span></a><a class="related-item" href="#temple-amun"><img class="related-mascot" src="/sites/amun/assets/amun_mascot.webp" alt="Ꜣmun" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Ꜣmun</span></a><a class="related-item" href="#temple-ankh"><img class="related-mascot" src="/sites/ankh/assets/ankh_mascot.webp" alt="ꜥnḫ" loading="lazy" onerror="this.style.display='none'"><span class="related-name">ꜥnḫ</span></a><a class="related-item" href="#temple-anubis"><img class="related-mascot" src="/sites/anubis/assets/anubis_mascot.webp" alt="ꜣnpw" loading="lazy" onerror="this.style.display='none'"><span class="related-name">ꜣnpw</span></a></div></div><a class="spread-temple-link" href="/ab/" target="_blank" rel="noopener">Visit the temple →</a><footer class="spread-running-footer"><span class="spread-page-num">52</span></footer></section></section>
+        <section class="herald-spread spread-egyptian" id="temple-ab" data-page-left="51" data-page-right="52"><section class="spread-page spread-left" style="--spread-accent:#228B22;--spread-ink:#f0f5e8"><header class="spread-running-header"><span class="spread-pantheon">Egyptian</span><span class="spread-page-num">51</span></header><div class="spread-hero"><h2 class="spread-name">Ꜣb</h2><div class="spread-script"><span class="script-label">Original Script</span><span class="script-value" title="𓍋𓃀𓂻">𓍋𓃀𓂻</span></div><div class="spread-domain">Heart, Conscience, Emotion</div><div class="spread-badges"><span class="spread-badge">Preserves distinctive letters</span><span class="spread-badge">Egyptian</span></div></div><div class="spread-visual"><img class="spread-mascot" src="/sites/ab/assets/ab_mascot.webp" alt="Ꜣb mascot" loading="lazy" onerror="this.style.display='none'"><div class="spread-mark-row"><img class="spread-logomark" src="/sites/ab/assets/ab_logomark.webp" alt="Ꜣb logomark" loading="lazy" onerror="this.style.display='none'"><img class="spread-wordmark" src="/sites/ab/assets/ab_logolockup.webp" alt="Ꜣb wordmark" loading="lazy" onerror="this.style.display='none'"></div></div><div class="spread-gallery"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Heart_scarab%2C_Egyptian_blue_-_Museo_Egizio%2C_Turin_C_6016_p01.jpg/960px-Heart_scarab%2C_Egyptian_blue_-_Museo_Egizio%2C_Turin_C_6016_p01.jpg.webp" alt="Egyptian heart scarab of Egyptian blue." loading="lazy"><figcaption>The Heart (Ib/Ab) — Heart scarab of Egyptian blue. The seat of emotion, intellect, and morality in Egyptian belief.</figcaption></figure><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Book_of_the_Dead%2C_Anubis_weighing_the_heart._Wellcome_L0005449.jpg/960px-Book_of_the_Dead%2C_Anubis_weighing_the_heart._Wellcome_L0005449.jpg.webp" alt="Anubis weighing the heart against the feather of Maat." loading="lazy"><figcaption>The Heart in Judgement — Anubis weighs the heart against Maat&#39;s feather in the Hall of Judgement.</figcaption></figure></div><div class="spread-motif">Motif: papyrus &amp; gold</div><footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
+                </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Explore</h2>
+                    <a href="/pantheon/">Pantheon</a>
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/connections/">Connections</a>
+                    <a href="/patterns/">Patterns</a>
+                    <a href="/everyday/">Words</a>
+                    <a href="/ink/">Ink</a>
+                    <a href="/trending/">Trending</a>
+                    <a href="/rulebook/">Rulebook</a>
+                    <a href="/type/">Type</a>
+                    <a href="/game/">Game</a>
+                    <a href="/search/">Search</a>
+                    <a href="/store/">Store</a>
+                </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Resources</h2>
+                    <a href="/texts/">Texts</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/cards/">Cards</a>
+                    <a href="/store/art/">Art</a>
+                    <a href="/scholars/">Scholars</a>
+                    <a href="/herald/">Herald</a>
+                    <a href="/screen/">Screen</a>
+                    <a href="/authenticity/">Authenticity</a>
+                    <a href="/pronunciation/">Pronunciation</a>
+                    <a href="/innovation/">Innovation</a>
+                    <a href="/arbitrage/">Arbitrage</a>
+                </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Connect</h2>
+                    <a href="/about/">About</a>
+                    <a href="/about/founder/">Founder</a>
+                    <a href="/art/">Art</a>
+                    <a href="/careers/">Careers</a>
+                    <a href="/university-sponsorship/">Academics</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 PuniCodex. All rites reserved.</p>
+                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
+                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
+                    <span class="hekaweb-name">HEKAWEB</span>
+                </a>
+            </div>
+        </div>
+    </footer></section><section class="spread-page spread-right" style="--spread-accent:#228B22;--spread-ink:#f0f5e8"><header class="spread-running-header"><span class="spread-pantheon">Egyptian</span><span class="spread-page-num">52</span></header><p class="spread-tagline">Heart. Central to the weighing of the heart ritual. Represents conscience, emotion, moral worth</p><div class="spread-lore"><p class='lead-text'>The Egyptian <strong>Ꜣb</strong> is far more than a physical organ. It is the seat of intelligence, memory, emotion, and moral character — the only organ left inside the mummy at embalming, because it must speak for the deceased in the Hall of the Two Truths.</p></div><div class="spread-modern-bridge"><span class="modern-label">Modern resonance</span><p>Ꜣb—Heart, Conscience, Emotion—resonates today across Mental Health &amp; Emotional Wellness, Gems, Jewelry &amp; Luxury Materials, Healthcare, Pharma &amp; Medicine; the egyptian ꜣb is far more than a physical organ. The restored Unicode form preserves distinctions flattened by the plain ASCII name.</p></div><div class="spread-name-variations"><span class="variations-label">Name variations</span><ul><li><span class="variation-form">Ꜣb</span> <span class="variation-role">Canonical</span></li><li><span class="variation-form">ab</span> <span class="variation-role">ASCII</span></li></ul></div><div class="spread-pronunciation"><span class="pron-label">Egyptological Reconstruction</span><span class="pron-ipa">/ʔaːb/</span><span class="pron-approx">&#39;AHB&#39; — begin with a catch deep in the throat, then close firmly on b.</span><span class="pron-detail">2 phonemes</span></div><div class="spread-patterns"><span class="patterns-label">Aligned industries</span><span class="patterns-list">Mental Health &amp; Emotional Wellness · Gems, Jewelry &amp; Luxury Materials · Healthcare, Pharma &amp; Medicine · Philosophy, Ethics &amp; Standards</span></div><div class="spread-meaning"><span class="meaning-label">Meaning</span><span>Heart. Central to the weighing of the heart ritual. Represents conscience, emotion, moral worth</span></div><div class="spread-related-temples"><span class="related-label">Kindred temples</span><div class="related-grid"><a class="related-item" href="#temple-akh"><img class="related-mascot" src="/sites/akh/assets/akh_mascot.webp" alt="Ꜣḫ" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Ꜣḫ</span></a><a class="related-item" href="#temple-amun"><img class="related-mascot" src="/sites/amun/assets/amun_mascot.webp" alt="Ꜣmun" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Ꜣmun</span></a><a class="related-item" href="#temple-ankh"><img class="related-mascot" src="/sites/ankh/assets/ankh_mascot.webp" alt="ꜥnḫ" loading="lazy" onerror="this.style.display='none'"><span class="related-name">ꜥnḫ</span></a><a class="related-item" href="#temple-anubis"><img class="related-mascot" src="/sites/anubis/assets/anubis_mascot.webp" alt="ꜣnpw" loading="lazy" onerror="this.style.display='none'"><span class="related-name">ꜣnpw</span></a></div></div><a class="spread-temple-link" href="/ab/" target="_blank" rel="noopener">Visit the temple →</a><footer class="spread-running-footer"><span class="spread-page-num">52</span></footer></section></section>
 <section class="herald-spread spread-canaanite" id="temple-abel" data-page-left="53" data-page-right="54"><section class="spread-page spread-left" style="--spread-accent:#A0522D;--spread-ink:#f5eee8"><header class="spread-running-header"><span class="spread-pantheon">Canaanite</span><span class="spread-page-num">53</span></header><div class="spread-hero"><h2 class="spread-name">Hāḇel</h2><div class="spread-script"><span class="script-label">Original Script</span><span class="script-value" title="הֶבֶל">הֶבֶל</span></div><div class="spread-domain">First Victim</div><div class="spread-badges"><span class="spread-badge">Preserves vowel length</span><span class="spread-badge">Canaanite</span></div></div><div class="spread-visual"><img class="spread-mascot" src="/sites/abel/assets/abel_mascot.webp" alt="Hāḇel mascot" loading="lazy" onerror="this.style.display='none'"><div class="spread-mark-row"><img class="spread-logomark" src="/sites/abel/assets/abel_logomark.png" alt="Hāḇel logomark" loading="lazy" onerror="this.style.display='none'"><img class="spread-wordmark" src="/sites/abel/assets/abel_logolockup.webp" alt="Hāḇel wordmark" loading="lazy" onerror="this.style.display='none'"></div></div><div class="spread-gallery"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Titian_-_Cain_and_Abel_-_WGA22778.jpg/960px-Titian_-_Cain_and_Abel_-_WGA22778.jpg" alt="Cain and Abel" loading="lazy"><figcaption>Cain and Abel — Titian, between 1542 and 1544 date QS:P,+1542-00-00T00:00:00Z/8,P1319,+1542-00-00T00:00:00Z/9,P1326,+1544-00-00T00:00:00Z/9</figcaption></figure><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Frans_Floris_-_Adam_and_Eve_with_Cain_and_Abel.jpg/960px-Frans_Floris_-_Adam_and_Eve_with_Cain_and_Abel.jpg" alt="Adam and Eve with Cain and Abel" loading="lazy"><figcaption>Adam and Eve with Cain and Abel — Frans Floris, between 1530 and 1570 date QS:P571,+1550-00-00T00:00:00Z/7,P1319,+1530-00-00T00:00:00Z/9,P1326,+1570-00-00T00:00:00Z/9</figcaption></figure><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Eve_with_Cain_and_Abel_MET_ep38.178.jpg/960px-Eve_with_Cain_and_Abel_MET_ep38.178.jpg" alt="Eve with Cain and Abel" loading="lazy"><figcaption>Eve with Cain and Abel — Francesco Bacchiacca, 1520s date QS:P,+1520-00-00T00:00:00Z/8</figcaption></figure></div><div class="spread-motif">Motif: bronze &amp; terebinth</div><footer class="spread-running-footer"><span class="spread-page-num">53</span></footer></section><section class="spread-page spread-right" style="--spread-accent:#A0522D;--spread-ink:#f5eee8"><header class="spread-running-header"><span class="spread-pantheon">Canaanite</span><span class="spread-page-num">54</span></header><p class="spread-tagline">The Breath of the First Offering</p><div class="spread-lore"><p class='lead-text'>Hāḇel is the <strong>second son whose only crime is to be accepted</strong>. A keeper of sheep, he brings the firstborn of his flock and their fat portions, and God regards his offering. He does not speak a single recorded sentence in the Hebrew Bible. His entire life is told in a few verses, yet his name has become synonymous with innocence destroyed and blood that cannot be buried.</p></div><div class="spread-modern-bridge"><span class="modern-label">Modern resonance</span><p>Hāḇel—First Victim—resonates today across Faith &amp; Spiritual Organizations, Funerary &amp; Memorial Services, Mental Health &amp; Emotional Wellness; hāḇel is the second son whose only crime is to be accepted . The restored Unicode form preserves distinctions flattened by the plain ASCII name.</p></div><div class="spread-name-variations"><span class="variations-label">Name variations</span><ul><li><span class="variation-form">Hāḇel</span> <span class="variation-role">Canonical</span></li><li><span class="variation-form">habel</span> <span class="variation-role">ASCII</span></li></ul></div><div class="spread-pronunciation"><span class="pron-label">Biblical Hebrew (Tiberian/Masoretic)</span><span class="pron-ipa">/ˈhɛvɛl/</span><span class="pron-approx">&#39;HEH-vel&#39; — both vowels are short &#39;e&#39; as in &#39;bed&#39;; the &#39;v&#39; is soft, and the stress falls on the first syllable.</span><span class="pron-detail">2 phonemes</span></div><div class="spread-patterns"><span class="patterns-label">Aligned industries</span><span class="patterns-list">Faith &amp; Spiritual Organizations · Funerary &amp; Memorial Services · Mental Health &amp; Emotional Wellness · Pet Care &amp; Animal Industries</span></div><div class="spread-meaning"><span class="meaning-label">Meaning</span><span>Second son of Adam and Eve</span></div><div class="spread-related-temples"><span class="related-label">Kindred temples</span><div class="related-grid"><a class="related-item" href="#temple-anat"><img class="related-mascot" src="/sites/anat/assets/anat_mascot.webp" alt="ꜥAnat" loading="lazy" onerror="this.style.display='none'"><span class="related-name">ꜥAnat</span></a><a class="related-item" href="#temple-asherah"><img class="related-mascot" src="/sites/asherah/assets/asherah_mascot.webp" alt="ꜥAsherah" loading="lazy" onerror="this.style.display='none'"><span class="related-name">ꜥAsherah</span></a><a class="related-item" href="#temple-athiratu"><img class="related-mascot" src="/sites/athiratu/assets/athiratu_mascot.webp" alt="ʾAṯiratu" loading="lazy" onerror="this.style.display='none'"><span class="related-name">ʾAṯiratu</span></a><a class="related-item" href="#temple-baal"><img class="related-mascot" src="/sites/baal/assets/baal_mascot.webp" alt="Baꜥal" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Baꜥal</span></a></div></div><a class="spread-temple-link" href="/abel/" target="_blank" rel="noopener">Visit the temple →</a><footer class="spread-running-footer"><span class="spread-page-num">54</span></footer></section></section>
 <section class="herald-spread spread-greek" id="temple-acheron" data-page-left="55" data-page-right="56"><section class="spread-page spread-left" style="--spread-accent:#D4AF37;--spread-ink:#f5f2e8"><header class="spread-running-header"><span class="spread-pantheon">Greek</span><span class="spread-page-num">55</span></header><div class="spread-hero"><h2 class="spread-name">Achérōn</h2><div class="spread-script"><span class="script-label">Original Script</span><span class="script-value">Ἀχέρων</span></div><div class="spread-domain">River of Woe</div><div class="spread-badges"><span class="spread-badge">Preserves stress &amp; vowel length</span><span class="spread-badge">Greek</span></div></div><div class="spread-visual"><img class="spread-mascot" src="/sites/acheron/assets/acheron_mascot.webp" alt="Achérōn mascot" loading="lazy" onerror="this.style.display='none'"><div class="spread-mark-row"><img class="spread-logomark" src="/sites/acheron/assets/acheron_logomark.webp" alt="Achérōn logomark" loading="lazy" onerror="this.style.display='none'"><img class="spread-wordmark" src="/sites/acheron/assets/acheron_logolockup.webp" alt="Achérōn wordmark" loading="lazy" onerror="this.style.display='none'"></div></div><div class="spread-gallery"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ach%C3%A9ron.JPG/960px-Ach%C3%A9ron.JPG" alt="L&#39;Achéron en Épire" loading="lazy"><figcaption>Achéron — L&#39;Achéron en Épire Photo/art: Theudbald. Public domain via Wikimedia Commons.</figcaption></figure><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Walking_in_the_river_Acheron%2C_Greece.jpg/960px-Walking_in_the_river_Acheron%2C_Greece.jpg" alt="Walking in the river Acheron, at the point where the crystal clear water of the springs meets the muddy water of the previous day&#39;s downpour." loading="lazy"><figcaption>Walking in the river Acheron, Greece — Walking in the river Acheron, at the point where the crystal clear water of the springs meets the muddy water of the previous day&#39;s downpour. Photo/art: Annatsach. CC BY-SA 4.0 via Wikimedia Commons.</figcaption></figure><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Acheron_River_Canyon_%281994%29.jpg/960px-Acheron_River_Canyon_%281994%29.jpg" alt="The Mythical Acheron River Canyon (10Km), Preveza" loading="lazy"><figcaption>Acheron River Canyon (1994) — The Mythical Acheron River Canyon (10Km), Preveza Photo/art: Harry Gouvas. CC BY-SA 3.0 via Wikimedia Commons.</figcaption></figure></div><div class="spread-motif">Motif: marble &amp; laurel</div><footer class="spread-running-footer"><span class="spread-page-num">55</span></footer></section><section class="spread-page spread-right" style="--spread-accent:#D4AF37;--spread-ink:#f5f2e8"><header class="spread-running-header"><span class="spread-pantheon">Greek</span><span class="spread-page-num">56</span></header><p class="spread-tagline">The River of Sorrows</p><div class="spread-lore"><p class='lead-text'>Achérōn is the <strong>river of woe</strong>, one of the great boundary rivers of the Greek underworld. Real in Epirus and mythic in Hades, it marks the place where the living must stop and the dead begin their journey.</p></div><div class="spread-modern-bridge"><span class="modern-label">Modern resonance</span><p>Achérōn—River of Woe—resonates today across Freshwater &amp; Hydrology, Funerary &amp; Memorial Services, Mental Health &amp; Emotional Wellness; achérōn is the river of woe , one of the great boundary rivers of the greek underworld. The restored Unicode form preserves distinctions flattened by the plain ASCII name.</p></div><div class="spread-name-variations"><span class="variations-label">Name variations</span><ul><li><span class="variation-form">Achérōn</span> <span class="variation-role">Canonical</span></li><li><span class="variation-form">acheron</span> <span class="variation-role">ASCII</span></li></ul></div><div class="spread-pronunciation"><span class="pron-label">Attic Greek Reconstruction</span><span class="pron-ipa">/a.kʰé.rɔːn/</span><span class="pron-approx">&#39;ah-KHAY-rohn&#39; — the middle syllable is pitched high; the final -ōn is long and sonorous.</span><span class="pron-detail">3 phonemes</span></div><div class="spread-patterns"><span class="patterns-label">Aligned industries</span><span class="patterns-list">Freshwater &amp; Hydrology · Funerary &amp; Memorial Services · Mental Health &amp; Emotional Wellness · Travel, Tourism &amp; Place Branding</span></div><div class="spread-meaning"><span class="meaning-label">Meaning</span><span>River of woe</span></div><div class="spread-related-temples"><span class="related-label">Kindred temples</span><div class="related-grid"><a class="related-item" href="#temple-achilleus"><img class="related-mascot" src="/sites/achilleus/assets/achilleus_mascot.webp" alt="Achilleús" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Achilleús</span></a><a class="related-item" href="#temple-adamas"><img class="related-mascot" src="/sites/adamas/assets/adamas_mascot.webp" alt="Adámas" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Adámas</span></a><a class="related-item" href="#temple-adonis"><img class="related-mascot" src="/sites/adonis/assets/adonis_mascot.webp" alt="Ádōnis" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Ádōnis</span></a><a class="related-item" href="#temple-aer"><img class="related-mascot" src="/sites/aer/assets/aer_mascot.webp" alt="Aḗr" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Aḗr</span></a></div></div><a class="spread-temple-link" href="/acheron/" target="_blank" rel="noopener">Visit the temple →</a><footer class="spread-running-footer"><span class="spread-page-num">56</span></footer></section></section>
 <section class="herald-spread spread-greek" id="temple-achilleus" data-page-left="57" data-page-right="58"><section class="spread-page spread-left" style="--spread-accent:#D4AF37;--spread-ink:#f5f2e8"><header class="spread-running-header"><span class="spread-pantheon">Greek</span><span class="spread-page-num">57</span></header><div class="spread-hero"><h2 class="spread-name">Achilleús</h2><div class="spread-script"><span class="script-label">Original Script</span><span class="script-value">Ἀχιλλεύς</span></div><div class="spread-domain">War, Glory, Rage</div><div class="spread-badges"><span class="spread-badge">Preserves stress</span><span class="spread-badge">Greek</span></div></div><div class="spread-visual"><img class="spread-mascot" src="/sites/achilleus/assets/achilleus_mascot.webp" alt="Achilleús mascot" loading="lazy" onerror="this.style.display='none'"><div class="spread-mark-row"><img class="spread-logomark" src="/sites/achilleus/assets/achilleus_logomark.webp" alt="Achilleús logomark" loading="lazy" onerror="this.style.display='none'"><img class="spread-wordmark" src="/sites/achilleus/assets/achilleus_logolockup.webp" alt="Achilleús wordmark" loading="lazy" onerror="this.style.display='none'"></div></div><div class="spread-gallery"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sarcophagus_of_Iulius_Achilleus.jpg/960px-Sarcophagus_of_Iulius_Achilleus.jpg" alt="Roman lenos sarcophagus with bucolic scenes (the sarcophagus of Iulius Achilleus). Ca. 290 AD. National Roman Museum in the Baths of Diocletian, Rome. Photo by Mont Allen." loading="lazy"><figcaption>Sarcophagus of Iulius Achilleus — Roman lenos sarcophagus with bucolic scenes (the sarcophagus of Iulius Achilleus). Photo/art: Typhon2222. CC BY-SA 4.0 via Wikimedia Commons.</figcaption></figure><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Sarcofago_di_Iulius_Achilleus_05.JPG/960px-Sarcofago_di_Iulius_Achilleus_05.JPG" alt="Sarcofago di Iulius Achilleus 05" loading="lazy"><figcaption>Sarcofago di Iulius Achilleus 05 Photo/art: sailko. CC BY-SA 3.0 via Wikimedia Commons.</figcaption></figure><figure><img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Rubens_-_De_HH._Mauritius%2C_Gregorius%2C_Papianus%2C_Nereus%2C_Domitilla_en_Achilleus%2C_Salzburg.jpg" alt="Rubens - De HH. Mauritius, Gregorius, Papianus, Nereus, Domitilla en Achilleus, Salzburg.jpg" loading="lazy"><figcaption>Rubens - De HH. Mauritius, Gregorius, Papianus, Nereus, Domitilla e… Photo/art: Peter Paul Rubens. Public domain via Wikimedia Commons.</figcaption></figure></div><div class="spread-motif">Motif: marble &amp; laurel</div><footer class="spread-running-footer"><span class="spread-page-num">57</span></footer></section><section class="spread-page spread-right" style="--spread-accent:#D4AF37;--spread-ink:#f5f2e8"><header class="spread-running-header"><span class="spread-pantheon">Greek</span><span class="spread-page-num">58</span></header><p class="spread-tagline">The Wrath and the Heel</p><div class="spread-lore"><p class='lead-text'>Achilleús is the hero the <em>Iliad</em> is named around: the man who chose a short life with imperishable fame (<em>kleos aphthiton</em>) over a long life in obscurity. His wrath is the poem's first word — <em>mēnin</em> — and his heel is the world's oldest named weakness.</p></div><div class="spread-modern-bridge"><span class="modern-label">Modern resonance</span><p>Achilleús—War, Glory, Rage—resonates today across Defense, Military &amp; Security, Sports, Fitness &amp; Competition, Gaming, Fantasy &amp; Entertainment IP; achilleús is the hero the iliad is named around: the man who chose a short life with imperishable fame ( kleos aphthiton ) over a long life in obscurity. The restored Unicode form preserves distinctions flattened by the plain ASCII name.</p></div><div class="spread-name-variations"><span class="variations-label">Name variations</span><ul><li><span class="variation-form">Achilleús</span> <span class="variation-role">Canonical</span></li><li><span class="variation-form">achilleus</span> <span class="variation-role">ASCII</span></li><li><span class="variation-form">Achillēs</span> <span class="variation-role">Alt</span></li></ul></div><div class="spread-pronunciation"><span class="pron-label">Attic Greek</span><span class="pron-ipa">/a.kʰil.leús/</span><span class="pron-approx">ah-khil-LEWS, stress on the final syllable.</span></div><div class="spread-patterns"><span class="patterns-label">Aligned industries</span><span class="patterns-list">Defense, Military &amp; Security · Sports, Fitness &amp; Competition · Gaming, Fantasy &amp; Entertainment IP</span></div><div class="spread-meaning"><span class="meaning-label">Meaning</span><span>Possibly &#39;grief of the people&#39; (from ἄχος + λαός), or a pre-Greek name</span></div><div class="spread-related-temples"><span class="related-label">Kindred temples</span><div class="related-grid"><a class="related-item" href="#temple-acheron"><img class="related-mascot" src="/sites/acheron/assets/acheron_mascot.webp" alt="Achérōn" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Achérōn</span></a><a class="related-item" href="#temple-adamas"><img class="related-mascot" src="/sites/adamas/assets/adamas_mascot.webp" alt="Adámas" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Adámas</span></a><a class="related-item" href="#temple-adonis"><img class="related-mascot" src="/sites/adonis/assets/adonis_mascot.webp" alt="Ádōnis" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Ádōnis</span></a><a class="related-item" href="#temple-aer"><img class="related-mascot" src="/sites/aer/assets/aer_mascot.webp" alt="Aḗr" loading="lazy" onerror="this.style.display='none'"><span class="related-name">Aḗr</span></a></div></div><a class="spread-temple-link" href="/achilleus/" target="_blank" rel="noopener">Visit the temple →</a><footer class="spread-running-footer"><span class="spread-page-num">58</span></footer></section></section>
@@ -883,5 +1089,6 @@
     </footer>
 
     <script src="/js/px-core.js?v=perf23" defer></script>
+    <script src="/js/nav-hubs.js?v=7" defer></script>
 </body>
 </html>
