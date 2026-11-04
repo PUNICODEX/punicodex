@@ -1,0 +1,806 @@
+/* PuniCodex — The Archē experience styles.
+ *
+ * A scroll-driven cosmogony: Act I ascends through the first principles,
+ * The Turn inverts the world, Act II descends into the industries.
+ * The page is fully readable without JS; .arche-live marks the enhanced
+ * cinematic mode, body.arche-turned carries the inverted Act II palette.
+ */
+
+:root {
+  --arche-ivory: #ede6d6;
+  --arche-gold: #d4af37;
+  --arche-gold-dim: #9a7f24;
+  --arche-ink: #050505;
+  --arche-ink-2: #0c0b09;
+  --arche-mist: #6a6659;
+  --arche-line: rgba(212, 175, 55, 0.22);
+  --arche-font-display: 'Cinzel', 'Times New Roman', serif;
+  --arche-font-body: 'Alegreya', Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.arche-body {
+  margin: 0;
+  background: var(--arche-ink);
+  color: var(--arche-ivory);
+  font-family: var(--arche-font-body);
+  overflow-x: hidden;
+  transition: background-color 1.2s ease, color 1.2s ease;
+}
+
+/* Act II palette inversion after The Turn. */
+.arche-body.arche-turned {
+  background: var(--arche-ivory);
+  color: var(--arche-ink);
+}
+
+/* ── Per-principle colour grading: the engine sets body[data-fx]. ── */
+body[data-fx='water'] { --arche-gold: #7fb8c9; --arche-gold-dim: #4d7c8a; }
+body[data-fx='love'] { --arche-gold: #d9a0a8; --arche-gold-dim: #a06a72; }
+body[data-fx='death'] { --arche-gold: #b9c4d4; --arche-gold-dim: #7e8ba0; }
+body[data-fx='the-song'] { --arche-gold: #e0b35c; --arche-gold-dim: #a67f33; }
+body[data-fx='the-wild'] { --arche-gold: #a8bd7a; --arche-gold-dim: #71854b; }
+body[data-fx='the-child'] { --arche-gold: #e8c86e; --arche-gold-dim: #b3913d; }
+body[data-fx='the-clay'] { --arche-gold: #c9925e; --arche-gold-dim: #8f6238; }
+body[data-fx='order'] { --arche-gold: #c9b96a; --arche-gold-dim: #94843c; }
+body[data-fx='wisdom'] { --arche-gold: #9fb8d9; --arche-gold-dim: #6a82a3; }
+body[data-fx='trickery'] { --arche-gold: #b08ec9; --arche-gold-dim: #7d5f94; }
+body[data-fx='renewal'] { --arche-gold: #d4c25c; --arche-gold-dim: #9c8c33; }
+body[data-fx='light'] { --arche-gold: #e3cd6e; --arche-gold-dim: #ab9440; }
+/* The Rebel and The End keep their crimson/fire accents from the canvas. */
+body[data-fx='thunder'] { --arche-gold: #c9d4e0; --arche-gold-dim: #8a97a8; }
+
+.arche-title-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.arche-title-link:hover,
+.arche-title-link:focus-visible {
+  border-color: var(--arche-gold);
+}
+
+#arche-fx {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.arche-stage {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Scenes ─────────────────────────────────────────────────────────── */
+
+.arche-scene {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12vh 6vw;
+  box-sizing: border-box;
+}
+
+.arche-scene-inner {
+  width: min(1100px, 100%);
+  position: relative;
+}
+
+.arche-scene-inner--center {
+  text-align: center;
+  width: min(880px, 100%);
+}
+
+/* Headings */
+
+.arche-kicker {
+  display: block;
+  font-family: var(--arche-font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--arche-gold);
+  margin-bottom: 1.1rem;
+}
+
+.arche-kicker--big {
+  font-size: 1rem;
+  letter-spacing: 0.6em;
+}
+
+.arche-title {
+  font-family: var(--arche-font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5.2vw, 3.6rem);
+  line-height: 1.08;
+  margin: 0 0 1.6rem;
+  color: inherit;
+}
+
+.arche-title--huge {
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  letter-spacing: 0.02em;
+}
+
+.arche-thesis {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.7;
+  color: inherit;
+  opacity: 0.82;
+  max-width: 46rem;
+  margin: 0 auto 2.5rem;
+}
+
+/* Verse */
+
+.arche-verse {
+  margin: 0 0 3rem;
+}
+
+.arche-verse-line {
+  font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+  line-height: 1.75;
+  margin: 0 0 0.35rem;
+  opacity: 0.9;
+}
+
+.arche-scene-inner--center .arche-verse-line {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40rem;
+}
+
+/* Begin / CTA */
+
+.arche-begin {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--arche-font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--arche-gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--arche-line);
+  padding-bottom: 0.45rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.arche-begin:hover,
+.arche-begin:focus-visible {
+  color: var(--arche-ivory);
+  border-color: var(--arche-gold);
+}
+
+.arche-body.arche-turned .arche-begin:hover,
+.arche-body.arche-turned .arche-begin:focus-visible {
+  color: var(--arche-ink);
+}
+
+.arche-begin--turn {
+  margin-top: 2.5rem;
+}
+
+/* Outro hand-off line */
+
+.arche-outro {
+  margin-top: 3.5rem;
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--arche-mist);
+  text-align: center;
+}
+
+/* ─── The Choir: every remaining name in the principle ───────────────── */
+
+.arche-choir,
+.arche-chorus {
+  margin-top: 2.2rem;
+  text-align: center;
+}
+
+.arche-choir-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--arche-mist);
+  margin: 0 0 0.9rem;
+}
+
+.arche-choir-label span {
+  color: var(--arche-gold-dim);
+}
+
+.arche-chip {
+  display: inline-block;
+  margin: 0 0.28rem 0.5rem 0;
+  padding: 0.32rem 0.72rem;
+  font-family: var(--arche-font-display);
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  color: var(--arche-ivory);
+  text-decoration: none;
+  border: 1px solid rgba(237, 230, 214, 0.16);
+  border-radius: 999px;
+  background: rgba(12, 11, 9, 0.35);
+  transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+}
+
+.arche-chip:hover,
+.arche-chip:focus-visible {
+  border-color: var(--arche-gold);
+  color: var(--arche-gold);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.arche-body.arche-turned .arche-chip,
+.arche-chip--finale {
+  color: inherit;
+  border-color: rgba(5, 5, 5, 0.18);
+  background: rgba(237, 230, 214, 0.4);
+}
+
+.arche-body.arche-turned .arche-chip:hover,
+.arche-body.arche-turned .arche-chip:focus-visible,
+.arche-chip--finale:hover,
+.arche-chip--finale:focus-visible {
+  border-color: var(--arche-gold-dim);
+  color: var(--arche-gold-dim);
+}
+
+.arche-chorus {
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.5rem;
+}
+
+/* ─── Act I deity cards ──────────────────────────────────────────────── */
+
+.arche-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  perspective: 1200px;
+}
+
+.arche-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.2rem;
+  background: rgba(12, 11, 9, 0.55);
+  border: 1px solid var(--arche-line);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(6px);
+  transform-style: preserve-3d;
+  transition: border-color 0.35s ease, background-color 0.35s ease, transform 0.35s ease;
+}
+
+.arche-card:hover,
+.arche-card:focus-visible {
+  border-color: var(--arche-gold);
+  background: rgba(212, 175, 55, 0.08);
+  transform: translateY(-4px);
+}
+
+.arche-card-name {
+  font-family: var(--arche-font-display);
+  font-size: 1.25rem;
+  color: var(--arche-gold);
+  letter-spacing: 0.02em;
+}
+
+.arche-card-pantheon {
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--arche-mist);
+}
+
+.arche-card-line {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  opacity: 0.88;
+}
+
+.arche-card-domain {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--arche-gold-dim);
+  margin-top: auto;
+}
+
+/* ─── Act II tendrils ────────────────────────────────────────────────── */
+
+.arche-tendrils {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.arche-tendril-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.arche-tendril-svg path {
+  fill: none;
+  stroke: var(--arche-gold-dim);
+  stroke-width: 1.2;
+  opacity: 0.55;
+}
+
+.arche-tendril {
+  position: relative;
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+  background: rgba(237, 230, 214, 0.6);
+  border: 1px solid rgba(5, 5, 5, 0.18);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.arche-tendril:hover,
+.arche-tendril:focus-visible {
+  border-color: var(--arche-gold-dim);
+  transform: translateY(-3px);
+}
+
+.arche-tendril-dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.4rem;
+  border-radius: 50%;
+  background: var(--arche-gold-dim);
+  box-shadow: 0 0 0 4px rgba(154, 127, 36, 0.18);
+}
+
+.arche-tendril-line {
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* ─── Finale ─────────────────────────────────────────────────────────── */
+
+.arche-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.arche-cta {
+  font-family: var(--arche-font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--arche-ink);
+  background: var(--arche-gold);
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.arche-cta:hover,
+.arche-cta:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.28);
+}
+
+/* ─── Chrome: exit, rail, controls ───────────────────────────────────── */
+
+.arche-exit {
+  position: fixed;
+  top: 1.1rem;
+  left: 1.2rem;
+  z-index: 10;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.arche-exit:hover,
+.arche-exit:focus-visible {
+  opacity: 1;
+}
+
+.arche-exit img {
+  display: block;
+  height: 22px;
+  width: auto;
+}
+
+.arche-rail {
+  position: fixed;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.arche-rail-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(237, 230, 214, 0.35);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.arche-body.arche-turned .arche-rail-dot {
+  border-color: rgba(5, 5, 5, 0.35);
+}
+
+.arche-rail-dot.is-current {
+  background: var(--arche-gold);
+  border-color: var(--arche-gold);
+  transform: scale(1.5);
+}
+
+.arche-rail-dot--turn {
+  width: 11px;
+  height: 11px;
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+.arche-rail-dot span {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--arche-gold);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.arche-rail-dot:hover span,
+.arche-rail-dot:focus-visible span {
+  opacity: 1;
+}
+
+.arche-controls {
+  position: fixed;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  z-index: 10;
+}
+
+.arche-autoplay {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--arche-font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--arche-ivory);
+  background: rgba(12, 11, 9, 0.6);
+  border: 1px solid var(--arche-line);
+  border-radius: 999px;
+  padding: 0.55rem 1.05rem;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.3s ease;
+}
+
+.arche-autoplay:hover,
+.arche-autoplay:focus-visible {
+  border-color: var(--arche-gold);
+}
+
+.arche-body.arche-turned .arche-autoplay {
+  color: var(--arche-ink);
+  background: rgba(237, 230, 214, 0.6);
+  border-color: rgba(5, 5, 5, 0.2);
+}
+
+/* ─── Live (JS-enhanced) motion states ───────────────────────────────── */
+
+.arche-live .arche-scene {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.arche-live .arche-scene.is-active {
+  opacity: 1;
+}
+
+.arche-live .arche-verse-line,
+.arche-live .arche-card,
+.arche-live .arche-tendril,
+.arche-live .arche-chip {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--d, 0) * 120ms);
+}
+
+.arche-live .arche-chip {
+  transition-delay: 0s;
+}
+
+.arche-live .arche-scene.is-active .arche-verse-line,
+.arche-live .arche-scene.is-active .arche-card,
+.arche-live .arche-scene.is-active .arche-tendril,
+.arche-live .arche-scene.is-active .arche-chip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Act II: elements descend from above instead of rising. */
+.arche-live .arche-scene--descent .arche-tendril,
+.arche-live .arche-scene--descent .arche-verse-line {
+  transform: translateY(-26px);
+}
+
+.arche-live .arche-scene--descent.is-active .arche-tendril,
+.arche-live .arche-scene--descent.is-active .arche-verse-line {
+  transform: translateY(0);
+}
+
+/* The Turn: the whole stage flips. */
+.arche-scene--turn {
+  overflow: hidden;
+}
+
+.arche-live .arche-scene--turn .arche-scene-inner {
+  transition: transform 1.4s cubic-bezier(0.65, 0, 0.35, 1), opacity 1.4s ease;
+}
+
+.arche-live .arche-scene--turn.is-active .arche-scene-inner {
+  animation: arche-turn-flip 2.2s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes arche-turn-flip {
+  0% {
+    transform: perspective(1400px) rotateX(0deg) scale(1);
+    opacity: 1;
+  }
+  45% {
+    transform: perspective(1400px) rotateX(88deg) scale(0.92);
+    opacity: 0.25;
+  }
+  55% {
+    transform: perspective(1400px) rotateX(92deg) scale(0.92);
+    opacity: 0.25;
+  }
+  100% {
+    transform: perspective(1400px) rotateX(180deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Reduced motion: everything static and visible. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .arche-live .arche-scene,
+  .arche-live .arche-verse-line,
+  .arche-live .arche-card,
+  .arche-live .arche-tendril,
+  .arche-live .arche-chip {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .arche-live .arche-scene--turn.is-active .arche-scene-inner {
+    animation: none !important;
+  }
+}
+
+/* ─── Finale additions: claim widget, oracle, loop ───────────────────── */
+
+.arche-claim,
+.arche-oracle {
+  max-width: 32rem;
+  margin: 2rem auto 0;
+}
+
+.arche-claim-form {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.arche-claim-input {
+  flex: 1 1 12rem;
+  font-family: var(--arche-font-body);
+  font-size: 0.95rem;
+  color: var(--arche-ink);
+  background: rgba(237, 230, 214, 0.9);
+  border: 1px solid rgba(5, 5, 5, 0.25);
+  border-radius: 999px;
+  padding: 0.7rem 1.1rem;
+  outline: none;
+}
+
+.arche-claim-input:focus {
+  border-color: var(--arche-gold-dim);
+}
+
+.arche-claim-btn {
+  font-family: var(--arche-font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--arche-ivory);
+  background: var(--arche-ink);
+  border: 1px solid var(--arche-ink);
+  border-radius: 999px;
+  padding: 0.7rem 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.arche-claim-btn:hover,
+.arche-claim-btn:focus-visible {
+  background: transparent;
+  color: var(--arche-ink);
+}
+
+.arche-claim-result {
+  margin-top: 1.4rem;
+  padding: 1.3rem 1.5rem;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+  border-radius: 12px;
+  background: rgba(237, 230, 214, 0.7);
+  text-align: center;
+}
+
+.arche-claim-result .arche-claim-principle {
+  font-family: var(--arche-font-display);
+  font-size: 1.5rem;
+  color: var(--arche-gold-dim);
+  margin: 0 0 0.3rem;
+}
+
+.arche-claim-result .arche-claim-deity {
+  font-size: 1.05rem;
+  margin: 0 0 0.8rem;
+}
+
+.arche-claim-copy {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid rgba(5, 5, 5, 0.3);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  color: var(--arche-ink);
+}
+
+.arche-loop {
+  display: block;
+  margin: 3rem auto 0;
+  font-family: var(--arche-font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--arche-gold-dim);
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(5, 5, 5, 0.25);
+  padding-bottom: 0.4rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.arche-loop:hover,
+.arche-loop:focus-visible {
+  color: var(--arche-ink);
+}
+
+.arche-sound {
+  margin-left: 0.5rem;
+}
+
+/* ─── Per-chapter pages (/arche/{id}/) ───────────────────────────────── */
+
+.arche-chapter .arche-scene {
+  min-height: 100vh;
+}
+
+.arche-chapter .arche-scene-inner {
+  padding-top: 4rem;
+}
+
+.arche-chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .arche-scene {
+    padding: 14vh 5vw 12vh;
+  }
+
+  .arche-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+  }
+
+  .arche-card {
+    padding: 0.85rem 0.9rem;
+  }
+
+  .arche-card-name {
+    font-size: 1.05rem;
+  }
+
+  .arche-card-line {
+    font-size: 0.8rem;
+  }
+
+  .arche-tendrils {
+    grid-template-columns: 1fr;
+  }
+
+  .arche-rail {
+    right: 0.55rem;
+    gap: 0.34rem;
+  }
+
+  .arche-rail-dot span {
+    display: none;
+  }
+
+  .arche-controls {
+    bottom: 0.9rem;
+    right: 0.9rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .arche-cards {
+    grid-template-columns: 1fr;
+  }
+}

@@ -239,7 +239,7 @@ function main() {
                     </div>
                 </div>
             </div>
-            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <a href="/arche/" class="nav-cta" title="The Archē — the first principles, from Chaos to the modern world"><span>Enter</span></a>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
                 <span></span>
                 <span></span>

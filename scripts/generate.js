@@ -120,6 +120,10 @@ const allScripts = [
   // industry-patterns.json produced at step 5; before the injectors so the
   // fresh pages keep their beacon/consent blocks.
   'scripts/generate-patterns-page.js',
+  // The Archē (/arche/): the scroll-driven cosmogony — canonical data in
+  // scripts/arche-chapters.js; nav-free immersive page (like /game/); before
+  // the sitemap and injectors so the fresh page keeps its marker blocks.
+  'scripts/generate-arche-page.js',
   // Everyday Words (/everyday/) + Ink verifier index (data/ink-index.json):
   // canonical word/script registries; before the sitemap and injectors.
   'scripts/generate-everyday-page.js',

@@ -74,6 +74,10 @@ const CANONICAL_SUITES = [
 
 const RULES = [
   {
+    pattern: /^scripts\/(arche-chapters|generate-arche-page)\.js$|^js\/arche\.js$|^css\/arche\.css$|^arche\/|^test\/arche\.test\.js$/,
+    suites: ['Archē Tests'],
+  },
+  {
     pattern: /^platform\/api-handlers\/root\/university\/|^platform\/api\/(university-call-reminders|university-pitch-email|email)\.js$|^platform\/db\/migrate-university-bookings\.js$|^university\/book\/|^api\/cron\/university-call-reminders\/|^test\/university-booking\.test\.js$/,
     suites: ['University Booking Endpoint Tests', 'University Outreach Tests', 'Pitch Email Tests'],
   },

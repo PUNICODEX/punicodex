@@ -298,6 +298,11 @@ const SUITES = [
     cmd: 'node test/trending-page.test.js',
     timeout: 120000,
   },
+  {
+    name: 'Archē Tests',
+    cmd: 'node test/arche.test.js',
+    timeout: 120000,
+  },
   { name: 'Search Page Tests', cmd: 'node test/search-page.test.js' },
   { name: 'Brand Tests', cmd: 'node test/brand.test.js' },
   { name: 'Admin Portal Page Tests', cmd: 'node test/admin-portal-page.test.js' },
@@ -611,6 +616,7 @@ const SERIAL_SUITES = new Set([
   'Herald Beacon Tests', // runs the beacon injector against the tree
   'Patterns Atlas Tests', // runs generate-patterns-page.js (writes patterns/*.html)
   'Trending Page Tests', // idempotency check rewrites trending/index.html
+  'Archē Tests', // idempotency check rewrites arche/index.html
   'Everyday + Ink Tests', // idempotency checks rewrite everyday/index.html + data/ink-index.json
   'Store Structure Tests', // reads store pages while tree-writers rewrite them
   'Menu Consistency Tests', // reads every nav target page; torn reads false-fail
