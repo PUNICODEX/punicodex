@@ -161,19 +161,33 @@ test('every chapter holds a real congregation (no token chapters)', () => {
 // 2. Page structure
 // ---------------------------------------------------------------------------
 
-test('every descent tendril carries its ancient seats (concrete lineup)', () => {
+test('Act II shows the pattern-atlas industries — names lead, no gods after the Turn', () => {
   const html = read('genesis/index.html');
-  const seats = (html.match(/class="arche-seat"/g) || []).length;
-  assert.ok(seats >= 40, `expected 40+ temple seats across Act II, found ${seats}`);
+  const { INDUSTRY_GROUPS } = require(path.join(root, 'type', 'js', 'industry-patterns.js'));
+  const names = new Map(INDUSTRY_GROUPS.map((g) => [g.industry, g.name]));
+  let shown = 0;
   for (const ch of DESCENT) {
     for (const t of ch.tendrils) {
+      const name = names.get(t.industry);
+      assert.ok(name, `unknown industry ${t.industry}`);
       assert.ok(
-        html.includes(`data-industry="${t.industry}"`) &&
-          html.indexOf(`data-industry="${t.industry}"`) < html.length,
-        `${t.industry}: tendril missing`
+        html.includes(`class="arche-tendril-name">${esc(name)}`),
+        `${t.industry}: industry name "${name}" must headline its card`
       );
+      shown++;
     }
   }
+  const unique = new Set(DESCENT.flatMap((c) => c.tendrils.map((t) => t.industry)));
+  assert.strictEqual(
+    unique.size,
+    INDUSTRY_GROUPS.length,
+    `Act II must claim all ${INDUSTRY_GROUPS.length} industries; has ${unique.size}`
+  );
+  // No deity content after the Turn: the ascent owns the gods.
+  const turnIdx = html.indexOf('id="turn"');
+  const act2 = html.slice(turnIdx);
+  assert.ok(!act2.includes('arche-seat'), 'Act II must not carry temple seats');
+  assert.ok(!/class="arche-card" href="\/[a-z]/.test(act2), 'Act II must not carry deity cards');
   // Every thesis states the concrete mapping — no vague metaphor may regress.
   for (const ch of DESCENT) {
     assert.ok(

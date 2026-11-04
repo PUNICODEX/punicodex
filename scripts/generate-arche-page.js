@@ -28,19 +28,10 @@ const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const { INDUSTRY_GROUPS } = require(path.join(ROOT, 'type', 'js', 'industry-patterns.js'));
 const byId = new Map(LEXICON.map((e) => [e.id, e]));
 
-/* Industry → its strongest temple seats (the concrete ancient↔modern lineup
- * the Act II tendrils point at). Primary (weight 2) members first, in
- * canonical order, capped so cards stay scannable. */
-const industrySeats = new Map();
-for (const g of INDUSTRY_GROUPS) {
-  const entries = g.entries || [];
-  const primaries = entries.filter((m) => m.weight === 2).slice(0, 3);
-  const seats = (primaries.length ? primaries : entries.slice(0, 3)).slice(0, 3);
-  industrySeats.set(
-    g.industry,
-    seats.map((m) => m.id).filter((id) => byId.has(id))
-  );
-}
+/* Industry id → display name + tagline (the pattern atlas made visible after
+ * the Turn). Act II shows INDUSTRIES, mapped to their /patterns/ panels —
+ * no gods here; the gods were the ascent's business. */
+const industryMeta = new Map(INDUSTRY_GROUPS.map((g) => [g.industry, g]));
 
 const ROMAN = [
   'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
@@ -62,22 +53,17 @@ const deityCard = (d, i) => {
                 </a>`;
 };
 
-const templeChips = (industry) => {
-  const ids = industrySeats.get(industry) || [];
-  if (!ids.length) return '';
-  const chips = ids
-    .map((id) => {
-      const e = byId.get(id);
-      return `<a class="arche-seat" href="/${id}/">${esc(e.unicode)}</a>`;
-    })
-    .join('');
-  return `<span class="arche-seats" aria-label="Temples seated in ${esc(industry)}">${chips}</span>`;
-};
-
-const tendrilCard = (t, i) => `                <a class="arche-tendril" href="/patterns/#pa-panel-${esc(t.industry)}" data-industry="${esc(t.industry)}" style="--d:${i}">
+const tendrilCard = (t, i) => {
+  const meta = industryMeta.get(t.industry);
+  return `                <a class="arche-tendril" href="/patterns/#pa-panel-${esc(t.industry)}" data-industry="${esc(t.industry)}" style="--d:${i}">
                     <span class="arche-tendril-dot" aria-hidden="true"></span>
-                    <span class="arche-tendril-line">${esc(t.line)}${templeChips(t.industry)}</span>
+                    <span class="arche-tendril-body">
+                        <span class="arche-tendril-name">${esc(meta ? meta.name : t.industry)}</span>
+                        <span class="arche-tendril-tagline">${esc(meta ? meta.tagline : '')}</span>
+                        <span class="arche-tendril-line">${esc(t.line)}</span>
+                    </span>
                 </a>`;
+};
 
 const verseHtml = (verse) =>
   verse.map((l, i) => `                <p class="arche-verse-line" style="--d:${i}">${esc(l)}</p>`).join('\n');
@@ -311,17 +297,6 @@ ${finaleRoster()
       `                    <a class="arche-chip arche-chip--finale" href="/${r.id}/" title="${esc(r.pantheon)} — ${esc(r.domain)}">${esc(r.unicode)}</a>`
   )
   .join('\n')}
-                </div>
-                <div class="arche-root-industries">
-                    <p class="arche-choir-label">PuniCodex’s own industries — the restoration, trading as itself</p>
-                    <a class="arche-tendril arche-tendril--finale" href="/patterns/#pa-panel-mythic-restoration">
-                        <span class="arche-tendril-dot" aria-hidden="true"></span>
-                        <span class="arche-tendril-line">Mythic Restoration — the names returned to the digital realm, temple by temple.</span>
-                    </a>
-                    <a class="arche-tendril arche-tendril--finale" href="/patterns/#pa-panel-diacritic-first-domains">
-                        <span class="arche-tendril-dot" aria-hidden="true"></span>
-                        <span class="arche-tendril-line">Diacritic-First Domains — the pantheon’s names, owned and live as Unicode.</span>
-                    </a>
                 </div>
                 <div class="arche-claim" data-claim>
                     <p class="arche-choir-label">Which principle claims you?</p>

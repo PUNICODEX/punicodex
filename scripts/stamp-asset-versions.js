@@ -49,6 +49,8 @@ const ASSETS = [
   '/js/temple-base.js',
   '/js/store-configurator.js',
   '/css/store-configurator.css',
+  '/js/arche.js',
+  '/css/arche.css',
   '/assets/fonts/fonts.css',
   '/admin-portal/portal.css',
   '/admin-portal/portal.js',

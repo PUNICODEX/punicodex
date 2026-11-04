@@ -53,6 +53,27 @@ body[data-fx='light'] { --arche-gold: #e3cd6e; --arche-gold-dim: #ab9440; }
 /* The Rebel and The End keep their crimson/fire accents from the canvas. */
 body[data-fx='thunder'] { --arche-gold: #c9d4e0; --arche-gold-dim: #8a97a8; }
 
+/* Act II: every descent principle its own world — no two slides alike. */
+body[data-fx='d-chaos'] { --arche-gold: #8d7bb5; --arche-gold-dim: #5f5083; }
+body[data-fx='d-rebel'] { --arche-gold: #b33a3a; --arche-gold-dim: #7d2626; }
+body[data-fx='d-clay'] { --arche-gold: #b5703f; --arche-gold-dim: #7f4c28; }
+body[data-fx='d-one'] { --arche-gold: #a8923f; --arche-gold-dim: #776528; }
+body[data-fx='d-separation'] { --arche-gold: #6f87a8; --arche-gold-dim: #4a5d78; }
+body[data-fx='d-light'] { --arche-gold: #c99a2e; --arche-gold-dim: #8f6c1c; }
+body[data-fx='d-water'] { --arche-gold: #2e8b9a; --arche-gold-dim: #1d5f6b; }
+body[data-fx='d-thunder'] { --arche-gold: #3a6fd8; --arche-gold-dim: #254a94; }
+body[data-fx='d-wild'] { --arche-gold: #4c8a3f; --arche-gold-dim: #335e2a; }
+body[data-fx='d-order'] { --arche-gold: #8a6d2f; --arche-gold-dim: #5f4b1e; }
+body[data-fx='d-wisdom'] { --arche-gold: #46599e; --arche-gold-dim: #2f3d6e; }
+body[data-fx='d-song'] { --arche-gold: #b84a9a; --arche-gold-dim: #83326c; }
+body[data-fx='d-love'] { --arche-gold: #c25a6e; --arche-gold-dim: #8a3a4a; }
+body[data-fx='d-child'] { --arche-gold: #cf9f35; --arche-gold-dim: #93701e; }
+body[data-fx='d-war'] { --arche-gold: #9c4530; --arche-gold-dim: #682d1f; }
+body[data-fx='d-death'] { --arche-gold: #5d6b7d; --arche-gold-dim: #3d4757; }
+body[data-fx='d-trickery'] { --arche-gold: #7d4fa8; --arche-gold-dim: #553474; }
+body[data-fx='d-renewal'] { --arche-gold: #3d8a5f; --arche-gold-dim: #275e40; }
+body[data-fx='d-end'] { --arche-gold: #8a2f2f; --arche-gold-dim: #5c1e1e; }
+
 .arche-title-link {
   color: inherit;
   text-decoration: none;
@@ -351,29 +372,27 @@ body[data-fx='thunder'] { --arche-gold: #c9d4e0; --arche-gold-dim: #8a97a8; }
   opacity: 0.8;
 }
 
-/* The ancient seats beside each industry — the concrete lineup. */
-.arche-seats {
-  display: block;
-  margin-top: 0.55rem;
+/* Industry card body: the industry NAME leads — the pattern atlas made
+ * visible after the Turn. */
+.arche-tendril-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
 }
 
-.arche-seat {
-  display: inline-block;
-  margin: 0 0.3rem 0.3rem 0;
-  padding: 0.2rem 0.6rem;
+.arche-tendril-name {
   font-family: var(--arche-font-display);
-  font-size: 0.78rem;
-  color: var(--arche-gold-dim);
-  text-decoration: none;
-  border: 1px solid rgba(5, 5, 5, 0.22);
-  border-radius: 999px;
-  transition: border-color 0.25s ease, color 0.25s ease;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--arche-ink);
 }
 
-.arche-seat:hover,
-.arche-seat:focus-visible {
-  border-color: var(--arche-gold-dim);
-  color: var(--arche-ink);
+.arche-tendril-tagline {
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--arche-gold-dim);
 }
 
 .arche-tendril {
@@ -407,7 +426,7 @@ body[data-fx='thunder'] { --arche-gold: #c9d4e0; --arche-gold-dim: #8a97a8; }
 }
 
 .arche-tendril-line {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   line-height: 1.55;
 }
 

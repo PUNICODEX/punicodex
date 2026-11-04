@@ -724,6 +724,8 @@ const DESCENT = [
       { industry: 'wellness-mind', line: 'Persephone’s return, daily — the personal practice of coming back.' },
       { industry: 'healthcare-pharma', line: 'The body, renewed by dose — Asclepius with a pharmacy and a formulary.' },
       { industry: 'forestry-conservation', line: 'The forest, regrown — renewal as a standing policy, not a miracle.' },
+      { industry: 'mythic-restoration', line: 'PuniCodex’s own trade — the names returned to the digital realm, temple by temple.' },
+      { industry: 'diacritic-first-domains', line: 'The pantheon’s names, owned and live as Unicode — the restoration you can visit.' },
     ],
   },
 ];

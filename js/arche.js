@@ -53,11 +53,39 @@
 
   // ── Palette ─────────────────────────────────────────────────────────────
 
+  // Per-scene accent hues: Act II worlds are color-distinct (matches the
+  // body[data-fx] grading in arche.css).
+  var ACCENTS = {
+    'd-chaos': 'rgba(141,123,181,',
+    'd-rebel': 'rgba(179,58,58,',
+    'd-clay': 'rgba(181,112,63,',
+    'd-one': 'rgba(168,146,63,',
+    'd-separation': 'rgba(111,135,168,',
+    'd-light': 'rgba(201,154,46,',
+    'd-water': 'rgba(46,139,154,',
+    'd-thunder': 'rgba(58,111,216,',
+    'd-wild': 'rgba(76,138,63,',
+    'd-order': 'rgba(138,109,47,',
+    'd-wisdom': 'rgba(70,89,158,',
+    'd-song': 'rgba(184,74,154,',
+    'd-love': 'rgba(194,90,110,',
+    'd-child': 'rgba(207,159,53,',
+    'd-war': 'rgba(156,69,48,',
+    'd-death': 'rgba(93,107,125,',
+    'd-trickery': 'rgba(125,79,168,',
+    'd-renewal': 'rgba(61,138,95,',
+    'd-end': 'rgba(138,47,47,',
+  };
+
   function colors() {
     var turned = body.classList.contains('arche-turned');
-    return turned
-      ? { ink: 'rgba(5,5,5,', gold: 'rgba(154,127,36,', mist: 'rgba(5,5,5,' }
-      : { ink: 'rgba(237,230,214,', gold: 'rgba(212,175,55,', mist: 'rgba(237,230,214,' };
+    var accent = ACCENTS[body.getAttribute('data-fx')];
+    if (!turned) return { ink: 'rgba(237,230,214,', gold: 'rgba(212,175,55,', mist: 'rgba(237,230,214,' };
+    return {
+      ink: 'rgba(5,5,5,',
+      gold: accent || 'rgba(154,127,36,',
+      mist: 'rgba(5,5,5,',
+    };
   }
 
   // ── Particle systems ────────────────────────────────────────────────────

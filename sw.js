@@ -13,8 +13,8 @@
  *   and breaks the page's own fetch handling.
  */
 
-const SHELL_CACHE = 'punicodex-shell-v6';
-const ASSET_CACHE = 'punicodex-assets-v6';
+const SHELL_CACHE = 'punicodex-shell-v7';
+const ASSET_CACHE = 'punicodex-assets-v7';
 
 // Precache critical shell HTML pages only.
 // Versioned JS/CSS are fetched on demand and will update when their query
