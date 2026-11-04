@@ -200,7 +200,9 @@ test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', 
         html.includes(
           `<a href="${hub.href}" class="mobile-menu-title mobile-menu-title--hub">${section}</a>`
         ) ||
-          html.includes(`<a href="${hub.href}" class="mobile-menu-title mobile-menu-title--hub active">${section}</a>`),
+          html.includes(
+            `<a href="${hub.href}" class="mobile-menu-title mobile-menu-title--hub active">${section}</a>`
+          ),
         `${page}: missing clickable mobile hub title ${section}`
       );
     }
