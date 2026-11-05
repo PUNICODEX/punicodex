@@ -75,7 +75,7 @@ function buildSection(id) {
 }
 
 const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
-        <a href="/genesis/" class="mobile-menu-begin">✦ Enter</a>
+        <a href="/genesis/" class="mobile-menu-begin">Enter</a>
         ${HUB_ORDER.map(buildSection).join('\n        ')}
     </div>`;
 
@@ -105,6 +105,12 @@ const TARGETS = [
   { page: path.join('contact', 'index.html'), active: '/contact/' },
   { page: path.join('creatives', 'index.html'), active: null },
   { page: path.join('herald', 'edition', 'index.html'), active: '/herald/' },
+  // Herald templates carry the canonical menu verbatim; keeping them in the
+  // sync targets stops the recurring template-drift (generate-herald stamps
+  // these into every edition page).
+  { page: path.join('templates', 'herald', 'landing.html'), active: '/herald/' },
+  { page: path.join('templates', 'herald', 'chapter.html'), active: '/herald/' },
+  { page: path.join('templates', 'herald', 'book.html'), active: '/herald/' },
   { page: path.join('terms', 'index.html'), active: null },
   { page: path.join('terms', 'store', 'index.html'), active: null },
   { page: path.join('terms', 'creatives', 'index.html'), active: null },

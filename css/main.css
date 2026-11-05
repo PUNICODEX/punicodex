@@ -573,12 +573,13 @@ body.menu-open {
     margin-bottom: var(--space-2);
 }
 
-/* The hub title is the hub link: same font as the section title, set LARGER
-   than its spokes, sitting above them. One clickable instance. */
+/* The hub title is the hub link: a clear section header — larger than the
+   old 0.65rem labels, smaller than the 18–24px spoke links. One clickable
+   instance, sitting above its spokes. */
 .mobile-menu-title--hub {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.26em;
     text-decoration: none;
     margin-bottom: var(--space-2);
 }
@@ -590,23 +591,22 @@ body.menu-open {
     text-decoration: none;
 }
 
-/* The Archē entry — the mobile home of the Enter CTA: compact, centered,
-   set in the display face, visually distinct from hub titles and spokes. */
+/* The Archē entry — the mobile home of the Enter CTA: quiet, text-only,
+   small caps. No pill chrome, no symbol — it whispers, the hubs speak. */
 .mobile-menu-begin {
     display: block;
     width: fit-content;
-    margin: 0 auto var(--space-3);
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    letter-spacing: 0.3em;
+    margin: 0 auto var(--space-4);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
     text-align: center;
     color: var(--gold);
     text-decoration: none;
-    padding: 0.3rem 0.75rem 0.3rem 0.95rem;
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    border-radius: 999px;
-    background: rgba(212, 175, 55, 0.07);
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
 }
 
 .mobile-menu-begin:hover,
