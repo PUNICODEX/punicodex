@@ -59,7 +59,7 @@ asciiValue (ASCII inputs only) = the pre-3.0 formula: BASE($50k) × length ×
 
 The pattern graph (`platform/api/industry-patterns.json`, generated from the
 canonical industry map) records which real-world industries each temple's
-meaning resonates with: 271 temples, 57 industries, primary (weight-2) and
+meaning resonates with: 597 temples, 73 industries, primary (weight-2) and
 resonant (weight-1) seats. The industries a name aligns with are its
 end-user market — this is how "potential industries through the patterns
 algorithm" enter the price. Demand from meaning, never from brands.

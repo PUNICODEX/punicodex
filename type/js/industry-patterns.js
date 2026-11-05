@@ -3501,9 +3501,156 @@ const INDUSTRY_GROUPS = [
 
     ],
   },
+  {
+    industry: 'consumer-electronics',
+    name: 'Consumer Electronics & Devices',
+    sector: 'tech-innovation',
+    tagline: 'Phones, computers, wearables — the devices that carry the mind.',
+    note: 'Hephaistos forged golden maidservants with intelligence; every device is a descendant of his forge.',
+    entries: [
+      { id: 'hephaistos', weight: 2, why: 'The divine smith built self-moving tripods and golden automata — Homer is the first writer of consumer devices.' },
+      { id: 'vulcanus', weight: 1, why: 'The Roman forge-god is the volcano as workshop, the ancestor of every hardware foundry.' },
+      { id: 'daedalus', weight: 1, why: 'The greatest artificer of myth built what others could not imagine — the patron of impossible hardware.' },
+    ],
+  },
+  {
+    industry: 'robotics-drones',
+    name: 'Robotics, Drones & Automation',
+    sector: 'tech-innovation',
+    tagline: 'Autonomous machines, from bronze guardians to delivery drones.',
+    note: 'Mythology had robots before it had a word for them: Talos circled Crete for a millennium; Hephaistos built workers of gold.',
+    entries: [
+      { id: 'daedalus', weight: 2, why: 'The builder of moving statues and the labyrinth — the first automation engineer, credited with giving statues the power to move.' },
+      { id: 'argos', weight: 1, why: 'The hundred-eyed builder of the Argo engineered the ship that sailed itself through clashing rocks.' },
+      { id: 'hephaistos', weight: 1, why: 'His golden maidservants had minds and voices — the oldest description of an autonomous worker.' },
+    ],
+  },
+  {
+    industry: 'gambling-chance',
+    name: 'Gaming, Betting & Games of Chance',
+    sector: 'culture-entertainment',
+    tagline: 'Casinos, lotteries, sportsbooks — the industry of Fortune herself.',
+    note: 'Hermes invented dice on the day he was born, and played for Apollo’s cattle; every wager since has been a prayer to the same luck.',
+    entries: [
+      { id: 'tyche', weight: 2, why: 'Fortune personified — the goddess whose wheel every gambler spins, named on coins minted across the Hellenistic world.' },
+      { id: 'hermes', weight: 1, why: 'The Homeric Hymn credits him with inventing dice; the first gambler is the god of lucky finds.' },
+      { id: 'dionysos', weight: 1, why: 'The god of risk, ecstasy, and the throw that cannot be taken back — the patron of the high-stakes table.' },
+    ],
+  },
+  {
+    industry: 'advertising-marketing',
+    name: 'Advertising, Marketing & Persuasion',
+    sector: 'culture-entertainment',
+    tagline: 'Brands, campaigns, and the engineered wish.',
+    note: 'Persuasion had a goddess before it had an agency: the industry sells kleos — fame — one impression at a time.',
+    entries: [
+      { id: 'aphrodite', weight: 2, why: 'Desire is the engine of every advertisement; her smile launched the original campaign — for an entire war.' },
+      { id: 'hermes', weight: 1, why: 'The herald of the gods is also the god of rhetoric, trade, and the message that lands exactly as intended.' },
+      { id: 'kleio', weight: 1, why: 'The Muse of fame and renown — what every brand is buying when it buys attention.' },
+    ],
+  },
+  {
+    industry: 'toys-play',
+    name: 'Toys, Games & Play',
+    sector: 'home-lifestyle',
+    tagline: 'Toys, dolls, board games — the serious business of joy.',
+    note: 'Play is older than the alphabet; every toy is a small theology of the child who invented it.',
+    entries: [
+      { id: 'xochipilli', weight: 2, why: 'The Aztec prince of flowers, play, and the moment of delight — the only god whose domain is joy itself.' },
+      { id: 'eros', weight: 1, why: 'The child-god who plays with the powers of the universe the way children play with toys.' },
+      { id: 'dionysos', weight: 1, why: 'The god of the game and the festival — play as a form of worship.' },
+    ],
+  },
+  {
+    industry: 'waste-recycling',
+    name: 'Waste, Recycling & the Circular Economy',
+    sector: 'energy-earth',
+    tagline: 'Recycling, salvage, and the second life of things.',
+    note: 'Nothing in myth is ever only thrown away: Osiris was reassembled from fragments; the phoenix builds its pyre from what it was.',
+    entries: [
+      { id: 'osiris', weight: 2, why: 'Dismembered and reassembled, the god proved that what is broken can be made whole and fertile again.' },
+      { id: 'shiva', weight: 1, why: 'The dissolver whose destruction is the precondition of every renewal — the god of the compost heap.' },
+      { id: 'persephone', weight: 1, why: 'Her cyclical descent and return is the original recycling loop — nothing wasted, everything returned.' },
+    ],
+  },
+  {
+    industry: 'labor-recruitment',
+    name: 'Work, Labour & Recruitment',
+    sector: 'commerce-governance',
+    tagline: 'Staffing, hiring, and the market for human work.',
+    note: 'The gods made mortals to carry their labour; every job board is a marketplace for the same ancient arrangement.',
+    entries: [
+      { id: 'atlas', weight: 2, why: 'The bearer of the sky is the patron of every worker carrying more than their share — the eternal employee.' },
+      { id: 'ponos', weight: 2, why: 'Toil personified — one of the few beings even the gods had to respect, because without him nothing gets built.' },
+      { id: 'hermes', weight: 1, why: 'The god of contracts and deal-making presides over every negotiation between labour and its hire.' },
+    ],
+  },
+  {
+    industry: 'social-media-creators',
+    name: 'Social Media & the Creator Economy',
+    sector: 'culture-entertainment',
+    tagline: 'Creators, influencers, and the economy of attention.',
+    note: 'Kleos — fame — was once earned in battle and sung by bards; now it is counted in followers and paid in sponsorships.',
+    entries: [
+      { id: 'thaleia', weight: 2, why: 'The Muse of comedy and the viral moment — the goddess of what makes a crowd laugh and share.' },
+      { id: 'kleio', weight: 1, why: 'The Muse of kleos, renown — the currency every creator is minting.' },
+      { id: 'hermes', weight: 1, why: 'The messenger scaled to the speed of light — every platform is his caduceus, multiplied.' },
+      { id: 'erato', weight: 1, why: 'The Muse of lyric and love poetry — the ancestor of every personal brand.' },
+    ],
+  },
+  {
+    industry: 'fintech-payments',
+    name: 'Payments, Fintech & Digital Money',
+    sector: 'commerce-governance',
+    tagline: 'Payments, neobanks, and the movement of money without metal.',
+    note: 'Hermes carried the first payment message; Lakshmi blesses the transaction — the rails changed, the gods did not.',
+    entries: [
+      { id: 'lakshmi', weight: 2, why: 'The goddess of fortune and the auspicious transaction — every payment that clears is her small blessing.' },
+      { id: 'hermes', weight: 1, why: 'God of commerce, merchants, and the safe passage of value — the original payments network.' },
+      { id: 'tyche', weight: 1, why: 'Fortune turns the market as surely as the wheel she carries.' },
+    ],
+  },
+  {
+    industry: 'home-security',
+    name: 'Home Security & the Protected Hearth',
+    sector: 'home-lifestyle',
+    tagline: 'Locks, alarms, and the guarded threshold.',
+    note: 'The oldest architecture is a door that closes: Janus is the lock, Heimdall the watcher, Hestia the fire they protect.',
+    entries: [
+      { id: 'ianus', weight: 2, why: 'The two-faced god of doors and thresholds — every lock, hinge, and entry system is his instrument.' },
+      { id: 'heimdallr', weight: 2, why: 'The watchman who sees a hundred leagues and hears the wool grow on a sheep — the original alarm system.' },
+      { id: 'hestia', weight: 1, why: 'The hearth-fire is what all security protects; she is the reason for the lock.' },
+    ],
+  },
+  {
+    industry: 'language-translation',
+    name: 'Language Services & Translation',
+    sector: 'society-spirit',
+    tagline: 'Translation, interpretation, and the crossing of tongues.',
+    note: 'The world’s first industry of meaning: Hermes interprets the gods, Thoth writes what cannot be spoken twice.',
+    entries: [
+      { id: 'ogma', weight: 2, why: 'The Irish champion who carried the Ogham script across language boundaries — the god of writing as translation.' },
+      { id: 'thoth', weight: 1, why: 'The tongue of the gods — the original interpreter between divine speech and human language.' },
+      { id: 'hermes', weight: 1, why: 'The interpreter god who renders the will of Olympus into the speech of mortals.' },
+      { id: 'saraswati', weight: 1, why: 'The goddess of language, sound, and the flowing word across every tongue.' },
+    ],
+  },
+  {
+    industry: 'storage-moving',
+    name: 'Storage, Moving & the Keeping of Things',
+    sector: 'home-lifestyle',
+    tagline: 'Self-storage, removals, and the custody of belongings.',
+    note: 'Atlas holds the sky, Geb receives all that falls — keeping things safe is the oldest job below the gods.',
+    entries: [
+      { id: 'geb', weight: 2, why: 'The Egyptian earth is the receiver of all things buried, stored, and kept — the original warehouse.' },
+      { id: 'tudigong', weight: 2, why: 'The earth god of the site and its holdings — the keeper of what is placed in his ground.' },
+      { id: 'atlas', weight: 1, why: 'The eternal bearer — every mover and every shelf is doing his job at smaller scale.' },
+    ],
+  },
+
 ];
 
-// --- Validation at load time ---------------------------------------------
+// Validation ---------------------------------------------
 
 for (const group of INDUSTRY_GROUPS) {
   if (!group.industry || !group.name || !group.sector || !group.note) {

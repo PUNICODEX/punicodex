@@ -3,7 +3,7 @@
  *
  * Companion to type/js/industry-patterns.js. Maps the fragment professions,
  * trades, and search terms a real sponsor would type ("plumber", "poet",
- * "church") onto the 57 curated industries of the pattern map (1,300+ terms).
+ * "church") onto the 73 curated industries of the pattern map (1,500+ terms).
  * Powers the Find Your Pattern autocomplete on /patterns/ and the
  * /api/v1/industry-patterns/match endpoint.
  *
@@ -183,7 +183,6 @@ const INDUSTRY_ALIASES = {
     { term: 'aviation', weight: 2 },
     { term: 'aerospace', weight: 2 },
     { term: 'flight attendant', weight: 2 },
-    { term: 'drone', weight: 2 },
     { term: 'aircraft', weight: 2 },
     { term: 'air traffic controller', weight: 2 },
     { term: 'helicopter', weight: 1 },
@@ -463,7 +462,6 @@ const INDUSTRY_ALIASES = {
     { term: 'sustainability', weight: 2 },
     { term: 'environmental consultant', weight: 2 },
     { term: 'environmental scientist', weight: 2 },
-    { term: 'recycling', weight: 2 },
     { term: 'carbon offset', weight: 2 },
     { term: 'climate tech', weight: 2 },
     { term: 'ecologist', weight: 2 },
@@ -475,7 +473,6 @@ const INDUSTRY_ALIASES = {
     { term: 'carbon consultant', weight: 1 },
     { term: 'esg consultant', weight: 1 },
     { term: 'environmental engineer', weight: 1 },
-    { term: 'waste management', weight: 1 },
     { term: 'climate consultant', weight: 1 },
     { term: 'sustainability consultant', weight: 1 },
     { term: 'carbon footprint', weight: 1 },
@@ -820,9 +817,7 @@ const INDUSTRY_ALIASES = {
     { term: 'columnist', weight: 1 },
     { term: 'playwright', weight: 1 },
     { term: 'freelance writer', weight: 1 },
-    { term: 'influencer', weight: 1 },
     { term: 'podcaster', weight: 1 },
-    { term: 'content creator', weight: 1 },
     { term: 'ghostwriter', weight: 1 },
     { term: 'technical writer', weight: 1 },
     { term: 'proofreader', weight: 1 },
@@ -868,7 +863,6 @@ const INDUSTRY_ALIASES = {
     { term: 'video game', weight: 2 },
     { term: 'esports', weight: 2 },
     { term: 'streamer', weight: 2 },
-    { term: 'board game', weight: 1 },
     { term: 'rpg', weight: 1 },
     { term: 'game publisher', weight: 1 },
     { term: 'dungeon master', weight: 1 },
@@ -1033,7 +1027,6 @@ const INDUSTRY_ALIASES = {
     { term: 'investment bank', weight: 2 },
     { term: 'financial advisor', weight: 2 },
     { term: 'stockbroker', weight: 2 },
-    { term: 'fintech', weight: 2 },
     { term: 'trader', weight: 2 },
     { term: 'wealth manager', weight: 2 },
     { term: 'merchant', weight: 2 },
@@ -1571,6 +1564,18 @@ const INDUSTRY_ALIASES = {
     { term: 'unicode restoration', weight: 1 },
     { term: 'mythology archive', weight: 1 },
   ],
+  'consumer-electronics': [{ term: 'smartphone', weight: 2 }, { term: 'laptop', weight: 1 }, { term: 'wearable', weight: 1 }, { term: 'gadget', weight: 1 }, { term: 'device maker', weight: 1 }, { term: 'phone maker', weight: 2 }, { term: 'electronics brand', weight: 1 }, { term: 'headphones', weight: 1 }],
+  'robotics-drones': [{ term: 'robotics', weight: 2 }, { term: 'drone', weight: 2 }, { term: 'automation', weight: 1 }, { term: 'robot', weight: 1 }, { term: 'uav', weight: 1 }, { term: 'industrial robot', weight: 2 }, { term: 'automation firm', weight: 1 }, { term: 'drone delivery', weight: 1 }],
+  'gambling-chance': [{ term: 'casino', weight: 2 }, { term: 'betting', weight: 2 }, { term: 'sportsbook', weight: 2 }, { term: 'lottery', weight: 1 }, { term: 'poker', weight: 1 }, { term: 'bookmaker', weight: 1 }, { term: 'igaming', weight: 1 }, { term: 'casino resort', weight: 1 }],
+  'advertising-marketing': [{ term: 'advertising', weight: 2 }, { term: 'marketing', weight: 2 }, { term: 'ad agency', weight: 2 }, { term: 'branding', weight: 1 }, { term: 'seo', weight: 1 }, { term: 'media buying', weight: 1 }, { term: 'creative agency', weight: 1 }, { term: 'copywriting', weight: 1 }],
+  'toys-play': [{ term: 'toy', weight: 2 }, { term: 'toymaker', weight: 2 }, { term: 'board game', weight: 1 }, { term: 'doll', weight: 1 }, { term: 'puzzle', weight: 1 }, { term: 'playset', weight: 1 }, { term: 'stuffed animal', weight: 1 }, { term: 'children game', weight: 1 }],
+  'waste-recycling': [{ term: 'recycling', weight: 2 }, { term: 'waste management', weight: 1 }, { term: 'recycler', weight: 1 }, { term: 'scrap metal', weight: 1 }, { term: 'circular economy', weight: 2 }, { term: 'junk removal', weight: 1 }, { term: 'salvage', weight: 1 }, { term: 'landfill', weight: 1 }],
+  'labor-recruitment': [{ term: 'recruiter', weight: 2 }, { term: 'recruitment', weight: 2 }, { term: 'staffing', weight: 2 }, { term: 'headhunter', weight: 1 }, { term: 'job board', weight: 1 }, { term: 'hr tech', weight: 1 }, { term: 'gig economy', weight: 1 }, { term: 'temp agency', weight: 1 }],
+  'social-media-creators': [{ term: 'social media', weight: 2 }, { term: 'influencer', weight: 2 }, { term: 'content creator', weight: 2 }, { term: 'creator economy', weight: 2 }, { term: 'vlogger', weight: 1 }, { term: 'personal brand', weight: 1 }, { term: 'livestream', weight: 1 }, { term: 'meme', weight: 1 }],
+  'fintech-payments': [{ term: 'fintech', weight: 2 }, { term: 'payments', weight: 2 }, { term: 'payment gateway', weight: 1 }, { term: 'neobank', weight: 1 }, { term: 'mobile banking', weight: 1 }, { term: 'remittance', weight: 1 }, { term: 'buy now pay later', weight: 1 }, { term: 'merchant services', weight: 1 }],
+  'home-security': [{ term: 'home security', weight: 2 }, { term: 'alarm system', weight: 2 }, { term: 'cctv', weight: 1 }, { term: 'security camera', weight: 1 }, { term: 'smart lock', weight: 1 }, { term: 'surveillance', weight: 1 }, { term: 'intercom', weight: 1 }, { term: 'burglar alarm', weight: 1 }],
+  'language-translation': [{ term: 'translator', weight: 2 }, { term: 'translation', weight: 2 }, { term: 'interpreter', weight: 1 }, { term: 'localization', weight: 1 }, { term: 'subtitling', weight: 1 }, { term: 'translation agency', weight: 1 }, { term: 'language school', weight: 1 }, { term: 'interpreting', weight: 1 }],
+  'storage-moving': [{ term: 'self storage', weight: 2 }, { term: 'moving company', weight: 2 }, { term: 'removalist', weight: 2 }, { term: 'storage unit', weight: 1 }, { term: 'relocation', weight: 1 }, { term: 'mover', weight: 1 }, { term: 'packing service', weight: 1 }, { term: 'shipping container', weight: 1 }],
 };
 
 module.exports = { INDUSTRY_ALIASES };

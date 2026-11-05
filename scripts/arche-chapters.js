@@ -530,6 +530,8 @@ const DESCENT = [
     tendrils: [
       { industry: 'manufacturing-craft', line: 'The workshop never closed — Prometheus runs it now, with QA.' },
       { industry: 'biotech-longevity', line: 'Molding bodies still — Nuwa’s clay now comes with a clinical protocol.' },
+      { industry: 'robotics-drones', line: 'The golden maidservants, shipped — Hephaistos built workers of gold; the industry finally caught up.' },
+      { industry: 'labor-recruitment', line: 'The labour market the gods invented — mortals made to work, now sorted by algorithm.' },
       { industry: 'education', line: 'Breathing the second soul into the made — teaching is finishing work.' },
       { industry: 'healthcare-pharma', line: 'The mender’s trade — Asclepius writes prescriptions now.' },
     ],
@@ -557,6 +559,7 @@ const DESCENT = [
       { industry: 'real-estate-home', line: 'The measured middle ground — every property is a border between earth and sky.' },
       { industry: 'mining-resources', line: 'The deep claim on the earth’s body — modern geology, ancient Geb.' },
       { industry: 'architecture-design', line: 'The drawn sky — architecture is the separation, designed before it is built.' },
+      { industry: 'storage-moving', line: 'What falls, kept — Geb receives all things; the industry just invoices for it.' },
     ],
   },
   {
@@ -618,6 +621,8 @@ const DESCENT = [
       { industry: 'leadership', line: 'The long table and the short word — command, consultantised.' },
       { industry: 'philosophy-ethics', line: 'Asha, still argued — the ethics industry keeps the straightest line of all.' },
       { industry: 'faith', line: 'Order with a soul — the congregation beneath the law, older than the court.' },
+      { industry: 'fintech-payments', line: 'Hermes’s first payment message, made instant — value moving without metal.' },
+      { industry: 'home-security', line: 'The guarded threshold — Janus on every door, Heimdall on every camera.' },
     ],
   },
   {
@@ -631,6 +636,8 @@ const DESCENT = [
       { industry: 'education', line: 'The fire passed hand to hand — the oldest non-stop industry on earth.' },
       { industry: 'manufacturing-craft', line: 'Craft at industrial scale — the potter’s wheel became the production line.' },
       { industry: 'cartography-geospatial', line: 'The map of everything — the modern art of knowing where, exactly, you are.' },
+      { industry: 'consumer-electronics', line: 'Hephaistos’s forge, miniaturised — the device in every hand is the golden automaton, mass-produced.' },
+      { industry: 'language-translation', line: 'Hermes’s caduceus at scale — every language crossed without a god, for a fee.' },
     ],
   },
   {
@@ -643,6 +650,7 @@ const DESCENT = [
       { industry: 'publishing-media', line: 'The epic, serialized — the bard became the feed, and the fire became the algorithm.' },
       { industry: 'photography-optics', line: 'The image as song — the camera sings the note the lyre cannot reach.' },
       { industry: 'gaming-entertainment', line: 'The interactive chorus — the audience finally sings back, on schedule.' },
+      { industry: 'social-media-creators', line: 'Kleos, monetised — fame was once sung by bards; now it is counted and paid.' },
     ],
   },
   {
@@ -671,6 +679,7 @@ const DESCENT = [
       { industry: 'education', line: 'The raising of the child — the promise, institutionalised as curriculum.' },
       { industry: 'healthcare-pharma', line: 'The child kept alive — paediatrics is the healer’s covenant renewed.' },
       { industry: 'wedding-family', line: 'The family built around the child — the future, given a dinner table.' },
+      { industry: 'toys-play', line: 'The child’s first theology — joy, manufactured responsibly.' },
     ],
   },
   {
@@ -709,6 +718,8 @@ const DESCENT = [
       { industry: 'music-arts', line: 'Dionysus, distributed — the dissolution of boundaries is the entertainment industry.' },
       { industry: 'retail-marketplaces', line: 'The crossroads, check-out enabled — every market is an Eshu-crossing.' },
       { industry: 'travel-tourism', line: 'The wanderer’s trade — every holiday is Hermes on commission.' },
+      { industry: 'gambling-chance', line: 'The dice Hermes invented, institutionalised — Fortune’s wheel, croupiered.' },
+      { industry: 'advertising-marketing', line: 'The engineered wish — desire, sold by the impression.' },
       { industry: 'occult-esoteric', line: 'The hidden persuasion — the oldest shifter’s art, still under every brand spell.' },
     ],
   },
@@ -726,6 +737,7 @@ const DESCENT = [
       { industry: 'forestry-conservation', line: 'The forest, regrown — renewal as a standing policy, not a miracle.' },
       { industry: 'mythic-restoration', line: 'PuniCodex’s own trade — the names returned to the digital realm, temple by temple.' },
       { industry: 'diacritic-first-domains', line: 'The pantheon’s names, owned and live as Unicode — the restoration you can visit.' },
+      { industry: 'waste-recycling', line: 'The compost heap of the gods — nothing thrown away, everything returned.' },
     ],
   },
 ];

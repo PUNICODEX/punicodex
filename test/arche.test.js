@@ -82,7 +82,7 @@ test('every descent tendril resolves in the industry pattern graph', () => {
     }
   }
   assert.strictEqual(DESCENT.length, ASCENT.length, 'descent must mirror the ascent');
-  // Comprehensive: all 61 industries are claimed by some principle — scanned
+  // Comprehensive: ALL industries are claimed by some principle — scanned
   // from the rendered page so the finale's own industries count too.
   const html = read('genesis/index.html');
   const usedOnPage = new Set([...html.matchAll(/#pa-panel-([a-z-]+)"/g)].map((m) => m[1]));
