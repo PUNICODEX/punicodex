@@ -114,6 +114,7 @@ function buildPitchEmail({
   patterns,
   slots,
   brain,
+  chosen,
 }) {
   const biz = escapeHtml(businessName);
   const site = recipientSite ? escapeHtml(recipientSite) : null;
@@ -238,6 +239,15 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.9; color:#d8cfb8;">
           <p style="margin:0 0 18px 0;">Dear ${biz} team,</p>
           <p style="margin:0 0 18px 0;">PUNICODEX is the Unicode Pantheon — a scholarly restoration returning the original, accented names of myth to the digital realm. Across <strong style="color:#e8c860;">${statsLine}</strong>, each deity is served at its own restored Unicode domain, kept by a university-edited Scholarly Edition, an industry-pattern map, and a quarterly publication, <em>The Unicode Herald</em>.</p>
+          ${
+            chosen && chosen.chosenBecause
+              ? `<p style="margin:0 0 18px 0;"><strong style="color:#e8c860;">Why you were chosen.</strong> ${escapeHtml(chosen.chosenBecause)}${
+                  chosen.primaries && chosen.primaries.length
+                    ? ` The seats: ${chosen.primaries.map((p) => escapeHtml(p.why)).join(' ')}`
+                    : ''
+                }</p>`
+              : ''
+          }
           <p style="margin:0 0 18px 0;">Here is the finding at the heart of this letter: brands that stand beside their archetype are not buying impressions — they are borrowing thirty centuries of meaning. Perception research has shown the mechanism for decades: alignment with a story the customer already believes outperforms interruption, at any spend. A frame inside the temple of your own namesake is the strongest alignment that exists.</p>
           <p style="margin:0 0 18px 0;">And the temple does something no agency can manufacture: it <strong style="color:#e8e0cc;">founds the story</strong>. The moment your brand stands in the Temple of ${templeUnicode}, claims that would otherwise be unfounded become documented and permanent — "we are the founding patron of ${templeUnicode}" is a citable fact, kept by a university-edited scholarly edition at a domain that does not expire with the campaign. Product drops, anniversary stories, press angles, a name with twelve thousand years of receipts: the temple is the foundation those campaigns cannot build on their own. We are offering that foundation.</p>
           <p style="margin:0 0 18px 0;">Every temple carries thirteen sponsorship frames${frameRefHtml ? ` — and for ${biz}, ${frameRefHtml} is already chosen` : ''}. As we open these to market, we are admitting a <strong style="color:#e8c860;">small, hand-selected group of founding sponsors</strong> — one brand per frame, and only brands that genuinely embody the archetype.</p>
@@ -429,6 +439,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
     `Dear ${businessName} team,`,
     '',
     `PUNICODEX is the Unicode Pantheon — ${stats.flagships} flagship temples across ${stats.pantheons} pantheons, ${stats.temples} restored names in all, each kept at its true Unicode domain.`,
+    chosen && chosen.chosenBecause ? `Why you were chosen: ${chosen.chosenBecause}` : null,
     `We would like to invite ${businessName} to stand as a founding sponsor of the Temple of ${temple.unicode} (${temple.domain}). This invitation is private: it is issued to one company in your space, it is not published, and it is not repeated.`,
     frameRef
       ? `For you we have set aside ${frameRef} — your founding code answers to ${slots.length > 1 ? 'these frames' : 'this frame'} alone.`

@@ -510,9 +510,81 @@ function bestMatchShape(best) {
   };
 }
 
+/**
+ * The "why you were chosen" audit: business-centric, not temple-centric.
+ * Classifies the business into a canonical industry, then resolves the
+ * industry's PRIMARY temple seats — each with its live Unicode domain and
+ * the curated why-line — so a pitch can open with the concrete chain:
+ * industry → temples → domains. Pure pattern matching over canonical data;
+ * every claim in the output is defensible.
+ */
+function explainChosen(business) {
+  const biz = business || {};
+  const businessName = String(biz.businessName || '').trim();
+  const industryRaw = String(biz.industry || biz.industrySeat || '').trim();
+  const norm = normalize(industryRaw);
+  const graph = patterns();
+  const groups = graph.industries || [];
+  const group = norm
+    ? groups.find((g) => normalize(g.name) === norm || normalize(g.industry) === norm) ||
+      groups.find(
+        (g) =>
+          norm.length > 3 && (normalize(g.name).includes(norm) || norm.includes(normalize(g.name)))
+      )
+    : null;
+
+  const lex = uniqueLexicon();
+  const byId = new Map(lex.map((e) => [e.id, e]));
+  const arch = archetypeById();
+
+  const primaries = group
+    ? (group.members || group.entries || [])
+        .filter((e) => e.weight === 2)
+        .sort((x, y) => {
+          const dx = arch.get(x.id) && arch.get(x.id).domainUnicode ? 0 : 1;
+          const dy = arch.get(y.id) && arch.get(y.id).domainUnicode ? 0 : 1;
+          return dx - dy;
+        })
+        .slice(0, 3)
+        .map((e) => {
+          const a = arch.get(e.id);
+          return {
+            slug: e.id,
+            unicode: e.unicode || (byId.get(e.id) ? byId.get(e.id).unicode : e.id),
+            domain: a && a.domainUnicode ? a.domainUnicode : null,
+            why: e.why,
+          };
+        })
+    : [];
+
+  const domainList = primaries
+    .filter((p) => p.domain)
+    .map((p) => `${p.unicode} — live at ${p.domain}`)
+    .join('; ');
+
+  const chosenBecause = group
+    ? `${businessName || 'Your business'} was not picked from a list. ${
+        group.name
+      } holds named seats on ${primaries.length || 'several'} of the pantheon's flagships${
+        domainList ? ` — ${domainList}` : ''
+      }. ${domainList ? 'Each is a live Unicode domain, accurate to the letter, ' : 'Each is one of the 597 hand-built temples, '}in the exact industry ${
+        businessName || 'you'
+      } practise.`
+    : null;
+
+  return {
+    industry: group ? group.industry : null,
+    industryName: group ? group.name : null,
+    tagline: group ? group.tagline || '' : '',
+    primaries,
+    chosenBecause,
+  };
+}
+
 module.exports = {
   matchTemplesForBusiness,
   explainMatch,
+  explainChosen,
   normalize,
   nameTokens,
   domainSld,

@@ -182,3 +182,27 @@ test('every returned reason is sendable copy: short lead, substantive why', () =
     }
   }
 });
+
+test('explainChosen: the "why you were chosen" audit names industry, temples, and live domains', () => {
+  const { explainChosen } = require('../platform/api/sponsor-brain.js');
+  const r = explainChosen({ businessName: 'Solaris Grid', industry: 'solar-energy' });
+  assert.ok(r.industryName && r.industryName.length > 3, 'industry name missing');
+  assert.ok(Array.isArray(r.primaries) && r.primaries.length >= 1, 'no primaries');
+  for (const p of r.primaries) {
+    assert.ok(p.unicode && p.why && p.why.length > 40, `seat ${p.slug} missing payload`);
+  }
+  assert.ok(
+    r.primaries.some((p) => p.domain && /\.(com|net|org)/.test(p.domain)),
+    'at least one primary must carry a live domain'
+  );
+  assert.ok(
+    r.chosenBecause && r.chosenBecause.includes('Solaris Grid'),
+    'chosenBecause missing business name'
+  );
+  assert.ok(r.chosenBecause.includes('Unicode domain'), 'chosenBecause must claim the domains');
+
+  // Unknown industry degrades gracefully rather than inventing a match.
+  const none = explainChosen({ businessName: 'X', industry: 'zz-no-such-industry' });
+  assert.strictEqual(none.industry, null);
+  assert.strictEqual(none.chosenBecause, null);
+});

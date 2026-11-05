@@ -148,6 +148,12 @@ module.exports = async (req, res) => {
       },
       temple.slug
     );
+    // The business-centric audit: industry → primary temples → live domains.
+    const chosen = require('../../../../../../api/sponsor-brain.js').explainChosen({
+      businessName,
+      industry: prospect.industry_name,
+      industrySeat: prospect.industry_seat,
+    });
     const pitch = buildPitchEmail({
       codeRow,
       temple,
@@ -157,6 +163,7 @@ module.exports = async (req, res) => {
       patterns,
       slots: slots.length ? slots : null,
       brain,
+      chosen,
     });
 
     if (wantsPreview) {
