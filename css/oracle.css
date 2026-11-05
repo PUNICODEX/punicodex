@@ -189,7 +189,30 @@ body.menu-open { overflow: hidden; }
 
 @media (max-width: 1024px) {
     .nav-links { display: none; }
-    .nav-cta { display: none; }
+    /* Enter CTA stays visible on mobile — text-only small-caps portal,
+       replacing this page's filled pill below the breakpoint. */
+    .nav-cta {
+        display: block;
+        margin-left: auto;
+        margin-right: 16px;
+        padding: 4px 1px 3px;
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    }
+    .nav-cta:hover {
+        transform: none;
+        background: none;
+        box-shadow: none;
+        color: var(--gold-bright, var(--gold));
+    }
     .nav-toggle { display: flex; }
 }
 

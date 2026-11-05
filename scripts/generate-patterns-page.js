@@ -294,7 +294,7 @@ function renderAtlas(graph, registry) {
 <link rel="canonical" href="https://punicodex.com/patterns/">
 ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/main.css?v=perf35">
+<link rel="stylesheet" href="/css/main.css?v=perf36">
 <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>${ATLAS_CSS}</style>
@@ -405,7 +405,7 @@ function renderMethodology(graph) {
 <meta name="twitter:card" content="summary_large_image">
 ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/main.css?v=perf35">
+<link rel="stylesheet" href="/css/main.css?v=perf36">
 <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <link rel="stylesheet" href="/css/codex.css?v=perf9">
 <link rel="stylesheet" href="/css/punicodex-tokens.css">

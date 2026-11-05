@@ -240,3 +240,31 @@
         height: 18px;
     }
 }
+
+@media (max-width: 1024px) {
+    /* Enter CTA stays visible on mobile — text-only small-caps portal,
+       matching the main.css treatment. */
+    .nav-cta {
+        display: block;
+        margin-left: auto;
+        margin-right: 16px;
+        padding: 4px 1px 3px;
+        border: none;
+        border-radius: 0;
+        font-size: 11px;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--gold, #d4af37);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+        position: static;
+        overflow: visible;
+    }
+
+    .nav-cta::before {
+        display: none;
+    }
+
+    .nav-cta:hover {
+        color: var(--gold-bright, var(--gold, #d4af37));
+    }
+}

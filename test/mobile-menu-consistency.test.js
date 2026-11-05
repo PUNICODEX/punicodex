@@ -111,9 +111,11 @@ test('every navigation page carries the exact canonical mobile menu', () => {
     assert.ok(startIdx !== -1, `${rel} has a .mobile-menu`);
     const endIdx = findBalancedDivEnd(html, startIdx);
     assert.ok(endIdx !== -1, `${rel} menu div is balanced`);
+    // keepBegin pages (wing hubs) legitimately carry the drawer Enter link —
+    // their strips hide the Enter CTA (css/hub.css).
     assert.strictEqual(
       html.slice(startIdx, endIdx),
-      menuForPage(target.active),
+      menuForPage(target.active, target.keepBegin),
       `${rel} menu is canonical (active: ${target.active || 'none'})`
     );
   }

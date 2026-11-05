@@ -22,7 +22,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 
 const root = path.join(__dirname, '..');
-const { CANONICAL_MENU, MENU_OPEN, findBalancedDivEnd, menuForPage } = require(
+const { CANONICAL_MENU, MENU_OPEN, TARGETS, findBalancedDivEnd, menuForPage } = require(
   path.join(root, 'scripts', 'sync-mobile-menu.js')
 );
 
@@ -36,6 +36,12 @@ const files = execFileSync('git', ['ls-files', '*.html'], { cwd: root, encoding:
 // the Set dedupes harmlessly).
 const hrefs = [...new Set([...CANONICAL_MENU.matchAll(/href="(\/[^"]*)"/g)].map((m) => m[1]))];
 const allowed = new Set([CANONICAL_MENU, ...hrefs.map((h) => menuForPage(h))]);
+// Wing hub pages legitimately carry the drawer Enter link — their strips
+// hide the Enter CTA (css/hub.css), so their drawers keep the quiet Archē
+// link (DRAWER_BEGIN in sync-mobile-menu). Allow their exact variant.
+for (const t of TARGETS) {
+  if (t.keepBegin) allowed.add(menuForPage(t.active, true));
+}
 
 let checked = 0;
 const drifted = [];
