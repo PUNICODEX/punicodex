@@ -260,6 +260,11 @@ test('engine is Canvas 2D with quality governor and reduced-motion path (no WebG
     'arche-turned',
     'setPlaying(false)',
     'stroke-dashoffset',
+    // Scene direction must track per-scene visibility and hand the stage to
+    // the MOST visible scene: a roster several viewports tall can never reach
+    // a fixed ratio threshold, which used to leave whole scenes invisible.
+    'ratioByScene',
+    'bestRatio > current * 1.2',
   ]) {
     assert.ok(js.includes(marker), `engine missing ${marker}`);
   }

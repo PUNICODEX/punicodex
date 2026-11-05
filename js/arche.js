@@ -1144,19 +1144,35 @@
     });
   }
 
+  // Scene direction: hand the stage to the MOST visible scene. Scenes are
+  // content-sized (a tall roster runs several viewports high), so no scene
+  // taller than ~2.9 viewports can ever reach a fixed ratio threshold — the
+  // old bestRatio > 0.35 gate left those scenes permanently invisible. A
+  // challenger must clearly beat the current scene's ratio before the stage
+  // swaps, so equal scenes don't thrash the crossfade at their boundary.
+  var ratioByScene = new Map();
+
   var observer = new IntersectionObserver(
     function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        ratioByScene.set(entries[i].target, entries[i].intersectionRatio);
+      }
       var best = null;
       var bestRatio = 0;
-      for (var i = 0; i < entries.length; i++) {
-        if (entries[i].intersectionRatio > bestRatio) {
-          bestRatio = entries[i].intersectionRatio;
-          best = entries[i].target;
+      ratioByScene.forEach(function (ratio, scene) {
+        if (ratio > bestRatio) {
+          bestRatio = ratio;
+          best = scene;
         }
+      });
+      var current = ratioByScene.get(activeScene) || 0;
+      // Small floor: only hand the stage to a scene actually on screen
+      // (guards the gaps above the prologue / below the finale).
+      if (best && best !== activeScene && bestRatio > 0.08 && bestRatio > current * 1.2 + 0.01) {
+        setActive(best);
       }
-      if (best && bestRatio > 0.35) setActive(best);
     },
-    { threshold: [0.2, 0.4, 0.6] }
+    { threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.45, 0.6, 0.8, 1] }
   );
 
   for (var si = 0; si < scenes.length; si++) observer.observe(scenes[si]);
