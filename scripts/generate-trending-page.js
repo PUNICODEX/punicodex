@@ -67,7 +67,7 @@ function render() {
 <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/main.css?v=perf33">
+<link rel="stylesheet" href="/css/main.css?v=perf34">
 <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>
