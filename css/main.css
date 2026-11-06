@@ -440,12 +440,16 @@ ul, ol {
     transition: transform var(--duration-normal) var(--ease-enter);
 }
 
-.nav-cta:hover::before {
-    transform: translateX(0);
-}
+/* Hover fill is pointer-only: touch devices never get hover styles, so a
+   stuck :hover after bfcache-back can't paint the CTA text the void color. */
+@media (hover: hover) {
+    .nav-cta:hover::before {
+        transform: translateX(0);
+    }
 
-.nav-cta:hover {
-    color: var(--void);
+    .nav-cta:hover {
+        color: var(--void);
+    }
 }
 
 .nav-cta span {
@@ -597,13 +601,12 @@ body.menu-open {
     margin-bottom: var(--space-2);
 }
 
-/* The hub title is the hub link: a clear section header — larger than the
-   old 0.65rem labels, smaller than the 18–24px spoke links. One clickable
-   instance, sitting above its spokes. */
+/* The hub title is the hub link: the biggest text in the drawer — clearly
+   larger than the spoke links beneath it (18–24px), one clickable instance. */
 .mobile-menu-title--hub {
-    font-size: 0.85rem;
+    font-size: clamp(20px, 5.4vw, 28px);
     font-weight: 700;
-    letter-spacing: 0.26em;
+    letter-spacing: 0.18em;
     text-decoration: none;
     margin-bottom: var(--space-2);
 }
@@ -782,7 +785,9 @@ body.menu-open {
 .footer-column {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--space-1);
+    text-align: center;
 }
 
 .footer-heading {
@@ -791,7 +796,7 @@ body.menu-open {
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--text-secondary);
     margin-bottom: var(--space-1);
 }
 
@@ -822,6 +827,7 @@ body.menu-open {
     transition: color var(--duration-fast) var(--ease-smooth), transform var(--duration-fast) var(--ease-smooth);
     position: relative;
     width: fit-content;
+    margin-inline: auto;
 }
 
 .footer-column a::after {
@@ -943,7 +949,6 @@ body.menu-open {
     .footer-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: var(--space-4);
-        text-align: left;
     }
 
     .footer-brand {

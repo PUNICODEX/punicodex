@@ -191,12 +191,14 @@
     transition: transform 0.3s ease;
 }
 
-.nav-cta:hover::before {
-    transform: translateX(0);
-}
+@media (hover: hover) {
+    .nav-cta:hover::before {
+        transform: translateX(0);
+    }
 
-.nav-cta:hover {
-    color: var(--void, #050505);
+    .nav-cta:hover {
+        color: var(--void, #050505);
+    }
 }
 
 .nav-cta span {

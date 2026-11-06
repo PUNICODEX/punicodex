@@ -449,12 +449,14 @@ ul, ol {
     transition: transform var(--duration-normal) var(--ease-enter);
 }
 
-.nav-cta:hover::before {
-    transform: translateX(0);
-}
+@media (hover: hover) {
+    .nav-cta:hover::before {
+        transform: translateX(0);
+    }
 
-.nav-cta:hover {
-    color: var(--void);
+    .nav-cta:hover {
+        color: var(--void);
+    }
 }
 
 .nav-cta span {

@@ -747,7 +747,7 @@ function main() {
   require('./sync-mobile-menu').syncOne(heraldIndex, '/herald/');
   const heraldRel = path.relative(ROOT, heraldIndex);
   require('./sync-desktop-nav').syncPage(heraldRel, { active: '/herald/', replaceNav: true });
-  require('./sync-footer').syncPage(heraldRel);
+  require('./sync-footer').syncPage(heraldRel, { force: true });
 
   // Book edition cover/TOC duplicate
   const editionIndexTitle = `${baseTitle} — ${edition.label} (${edition.quarter}) | PuniCodex`;

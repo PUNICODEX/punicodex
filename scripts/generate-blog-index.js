@@ -260,7 +260,7 @@ const html = `<!DOCTYPE html>
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-    <link rel="stylesheet" href="/css/footer.css?v=4">
+    <link rel="stylesheet" href="/css/footer.css?v=5">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
     <style>

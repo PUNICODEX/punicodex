@@ -76,14 +76,16 @@
 .footer-column {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--space-1, 4px);
+    text-align: center;
 }
 
 .footer-heading {
     font-family: var(--font-body, 'Lato', sans-serif);
     font-size: 12px;
     font-weight: 600;
-    color: var(--gold, #d4af37);
+    color: var(--text-secondary, #a0a0a0);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: var(--space-1, 4px);
@@ -96,7 +98,7 @@
 }
 
 .footer-heading a:hover {
-    color: var(--gold-bright, var(--gold, #d4af37));
+    color: var(--gold, #d4af37);
 }
 
 .footer-role {
@@ -113,6 +115,9 @@
     font-size: 14px;
     line-height: 1.7;
     transition: color 0.2s ease;
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
 }
 
 .footer-column a:hover {
@@ -222,7 +227,6 @@
     .footer-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: var(--space-4, 16px) var(--space-4, 16px);
-        text-align: left;
         margin-bottom: var(--space-3, 12px);
     }
 

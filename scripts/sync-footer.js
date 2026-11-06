@@ -140,6 +140,25 @@ const TARGETS = [
   path.join('ink', 'index.html'),
   path.join('screen', 'index.html'),
   path.join('engineering', 'index.html'),
+  // Pages found carrying bespoke/stale footers by the 2026-11 nav audit.
+  path.join('cards', 'index.html'),
+  path.join('about', 'origins', 'index.html'),
+  path.join('university', 'book', 'index.html'),
+  path.join('templates', 'herald', 'chapter.html'),
+  path.join('templates', 'herald', 'landing.html'),
+  path.join('templates', 'flagship', 'creatives', 'index.html'),
+  path.join('templates', 'flagship', 'patron', 'index.html'),
+  path.join('terms', 'advertising', 'index.html'),
+  path.join('terms', 'analytics', 'index.html'),
+  path.join('terms', 'appraise', 'index.html'),
+  path.join('terms', 'authenticity', 'index.html'),
+  path.join('terms', 'creatives', 'index.html'),
+  path.join('terms', 'data-use', 'index.html'),
+  path.join('terms', 'game', 'index.html'),
+  path.join('terms', 'ink', 'index.html'),
+  path.join('terms', 'oracle', 'index.html'),
+  path.join('terms', 'store', 'index.html'),
+  path.join('terms', 'api', 'index.html'),
   // Wing hub pages (scripts/generate-hubs.js emits this same builder).
   path.join('world', 'index.html'),
   path.join('culture', 'index.html'),
@@ -178,13 +197,20 @@ function ensureCssLink(html, href) {
   return html.replace('</head>', `    <link rel="stylesheet" href="${href}">\n</head>`);
 }
 
-function syncPage(rel) {
+function syncPage(rel, opts = {}) {
   const filePath = path.join(ROOT, rel);
   if (!fs.existsSync(filePath)) return 'missing';
   let html = fs.readFileSync(filePath, 'utf8');
 
   const footerStart = html.search(/<footer[\s>]/i);
   if (footerStart !== -1) {
+    // Foreign-footer guard: never replace a footer that is not the canonical
+    // site footer. The Restoration experience (/herald/) uses a semantic
+    // <footer class="bottom"> as its animation control bar — replacing it
+    // with the site footer silently kills the app (null addEventListener on
+    // the stripped controls). Only TARGETS-listed pages get force-sync.
+    const head = html.slice(footerStart, footerStart + 220);
+    if (!head.includes('class="site-footer"') && !opts.force) return 'foreign-footer';
     const footerEnd = findBalancedEnd(html, footerStart, 'footer');
     if (footerEnd === -1) return 'unbalanced';
     html = html.slice(0, footerStart) + footerHtml() + html.slice(footerEnd);
@@ -196,7 +222,7 @@ function syncPage(rel) {
   }
 
   if (!html.includes('/css/main.css')) {
-    html = ensureCssLink(html, '/css/footer.css?v=4');
+    html = ensureCssLink(html, '/css/footer.css?v=5');
   }
 
   writeFileWithRetry(filePath, html, 'utf8');
@@ -207,7 +233,7 @@ function main() {
   const counts = {};
   for (const rel of TARGETS) {
     try {
-      const result = syncPage(rel);
+      const result = syncPage(rel, { force: true });
       counts[result] = (counts[result] || 0) + 1;
       if (result !== 'synced') console.log(`  ${result}: ${rel}`);
     } catch (err) {

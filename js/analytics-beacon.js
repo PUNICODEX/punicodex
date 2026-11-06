@@ -47,7 +47,12 @@
       consent = 'unset';
     }
     if (consent === 'declined') return;
-    var allowEngagement = consent === 'accepted';
+    /* Engagement signals (attention, regions, devices, journeys) are
+     * first-party, cookieless, and aggregate-only — no third-party transfer,
+     * no fingerprinting (see /terms/analytics/). They therefore run for
+     * 'unset' visitors too: the banner records a choice, it does not gate
+     * privacy-preserving measurement. Only an explicit decline opts out. */
+    var allowEngagement = true;
 
     var sid = '';
     try {

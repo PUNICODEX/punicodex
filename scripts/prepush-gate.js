@@ -183,6 +183,10 @@ const RULES = [
     ],
   },
   {
+    pattern: /^templates\/herald-restoration\/|^herald\/index\.html$|^herald\/assets\/|^test\/herald-scene\.test\.js$/,
+    suites: ['Herald Scene Tests'],
+  },
+  {
     pattern: /^js\/herald-beacon\.js$|^scripts\/inject-herald-beacon\.js$|^herald\//,
     suites: ['Herald Beacon Tests', 'Herald Page Tests'],
   },

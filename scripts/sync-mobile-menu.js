@@ -145,6 +145,8 @@ const TARGETS = [
   { page: path.join('cards', 'index.html'), active: '/cards/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
   { page: path.join('screen', 'index.html'), active: '/screen/' },
+  // 2026-11 nav audit: bespoke menu found on the trending temple drill-down.
+  { page: path.join('trending', 'temple', 'index.html'), active: '/trending/' },
   // Wing hub pages carry the overlay too; their strips hide the Enter CTA,
   // so their drawers alone keep the quiet Archē link.
   { page: path.join('world', 'index.html'), active: '/world/', keepBegin: true },

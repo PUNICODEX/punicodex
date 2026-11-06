@@ -276,6 +276,7 @@ const SUITES = [
     cmd: 'node test/nav-hubs-regression.test.js',
   },
   { name: 'Footer Consistency Tests', cmd: 'node test/footer-consistency.test.js' },
+  { name: 'Herald Scene Tests', cmd: 'node test/herald-scene.test.js' },
   { name: 'Stale Counter Tests', cmd: 'node test/stale-counters.test.js' },
   { name: 'Texts Section Tests', cmd: 'node test/texts-section.test.js' },
   { name: 'Cookie Consent Tests', cmd: 'node test/cookie-consent.test.js' },
