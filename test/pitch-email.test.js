@@ -182,6 +182,7 @@ async function run() {
       codeRow,
       temple,
       businessName: '<script>alert(1)</script>',
+      customNote: 'A note that satisfies the bespoke gate.',
       patterns: [],
     });
     assert.ok(!evil.html.includes('<script>alert'), 'business name is escaped');
@@ -222,6 +223,7 @@ async function run() {
       codeRow,
       temple,
       businessName: 'Feather Exchange',
+      customNote: 'Your grading eye is the reason this temple exists.',
       patterns: [],
       slots: [{ name: 'Feathered Box', isBundle: false }],
     });
@@ -249,6 +251,7 @@ async function run() {
       codeRow,
       temple,
       businessName: 'Feather Exchange',
+      customNote: 'Your grading eye is the reason this temple exists.',
       patterns: [],
       slots: [{ name: 'Full Page Takeover', isBundle: true }],
     });
@@ -258,6 +261,7 @@ async function run() {
     );
     const multi = buildPitchEmail({
       codeRow,
+      customNote: 'Your grading eye is the reason this temple exists.',
       temple,
       businessName: 'Feather Exchange',
       patterns: [],

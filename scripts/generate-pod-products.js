@@ -769,4 +769,6 @@ function main() {
   console.log(`Wrote ${products.length} POD products to store/products.json`);
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { PLACEMENTS, LOGO_ASPECT, placementFor };

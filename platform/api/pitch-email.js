@@ -105,6 +105,50 @@ function slotLine(codeRow) {
  * @param {object} [opts.brain]         — sponsor-brain match for this temple
  *                                        ({ reasons: [{lead, why}], namesake }); prepended to the resonance
  */
+/**
+ * Render guard: every interpolated value must resolve. A pitch that would
+ * ship "undefined" or "NaN" to a sponsor throws HERE, at build time, never
+ * at the sponsor's inbox.
+ */
+function must(value, label) {
+  if (
+    value === null ||
+    value === undefined ||
+    (typeof value === 'number' && !Number.isFinite(value))
+  ) {
+    throw new Error(`pitch render: ${label} is not resolvable — refusing to build the email`);
+  }
+  const s = String(value);
+  if (/undefined|NaN|\[object Object\]/.test(s)) {
+    throw new Error(`pitch render: ${label} contains placeholder debris ("${s.slice(0, 60)}")`);
+  }
+  return value;
+}
+
+/** Per-kind required codeRow fields — the offer block must never emit a blank. */
+function validateCodeRow(codeRow) {
+  if (!codeRow || typeof codeRow !== 'object') throw new Error('pitch render: codeRow missing');
+  must(codeRow.code, 'codeRow.code');
+  switch (codeRow.kind) {
+    case 'percent_off':
+      must(codeRow.percent, 'codeRow.percent');
+      break;
+    case 'fixed_off':
+      must(codeRow.fixed_cents, 'codeRow.fixed_cents');
+      break;
+    case 'free_months':
+    case 'trial_extension':
+      must(codeRow.free_months, 'codeRow.free_months');
+      break;
+    case 'free_months_then_price':
+      must(codeRow.free_months, 'codeRow.free_months');
+      must(codeRow.then_price_cents, 'codeRow.then_price_cents');
+      break;
+    default:
+      break;
+  }
+}
+
 function buildPitchEmail({
   codeRow,
   temple,
@@ -116,6 +160,23 @@ function buildPitchEmail({
   brain,
   chosen,
 }) {
+  // Fail-closed bespoke gate: a pitch may only leave the building with
+  // business-specific material — an evidence-led audit, brain reasons, or a
+  // founder's custom note. Generic inventory copy is what this template
+  // existed to abolish; without a bespoke reason there is no email.
+  if (
+    !(chosen && chosen.chosenBecause) &&
+    !(brain && Array.isArray(brain.reasons) && brain.reasons.length) &&
+    !customNote
+  ) {
+    throw new Error(
+      'pitch render: no bespoke material (chosen.chosenBecause, brain.reasons, or customNote) — the email would be generic; enrich the lead or write a note'
+    );
+  }
+  validateCodeRow(codeRow);
+  must(temple && temple.unicode, 'temple.unicode');
+  must(businessName, 'businessName');
+
   const biz = escapeHtml(businessName);
   const site = recipientSite ? escapeHtml(recipientSite) : null;
   const code = escapeHtml(codeRow.code);
@@ -238,18 +299,17 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
       <td style="padding:40px 48px 8px 48px;">
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.9; color:#d8cfb8;">
           <p style="margin:0 0 18px 0;">Dear ${biz} team,</p>
-          <p style="margin:0 0 18px 0;">PUNICODEX is the Unicode Pantheon — a scholarly restoration returning the original, accented names of myth to the digital realm. Across <strong style="color:#e8c860;">${statsLine}</strong>, each deity is served at its own restored Unicode domain, kept by a university-edited Scholarly Edition, an industry-pattern map, and a quarterly publication, <em>The Unicode Herald</em>.</p>
           ${
             chosen && chosen.chosenBecause
               ? `<p style="margin:0 0 18px 0;"><strong style="color:#e8c860;">Why you were chosen.</strong> ${escapeHtml(chosen.chosenBecause)}${
-                  chosen.primaries && chosen.primaries.length
-                    ? ` The seats: ${chosen.primaries.map((p) => escapeHtml(p.why)).join(' ')}`
+                  chosen.evidenceLine
+                    ? ` <em>Proof, not praise:</em> ${escapeHtml(chosen.evidenceLine)}.`
                     : ''
                 }</p>`
               : ''
           }
-          <p style="margin:0 0 18px 0;">Here is the finding at the heart of this letter: brands that stand beside their archetype are not buying impressions — they are borrowing thirty centuries of meaning. Perception research has shown the mechanism for decades: alignment with a story the customer already believes outperforms interruption, at any spend. A frame inside the temple of your own namesake is the strongest alignment that exists.</p>
-          <p style="margin:0 0 18px 0;">And the temple does something no agency can manufacture: it <strong style="color:#e8e0cc;">founds the story</strong>. The moment your brand stands in the Temple of ${templeUnicode}, claims that would otherwise be unfounded become documented and permanent — "we are the founding patron of ${templeUnicode}" is a citable fact, kept by a university-edited scholarly edition at a domain that does not expire with the campaign. Product drops, anniversary stories, press angles, a name with twelve thousand years of receipts: the temple is the foundation those campaigns cannot build on their own. We are offering that foundation.</p>
+          <p style="margin:0 0 18px 0;">PUNICODEX is the Unicode Pantheon — a scholarly restoration returning the original, accented names of myth to the digital realm. Across <strong style="color:#e8c860;">${statsLine}</strong>, each deity is served at its own restored Unicode domain, kept by a university-edited Scholarly Edition, an industry-pattern map, and a quarterly publication, <em>The Unicode Herald</em>.</p>
+          <p style="margin:0 0 18px 0;">And the temple does something no agency can manufacture: it <strong style="color:#e8e0cc;">founds the story</strong>. Brands that stand beside their archetype are not buying impressions — they are borrowing thirty centuries of meaning, and the association is a citable fact kept at a permanent address: "we are the founding patron of ${templeUnicode}" outlives any campaign, and product drops, anniversary stories and press angles that would otherwise be unfounded suddenly have a foundation to stand on. We are offering that foundation.</p>
           <p style="margin:0 0 18px 0;">Every temple carries thirteen sponsorship frames${frameRefHtml ? ` — and for ${biz}, ${frameRefHtml} is already chosen` : ''}. As we open these to market, we are admitting a <strong style="color:#e8c860;">small, hand-selected group of founding sponsors</strong> — one brand per frame, and only brands that genuinely embody the archetype.</p>
           <p style="margin:0;">For the Temple of ${templeUnicode}, ${biz} was our first and most natural approach. This invitation is issued to one company in your space; it is not published, and it is not repeated.</p>
         </div>
@@ -310,14 +370,6 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
                 <span style="color:#e8c860;">◆&nbsp;&nbsp;Held in confidence.</span><br/>
                 This invitation is issued to one company in your space. We do not publish our sponsor list, we do not announce our approaches, and we will not approach your competitors for the same frame while this invitation stands.
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td valign="top" style="padding:0 0 6px 0;">
-              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.8; color:#d8cfb8;">
-                <span style="color:#e8c860;">◆&nbsp;&nbsp;The foundation your next campaigns are missing.</span><br/>
-                Stand here, and the story is yours to tell: launches, drops, anniversaries and press angles that would otherwise be unfounded become documented fact — kept by a scholarly edition at a permanent address. The temple outlives the campaign; the association compounds.
               </div>
             </td>
           </tr>
@@ -438,16 +490,18 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
   const text = [
     `Dear ${businessName} team,`,
     '',
-    `PUNICODEX is the Unicode Pantheon — ${stats.flagships} flagship temples across ${stats.pantheons} pantheons, ${stats.temples} restored names in all, each kept at its true Unicode domain.`,
-    chosen && chosen.chosenBecause ? `Why you were chosen: ${chosen.chosenBecause}` : null,
+    chosen && chosen.chosenBecause
+      ? `Why you were chosen: ${chosen.chosenBecause}${
+          chosen.evidenceLine ? ` Proof, not praise: ${chosen.evidenceLine}.` : ''
+        }`
+      : null,
+    `PUNICODEX is the Unicode Pantheon — ${stats.flagships} flagship temples across ${stats.pantheons} pantheons, ${stats.temples} restored names in all, each kept at its true Unicode domain. The temple does what no agency can manufacture: it founds the story — "we are the founding patron of ${temple.unicode}" becomes a citable fact at a permanent address, and launches, anniversaries and press angles that would otherwise be unfounded finally have a foundation.`,
     `We would like to invite ${businessName} to stand as a founding sponsor of the Temple of ${temple.unicode} (${temple.domain}). This invitation is private: it is issued to one company in your space, it is not published, and it is not repeated.`,
     frameRef
-      ? `For you we have set aside ${frameRef} — your founding code answers to ${slots.length > 1 ? 'these frames' : 'this frame'} alone.`
-      : null,
+      ? `For you we have set aside ${frameRef}. Reply to this email and we will prepare your placement.`
+      : `Reply to this email naming your chosen frame, and we will prepare your placement.`,
     '',
-    'The exclusivity: thirteen frames per temple, one brand each, no rotation. And if your brand does not share, a Full Page Takeover exists — every frame of the temple front, held as one, for a single patron.',
-    "The Herald records its patrons: The Unicode Herald, the Pantheon's quarterly edition, lists the temples' sponsors as they are seated — your name printed alongside the temple's other patrons on the temple's own page — and customisations so your placement speaks in your brand's own voice are on the roadmap.",
-    'And the strategic point: the temple founds your story. Launches, drops and press angles that would otherwise be unfounded become documented, citable, permanent — the foundation your next campaigns are missing. We are offering that foundation.',
+    "The exclusivity: thirteen frames per temple, one brand each, no rotation. For a brand that does not share, a Full Page Takeover exists — every frame of the temple front, held as one, for a single patron. The Unicode Herald records its patrons in the Pantheon's quarterly edition, and your placement will speak in your brand's own voice as customisations land.",
     ...(Array.isArray(brain?.reasons) && brain.reasons.length
       ? ['', 'Why this temple is yours:', ...brain.reasons.map((r) => `— ${r.lead} ${r.why}`)]
       : []),

@@ -22,13 +22,9 @@ const path = require('node:path');
 const root = path.join(__dirname, '..');
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 
-/* Extract the PLACEMENTS literal + LOGO_ASPECT from the generator source and
- * evaluate them (pure data — the generator's main() must not run). */
-const src = read(path.join('scripts', 'generate-pod-products.js'));
-const block = src.match(/const PLACEMENTS = (\{[\s\S]*?\n\});/);
-assert.ok(block, 'PLACEMENTS block not found in generate-pod-products.js');
-const PLACEMENTS = eval(`(${block[1]})`);
-const LOGO_ASPECT = Number(src.match(/const LOGO_ASPECT = ([\d.]+)/)[1]);
+/* The print zones come straight from the generator (require-safe export) —
+ * the test and the build cannot drift. */
+const { PLACEMENTS, LOGO_ASPECT } = require(path.join(root, 'scripts', 'generate-pod-products.js'));
 
 /* Minimal image-dimension reader (mirrors the generator's imageSizeSync for
  * the formats the masters ship as: WebP VP8/VP8L/VP8X + PNG). */

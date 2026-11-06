@@ -183,6 +183,10 @@ const RULES = [
     ],
   },
   {
+    pattern: /^platform\/api\/(pitch-email|sponsor-brain)\.js$|^platform\/api-handlers\/admin\/portal\/sponsors\/|^data\/crawler\/sponsors\/prospect-evidence\.json$|^test\/(sponsor-pitch-render|pitch-email|sponsor-brain)\.test\.js$/,
+    suites: ['Sponsor Pitch Render Tests', 'Pitch Email Tests', 'Sponsor Brain Tests'],
+  },
+  {
     pattern: /^scripts\/generate-pod-products\.js$|^store\/products\.json$|^store\/placement-overrides\.json$|^test\/store-placement-containment\.test\.js$/,
     suites: ['Store Placement Containment Tests', 'Store Configurator Data Tests', 'Store Structure Tests'],
   },

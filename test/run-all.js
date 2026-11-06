@@ -277,7 +277,11 @@ const SUITES = [
   },
   { name: 'Footer Consistency Tests', cmd: 'node test/footer-consistency.test.js' },
   { name: 'Front Court Tests', cmd: 'node test/home-front-court.test.js' },
-  { name: 'Store Placement Containment Tests', cmd: 'node test/store-placement-containment.test.js' },
+  {
+    name: 'Store Placement Containment Tests',
+    cmd: 'node test/store-placement-containment.test.js',
+  },
+  { name: 'Sponsor Pitch Render Tests', cmd: 'node test/sponsor-pitch-render.test.js' },
   { name: 'Herald Scene Tests', cmd: 'node test/herald-scene.test.js' },
   { name: 'Stale Counter Tests', cmd: 'node test/stale-counters.test.js' },
   { name: 'Texts Section Tests', cmd: 'node test/texts-section.test.js' },

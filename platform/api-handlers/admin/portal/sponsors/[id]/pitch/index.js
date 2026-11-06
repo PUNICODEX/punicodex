@@ -137,23 +137,28 @@ module.exports = async (req, res) => {
     const codeRow = await ensureFoundingCode(prospect, body.offer || {}, auth);
     const slots = await discountService.slotsForCode(codeRow);
     const patterns = buildResonanceBullets(temple.slug, businessName);
+    // The business-centric audit: industry → primary temples → live domains.
+    // Evidence (data/crawler/sponsors/prospect-evidence.json) resolves by
+    // domain first, so named brands classify on facts, not keyword guesses.
+    const chosen = require('../../../../../../api/sponsor-brain.js').explainChosen({
+      businessName,
+      domain: recipientSite,
+      industry: prospect.industry_name,
+      industrySeat: prospect.industry_seat,
+    });
     // The sponsor brain: bespoke, explained resonance for THIS business on
-    // THIS temple (namesake / industry seat / keyword+lore axes).
+    // THIS temple (namesake / industry seat / keyword+lore axes). The
+    // evidence-resolved industry feeds the match when the prospect row's
+    // own industry is unset.
     const brain = require('../../../../../../api/sponsor-brain.js').explainMatch(
       {
         businessName,
         domain: recipientSite,
-        industry: prospect.industry_name,
+        industry: prospect.industry_name || (chosen && chosen.industry) || undefined,
         industrySeat: prospect.industry_seat,
       },
       temple.slug
     );
-    // The business-centric audit: industry → primary temples → live domains.
-    const chosen = require('../../../../../../api/sponsor-brain.js').explainChosen({
-      businessName,
-      industry: prospect.industry_name,
-      industrySeat: prospect.industry_seat,
-    });
     const pitch = buildPitchEmail({
       codeRow,
       temple,

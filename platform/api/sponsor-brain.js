@@ -37,6 +37,30 @@ let lexiconCache = null;
 let archetypeCache = null;
 let patternCache = null;
 let loreCache = null;
+let evidenceCache = null;
+
+/* Curated prospect evidence (data/crawler/sponsors/prospect-evidence.json):
+ * domain → { industry, chosen, evidence[] } — researched facts that make the
+ * "why you were chosen" audit specific for named businesses. The classifier
+ * matches industry KEYWORDS; brand names like "Ubisoft" resolve through this
+ * layer instead, so the audit never falls back to generic copy for a lead we
+ * actually know something about. */
+function prospectEvidence(domain, businessName) {
+  if (evidenceCache === null) {
+    try {
+      evidenceCache = require(
+        path.join(ROOT, 'data', 'crawler', 'sponsors', 'prospect-evidence.json')
+      );
+    } catch {
+      evidenceCache = {};
+    }
+  }
+  const key = String(domain || '')
+    .toLowerCase()
+    .replace(/^www\./, '')
+    .trim();
+  return key && evidenceCache[key] ? evidenceCache[key] : null;
+}
 
 function lexicon() {
   if (!lexiconCache) {
@@ -521,7 +545,8 @@ function bestMatchShape(best) {
 function explainChosen(business) {
   const biz = business || {};
   const businessName = String(biz.businessName || '').trim();
-  const industryRaw = String(biz.industry || biz.industrySeat || '').trim();
+  const evidence = prospectEvidence(biz.domain, businessName);
+  const industryRaw = String(evidence?.industry || biz.industry || biz.industrySeat || '').trim();
   const norm = normalize(industryRaw);
   const graph = patterns();
   const groups = graph.industries || [];
@@ -562,15 +587,17 @@ function explainChosen(business) {
     .map((p) => `${p.unicode} — live at ${p.domain}`)
     .join('; ');
 
-  const chosenBecause = group
-    ? `${businessName || 'Your business'} was not picked from a list. ${
-        group.name
-      } holds named seats on ${primaries.length || 'several'} of the pantheon's flagships${
-        domainList ? ` — ${domainList}` : ''
-      }. ${domainList ? 'Each is a live Unicode domain, accurate to the letter, ' : 'Each is one of the 597 hand-built temples, '}in the exact industry ${
-        businessName || 'you'
-      } practise.`
-    : null;
+  const chosenBecause = evidence
+    ? `${businessName || 'Your business'} was not picked from a list. ${evidence.chosen}`
+    : group
+      ? `${businessName || 'Your business'} was not picked from a list. ${
+          group.name
+        } holds named seats on ${primaries.length || 'several'} of the pantheon's flagships${
+          domainList ? ` — ${domainList}` : ''
+        }. ${domainList ? 'Each is a live Unicode domain, accurate to the letter, ' : 'Each is one of the 597 hand-built temples, '}in the exact industry ${
+          businessName || 'you'
+        } practise.`
+      : null;
 
   return {
     industry: group ? group.industry : null,
@@ -578,6 +605,8 @@ function explainChosen(business) {
     tagline: group ? group.tagline || '' : '',
     primaries,
     chosenBecause,
+    evidence: evidence || null,
+    evidenceLine: evidence && Array.isArray(evidence.evidence) ? evidence.evidence.join(' — ') : '',
   };
 }
 
