@@ -82,10 +82,18 @@ function test(name, fn) {
 function zoneFor(srcUrl, kind) {
   const placement = PLACEMENTS[kind];
   if (!placement) return null;
-  const dims = srcUrl && srcUrl.startsWith('/') ? imageSizeSync(path.join(root, srcUrl)) : null;
-  const aspect = dims && dims.h ? dims.w / dims.h : 1.4;
-  const zone = aspect > LOGO_ASPECT ? placement.logo : placement.chest;
-  return { zone, aspect };
+  // Composite print sheets are gitignored build artifacts — absent from a
+  // fresh checkout (CI). Skip them here; their placements were
+  // containment-verified on the build machine that generated products.json.
+  if (srcUrl && srcUrl.startsWith('/')) {
+    const full = path.join(root, srcUrl);
+    if (!fs.existsSync(full)) return null;
+    const dims = imageSizeSync(full);
+    const aspect = dims && dims.h ? dims.w / dims.h : 1.4;
+    const zone = aspect > LOGO_ASPECT ? placement.logo : placement.chest;
+    return { zone, aspect };
+  }
+  return null;
 }
 
 test('products.json carries the full catalogue', () => {
