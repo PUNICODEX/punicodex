@@ -183,6 +183,10 @@ const RULES = [
     ],
   },
   {
+    pattern: /^scripts\/generate-pod-products\.js$|^store\/products\.json$|^store\/placement-overrides\.json$|^test\/store-placement-containment\.test\.js$/,
+    suites: ['Store Placement Containment Tests', 'Store Configurator Data Tests', 'Store Structure Tests'],
+  },
+  {
     pattern: /^index\.html$|^css\/home-critical\.css$|^js\/front-court\.js$|^test\/home-front-court\.test\.js$/,
     suites: ['Front Court Tests'],
   },

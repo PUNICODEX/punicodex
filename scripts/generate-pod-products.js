@@ -128,29 +128,36 @@ const KIND_ART_POLICY = {
 };
 
 // widthPct/topPct/leftPct position the art overlay on the garment base image
-// (percent of stage width/height; leftPct 50 = centred, translateX(-50%)).
-// widthPct/topPct/leftPct position the art overlay on the garment base image
-// (percent of stage; leftPct 50 = centred, translateX(-50%)). Values are
-// measured against the square blank flat-lays (assets/store-base/) — chest
-// band ≈ y 26–34% of stage depending on kind. `tall` is the override for
-// portrait arts (mascot etc.): same spot, narrower so the art never spills
-// off the garment; baked onto the artwork as art.placement.
+// (percent of the square stage; leftPct is the horizontal center, the overlay
+// translates -50%). Each kind defines TWO print zones measured against the
+// blank flat-lays (assets/store-base/): `chest` (the centered main print) and
+// `logo` (a small landscape print, left-of-center where the garment calls for
+// it). Every artwork is aspect-fitted INSIDE its zone at build time —
+// widthPct = min(zone.w, zone.h × aspect), topPct centers the result — so no
+// art, of any shape, can spill off the garment. The old two-preset scheme
+// (default + `tall`) let wide lockups and near-square marks overhang; the
+// zone math makes that impossible by construction.
 const PLACEMENTS = {
-  tee: { area: 'front', widthPct: 34, topPct: 26, leftPct: 50, tall: { widthPct: 25, topPct: 23, leftPct: 50 } },
-  hoodie: { area: 'front', widthPct: 21, topPct: 28, leftPct: 33, tall: { widthPct: 27, topPct: 24, leftPct: 50 } },
-  crewneck: { area: 'front', widthPct: 36, topPct: 28, leftPct: 51, tall: { widthPct: 27, topPct: 26, leftPct: 51 } },
-  cap: { area: 'front', widthPct: 24, topPct: 30, leftPct: 50, tall: { widthPct: 17, topPct: 27, leftPct: 50 } },
-  tote: { area: 'front', widthPct: 36, topPct: 27, leftPct: 50, tall: { widthPct: 27, topPct: 25, leftPct: 50 } },
-  // Object kinds — print areas measured from the blank product photos.
-  mug: { area: 'front', widthPct: 30, topPct: 30, leftPct: 50, tall: { widthPct: 22, topPct: 28, leftPct: 50 } },
-  tumbler: { area: 'front', widthPct: 28, topPct: 32, leftPct: 45, tall: { widthPct: 20, topPct: 30, leftPct: 45 } },
-  phonecase: { area: 'front', widthPct: 44, topPct: 30, leftPct: 50, tall: { widthPct: 32, topPct: 28, leftPct: 50 } },
-  pin: { area: 'front', widthPct: 22, topPct: 38, leftPct: 50 },
-  notebook: { area: 'front', widthPct: 42, topPct: 26, leftPct: 50 },
-  print: { area: 'front', widthPct: 40, topPct: 26, leftPct: 50, tall: { widthPct: 30, topPct: 24, leftPct: 50 } },
-  canvas: { area: 'front', widthPct: 40, topPct: 30, leftPct: 50, tall: { widthPct: 29, topPct: 28, leftPct: 50 } },
-  sticker: { area: 'front', widthPct: 39.5, topPct: 26, leftPct: 50 },
+  tee:       { chest: { cx: 50, cy: 38, w: 34, h: 30 }, logo: { cx: 50, cy: 32, w: 34, h: 16 } },
+  hoodie:    { chest: { cx: 50, cy: 40, w: 27, h: 32 }, logo: { cx: 33, cy: 32, w: 21, h: 11 } },
+  crewneck:  { chest: { cx: 51, cy: 41, w: 36, h: 32 }, logo: { cx: 51, cy: 34, w: 36, h: 17 } },
+  cap:       { chest: { cx: 50, cy: 37, w: 17, h: 22 }, logo: { cx: 50, cy: 34, w: 24, h: 13 } },
+  tote:      { chest: { cx: 50, cy: 40, w: 27, h: 32 }, logo: { cx: 50, cy: 33, w: 36, h: 17 } },
+  // Object kinds — print zones span the product's printable face (mugs,
+  // totes, posters, cases are full-surface prints, unlike garment chest
+  // bands). Heights validated against the previously hand-tuned house line.
+  mug:       { chest: { cx: 50, cy: 42, w: 22, h: 50 }, logo: { cx: 50, cy: 36, w: 30, h: 26 } },
+  tumbler:   { chest: { cx: 45, cy: 44, w: 20, h: 46 }, logo: { cx: 45, cy: 38, w: 28, h: 26 } },
+  phonecase: { chest: { cx: 50, cy: 50, w: 34, h: 78 }, logo: { cx: 50, cy: 44, w: 44, h: 40 } },
+  pin:       { chest: { cx: 50, cy: 48, w: 22, h: 28 }, logo: { cx: 50, cy: 48, w: 22, h: 28 } },
+  notebook:  { chest: { cx: 50, cy: 50, w: 44, h: 80 }, logo: { cx: 50, cy: 38, w: 42, h: 30 } },
+  print:     { chest: { cx: 50, cy: 50, w: 42, h: 86 }, logo: { cx: 50, cy: 40, w: 42, h: 40 } },
+  canvas:    { chest: { cx: 50, cy: 46, w: 34, h: 58 }, logo: { cx: 50, cy: 38, w: 40, h: 34 } },
+  sticker:   { chest: { cx: 50, cy: 48, w: 42, h: 62 }, logo: { cx: 50, cy: 42, w: 42, h: 40 } },
 };
+
+// Arts wider than this ratio print as a small logo, not a centered chest piece.
+const LOGO_ASPECT = 1.6;
 
 const ARTWORK_LABELS = {
   mascot: 'Mascot',
@@ -207,23 +214,38 @@ function imageSizeSync(file) {
 }
 
 const ART_SIZE_CACHE = new Map();
-function artIsPortrait(src) {
-  if (!src || !src.startsWith('/')) return false;
+function artDims(src) {
+  if (!src || !src.startsWith('/')) return null;
   if (!ART_SIZE_CACHE.has(src)) {
     ART_SIZE_CACHE.set(src, imageSizeSync(path.join(ROOT, src)));
   }
-  const dims = ART_SIZE_CACHE.get(src);
-  return Boolean(dims && dims.h > dims.w * 1.15);
+  return ART_SIZE_CACHE.get(src);
+}
+
+/* Aspect-fit an artwork INSIDE its kind's print zone: wide lockups take the
+ * logo zone, everything else the chest zone. widthPct = min(zone.w, zone.h
+ * x aspect) and the result is vertically centered on the zone — so no art,
+ * of any shape, can spill off the garment. Returns
+ * { widthPct, topPct, leftPct } or null when the kind has no zone. */
+function placementFor(src, kind) {
+  const placement = PLACEMENTS[kind];
+  if (!placement) return null;
+  const dims = artDims(src);
+  const aspect = dims && dims.h ? dims.w / dims.h : 1.4;
+  const zone = aspect > LOGO_ASPECT ? placement.logo : placement.chest;
+  const widthPct = Math.min(zone.w, zone.h * aspect);
+  const heightPct = widthPct / aspect;
+  return {
+    widthPct: Math.round(widthPct * 10) / 10,
+    topPct: Math.round((zone.cy - heightPct / 2) * 10) / 10,
+    leftPct: zone.cx,
+  };
 }
 
 function buildArtworks(assets, kind, design) {
-  const placement = PLACEMENTS[kind];
   const withPlacement = (art) => {
-    // Portrait arts (mascot, stacked lockups, …) use the kind's `tall`
-    // geometry — same spot, narrower, so nothing spills off the garment.
-    if (placement && placement.tall && artIsPortrait(art.src)) {
-      art.placement = { ...placement.tall };
-    }
+    const p = placementFor(art.src, kind);
+    if (p) art.placement = p;
     return art;
   };
   const policy = KIND_ART_POLICY[kind];
@@ -323,11 +345,10 @@ function decorateProduct(product) {
       license: 'temple-creative',
       creator: c.creator || undefined,
     };
-    // Licensed creatives have arbitrary aspect ratios — measure and give
-    // portrait pieces the tall geometry just like the brand arts.
-    if (PLACEMENTS[kind] && PLACEMENTS[kind].tall && artIsPortrait(c.src)) {
-      art.placement = { ...PLACEMENTS[kind].tall };
-    }
+    // Licensed creatives have arbitrary aspect ratios — aspect-fit them into
+    // the kind's print zone just like the brand arts.
+    const creativePlacement = placementFor(c.src, kind);
+    if (creativePlacement) art.placement = creativePlacement;
     product.artworks.push(art);
   }
   applyPlacementOverrides(product);
@@ -338,10 +359,10 @@ function decorateProduct(product) {
   const withImage = baseList.find((c) => c.image) || baseList[0];
   if (withImage && withImage.image) product.baseMockup = withImage.image;
   else delete product.baseMockup;
+  // Kind-level default print zone (square-art assumption) for arts that carry
+  // no placement of their own; per-art placements always win.
   product.placement =
-    PLACEMENTS[kind] && OVERLAY_KINDS.has(kind)
-      ? (({ area, widthPct, topPct, leftPct }) => ({ area, widthPct, topPct, leftPct }))(PLACEMENTS[kind])
-      : null;
+    PLACEMENTS[kind] && OVERLAY_KINDS.has(kind) ? placementFor(null, kind) : null;
 }
 
 function applyFallbackVariants(product) {

@@ -47,13 +47,18 @@ function sync(html, { temples, pantheons, productTypes, entries }) {
     /(<span class="tier-example">)\d+ temples(<\/span>)/g,
     `$1${temples} temples$2`
   );
-  // The four stat cards, anchored on their labels.
+  // The four consecrated-wall numerals and (legacy) stat cards, anchored on
+  // their labels — the Front Court wall uses .fc-numeral/.fc-wall-label.
   const card = (label, value) => {
-    const re = new RegExp(
-      `(<span class="stat-number" data-count=")\\d+(">0</span>\\s*<span class="stat-label">${label})`,
-      'g'
-    );
-    out = out.replace(re, `$1${value}$2`);
+    for (const num of ['stat-number', 'fc-numeral']) {
+      for (const lab of ['stat-label', 'fc-wall-label']) {
+        const re = new RegExp(
+          `(<span class="${num}" data-count=")\\d+(">0</span>\\s*<span class="${lab}">${label})`,
+          'g'
+        );
+        out = out.replace(re, `$1${value}$2`);
+      }
+    }
   };
   card('Digital Temples Restored', temples);
   card('Pantheons', pantheons);

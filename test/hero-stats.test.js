@@ -30,14 +30,17 @@ test('index.html hero stats match the canonical sources', () => {
     html.includes(`${temples} digital temples restored`),
     `hero must say ${temples} digital temples restored`
   );
+  // The Consecrated Wall (Front Court) carries the four numerals as
+  // .fc-numeral[data-count] + .fc-wall-label; the sync stamps them from
+  // canonical sources on every generate.
   for (const [label, value] of [
     ['Digital Temples Restored', temples],
     ['Pantheons', pantheons],
     ['Scholarly Entries', entries],
     ['Product Types in the Reliquary', productTypes],
   ]) {
-    const re = new RegExp(`data-count="${value}">0</span>\\s*<span class="stat-label">${label}`);
-    assert.ok(re.test(html), `stat card ${label} must carry ${value}`);
+    const re = new RegExp(`data-count="${value}">0</span>\\s*<span class="fc-wall-label">${label}`);
+    assert.ok(re.test(html), `wall numeral ${label} must carry ${value}`);
   }
   assert.ok(!/\b271 digital temples\b/.test(html), 'no stale 271 hero');
 });
@@ -53,8 +56,8 @@ test('sync() is idempotent and rewrites every known slot', () => {
   const fixed = sync(dirty, current);
   assert.ok(!fixed.includes('111 digital temples'), 'prose rewritten');
   assert.ok(!fixed.includes('data-count="111"'), 'cards rewritten');
-  assert.ok(fixed.includes(`${current.temples}">0`), 'temples card stamped');
-  assert.ok(fixed.includes(`${current.productTypes}">0`), 'product types card stamped');
+  assert.ok(fixed.includes(`${current.temples}">0`), 'temples numeral stamped');
+  assert.ok(fixed.includes(`${current.productTypes}">0`), 'product types numeral stamped');
 });
 
 test('the sync is registered in npm run generate', () => {
