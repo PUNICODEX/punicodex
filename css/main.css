@@ -844,16 +844,6 @@ body.menu-open {
     width: 100%;
 }
 
-/* The escape hatch: the hub page holds the full spoke list. */
-.footer-column a.footer-all {
-    margin-top: var(--space-2);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.75;
-}
-
 .footer-bottom {
     position: relative;
     z-index: 1;
@@ -949,8 +939,9 @@ body.menu-open {
         padding: 24px 0 12px;
     }
 
+    /* Six short hub columns fit two tidy rows of three on phones. */
     .footer-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: var(--space-4);
         text-align: left;
     }
@@ -1004,6 +995,13 @@ body.menu-open {
     .hekaweb-credit {
         flex-direction: column;
         gap: 0.15rem;
+    }
+}
+
+@media (max-width: 400px) {
+    /* Very narrow screens: fall back to 2-up so the longest labels breathe. */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
     }
 }
 

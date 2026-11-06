@@ -59,10 +59,8 @@ test('footer builder derives every hub column from nav-tree.js', () => {
         `footer ${hub.label} column missing featured spoke ${l.label}`
       );
     }
-    assert.ok(
-      html.includes(`class="footer-all">All of ${hub.label}</a>`),
-      `footer ${hub.label} column missing All-of escape`
-    );
+    // No redundant "All of" escape — the column heading IS the hub link.
+    assert.ok(!html.includes('footer-all'), 'redundant footer-all escape resurrected');
   }
   // The Archē door and the legal pair.
   assert.ok(
@@ -177,21 +175,29 @@ test('pages without main.css link the shared footer stylesheet', () => {
   }
 });
 
-test('mobile compaction rules exist (2-column hub grid + compact brand row)', () => {
+test('responsive grid rules exist for every width band (6-up → 3-up → 2-up)', () => {
   const shared = read(path.join('css', 'footer.css'));
+  assert.ok(shared.includes('repeat(6, 1fr)'), 'footer.css missing the six-hub desktop grid');
   assert.ok(
-    shared.includes('grid-template-columns: 1fr 1fr'),
-    'footer.css missing 2-col mobile grid'
+    /@media \(max-width: 768px\)[\s\S]*grid-template-columns: repeat\(3, 1fr\)/.test(shared),
+    'footer.css missing the 3-up mobile grid (two tidy rows)'
+  );
+  assert.ok(
+    /@media \(max-width: 400px\)[\s\S]*grid-template-columns: 1fr 1fr/.test(shared),
+    'footer.css missing the 2-up narrow fallback'
   );
   assert.ok(shared.includes('width: 150px'), 'footer.css missing compact mobile wordmark');
-  assert.ok(shared.includes('repeat(6, 1fr)'), 'footer.css missing the six-hub desktop grid');
   const main = read(path.join('css', 'main.css'));
-  const mobileBlock = main.slice(main.lastIndexOf('@media (max-width: 768px)'));
-  assert.ok(
-    mobileBlock.includes('grid-template-columns: 1fr 1fr'),
-    'main.css mobile footer is still single-column stacked'
-  );
   assert.ok(main.includes('repeat(6, 1fr)'), 'main.css missing the six-hub desktop grid');
+  const mainMobile = main.slice(main.lastIndexOf('@media (max-width: 768px)'));
+  assert.ok(
+    mainMobile.includes('grid-template-columns: repeat(3, 1fr)'),
+    'main.css mobile footer must be 3-up (two tidy rows of hubs)'
+  );
+  assert.ok(
+    /@media \(max-width: 400px\)[\s\S]*grid-template-columns: 1fr 1fr/.test(main),
+    'main.css missing the 2-up narrow fallback'
+  );
 });
 
 test('sync-footer is registered in the generate pipeline', () => {

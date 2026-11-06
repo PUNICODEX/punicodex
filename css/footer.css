@@ -119,15 +119,6 @@
     color: var(--gold, #d4af37);
 }
 
-.footer-column a.footer-all {
-    margin-top: var(--space-2, 8px);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold, #d4af37);
-    opacity: 0.75;
-}
-
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding-top: var(--space-3, 12px);
@@ -221,15 +212,15 @@
     }
 }
 
-/* Mobile compaction: one horizontal brand row, hub columns 2-up,
-   role lines retired. */
+/* Mobile compaction: one horizontal brand row, hub columns two tidy
+   rows of three; 2-up only on very narrow screens. Role lines retired. */
 @media (max-width: 768px) {
     .site-footer {
         padding: 24px 0 12px;
     }
 
     .footer-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: var(--space-4, 16px) var(--space-4, 16px);
         text-align: left;
         margin-bottom: var(--space-3, 12px);
@@ -265,5 +256,11 @@
     .footer-bottom {
         justify-content: center;
         text-align: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
     }
 }

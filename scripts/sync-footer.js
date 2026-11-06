@@ -43,11 +43,11 @@ function columnHtml(hub) {
   const links = featuredLinks(hub)
     .map((l) => `<a href="${l.href}">${l.label}</a>`)
     .join('\n                    ');
+  // The column heading IS the hub link — no redundant "All of" escape.
   return `<div class="footer-column">
                     <h2 class="footer-heading"><a href="${hub.href}">${hub.label}</a></h2>
                     <p class="footer-role">${hub.role}</p>
                     ${links}
-                    <a href="${hub.href}" class="footer-all">All of ${hub.label}</a>
                 </div>`;
 }
 
@@ -196,7 +196,7 @@ function syncPage(rel) {
   }
 
   if (!html.includes('/css/main.css')) {
-    html = ensureCssLink(html, '/css/footer.css?v=3');
+    html = ensureCssLink(html, '/css/footer.css?v=4');
   }
 
   writeFileWithRetry(filePath, html, 'utf8');
