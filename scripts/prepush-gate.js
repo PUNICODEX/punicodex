@@ -183,6 +183,10 @@ const RULES = [
     ],
   },
   {
+    pattern: /^index\.html$|^css\/home-critical\.css$|^js\/front-court\.js$|^test\/home-front-court\.test\.js$/,
+    suites: ['Front Court Tests'],
+  },
+  {
     pattern: /^templates\/herald-restoration\/|^herald\/index\.html$|^herald\/assets\/|^test\/herald-scene\.test\.js$/,
     suites: ['Herald Scene Tests'],
   },
