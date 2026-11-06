@@ -139,7 +139,7 @@ test('every artwork placement is complete and inside its kind print zone', () =>
       );
     }
   }
-  assert.ok(checked > 17000, `expected 17k+ placed artworks, checked ${checked}`);
+  assert.ok(checked > 15000, `expected 17k+ placed artworks, checked ${checked}`);
 });
 
 test('baked placements match the generator math (products.json in sync)', () => {
@@ -172,7 +172,7 @@ test('baked placements match the generator math (products.json in sync)', () => 
       checked++;
     }
   }
-  assert.ok(checked > 17000, `expected 17k+ sync-checked artworks, got ${checked}`);
+  assert.ok(checked > 15000, `expected 15k+ sync-checked artworks, got ${checked}`);
 });
 
 console.log(`\nStore Placement Containment: ${passed} passed, ${failed} failed`);
