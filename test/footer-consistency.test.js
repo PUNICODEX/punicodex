@@ -1,11 +1,12 @@
 /**
  * PuniCodex — Footer Consistency Tests
  *
- * Guards the canonical site footer: every non-temple page must carry the
- * same footer (camel wordmark, tagline, Explore/Resources/Connect columns,
- * legal line) — the drift the 2026-07-19 audit found (custom minimal
- * footers on realms/lexicon/blog, none at all on search + terms subpages)
- * must not return.
+ * Guards the canonical hub-mirror site footer: every non-temple page must
+ * carry the same footer (camel wordmark, tagline, "Begin the Ascent", six
+ * hub columns generated from scripts/nav-tree.js, legal line) — the drift
+ * the 2026-07-19 audit found (custom minimal footers on realms/lexicon/blog,
+ * none at all on search + terms subpages) must not return, and the
+ * pre-hub Explore/Resources/Connect taxonomy must not resurrect.
  */
 
 const assert = require('node:assert');
@@ -13,7 +14,14 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const { TARGETS, EXPLORE, RESOURCES, CONNECT } = require('../scripts/sync-footer.js');
+const {
+  TARGETS,
+  HUB_ORDER,
+  HUBS,
+  featuredLinks,
+  footerHrefs,
+  footerHtml,
+} = require('../scripts/sync-footer.js');
 
 let passed = 0;
 let failed = 0;
@@ -36,50 +44,107 @@ function readIfExists(rel) {
   return fs.existsSync(full) ? fs.readFileSync(full, 'utf8') : null;
 }
 
-test('Rulebook and Pronunciation remain in the footer', () => {
-  const allFooterHrefs = [...EXPLORE, ...RESOURCES, ...CONNECT].map(([href]) => href);
-  assert.ok(allFooterHrefs.includes('/rulebook/'), 'footer must contain Rulebook');
-  assert.ok(allFooterHrefs.includes('/pronunciation/'), 'footer must contain Pronunciation');
+test('footer builder derives every hub column from nav-tree.js', () => {
+  const html = footerHtml();
+  for (const id of HUB_ORDER) {
+    const hub = HUBS[id];
+    assert.ok(
+      html.includes(`<h2 class="footer-heading"><a href="${hub.href}">${hub.label}</a></h2>`),
+      `footer missing hub heading ${hub.label} (${hub.href})`
+    );
+    assert.ok(html.includes(hub.role), `footer missing hub role line for ${hub.label}`);
+    for (const l of featuredLinks(hub)) {
+      assert.ok(
+        html.includes(`<a href="${l.href}">${l.label}</a>`),
+        `footer ${hub.label} column missing featured spoke ${l.label}`
+      );
+    }
+    assert.ok(
+      html.includes(`class="footer-all">All of ${hub.label}</a>`),
+      `footer ${hub.label} column missing All-of escape`
+    );
+  }
+  // The Archē door and the legal pair.
+  assert.ok(
+    html.includes('class="footer-begin">Begin the Ascent</a>'),
+    'footer missing Begin the Ascent'
+  );
+  assert.ok(
+    html.includes('href="/privacy/"') && html.includes('href="/terms/"'),
+    'legal links missing'
+  );
 });
 
-test('Resources column contains Cards and no longer lists Codex, API, or Appraise', () => {
-  const resourceHrefs = RESOURCES.map(([href]) => href);
-  assert.ok(resourceHrefs.includes('/cards/'), 'footer Resources must contain Cards');
-  assert.ok(!resourceHrefs.includes('/codex/'), 'footer Resources must not contain Codex');
-  assert.ok(!resourceHrefs.includes('/api/v1/docs/'), 'footer Resources must not contain API');
-  assert.ok(!resourceHrefs.includes('/appraise/'), 'footer Resources must not contain Appraise');
+test('retired taxonomy and archived pages stay out of the footer', () => {
+  const html = footerHtml();
+  for (const heading of ['>Explore<', '>Resources<', '>Connect<']) {
+    assert.ok(!html.includes(heading), `retired footer column heading ${heading} resurrected`);
+  }
+  for (const href of ['/innovation/', '/arbitrage/', '/art/', '/creatives/']) {
+    assert.ok(!html.includes(`href="${href}"`), `footer must not link archived/redirected ${href}`);
+  }
 });
 
-test('every target page has exactly one footer with the three canonical columns', () => {
+test('footer + menu resolve the 2026-11 audit findings', () => {
+  const { HUBS } = require('../scripts/nav-tree.js');
+  const hrefs = footerHrefs();
+  // Pronunciation is a Library SPOKE (menu + hub page); Engineering is an
+  // About spoke featured in the footer.
+  assert.ok(
+    HUBS.library.items.some((i) => i.href === '/pronunciation/'),
+    'Library hub missing Pronunciation'
+  );
+  assert.ok(hrefs.includes('/engineering/'), 'footer missing Engineering (About)');
+  // Tools spokes are represented.
+  for (const h of ['/type/', '/oracle/', '/appraise/', '/api/v1/docs/']) {
+    assert.ok(hrefs.includes(h), `footer missing Tools spoke ${h}`);
+  }
+  // No duplicate destinations under different labels. Hub pages legitimately
+  // appear twice per column — the heading link and the "All of" escape.
+  const html = footerHtml();
+  const hubHrefs = new Set(HUB_ORDER.map((id) => HUBS[id].href));
+  const all = [...html.matchAll(/<a href="(\/[^"]*)"/g)]
+    .map((m) => m[1])
+    .filter((h) => !hubHrefs.has(h));
+  const dupes = all.filter((h, i) => all.indexOf(h) !== i);
+  assert.deepStrictEqual(
+    [...new Set(dupes)],
+    [],
+    `duplicate footer destinations: ${[...new Set(dupes)]}`
+  );
+});
+
+test('every target page has exactly one hub-mirror footer', () => {
   for (const rel of TARGETS) {
     const html = readIfExists(rel);
     if (!html) {
-      console.warn(`    ⚠ ${rel} missing, skipping footer columns check`);
+      console.warn(`    ⚠ ${rel} missing, skipping footer check`);
       continue;
     }
     const footerCount = (html.match(/<footer[\s>]/gi) || []).length;
     assert.strictEqual(footerCount, 1, `${rel}: expected exactly 1 footer, found ${footerCount}`);
-    for (const heading of ['Explore', 'Resources', 'Connect']) {
+    for (const id of HUB_ORDER) {
+      const hub = HUBS[id];
       assert.ok(
-        html.includes(`<h2 class="footer-heading">${heading}</h2>`),
-        `${rel}: missing footer column "${heading}"`
+        html.includes(`<h2 class="footer-heading"><a href="${hub.href}">${hub.label}</a></h2>`),
+        `${rel}: missing footer column ${hub.label}`
       );
     }
   }
 });
 
 test('every footer carries the camel wordmark and all canonical links', () => {
-  const all = [...EXPLORE, ...RESOURCES, ...CONNECT];
+  const html = footerHtml();
   for (const rel of TARGETS) {
-    const html = readIfExists(rel);
-    if (!html) {
+    const page = readIfExists(rel);
+    if (!page) {
       console.warn(`    ⚠ ${rel} missing, skipping footer links check`);
       continue;
     }
-    const footer = html.slice(html.search(/<footer[\s>]/i));
+    const footer = page.slice(page.search(/<footer[\s>]/i));
     assert.ok(footer.includes('punicodex-wordmark-camel-gold'), `${rel}: camel wordmark missing`);
-    for (const [href, label] of all) {
-      assert.ok(footer.includes(`<a href="${href}">${label}</a>`), `${rel}: missing link ${label}`);
+    for (const href of footerHrefs()) {
+      assert.ok(footer.includes(`href="${href}"`), `${rel}: missing footer link ${href}`);
     }
   }
 });
@@ -112,19 +177,21 @@ test('pages without main.css link the shared footer stylesheet', () => {
   }
 });
 
-test('mobile compaction rules exist (2-column grid + compact brand row)', () => {
+test('mobile compaction rules exist (2-column hub grid + compact brand row)', () => {
   const shared = read(path.join('css', 'footer.css'));
   assert.ok(
     shared.includes('grid-template-columns: 1fr 1fr'),
     'footer.css missing 2-col mobile grid'
   );
   assert.ok(shared.includes('width: 150px'), 'footer.css missing compact mobile wordmark');
+  assert.ok(shared.includes('repeat(6, 1fr)'), 'footer.css missing the six-hub desktop grid');
   const main = read(path.join('css', 'main.css'));
   const mobileBlock = main.slice(main.lastIndexOf('@media (max-width: 768px)'));
   assert.ok(
     mobileBlock.includes('grid-template-columns: 1fr 1fr'),
     'main.css mobile footer is still single-column stacked'
   );
+  assert.ok(main.includes('repeat(6, 1fr)'), 'main.css missing the six-hub desktop grid');
 });
 
 test('sync-footer is registered in the generate pipeline', () => {

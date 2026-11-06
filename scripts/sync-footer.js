@@ -2,16 +2,21 @@
 /**
  * Sync the canonical site footer across all non-temple pages.
  *
- * Sister to sync-desktop-nav.js / sync-mobile-menu.js: the footer drifted
- * the same way the nav did (custom minimal footers on realms/lexicon/blog,
- * none at all on search + terms/data-use + terms/advertising). This script
- * replaces any existing <footer> block with the canonical one and inserts
- * it where missing. Idempotent. The blog index generator consumes the same
- * builder — never fork the markup.
+ * Sister to sync-desktop-nav.js / sync-mobile-menu.js: the footer is a
+ * hub-mirror generated from scripts/nav-tree.js — six columns, one per hub,
+ * with the hub page as the column heading, the hub's role line as
+ * microcopy, its featured spokes, and an "All of {hub} →" escape. The
+ * brand row carries the wordmark, tagline, and the Archē entry ("Begin the
+ * Ascent"). Because menu, hubs, and footer all derive from nav-tree.js,
+ * the surfaces cannot drift apart.
  *
- * Canonical footer: camel wordmark (horizontal, compact), tagline, three
- * columns (Explore / Resources / Connect), legal line. Mobile compaction
- * lives in css/footer.css (linked on pages without main.css).
+ * This script replaces any existing <footer> block with the canonical one
+ * and inserts it where missing. Idempotent. The blog index generator and
+ * the hub page generator consume the same builder — never fork the markup.
+ *
+ * Canonical footer: camel wordmark (horizontal, compact), tagline, six hub
+ * columns, legal line. Mobile compaction lives in css/footer.css (linked
+ * on pages without main.css).
  */
 
 const fs = require('node:fs');
@@ -20,44 +25,69 @@ const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
+const { HUB_ORDER, HUBS } = require('./nav-tree.js');
 
-const EXPLORE = [
-  ['/pantheon/', 'Pantheon'],
-  ['/lexicon/', 'Lexicon'],
-  ['/connections/', 'Connections'],
-  ['/patterns/', 'Patterns'],
-  ['/everyday/', 'Words'],
-  ['/ink/', 'Ink'],
-  ['/trending/', 'Trending'],
-  ['/rulebook/', 'Rulebook'],
-  ['/type/', 'Type'],
-  ['/game/', 'Game'],
-  ['/search/', 'Search'],
-  ['/store/', 'Store'],
-];
-const RESOURCES = [
-  ['/texts/', 'Texts'],
-  ['/blog/', 'Blog'],
-  ['/cards/', 'Cards'],
-  ['/store/art/', 'Art'],
-  ['/scholars/', 'Scholars'],
-  ['/herald/', 'Herald'],
-  ['/screen/', 'Screen'],
-  ['/authenticity/', 'Authenticity'],
-  ['/pronunciation/', 'Pronunciation'],
-  ['/innovation/', 'Innovation'],
-  ['/arbitrage/', 'Arbitrage'],
-];
-const CONNECT = [
-  ['/about/', 'About'],
-  ['/about/founder/', 'Founder'],
-  ['/art/', 'Art'],
-  ['/careers/', 'Careers'],
-  ['/university-sponsorship/', 'Academics'],
-  ['/contact/', 'Contact'],
-  ['/privacy/', 'Privacy'],
-  ['/terms/', 'Terms'],
-];
+/* Featured spokes per hub, derived from the hub's own items (by label) so
+ * a rename or removal in nav-tree.js fails loudly here at build time. */
+function featuredLinks(hub) {
+  return hub.footer.map((label) => {
+    const item = hub.items.find((i) => i.label === label);
+    if (!item) {
+      throw new Error(`nav-tree: hub "${hub.label}" footer lists unknown item "${label}"`);
+    }
+    return { href: item.href, label: item.label };
+  });
+}
+
+function columnHtml(hub) {
+  const links = featuredLinks(hub)
+    .map((l) => `<a href="${l.href}">${l.label}</a>`)
+    .join('\n                    ');
+  return `<div class="footer-column">
+                    <h2 class="footer-heading"><a href="${hub.href}">${hub.label}</a></h2>
+                    <p class="footer-role">${hub.role}</p>
+                    ${links}
+                    <a href="${hub.href}" class="footer-all">All of ${hub.label}</a>
+                </div>`;
+}
+
+function footerHtml() {
+  return `<footer class="site-footer">
+        <div class="container">
+            <div class="footer-brand">
+                <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+                <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
+                <a href="/genesis/" class="footer-begin">Begin the Ascent</a>
+            </div>
+            <div class="footer-grid">
+                ${HUB_ORDER.map((id) => columnHtml(HUBS[id])).join('\n                ')}
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 PuniCodex. All rites reserved.</p>
+                <nav class="footer-legal" aria-label="Legal">
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
+                </nav>
+                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
+                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
+                    <span class="hekaweb-name">HEKAWEB</span>
+                </a>
+            </div>
+        </div>
+    </footer>`;
+}
+
+/* Every href the canonical footer links — the audits and tests consume
+ * this instead of hardcoding column lists. */
+function footerHrefs() {
+  const hrefs = new Set(['/genesis/', '/privacy/', '/terms/']);
+  for (const id of HUB_ORDER) {
+    const hub = HUBS[id];
+    hrefs.add(hub.href);
+    for (const l of featuredLinks(hub)) hrefs.add(l.href);
+  }
+  return [...hrefs];
+}
 
 // game/ and entry.html are full-screen app surfaces — no footer by design.
 const TARGETS = [
@@ -84,6 +114,7 @@ const TARGETS = [
   path.join('codex', 'index.html'),
   path.join('codex', 'anatomy-of-a-punycode-domain', 'index.html'),
   path.join('codex', 'building-the-temple', 'index.html'),
+  path.join('codex', 'restoring-the-names', 'index.html'),
   path.join('codex', 'why-greek-accents-matter', 'index.html'),
   path.join('connections', 'index.html'),
   path.join('contact', 'index.html'),
@@ -108,6 +139,7 @@ const TARGETS = [
   path.join('everyday', 'index.html'),
   path.join('ink', 'index.html'),
   path.join('screen', 'index.html'),
+  path.join('engineering', 'index.html'),
   // Wing hub pages (scripts/generate-hubs.js emits this same builder).
   path.join('world', 'index.html'),
   path.join('culture', 'index.html'),
@@ -119,37 +151,6 @@ const TARGETS = [
 // Per-pantheon landing pages receive the canonical footer.
 for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) {
   TARGETS.push(path.join(id, 'index.html'));
-}
-
-function columnHtml(title, links) {
-  const items = links.map(([href, label]) => `<a href="${href}">${label}</a>`).join('\n                    ');
-  return `<div class="footer-column">
-                    <h2 class="footer-heading">${title}</h2>
-                    ${items}
-                </div>`;
-}
-
-function footerHtml() {
-  return `<footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
-                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
-                </div>
-                ${columnHtml('Explore', EXPLORE)}
-                ${columnHtml('Resources', RESOURCES)}
-                ${columnHtml('Connect', CONNECT)}
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 PuniCodex. All rites reserved.</p>
-                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
-                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
-                    <span class="hekaweb-name">HEKAWEB</span>
-                </a>
-            </div>
-        </div>
-    </footer>`;
 }
 
 function findBalancedEnd(html, startIdx, tag) {
@@ -195,7 +196,7 @@ function syncPage(rel) {
   }
 
   if (!html.includes('/css/main.css')) {
-    html = ensureCssLink(html, '/css/footer.css?v=2');
+    html = ensureCssLink(html, '/css/footer.css?v=3');
   }
 
   writeFileWithRetry(filePath, html, 'utf8');
@@ -220,4 +221,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { TARGETS, EXPLORE, RESOURCES, CONNECT, footerHtml, syncPage };
+module.exports = { TARGETS, HUB_ORDER, HUBS, featuredLinks, footerHrefs, footerHtml, syncPage };

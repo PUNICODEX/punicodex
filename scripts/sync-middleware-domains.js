@@ -27,6 +27,9 @@ const BACKUP_PATH = path.join(ROOT, 'middleware.js.backup');
 const LEGACY_REDIRECTS = {
   '/tiers': '/rulebook/', // tier system retired — see archive/tier-system/
   '/about/project': '/about/origins/', // about page became the About hub; content moved to Origins
+  '/art': '/store/art/', // art surfaces consolidated into the Reliquary art department
+  '/creatives': '/store/art/', // student creative marketplace folded into /store/art/
+  '/arbitrage': '/search/', // arbitrage concept superseded by the search engine
   '/steh': '/seth', // renamed entry id
   '/achilles': '/achilleus',
   '/aether': '/aither',

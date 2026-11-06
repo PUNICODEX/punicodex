@@ -1,7 +1,7 @@
 /**
  * PUNICODEX — Service Worker
  * Lightweight: precache shell pages, stale-while-revalidate for assets.
- * Cache-bust revision: v8-2026-11-09 (Enter CTA mobile relocation: main perf36, home-critical v3, nav-more v9, oracle v4; drawer begin link retired on standard pages)
+ * Cache-bust revision: v9-2026-11-10 (hub-mirror footer from nav-tree.js: main perf37, footer.css v3; art surfaces folded to /store/art/)
  *
  * Hard rules (learned from production failures):
  * - NEVER intercept /api/ or /admin-portal/ requests. Admin tooling and
@@ -13,8 +13,8 @@
  *   and breaks the page's own fetch handling.
  */
 
-const SHELL_CACHE = 'punicodex-shell-v8';
-const ASSET_CACHE = 'punicodex-assets-v8';
+const SHELL_CACHE = 'punicodex-shell-v9';
+const ASSET_CACHE = 'punicodex-assets-v9';
 
 // Precache critical shell HTML pages only.
 // Versioned JS/CSS are fetched on demand and will update when their query

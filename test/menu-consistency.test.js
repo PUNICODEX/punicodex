@@ -79,14 +79,16 @@ test('fan-out panels: Pantheon mega-panel and Codex panel have their destination
   }
 });
 
-test('Pronunciation is footer-only (not in desktop nav menus)', () => {
-  const moreHrefs = MORE.flatMap((s) => s.links.map(([href]) => href));
-  assert.ok(!moreHrefs.includes('/pronunciation/'), 'More dropdown must not contain Pronunciation');
-  const primaryHrefs = PRIMARY.map(([href]) => href);
+test('Pronunciation lives in the Library hub (menu + hub page, since 2026-11)', () => {
+  const { HUBS } = require('../scripts/nav-tree.js');
   assert.ok(
-    !primaryHrefs.includes('/pronunciation/'),
-    'Primary nav must not contain Pronunciation'
+    HUBS.library.items.some((i) => i.href === '/pronunciation/'),
+    'Library hub must contain Pronunciation'
   );
+  // It graduated from footer-only to a full Library spoke, so the More
+  // drawer (derived from nav-tree) carries it like every other spoke.
+  const moreHrefs = MORE.flatMap((s) => s.links.map(([href]) => href));
+  assert.ok(moreHrefs.includes('/pronunciation/'), 'More drawer must contain Pronunciation');
 });
 
 test('every target page carries the canonical primary links in order', () => {
@@ -185,8 +187,8 @@ test('pages mark their own item aria-current="page"', () => {
 test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', () => {
   const { TARGETS: mobileTargets, CANONICAL_MENU } = require('../scripts/sync-mobile-menu.js');
   assert.ok(
-    !CANONICAL_MENU.includes('href="/pronunciation/"'),
-    'mobile menu must not contain Pronunciation'
+    CANONICAL_MENU.includes('href="/pronunciation/"'),
+    'mobile menu must contain Pronunciation (Library spoke since 2026-11)'
   );
   for (const { page } of mobileTargets) {
     const html = readIfExists(page);

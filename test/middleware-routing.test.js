@@ -245,12 +245,18 @@ async function run() {
     }
   });
 
-  await test('legacy /art/ 301s to the Art Directory; /creatives/ keeps serving', async () => {
-    const res = await middleware(req('https://punicodex.com/art/'));
-    assert.strictEqual(res.status, 301);
-    assert.strictEqual(res.headers.get('Location'), 'https://punicodex.com/store/art/');
+  await test('legacy /art/ and /creatives/ 301 to the Art Directory; /arbitrage/ to Search', async () => {
+    const art = await middleware(req('https://punicodex.com/art/'));
+    assert.strictEqual(art.status, 301);
+    assert.strictEqual(art.headers.get('Location'), 'https://punicodex.com/store/art/');
+    // 2026-11 consolidation: the student creative marketplace folded into
+    // the Reliquary art department — one art surface, three ghosts gone.
     const creatives = await middleware(req('https://punicodex.com/creatives/'));
-    assert.ok(creatives.__fetched, '/creatives/ must pass through (licensing surface)');
+    assert.strictEqual(creatives.status, 301);
+    assert.strictEqual(creatives.headers.get('Location'), 'https://punicodex.com/store/art/');
+    const arbitrage = await middleware(req('https://punicodex.com/arbitrage/'));
+    assert.strictEqual(arbitrage.status, 301);
+    assert.strictEqual(arbitrage.headers.get('Location'), 'https://punicodex.com/search/');
   });
 
   await test('STORE_LEGACY_IDS matches the catalog collections exhaustively', async () => {

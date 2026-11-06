@@ -135,17 +135,37 @@ test('interactive demo has query buttons mapped to sample data', () => {
   }
 });
 
-test('footer exists with site columns', () => {
+test('footer exists with the six hub columns', () => {
   assert.strictEqual($('.site-footer').length, 1, 'expected footer');
-  const explore = $('.site-footer .footer-column:contains("Explore")');
-  const resources = $('.site-footer .footer-column:contains("Resources")');
-  assert.ok(explore.length >= 1, 'expected Explore footer column');
-  assert.ok(resources.length >= 1, 'expected Resources footer column');
+  for (const label of ['Atlas', 'Culture', 'Tools', 'Library', 'Relics', 'About']) {
+    assert.ok(
+      $('.site-footer .footer-column:has(.footer-heading a:contains("' + label + '"))').length ===
+        1,
+      'expected ' + label + ' footer column'
+    );
+  }
 });
 
-test('footer includes Innovation link', () => {
-  const innovationFooterLink = $('.site-footer a[href="/innovation/"]');
-  assert.strictEqual(innovationFooterLink.length, 1, 'expected Innovation link in footer');
+test('footer is the hub-mirror and no longer carries the archived Innovation page', () => {
+  assert.strictEqual(
+    $('.site-footer a[href="/innovation/"]').length,
+    0,
+    'Innovation is archived — no footer link'
+  );
+  // Hub-mirror footer: all six hubs headline their own columns.
+  for (const [href, label] of [
+    ['/world/', 'Atlas'],
+    ['/culture/', 'Culture'],
+    ['/instruments/', 'Tools'],
+    ['/library/', 'Library'],
+    ['/relics/', 'Relics'],
+    ['/about/', 'About'],
+  ]) {
+    assert.ok(
+      $('.site-footer .footer-heading a[href="' + href + '"]').length === 1,
+      'footer missing hub column ' + label
+    );
+  }
 });
 
 if (!process.exitCode) {

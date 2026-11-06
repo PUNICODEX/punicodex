@@ -17,7 +17,7 @@ const root = path.join(__dirname, '..');
 const { XREF, normGreek, isCapitalGreek } = require('../scripts/generate-text-pages.js');
 const { MORE } = require('../scripts/sync-desktop-nav.js');
 const { CANONICAL_MENU } = require('../scripts/sync-mobile-menu.js');
-const { RESOURCES } = require('../scripts/sync-footer.js');
+const { footerHrefs } = require('../scripts/sync-footer.js');
 const { LEXICON } = require(path.join(root, 'type', 'js', 'lexicon.js'));
 
 let passed = 0;
@@ -440,10 +440,7 @@ test('texts are wired into sitemap, nav, mobile menu, footer, and analytics', ()
     'Texts must be in the Library section of the desktop Menu drawer'
   );
   assert.ok(CANONICAL_MENU.includes('<a href="/texts/">Texts</a>'), 'mobile menu missing Texts');
-  assert.ok(
-    RESOURCES.some(([href, label]) => href === '/texts/' && label === 'Texts'),
-    'footer RESOURCES missing Texts'
-  );
+  assert.ok(footerHrefs().includes('/texts/'), 'footer (hub-mirror, Library column) missing Texts');
   const analytics = read(path.join('scripts', 'inject-analytics.js'));
   assert.ok(
     analytics.includes("path.join('texts', 'index.html')"),

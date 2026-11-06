@@ -2565,6 +2565,9 @@ const LEXICON_IDS = new Set([
 const LEGACY_REDIRECTS = {
   '/tiers': '/rulebook/',
   '/about/project': '/about/origins/',
+  '/art': '/store/art/',
+  '/creatives': '/store/art/',
+  '/arbitrage': '/search/',
   '/steh': '/seth',
   '/achilles': '/achilleus',
   '/aether': '/aither',
@@ -3432,7 +3435,10 @@ export default function middleware(request) {
   // Superseded canonical paths → 301 redirect to the current canonical
   for (const [legacyPath, newPath] of Object.entries(LEGACY_REDIRECTS)) {
     if (url.pathname === legacyPath || url.pathname.startsWith(legacyPath + '/')) {
-      url.pathname = url.pathname.replace(legacyPath, newPath);
+      // Slash-safe join: table targets carry their trailing slash, and both
+      // '/tiers' and '/tiers/' forms arrive here.
+      const rest = url.pathname.slice(legacyPath.length);
+      url.pathname = newPath.replace(/\/+$/, '') + (rest === '' ? '/' : rest);
       return new Response(null, {
         status: 301,
         headers: {
