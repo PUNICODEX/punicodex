@@ -60,6 +60,9 @@ function imageSizeSync(file) {
 }
 
 const products = JSON.parse(read(path.join('store', 'products.json'))).products;
+/* Committed dims manifest — same source of truth as the generator, so the
+ * test is deterministic on fresh checkouts (comp sheets are gitignored). */
+const ART_DIMS = JSON.parse(read(path.join('store', 'art-dims.json')));
 /* Hand-tuned overrides win over the zone math (same precedence as the
  * generator's applyPlacementOverrides) — but they must still satisfy
  * containment, so a future hand-tune cannot reintroduce the overhang bug. */
@@ -82,18 +85,18 @@ function test(name, fn) {
 function zoneFor(srcUrl, kind) {
   const placement = PLACEMENTS[kind];
   if (!placement) return null;
-  // Composite print sheets are gitignored build artifacts — absent from a
-  // fresh checkout (CI). Skip them here; their placements were
-  // containment-verified on the build machine that generated products.json.
-  if (srcUrl && srcUrl.startsWith('/')) {
+  // Dims come from the committed manifest (the comp sheets are gitignored
+  // build artifacts, absent from fresh checkouts); fall back to measuring
+  // when a local file exists and the manifest has no entry.
+  let dims = ART_DIMS[srcUrl] || null;
+  if (!dims && srcUrl && srcUrl.startsWith('/')) {
     const full = path.join(root, srcUrl);
-    if (!fs.existsSync(full)) return null;
-    const dims = imageSizeSync(full);
-    const aspect = dims && dims.h ? dims.w / dims.h : 1.4;
-    const zone = aspect > LOGO_ASPECT ? placement.logo : placement.chest;
-    return { zone, aspect };
+    if (fs.existsSync(full)) dims = imageSizeSync(full);
   }
-  return null;
+  if (!dims) return null;
+  const aspect = dims.h ? dims.w / dims.h : 1.4;
+  const zone = aspect > LOGO_ASPECT ? placement.logo : placement.chest;
+  return { zone, aspect };
 }
 
 test('products.json carries the full catalogue', () => {

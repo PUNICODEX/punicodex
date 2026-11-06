@@ -214,10 +214,30 @@ function imageSizeSync(file) {
 }
 
 const ART_SIZE_CACHE = new Map();
+/* Committed dims manifest — the composite print sheets are gitignored build
+ * artifacts, so fresh checkouts (CI) cannot measure them. The manifest
+ * (built by scripts/build-art-dims.js) is the canonical source for dims;
+ * local files are only measured as a fallback. This keeps products.json
+ * deterministic across checkouts. */
+let ART_DIMS_MANIFEST = null;
+function artDimsManifest() {
+  if (ART_DIMS_MANIFEST === null) {
+    try {
+      ART_DIMS_MANIFEST = require(path.join(ROOT, 'store', 'art-dims.json'));
+    } catch {
+      ART_DIMS_MANIFEST = {};
+    }
+  }
+  return ART_DIMS_MANIFEST;
+}
 function artDims(src) {
   if (!src || !src.startsWith('/')) return null;
   if (!ART_SIZE_CACHE.has(src)) {
-    ART_SIZE_CACHE.set(src, imageSizeSync(path.join(ROOT, src)));
+    const fromManifest = artDimsManifest()[src];
+    ART_SIZE_CACHE.set(
+      src,
+      fromManifest || imageSizeSync(path.join(ROOT, src))
+    );
   }
   return ART_SIZE_CACHE.get(src);
 }
