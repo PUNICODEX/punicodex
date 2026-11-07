@@ -26,7 +26,16 @@ const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
 
 const COMMONS_DIR = path.join(ROOT, 'assets', 'ai-commons');
-const LEGACY_COMMONS = new Set(['amaterasu', 'anubis', 'apollon', 'aphrodite', 'artemis', 'athena', 'odinn', 'thor']);
+const LEGACY_COMMONS = new Set([
+  'amaterasu',
+  'anubis',
+  'apollon',
+  'aphrodite',
+  'artemis',
+  'athena',
+  'odinn',
+  'thor',
+]);
 
 function commonsWorksFor(id) {
   if (!exists('assets/ai-commons')) return [];
@@ -42,7 +51,10 @@ const flagships = LEXICON.filter((e) => exists(path.join('sites', e.id, 'gallery
 
 test('sample: flagships with commons works render The Commons section', () => {
   const withWorks = flagships.filter((e) => commonsWorksFor(e.id).length > 0);
-  assert.ok(withWorks.length >= 40, `expected >=40 flagships with commons works, got ${withWorks.length}`);
+  assert.ok(
+    withWorks.length >= 40,
+    `expected >=40 flagships with commons works, got ${withWorks.length}`
+  );
   for (const e of withWorks.slice(0, 25)) {
     const html = read(path.join('sites', e.id, 'gallery', 'index.html'));
     assert.ok(html.includes('id="commons"'), `${e.id}: commons section present`);
@@ -54,7 +66,10 @@ test('sample: flagships with commons works render The Commons section', () => {
       `${e.id}: first work ${work} referenced`
     );
     // lightbox contract: studio figures expose data-full-src + caption
-    assert.ok(/class="gallery-figure" data-full-src="\.\.\/\.\.\/\.\.\/assets\/ai-commons\//.test(html), `${e.id}: lightbox-bound studio figure`);
+    assert.ok(
+      /class="gallery-figure" data-full-src="\.\.\/\.\.\/\.\.\/assets\/ai-commons\//.test(html),
+      `${e.id}: lightbox-bound studio figure`
+    );
   }
 });
 
@@ -69,7 +84,11 @@ test('every flagship gallery carries the Creatives threshold panel at #creatives
 
 test('creatives tab links to the gallery anchor — never to a creatives page', () => {
   for (const e of flagships.slice(0, 120)) {
-    for (const page of ['index.html', path.join('gallery', 'index.html'), path.join('lore', 'index.html')]) {
+    for (const page of [
+      'index.html',
+      path.join('gallery', 'index.html'),
+      path.join('lore', 'index.html'),
+    ]) {
       const rel = path.join('sites', e.id, page);
       if (!exists(rel)) continue;
       const html = read(rel);
