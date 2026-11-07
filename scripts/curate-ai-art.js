@@ -31,7 +31,17 @@ if (verdict === 'reject' && !reason) {
 
 const lib = JSON.parse(fs.readFileSync(LIB_PATH, 'utf8'));
 const base = path.basename(file);
-const deity = base.split('-v')[0];
+let deity = base.split('-v')[0];
+const spec0 = lib.deities[deity];
+if (!spec0 && lib.families) {
+  // Family-tagged files: <deity>-<family>-vN.M.jpg — strip the family tag.
+  for (const fam of Object.keys(lib.families)) {
+    if (deity.endsWith('-' + fam)) {
+      deity = deity.slice(0, -(fam.length + 1));
+      break;
+    }
+  }
+}
 const spec = lib.deities[deity];
 if (!spec) {
   console.error(`unknown deity "${deity}"`);

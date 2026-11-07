@@ -38,8 +38,16 @@ const lib = JSON.parse(fs.readFileSync(LIB_PATH, 'utf8'));
 const args = process.argv.slice(2);
 const variantsIdx = args.indexOf('--variants');
 const VARIANTS = variantsIdx !== -1 ? Number(args[variantsIdx + 1]) : 2;
+const familyIdx = args.indexOf('--family');
+const FAMILY = familyIdx !== -1 ? args[familyIdx + 1] : 'classic-gold';
+if (familyIdx !== -1 && (!lib.families || !lib.families[FAMILY])) {
+  console.error(`unknown family "${FAMILY}" — registered: ${Object.keys(lib.families || {}).join(', ')}`);
+  process.exit(1);
+}
 const batchIdx = args.indexOf('--batch');
-let names = args.filter((a) => !a.startsWith('--') && isNaN(Number(a)));
+let names = args.filter(
+  (a, i) => !a.startsWith('--') && isNaN(Number(a)) && !['--family', '--variants', '--batch'].includes(args[i - 1])
+);
 const DEMAND = (() => {
   try {
     return JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'ai-art', 'temple-demand.json'), 'utf8'));
@@ -63,13 +71,17 @@ if (batchIdx !== -1) {
 }
 if (!names.length) names = Object.keys(lib.deities).sort(demandSort);
 
-function compilePrompt(spec) {
-  const tradition = lib.traditions[spec.tradition];
+function compilePrompt(spec, family) {
+  const fam = (lib.families && lib.families[family]) || null;
+  // classic-gold (the default) uses the tradition's DNA; other families
+  // override the whole visual register while the deity's attributes stay.
+  const styleDna =
+    fam && fam.dna ? fam.dna : lib.traditions[spec.tradition].styleDna;
   const attr = spec.attributes.join(', ');
   const mutations = (spec.activeMutations || []).map((m) => lib.mutationOperators[m]).filter(Boolean);
   return [
     `${title(spec.name || '')}, ${attr},`,
-    tradition.styleDna,
+    styleDna,
     ...mutations,
   ].join(', ');
 }
@@ -139,9 +151,10 @@ async function main() {
       console.log(`✗ unknown deity ${name} — add it to the library first`);
       continue;
     }
-    const prompt = compilePrompt({ ...spec, name });
+    const prompt = compilePrompt({ ...spec, name }, FAMILY);
     for (let v = 1; v <= VARIANTS; v++) {
-      const out = path.join(OUT_DIR, `${name}-v${spec.promptVersion}.${v}.jpg`);
+      const famTag = FAMILY === 'classic-gold' ? '' : `${FAMILY}-`;
+      const out = path.join(OUT_DIR, `${name}-${famTag}v${spec.promptVersion}.${v}.jpg`);
       if (fs.existsSync(out)) continue;
       const t0 = Date.now();
       try {
