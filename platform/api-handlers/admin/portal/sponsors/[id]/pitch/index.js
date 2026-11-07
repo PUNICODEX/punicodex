@@ -148,7 +148,7 @@ module.exports = async (req, res) => {
     const patterns = buildResonanceBullets(
       temple.slug,
       businessName,
-      (chosen?.industry) || prospect.industry_name || undefined
+      chosen?.industry || prospect.industry_name || undefined
     );
     // The sponsor brain: bespoke, explained resonance for THIS business on
     // THIS temple (namesake / industry seat / keyword+lore axes). The
@@ -158,7 +158,7 @@ module.exports = async (req, res) => {
       {
         businessName,
         domain: recipientSite,
-        industry: prospect.industry_name || (chosen?.industry) || undefined,
+        industry: prospect.industry_name || chosen?.industry || undefined,
         industrySeat: prospect.industry_seat,
       },
       temple.slug

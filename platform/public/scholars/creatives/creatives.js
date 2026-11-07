@@ -396,9 +396,7 @@
           if (q.length < 2) return;
           templePickTimer = setTimeout(async () => {
             try {
-              const res = await fetch(
-                `/api/v1/autocomplete/?q=${encodeURIComponent(q)}&limit=8`
-              );
+              const res = await fetch(`/api/v1/autocomplete/?q=${encodeURIComponent(q)}&limit=8`);
               const data = await res.json();
               const items = data.items || data.suggestions || [];
               templeChoices = items;
