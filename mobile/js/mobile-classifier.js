@@ -245,7 +245,7 @@ function punyAdapt(delta, numPoints, firstTime) {
   return k + Math.floor(((PUNY_BASE - PUNY_TMIN + 1) * delta) / (delta + PUNY_SKEW));
 }
 
-function punyDigitToCode(d) {
+function _punyDigitToCode(d) {
   return d < 26 ? d + 97 : d + 22; // 0-25 -> a-z, 26-35 -> 0-9
 }
 

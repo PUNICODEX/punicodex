@@ -397,7 +397,7 @@
           templePickTimer = setTimeout(async () => {
             try {
               const res = await fetch(
-                '/api/v1/autocomplete/?q=' + encodeURIComponent(q) + '&limit=8'
+                `/api/v1/autocomplete/?q=${encodeURIComponent(q)}&limit=8`
               );
               const data = await res.json();
               const items = data.items || data.suggestions || [];
@@ -424,10 +424,10 @@
       }
 
       // Resolve the picked display text back to a temple id at submit time.
-      function resolveInspirationId() {
+      function _resolveInspirationId() {
         const raw = document.getElementById('asset-inspiration').value.trim();
         if (!raw) return undefined;
-        const byValue = templeChoices.find((t) => (t.unicode || t.id) + ' — ' + t.id === raw);
+        const byValue = templeChoices.find((t) => `${t.unicode || t.id} — ${t.id}` === raw);
         if (byValue) return byValue.id;
         const exactId = templeChoices.find((t) => t.id === raw);
         if (exactId) return exactId.id;
