@@ -177,6 +177,7 @@ test('Act II shows the pattern-atlas industries — names lead, no gods after th
       shown++;
     }
   }
+  assert.ok(shown > 0, 'Act II tendrils rendered');
   const unique = new Set(DESCENT.flatMap((c) => c.tendrils.map((t) => t.industry)));
   assert.strictEqual(
     unique.size,

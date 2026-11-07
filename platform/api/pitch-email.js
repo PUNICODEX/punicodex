@@ -165,7 +165,7 @@ function buildPitchEmail({
   // founder's custom note. Generic inventory copy is what this template
   // existed to abolish; without a bespoke reason there is no email.
   if (
-    !(chosen?.chosenBecause) &&
+    !chosen?.chosenBecause &&
     !(brain && Array.isArray(brain.reasons) && brain.reasons.length) &&
     !customNote
   ) {
