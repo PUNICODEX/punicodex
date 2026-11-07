@@ -3595,14 +3595,26 @@ function buildGalleryGrid(entry) {
 // Filenames are `{deity}-v{promptVersion}.{variation}.jpg`; eight early works
 // use the short legacy form (`{deity}.jpg`) and map by exact name.
 const COMMONS_DIR = path.join(__dirname, '..', 'assets', 'ai-commons');
-const LEGACY_COMMONS = new Set(['amaterasu', 'anubis', 'apollon', 'aphrodite', 'artemis', 'athena', 'odinn', 'thor']);
+const LEGACY_COMMONS = new Set([
+  'amaterasu',
+  'anubis',
+  'apollon',
+  'aphrodite',
+  'artemis',
+  'athena',
+  'odinn',
+  'thor',
+]);
 
 function commonsWorksFor(entry) {
   try {
     return fs
       .readdirSync(COMMONS_DIR)
       .filter((f) => f.endsWith('.jpg'))
-      .filter((f) => f.startsWith(entry.id + '-v') || (LEGACY_COMMONS.has(entry.id) && f === `${entry.id}.jpg`))
+      .filter(
+        (f) =>
+          f.startsWith(entry.id + '-v') || (LEGACY_COMMONS.has(entry.id) && f === `${entry.id}.jpg`)
+      )
       .sort();
   } catch {
     return [];
