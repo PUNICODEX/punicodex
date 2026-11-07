@@ -138,6 +138,8 @@ const allScripts = [
   // Wing hub pages (/world/, /culture/, /instruments/, /library/, /relics/):
   // generated from scripts/nav-tree.js before the sitemap and nav syncers.
   'scripts/generate-hubs.js',
+  'scripts/generate-strata-page.js',
+  'scripts/generate-sacred-atlas.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',

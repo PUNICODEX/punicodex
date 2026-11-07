@@ -356,7 +356,13 @@ const SUITES = [
   },
   { name: 'Texts Chapters Tests', cmd: 'node test/texts-chapters.test.js', timeout: 60000 },
   { name: 'Cards Gallery Tests', cmd: 'node test/cards-gallery.test.js', timeout: 30000 },
-  { name: 'Temple Commons Gallery Tests', cmd: 'node test/temple-commons-gallery.test.js', timeout: 60000 },
+  {
+    name: 'Temple Commons Gallery Tests',
+    cmd: 'node test/temple-commons-gallery.test.js',
+    timeout: 60000,
+  },
+  { name: 'STRATA Page Tests', cmd: 'node test/strata-page.test.js', timeout: 30000 },
+  { name: 'Sacred Atlas Tests', cmd: 'node test/sacred-atlas.test.js', timeout: 30000 },
   { name: 'Cards Editions Tests', cmd: 'node --test test/cards-editions.test.js', timeout: 30000 },
   {
     name: 'Domain-less Flagship Tests',

@@ -78,6 +78,14 @@ const RULES = [
     suites: ['Archē Tests'],
   },
   {
+    pattern: /^data\/sacred-sites\.json$|^scripts\/generate-sacred-atlas\.js$|^atlas\/sacred\/|^test\/sacred-atlas\.test\.js$/,
+    suites: ['Sacred Atlas Tests'],
+  },
+  {
+    pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/origins\/|^test\/strata-page\.test\.js$/,
+    suites: ['STRATA Page Tests'],
+  },
+  {
     pattern: /^templates\/flagship\/(gallery|blog|lore|patron|patterns|scholars|index)\.html$|^scripts\/create-flagship\.js$|^assets\/ai-commons\/|^test\/temple-commons-gallery\.test\.js$/,
     suites: ['Temple Commons Gallery Tests'],
   },

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>STRATA — The Deep History of the Pantheons | PuniCodex</title>
+<meta name="description" content="An excavation through the deep history of the pantheons — from the first Dreaming to the mythic geography of the modern map.">
+<link rel="canonical" href="https://punicodex.com/pantheon/origins/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="STRATA — The Deep History of the Pantheons">
+<meta property="og:description" content="An excavation through the deep history of the pantheons — from the first Dreaming to the mythic geography of the modern map.">
+<meta property="og:url" content="https://punicodex.com/pantheon/origins/">
+<meta property="og:image" content="https://punicodex.com/assets/images/og-default.png">
+<meta property="og:site_name" content="PuniCodex">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"STRATA — The Deep History of the Pantheons","url":"https://punicodex.com/pantheon/origins/","description":"An excavation through the deep history of the pantheons — from the first Dreaming to the mythic geography of the modern map.","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"},"about":[{"@type":"Thing","name":"The Dreamtime","alternateName":"c. 65,000 years ago — present"},{"@type":"Thing","name":"The First Writing","alternateName":"c. 3200–539 BCE"},{"@type":"Thing","name":"The Everlasting","alternateName":"c. 3100 BCE – 4th century CE"},{"@type":"Thing","name":"The Vedic Current","alternateName":"c. 1500 BCE — present"},{"@type":"Thing","name":"The Anatolian Synthesis","alternateName":"c. 1650–1180 BCE"},{"@type":"Thing","name":"The Ugaritic Tablets","alternateName":"c. 1400–1200 BCE (tablets)"},{"@type":"Thing","name":"The Alphabet's Merchants","alternateName":"c. 1200–146 BCE"},{"@type":"Thing","name":"The Choice","alternateName":"c. 1000–600 BCE — present"},{"@type":"Thing","name":"The Canon","alternateName":"Mycenaean roots (c. 1450 BCE) — present"},{"@type":"Thing","name":"The Adoption","alternateName":"c. 753 BCE — 4th century CE"},{"@type":"Thing","name":"The Island Memory","alternateName":"La Tène (c. 450 BCE) — recorded c. 8th–12th century CE"},{"@type":"Thing","name":"The Eddic Record","alternateName":"Proto-Germanic roots (c. 500 BCE); recorded c. 1200 CE"},{"@type":"Thing","name":"The Last Pagans of Europe","alternateName":"attested 13th–14th century CE; continuity far older"},{"@type":"Thing","name":"The Dual Faith","alternateName":"attested 6th–12th century CE; practice continuous"},{"@type":"Thing","name":"The Turning of the Wheel","alternateName":"c. 5th century BCE — present"},{"@type":"Thing","name":"The Middle Kingdom's Register","alternateName":"Shang oracle bones (c. 1250 BCE) — present"},{"@type":"Thing","name":"The Way and Its Power","alternateName":"Dàodéjīng c. 4th century BCE; organized religion c. 2nd century CE — present"},{"@type":"Thing","name":"The Altar of the Three","alternateName":"Dangun legend (traditional 2333 BCE); attested medieval — present"},{"@type":"Thing","name":"The Kami's Islands","alternateName":"Kojiki 712 CE, Nihon Shoki 720 CE — present"},{"@type":"Thing","name":"The Triangle of the Sea","alternateName":"settlement c. 1000 BCE–1200 CE; continuity unbroken"},{"@type":"Thing","name":"The Fifth Sun","alternateName":"c. 1300–1521 CE (Mexica), on Toltec and Teotihuacan roots centuries older"},{"@type":"Thing","name":"Children of the Sun","alternateName":"Inca state c. 1438–1533 CE; Andean roots to Chavín (c. 900 BCE)"},{"@type":"Thing","name":"The Orisha Across the Water","alternateName":"Ife florescence c. 11th–15th century CE; practice unbroken — present"},{"@type":"Thing","name":"The People of the Land","alternateName":"attested c. 16th century CE; continuity unbroken — present"},{"@type":"Thing","name":"When the Land Became Myth","alternateName":"c. 8th century BCE — present"}]}</script>
+<style>
+:root{--gold:#d4af37;--gold-dim:rgba(212,175,55,.35);--ivory:#f5f1e6;--dim:#b8b2a2;--void:#050505;--line:rgba(245,241,230,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden}
+#stx-fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.stx-exit{position:fixed;top:1.1rem;left:1.25rem;z-index:50;opacity:.85;transition:opacity .25s}
+.stx-exit:hover{opacity:1}
+.stx-exit img{display:block;height:16px;width:auto}
+.stx-rail{position:fixed;right:.8rem;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:3px;max-height:82vh;overflow-y:auto;scrollbar-width:none;padding:.3rem;background:rgba(5,5,5,.55);border:1px solid var(--line);border-radius:999px;backdrop-filter:blur(6px)}
+.stx-rail::-webkit-scrollbar{display:none}
+.stx-rail-dot{appearance:none;border:0;background:transparent;cursor:pointer;padding:2px}
+.stx-rail-dot span{display:flex;align-items:center;justify-content:center;width:1.35rem;height:1.35rem;border-radius:50%;font-family:'Montserrat',sans-serif;font-size:.5rem;letter-spacing:.02em;color:var(--dim);border:1px solid transparent;transition:all .2s}
+.stx-rail-dot:hover span{color:var(--ivory)}
+.stx-rail-dot.active span{color:var(--void);background:var(--gold);font-weight:700}
+.stx-stage{position:relative;z-index:1}
+.stx-surface{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 8rem;position:relative;background:radial-gradient(ellipse 120% 60% at 50% -10%,rgba(212,175,55,.14),transparent 60%),var(--void)}
+.stx-surface-kicker{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.stx-surface h1{font-size:clamp(3rem,9vw,7rem);letter-spacing:.18em;margin:.6rem 0 1rem;font-weight:600}
+.stx-surface-sub{max-width:62ch;color:var(--dim);font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.7}
+.stx-dig{margin-top:2.6rem;display:inline-flex;flex-direction:column;align-items:center;gap:.7rem;color:var(--gold);font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase}
+.stx-dig-shaft{width:1px;height:64px;background:linear-gradient(var(--gold),transparent);animation:stxSink 2.2s ease-in-out infinite}
+@keyframes stxSink{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+.stx-stratum{position:relative;padding:7rem 1.5rem 5rem;border-top:1px solid var(--line)}
+.stx-stratum::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 46px,rgba(212,175,55,.028) 46px 48px);pointer-events:none}
+.stx-stratum-inner{max-width:62rem;margin:0 auto;position:relative}
+.stx-depth-mark{position:absolute;left:-.2rem;top:-4.6rem;font-size:clamp(3.4rem,7vw,5.6rem);font-weight:700;color:transparent;-webkit-text-stroke:1px var(--gold-dim);letter-spacing:.05em;font-family:'Montserrat',sans-serif;user-select:none}
+.stx-kicker{font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.stx-name{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.05;margin-bottom:1.1rem;font-weight:600}
+.stx-attest{color:var(--dim);font-style:italic;max-width:70ch;line-height:1.65;margin-bottom:1.6rem}
+.stx-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem 1.4rem;margin-bottom:1.6rem}
+.stx-facts p{font-family:'Montserrat',sans-serif;font-size:.78rem;line-height:1.5;color:var(--ivory)}
+.stx-facts span{display:block;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem}
+.stx-summary{font-size:clamp(1.05rem,1.7vw,1.25rem);line-height:1.75;max-width:66ch;margin-bottom:1.8rem}
+.stx-beings-label{font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.stx-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem}
+.stx-chip{font-family:'Montserrat',sans-serif;font-size:.8rem;color:var(--ivory);text-decoration:none;border:1px solid var(--gold-dim);border-radius:999px;padding:.42rem .95rem;transition:all .2s;background:rgba(212,175,55,.05)}
+.stx-chip:hover{background:var(--gold);color:var(--void)}
+.stx-survivals ul{list-style:none;display:grid;gap:.45rem;margin-bottom:1.8rem}
+.stx-survivals li{color:var(--dim);line-height:1.6;padding-left:1.3rem;position:relative}
+.stx-survivals li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.stx-pantheon-link{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);padding-bottom:.3rem;transition:border-color .2s}
+.stx-pantheon-link:hover{border-color:var(--gold)}
+.stx-fault{max-width:62rem;margin:3.5rem auto 0;position:relative;padding-top:1.2rem;color:var(--dim);font-style:italic;font-size:.95rem;line-height:1.6}
+.stx-fault-line{display:block;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);margin-bottom:.9rem}
+/* stratum substances */
+.stx-tex-ochre{background:linear-gradient(180deg,rgba(120,60,20,.12),rgba(60,28,10,.22))}
+.stx-tex-clay{background:linear-gradient(180deg,rgba(140,90,60,.1),rgba(90,50,30,.18))}
+.stx-tex-sandstone{background:linear-gradient(180deg,rgba(190,160,100,.09),rgba(120,95,50,.16))}
+.stx-tex-mantra{background:linear-gradient(180deg,rgba(150,40,40,.09),rgba(80,20,20,.15))}
+.stx-tex-basalt{background:linear-gradient(180deg,rgba(70,70,80,.16),rgba(30,30,38,.3))}
+.stx-tex-cedar{background:linear-gradient(180deg,rgba(120,60,110,.1),rgba(70,30,70,.18))}
+.stx-tex-limestone{background:linear-gradient(180deg,rgba(200,190,160,.08),rgba(130,120,95,.15))}
+.stx-tex-marble{background:linear-gradient(180deg,rgba(220,220,215,.07),rgba(150,150,150,.13))}
+.stx-tex-travertine{background:linear-gradient(180deg,rgba(210,180,140,.08),rgba(140,110,70,.15))}
+.stx-tex-gold,.stx-tex-bronze{background:linear-gradient(180deg,rgba(212,175,55,.1),rgba(120,90,20,.16))}
+.stx-tex-bog,.stx-tex-amber{background:linear-gradient(180deg,rgba(90,70,20,.14),rgba(50,38,10,.24))}
+.stx-tex-wood{background:linear-gradient(180deg,rgba(110,70,40,.12),rgba(60,35,18,.22))}
+.stx-tex-bone,.stx-tex-cypress{background:linear-gradient(180deg,rgba(215,205,180,.06),rgba(140,130,105,.12))}
+.stx-tex-granite,.stx-tex-andesite{background:linear-gradient(180deg,rgba(90,90,95,.12),rgba(45,45,50,.24))}
+.stx-tex-iron,.stx-tex-volcanic{background:linear-gradient(180deg,rgba(130,50,35,.1),rgba(70,25,18,.2))}
+.stx-tex-paper{background:linear-gradient(180deg,rgba(200,60,50,.07),rgba(120,30,25,.13))}
+.stx-tex-whalebone,.stx-tex-silver{background:linear-gradient(180deg,rgba(170,180,190,.07),rgba(100,108,120,.13))}
+.stx-tex-obsidian{background:linear-gradient(180deg,rgba(30,25,45,.3),rgba(12,10,22,.5))}
+.stx-tex-laterite{background:linear-gradient(180deg,rgba(150,60,30,.12),rgba(90,35,18,.22))}
+.stx-tex-seaworn{background:linear-gradient(180deg,rgba(90,120,125,.08),rgba(40,70,75,.16))}
+.stx-core{min-height:100vh;padding:8rem 1.5rem;text-align:center;position:relative;background:radial-gradient(ellipse 90% 55% at 50% 115%,rgba(212,175,55,.16),transparent 60%),var(--void)}
+.stx-core h2{font-size:clamp(2rem,5vw,3.4rem);margin:.8rem 0 1.2rem}
+.stx-core p{max-width:62ch;margin:0 auto 2.4rem;color:var(--dim);line-height:1.75}
+.stx-core-sample{display:flex;flex-direction:column;max-width:46rem;margin:0 auto 2.6rem;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stx-core-band{appearance:none;border:0;cursor:pointer;padding:.68rem 1rem;text-align:left;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;color:var(--ivory);border-bottom:1px solid var(--line);transition:all .15s}
+.stx-core-band:last-child{border-bottom:0}
+.stx-core-band:hover{padding-left:1.5rem;color:var(--gold)}
+.stx-core-cta{display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.stx-core-cta a{font-family:'Montserrat',sans-serif;font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;padding:.85rem 1.7rem;border-radius:999px;border:1px solid var(--gold-dim);color:var(--gold);transition:all .2s}
+.stx-core-cta a:hover{background:var(--gold);color:var(--void)}
+.stx-reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.stx-reveal.stx-in{opacity:1;transform:none}
+@media (max-width:720px){
+  .stx-rail{right:.35rem;gap:2px;padding:.2rem}
+  .stx-rail-dot span{width:1.1rem;height:1.1rem;font-size:.44rem}
+  .stx-stratum{padding:5.5rem 1.1rem 3.5rem}
+  .stx-depth-mark{top:-3.4rem;font-size:2.8rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .stx-reveal{opacity:1;transform:none;transition:none}
+  .stx-dig-shaft{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+<canvas id="stx-fx" aria-hidden="true"></canvas>
+<a class="stx-exit" href="/" aria-label="PuniCodex home"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png" alt="PuniCodex" width="173" height="18"></a>
+<nav class="stx-rail" aria-label="Strata"><button class="stx-rail-dot" data-goto="surface" aria-label="The surface — today"><span>◈</span></button>
+<button class="stx-rail-dot" data-goto="stratum-25" aria-label="When the Land Became Myth"><span>25</span></button>
+<button class="stx-rail-dot" data-goto="stratum-24" aria-label="The People of the Land"><span>24</span></button>
+<button class="stx-rail-dot" data-goto="stratum-23" aria-label="The Orisha Across the Water"><span>23</span></button>
+<button class="stx-rail-dot" data-goto="stratum-22" aria-label="Children of the Sun"><span>22</span></button>
+<button class="stx-rail-dot" data-goto="stratum-21" aria-label="The Fifth Sun"><span>21</span></button>
+<button class="stx-rail-dot" data-goto="stratum-20" aria-label="The Triangle of the Sea"><span>20</span></button>
+<button class="stx-rail-dot" data-goto="stratum-19" aria-label="The Kami's Islands"><span>19</span></button>
+<button class="stx-rail-dot" data-goto="stratum-18" aria-label="The Altar of the Three"><span>18</span></button>
+<button class="stx-rail-dot" data-goto="stratum-17" aria-label="The Way and Its Power"><span>17</span></button>
+<button class="stx-rail-dot" data-goto="stratum-16" aria-label="The Middle Kingdom's Register"><span>16</span></button>
+<button class="stx-rail-dot" data-goto="stratum-15" aria-label="The Turning of the Wheel"><span>15</span></button>
+<button class="stx-rail-dot" data-goto="stratum-14" aria-label="The Dual Faith"><span>14</span></button>
+<button class="stx-rail-dot" data-goto="stratum-13" aria-label="The Last Pagans of Europe"><span>13</span></button>
+<button class="stx-rail-dot" data-goto="stratum-12" aria-label="The Eddic Record"><span>12</span></button>
+<button class="stx-rail-dot" data-goto="stratum-11" aria-label="The Island Memory"><span>11</span></button>
+<button class="stx-rail-dot" data-goto="stratum-10" aria-label="The Adoption"><span>10</span></button>
+<button class="stx-rail-dot" data-goto="stratum-9" aria-label="The Canon"><span>09</span></button>
+<button class="stx-rail-dot" data-goto="stratum-8" aria-label="The Choice"><span>08</span></button>
+<button class="stx-rail-dot" data-goto="stratum-7" aria-label="The Alphabet's Merchants"><span>07</span></button>
+<button class="stx-rail-dot" data-goto="stratum-6" aria-label="The Ugaritic Tablets"><span>06</span></button>
+<button class="stx-rail-dot" data-goto="stratum-5" aria-label="The Anatolian Synthesis"><span>05</span></button>
+<button class="stx-rail-dot" data-goto="stratum-4" aria-label="The Vedic Current"><span>04</span></button>
+<button class="stx-rail-dot" data-goto="stratum-3" aria-label="The Everlasting"><span>03</span></button>
+<button class="stx-rail-dot" data-goto="stratum-2" aria-label="The First Writing"><span>02</span></button>
+<button class="stx-rail-dot" data-goto="stratum-1" aria-label="The Dreamtime"><span>01</span></button>
+<button class="stx-rail-dot" data-goto="core" aria-label="The core"><span>◆</span></button></nav>
+<main class="stx-stage">
+<section class="stx-surface" id="surface">
+  <p class="stx-surface-kicker reveal">The excavation begins at the surface</p>
+  <h1 class="reveal">STRATA</h1>
+  <p class="stx-surface-sub reveal">An excavation through the deep history of the pantheons — from the first Dreaming to the mythic geography of the modern map.</p>
+  <a class="stx-dig reveal" href="#stratum-25"><span>Begin the descent</span><span class="stx-dig-shaft" aria-hidden="true"></span></a>
+</section>
+
+<section class="stx-stratum stx-tex-seaworn" id="stratum-25" data-order="25">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−25</span>
+      <p class="stx-kicker">stratum 25 · c. 8th century BCE — present</p>
+      <h2 class="stx-name">When the Land Became Myth</h2>
+      <p class="stx-attest">The youngest stratum is not a people but a move: Greece personified its own geography — Asia, Europe, Atlantis, the rivers and cities as beings — and the map itself joined the pantheon.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Mediterranean map</p>
+      <p><span>Tongue</span>Greek</p>
+      <p><span>Script</span>Ἀσία, Ἀτλαντίς, Ὄλυμπος — place-names carrying their stories like epithets.</p>
+      <p><span>Substance</span>sea-worn marble at the waterline</p>
+    </div>
+    <p class="stx-summary">The final stratum before the surface: the moment myth annexed geography. Asia was a nymph, Europa a bull-riding queen, Atlantis a cautionary fever-dream — and we still live on the map they made. This is where PuniCodex's own work begins: the names, kept alive.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/asia/" title="Personified Continent of Asia">Asía</a><a class="stx-chip" href="/sites/atlantis/" title="Lost Island, Legendary Realm, Sea">Atlantís</a><a class="stx-chip" href="/sites/olympos/" title="Mountain of the Gods">Ólympos</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>every continent's name is a mythological being</li><li>Atlas holding up the world's maps — and its astronomy</li><li>the Atlantis industry, three thousand years of speculation</li></ul></div>
+    <a class="stx-pantheon-link" href="/atlas/">Open the When the Land Became Myth pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The youngest stratum of all: not a people but a move — the map itself joining the pantheon. This is where PuniCodex's work begins.</p>
+</section>
+
+<section class="stx-stratum stx-tex-volcanic" id="stratum-24" data-order="24">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−24</span>
+      <p class="stx-kicker">stratum 24 · attested c. 16th century CE; continuity unbroken — present</p>
+      <h2 class="stx-name">The People of the Land</h2>
+      <p class="stx-attest">Spanish chronicles record the Mapuche cosmos — Pillán the thunder spirits of the volcanoes, Ngen the lords of place, the silver branch — while the machi shamans carried the tradition undefeated through war, mission and dictatorship.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Chile and Argentina — Wallmapu</p>
+      <p><span>Tongue</span>Mapudungun (isolate)</p>
+      <p><span>Script</span>An oral tradition; the machi's rewe — the steps-and-ladder shamanic pole — is its diagram.</p>
+      <p><span>Substance</span>volcanic stone and silver</p>
+    </div>
+    <p class="stx-summary">The Mapuche held the Araucanía for three centuries against the empire that conquered the Inca and the Aztec — and their religion held with them: a covenant with the land itself, where every river and ridge has its Ngen, and the machi climbs her rewe between worlds.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/trengtreng/" title="Flood, Land-Shaping">Trengtreng</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>We Tripantu, the Mapuche new year, openly celebrated again</li><li>machis — women-led shamanic tradition — practising now</li><li>the only indigenous army to stop the Spanish Empire's expansion in open war</li></ul></div>
+    <a class="stx-pantheon-link" href="/mapuche/">Open the The People of the Land pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The land's own covenant: volcanoes as thunder-spirits, hills as treaty ground — a theology of place still defended.</p>
+</section>
+
+<section class="stx-stratum stx-tex-laterite" id="stratum-23" data-order="23">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−23</span>
+      <p class="stx-kicker">stratum 23 · Ife florescence c. 11th–15th century CE; practice unbroken — present</p>
+      <h2 class="stx-name">The Orisha Across the Water</h2>
+      <p class="stx-attest">Ife's naturalistic bronzes and the Ifá divination corpus anchor the tradition archaeologically; the transatlantic slave trade carried it to the Americas, where it never stopped — Candomblé, Santería, Trinidadian Orisha.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Yorubaland — Nigeria and Benin; the Atlantic diaspora</p>
+      <p><span>Tongue</span>Yoruba (Niger–Congo)</p>
+      <p><span>Script</span>Ifá divination patterns — the binary odù corpus — read and recited by babalawo to this day.</p>
+      <p><span>Substance</span>laterite earth and cast brass</p>
+    </div>
+    <p class="stx-summary">No tradition on Earth survived a greater crime with greater power. Carried across the ocean in the minds of the enslaved, the orisha took root in new soil and grew back across the water — Shango's thunder heard in Havana, Bahia and Brooklyn alike.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/oduduwa/" title="Progenitor, Ile-Ife, First King">Odùduwà</a><a class="stx-chip" href="/sites/shango/" title="Thunder, Fire, Justice">Ṣàngó</a><a class="stx-chip" href="/sites/oshun/" title="Love, Freshwater, Fertility">Ọṣun</a><a class="stx-chip" href="/sites/ogun/" title="Iron, War, Labour">Ògún</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>the orisha cults alive across the Americas — the most successful survival of any tradition across the Middle Passage</li><li>Afrobeat's spiritual spine</li><li>the cities of Ife and Ile-Ife, still sacred ground</li></ul></div>
+    <a class="stx-pantheon-link" href="/yoruba/">Open the The Orisha Across the Water pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The orisha crossed the Middle Passage in the minds of the enslaved — the deepest survival in this excavation.</p>
+</section>
+
+<section class="stx-stratum stx-tex-andesite" id="stratum-22" data-order="22">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−22</span>
+      <p class="stx-kicker">stratum 22 · Inca state c. 1438–1533 CE; Andean roots to Chavín (c. 900 BCE)</p>
+      <h2 class="stx-name">Children of the Sun</h2>
+      <p class="stx-attest">The Andes stacked three thousand years of cult before the Inca: Chavín, Tiwanaku, Wari. The Inca wove them into a state religion — Inti the sun, Viracocha the creator, the huacas of every ridge and river — and administered it province by province.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Andes</p>
+      <p><span>Tongue</span>Quechuan</p>
+      <p><span>Script</span>No alphabet — the khipu knotted cords kept the empire's accounts and, perhaps, its prayers.</p>
+      <p><span>Substance</span>andesite masonry, fitted without mortar</p>
+    </div>
+    <p class="stx-summary">The Inca built without wheels, mortar, or writing — and ran an empire of ten million with knotted string. Their gods were the mountains themselves, and the mountains are still there.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/inti/" title="Sun, Empire, Agriculture">Inti</a><a class="stx-chip" href="/sites/viracocha/" title="Creator, Sky, Sea Foam">Wiraqucha</a><a class="stx-chip" href="/sites/pachamama/" title="Earth, Harvest, Mother">Pachamama</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>eight million Quechua speakers and rising</li><li>Inti Raymi, the sun festival, restored and growing every June</li><li>the potato — domesticated here — feeding half the world</li></ul></div>
+    <a class="stx-pantheon-link" href="/incan/">Open the Children of the Sun pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The Andes stacked three thousand years of cult before the Inca wove them into one state religion of stone.</p>
+</section>
+
+<section class="stx-stratum stx-tex-obsidian" id="stratum-21" data-order="21">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−21</span>
+      <p class="stx-kicker">stratum 21 · c. 1300–1521 CE (Mexica), on Toltec and Teotihuacan roots centuries older</p>
+      <h2 class="stx-name">The Fifth Sun</h2>
+      <p class="stx-attest">The Mexica state kept its gods in books — the Borgia, Fejérváry-Mayer and Florentine Codices — and in a temple rebuilt five times at the heart of Tenochtitlan, excavated today under Mexico City's cathedral.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Central Mexico</p>
+      <p><span>Tongue</span>Nahuatl (Uto-Aztecan)</p>
+      <p><span>Script</span>Aztec pictorial codices; Nahuatl in Latin letters after 1521 saved the poetry.</p>
+      <p><span>Substance</span>obsidian and featherwork gold</p>
+    </div>
+    <p class="stx-summary">The Mexica believed the fifth world-sun would die by earthquake unless it was fed — and fed it with the one currency that moves the sun: human hearts. The theology was precise, the mathematics superb, and the covenant terrible.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/quetzalcoatl/" title="Wind, Wisdom, Morning Star">Quetzalcōātl</a><a class="stx-chip" href="/sites/tonatiuh/" title="Sun, Heat, Fifth Age">Tōnatiuh</a><a class="stx-chip" href="/sites/tezcatlipoca/" title="Night, Sorcery, Fate">Tēzcatlīpōca</a><a class="stx-chip" href="/sites/tlaloc/" title="Rain, Water, Lightning">Tlāloc</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>chocolate, tomato, avocado, coyote, ocelot — the world's Nahuatl loanwords</li><li>Día de los Muertos, layers deep in Nahua practice</li><li>the Sun Stone on every wall of Mexico</li></ul></div>
+    <a class="stx-pantheon-link" href="/nahuatl/">Open the The Fifth Sun pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>On obsidian foundations older than their name, the Mexica built the last great state cult of the Americas.</p>
+</section>
+
+<section class="stx-stratum stx-tex-bone" id="stratum-20" data-order="20">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−20</span>
+      <p class="stx-kicker">stratum 20 · settlement c. 1000 BCE–1200 CE; continuity unbroken</p>
+      <h2 class="stx-name">The Triangle of the Sea</h2>
+      <p class="stx-attest">The greatest navigation story ever told — settling a triangle of ocean larger than every continent combined — carried its pantheon by memory across open water: Hawaii to Rapa Nui to Aotearoa, all one star-map.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Polynesian triangle</p>
+      <p><span>Tongue</span>Austronesian</p>
+      <p><span>Script</span>No writing until contact — the geneaologies were chanted, syllable by syllable, canoe by canoe.</p>
+      <p><span>Substance</span>carved whalebone and volcanic glass</p>
+    </div>
+    <p class="stx-summary">Every other stratum spread by land or by conquest; this one spread by dead reckoning at night. Tangaroa's ocean, Māui's hooks, Pele's volcanoes — a pantheon compact enough to carry in a canoe and strong enough to hold a tenth of the planet's water.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/rongo/" title="Agriculture, Peace, Cultivated Foods">Rongo</a><a class="stx-chip" href="/sites/tangaroa/" title="Ocean, Sea Creatures, Fishing">Tangaroa</a><a class="stx-chip" href="/sites/pele/" title="Volcanoes, Fire, Lightning, Dance">Pele</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>the wayfinding renaissance — voyaging canoes sailing the old routes today</li><li>tatau — the tattooing that gave the world the word</li><li>hula, oli, and the chant forms that carried the gods</li></ul></div>
+    <a class="stx-pantheon-link" href="/polynesian/">Open the The Triangle of the Sea pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The greatest dispersal in human history sailed a tenth of the planet's water with the pantheon in memory alone.</p>
+</section>
+
+<section class="stx-stratum stx-tex-bronze" id="stratum-19" data-order="19">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−19</span>
+      <p class="stx-kicker">stratum 19 · Kojiki 712 CE, Nihon Shoki 720 CE — present</p>
+      <h2 class="stx-name">The Kami's Islands</h2>
+      <p class="stx-attest">Japan's myths were written down late but remember much older practice; Shinto's kami cults were never interrupted — the same shrines, the same festivals, the same imperial rites, continuously.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Japan</p>
+      <p><span>Tongue</span>Japonic</p>
+      <p><span>Script</span>Man'yōgana → kana; the sun goddess's name in the oldest script we have: 天照 Amaterasu.</p>
+      <p><span>Substance</span>cypress and mirror-bright bronze</p>
+    </div>
+    <p class="stx-summary">Amaterasu's grandson descended to rule Japan, and the imperial line has claimed descent ever since — the only living monarchy on Earth with a goddess for a founder. The mirror that lured her from the cave is one of the Three Treasures of the throne.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/amaterasu/" title="Sun Goddess, Shintō">Amaterasu</a><a class="stx-chip" href="/sites/izanagi/" title="Creator God, Shintō">Izanagi</a><a class="stx-chip" href="/sites/inari/" title="Rice, Fertility, Foxes">Inari</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>Ise Jingū, rebuilt every twenty years since 690 CE</li><li>the torii as the world's most recognized gate</li><li>matsuri festival life in every neighbourhood</li></ul></div>
+    <a class="stx-pantheon-link" href="/japanese/">Open the The Kami's Islands pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>Buddhism arrived and Shinto answered by organizing its kami into a mirror of the Buddhist court — absorption, not defeat.</p>
+</section>
+
+<section class="stx-stratum stx-tex-paper" id="stratum-18" data-order="18">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−18</span>
+      <p class="stx-kicker">stratum 18 · Dangun legend (traditional 2333 BCE); attested medieval — present</p>
+      <h2 class="stx-name">The Altar of the Three</h2>
+      <p class="stx-attest">The founding myth — Hwanin, Hwanung, the bear-woman, and Dangun — is recorded in medieval chronicles carrying far older oral matter; the mudang shamans never stopped practising it.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Korean peninsula</p>
+      <p><span>Tongue</span>Koreanic</p>
+      <p><span>Script</span>Hanja and then Hangul — the alphabet the king invented in 1443 and the shamans adopted at once.</p>
+      <p><span>Substance</span>white paper and mountain shrine stone</p>
+    </div>
+    <p class="stx-summary">Korea's tradition kept its shamanic spine through every dynasty: three gods in one, a bear who fasted to become a woman, and a founder who lived a thousand years — half bear, half god, half of everything at once.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/hananim/" title="Supreme God, Heaven">Hwanin</a><a class="stx-chip" href="/sites/hwanung/" title="Son of Heaven, Descended">Hwanung</a><a class="stx-chip" href="/sites/dangun/" title="Founder of Korea, First King">Dangun</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>mudang rituals still performed, UNESCO-listed</li><li>the national foundation myth, told in every school</li><li>Samshin, the triple goddess of childbirth, still invoked</li></ul></div>
+    <a class="stx-pantheon-link" href="/korean/">Open the The Altar of the Three pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The peninsula carried China's script and kept its shamans — the three-sages myth kept a third voice alive.</p>
+</section>
+
+<section class="stx-stratum stx-tex-paper" id="stratum-17" data-order="17">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−17</span>
+      <p class="stx-kicker">stratum 17 · Dàodéjīng c. 4th century BCE; organized religion c. 2nd century CE — present</p>
+      <h2 class="stx-name">The Way and Its Power</h2>
+      <p class="stx-attest">The Dàodéjīng is a short text with an endless afterlife; organized Taoism begins with the Way of the Celestial Masters in 142 CE and has kept registers, revelations and immortals ever since.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>China</p>
+      <p><span>Tongue</span>Sinitic (Classical Chinese scripture)</p>
+      <p><span>Script</span>The Eight Trigrams 乾坤震巽坎離艮兌 — diagram as scripture.</p>
+      <p><span>Substance</span>cinnabar and talisman paper</p>
+    </div>
+    <p class="stx-summary">Taoism alone refused the question. Where other strata ask 'which gods rule?', the Dàodéjīng answers that the Way that can be named is not the eternal Way — and then, gloriously, goes on to name its immortals anyway.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/laozi/" title="Founder of Daoism, Sage">Lǎozǐ</a><a class="stx-chip" href="/sites/xiwangmu/" title="Queen Mother of the West">Xīwángmǔ</a><a class="stx-chip" href="/sites/yinyang/" title="Cosmic Duality">Yīnyáng</a><a class="stx-chip" href="/sites/wuji/" title="Limitless, Ultimate Nothing">Wújí</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>yin and yang as a global idea</li><li>tai chi in every park on Earth</li><li>feng shui at every property closing</li></ul></div>
+    <a class="stx-pantheon-link" href="/taoist/">Open the The Way and Its Power pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>Against the empire's bureaucracy of heaven, the Dàodéjīng proposed the unnameable — and then built its own immortals.</p>
+</section>
+
+<section class="stx-stratum stx-tex-bone" id="stratum-16" data-order="16">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−16</span>
+      <p class="stx-kicker">stratum 16 · Shang oracle bones (c. 1250 BCE) — present</p>
+      <h2 class="stx-name">The Middle Kingdom's Register</h2>
+      <p class="stx-attest">The Shang kings scratched their questions to the high god Di 帝 into oracle bone — the first Chinese writing and the first Chinese theology arrive together. Three thousand years of continuous record follow.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Yellow River to all of China</p>
+      <p><span>Tongue</span>Sinitic</p>
+      <p><span>Script</span>Oracle bone → bronze → seal → the characters used today: 天 heaven, 帝 the Lord, 神 spirit.</p>
+      <p><span>Substance</span>oracle bone and bronze</p>
+    </div>
+    <p class="stx-summary">China's gods were administered as carefully as its provinces: canonized, promoted, merged, and filed. The Jade Emperor's celestial ministry is the longest-running celestial civil service on record.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/guanyin/" title="Compassion, Mercy">Guānyīn</a><a class="stx-chip" href="/sites/huangdi/" title="Yellow Emperor, Ancestor">Huángdì</a><a class="stx-chip" href="/sites/nezha/" title="Youth, War, Rebellion">Nézhā</a><a class="stx-chip" href="/sites/change/" title="Moon, Immortality, Mid-Autumn">Chángé</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>the world's oldest continuously used writing system</li><li>Lunar New Year, the largest annual human migration</li><li>the bureaucracy of heaven mirrored in every dynasty's administration</li></ul></div>
+    <a class="stx-pantheon-link" href="/chinese/">Open the The Middle Kingdom's Register pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>Shang kings scratched their questions to Dì into bone — China's writing and China's theology were born together.</p>
+</section>
+
+<section class="stx-stratum stx-tex-bronze" id="stratum-15" data-order="15">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−15</span>
+      <p class="stx-kicker">stratum 15 · c. 5th century BCE — present</p>
+      <h2 class="stx-name">The Turning of the Wheel</h2>
+      <p class="stx-attest">Siddhartha Gautama's life is dated by modern scholarship to c. 5th century BCE; within five centuries the dharma had walked from the Ganges to the Silk Road to Japan — the fastest long-distance spread of any faith before Islam.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>South Asia → all of Asia</p>
+      <p><span>Tongue</span>Sanskrit and Pali sources; every Asian script follows</p>
+      <p><span>Script</span>Sanskrit sutras in Devanagari and Siddhaṃ; the dharma wheel itself as emblem.</p>
+      <p><span>Substance</span>gilt bronze</p>
+    </div>
+    <p class="stx-summary">Buddhism's great move was to export not gods but methods — and then, on arrival, to crown bodhisattvas anyway: Avalokiteśvara, Amitābha, the medicine Buddha. Compassion, personified, walked further than any army.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/avalokiteshvara/" title="Compassion, Mercy, Bodhisattva">Avalokiteśvara</a><a class="stx-chip" href="/sites/bhaisajyaguru/" title="Healing, Medicine, Lapis-Lazuli Light">Bhaiṣajyaguru</a><a class="stx-chip" href="/sites/amitabha/" title="Infinite Light, Pure Land">Amitābha</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>half a billion practitioners</li><li>the word “mindfulness”</li><li>the stupa, reborn as every pagoda from Nepal to Japan</li></ul></div>
+    <a class="stx-pantheon-link" href="/buddhist/">Open the The Turning of the Wheel pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The wheel turned outward: a teaching from the Ganges walked the Silk Road and became Asia's common tongue of the sacred.</p>
+</section>
+
+<section class="stx-stratum stx-tex-wood" id="stratum-14" data-order="14">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−14</span>
+      <p class="stx-kicker">stratum 14 · attested 6th–12th century CE; practice continuous</p>
+      <h2 class="stx-name">The Dual Faith</h2>
+      <p class="stx-attest">Procopius names the Slavic gods in the 6th century; medieval chronicles (Kiev, Novgorod, Thietmar of Merseburg) record the cults — and dvoeverie, 'dual faith', kept them alive under Christianity for a thousand years.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Eastern Europe</p>
+      <p><span>Tongue</span>Slavic (Indo-European)</p>
+      <p><span>Script</span>Attested through Cyrillic chronicles — Перунъ Perun in the Primary Chronicle.</p>
+      <p><span>Substance</span>carved idol wood — Zbruch</p>
+    </div>
+    <p class="stx-summary">The Slavic solution to conversion was not resistance but persistence: the gods withdrew into folklore and came back every festival. Perun's oaths became Perun's curses became, simply, thunder.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/belobog/" title="Light, Good, Fortune">Belobog</a><a class="stx-chip" href="/sites/perun/" title="Thunder, Lightning, Oak">Perun</a><a class="stx-chip" href="/sites/veles/" title="Cattle, Commerce, Underworld">Veles</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>Easter and Christmas still carry Kupala and Koliada rites</li><li>the byliny epic cycles</li><li>Slavic folklore as the nursery of the world's fantasy villains and heroes</li></ul></div>
+    <a class="stx-pantheon-link" href="/slavic/">Open the The Dual Faith pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>East of the frontier, dvoeverie — dual faith — let the old gods live inside the new calendar.</p>
+</section>
+
+<section class="stx-stratum stx-tex-amber" id="stratum-13" data-order="13">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−13</span>
+      <p class="stx-kicker">stratum 13 · attested 13th–14th century CE; continuity far older</p>
+      <h2 class="stx-name">The Last Pagans of Europe</h2>
+      <p class="stx-attest">Baltic religion is attested almost entirely by hostile chronicles — Peter of Dusburg, the Polish and Teutonic records — because it was still being practised, at scale, when Christian Europe wrote it down to end it. Lithuania was Europe's last great pagan state.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Baltic coast — Lithuania and Latvia</p>
+      <p><span>Tongue</span>Baltic (Indo-European)</p>
+      <p><span>Script</span>No native writing; the chronicles' Latin is our window, and the living Baltic languages our survivors.</p>
+      <p><span>Substance</span>amber and sacred oak</p>
+    </div>
+    <p class="stx-summary">While cathedrals rose across Europe, the Balts still crowned their kings beneath sacred oaks, and crusades were preached against them. Their religion's source is the enemy's diary — read it against the grain.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/perkunas/" title="God of Thunder, Lightning and Storms">Perkūnas</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>Lithuanian — the most archaic living Indo-European tongue</li><li>thunder-worship folklore across the whole Baltic</li><li>Romuva's modern restoration</li></ul></div>
+    <a class="stx-pantheon-link" href="/baltic/">Open the The Last Pagans of Europe pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>Christian Europe's frontier ran through sacred oak groves — Lithuania was still pagan when Oxford was teaching theology.</p>
+</section>
+
+<section class="stx-stratum stx-tex-bog" id="stratum-12" data-order="12">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−12</span>
+      <p class="stx-kicker">stratum 12 · Proto-Germanic roots (c. 500 BCE); recorded c. 1200 CE</p>
+      <h2 class="stx-name">The Eddic Record</h2>
+      <p class="stx-attest">The gods' names run in runes from the earliest Germanic inscriptions; the myths themselves were fixed in Iceland's Eddas only after most of Scandinavia had converted — a rescue mission in manuscript.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Scandinavia and the Norse world</p>
+      <p><span>Tongue</span>North Germanic</p>
+      <p><span>Script</span>The runic rows — ᚦ ᚱ ᛟ — and the Latin letters the sagas were written in.</p>
+      <p><span>Substance</span>bog iron and carved wood</p>
+    </div>
+    <p class="stx-summary">The Norse gods were never worshipped in temples of stone — they lived in halls of timber and in the skalds' verses, and they die at Ragnarök knowing it. It is the only major pantheon whose own mythology ends.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/tyr/" title="War, Law, Oaths">Týr</a><a class="stx-chip" href="/sites/thor/" title="Thunder, Storms, Oak">Þórr</a><a class="stx-chip" href="/sites/odinn/" title="Wisdom, War, Death, Poetry">Óðinn</a><a class="stx-chip" href="/sites/freyr/" title="Fertility, Sunshine, Rain">Freyr</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>Tuesday through Friday are Týr, Óðinn, Þórr and Frigg</li><li>Tolkien and Wagner's entire careers</li><li>Ragnarök, the template of every end-of-the-world story</li></ul></div>
+    <a class="stx-pantheon-link" href="/norse/">Open the The Eddic Record pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The Germanic tribes kept the steppe inheritance longest: Týr's name is literally the word for &quot;god&quot; in a dozen languages.</p>
+</section>
+
+<section class="stx-stratum stx-tex-bog" id="stratum-11" data-order="11">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−11</span>
+      <p class="stx-kicker">stratum 11 · La Tène (c. 450 BCE) — recorded c. 8th–12th century CE</p>
+      <h2 class="stx-name">The Island Memory</h2>
+      <p class="stx-attest">The continental Celts left no scripture; the tradition survives through medieval Irish and Welsh manuscripts copying oral matter far older than their inks — the oldest vernacular literature north of the Alps.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Gaul to Ireland and Wales</p>
+      <p><span>Tongue</span>Celtic (Indo-European)</p>
+      <p><span>Script</span>Ogham on the stones (ᚠᚢᚏᚐᚉᚔᚔᚅᚔᚐ); Latin script for the manuscripts.</p>
+      <p><span>Substance</span>torcs of gold and bog-oak</p>
+    </div>
+    <p class="stx-summary">The Celts trusted memory over inscription, and nearly paid the ultimate price for it: Rome destroyed the druids' schools, and the tradition survived only where Rome never ruled — Ireland's monks, writing out of sheer love of the matter.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/fionn/" title="Hunter, Seer, Leader">Fionn</a><a class="stx-chip" href="/sites/taliesin/" title="Poet, Shapeshifter">Taliesin</a><a class="stx-chip" href="/sites/manannan/" title="Sea, Otherworld, Mist">Manannán</a><a class="stx-chip" href="/sites/cernunnos/" title="Wilderness, Animals, Fertility">Cernunnos</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>Samhain → Halloween</li><li>the Matter of Britain — Arthur and his court</li><li>the Otherworld, still stock imagery of fantasy</li></ul></div>
+    <a class="stx-pantheon-link" href="/celtic/">Open the The Island Memory pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>As Rome rose, the Celtic world held the West — La Tène art threading older Hallstatt gods through new forms.</p>
+</section>
+
+<section class="stx-stratum stx-tex-travertine" id="stratum-10" data-order="10">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−10</span>
+      <p class="stx-kicker">stratum 10 · c. 753 BCE — 4th century CE</p>
+      <h2 class="stx-name">The Adoption</h2>
+      <p class="stx-attest">Rome kept its own numina and household gods, then adopted Greece's pantheon wholesale — by interpretatio romana, every foreign god found a Roman desk.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Latium, then the empire</p>
+      <p><span>Tongue</span>Latin (Indo-European)</p>
+      <p><span>Script</span>The Latin alphabet — Rome's most durable province is the alphabet itself.</p>
+      <p><span>Substance</span>travertine and bronze</p>
+    </div>
+    <p class="stx-summary">Rome's genius was administrative, and its theology shows it: it ran a pantheon the way it ran a province — absorb, rename, standardize, endure. The gods of conquered Gaul, Britain and Syria all ended up keeping Rome's books.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/mars/" title="War, Agriculture, Sovereignty">Mārs</a><a class="stx-chip" href="/sites/diana/" title="Moon, Hunt, Wilderness">Diāna</a><a class="stx-chip" href="/sites/iuppiter/" title="Sky, Thunder, Sovereignty">Iūpiter</a><a class="stx-chip" href="/sites/neptunus/" title="Sea, Horses, Earthquake">Neptūnus</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>the calendar's months and the week's days in Latin Europe</li><li>the planet names through Rome's forms</li><li>a third of English, and all of law's vocabulary</li></ul></div>
+    <a class="stx-pantheon-link" href="/roman/">Open the The Adoption pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>Rome read the Greek catalogue and adopted it wholesale — interpretatio romana, the greatest syncretism engine of the ancient world.</p>
+</section>
+
+<section class="stx-stratum stx-tex-marble" id="stratum-9" data-order="9">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−09</span>
+      <p class="stx-kicker">stratum 09 · Mycenaean roots (c. 1450 BCE) — present</p>
+      <h2 class="stx-name">The Canon</h2>
+      <p class="stx-attest">Zeus, Poseidon and Dionysos appear in Linear B tablets at Knossos and Pylos — the Greek gods are older than the Greek alphabet. Homer and Hesiod fixed the canon around 750–700 BCE.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Aegean, then the Mediterranean world</p>
+      <p><span>Tongue</span>Greek (Indo-European)</p>
+      <p><span>Script</span>Linear B → the Greek alphabet: ΑΘΗΝΑ, ΔΙΟΣ — the vowels, the first true alphabet.</p>
+      <p><span>Substance</span>Parian marble</p>
+    </div>
+    <p class="stx-summary">Greece did not invent the gods — it invented the argument about them. Hesiod's Theogony is the first attempt anywhere to file the divine world in order, and Athens staged the gods as literature for a paying public.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/nike/" title="Victory">Níkē</a><a class="stx-chip" href="/sites/zeus/" title="Sky, Thunder, King of Gods">Zeús</a><a class="stx-chip" href="/sites/ares/" title="War, Courage, Battle Fury">Árēs</a><a class="stx-chip" href="/sites/hermes/" title="Messengers, Commerce, Thieves">Hermês</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>the planets' names</li><li>every drama, ode, myth and muse in the Western vocabulary</li><li>the word 'panic', the word 'music', the word 'chaos'</li></ul></div>
+    <a class="stx-pantheon-link" href="/greek/">Open the The Canon pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The Mycenaean tablets remember Zeus three centuries before Homer — Greece inherited its gods and invented the argument about them.</p>
+</section>
+
+<section class="stx-stratum stx-tex-limestone" id="stratum-8" data-order="8">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−08</span>
+      <p class="stx-kicker">stratum 08 · c. 1000–600 BCE — present</p>
+      <h2 class="stx-name">The Choice</h2>
+      <p class="stx-attest">Zarathustra's date is honestly uncertain (mainstream c. 1000–600 BCE; traditional c. 1500 BCE). The Gāthās are the oldest confidently datable religious poetry after the Rigveda, and the faith still keeps its sacred fire.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Iranian plateau</p>
+      <p><span>Tongue</span>Avestan (Iranian)</p>
+      <p><span>Script</span>Avestan scripture, fixed in a purpose-built alphabet in Sasanian times: 𐬀𐬵𐬎𐬭𐬀 Ahura.</p>
+      <p><span>Substance</span>limestone fire temple</p>
+    </div>
+    <p class="stx-summary">Zarathustra inverted the old order: the gods were not to be bribed but obeyed, and history itself became a battleground of truth against the lie. Every subsequent faith of the single God inherits the question he asked.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/ahuramazda/" title="Supreme Creator, Wisdom, Light">AhuraMazdā</a><a class="stx-chip" href="/sites/anahita/" title="Fertility, Water, Wisdom">Anāhitā</a><a class="stx-chip" href="/sites/ahriman/" title="Evil, Destruction, Lies">Ahriman</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>the moral engine of the modern world — good against evil, choice as cosmology</li><li>the magi at Bethlehem; Nowruz on the spring equinox</li><li>fire temples still burning in Yazd</li></ul></div>
+    <a class="stx-pantheon-link" href="/zoroastrian/">Open the The Choice pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>On the Iranian plateau the old Indo-Iranian gods were re-sorted into a single choice: truth, or the lie.</p>
+</section>
+
+<section class="stx-stratum stx-tex-cedar" id="stratum-7" data-order="7">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−07</span>
+      <p class="stx-kicker">stratum 07 · c. 1200–146 BCE</p>
+      <h2 class="stx-name">The Alphabet's Merchants</h2>
+      <p class="stx-attest">Continues Canaanite religion westward: Tyre, Sidon, and Carthage, attested in inscriptions, sacrifice lists and hostile Roman testimony from the Tophet to the sack of Carthage.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Levantine coast, then the whole Mediterranean</p>
+      <p><span>Tongue</span>Phoenician (Northwest Semitic)</p>
+      <p><span>Script</span>The Phoenician consonantal alphabet — the direct ancestor of Greek, Latin, and every alphabet on this page.</p>
+      <p><span>Substance</span>purple-dyed cedar</p>
+    </div>
+    <p class="stx-summary">The Phoenicians' great export was not cedar or glass but the alphabet itself — twenty-two letters that unshipped the priestly monopoly on reading and let writing travel in merchant hulls.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/astart/" title="Love, War, Fertility, Venus">Aštart</a><a class="stx-chip" href="/sites/yammu/" title="Sea, Chaos">Yammu</a><a class="stx-chip" href="/sites/aseratu/" title="Sea, Mother Goddess">Ašeratu</a><a class="stx-chip" href="/sites/kothar/" title="Craft, Magic">Kôṯaru</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>every letter you are reading</li><li>Carthage's three wars with Rome — mythology as geopolitics</li><li>Astarte → Aphrodite across the Aegean</li></ul></div>
+    <a class="stx-pantheon-link" href="/phoenician/">Open the The Alphabet's Merchants pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The alphabet went to sea. Canaanite gods rode Phoenician hulls to Carthage and beyond.</p>
+</section>
+
+<section class="stx-stratum stx-tex-clay" id="stratum-6" data-order="6">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−06</span>
+      <p class="stx-kicker">stratum 06 · c. 1400–1200 BCE (tablets)</p>
+      <h2 class="stx-name">The Ugaritic Tablets</h2>
+      <p class="stx-attest">The Baal Cycle, the Epic of Aqhat and the myth of El's banquet survive on tablets from Ugarit — a single generation before the city burned, preserving the Levantine pantheon whole.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Levant — coastal Syria</p>
+      <p><span>Tongue</span>Ugaritic (Northwest Semitic)</p>
+      <p><span>Script</span>The Ugaritic alphabet — 𐎁 bēt, 𐎍 lāmed — the first alphabet ordered in the order we still use.</p>
+      <p><span>Substance</span>fired clay tablet</p>
+    </div>
+    <p class="stx-summary">Ugarit gave us the alphabet's ordering and the storm-god's biography in the same library. Baal's battle with Prince Sea is the Canaanite answer to the question every coast asks: who holds back the water?</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/baal/" title="Storm God, Lord of the Heavens">Baꜥal</a><a class="stx-chip" href="/sites/el/" title="Supreme God, Father of Gods">Ēl</a><a class="stx-chip" href="/sites/anat/" title="Goddess of War and the Hunt">ꜥAnat</a><a class="stx-chip" href="/sites/asherah/" title="Mother Goddess, Lady of the Sea">ꜥAsherah</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>El survives in the very names Israel, Ishmael, Samuel</li><li>Baal became the byword for false gods — fame by infamy</li><li>the divine council scene the Hebrew Bible shares with Ugarit</li></ul></div>
+    <a class="stx-pantheon-link" href="/canaanite/">Open the The Ugaritic Tablets pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>From Hatti's tablets to Ugarit's alphabet, the Levant compressed two thousand years of exchange into twenty-two letters.</p>
+</section>
+
+<section class="stx-stratum stx-tex-basalt" id="stratum-5" data-order="5">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−05</span>
+      <p class="stx-kicker">stratum 05 · c. 1650–1180 BCE</p>
+      <h2 class="stx-name">The Anatolian Synthesis</h2>
+      <p class="stx-attest">The Hittite archives of Ḫattuša — the largest cuneiform library of the Bronze Age — record a deliberately syncretic state pantheon: Hattic, Hurrian and Mesopotamian gods given ranks and dossiers.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Anatolia — Türkiye</p>
+      <p><span>Tongue</span>Hittite (Anatolian Indo-European)</p>
+      <p><span>Script</span>Cuneiform in Hittite hands; hieroglyphic Luwian on the monuments.</p>
+      <p><span>Substance</span>basalt relief</p>
+    </div>
+    <p class="stx-summary">The Hittites ran the Bronze Age's most deliberate theology: a pantheon as a civil service, with thousand-year-old Sumerian gods retained in the register alongside their own. When their empire fell, the archive baked hard in the fire that destroyed it — and waited three thousand years to be read.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/arinniti/" title="Sun Goddess, Supreme">Arinna</a><a class="stx-chip" href="/sites/telipinu/" title="Agriculture, Vanishing God">Telipinu</a><a class="stx-chip" href="/sites/inaras/" title="Wild Animals, Hunt">Inaras</a><a class="stx-chip" href="/sites/alalu/" title="Primordial King, Heaven">Alalu</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>the treaty formula — divine witnesses to international law — that echoes through the Hebrew Bible</li><li>Yazılıkaya's rock procession, still standing</li></ul></div>
+    <a class="stx-pantheon-link" href="/hittite/">Open the The Anatolian Synthesis pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>Anatolia was a crossroads before it was an empire: Hattic earth-gods, Hurrian storm-gods, Mesopotamian scribes — one register.</p>
+</section>
+
+<section class="stx-stratum stx-tex-mantra" id="stratum-4" data-order="4">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−04</span>
+      <p class="stx-kicker">stratum 04 · c. 1500 BCE — present</p>
+      <h2 class="stx-name">The Vedic Current</h2>
+      <p class="stx-attest">The Rigveda was composed c. 1500–1200 BCE and transmitted orally, syllable-perfect, for three millennia before fixation — the oldest religious text still in living use. The Indus inheritance beneath it is older still, and still unread.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Indian subcontinent</p>
+      <p><span>Tongue</span>Sanskrit (Indo-Aryan)</p>
+      <p><span>Script</span>Vedic oral transmission predates its scripts; later Devanagari: अग्नि Agni, ॐ Om.</p>
+      <p><span>Substance</span>mantra-etched stone</p>
+    </div>
+    <p class="stx-summary">No tradition has carried its oldest hymns across so much time with so little loss. The Vedic fire god Agni is still worshipped at the dawn of every Hindu wedding — four thousand years after his hymns were composed.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/indra/" title="Storms, War, Kingship">Indra</a><a class="stx-chip" href="/sites/agni/" title="Fire, Sacrifice, Messenger">Agni</a><a class="stx-chip" href="/sites/shiva/" title="Destruction, Transformation, Dance">Śiva</a><a class="stx-chip" href="/sites/vishnu/" title="Preservation, Protection, Universe">Viṣṇu</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>yoga and the word itself</li><li>a billion living practitioners</li><li>deva → 'divine'; the numerals the world counts with</li></ul></div>
+    <a class="stx-pantheon-link" href="/sanskrit/">Open the The Vedic Current pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The steppe carried a language family from the Pontic grasslands into the Indus world — and the hymns met gods already there.</p>
+</section>
+
+<section class="stx-stratum stx-tex-sandstone" id="stratum-3" data-order="3">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−03</span>
+      <p class="stx-kicker">stratum 03 · c. 3100 BCE – 4th century CE</p>
+      <h2 class="stx-name">The Everlasting</h2>
+      <p class="stx-attest">Three thousand years of continuous state cult — the Pyramid Texts (c. 2350 BCE) are the world's oldest large religious corpus, still legible to the last Egyptian temples.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>The Nile Valley</p>
+      <p><span>Tongue</span>Egyptian (Afro-Asiatic)</p>
+      <p><span>Script</span>Hieroglyphs — 𓇋𓏏𓆑 for Thoth, 𓂀 the Eye — a writing system that kept its sacred character for three millennia.</p>
+      <p><span>Substance</span>sandstone and gold leaf</p>
+    </div>
+    <p class="stx-summary">The Egyptian answer to death was the most confident ever built: not an end but a change of address. Osiris dies and rules the dead — the first god whose resurrection is the guarantee of every follower's own.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/ra/" title="Sun, Creation, Kingship">Rꜥ</a><a class="stx-chip" href="/sites/osiris/" title="Afterlife, Resurrection, Vegetation">Wsjr</a><a class="stx-chip" href="/sites/horus/" title="Sky, Kingship, Falcon">Ḥr</a><a class="stx-chip" href="/sites/isis/" title="Magic, Motherhood, Throne">Ꜣst</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>Isis worshipped across the entire Roman Empire</li><li>the obelisk on every piazza</li><li>the Book of the Dead as world literature</li></ul></div>
+    <a class="stx-pantheon-link" href="/egyptian/">Open the The Everlasting pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>Two rivers, two answers: where Mesopotamia heard the gods in storms, Egypt saw them in the sun's reliability.</p>
+</section>
+
+<section class="stx-stratum stx-tex-clay" id="stratum-2" data-order="2">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−02</span>
+      <p class="stx-kicker">stratum 02 · c. 3200–539 BCE</p>
+      <h2 class="stx-name">The First Writing</h2>
+      <p class="stx-attest">The first attested pantheon anywhere: Sumerian theonyms appear in cuneiform by the Early Dynastic period; Akkadian, Babylonian and Assyrian hands continue the same gods for two and a half millennia.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Sumer and Akkad — Iraq</p>
+      <p><span>Tongue</span>Sumerian (isolate) and Akkadian (Semitic)</p>
+      <p><span>Script</span>Cuneiform — the script that taught the world to write: 𒀭 dingir, the divine determinative, marks every name of a god.</p>
+      <p><span>Substance</span>fired river silt — the first tablets</p>
+    </div>
+    <p class="stx-summary">Here the gods first learned to be written down. Enki's me — the divine decrees of civilization — is humanity's first theory of what a god is for: the custody of the arts, one by one.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/ea/" title="Phonological Reconstruction, Water, Wisdom">Ēa</a><a class="stx-chip" href="/sites/ereshkigal/" title="Queen of the Underworld">Ereškigal</a><a class="stx-chip" href="/sites/gilgamesh/" title="Hero, King of Uruk">Gilgameš</a><a class="stx-chip" href="/sites/ishtar/" title="Love, War, Fertility, Venus">Ištar</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>the seven-day week</li><li>the 60-minute hour</li><li>the flood narrative the Hebrew Bible inherits</li><li>epic itself — Gilgameš is the first hero</li></ul></div>
+    <a class="stx-pantheon-link" href="/mesopotamian/">Open the The First Writing pantheon →</a>
+  </div>
+  <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>Below the oldest writing, older memory: the flood, the first temple, the first king-list — Sumer did not begin the story, only filed it.</p>
+</section>
+
+<section class="stx-stratum stx-tex-ochre" id="stratum-1" data-order="1">
+  <div class="stx-stratum-inner">
+    <header class="stx-stratum-head">
+      <span class="stx-depth-mark" aria-hidden="true">−01</span>
+      <p class="stx-kicker">bedrock · c. 65,000 years ago — present</p>
+      <h2 class="stx-name">The Dreamtime</h2>
+      <p class="stx-attest">The oldest continuous tradition on Earth: carried unbroken since the first settlement of Sahul, long before writing existed anywhere.</p>
+    </header>
+    <div class="stx-facts">
+      <p><span>Region</span>Australia</p>
+      <p><span>Tongue</span>Pama–Nyungan and non-Pama–Nyungan isolates</p>
+      <p><span>Script</span>No writing — the archive is the land itself: songlines, rock art, ceremony.</p>
+      <p><span>Substance</span>ochre bedrock — the deepest layer, the foundation stone</p>
+    </div>
+    <p class="stx-summary">Every other stratum in this excavation was buried and forgotten and dug up again. The Dreamtime was never buried. Its beings did not pass into myth — they remained in practice, the longest unbroken act of remembrance our species performs.</p>
+    <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/sites/baiame/" title="Sky Father, Creator">Baiame</a><a class="stx-chip" href="/sites/bunjil/" title="Creator Eaglehawk">Bunjil</a><a class="stx-chip" href="/sites/daramulum/" title="Sky Hero, Son of Baiame">Daramulum</a><a class="stx-chip" href="/sites/altjira/" title="The Dreaming, Eternal">Altjira</a></div></div>
+    <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>Songlines still walked today</li><li>the place-names of an entire continent</li><li>rock art tens of millennia deep</li></ul></div>
+    <a class="stx-pantheon-link" href="/aboriginal/">Open the The Dreamtime pantheon →</a>
+  </div>
+  
+</section>
+<section class="stx-core" id="core">
+  <p class="stx-surface-kicker reveal">The load-bearing truth</p>
+  <h2 class="reveal">Every layer is still holding.</h2>
+  <p class="reveal">Nothing in this excavation is dead weight. The days of the week are Norse. The alphabet is Phoenician. The flood is Sumerian. Yoga is Vedic, mindfulness is Buddhist, the obelisk is Egyptian, the map is Greek — and beneath them all, never once interrupted, the Dreamtime. The modern world is not built on the ruins of these strata. It is built of them. Chronology orders by continuity depth: unbroken oral traditions rank by the age of their continuity; literate traditions by earliest attestation, with oral layers noted. Dating follows mainstream scholarship; contested dates carry their uncertainty in the open.</p>
+  <div class="stx-core-sample reveal" aria-label="The core sample — jump to any stratum"><button class="stx-core-band stx-tex-seaworn" data-goto="stratum-25" title="When the Land Became Myth"><span>25 · When the Land Became Myth</span></button>
+<button class="stx-core-band stx-tex-volcanic" data-goto="stratum-24" title="The People of the Land"><span>24 · The People of the Land</span></button>
+<button class="stx-core-band stx-tex-laterite" data-goto="stratum-23" title="The Orisha Across the Water"><span>23 · The Orisha Across the Water</span></button>
+<button class="stx-core-band stx-tex-andesite" data-goto="stratum-22" title="Children of the Sun"><span>22 · Children of the Sun</span></button>
+<button class="stx-core-band stx-tex-obsidian" data-goto="stratum-21" title="The Fifth Sun"><span>21 · The Fifth Sun</span></button>
+<button class="stx-core-band stx-tex-bone" data-goto="stratum-20" title="The Triangle of the Sea"><span>20 · The Triangle of the Sea</span></button>
+<button class="stx-core-band stx-tex-bronze" data-goto="stratum-19" title="The Kami's Islands"><span>19 · The Kami's Islands</span></button>
+<button class="stx-core-band stx-tex-paper" data-goto="stratum-18" title="The Altar of the Three"><span>18 · The Altar of the Three</span></button>
+<button class="stx-core-band stx-tex-paper" data-goto="stratum-17" title="The Way and Its Power"><span>17 · The Way and Its Power</span></button>
+<button class="stx-core-band stx-tex-bone" data-goto="stratum-16" title="The Middle Kingdom's Register"><span>16 · The Middle Kingdom's Register</span></button>
+<button class="stx-core-band stx-tex-bronze" data-goto="stratum-15" title="The Turning of the Wheel"><span>15 · The Turning of the Wheel</span></button>
+<button class="stx-core-band stx-tex-wood" data-goto="stratum-14" title="The Dual Faith"><span>14 · The Dual Faith</span></button>
+<button class="stx-core-band stx-tex-amber" data-goto="stratum-13" title="The Last Pagans of Europe"><span>13 · The Last Pagans of Europe</span></button>
+<button class="stx-core-band stx-tex-bog" data-goto="stratum-12" title="The Eddic Record"><span>12 · The Eddic Record</span></button>
+<button class="stx-core-band stx-tex-bog" data-goto="stratum-11" title="The Island Memory"><span>11 · The Island Memory</span></button>
+<button class="stx-core-band stx-tex-travertine" data-goto="stratum-10" title="The Adoption"><span>10 · The Adoption</span></button>
+<button class="stx-core-band stx-tex-marble" data-goto="stratum-9" title="The Canon"><span>09 · The Canon</span></button>
+<button class="stx-core-band stx-tex-limestone" data-goto="stratum-8" title="The Choice"><span>08 · The Choice</span></button>
+<button class="stx-core-band stx-tex-cedar" data-goto="stratum-7" title="The Alphabet's Merchants"><span>07 · The Alphabet's Merchants</span></button>
+<button class="stx-core-band stx-tex-clay" data-goto="stratum-6" title="The Ugaritic Tablets"><span>06 · The Ugaritic Tablets</span></button>
+<button class="stx-core-band stx-tex-basalt" data-goto="stratum-5" title="The Anatolian Synthesis"><span>05 · The Anatolian Synthesis</span></button>
+<button class="stx-core-band stx-tex-mantra" data-goto="stratum-4" title="The Vedic Current"><span>04 · The Vedic Current</span></button>
+<button class="stx-core-band stx-tex-sandstone" data-goto="stratum-3" title="The Everlasting"><span>03 · The Everlasting</span></button>
+<button class="stx-core-band stx-tex-clay" data-goto="stratum-2" title="The First Writing"><span>02 · The First Writing</span></button>
+<button class="stx-core-band stx-tex-ochre" data-goto="stratum-1" title="The Dreamtime"><span>01 · The Dreamtime</span></button></div>
+  <div class="stx-core-cta reveal">
+    <a href="/pantheon/">Browse the full pantheon</a>
+    <a href="/atlas/sacred/">Visit the Sacred Atlas</a>
+  </div>
+</section>
+</main>
+<script src="/js/newsletter.js" defer></script>
+<script>
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // reveals
+  const io=new IntersectionObserver((es)=>{for(const e of es){if(e.isIntersecting){e.target.classList.add('stx-in');io.unobserve(e.target);}}},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('stx-reveal');io.observe(el);});
+  // rail + goto
+  const dots=[...document.querySelectorAll('.stx-rail-dot')];
+  function goto(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:reduce?'auto':'smooth'});}
+  dots.forEach(d=>d.addEventListener('click',()=>goto(d.dataset.goto)));
+  document.querySelectorAll('[data-goto]').forEach(el=>{if(el.classList.contains('stx-rail-dot'))return;el.addEventListener('click',()=>goto(el.dataset.goto));});
+  // active rail dot
+  const sections=[...document.querySelectorAll('[id^="stratum-"],#surface,#core')];
+  const rail=new IntersectionObserver((es)=>{for(const e of es){if(e.isIntersecting){const id=e.target.id;dots.forEach(d=>d.classList.toggle('active',d.dataset.goto===id));}}},{rootMargin:'-45% 0px -45% 0px'});
+  sections.forEach(s=>rail.observe(s));
+  // sediment canvas — drifting gold motes rising toward the surface
+  const cv=document.getElementById('stx-fx'),ctx=cv.getContext('2d');
+  let W,H,parts=[];
+  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+  resize();addEventListener('resize',resize);
+  const N=reduce?0:Math.min(90,Math.floor(innerWidth/14));
+  for(let i=0;i<N;i++)parts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.35+.08,a:Math.random()*.5+.15});
+  let depthGlow=0;
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    const max=document.documentElement.scrollHeight-innerHeight;
+    const p=max>0?scrollY/max:0;
+    depthGlow=p;
+    for(const m of parts){
+      m.y-=m.s;m.x+=Math.sin((m.y+m.r*100)*.008)*.18;
+      if(m.y<-4){m.y=H+4;m.x=Math.random()*W;}
+      const tw=m.a*(0.55+0.45*Math.sin(m.y*.02+m.r*40));
+      ctx.beginPath();ctx.arc(m.x,m.y,m.r,0,7);ctx.fillStyle='rgba(212,175,55,'+(tw*(0.5+depthGlow*.5)).toFixed(3)+')';ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  if(!reduce)requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
