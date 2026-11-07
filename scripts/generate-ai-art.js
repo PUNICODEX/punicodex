@@ -155,7 +155,13 @@ async function main() {
     for (let v = 1; v <= VARIANTS; v++) {
       const famTag = FAMILY === 'classic-gold' ? '' : `${FAMILY}-`;
       const out = path.join(OUT_DIR, `${name}-${famTag}v${spec.promptVersion}.${v}.jpg`);
-      if (fs.existsSync(out)) continue;
+      // A generation that exists ANYWHERE (inbox, keepers, review) is already
+      // produced — never regenerate it just because it left the inbox.
+      const alreadyProduced =
+        fs.existsSync(out) ||
+        fs.existsSync(path.join(OUT_DIR, 'keepers', path.basename(out))) ||
+        fs.existsSync(path.join(OUT_DIR, 'review', path.basename(out)));
+      if (alreadyProduced) continue;
       const t0 = Date.now();
       try {
         const res = falGenerate(`${prompt}, variation ${v}`);

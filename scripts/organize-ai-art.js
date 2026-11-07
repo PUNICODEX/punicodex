@@ -31,6 +31,9 @@ for (const line of fs.readFileSync(LOG, 'utf8').trim().split('\n')) {
 
 let moved = 0;
 for (const [base, e] of verdicts) {
+  // Only SORTED works move: keeps -> keepers, explicit rejects -> review.
+  // Pending (awaiting curation) and errors stay in the curation inbox.
+  if (e.verdict !== 'keep' && e.verdict !== 'reject') continue;
   const src = path.join(ART, base);
   if (!fs.existsSync(src)) continue;
   const destDir = e.verdict === 'keep' ? KEEPERS : REVIEW;
