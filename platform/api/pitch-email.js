@@ -165,7 +165,7 @@ function buildPitchEmail({
   // founder's custom note. Generic inventory copy is what this template
   // existed to abolish; without a bespoke reason there is no email.
   if (
-    !(chosen && chosen.chosenBecause) &&
+    !(chosen?.chosenBecause) &&
     !(brain && Array.isArray(brain.reasons) && brain.reasons.length) &&
     !customNote
   ) {
@@ -174,7 +174,7 @@ function buildPitchEmail({
     );
   }
   validateCodeRow(codeRow);
-  must(temple && temple.unicode, 'temple.unicode');
+  must(temple?.unicode, 'temple.unicode');
   must(businessName, 'businessName');
 
   const biz = escapeHtml(businessName);
@@ -211,7 +211,7 @@ function buildPitchEmail({
     .map((p) => ({ lead: p.lead, why: p.why }))
     .filter((b) => !(brainCoversSeats && /industry patterns? map/i.test(b.why || '')));
   const allBullets = [...brainBullets, ...genericBullets]
-    .filter((b) => b && b.lead && b.why)
+    .filter((b) => b?.lead && b.why)
     .slice(0, 5);
 
   const bullets = allBullets
@@ -300,7 +300,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.9; color:#d8cfb8;">
           <p style="margin:0 0 18px 0;">Dear ${biz} team,</p>
           ${
-            chosen && chosen.chosenBecause
+            chosen?.chosenBecause
               ? `<p style="margin:0 0 18px 0;"><strong style="color:#e8c860;">Why you were chosen.</strong> ${escapeHtml(chosen.chosenBecause)}${
                   chosen.evidenceLine
                     ? ` <em>Proof, not praise:</em> ${escapeHtml(chosen.evidenceLine)}.`
@@ -490,7 +490,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
   const text = [
     `Dear ${businessName} team,`,
     '',
-    chosen && chosen.chosenBecause
+    chosen?.chosenBecause
       ? `Why you were chosen: ${chosen.chosenBecause}${
           chosen.evidenceLine ? ` Proof, not praise: ${chosen.evidenceLine}.` : ''
         }`

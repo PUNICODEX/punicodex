@@ -45,7 +45,7 @@ let evidenceCache = null;
  * matches industry KEYWORDS; brand names like "Ubisoft" resolve through this
  * layer instead, so the audit never falls back to generic copy for a lead we
  * actually know something about. */
-function prospectEvidence(domain, businessName) {
+function prospectEvidence(domain, _businessName) {
   if (evidenceCache === null) {
     try {
       evidenceCache = require(
@@ -233,7 +233,7 @@ function loreText(entryId) {
 }
 
 /** First sentence-ish slice of raw lore, for composed copy. */
-function firstLoreSentence(entryId, maxLen = 220) {
+function _firstLoreSentence(entryId, maxLen = 220) {
   const lore = loreCatalog()[entryId] || {};
   const lead = lore.mythology?.lead || lore.culturalLegacy || '';
   const clean = String(lead)
@@ -277,7 +277,7 @@ function namesakeReason(entry, nameTokenMatch, sld) {
       };
 }
 
-function industryReason(entry, seatName, businessName) {
+function industryReason(_entry, seatName, businessName) {
   return {
     type: 'industry',
     lead: `Your industry holds a named seat here.`,
@@ -314,7 +314,7 @@ function valuesReason(entry, hitValues) {
  * domain. Honest — every claim is canonical data — and it reads bespoke
  * because it is built from the temple's own voice, not a generic template.
  */
-function archetypalReason(entry, businessName, industry) {
+function archetypalReason(entry, _businessName, industry) {
   const arch = archetypeById().get(entry.id);
   const tagline = arch?.tagline ? ` — ${arch.tagline}` : '';
   const meaning =
@@ -428,7 +428,7 @@ function matchTemplesForBusiness(business, limit = 5) {
 
     // 5 — KEYWORD × LORE (mythology text — the archetype-over-coincidence axis)
     const loreNorm = loreText(entry.id);
-    const loreHits = keywords.filter((kw) => loreNorm && loreNorm.includes(kw));
+    const loreHits = keywords.filter((kw) => loreNorm?.includes(kw));
     if (loreHits.length) score += Math.min(30, loreHits.length * 15);
     if (hitKeywords.length) {
       axes.keyword = true;
@@ -566,8 +566,8 @@ function explainChosen(business) {
     ? (group.members || group.entries || [])
         .filter((e) => e.weight === 2)
         .sort((x, y) => {
-          const dx = arch.get(x.id) && arch.get(x.id).domainUnicode ? 0 : 1;
-          const dy = arch.get(y.id) && arch.get(y.id).domainUnicode ? 0 : 1;
+          const dx = arch.get(x.id)?.domainUnicode ? 0 : 1;
+          const dy = arch.get(y.id)?.domainUnicode ? 0 : 1;
           return dx - dy;
         })
         .slice(0, 3)
@@ -576,7 +576,7 @@ function explainChosen(business) {
           return {
             slug: e.id,
             unicode: e.unicode || (byId.get(e.id) ? byId.get(e.id).unicode : e.id),
-            domain: a && a.domainUnicode ? a.domainUnicode : null,
+            domain: a?.domainUnicode ? a.domainUnicode : null,
             why: e.why,
           };
         })

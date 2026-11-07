@@ -73,7 +73,7 @@ async function sendEmail({ to, subject, html, text, fromName, headers, attachmen
         html,
         text: text || html.replace(/<[^>]*>/g, ''),
         ...(headers && typeof headers === 'object' ? { headers } : {}),
-        ...(safeAttachments && safeAttachments.length ? { attachments: safeAttachments } : {}),
+        ...(safeAttachments?.length ? { attachments: safeAttachments } : {}),
       }),
     });
 
@@ -900,7 +900,7 @@ function icsFold(line) {
   let rest = line;
   while (rest.length > 74) {
     parts.push(rest.slice(0, 74));
-    rest = ' ' + rest.slice(74);
+    rest = ` ${rest.slice(74)}`;
   }
   parts.push(rest);
   return parts.join('\r\n');

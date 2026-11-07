@@ -38,7 +38,7 @@ function parseDbTimestamp(value) {
   if (typeof value === 'number') return value;
   if (typeof value !== 'string') return NaN;
   const iso = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/.test(value)
-    ? value.replace(' ', 'T') + 'Z'
+    ? `${value.replace(' ', 'T')}Z`
     : value;
   return Date.parse(iso);
 }
