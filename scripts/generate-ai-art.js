@@ -31,7 +31,7 @@ if (!KEY) {
   console.error('FAL_KEY env required');
   process.exit(1);
 }
-const MODEL = process.env.FAL_MODEL || 'fal-ai/flux/v1.1-pro';
+const MODEL = process.env.FAL_MODEL || 'fal-ai/flux/schnell';
 const COST_PER_IMAGE = MODEL.includes('schnell') ? 0.003 : MODEL.includes('dev') ? 0.025 : 0.04;
 
 const lib = JSON.parse(fs.readFileSync(LIB_PATH, 'utf8'));
@@ -65,9 +65,24 @@ const demandSort = (a, b) => {
   const sb = (lib.deities[b]?.wins || 0) - (lib.deities[b]?.losses || 0);
   return sa - sb;
 };
+// A deity counts as produced when ANY of its generations exists in the
+// inbox, keepers, or review (across families) — the same doctrine the
+// per-file guard applies inside the loop.
+const produced = (name) => {
+  for (const d of [OUT_DIR, path.join(OUT_DIR, 'keepers'), path.join(OUT_DIR, 'review')]) {
+    try {
+      if (fs.readdirSync(d).some((f) => f.startsWith(name + '-') && f.endsWith('.jpg'))) return true;
+    } catch {
+      /* dir may not exist yet */
+    }
+  }
+  return false;
+};
 if (batchIdx !== -1) {
   const n = Number(args[batchIdx + 1]);
-  names = Object.keys(lib.deities).sort(demandSort).slice(0, n);
+  const unproduced = Object.keys(lib.deities).filter((x) => !produced(x));
+  console.log(`batch: ${unproduced.length} unproduced deities in library (${Object.keys(lib.deities).length - unproduced.length} already have art — skipped)`);
+  names = unproduced.sort(demandSort).slice(0, n);
 }
 if (!names.length) names = Object.keys(lib.deities).sort(demandSort);
 
