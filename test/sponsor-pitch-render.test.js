@@ -176,5 +176,60 @@ test('all evidence-covered leads resolve an industry and a chosenBecause', () =>
   }
 });
 
+test('ALL evidence-covered leads render bespoke, debris-free, and industry-correct', () => {
+  const scout = require(path.join(root, 'data', 'crawler', 'sponsors', 'scout-report.json'));
+  const patterns = require(path.join(root, 'platform', 'api', 'industry-patterns.json'));
+  const byDomain = {};
+  for (const [t, arr] of Object.entries(scout.temples || {}))
+    for (const l of arr || []) byDomain[l.domain] = t;
+
+  const CODE_ROW = { code: 'SCOUT-AUDIT-CODE', kind: 'free_months', free_months: 2 };
+  let audited = 0;
+  for (const [domain, e] of Object.entries(EVIDENCE)) {
+    const slug = byDomain[domain];
+    assert.ok(slug, `${domain}: no temple in the scout report`);
+    const temple = pe.loadTemple(slug);
+    assert.ok(temple, `${domain}: temple ${slug} unresolved`);
+    const name = e.chosen.split(' ')[0].replace(/[.,]/g, '');
+    const chosen = brain.explainChosen({ businessName: name, domain });
+    const out = pe.buildPitchEmail({
+      codeRow: CODE_ROW,
+      temple,
+      businessName: name,
+      recipientSite: domain,
+      customNote: '',
+      patterns: pe.buildResonanceBullets(slug, name, chosen.industry || undefined),
+      slots: [{ name: 'Feathered Box' }],
+      brain: brain.explainMatch(
+        { businessName: name, domain, industry: chosen.industry || undefined },
+        slug
+      ),
+      chosen,
+    });
+    assert.ok(
+      chosen.chosenBecause && out.text.includes('Why you were chosen'),
+      `${domain}: not bespoke`
+    );
+    assert.ok(out.text.includes('Proof, not praise'), `${domain}: evidence not cited`);
+    for (const bad of ['undefined', 'NaN', '[object Object]']) {
+      assert.ok(!out.text.includes(bad) && !out.html.includes(bad), `${domain}: debris "${bad}"`);
+    }
+    // When the "practises it" claim appears, it must attach to THEIR industry.
+    const claim = out.html.match(
+      /names ([^<]+?) among its aligned industries: [^<]*?[\w.'’ -]+? is not adjacent/
+    );
+    if (claim) {
+      const group = patterns.industries.find((g) => g.industry === e.industry);
+      const groupLead = group ? group.name.split(/[,&]/)[0].trim().split(' ')[0] : null;
+      assert.ok(
+        !groupLead || claim[1].includes(groupLead),
+        `${domain}: "practises it" attaches to "${claim[1]}" but ${name} is ${e.industry}`
+      );
+    }
+    audited++;
+  }
+  assert.ok(audited >= 55, `expected 55+ audited leads, got ${audited}`);
+});
+
 console.log(`\nSponsor Pitch Render: ${passed} passed, ${failed} failed`);
 if (failed > 0) process.exit(1);
