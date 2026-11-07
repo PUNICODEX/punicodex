@@ -1081,7 +1081,7 @@ function isGreekEntry(entry) {
   return entry.pantheon === 'greek' || entry.pantheon === 'greek-location';
 }
 
-function originalScript(entry) {
+function _originalScript(entry) {
   return getOriginalScript(entry) || entry.unicode;
 }
 
@@ -3613,7 +3613,7 @@ function commonsWorksFor(entry) {
       .filter((f) => f.endsWith('.jpg'))
       .filter(
         (f) =>
-          f.startsWith(entry.id + '-v') || (LEGACY_COMMONS.has(entry.id) && f === `${entry.id}.jpg`)
+          f.startsWith(`${entry.id}-v`) || (LEGACY_COMMONS.has(entry.id) && f === `${entry.id}.jpg`)
       )
       .sort();
   } catch {

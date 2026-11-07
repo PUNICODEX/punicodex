@@ -86,7 +86,7 @@ const _Sidebar = (function () {
       /* server silent — local data is enough */
     }
 
-    const tierClass =
+    const _tierClass =
       fullEntry.tier === 'dual' ? 'dual' : fullEntry.tier === '1' ? 'tier-1' : 'tier-2';
     const hasSite = !!fullEntry.site;
     const isAvailable = !hasSite && !!fullEntry.availability;

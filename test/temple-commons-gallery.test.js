@@ -42,7 +42,7 @@ function commonsWorksFor(id) {
   return fs
     .readdirSync(COMMONS_DIR)
     .filter((f) => f.endsWith('.jpg'))
-    .filter((f) => f.startsWith(id + '-v') || (LEGACY_COMMONS.has(id) && f === `${id}.jpg`))
+    .filter((f) => f.startsWith(`${id}-v`) || (LEGACY_COMMONS.has(id) && f === `${id}.jpg`))
     .sort();
 }
 

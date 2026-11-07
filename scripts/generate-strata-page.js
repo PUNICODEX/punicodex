@@ -319,7 +319,7 @@ ${scenes}
   <div class="stx-core-sample reveal" aria-label="The core sample — jump to any stratum">${coreBands}</div>
   <div class="stx-core-cta reveal">
     <a href="/pantheon/">Browse the full pantheon</a>
-    <a href="/atlas/sacred/">Visit the Sacred Atlas</a>
+    <a href="/world/sacred/">Visit the Sacred Atlas</a>
   </div>
 </section>
 </main>

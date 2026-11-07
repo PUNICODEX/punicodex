@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
       return;
     }
   } catch (err) {
-    console.error('admin-login rate limiter error (fail-open):', err && err.message);
+    console.error('admin-login rate limiter error (fail-open):', err?.message);
   }
 
   try {

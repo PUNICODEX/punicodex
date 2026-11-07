@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
 
     const prospect = await prospects.getProspectById(id);
     if (!prospect) return res.status(404).json({ error: 'University prospect not found' });
-    const wantsPreview = (req.body || {}).preview === true;
+    const wantsPreview = req.body?.preview === true;
     if (!wantsPreview && prospect.status === 'active') {
       return res
         .status(409)

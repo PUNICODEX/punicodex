@@ -110,7 +110,7 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is required');
 }
-const stripe = require('stripe')(stripeSecretKey);
+const _stripe = require('stripe')(stripeSecretKey);
 const {
   notifyAdminPending,
   notifyAdminApplication,

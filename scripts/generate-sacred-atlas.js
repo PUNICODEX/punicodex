@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * PuniCodex — Sacred Atlas page generator (/atlas/sacred/).
+ * PuniCodex — Sacred Atlas page generator (/world/sacred/).
  *
  * Reads the canonical data/sacred-sites.json + the lexicon and writes
- * atlas/sacred/index.html: a geometric gold-on-void world map with every
+ * world/sacred/index.html: a geometric gold-on-void world map with every
  * sacred site plotted, a dossier panel per site, and a server-rendered
  * register beneath (SEO + mobile-first fallback). Images land via the
  * gallery curator into each site's images array in the dataset.
@@ -18,7 +18,7 @@ const { LEXICON } = require('../type/js/lexicon.js');
 
 const ROOT = path.join(__dirname, '..');
 const DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'sacred-sites.json'), 'utf8'));
-const OUT_DIR = path.join(ROOT, 'atlas', 'sacred');
+const OUT_DIR = path.join(ROOT, 'world', 'sacred');
 const OUT = path.join(OUT_DIR, 'index.html');
 
 const entryById = new Map(LEXICON.map((e) => [e.id, e]));
@@ -108,7 +108,7 @@ const jsonld = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'The Sacred Atlas',
-  url: 'https://punicodex.com/atlas/sacred/',
+  url: 'https://punicodex.com/world/sacred/',
   description: DATA.subtitle,
   isPartOf: { '@type': 'WebSite', name: 'PuniCodex', url: 'https://punicodex.com/' },
 };
@@ -121,11 +121,11 @@ const html = `<!DOCTYPE html>
 <meta name="theme-color" content="#050505">
 <title>The Sacred Atlas — Where the Physical World Meets the Digital Temples | PuniCodex</title>
 <meta name="description" content="${esc(DATA.subtitle)}">
-<link rel="canonical" href="https://punicodex.com/atlas/sacred/">
+<link rel="canonical" href="https://punicodex.com/world/sacred/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Sacred Atlas">
 <meta property="og:description" content="${esc(DATA.subtitle)}">
-<meta property="og:url" content="https://punicodex.com/atlas/sacred/">
+<meta property="og:url" content="https://punicodex.com/world/sacred/">
 <meta property="og:image" content="https://punicodex.com/assets/images/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">

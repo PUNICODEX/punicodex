@@ -30,14 +30,14 @@ function sinceString(days) {
 }
 
 /** Portable JSON-string property extraction. */
-function jsonProp(column, key) {
+function jsonProp(_column, key) {
   return isPostgres()
     ? `(properties::jsonb ->> '${key}')::double precision`
     : `CAST(json_extract(properties, '$.${key}') AS REAL)`;
 }
 
 /** Portable ordered group-concat of paths. */
-function groupConcatPaths(subqueryAlias, orderCols) {
+function _groupConcatPaths(subqueryAlias, orderCols) {
   return isPostgres()
     ? `(SELECT STRING_AGG(e.path, ' → ' ORDER BY ${orderCols}) FROM ${subqueryAlias})`
     : `(SELECT GROUP_CONCAT(e.path, ' → ') FROM ${subqueryAlias})`;

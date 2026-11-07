@@ -66,7 +66,7 @@ test('surface, fault-lines, core sample, and finale are present', () => {
 
 test('station II pantheons rectangle enters the excavation', () => {
   const html = read('index.html');
-  const block = html.match(/href="\/pantheon\/origins\/"[^]*?Pantheons[^]*?<\/a>/);
+  const block = html.match(/href="\/pantheon\/origins\/"[\s\S]*?Pantheons[\s\S]*?<\/a>/);
   assert.ok(block, 'the 25-pantheons rectangle points at /pantheon/origins/');
 });
 

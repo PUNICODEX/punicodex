@@ -48,12 +48,12 @@ test('self-heal DDL covers every admin_users column the portal touches', () => {
   }
   for (const col of ['email', 'password_hash', 'role', 'status', 'temp_password']) touched.add(col);
 
-  const ddl = ADMIN_USERS_DDL + '\n' + COLUMN_DRIFT.map((d) => d.column).join(' ');
+  const ddl = `${ADMIN_USERS_DDL}\n${COLUMN_DRIFT.map((d) => d.column).join(' ')}`;
   const uncovered = [...touched].filter(
     (c) =>
-      !ddl.includes(c + ' ') &&
-      !ddl.includes(c + '\n') &&
-      !ddl.includes('(' + c) &&
+      !ddl.includes(`${c} `) &&
+      !ddl.includes(`${c}\n`) &&
+      !ddl.includes(`(${c}`) &&
       !ddl.endsWith(c)
   );
   assert.deepStrictEqual(

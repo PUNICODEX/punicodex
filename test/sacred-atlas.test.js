@@ -1,5 +1,5 @@
 /**
- * Sacred Atlas contract (/atlas/sacred/).
+ * Sacred Atlas contract (/world/sacred/).
  *
  * The dataset is the canonical spine: unique site ids, sane coordinates,
  * real lexicon deity links only, and sources on every site. The generated
@@ -46,7 +46,7 @@ test('dataset: unique ids, sane coordinates, real deity links, sources', () => {
 });
 
 test('page: every site is plotted and dossiered', () => {
-  const html = read('atlas/sacred/index.html');
+  const html = read('world/sacred/index.html');
   for (const s of DATA.sites) {
     assert.ok(html.includes(`data-site="${s.id}"`), `${s.id}: map marker`);
     assert.ok(html.includes(`id="site-${s.id}"`), `${s.id}: dossier`);
@@ -57,9 +57,9 @@ test('page: every site is plotted and dossiered', () => {
 });
 
 test('page: chrome, canonical, JSON-LD, and the geometric world', () => {
-  const html = read('atlas/sacred/index.html');
+  const html = read('world/sacred/index.html');
   assert.ok(
-    html.includes('rel="canonical" href="https://punicodex.com/atlas/sacred/"'),
+    html.includes('rel="canonical" href="https://punicodex.com/world/sacred/"'),
     'canonical'
   );
   assert.ok(html.includes('application/ld+json'), 'JSON-LD');
@@ -70,7 +70,7 @@ test('page: chrome, canonical, JSON-LD, and the geometric world', () => {
 
 test('the Atlas is reachable from STRATA and the ATLAS namespace', () => {
   const strata = read('pantheon/origins/index.html');
-  assert.ok(strata.includes('/atlas/sacred/'), 'STRATA finale links the Sacred Atlas');
+  assert.ok(strata.includes('/world/sacred/'), 'STRATA finale links the Sacred Atlas');
 });
 
 let failures = 0;

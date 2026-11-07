@@ -34,7 +34,7 @@ const MAX_PITCHES_PER_PROSPECT = 3;
 /** Same liveness rules as discount-service.validateCode — a pitch must never
  *  quote a code that would fail at the temple checkout. */
 function codeIsLive(row) {
-  if (!row || !row.active) return false;
+  if (!row?.active) return false;
   if (row.expires_at && new Date(row.expires_at).getTime() < Date.now()) return false;
   if (row.max_uses != null && row.used_count >= row.max_uses) return false;
   return true;
@@ -91,7 +91,7 @@ module.exports = async (req, res) => {
     const prospect = await prospects.getProspectById(id);
     if (!prospect) return res.status(404).json({ error: 'Sponsor prospect not found' });
 
-    const wantsPreview = (req.body || {}).preview === true;
+    const wantsPreview = req.body?.preview === true;
     if (!wantsPreview && prospect.status === 'active') {
       return res
         .status(409)
@@ -148,7 +148,7 @@ module.exports = async (req, res) => {
     const patterns = buildResonanceBullets(
       temple.slug,
       businessName,
-      (chosen && chosen.industry) || prospect.industry_name || undefined
+      (chosen?.industry) || prospect.industry_name || undefined
     );
     // The sponsor brain: bespoke, explained resonance for THIS business on
     // THIS temple (namesake / industry seat / keyword+lore axes). The
@@ -158,7 +158,7 @@ module.exports = async (req, res) => {
       {
         businessName,
         domain: recipientSite,
-        industry: prospect.industry_name || (chosen && chosen.industry) || undefined,
+        industry: prospect.industry_name || (chosen?.industry) || undefined,
         industrySeat: prospect.industry_seat,
       },
       temple.slug
