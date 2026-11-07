@@ -58,7 +58,7 @@
     <!-- Preconnect & DNS -->
 
     <!-- Preload critical CSS -->
-    <link rel="preload" href="/css/home-critical.css?v=5" as="style">
+    <link rel="preload" href="/css/home-critical.css?v=6" as="style">
     <link rel="preload" href="/css/main.css?v=perf39" as="style">
     <link rel="preload" href="/css/home-v2.css?v=perf25" as="style">
 
@@ -70,7 +70,7 @@
     <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Critical above-the-fold styles: boot veil + nav + hero (blocking) -->
-    <link rel="stylesheet" href="/css/home-critical.css?v=5">
+    <link rel="stylesheet" href="/css/home-critical.css?v=6">
 
     <!-- Full stylesheets, deferred — original cascade order preserved -->
     <link rel="stylesheet" href="/css/main.css?v=perf39" media="print" onload="this.media='all'">
@@ -490,7 +490,7 @@
                     <figcaption><span class="fc-art-title">Zeus of Otricoli</span><span class="fc-art-credit">Vatican Museums · Public domain</span></figcaption>
                 </figure>
                 <figure class="fc-art fc-art--wide reveal-up">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Floor_mosaic_with_Anubis%2C_from_a_domus_in_Arminum_%28Rimini%29%2C_end_2nd_-_early_3rd_century%2C_Museo_della_Citt%C3%A0_di_Rimini_-_Italy%2C_14542077645.jpg/960px-Floor_mosaic_with_Anubis%2C_from_a_domus_in_Arminum_%28Rimini%29%2C_end_2nd_-_early_3rd_century%2C_Museo_della_Citt%C3%A0_di_Rimini_-_Italy%2C_14542077645.jpg" alt="Floor mosaic with Anubis, from a domus in Ariminum (Rimini), 2nd–3rd century." loading="lazy" decoding="async">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Floor_mosaic_with_Anubis%2C_from_a_domus_in_Ariminum_%28Rimini%29%2C_end_2nd_-_early_3rd_century%2C_Museo_della_Citt%C3%A0%2C_Rimini%2C_Italy_%2819103073363%29.jpg/960px-Floor_mosaic_with_Anubis%2C_from_a_domus_in_Ariminum_%28Rimini%29%2C_end_2nd_-_early_3rd_century%2C_Museo_della_Citt%C3%A0%2C_Rimini%2C_Italy_%2819103073363%29.jpg" alt="Floor mosaic with Anubis, from a domus in Ariminum (Rimini), 2nd–3rd century." loading="lazy" decoding="async">
                     <figcaption><span class="fc-art-title">Anubis, floor mosaic</span><span class="fc-art-credit">Rimini · CC BY-SA 2.0</span></figcaption>
                 </figure>
                 <figure class="fc-art reveal-up">
@@ -502,6 +502,13 @@
                 <a href="/store/art/galleries/" class="fc-link">Walk the temple galleries →</a>
                 <a href="/store/art/" class="fc-link">Browse the art directory →</a>
             </div>
+        </div>
+        <div class="fc-lightbox" id="fc-lightbox" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>
+            <button class="fc-lightbox-close" type="button" aria-label="Close">×</button>
+            <figure>
+                <img src="" alt="">
+                <figcaption><span class="fc-lightbox-title"></span><span class="fc-lightbox-credit"></span></figcaption>
+            </figure>
         </div>
     </section>
 
@@ -566,33 +573,42 @@
             <h2 class="fc-display reveal-up">NO ADS. EVER.</h2>
             <p class="fc-lede reveal-up">No banners, no ad networks, no attention sold. The temples stay consecrated. The commerce lives in <strong>thirteen frames</strong> within each temple — reserved not for the highest bidder, but for the businesses that genuinely stand beside their myth. A sportswear house beside Níkē. A messenger's maison beside Hermēs. Keepers of the sun beside Dažbog. The modern world, meeting its older self — and the temple keeps the lights on.</p>
             <div class="fc-covenant-grid">
-                <svg class="fc-plan reveal-up" viewBox="0 0 520 320" role="img" aria-label="A temple floor plan: thirteen sponsorship frames, a full-temple takeover halo, and patron niches">
-                    <rect x="10" y="10" width="500" height="300" fill="none" stroke="rgba(212,175,55,0.10)" stroke-width="1" stroke-dasharray="3 6"/>
-                    <text x="260" y="34" text-anchor="middle" class="fc-plan-note">THE FULL-TEMPLE TAKEOVER — BY APPOINTMENT</text>
-                    <rect x="40" y="52" width="440" height="226" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1"/>
-                    <text x="260" y="262" text-anchor="middle" class="fc-plan-note">ONE TEMPLE · ONE NAME · THE WHOLE SANCTUM</text>
-                    <g class="fc-frames" fill="none" stroke="rgba(212,175,55,0.5)" stroke-width="1">
-                        <rect x="56"  y="66" width="40" height="28"/><rect x="104" y="66" width="40" height="28"/>
-                        <rect x="152" y="66" width="40" height="28"/><rect x="200" y="66" width="40" height="28"/>
-                        <rect x="248" y="66" width="40" height="28"/><rect x="296" y="66" width="40" height="28"/>
-                        <rect x="344" y="66" width="40" height="28"/><rect x="392" y="66" width="40" height="28"/>
-                        <rect x="56"  y="196" width="40" height="28"/><rect x="104" y="196" width="40" height="28"/>
-                        <rect x="392" y="196" width="40" height="28"/>
-                        <rect x="56"  y="120" width="28" height="50"/><rect x="436" y="120" width="28" height="50"/>
-                    </g>
-                    <g class="fc-frame-live">
-                        <rect x="152" y="196" width="216" height="28" fill="rgba(212,175,55,0.07)" stroke="#d4af37" stroke-width="1"/>
-                        <text x="260" y="214" text-anchor="middle" class="fc-plan-live">FRAME IV · RESERVED FOR THE HOUSE OF SPEED</text>
-                    </g>
-                    <g class="fc-patrons">
-                        <rect x="212" y="110" width="96" height="34" fill="none" stroke="rgba(212,175,55,0.25)" stroke-width="1" stroke-dasharray="2 4"/>
-                        <text x="260" y="124" text-anchor="middle" class="fc-plan-note">PATRONS'</text>
-                        <text x="260" y="136" text-anchor="middle" class="fc-plan-note">NICHE</text>
-                    </g>
-                </svg>
+                <div class="fc-temple-preview reveal-up" aria-label="A miniature of a live temple's sponsorship spaces, exactly as they appear on the temple page">
+                    <div class="fc-tp-chrome">
+                        <span class="fc-tp-chrome-name">THE TEMPLE OF HERMĒS</span>
+                        <span class="fc-tp-chrome-domain">hermēs.com — the temple's own domain</span>
+                    </div>
+                    <div class="fc-tp-body">
+                        <div class="fc-tp-space fc-tp-space--throne" tabindex="0">
+                            <span class="fc-tp-space-label">THE THRONE · FULL-TEMPLE TAKEOVER</span>
+                            <span class="fc-tp-space-sub">every frame, the header, the hall — one name · by appointment</span>
+                        </div>
+                        <div class="fc-tp-row">
+                            <div class="fc-tp-space fc-tp-space--banner" tabindex="0">
+                                <span class="fc-tp-space-num">01</span>
+                                <span class="fc-tp-space-kind">BANNER</span>
+                                <span class="fc-tp-space-dims">1200 × 400</span>
+                                <span class="fc-tp-space-state">Available</span>
+                            </div>
+                            <div class="fc-tp-space fc-tp-space--box is-reserved" tabindex="0">
+                                <span class="fc-tp-space-num">04</span>
+                                <span class="fc-tp-space-kind">BOX</span>
+                                <span class="fc-tp-space-dims">600 × 600</span>
+                                <span class="fc-tp-space-state">Reserved</span>
+                            </div>
+                            <div class="fc-tp-space fc-tp-space--box" tabindex="0">
+                                <span class="fc-tp-space-num">07</span>
+                                <span class="fc-tp-space-kind">BOX</span>
+                                <span class="fc-tp-space-dims">600 × 600</span>
+                                <span class="fc-tp-space-state">Available</span>
+                            </div>
+                        </div>
+                        <p class="fc-tp-note">Five banners and eight boxes per temple — thirteen spaces, exactly as they render on the temple's own page. And for those who simply love a god, the <a href="/hermes/patron/">patrons' niche</a> keeps a candle at a humbler price.</p>
+                    </div>
+                </div>
                 <div class="fc-covenant-copy reveal-up">
-                    <p class="fc-doctrine"><span class="fc-doctrine-num">XIII</span> frames in every temple — no more, no less. Each is curated against the temple's industry patterns, so the placement argues itself.</p>
-                    <p class="fc-doctrine"><span class="fc-doctrine-num">I</span> temple may be wholly claimed — the takeover: every frame, the header, the hall. Granted rarely, by appointment, only when the fit is undeniable.</p>
+                    <p class="fc-doctrine"><span class="fc-doctrine-num">XIII</span> spaces in every temple — no more, no less. Each is curated against the temple's industry patterns, so the placement argues itself.</p>
+                    <p class="fc-doctrine"><span class="fc-doctrine-num">I</span> temple may be wholly claimed — the throne: every frame, the header, the hall. Granted rarely, by appointment, only when the fit is undeniable.</p>
                     <p class="fc-doctrine"><span class="fc-doctrine-num">∞</span> patrons keep a candle for a single god — the niche, for those who simply love the myth and want their name in its keeping.</p>
                     <div class="fc-row-cta">
                         <a href="/hermes/" class="fc-link">Behold a live temple →</a>
@@ -670,22 +686,22 @@
             <p class="fc-lede reveal-up">Thirteen product types per temple, printed on demand — heavy cotton, museum-grade paper, nothing wasted. A few pieces from the vault:</p>
             <div class="fc-plinths" data-stagger>
                 <a href="/store/" class="fc-plinth reveal-up">
-                    <span class="fc-plinth-img"><img src="/sites/aigyptos/assets/aigyptos_mascot.webp" alt="Aígyptos Temple Tee" loading="lazy" decoding="async" width="1024" height="1536"></span>
+                    <span class="fc-plinth-img"><picture><source srcset="https://punycodex-masters.vercel.app/mockups/aigyptos-tee.webp" type="image/webp"><img src="https://punycodex-masters.vercel.app/mockups/aigyptos-tee.jpg" alt="Aígyptos Temple Tee" loading="lazy" decoding="async" width="1024" height="1536"></picture></span>
                     <span class="fc-plinth-name">Aígyptos Temple Tee</span>
                     <span class="fc-plinth-price">$38</span>
                 </a>
                 <a href="/store/" class="fc-plinth reveal-up">
-                    <span class="fc-plinth-img"><img src="/sites/aphrodite/assets/aphrodite_mascot.webp" alt="Aphrodítē Temple Tee" loading="lazy" decoding="async" width="1024" height="1536"></span>
+                    <span class="fc-plinth-img"><picture><source srcset="https://punycodex-masters.vercel.app/mockups/aphrodite-tee.webp" type="image/webp"><img src="https://punycodex-masters.vercel.app/mockups/aphrodite-tee.jpg" alt="Aphrodítē Temple Tee" loading="lazy" decoding="async" width="1024" height="1536"></picture></span>
                     <span class="fc-plinth-name">Aphrodítē Temple Tee</span>
                     <span class="fc-plinth-price">$38</span>
                 </a>
                 <a href="/store/" class="fc-plinth reveal-up">
-                    <span class="fc-plinth-img"><img src="/sites/ares/assets/ares_mascot.webp" alt="Árēs Temple Tee" loading="lazy" decoding="async" width="1024" height="1536"></span>
+                    <span class="fc-plinth-img"><picture><source srcset="https://punycodex-masters.vercel.app/mockups/ares-tee.webp" type="image/webp"><img src="https://punycodex-masters.vercel.app/mockups/ares-tee.jpg" alt="Árēs Temple Tee" loading="lazy" decoding="async" width="1024" height="1536"></picture></span>
                     <span class="fc-plinth-name">Árēs Temple Tee</span>
                     <span class="fc-plinth-price">$38</span>
                 </a>
                 <a href="/store/" class="fc-plinth reveal-up">
-                    <span class="fc-plinth-img"><img src="/sites/athena/assets/athena_mascot.webp" alt="Athēnâ Temple Tee" loading="lazy" decoding="async" width="1024" height="1536"></span>
+                    <span class="fc-plinth-img"><picture><source srcset="https://punycodex-masters.vercel.app/mockups/athena-tee.webp" type="image/webp"><img src="https://punycodex-masters.vercel.app/mockups/athena-tee.jpg" alt="Athēnâ Temple Tee" loading="lazy" decoding="async" width="1024" height="1536"></picture></span>
                     <span class="fc-plinth-name">Athēnâ Temple Tee</span>
                     <span class="fc-plinth-price">$38</span>
                 </a>
@@ -861,7 +877,7 @@
     <script src="/js/original-script-lookup.js?v=21427a9f33" defer></script>
     <script src="/js/px-core.js?v=perf23" defer></script>
     <script src="/js/main.js?v=bb046cae59" defer></script>
-    <script src="/js/front-court.js?v=1" defer></script>
+    <script src="/js/front-court.js?v=2" defer></script>
     <script src="/js/home.js?v=9c79af2705" defer></script>
     <script src="/js/pc-fx-core.js?v=3" defer></script>
     <script src="/js/home-boot.js?v=3" defer></script>

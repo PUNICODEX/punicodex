@@ -112,10 +112,17 @@ async function run() {
   });
 
   await test('loadPatternBullets produces resonance bullets from the pattern map', () => {
-    const bullets = loadPatternBullets('quetzalcoatl', 'Feather Exchange');
-    assert.ok(bullets.length >= 1, 'expected at least one bullet');
-    assert.match(bullets[0].why, /Feather Exchange/);
-    assert.match(bullets[0].why, /Industry Patterns/);
+    const matched = loadPatternBullets('quetzalcoatl', 'Feather Exchange', 'education');
+    assert.ok(matched.length >= 1, 'expected at least one bullet');
+    assert.match(matched[0].why, /Feather Exchange/);
+    assert.match(matched[0].why, /Industry Patterns/);
+    // Without an industry, the lead bullet must NOT claim the top seat is
+    // the prospect's industry (the 2026-11 Ubisoft/Défense corruption).
+    const generic = loadPatternBullets('quetzalcoatl', 'Feather Exchange');
+    assert.ok(
+      !/Feather Exchange is not adjacent/.test(generic[0].why),
+      'generic bullet must not claim the wrong industry'
+    );
   });
 
   await test('buildResonanceBullets: a lore-backed temple returns 3-5 clean bullets', () => {

@@ -63,6 +63,68 @@
     }
   }
 
+  /* ── The Gallery: lightbox (full view — the masonry crops) ── */
+  var lightbox = document.getElementById('fc-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('img');
+    var lbTitle = lightbox.querySelector('.fc-lightbox-title');
+    var lbCredit = lightbox.querySelector('.fc-lightbox-credit');
+    var lbClose = lightbox.querySelector('.fc-lightbox-close');
+    var lastFocus = null;
+
+    function openLightbox(fig) {
+      var img = fig.querySelector('img');
+      var title = fig.querySelector('.fc-art-title');
+      var credit = fig.querySelector('.fc-art-credit');
+      if (!img) return;
+      lastFocus = document.activeElement;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lbTitle.textContent = title ? title.textContent : '';
+      lbCredit.textContent = credit ? credit.textContent : '';
+      lightbox.hidden = false;
+      requestAnimationFrame(function () {
+        lightbox.classList.add('is-open');
+      });
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(function () {
+        lightbox.hidden = true;
+        lbImg.src = '';
+      }, 280);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    var arts = document.querySelectorAll('.fc-art');
+    for (var ai = 0; ai < arts.length; ai++) {
+      arts[ai].setAttribute('tabindex', '0');
+      arts[ai].setAttribute('role', 'button');
+      arts[ai].setAttribute('aria-label', 'View artwork full size');
+      arts[ai].addEventListener('click', function () {
+        openLightbox(this);
+      });
+      arts[ai].addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(this);
+        }
+      });
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+    });
+  }
+
   /* ── The Covenant: forge embers ── */
   var canvas = document.querySelector('.fc-embers');
   if (!canvas || reduceMotion || !canvas.getContext) return;

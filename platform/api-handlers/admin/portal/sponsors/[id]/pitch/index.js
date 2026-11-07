@@ -136,7 +136,6 @@ module.exports = async (req, res) => {
     // rendered email quotes the real code — reading a draft must show truth.
     const codeRow = await ensureFoundingCode(prospect, body.offer || {}, auth);
     const slots = await discountService.slotsForCode(codeRow);
-    const patterns = buildResonanceBullets(temple.slug, businessName);
     // The business-centric audit: industry → primary temples → live domains.
     // Evidence (data/crawler/sponsors/prospect-evidence.json) resolves by
     // domain first, so named brands classify on facts, not keyword guesses.
@@ -146,6 +145,11 @@ module.exports = async (req, res) => {
       industry: prospect.industry_name,
       industrySeat: prospect.industry_seat,
     });
+    const patterns = buildResonanceBullets(
+      temple.slug,
+      businessName,
+      (chosen && chosen.industry) || prospect.industry_name || undefined
+    );
     // The sponsor brain: bespoke, explained resonance for THIS business on
     // THIS temple (namesake / industry seat / keyword+lore axes). The
     // evidence-resolved industry feeds the match when the prospect row's

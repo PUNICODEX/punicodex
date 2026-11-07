@@ -78,13 +78,15 @@ test('the kept tail survives: keyband, newsletter, collaborators, footer', () =>
   assert.ok(tail.includes('class="site-footer"'), 'footer missing');
 });
 
-test('the Reliquary shows real products with real prices', () => {
+test('the Reliquary shows real product mockups, not bare mascots', () => {
   const section = html.slice(html.indexOf('id="reliquary"'), html.indexOf('id="instruments"'));
   const prices = section.match(/\$\d+/g) || [];
   assert.ok(prices.length >= 4, `expected 4 priced plinths, found ${prices.length}`);
+  const mockups = section.match(/punycodex-masters\.vercel\.app\/mockups\/[a-z-]+\.jpg/g) || [];
+  assert.ok(mockups.length >= 4, `expected 4 fleet mockups, found ${mockups.length}`);
   assert.ok(
-    (section.match(/\/sites\/[a-z-]+\/assets\/[a-z-]+_mascot\.webp/g) || []).length >= 4,
-    'plinth images missing'
+    !/\/sites\/[a-z-]+\/assets\/[a-z-]+_mascot\.webp/.test(section),
+    'bare mascot still shown where a product mockup exists'
   );
   assert.ok(section.includes('Enter the Reliquary'), 'reliquary CTA missing');
 });
@@ -102,14 +104,31 @@ test('the Gallery carries credited, licensed art', () => {
   }
 });
 
-test('the Covenant draws exactly thirteen frames', () => {
+test('the Covenant shows real temple spaces, not an invented diagram', () => {
   const section = html.slice(html.indexOf('id="covenant"'), html.indexOf('id="pattern"'));
-  const frames = section.slice(section.indexOf('fc-frames'), section.indexOf('</g>'));
-  const rects = frames.match(/<rect/g) || [];
-  assert.strictEqual(rects.length, 13, `expected 13 covenant frames, drew ${rects.length}`);
   assert.ok(/NO ADS\. EVER\./.test(section), 'the doctrine headline missing');
-  assert.ok(/TAKEOVER/.test(section), 'the takeover note missing');
-  assert.ok(/PATRONS/.test(section), 'the patrons niche missing');
+  assert.ok(section.includes('fc-temple-preview'), 'temple preview missing');
+  assert.ok(section.includes('fc-tp-space--throne'), 'the throne (takeover) space missing');
+  assert.ok(section.includes('fc-tp-space--banner'), 'the banner space missing');
+  assert.ok(section.includes('fc-tp-space--box'), 'the box space missing');
+  assert.ok(section.includes('is-reserved'), 'the reserved state missing');
+  assert.ok(section.includes('hermēs.com'), 'a real temple domain missing');
+  assert.ok(/patrons/i.test(section), 'the patrons niche missing');
+  assert.ok(!section.includes('<svg'), 'invented SVG diagram still present');
+});
+
+test('the Gallery lightbox is wired and every work is viewable full-size', () => {
+  const section = html.slice(html.indexOf('id="gallery"'), html.indexOf('id="breath"'));
+  assert.ok(html.includes('id="fc-lightbox"'), 'lightbox container missing');
+  assert.ok((section.match(/class="fc-art/g) || []).length >= 6, 'gallery works missing');
+  assert.ok(section.includes('cursor: zoom-in') === false, 'zoom affordance belongs in CSS');
+  const css = fs.readFileSync(path.join(root, 'css', 'home-critical.css'), 'utf8');
+  assert.ok(
+    css.includes('.fc-lightbox') && css.includes('cursor: zoom-in'),
+    'lightbox CSS missing'
+  );
+  const js = fs.readFileSync(path.join(root, 'js', 'front-court.js'), 'utf8');
+  assert.ok(js.includes('fc-lightbox') && js.includes('Escape'), 'lightbox JS missing');
 });
 
 test('every station CTA routes somewhere real', () => {
@@ -127,7 +146,7 @@ test('every station CTA routes somewhere real', () => {
 });
 
 test('the interaction layer is wired', () => {
-  assert.ok(html.includes('/js/front-court.js?v=1'), 'front-court.js not linked');
+  assert.ok(/\/js\/front-court\.js\?v=\d+/.test(html), 'front-court.js not linked');
   const js = fs.readFileSync(path.join(root, 'js', 'front-court.js'), 'utf8');
   for (const marker of ['is-lit', 'fc-wall-grid', 'IntersectionObserver', "getContext('2d')"]) {
     assert.ok(js.includes(marker), `front-court.js missing ${marker}`);

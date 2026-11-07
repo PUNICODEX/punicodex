@@ -58,7 +58,7 @@ function buildFor(businessName, domain, codeRow, slots) {
     businessName,
     recipientSite: domain,
     customNote: '',
-    patterns: pe.buildResonanceBullets('achilleus', businessName),
+    patterns: pe.buildResonanceBullets('achilleus', businessName, chosen.industry || undefined),
     slots,
     brain: matchBrain,
     chosen,
@@ -151,6 +151,17 @@ test('structure: the foundation argument appears exactly once per surface', () =
     'duplicated foundation bullet resurrected'
   );
   assert.ok(/the Feathered Box frame/.test(out.text), 'single-frame copy broken');
+});
+
+test('the resonance bullet names the PROSPECT industry, never the temple top seat', () => {
+  const out = buildFor('Ubisoft', 'ubisoft.com', CODE, [{ name: 'Feathered Box' }]);
+  assert.ok(/Gaming, Fantasy/.test(out.html), 'Ubisoft (gaming) must see the gaming seat lead');
+  assert.ok(
+    !/names Defense, Military & Security among its aligned industries: [^<]*Ubisoft is not adjacent/.test(
+      out.html
+    ),
+    'the "practises it" claim must never attach to the wrong industry'
+  );
 });
 
 test('all evidence-covered leads resolve an industry and a chosenBecause', () => {

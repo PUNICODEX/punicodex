@@ -1564,3 +1564,263 @@ body.menu-open {
         font-size: clamp(2rem, 11vw, 3.2rem);
     }
 }
+
+/* ─── Covenant: faithful temple-spaces preview (matches the real temple
+    space-frame design language — gold hairline, dashed inset, blue-black
+    gradient, hover glow) ─── */
+
+.fc-temple-preview {
+    background: #0d0c0a;
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.fc-tp-chrome {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 0.9rem 1.2rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.16);
+    background: linear-gradient(180deg, #14110c, #0d0c0a);
+}
+
+.fc-tp-chrome-name {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+}
+
+.fc-tp-chrome-domain {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+}
+
+.fc-tp-body {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.fc-tp-space {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    background: linear-gradient(145deg, rgba(30, 58, 95, 0.82), rgba(18, 18, 18, 0.96));
+    border: 1px solid rgba(212, 175, 55, 0.38);
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.08), 0 12px 40px rgba(0, 0, 0, 0.35);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    cursor: default;
+}
+
+.fc-tp-space::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed rgba(212, 175, 55, 0.22);
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+.fc-tp-space:hover {
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 24px rgba(212, 175, 55, 0.08), inset 0 0 30px rgba(212, 175, 55, 0.04);
+}
+
+.fc-tp-space--throne {
+    padding: 1.4rem 1rem;
+    background: linear-gradient(145deg, rgba(212, 175, 55, 0.07), rgba(30, 58, 95, 0.92));
+}
+
+.fc-tp-space--banner {
+    aspect-ratio: 3 / 1;
+    min-height: 96px;
+}
+
+.fc-tp-space--box {
+    aspect-ratio: 1 / 1;
+}
+
+.fc-tp-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 0.9rem;
+}
+
+.fc-tp-space-num {
+    position: absolute;
+    top: 0.55rem;
+    left: 0.7rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.45;
+}
+
+.fc-tp-space-label {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: #e8c860;
+    text-align: center;
+}
+
+.fc-tp-space-sub {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.fc-tp-space-kind {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.26em;
+    color: #e8c860;
+}
+
+.fc-tp-space-dims {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+}
+
+.fc-tp-space-state {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-display);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(212, 175, 55, 0.6);
+}
+
+.fc-tp-space.is-reserved {
+    background: linear-gradient(145deg, rgba(212, 175, 55, 0.14), rgba(30, 58, 95, 0.9));
+    border-color: rgba(212, 175, 55, 0.65);
+}
+
+.fc-tp-space.is-reserved .fc-tp-space-state {
+    color: var(--gold-bright, #e8c860);
+}
+
+.fc-tp-note {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+    margin: 0.2rem 0 0;
+}
+
+.fc-tp-note a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+/* ─── Gallery lightbox ─── */
+
+.fc-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(5, 5, 5, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vh 4vw;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fc-lightbox.is-open {
+    opacity: 1;
+}
+
+.fc-lightbox[hidden] {
+    display: none;
+}
+
+.fc-lightbox figure {
+    margin: 0;
+    max-width: min(1100px, 92vw);
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.fc-lightbox img {
+    max-width: 100%;
+    max-height: 76vh;
+    object-fit: contain;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+}
+
+.fc-lightbox figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: center;
+}
+
+.fc-lightbox-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.fc-lightbox-credit {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+}
+
+.fc-lightbox-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.6rem;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 2.2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.4rem 0.7rem;
+}
+
+.fc-art {
+    cursor: zoom-in;
+}
+
+/* ─── Reliquary plinths: real product mockups (square fleet renders) ─── */
+
+.fc-plinth-img img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .fc-tp-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .fc-tp-space--banner {
+        grid-column: 1 / -1;
+    }
+}

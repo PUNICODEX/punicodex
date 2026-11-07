@@ -538,18 +538,30 @@ function loadTemple(slug) {
   };
 }
 
-/** Top industry-pattern seats for a temple, shaped for the resonance bullets. */
-function loadPatternBullets(slug, businessName) {
+/** Top industry-pattern seats for a temple, shaped for the resonance bullets.
+ * When the prospect's industry is known, its seat leads — a gaming company
+ * must never be told the temple's war seat is "their" industry. */
+function loadPatternBullets(slug, businessName, industry) {
   try {
     const patterns = require('./industry-patterns.json');
     const seats = patterns.byEntry?.[slug] || [];
-    return seats.slice(0, 3).map((s, i) => ({
-      lead:
-        i === 0
+    if (!seats.length) return [];
+    const norm = String(industry || '')
+      .trim()
+      .toLowerCase();
+    const match = norm ? seats.find((s) => s.industry === norm) : null;
+    const ordered = match ? [match, ...seats.filter((s) => s !== match)] : seats;
+    return ordered.slice(0, 3).map((s) => {
+      const isTheirs = match && s === match;
+      return {
+        lead: isTheirs
           ? `Your industry sits inside the temple's pattern map.`
           : `The temple also answers to ${s.name}.`,
-      why: `The temple's Industry Patterns map — the same structured data consumed by researchers and our API — names ${s.name} among its aligned industries: ${s.why} ${businessName} is not adjacent to this archetype; it practises it.`,
-    }));
+        why: isTheirs
+          ? `The temple's Industry Patterns map — the same structured data consumed by researchers and our API — names ${s.name} among its aligned industries: ${s.why} ${businessName} is not adjacent to this archetype; it practises it.`
+          : `The same structured map names ${s.name} among the temple's aligned industries: ${s.why}`,
+      };
+    });
   } catch {
     return [];
   }
@@ -607,7 +619,7 @@ function loadLore(slug) {
  * every temple reads with the specificity of the hand-built Ares pitch.
  * `businessName` may be a placeholder token for the copy-paste templates.
  */
-function buildResonanceBullets(slug, businessName) {
+function buildResonanceBullets(slug, businessName, industry) {
   const bullets = [];
   const entry = (() => {
     try {
@@ -620,7 +632,7 @@ function buildResonanceBullets(slug, businessName) {
   const lore = loadLore(slug);
 
   // 1 — the pattern map (industry alignment).
-  const patternBullets = loadPatternBullets(slug, businessName);
+  const patternBullets = loadPatternBullets(slug, businessName, industry);
   if (patternBullets.length) bullets.push(patternBullets[0]);
 
   // 2 — the mythology.
