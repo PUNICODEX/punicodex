@@ -186,8 +186,11 @@ test('ALL evidence-covered leads render bespoke, debris-free, and industry-corre
   const CODE_ROW = { code: 'SCOUT-AUDIT-CODE', kind: 'free_months', free_months: 2 };
   let audited = 0;
   for (const [domain, e] of Object.entries(EVIDENCE)) {
-    const slug = byDomain[domain];
-    assert.ok(slug, `${domain}: no temple in the scout report`);
+    // The temple comes from the evidence (namesake tracks) or the scout
+    // report; exactly one must answer — a lead with no temple cannot be
+    // pitched and must fail here.
+    const slug = e.temple || byDomain[domain];
+    assert.ok(slug, `${domain}: no temple (set evidence.temple or scout the lead)`);
     const temple = pe.loadTemple(slug);
     assert.ok(temple, `${domain}: temple ${slug} unresolved`);
     const name = e.chosen.split(' ')[0].replace(/[.,]/g, '');
