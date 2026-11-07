@@ -42,7 +42,10 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 @keyframes stxSink{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 .stx-stratum{position:relative;padding:7rem 1.5rem 5rem;border-top:1px solid var(--line)}
 .stx-stratum::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 46px,rgba(212,175,55,.028) 46px 48px);pointer-events:none}
-.stx-stratum-inner{max-width:62rem;margin:0 auto;position:relative}
+.stx-stratum-inner{max-width:62rem;margin:0 auto;position:relative;padding-right:3rem}
+@media (max-width:720px){.stx-stratum-inner{padding-right:2.4rem}}
+.stx-surface,.stx-core{padding-right:3rem;padding-left:3rem}
+@media (max-width:720px){.stx-surface,.stx-core{padding-right:2.6rem;padding-left:1.1rem}}
 .stx-depth-mark{position:absolute;left:-.2rem;top:-4.6rem;font-size:clamp(3.4rem,7vw,5.6rem);font-weight:700;color:transparent;-webkit-text-stroke:1px var(--gold-dim);letter-spacing:.05em;font-family:'Montserrat',sans-serif;user-select:none}
 .stx-kicker{font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
 .stx-name{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.05;margin-bottom:1.1rem;font-weight:600}
@@ -122,31 +125,31 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <canvas id="stx-fx" aria-hidden="true"></canvas>
 <a class="stx-exit" href="/" aria-label="PuniCodex home"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png" alt="PuniCodex" width="173" height="18"></a>
 <nav class="stx-rail" aria-label="Strata"><button class="stx-rail-dot" data-goto="surface" aria-label="The surface — today"><span>◈</span></button>
-<button class="stx-rail-dot" data-goto="stratum-25" aria-label="When the Land Became Myth"><span>25</span></button>
-<button class="stx-rail-dot" data-goto="stratum-24" aria-label="The People of the Land"><span>24</span></button>
-<button class="stx-rail-dot" data-goto="stratum-23" aria-label="The Orisha Across the Water"><span>23</span></button>
-<button class="stx-rail-dot" data-goto="stratum-22" aria-label="Children of the Sun"><span>22</span></button>
-<button class="stx-rail-dot" data-goto="stratum-21" aria-label="The Fifth Sun"><span>21</span></button>
-<button class="stx-rail-dot" data-goto="stratum-20" aria-label="The Triangle of the Sea"><span>20</span></button>
-<button class="stx-rail-dot" data-goto="stratum-19" aria-label="The Kami's Islands"><span>19</span></button>
-<button class="stx-rail-dot" data-goto="stratum-18" aria-label="The Altar of the Three"><span>18</span></button>
-<button class="stx-rail-dot" data-goto="stratum-17" aria-label="The Way and Its Power"><span>17</span></button>
-<button class="stx-rail-dot" data-goto="stratum-16" aria-label="The Middle Kingdom's Register"><span>16</span></button>
-<button class="stx-rail-dot" data-goto="stratum-15" aria-label="The Turning of the Wheel"><span>15</span></button>
-<button class="stx-rail-dot" data-goto="stratum-14" aria-label="The Dual Faith"><span>14</span></button>
+<button class="stx-rail-dot" data-goto="stratum-25" aria-label="When the Land Became Myth"><span>01</span></button>
+<button class="stx-rail-dot" data-goto="stratum-24" aria-label="The People of the Land"><span>02</span></button>
+<button class="stx-rail-dot" data-goto="stratum-23" aria-label="The Orisha Across the Water"><span>03</span></button>
+<button class="stx-rail-dot" data-goto="stratum-22" aria-label="Children of the Sun"><span>04</span></button>
+<button class="stx-rail-dot" data-goto="stratum-21" aria-label="The Fifth Sun"><span>05</span></button>
+<button class="stx-rail-dot" data-goto="stratum-20" aria-label="The Triangle of the Sea"><span>06</span></button>
+<button class="stx-rail-dot" data-goto="stratum-19" aria-label="The Kami's Islands"><span>07</span></button>
+<button class="stx-rail-dot" data-goto="stratum-18" aria-label="The Altar of the Three"><span>08</span></button>
+<button class="stx-rail-dot" data-goto="stratum-17" aria-label="The Way and Its Power"><span>09</span></button>
+<button class="stx-rail-dot" data-goto="stratum-16" aria-label="The Middle Kingdom's Register"><span>10</span></button>
+<button class="stx-rail-dot" data-goto="stratum-15" aria-label="The Turning of the Wheel"><span>11</span></button>
+<button class="stx-rail-dot" data-goto="stratum-14" aria-label="The Dual Faith"><span>12</span></button>
 <button class="stx-rail-dot" data-goto="stratum-13" aria-label="The Last Pagans of Europe"><span>13</span></button>
-<button class="stx-rail-dot" data-goto="stratum-12" aria-label="The Eddic Record"><span>12</span></button>
-<button class="stx-rail-dot" data-goto="stratum-11" aria-label="The Island Memory"><span>11</span></button>
-<button class="stx-rail-dot" data-goto="stratum-10" aria-label="The Adoption"><span>10</span></button>
-<button class="stx-rail-dot" data-goto="stratum-9" aria-label="The Canon"><span>09</span></button>
-<button class="stx-rail-dot" data-goto="stratum-8" aria-label="The Choice"><span>08</span></button>
-<button class="stx-rail-dot" data-goto="stratum-7" aria-label="The Alphabet's Merchants"><span>07</span></button>
-<button class="stx-rail-dot" data-goto="stratum-6" aria-label="The Ugaritic Tablets"><span>06</span></button>
-<button class="stx-rail-dot" data-goto="stratum-5" aria-label="The Anatolian Synthesis"><span>05</span></button>
-<button class="stx-rail-dot" data-goto="stratum-4" aria-label="The Vedic Current"><span>04</span></button>
-<button class="stx-rail-dot" data-goto="stratum-3" aria-label="The Everlasting"><span>03</span></button>
-<button class="stx-rail-dot" data-goto="stratum-2" aria-label="The First Writing"><span>02</span></button>
-<button class="stx-rail-dot" data-goto="stratum-1" aria-label="The Dreamtime"><span>01</span></button>
+<button class="stx-rail-dot" data-goto="stratum-12" aria-label="The Eddic Record"><span>14</span></button>
+<button class="stx-rail-dot" data-goto="stratum-11" aria-label="The Island Memory"><span>15</span></button>
+<button class="stx-rail-dot" data-goto="stratum-10" aria-label="The Adoption"><span>16</span></button>
+<button class="stx-rail-dot" data-goto="stratum-9" aria-label="The Canon"><span>17</span></button>
+<button class="stx-rail-dot" data-goto="stratum-8" aria-label="The Choice"><span>18</span></button>
+<button class="stx-rail-dot" data-goto="stratum-7" aria-label="The Alphabet's Merchants"><span>19</span></button>
+<button class="stx-rail-dot" data-goto="stratum-6" aria-label="The Ugaritic Tablets"><span>20</span></button>
+<button class="stx-rail-dot" data-goto="stratum-5" aria-label="The Anatolian Synthesis"><span>21</span></button>
+<button class="stx-rail-dot" data-goto="stratum-4" aria-label="The Vedic Current"><span>22</span></button>
+<button class="stx-rail-dot" data-goto="stratum-3" aria-label="The Everlasting"><span>23</span></button>
+<button class="stx-rail-dot" data-goto="stratum-2" aria-label="The First Writing"><span>24</span></button>
+<button class="stx-rail-dot" data-goto="stratum-1" aria-label="The Dreamtime"><span>25</span></button>
 <button class="stx-rail-dot" data-goto="core" aria-label="The core"><span>◆</span></button></nav>
 <main class="stx-stage">
 <section class="stx-surface" id="surface">
@@ -159,8 +162,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-seaworn" id="stratum-25" data-order="25">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−25</span>
-      <p class="stx-kicker">stratum 25 · c. 8th century BCE — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">01</span>
+      <p class="stx-kicker">stratum 01 of 25 · c. 8th century BCE — present</p>
       <h2 class="stx-name">When the Land Became Myth</h2>
       <p class="stx-attest">The youngest stratum is not a people but a move: Greece personified its own geography — Asia, Europe, Atlantis, the rivers and cities as beings — and the map itself joined the pantheon.</p>
     </header>
@@ -173,7 +176,7 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
     <p class="stx-summary">The final stratum before the surface: the moment myth annexed geography. Asia was a nymph, Europa a bull-riding queen, Atlantis a cautionary fever-dream — and we still live on the map they made. This is where PuniCodex's own work begins: the names, kept alive.</p>
     <div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips"><a class="stx-chip" href="/asia/" title="Personified Continent of Asia">Asía</a><a class="stx-chip" href="/atlantis/" title="Lost Island, Legendary Realm, Sea">Atlantís</a><a class="stx-chip" href="/olympos/" title="Mountain of the Gods">Ólympos</a></div></div>
     <div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul><li>every continent's name is a mythological being</li><li>Atlas holding up the world's maps — and its astronomy</li><li>the Atlantis industry, three thousand years of speculation</li></ul></div>
-    <a class="stx-pantheon-link" href="/atlas/">Open the When the Land Became Myth pantheon →</a>
+    <a class="stx-pantheon-link" href="/greek-location/">Open the When the Land Became Myth pantheon →</a>
   </div>
   <p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>The youngest stratum of all: not a people but a move — the map itself joining the pantheon. This is where PuniCodex's work begins.</p>
 </section>
@@ -181,8 +184,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-volcanic" id="stratum-24" data-order="24">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−24</span>
-      <p class="stx-kicker">stratum 24 · attested c. 16th century CE; continuity unbroken — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">02</span>
+      <p class="stx-kicker">stratum 02 of 25 · attested c. 16th century CE; continuity unbroken — present</p>
       <h2 class="stx-name">The People of the Land</h2>
       <p class="stx-attest">Spanish chronicles record the Mapuche cosmos — Pillán the thunder spirits of the volcanoes, Ngen the lords of place, the silver branch — while the machi shamans carried the tradition undefeated through war, mission and dictatorship.</p>
     </header>
@@ -203,8 +206,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-laterite" id="stratum-23" data-order="23">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−23</span>
-      <p class="stx-kicker">stratum 23 · Ife florescence c. 11th–15th century CE; practice unbroken — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">03</span>
+      <p class="stx-kicker">stratum 03 of 25 · Ife florescence c. 11th–15th century CE; practice unbroken — present</p>
       <h2 class="stx-name">The Orisha Across the Water</h2>
       <p class="stx-attest">Ife's naturalistic bronzes and the Ifá divination corpus anchor the tradition archaeologically; the transatlantic slave trade carried it to the Americas, where it never stopped — Candomblé, Santería, Trinidadian Orisha.</p>
     </header>
@@ -225,8 +228,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-andesite" id="stratum-22" data-order="22">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−22</span>
-      <p class="stx-kicker">stratum 22 · Inca state c. 1438–1533 CE; Andean roots to Chavín (c. 900 BCE)</p>
+      <span class="stx-depth-mark" aria-hidden="true">04</span>
+      <p class="stx-kicker">stratum 04 of 25 · Inca state c. 1438–1533 CE; Andean roots to Chavín (c. 900 BCE)</p>
       <h2 class="stx-name">Children of the Sun</h2>
       <p class="stx-attest">The Andes stacked three thousand years of cult before the Inca: Chavín, Tiwanaku, Wari. The Inca wove them into a state religion — Inti the sun, Viracocha the creator, the huacas of every ridge and river — and administered it province by province.</p>
     </header>
@@ -247,8 +250,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-obsidian" id="stratum-21" data-order="21">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−21</span>
-      <p class="stx-kicker">stratum 21 · c. 1300–1521 CE (Mexica), on Toltec and Teotihuacan roots centuries older</p>
+      <span class="stx-depth-mark" aria-hidden="true">05</span>
+      <p class="stx-kicker">stratum 05 of 25 · c. 1300–1521 CE (Mexica), on Toltec and Teotihuacan roots centuries older</p>
       <h2 class="stx-name">The Fifth Sun</h2>
       <p class="stx-attest">The Mexica state kept its gods in books — the Borgia, Fejérváry-Mayer and Florentine Codices — and in a temple rebuilt five times at the heart of Tenochtitlan, excavated today under Mexico City's cathedral.</p>
     </header>
@@ -269,8 +272,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-bone" id="stratum-20" data-order="20">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−20</span>
-      <p class="stx-kicker">stratum 20 · settlement c. 1000 BCE–1200 CE; continuity unbroken</p>
+      <span class="stx-depth-mark" aria-hidden="true">06</span>
+      <p class="stx-kicker">stratum 06 of 25 · settlement c. 1000 BCE–1200 CE; continuity unbroken</p>
       <h2 class="stx-name">The Triangle of the Sea</h2>
       <p class="stx-attest">The greatest navigation story ever told — settling a triangle of ocean larger than every continent combined — carried its pantheon by memory across open water: Hawaii to Rapa Nui to Aotearoa, all one star-map.</p>
     </header>
@@ -291,8 +294,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-bronze" id="stratum-19" data-order="19">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−19</span>
-      <p class="stx-kicker">stratum 19 · Kojiki 712 CE, Nihon Shoki 720 CE — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">07</span>
+      <p class="stx-kicker">stratum 07 of 25 · Kojiki 712 CE, Nihon Shoki 720 CE — present</p>
       <h2 class="stx-name">The Kami's Islands</h2>
       <p class="stx-attest">Japan's myths were written down late but remember much older practice; Shinto's kami cults were never interrupted — the same shrines, the same festivals, the same imperial rites, continuously.</p>
     </header>
@@ -313,8 +316,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-paper" id="stratum-18" data-order="18">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−18</span>
-      <p class="stx-kicker">stratum 18 · Dangun legend (traditional 2333 BCE); attested medieval — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">08</span>
+      <p class="stx-kicker">stratum 08 of 25 · Dangun legend (traditional 2333 BCE); attested medieval — present</p>
       <h2 class="stx-name">The Altar of the Three</h2>
       <p class="stx-attest">The founding myth — Hwanin, Hwanung, the bear-woman, and Dangun — is recorded in medieval chronicles carrying far older oral matter; the mudang shamans never stopped practising it.</p>
     </header>
@@ -335,8 +338,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-paper" id="stratum-17" data-order="17">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−17</span>
-      <p class="stx-kicker">stratum 17 · Dàodéjīng c. 4th century BCE; organized religion c. 2nd century CE — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">09</span>
+      <p class="stx-kicker">stratum 09 of 25 · Dàodéjīng c. 4th century BCE; organized religion c. 2nd century CE — present</p>
       <h2 class="stx-name">The Way and Its Power</h2>
       <p class="stx-attest">The Dàodéjīng is a short text with an endless afterlife; organized Taoism begins with the Way of the Celestial Masters in 142 CE and has kept registers, revelations and immortals ever since.</p>
     </header>
@@ -357,8 +360,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-bone" id="stratum-16" data-order="16">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−16</span>
-      <p class="stx-kicker">stratum 16 · Shang oracle bones (c. 1250 BCE) — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">10</span>
+      <p class="stx-kicker">stratum 10 of 25 · Shang oracle bones (c. 1250 BCE) — present</p>
       <h2 class="stx-name">The Middle Kingdom's Register</h2>
       <p class="stx-attest">The Shang kings scratched their questions to the high god Di 帝 into oracle bone — the first Chinese writing and the first Chinese theology arrive together. Three thousand years of continuous record follow.</p>
     </header>
@@ -379,8 +382,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-bronze" id="stratum-15" data-order="15">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−15</span>
-      <p class="stx-kicker">stratum 15 · c. 5th century BCE — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">11</span>
+      <p class="stx-kicker">stratum 11 of 25 · c. 5th century BCE — present</p>
       <h2 class="stx-name">The Turning of the Wheel</h2>
       <p class="stx-attest">Siddhartha Gautama's life is dated by modern scholarship to c. 5th century BCE; within five centuries the dharma had walked from the Ganges to the Silk Road to Japan — the fastest long-distance spread of any faith before Islam.</p>
     </header>
@@ -401,8 +404,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-wood" id="stratum-14" data-order="14">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−14</span>
-      <p class="stx-kicker">stratum 14 · attested 6th–12th century CE; practice continuous</p>
+      <span class="stx-depth-mark" aria-hidden="true">12</span>
+      <p class="stx-kicker">stratum 12 of 25 · attested 6th–12th century CE; practice continuous</p>
       <h2 class="stx-name">The Dual Faith</h2>
       <p class="stx-attest">Procopius names the Slavic gods in the 6th century; medieval chronicles (Kiev, Novgorod, Thietmar of Merseburg) record the cults — and dvoeverie, 'dual faith', kept them alive under Christianity for a thousand years.</p>
     </header>
@@ -423,8 +426,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-amber" id="stratum-13" data-order="13">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−13</span>
-      <p class="stx-kicker">stratum 13 · attested 13th–14th century CE; continuity far older</p>
+      <span class="stx-depth-mark" aria-hidden="true">13</span>
+      <p class="stx-kicker">stratum 13 of 25 · attested 13th–14th century CE; continuity far older</p>
       <h2 class="stx-name">The Last Pagans of Europe</h2>
       <p class="stx-attest">Baltic religion is attested almost entirely by hostile chronicles — Peter of Dusburg, the Polish and Teutonic records — because it was still being practised, at scale, when Christian Europe wrote it down to end it. Lithuania was Europe's last great pagan state.</p>
     </header>
@@ -445,8 +448,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-bog" id="stratum-12" data-order="12">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−12</span>
-      <p class="stx-kicker">stratum 12 · Proto-Germanic roots (c. 500 BCE); recorded c. 1200 CE</p>
+      <span class="stx-depth-mark" aria-hidden="true">14</span>
+      <p class="stx-kicker">stratum 14 of 25 · Proto-Germanic roots (c. 500 BCE); recorded c. 1200 CE</p>
       <h2 class="stx-name">The Eddic Record</h2>
       <p class="stx-attest">The gods' names run in runes from the earliest Germanic inscriptions; the myths themselves were fixed in Iceland's Eddas only after most of Scandinavia had converted — a rescue mission in manuscript.</p>
     </header>
@@ -467,8 +470,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-bog" id="stratum-11" data-order="11">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−11</span>
-      <p class="stx-kicker">stratum 11 · La Tène (c. 450 BCE) — recorded c. 8th–12th century CE</p>
+      <span class="stx-depth-mark" aria-hidden="true">15</span>
+      <p class="stx-kicker">stratum 15 of 25 · La Tène (c. 450 BCE) — recorded c. 8th–12th century CE</p>
       <h2 class="stx-name">The Island Memory</h2>
       <p class="stx-attest">The continental Celts left no scripture; the tradition survives through medieval Irish and Welsh manuscripts copying oral matter far older than their inks — the oldest vernacular literature north of the Alps.</p>
     </header>
@@ -489,8 +492,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-travertine" id="stratum-10" data-order="10">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−10</span>
-      <p class="stx-kicker">stratum 10 · c. 753 BCE — 4th century CE</p>
+      <span class="stx-depth-mark" aria-hidden="true">16</span>
+      <p class="stx-kicker">stratum 16 of 25 · c. 753 BCE — 4th century CE</p>
       <h2 class="stx-name">The Adoption</h2>
       <p class="stx-attest">Rome kept its own numina and household gods, then adopted Greece's pantheon wholesale — by interpretatio romana, every foreign god found a Roman desk.</p>
     </header>
@@ -511,8 +514,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-marble" id="stratum-9" data-order="9">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−09</span>
-      <p class="stx-kicker">stratum 09 · Mycenaean roots (c. 1450 BCE) — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">17</span>
+      <p class="stx-kicker">stratum 17 of 25 · Mycenaean roots (c. 1450 BCE) — present</p>
       <h2 class="stx-name">The Canon</h2>
       <p class="stx-attest">Zeus, Poseidon and Dionysos appear in Linear B tablets at Knossos and Pylos — the Greek gods are older than the Greek alphabet. Homer and Hesiod fixed the canon around 750–700 BCE.</p>
     </header>
@@ -533,8 +536,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-limestone" id="stratum-8" data-order="8">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−08</span>
-      <p class="stx-kicker">stratum 08 · c. 1000–600 BCE — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">18</span>
+      <p class="stx-kicker">stratum 18 of 25 · c. 1000–600 BCE — present</p>
       <h2 class="stx-name">The Choice</h2>
       <p class="stx-attest">Zarathustra's date is honestly uncertain (mainstream c. 1000–600 BCE; traditional c. 1500 BCE). The Gāthās are the oldest confidently datable religious poetry after the Rigveda, and the faith still keeps its sacred fire.</p>
     </header>
@@ -555,8 +558,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-cedar" id="stratum-7" data-order="7">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−07</span>
-      <p class="stx-kicker">stratum 07 · c. 1200–146 BCE</p>
+      <span class="stx-depth-mark" aria-hidden="true">19</span>
+      <p class="stx-kicker">stratum 19 of 25 · c. 1200–146 BCE</p>
       <h2 class="stx-name">The Alphabet's Merchants</h2>
       <p class="stx-attest">Continues Canaanite religion westward: Tyre, Sidon, and Carthage, attested in inscriptions, sacrifice lists and hostile Roman testimony from the Tophet to the sack of Carthage.</p>
     </header>
@@ -577,8 +580,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-clay" id="stratum-6" data-order="6">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−06</span>
-      <p class="stx-kicker">stratum 06 · c. 1400–1200 BCE (tablets)</p>
+      <span class="stx-depth-mark" aria-hidden="true">20</span>
+      <p class="stx-kicker">stratum 20 of 25 · c. 1400–1200 BCE (tablets)</p>
       <h2 class="stx-name">The Ugaritic Tablets</h2>
       <p class="stx-attest">The Baal Cycle, the Epic of Aqhat and the myth of El's banquet survive on tablets from Ugarit — a single generation before the city burned, preserving the Levantine pantheon whole.</p>
     </header>
@@ -599,8 +602,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-basalt" id="stratum-5" data-order="5">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−05</span>
-      <p class="stx-kicker">stratum 05 · c. 1650–1180 BCE</p>
+      <span class="stx-depth-mark" aria-hidden="true">21</span>
+      <p class="stx-kicker">stratum 21 of 25 · c. 1650–1180 BCE</p>
       <h2 class="stx-name">The Anatolian Synthesis</h2>
       <p class="stx-attest">The Hittite archives of Ḫattuša — the largest cuneiform library of the Bronze Age — record a deliberately syncretic state pantheon: Hattic, Hurrian and Mesopotamian gods given ranks and dossiers.</p>
     </header>
@@ -621,8 +624,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-mantra" id="stratum-4" data-order="4">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−04</span>
-      <p class="stx-kicker">stratum 04 · c. 1500 BCE — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">22</span>
+      <p class="stx-kicker">stratum 22 of 25 · c. 1500 BCE — present</p>
       <h2 class="stx-name">The Vedic Current</h2>
       <p class="stx-attest">The Rigveda was composed c. 1500–1200 BCE and transmitted orally, syllable-perfect, for three millennia before fixation — the oldest religious text still in living use. The Indus inheritance beneath it is older still, and still unread.</p>
     </header>
@@ -643,8 +646,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-sandstone" id="stratum-3" data-order="3">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−03</span>
-      <p class="stx-kicker">stratum 03 · c. 3100 BCE – 4th century CE</p>
+      <span class="stx-depth-mark" aria-hidden="true">23</span>
+      <p class="stx-kicker">stratum 23 of 25 · c. 3100 BCE – 4th century CE</p>
       <h2 class="stx-name">The Everlasting</h2>
       <p class="stx-attest">Three thousand years of continuous state cult — the Pyramid Texts (c. 2350 BCE) are the world's oldest large religious corpus, still legible to the last Egyptian temples.</p>
     </header>
@@ -665,8 +668,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-clay" id="stratum-2" data-order="2">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−02</span>
-      <p class="stx-kicker">stratum 02 · c. 3200–539 BCE</p>
+      <span class="stx-depth-mark" aria-hidden="true">24</span>
+      <p class="stx-kicker">stratum 24 of 25 · c. 3200–539 BCE</p>
       <h2 class="stx-name">The First Writing</h2>
       <p class="stx-attest">The first attested pantheon anywhere: Sumerian theonyms appear in cuneiform by the Early Dynastic period; Akkadian, Babylonian and Assyrian hands continue the same gods for two and a half millennia.</p>
     </header>
@@ -687,8 +690,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <section class="stx-stratum stx-tex-ochre" id="stratum-1" data-order="1">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−01</span>
-      <p class="stx-kicker">bedrock · c. 65,000 years ago — present</p>
+      <span class="stx-depth-mark" aria-hidden="true">25</span>
+      <p class="stx-kicker">bedrock — the deepest layer · c. 65,000 years ago — present</p>
       <h2 class="stx-name">The Dreamtime</h2>
       <p class="stx-attest">The oldest continuous tradition on Earth: carried unbroken since the first settlement of Sahul, long before writing existed anywhere.</p>
     </header>
@@ -709,31 +712,31 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
   <p class="stx-surface-kicker reveal">The load-bearing truth</p>
   <h2 class="reveal">Every layer is still holding.</h2>
   <p class="reveal">Nothing in this excavation is dead weight. The days of the week are Norse. The alphabet is Phoenician. The flood is Sumerian. Yoga is Vedic, mindfulness is Buddhist, the obelisk is Egyptian, the map is Greek — and beneath them all, never once interrupted, the Dreamtime. The modern world is not built on the ruins of these strata. It is built of them. Chronology orders by continuity depth: unbroken oral traditions rank by the age of their continuity; literate traditions by earliest attestation, with oral layers noted. Dating follows mainstream scholarship; contested dates carry their uncertainty in the open.</p>
-  <div class="stx-core-sample reveal" aria-label="The core sample — jump to any stratum"><button class="stx-core-band stx-tex-seaworn" data-goto="stratum-25" title="When the Land Became Myth"><span>25 · When the Land Became Myth</span></button>
-<button class="stx-core-band stx-tex-volcanic" data-goto="stratum-24" title="The People of the Land"><span>24 · The People of the Land</span></button>
-<button class="stx-core-band stx-tex-laterite" data-goto="stratum-23" title="The Orisha Across the Water"><span>23 · The Orisha Across the Water</span></button>
-<button class="stx-core-band stx-tex-andesite" data-goto="stratum-22" title="Children of the Sun"><span>22 · Children of the Sun</span></button>
-<button class="stx-core-band stx-tex-obsidian" data-goto="stratum-21" title="The Fifth Sun"><span>21 · The Fifth Sun</span></button>
-<button class="stx-core-band stx-tex-bone" data-goto="stratum-20" title="The Triangle of the Sea"><span>20 · The Triangle of the Sea</span></button>
-<button class="stx-core-band stx-tex-bronze" data-goto="stratum-19" title="The Kami's Islands"><span>19 · The Kami's Islands</span></button>
-<button class="stx-core-band stx-tex-paper" data-goto="stratum-18" title="The Altar of the Three"><span>18 · The Altar of the Three</span></button>
-<button class="stx-core-band stx-tex-paper" data-goto="stratum-17" title="The Way and Its Power"><span>17 · The Way and Its Power</span></button>
-<button class="stx-core-band stx-tex-bone" data-goto="stratum-16" title="The Middle Kingdom's Register"><span>16 · The Middle Kingdom's Register</span></button>
-<button class="stx-core-band stx-tex-bronze" data-goto="stratum-15" title="The Turning of the Wheel"><span>15 · The Turning of the Wheel</span></button>
-<button class="stx-core-band stx-tex-wood" data-goto="stratum-14" title="The Dual Faith"><span>14 · The Dual Faith</span></button>
+  <div class="stx-core-sample reveal" aria-label="The core sample — jump to any stratum"><button class="stx-core-band stx-tex-seaworn" data-goto="stratum-25" title="When the Land Became Myth"><span>01 · When the Land Became Myth</span></button>
+<button class="stx-core-band stx-tex-volcanic" data-goto="stratum-24" title="The People of the Land"><span>02 · The People of the Land</span></button>
+<button class="stx-core-band stx-tex-laterite" data-goto="stratum-23" title="The Orisha Across the Water"><span>03 · The Orisha Across the Water</span></button>
+<button class="stx-core-band stx-tex-andesite" data-goto="stratum-22" title="Children of the Sun"><span>04 · Children of the Sun</span></button>
+<button class="stx-core-band stx-tex-obsidian" data-goto="stratum-21" title="The Fifth Sun"><span>05 · The Fifth Sun</span></button>
+<button class="stx-core-band stx-tex-bone" data-goto="stratum-20" title="The Triangle of the Sea"><span>06 · The Triangle of the Sea</span></button>
+<button class="stx-core-band stx-tex-bronze" data-goto="stratum-19" title="The Kami's Islands"><span>07 · The Kami's Islands</span></button>
+<button class="stx-core-band stx-tex-paper" data-goto="stratum-18" title="The Altar of the Three"><span>08 · The Altar of the Three</span></button>
+<button class="stx-core-band stx-tex-paper" data-goto="stratum-17" title="The Way and Its Power"><span>09 · The Way and Its Power</span></button>
+<button class="stx-core-band stx-tex-bone" data-goto="stratum-16" title="The Middle Kingdom's Register"><span>10 · The Middle Kingdom's Register</span></button>
+<button class="stx-core-band stx-tex-bronze" data-goto="stratum-15" title="The Turning of the Wheel"><span>11 · The Turning of the Wheel</span></button>
+<button class="stx-core-band stx-tex-wood" data-goto="stratum-14" title="The Dual Faith"><span>12 · The Dual Faith</span></button>
 <button class="stx-core-band stx-tex-amber" data-goto="stratum-13" title="The Last Pagans of Europe"><span>13 · The Last Pagans of Europe</span></button>
-<button class="stx-core-band stx-tex-bog" data-goto="stratum-12" title="The Eddic Record"><span>12 · The Eddic Record</span></button>
-<button class="stx-core-band stx-tex-bog" data-goto="stratum-11" title="The Island Memory"><span>11 · The Island Memory</span></button>
-<button class="stx-core-band stx-tex-travertine" data-goto="stratum-10" title="The Adoption"><span>10 · The Adoption</span></button>
-<button class="stx-core-band stx-tex-marble" data-goto="stratum-9" title="The Canon"><span>09 · The Canon</span></button>
-<button class="stx-core-band stx-tex-limestone" data-goto="stratum-8" title="The Choice"><span>08 · The Choice</span></button>
-<button class="stx-core-band stx-tex-cedar" data-goto="stratum-7" title="The Alphabet's Merchants"><span>07 · The Alphabet's Merchants</span></button>
-<button class="stx-core-band stx-tex-clay" data-goto="stratum-6" title="The Ugaritic Tablets"><span>06 · The Ugaritic Tablets</span></button>
-<button class="stx-core-band stx-tex-basalt" data-goto="stratum-5" title="The Anatolian Synthesis"><span>05 · The Anatolian Synthesis</span></button>
-<button class="stx-core-band stx-tex-mantra" data-goto="stratum-4" title="The Vedic Current"><span>04 · The Vedic Current</span></button>
-<button class="stx-core-band stx-tex-sandstone" data-goto="stratum-3" title="The Everlasting"><span>03 · The Everlasting</span></button>
-<button class="stx-core-band stx-tex-clay" data-goto="stratum-2" title="The First Writing"><span>02 · The First Writing</span></button>
-<button class="stx-core-band stx-tex-ochre" data-goto="stratum-1" title="The Dreamtime"><span>01 · The Dreamtime</span></button></div>
+<button class="stx-core-band stx-tex-bog" data-goto="stratum-12" title="The Eddic Record"><span>14 · The Eddic Record</span></button>
+<button class="stx-core-band stx-tex-bog" data-goto="stratum-11" title="The Island Memory"><span>15 · The Island Memory</span></button>
+<button class="stx-core-band stx-tex-travertine" data-goto="stratum-10" title="The Adoption"><span>16 · The Adoption</span></button>
+<button class="stx-core-band stx-tex-marble" data-goto="stratum-9" title="The Canon"><span>17 · The Canon</span></button>
+<button class="stx-core-band stx-tex-limestone" data-goto="stratum-8" title="The Choice"><span>18 · The Choice</span></button>
+<button class="stx-core-band stx-tex-cedar" data-goto="stratum-7" title="The Alphabet's Merchants"><span>19 · The Alphabet's Merchants</span></button>
+<button class="stx-core-band stx-tex-clay" data-goto="stratum-6" title="The Ugaritic Tablets"><span>20 · The Ugaritic Tablets</span></button>
+<button class="stx-core-band stx-tex-basalt" data-goto="stratum-5" title="The Anatolian Synthesis"><span>21 · The Anatolian Synthesis</span></button>
+<button class="stx-core-band stx-tex-mantra" data-goto="stratum-4" title="The Vedic Current"><span>22 · The Vedic Current</span></button>
+<button class="stx-core-band stx-tex-sandstone" data-goto="stratum-3" title="The Everlasting"><span>23 · The Everlasting</span></button>
+<button class="stx-core-band stx-tex-clay" data-goto="stratum-2" title="The First Writing"><span>24 · The First Writing</span></button>
+<button class="stx-core-band stx-tex-ochre" data-goto="stratum-1" title="The Dreamtime"><span>25 · The Dreamtime</span></button></div>
   <div class="stx-core-cta reveal">
     <a href="/pantheon/">Browse the full pantheon</a>
     <a href="/world/sacred/">Visit the Sacred Atlas</a>

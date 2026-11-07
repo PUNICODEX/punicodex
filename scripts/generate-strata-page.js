@@ -23,7 +23,7 @@ const OUT_DIR = path.join(ROOT, 'pantheon', 'origins');
 const OUT = path.join(OUT_DIR, 'index.html');
 
 const entryById = new Map(LEXICON.map((e) => [e.id, e]));
-const pantheonPath = (p) => (p === 'greek-location' ? '/atlas/' : `/${p}/`);
+const pantheonPath = (p) => `/${p}/`;
 
 // Syncretism fault-lines drawn between successive strata. Keyed by the
 // younger layer's pantheon: the note explains how the world passed from the
@@ -128,12 +128,14 @@ function chip(id) {
 }
 
 // Layers render newest-first (surface → bedrock): reverse the dataset order.
+// Display numbers run 01 at the surface → 25 at bedrock (dig order).
 const layers = [...DATA.layers].sort((a, b) => b.order - a.order);
+const displayNum = (order) => String(26 - order).padStart(2, '0');
 
 function layerScene(l, idx) {
   const tex = MATERIAL_CLASS[materialKey(l.material)] || 'stx-tex-granite';
-  const num = String(l.order).padStart(2, '0');
-  const depth = l.order === 1 ? 'bedrock' : `stratum ${num}`;
+  const num = displayNum(l.order);
+  const depth = l.order === 1 ? 'bedrock — the deepest layer' : `stratum ${num} of 25`;
   const beings = l.beings.map(chip).join('');
   const survivals = l.survivals.map((s) => `<li>${esc(s)}</li>`).join('');
   const fault = FAULTS[l.pantheon] ? `<p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>${esc(FAULTS[l.pantheon])}</p>` : '';
@@ -141,7 +143,7 @@ function layerScene(l, idx) {
 <section class="stx-stratum ${tex}" id="stratum-${l.order}" data-order="${l.order}">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
-      <span class="stx-depth-mark" aria-hidden="true">−${num}</span>
+      <span class="stx-depth-mark" aria-hidden="true">${num}</span>
       <p class="stx-kicker">${depth} · ${esc(l.eraLabel)}</p>
       <h2 class="stx-name">${esc(l.name)}</h2>
       <p class="stx-attest">${esc(l.attestation)}</p>
@@ -167,7 +169,7 @@ const railDots = [
   `<button class="stx-rail-dot" data-goto="surface" aria-label="The surface — today"><span>◈</span></button>`,
   ...layers.map(
     (l) =>
-      `<button class="stx-rail-dot" data-goto="stratum-${l.order}" aria-label="${esc(l.name)}"><span>${String(l.order).padStart(2, '0')}</span></button>`
+      `<button class="stx-rail-dot" data-goto="stratum-${l.order}" aria-label="${esc(l.name)}"><span>${displayNum(l.order)}</span></button>`
   ),
   `<button class="stx-rail-dot" data-goto="core" aria-label="The core"><span>◆</span></button>`,
 ].join('\n');
@@ -176,7 +178,7 @@ const coreBands = [...DATA.layers]
   .sort((a, b) => b.order - a.order)
   .map((l) => {
     const tex = MATERIAL_CLASS[materialKey(l.material)] || 'stx-tex-granite';
-    return `<button class="stx-core-band ${tex}" data-goto="stratum-${l.order}" title="${esc(l.name)}"><span>${String(l.order).padStart(2, '0')} · ${esc(l.name)}</span></button>`;
+    return `<button class="stx-core-band ${tex}" data-goto="stratum-${l.order}" title="${esc(l.name)}"><span>${displayNum(l.order)} · ${esc(l.name)}</span></button>`;
   })
   .join('\n');
 
@@ -234,7 +236,10 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 @keyframes stxSink{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 .stx-stratum{position:relative;padding:7rem 1.5rem 5rem;border-top:1px solid var(--line)}
 .stx-stratum::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 46px,rgba(212,175,55,.028) 46px 48px);pointer-events:none}
-.stx-stratum-inner{max-width:62rem;margin:0 auto;position:relative}
+.stx-stratum-inner{max-width:62rem;margin:0 auto;position:relative;padding-right:3rem}
+@media (max-width:720px){.stx-stratum-inner{padding-right:2.4rem}}
+.stx-surface,.stx-core{padding-right:3rem;padding-left:3rem}
+@media (max-width:720px){.stx-surface,.stx-core{padding-right:2.6rem;padding-left:1.1rem}}
 .stx-depth-mark{position:absolute;left:-.2rem;top:-4.6rem;font-size:clamp(3.4rem,7vw,5.6rem);font-weight:700;color:transparent;-webkit-text-stroke:1px var(--gold-dim);letter-spacing:.05em;font-family:'Montserrat',sans-serif;user-select:none}
 .stx-kicker{font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
 .stx-name{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.05;margin-bottom:1.1rem;font-weight:600}

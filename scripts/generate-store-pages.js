@@ -595,6 +595,40 @@ function renderArtDepartment() {
     )
     .join('\n    ');
 
+  // The Commons — the studio's keeper collection (assets/ai-commons, tracked).
+  // Each work links into its deity's temple gallery Commons section.
+  const COMMONS_DIR = path.join(ROOT, 'assets', 'ai-commons');
+  const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'oil', 'geometric'];
+  const commonsByDeity = new Map();
+  try {
+    for (const f of fs.readdirSync(COMMONS_DIR).filter((f) => f.endsWith('.jpg'))) {
+      let m = f.match(/^(.+?)-v(\d+\.\d+)\.jpg$/) || f.match(/^([a-z]+)\.jpg$/);
+      if (!m) continue;
+      let deity = m[1];
+      // family-tagged files: <deity>-<family>-vN.M.jpg -> deity
+      const fam = FAMILIES.find((x) => deity.endsWith('-' + x));
+      if (fam) deity = deity.slice(0, -(fam.length + 1));
+      if (!commonsByDeity.has(deity)) commonsByDeity.set(deity, []);
+      commonsByDeity.get(deity).push(f);
+    }
+  } catch {
+    /* dir absent */
+  }
+  const commonsCards = [...commonsByDeity.entries()]
+    .sort((a, b) => b[1].length - a[1].length)
+    .map(([id, files]) => {
+      const e = LEXICON.find((x) => x.id === id);
+      const f = files.sort()[0];
+      const study = (f.match(/-v(\d+\.\d+)\.jpg$/) || [])[1] || 'studio';
+      return `<a class="art-card" href="/${id}/gallery/#commons">
+      <div class="imgbox"><img src="/assets/ai-commons/${f}" alt="${esc(e ? e.unicode : id)} — PuniCodex studio, gold line art" loading="lazy" width="512" height="512"></div>
+      <div class="body"><div class="sub">PuniCodex Studio · Commons</div><h3>${esc(e ? e.unicode : id)}</h3>
+      <div class="sub" style="text-transform:none;letter-spacing:0">study v${study} · CC BY 4.0 · free</div></div>
+    </a>`;
+    })
+    .join('\n    ');
+  const commonsCount = [...commonsByDeity.values()].reduce((n, f) => n + f.length, 0);
+
   return `${head({
     title: 'Art — Tattoo Art, Creatives, the Commons & Temple Galleries | PUNICODEX',
     description:
@@ -645,10 +679,9 @@ function renderArtDepartment() {
     </div>
   </div>
   <div id="art-commons" hidden>
-    <div class="art-empty">
-      <strong>The Commons</strong> — the free mythology image library — opens soon.<br>
-      Contributors will leave offerings under free licenses (CC0, CC-BY, CC-BY-SA); every piece is moderated and tagged by tradition, so the Pixabay of mythology grows here.<br>
-      Until the doors open, browse the <a href="/store/art/galleries/">Temple Galleries</a>.
+    <p style="color:var(--dim);padding:1rem 0 0;max-width:70ch">Rights-cleared mythological art in the house style — gold on void — free for all under <strong>CC BY 4.0</strong>. The studio's first collection is live: <strong>${commonsCount} works across ${commonsByDeity.size} beings</strong>, each linked to its temple's gallery. Student and contributor collections join as the university door opens.</p>
+    <div class="art-grid">
+    ${commonsCards}
     </div>
   </div>
 </div>
