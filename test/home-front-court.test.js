@@ -108,13 +108,40 @@ test('the Covenant shows real temple spaces, not an invented diagram', () => {
   const section = html.slice(html.indexOf('id="covenant"'), html.indexOf('id="pattern"'));
   assert.ok(/NO ADS\. EVER\./.test(section), 'the doctrine headline missing');
   assert.ok(section.includes('fc-temple-preview'), 'temple preview missing');
-  assert.ok(section.includes('fc-tp-space--throne'), 'the throne (takeover) space missing');
+  assert.ok(section.includes('THE TEMPLE SPONSORSHIP FRAMES'), 'generic temple chrome missing');
+  assert.ok(
+    !section.includes('TEMPLE OF HERM'),
+    'a specific temple name crept back into the chrome'
+  );
   assert.ok(section.includes('fc-tp-space--banner'), 'the banner space missing');
   assert.ok(section.includes('fc-tp-space--box'), 'the box space missing');
   assert.ok(section.includes('is-reserved'), 'the reserved state missing');
-  assert.ok(section.includes('hermēs.com'), 'a real temple domain missing');
   assert.ok(/patrons/i.test(section), 'the patrons niche missing');
   assert.ok(!section.includes('<svg'), 'invented SVG diagram still present');
+  // The throne (full-temple takeover) sits at the BOTTOM, as on the real
+  // temple pages — not on top.
+  const throneIdx = section.indexOf('fc-tp-space--throne');
+  const boxIdx = section.indexOf('fc-tp-space--box');
+  assert.ok(
+    throneIdx > boxIdx,
+    'the throne must render below the banner/box row (as in real temples)'
+  );
+});
+
+test('the Gallery references only canonical gallery-data URLs (no hand-typed hotlinks)', () => {
+  const g = JSON.parse(read(path.join('scripts', 'gallery-data.json')));
+  const canonical = new Set();
+  for (const arr of Object.values(g)) {
+    if (!Array.isArray(arr)) continue;
+    for (const im of arr) if (im && im.src) canonical.add(im.src);
+  }
+  const section = html.slice(html.indexOf('id="gallery"'), html.indexOf('id="breath"'));
+  for (const m of section.matchAll(/src="(https:\/\/upload\.wikimedia\.org[^"]+)"/g)) {
+    assert.ok(
+      canonical.has(m[1]),
+      `homepage gallery hotlinks a non-canonical URL (hand-typed URLs rot — use gallery-data): ${m[1].slice(0, 90)}`
+    );
+  }
 });
 
 test('the Gallery lightbox is wired and every work is viewable full-size', () => {
