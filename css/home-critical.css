@@ -1824,3 +1824,39 @@ body.menu-open {
         grid-column: 1 / -1;
     }
 }
+
+/* ─── Commons window: the live collection grid ─── */
+
+.fc-commons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin: 0.3rem 0;
+}
+
+.fc-commons-grid img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 4px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.fc-commons-grid img:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    transform: scale(1.03);
+}
+
+.fc-panel-fine {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .fc-commons-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
