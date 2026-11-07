@@ -504,21 +504,44 @@ function main() {
   let suiteFailures = failed;
   if (canonical) {
     const start = Date.now();
-    try {
-      execFileSync(NPM, ['run', 'generate:check'], {
-        cwd: ROOT,
-        stdio: ['ignore', 'ignore', 'pipe'],
-        // `npm run generate` prints hundreds of KB (per-site flagship regen
-        // lines). The execFileSync default 1 MiB maxBuffer aborts the child
-        // with ERR_CHILD_PROCESS_STDIO_MAXBUFFER mid-generate — surfaced as a
-        // spurious "out of sync" — once output crosses the cap. Size the
-        // buffer for the worst-case run instead.
-        maxBuffer: 64 * 1024 * 1024,
-        ...SHELL_OPT,
-      });
+    // The divergence generate runs for ~12 min and hammers every temple
+    // page. On some Windows hosts an AV/indexer lock (UNKNOWN/-4094) or an
+    // OS-level kill takes the whole generate process down mid-flight —
+    // spawnSync reports a non-zero exit with empty output and the gate dies
+    // between suite checks with no verdict, blocking the push as a silent
+    // riddle. generate.js already retries per-script INSIDE its own process,
+    // but it cannot retry when the process itself is killed — so retry the
+    // whole generate:check here. A real drift failure repeats identically on
+    // every attempt; a transient kill usually passes on the rerun.
+    let lastErr = null;
+    let passed = false;
+    for (let attempt = 1; attempt <= 3 && !passed; attempt++) {
+      try {
+        execFileSync(NPM, ['run', 'generate:check'], {
+          cwd: ROOT,
+          stdio: ['ignore', 'ignore', 'pipe'],
+          // `npm run generate` prints hundreds of KB (per-site flagship regen
+          // lines). The execFileSync default 1 MiB maxBuffer aborts the child
+          // with ERR_CHILD_PROCESS_STDIO_MAXBUFFER mid-generate — surfaced as
+          // a spurious "out of sync" — once output crosses the cap. Size the
+          // buffer for the worst-case run instead.
+          maxBuffer: 64 * 1024 * 1024,
+          ...SHELL_OPT,
+        });
+        passed = true;
+      } catch (err) {
+        lastErr = err;
+        const code = err.status == null ? 'killed' : `exit ${err.status}`;
+        console.log(
+          `  ${C.dim}Divergence Gate attempt ${attempt}/3 ${code} — ${err.status == null ? 'transient kill, retrying' : 'checking output...'}${C.reset}`
+        );
+      }
+    }
+    if (passed) {
       console.log(`  ${C.green}✓${C.reset} Divergence Gate ${C.dim}(${((Date.now() - start) / 1000).toFixed(1)}s)${C.reset}`);
-    } catch (err) {
+    } else {
       failed = true;
+      const err = lastErr;
       console.log(`  ${C.red}✗ Divergence Gate — generated artifacts out of sync${C.reset}`);
       const out = [err.stdout, err.stderr]
         .filter(Boolean)
