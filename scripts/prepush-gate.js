@@ -78,6 +78,10 @@ const RULES = [
     suites: ['Archē Tests'],
   },
   {
+    pattern: /^templates\/flagship\/(gallery|blog|lore|patron|patterns|scholars|index)\.html$|^scripts\/create-flagship\.js$|^assets\/ai-commons\/|^test\/temple-commons-gallery\.test\.js$/,
+    suites: ['Temple Commons Gallery Tests'],
+  },
+  {
     pattern: /^scripts\/sync-mobile-menu\.js$|^scripts\/nav-tree\.js$|^scripts\/generate-herald\.js$|^templates\/herald\/|^platform\/public\/scholars\/|^test\/mobile-menu-drift\.test\.js$/,
     suites: [
       'Mobile Menu Drift Tests',

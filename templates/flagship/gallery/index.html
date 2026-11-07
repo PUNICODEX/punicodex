@@ -110,6 +110,15 @@
     }
 }
 .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+/* Commons + Creatives collections */
+.commons-provenance { margin-top: 1.25rem; font-size: 0.78rem; letter-spacing: 0.05em; color: var(--text-muted, #9a9a9a); text-align: center; }
+.creatives-threshold { text-align: center; padding: 2.5rem 1.5rem; border: 1px solid var(--gold-dim, rgba(212, 175, 55, 0.25)); border-radius: 14px; background: var(--surface-2, rgba(255, 255, 255, 0.02)); }
+.creatives-glyph { display: block; font-size: 2rem; color: var(--gold, #d4af37); margin-bottom: 0.75rem; }
+.creatives-line { max-width: 56ch; margin: 0 auto 1.25rem; color: var(--text-dim, #c9c9c9); }
+.creatives-tiers { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 1.5rem; }
+.creatives-tier { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold, #d4af37); border: 1px solid var(--gold-dim, rgba(212, 175, 55, 0.25)); padding: 0.35rem 0.8rem; border-radius: 999px; }
+.creatives-threshold .btn-primary { display: inline-flex; }
+
 .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
 .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
 .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
@@ -160,7 +169,7 @@
                 {{PATTERNS_TAB}}
                 <a href="../blog/index.html" class="nav-link">Blog</a>
                 <a href="../scholars/index.html" class="nav-link">Scholars</a>
-                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="#creatives" class="nav-link">Creatives</a>
                 <a href="../patron/index.html" class="nav-link">Patrons</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
@@ -180,7 +189,7 @@
         {{PATTERNS_TAB}}
         <a href="../blog/index.html" class="nav-link">Blog</a>
         <a href="../scholars/index.html" class="nav-link">Scholars</a>
-        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="#creatives" class="nav-link">Creatives</a>
         <a href="../patron/index.html" class="nav-link">Patrons</a>
     </div>
 
@@ -229,6 +238,9 @@
             </div>
         </div>
     </section>
+
+{{COMMONS_SECTION}}
+{{CREATIVES_SECTION}}
 
 {{FOOTER}}
 

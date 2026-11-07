@@ -1,14 +1,4 @@
 <!DOCTYPE html><html lang="en"><head>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
-<script src="/js/university-collaborators.js?v=3" defer></script>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
-
-<!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js?v=bfdd5f6464" defer></script>
-<!-- PUNICODEX-ANALYTICS-END -->
-
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,6 +108,15 @@
     }
 }
 .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+/* Commons + Creatives collections */
+.commons-provenance { margin-top: 1.25rem; font-size: 0.78rem; letter-spacing: 0.05em; color: var(--text-muted, #9a9a9a); text-align: center; }
+.creatives-threshold { text-align: center; padding: 2.5rem 1.5rem; border: 1px solid var(--gold-dim, rgba(212, 175, 55, 0.25)); border-radius: 14px; background: var(--surface-2, rgba(255, 255, 255, 0.02)); }
+.creatives-glyph { display: block; font-size: 2rem; color: var(--gold, #d4af37); margin-bottom: 0.75rem; }
+.creatives-line { max-width: 56ch; margin: 0 auto 1.25rem; color: var(--text-dim, #c9c9c9); }
+.creatives-tiers { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 1.5rem; }
+.creatives-tier { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold, #d4af37); border: 1px solid var(--gold-dim, rgba(212, 175, 55, 0.25)); padding: 0.35rem 0.8rem; border-radius: 999px; }
+.creatives-threshold .btn-primary { display: inline-flex; }
+
 .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
 .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
 .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
@@ -165,16 +164,6 @@
   ]
 }
     </script>
-<!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
-<script src="/js/herald-beacon.js?v=31810b90ac" defer></script>
-<!-- PUNICODEX-HERALD-BEACON-END -->
-<!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
-<script src="/js/cookie-consent.js?v=1" defer></script>
-<!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
 <body>
     <!-- Global Strip -->
@@ -209,7 +198,7 @@
                 <a href="../patterns/" class="nav-link">Patterns</a>
                 <a href="../blog/index.html" class="nav-link">Blog</a>
                 <a href="../scholars/index.html" class="nav-link">Scholars</a>
-                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="#creatives" class="nav-link">Creatives</a>
                 <a href="../patron/index.html" class="nav-link">Patrons</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
@@ -237,7 +226,7 @@
         <a href="../patterns/" class="nav-link">Patterns</a>
         <a href="../blog/index.html" class="nav-link">Blog</a>
         <a href="../scholars/index.html" class="nav-link">Scholars</a>
-        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="#creatives" class="nav-link">Creatives</a>
         <a href="../patron/index.html" class="nav-link">Patrons</a>
     </div>
 
@@ -307,11 +296,33 @@
         </div>
     </section>
 
-    
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
-<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
-<footer class="main-footer">
+
+
+    <!-- The Creatives -->
+    <section class="section section-name creatives-section" id="creatives">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Creatives</h2>
+                <p class="section-subtitle">A marketplace for student and independent artists — mythological work, licensed cleanly, credited always, paid properly.</p>
+            </div>
+            <div class="creatives-threshold reveal-up">
+                <span class="creatives-glyph" aria-hidden="true">✦</span>
+                <p class="creatives-line">The first artists are being gathered. Download tiers open as the first collections are juried.</p>
+                <div class="creatives-tiers" aria-label="Creative tiers">
+                    <span class="creatives-tier">Guest · free · 5 downloads/mo</span>
+                    <span class="creatives-tier">Practitioner · $12 · 25/mo</span>
+                    <span class="creatives-tier">Studio · $39 · 100/mo</span>
+                    <span class="creatives-tier">Guild · $99 · 400/mo</span>
+                </div>
+                <a href="/creatives/" class="btn-primary"><span>License &amp; submit work</span></a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -339,7 +350,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/karma_logomark.webp" type="image/webp"><img src="../assets/karma_logomark.webp" alt="Karma logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/karma_logomark.webp" type="image/webp"><img src="../assets/karma_logomark.webp" alt="Karma logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
