@@ -25,7 +25,7 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
-function escapeAttr(value) {
+function _escapeAttr(value) {
   return escapeHtml(value).replace(/'/g, '&#39;');
 }
 

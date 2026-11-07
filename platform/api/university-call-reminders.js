@@ -53,7 +53,7 @@ async function runDueReminders(now = new Date()) {
         meetingUrl: booking.meeting_url || '',
         phone: booking.phone || '',
       });
-      if (result && result.success) {
+      if (result?.success) {
         db.prepare('UPDATE university_call_bookings SET reminded_at = ? WHERE id = ?').run(
           new Date().toISOString(),
           booking.id
