@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "brandDna": "gold on void — PuniCodex house style; scholarly iconography, museum-grade execution, no text in image",
+  "traditions": {
+    "greek": {
+      "styleDna": "ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body",
+      "wins": 11,
+      "losses": 10,
+      "notes": [
+        "style-test-1 (athena, schnell): exceptional — locked as house direction 2026-11-07"
+      ]
+    },
+    "norse": {
+      "styleDna": "Viking Urnes style gold knotwork on pure black background, intricate interlaced animal ornament",
+      "wins": 4,
+      "losses": 0,
+      "notes": []
+    },
+    "egyptian": {
+      "styleDna": "gold figure on pure black background, ancient Egyptian profile style, nemes headdress, crisp clean edges, no stone texture, no inscriptions, no hieroglyphs, no border",
+      "wins": 3,
+      "losses": 9,
+      "notes": [
+        "2026-11-07: stone-relief DNA invited fake inscriptions + gray slabs (anubis/ra v1.1-1.4) — DNA evolved to pure black, inscription-free"
+      ]
+    }
+  },
+  "mutationOperators": {
+    "garbled-text": "append: no text, no letters, no inscription, no watermark",
+    "wrong-attributes": "reorder: lead with the missed attribute ('holding X prominently'); drop the misread one",
+    "weak-composition": "alternate layout: single central figure, full body, centered, generous black space",
+    "anatomy": "append: anatomically correct hands and faces, clean linework",
+    "busy-background": "strengthen: pure black background, no landscape, no scene",
+    "off-style": "prepend the style dna twice and append: strictly two-colour, gold and black only"
+  },
+  "deities": {
+    "zeus": {
+      "tradition": "greek",
+      "attributes": [
+        "thunderbolt",
+        "eagle on his arm",
+        "laurel crown"
+      ],
+      "promptVersion": 1,
+      "wins": 1,
+      "losses": 1,
+      "activeMutations": [
+        "weak-composition"
+      ],
+      "mutationHistory": [
+        "weak-composition"
+      ]
+    },
+    "athena": {
+      "tradition": "greek",
+      "attributes": [
+        "owl on her hand",
+        "olive branch"
+      ],
+      "promptVersion": 1,
+      "wins": 2,
+      "losses": 0,
+      "activeMutations": []
+    },
+    "apollon": {
+      "tradition": "greek",
+      "attributes": [
+        "lyre",
+        "laurel wreath",
+        "rays of light"
+      ],
+      "promptVersion": 1,
+      "wins": 2,
+      "losses": 0,
+      "activeMutations": []
+    },
+    "aphrodite": {
+      "tradition": "greek",
+      "attributes": [
+        "doves",
+        "scallop shell",
+        "roses"
+      ],
+      "promptVersion": 1,
+      "wins": 1,
+      "losses": 3,
+      "activeMutations": [
+        "wrong-attributes",
+        "weak-composition"
+      ],
+      "mutationHistory": [
+        "wrong-attributes",
+        "wrong-attributes",
+        "weak-composition"
+      ]
+    },
+    "poseidon": {
+      "tradition": "greek",
+      "attributes": [
+        "trident",
+        "waves at his feet"
+      ],
+      "promptVersion": 1,
+      "wins": 1,
+      "losses": 1,
+      "activeMutations": [
+        "garbled-text"
+      ],
+      "mutationHistory": [
+        "garbled-text"
+      ]
+    },
+    "hades": {
+      "tradition": "greek",
+      "attributes": [
+        "three-headed Cerberus",
+        "pomegranate"
+      ],
+      "promptVersion": 1,
+      "wins": 1,
+      "losses": 3,
+      "activeMutations": [
+        "wrong-attributes",
+        "garbled-text"
+      ],
+      "mutationHistory": [
+        "wrong-attributes",
+        "wrong-attributes",
+        "garbled-text"
+      ]
+    },
+    "artemis": {
+      "tradition": "greek",
+      "attributes": [
+        "drawing bow",
+        "crescent moon",
+        "deer beside her"
+      ],
+      "promptVersion": 1,
+      "wins": 1,
+      "losses": 1,
+      "activeMutations": [
+        "busy-background"
+      ],
+      "mutationHistory": [
+        "busy-background"
+      ]
+    },
+    "hermes": {
+      "tradition": "greek",
+      "attributes": [
+        "caduceus",
+        "winged sandals",
+        "traveller hat"
+      ],
+      "promptVersion": 1,
+      "wins": 1,
+      "losses": 1,
+      "activeMutations": [
+        "busy-background"
+      ],
+      "mutationHistory": [
+        "busy-background"
+      ]
+    },
+    "thor": {
+      "tradition": "norse",
+      "attributes": [
+        "Mjolnir hammer",
+        "lightning",
+        "goats"
+      ],
+      "promptVersion": 1,
+      "wins": 2,
+      "losses": 0,
+      "activeMutations": []
+    },
+    "odinn": {
+      "tradition": "norse",
+      "attributes": [
+        "two ravens on shoulders",
+        "spear Gungnir",
+        "one-eyed"
+      ],
+      "promptVersion": 1,
+      "wins": 2,
+      "losses": 0,
+      "activeMutations": []
+    },
+    "anubis": {
+      "tradition": "egyptian",
+      "attributes": [
+        "jackal-headed god with black canine head",
+        "holding ankh",
+        "canopic jar"
+      ],
+      "promptVersion": 1,
+      "wins": 2,
+      "losses": 4,
+      "activeMutations": [
+        "garbled-text",
+        "wrong-attributes",
+        "busy-background"
+      ],
+      "mutationHistory": [
+        "garbled-text",
+        "wrong-attributes",
+        "garbled-text",
+        "busy-background"
+      ],
+      "notes": "model draws a pharaoh unless the jackal head leads"
+    },
+    "ra": {
+      "tradition": "egyptian",
+      "attributes": [
+        "solar disk with cobra crown",
+        "solar barque"
+      ],
+      "promptVersion": 2,
+      "wins": 1,
+      "losses": 5,
+      "activeMutations": [
+        "wrong-attributes",
+        "garbled-text"
+      ],
+      "mutationHistory": [
+        "garbled-text"
+      ]
+    }
+  }
+}
