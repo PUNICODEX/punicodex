@@ -40,13 +40,28 @@ const variantsIdx = args.indexOf('--variants');
 const VARIANTS = variantsIdx !== -1 ? Number(args[variantsIdx + 1]) : 2;
 const batchIdx = args.indexOf('--batch');
 let names = args.filter((a) => !a.startsWith('--') && isNaN(Number(a)));
+const DEMAND = (() => {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'ai-art', 'temple-demand.json'), 'utf8'));
+  } catch {
+    return {};
+  }
+})();
+// Demand ordering: the sponsorship market's own valuation (throne tier from
+// ad_slots) leads; curator win/loss score breaks ties within a tier.
+const demandSort = (a, b) => {
+  const da = DEMAND[a] ? DEMAND[a].tier : 99;
+  const db = DEMAND[b] ? DEMAND[b].tier : 99;
+  if (da !== db) return da - db;
+  const sa = (lib.deities[a]?.wins || 0) - (lib.deities[a]?.losses || 0);
+  const sb = (lib.deities[b]?.wins || 0) - (lib.deities[b]?.losses || 0);
+  return sa - sb;
+};
 if (batchIdx !== -1) {
   const n = Number(args[batchIdx + 1]);
-  names = Object.keys(lib.deities)
-    .sort((a, b) => (lib.deities[a].wins - lib.deities[a].losses) - (lib.deities[b].wins - lib.deities[b].losses))
-    .slice(0, n);
+  names = Object.keys(lib.deities).sort(demandSort).slice(0, n);
 }
-if (!names.length) names = Object.keys(lib.deities);
+if (!names.length) names = Object.keys(lib.deities).sort(demandSort);
 
 function compilePrompt(spec) {
   const tradition = lib.traditions[spec.tradition];
@@ -81,33 +96,68 @@ function falGenerate(prompt) {
     { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }
   );
   const j = JSON.parse(raw);
-  if (j.images && j.images[0]) return j.images[0].url;
+  if (j.images && j.images[0]) return { url: j.images[0].url, seed: j.seed ?? null };
   throw new Error('fal unexpected: ' + raw.slice(0, 200));
 }
 
-fs.mkdirSync(OUT_DIR, { recursive: true });
-let spent = 0;
-for (const name of names) {
-  const spec = lib.deities[name];
-  if (!spec) {
-    console.log(`✗ unknown deity ${name} — add it to the library first`);
-    continue;
-  }
-  const prompt = compilePrompt({ ...spec, name });
-  for (let v = 1; v <= VARIANTS; v++) {
-    const out = path.join(OUT_DIR, `${name}-v${spec.promptVersion}.${v}.jpg`);
-    if (fs.existsSync(out)) continue;
-    const t0 = Date.now();
-    try {
-      const url = falGenerate(`${prompt}, variation ${v}`);
-      execSync(`curl -s "${url}" -o "${out}"`);
-      spent += COST_PER_IMAGE;
-      log({ ts: new Date().toISOString(), deity: name, model: MODEL, prompt: `${prompt}, variation ${v}`, file: path.relative(ROOT, out), cost: COST_PER_IMAGE, verdict: 'pending' });
-      console.log(`✓ ${path.relative(ROOT, out)} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);
-    } catch (e) {
-      log({ ts: new Date().toISOString(), deity: name, model: MODEL, prompt, error: e.message.slice(0, 120), verdict: 'error' });
-      console.log(`✗ ${name} v${v}: ${e.message.slice(0, 100)}`);
+/* Auto quality gate: sample the four corners — the house style is gold on
+ * VOID. Corners that aren't near-black mean a vase crop, stone slab, or
+ * white page crept in (the recurring busy-background failure). Flags the
+ * entry for the curator; never auto-rejects. */
+async function cornerFlags(file) {
+  try {
+    const sharp = require('sharp');
+    const img = sharp(file);
+    const meta = await img.metadata();
+    const s = 24;
+    const pts = [
+      { left: 0, top: 0 },
+      { left: Math.max(0, meta.width - s), top: 0 },
+      { left: 0, top: Math.max(0, meta.height - s) },
+      { left: Math.max(0, meta.width - s), top: Math.max(0, meta.height - s) },
+    ];
+    const flags = [];
+    for (let i = 0; i < pts.length; i++) {
+      const { data } = await sharp(file).extract({ ...pts[i], width: s, height: s }).raw().toBuffer({ resolveWithObject: true });
+      let sum = 0;
+      for (let p = 0; p < data.length; p += 3) sum += 0.299 * data[p] + 0.587 * data[p + 1] + 0.114 * data[p + 2];
+      const mean = sum / (data.length / 3);
+      if (mean > 60) flags.push(`corner-${i}-not-black(mean ${mean.toFixed(0)})`);
     }
+    return flags;
+  } catch {
+    return [];
   }
 }
-console.log(`spent ≈ $${spent.toFixed(3)} this run`);
+
+async function main() {
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  let spent = 0;
+  for (const name of names) {
+    const spec = lib.deities[name];
+    if (!spec) {
+      console.log(`✗ unknown deity ${name} — add it to the library first`);
+      continue;
+    }
+    const prompt = compilePrompt({ ...spec, name });
+    for (let v = 1; v <= VARIANTS; v++) {
+      const out = path.join(OUT_DIR, `${name}-v${spec.promptVersion}.${v}.jpg`);
+      if (fs.existsSync(out)) continue;
+      const t0 = Date.now();
+      try {
+        const res = falGenerate(`${prompt}, variation ${v}`);
+        execSync(`curl -s "${res.url}" -o "${out}"`);
+        spent += COST_PER_IMAGE;
+        const autoFlags = await cornerFlags(out);
+        log({ ts: new Date().toISOString(), deity: name, model: MODEL, prompt: `${prompt}, variation ${v}`, seed: res.seed, file: path.relative(ROOT, out), cost: COST_PER_IMAGE, autoFlags, verdict: 'pending' });
+        console.log(`✓ ${path.relative(ROOT, out)} (${((Date.now() - t0) / 1000).toFixed(1)}s)${autoFlags.length ? ' ⚑ ' + autoFlags.join(';') : ''}`);
+      } catch (e) {
+        log({ ts: new Date().toISOString(), deity: name, model: MODEL, prompt, error: e.message.slice(0, 120), verdict: 'error' });
+        console.log(`✗ ${name} v${v}: ${e.message.slice(0, 100)}`);
+      }
+    }
+  }
+  console.log(`spent ≈ $${spent.toFixed(3)} this run`);
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });

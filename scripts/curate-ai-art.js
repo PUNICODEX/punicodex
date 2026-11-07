@@ -38,22 +38,42 @@ if (!spec) {
   process.exit(1);
 }
 
-// Mark the generation-log entry.
+// Mark the generation-log entry — either a pending entry, or flip an
+// already-recorded verdict (the human second pass promotes from review).
 const lines = fs.readFileSync(LOG_PATH, 'utf8').trim().split('\n');
-let hit = false;
-const out = lines.map((l) => {
-  const e = JSON.parse(l);
-  if (!hit && e.file && e.file.endsWith(base) && e.verdict === 'pending') {
-    hit = true;
-    return JSON.stringify({ ...e, verdict, reason: reason || null });
+let entry = null;
+for (let i = lines.length - 1; i >= 0 && !entry; i--) {
+  const e = JSON.parse(lines[i]);
+  if (!e.file || !e.file.endsWith(base)) continue;
+  if (e.verdict === 'pending' || e.verdict !== verdict) {
+    entry = e;
+    lines[i] = JSON.stringify({ ...e, verdict, reason: reason || null });
   }
-  return l;
-});
-fs.writeFileSync(LOG_PATH, out.join('\n') + '\n');
+}
+if (!entry) {
+  console.error(`no generation-log entry for ${base}`);
+  process.exit(1);
+}
+fs.writeFileSync(LOG_PATH, lines.join('\n') + '\n');
 
 if (verdict === 'keep') {
-  spec.wins++;
-  lib.traditions[spec.tradition].wins++;
+  if (entry && entry.verdict === 'reject') {
+    // Human second-pass promotion: correct the stats (the reject was wrong).
+    spec.wins++;
+    spec.losses = Math.max(0, spec.losses - 1);
+    lib.traditions[spec.tradition].wins++;
+    lib.traditions[spec.tradition].losses = Math.max(0, lib.traditions[spec.tradition].losses - 1);
+  } else {
+    spec.wins++;
+    lib.traditions[spec.tradition].wins++;
+  }
+  // Move the file into the keepers folder when promoted from review.
+  const inReview = path.join(ROOT, 'ai-art', 'review', path.basename(file));
+  const keeperDest = path.join(ROOT, 'ai-art', 'keepers', path.basename(file));
+  if (fs.existsSync(inReview)) {
+    fs.renameSync(inReview, keeperDest);
+    console.log(`  ↑ promoted to ai-art/keepers/${path.basename(file)}`);
+  }
 } else {
   spec.losses++;
   lib.traditions[spec.tradition].losses++;
