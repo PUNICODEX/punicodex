@@ -124,7 +124,7 @@ const esc = (s) =>
 function chip(id) {
   const e = entryById.get(id);
   if (!e) return '';
-  return `<a class="stx-chip" href="/sites/${e.id}/" title="${esc(e.domain)}">${esc(e.unicode)}</a>`;
+  return `<a class="stx-chip" href="/${e.id}/" title="${esc(e.domain)}">${esc(e.unicode)}</a>`;
 }
 
 // Layers render newest-first (surface → bedrock): reverse the dataset order.

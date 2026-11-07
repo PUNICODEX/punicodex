@@ -43,7 +43,7 @@ test('every being chip links a real temple; every stratum links its pantheon', (
   for (const l of DATA.layers) {
     for (const b of l.beings) {
       assert.ok(ids.has(b), `${l.pantheon}: being ${b} exists in the lexicon`);
-      assert.ok(html.includes(`/sites/${b}/`), `${l.pantheon}: chip link for ${b}`);
+      assert.ok(html.includes(`/${b}/`), `${l.pantheon}: chip link for ${b}`);
     }
   }
 });

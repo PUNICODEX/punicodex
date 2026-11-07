@@ -76,7 +76,7 @@ function dossier(site) {
     .map((d) => {
       const e = entryById.get(d.id);
       if (!e) return '';
-      return `<a class="atx-chip" href="/sites/${e.id}/">${esc(e.unicode)}</a><p class="atx-depict">${esc(d.depiction)}</p>`;
+      return `<a class="atx-chip" href="/${e.id}/">${esc(e.unicode)}</a><p class="atx-depict">${esc(d.depiction)}</p>`;
     })
     .join('');
   const note = site.deityNote ? `<p class="atx-note">${esc(site.deityNote)}</p>` : '';
@@ -233,7 +233,7 @@ a{color:var(--gold)}
     const s=byId[id];if(!s)return;
     document.querySelectorAll('.atx-marker.active').forEach(m=>m.classList.remove('active'));
     const mk=document.querySelector('.atx-marker[data-site="'+id+'"]');if(mk)mk.classList.add('active');
-    const beings=(s.deities||[]).map(d=>'<a class="atx-chip" href="/sites/'+d.id+'/">'+esc(UNICODE[d.id]||d.id)+'</a><p class="atx-depict">'+esc(d.depiction)+'</p>').join('');
+    const beings=(s.deities||[]).map(d=>'<a class="atx-chip" href="/'+d.id+'/">'+esc(UNICODE[d.id]||d.id)+'</a><p class="atx-depict">'+esc(d.depiction)+'</p>').join('');
     const note=s.deityNote?'<p class="atx-note">'+esc(s.deityNote)+'</p>':'';
     const srcs=(s.sources||[]).map(x=>'<li>'+esc(x)+'</li>').join('');
     body.innerHTML='<h2>'+esc(s.name)+'</h2>'+(s.nativeName?'<p class="atx-native">'+esc(s.nativeName)+'</p>':'')+

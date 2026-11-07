@@ -51,7 +51,7 @@ test('page: every site is plotted and dossiered', () => {
     assert.ok(html.includes(`data-site="${s.id}"`), `${s.id}: map marker`);
     assert.ok(html.includes(`id="site-${s.id}"`), `${s.id}: dossier`);
     for (const d of s.deities) {
-      assert.ok(html.includes(`/sites/${d.id}/`), `${s.id}: temple link for ${d.id}`);
+      assert.ok(html.includes(`/${d.id}/`), `${s.id}: temple link for ${d.id}`);
     }
   }
 });
