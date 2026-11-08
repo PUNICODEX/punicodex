@@ -7,10 +7,16 @@
  */
 
 const fs = require('node:fs');
+const { acquireGenerationLock } = require('./generation-lock.js');
 
 const TRANSIENT = new Set(['EPERM', 'EBUSY', 'EAGAIN', 'UNKNOWN']);
+let lockAcquired = false;
 
 function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 5, delay = 50) {
+  if (!lockAcquired) {
+    acquireGenerationLock(`targeted generator (pid ${process.pid})`);
+    lockAcquired = true;
+  }
   // Use temp-file + atomic rename to avoid Windows AV/indexer locks on the
   // target file. This is far more reliable than retrying a direct write.
   const tmpPath = `${filePath}.tmp.${process.pid}`;

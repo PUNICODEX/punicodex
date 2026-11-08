@@ -42,6 +42,11 @@ const SUITES = [
   },
   { name: 'Scholars Load Tests', cmd: 'node platform/scholars/load.test.js' },
   { name: 'Scholars Concurrency Tests', cmd: 'node platform/scholars/concurrency.test.js' },
+  {
+    name: 'Generation Lock Tests',
+    cmd: 'node --test test/generation-lock.test.js',
+    timeout: 60000,
+  },
   { name: 'Oracle Tests', cmd: 'node test/oracle.test.js' },
   {
     name: 'Oracle Eval Battery',
@@ -362,6 +367,7 @@ const SUITES = [
     timeout: 60000,
   },
   { name: 'STRATA Page Tests', cmd: 'node test/strata-page.test.js', timeout: 30000 },
+  { name: 'Temple Art Room Tests', cmd: 'node test/temple-art-room.test.js', timeout: 120000 },
   { name: 'Sacred Atlas Tests', cmd: 'node test/sacred-atlas.test.js', timeout: 30000 },
   { name: 'Cards Editions Tests', cmd: 'node --test test/cards-editions.test.js', timeout: 30000 },
   {

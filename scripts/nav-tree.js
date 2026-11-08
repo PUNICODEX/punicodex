@@ -22,10 +22,10 @@ const HUBS = {
     tagline: 'The mapped world of names',
     blurb:
       'Every name in the pantheon, charted — the beings themselves, the threads that connect them, the patterns they form, and the live frontier of the Unicode web.',
-    footer: ['Origins', 'Pantheon', 'Patterns', 'Connections'],
+    footer: ['Pantheon', 'Origins', 'Patterns', 'Connections'],
     items: [
-      { label: 'Origins', href: '/pantheon/origins/', blurb: 'The strata of the pantheons, laid down in deep time — from the first Dreaming to the present day.' },
       { label: 'Pantheon', href: '/pantheon/', blurb: 'All 980 restorations, filterable by tradition.', children: 'pantheon' },
+      { label: 'Origins', href: '/pantheon/origins/', blurb: 'The strata of the pantheons, laid down in deep time — from the first Dreaming to the present day.' },
       { label: 'Connections', href: '/connections/', blurb: 'Cognates and kinships across traditions.' },
       { label: 'Patterns', href: '/patterns/', blurb: 'Recurring threads across the names, and what they mean.' },
       { label: 'Trending', href: '/trending/', blurb: 'What the world is searching in the pantheon.' },

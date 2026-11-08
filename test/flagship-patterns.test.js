@@ -40,9 +40,8 @@ const LEXICON_SET = new Set(LEXICON.map((e) => e.id));
 const TABBED_PAGES = [
   'index.html',
   'lore/index.html',
-  'gallery/index.html',
+  'art/index.html',
   'scholars/index.html',
-  'creatives/index.html',
   'patron/index.html',
   'patterns/index.html',
 ];
@@ -302,7 +301,9 @@ function auditPages(renderer) {
 
 function navLabels(html) {
   const labels = [];
-  const re = /class="nav-link[^"]*">([^<]+)</g;
+  // Top-level tabs AND submenu items (Extended under Lore, Merch/Art under
+  // Store) both count — the strip is one ordered sequence of destinations.
+  const re = /class="nav-(?:sub-)?link[^"]*">([^<]+)</g;
   let m;
   while ((m = re.exec(html)) !== null) labels.push(m[1].trim());
   return labels;

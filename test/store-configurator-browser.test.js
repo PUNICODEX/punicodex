@@ -98,6 +98,35 @@ let browser;
 let server;
 let base;
 
+async function dismissConsent(page) {
+  try {
+    await page.locator('.pc-cookie__btn--decline').click({ timeout: 2000 });
+  } catch {
+    // Consent was already resolved or has not mounted; no modal is blocking.
+  }
+}
+
+async function openStorePage(page, pathname) {
+  await page.route('https://punycodex-masters.vercel.app/mockups/*', (route) => {
+    const filename = path.basename(new URL(route.request().url()).pathname);
+    const file = path.join(ROOT, '.masters', 'mockups', filename);
+    if (fs.existsSync(file)) {
+      return route.fulfill({ path: file, contentType: 'image/jpeg' });
+    }
+    return route.continue();
+  });
+  await page.goto(`${base}${pathname}`, { waitUntil: 'domcontentloaded' });
+  await dismissConsent(page);
+  await page.waitForFunction(
+    () => {
+      const img = document.getElementById('stage-img');
+      return img?.complete && img.naturalWidth > 0;
+    },
+    null,
+    { timeout: 30000 }
+  );
+}
+
 // Stage snapshot: src, rendered boxes, overlay state, and a small pixel
 // signature of the stage so "same src but visibly different" is caught too.
 async function snap(page) {
@@ -167,7 +196,7 @@ async function clickAndSettle(page, el) {
 
 test('tee: BLACK chip preselected at init (composite truthfulness)', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
+  await openStorePage(page, '/store/merch/zeus/tee/');
   await page.waitForTimeout(400);
   const s = await snap(page);
   assert.strictEqual(s.activeColor, 'Black', `expected Black active, got ${s.activeColor}`);
@@ -178,7 +207,7 @@ test('tee: BLACK chip preselected at init (composite truthfulness)', async () =>
 
 test('tee: every colour click visibly changes the stage, box stays constant', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
+  await openStorePage(page, '/store/merch/zeus/tee/');
   await page.waitForTimeout(400);
   const init = await snap(page);
   const COMPOSITE_COLOUR = 'Black'; // compositeColor in the zeus-tee payload
@@ -232,7 +261,7 @@ test('tee: every colour click visibly changes the stage, box stays constant', as
 
 test('tee: composite is only kept for its own colour (Black); other colours use the base mockup', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
+  await openStorePage(page, '/store/merch/zeus/tee/');
   await page.waitForTimeout(400);
   const chips = await colourChips(page);
   const byLabel = async (label) => {
@@ -260,7 +289,7 @@ test('tee: composite is only kept for its own colour (Black); other colours use 
 
 test('tee: artwork pick swaps the print, never overlaps the composite', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
+  await openStorePage(page, '/store/merch/zeus/tee/');
   await page.waitForTimeout(400);
   const arts = await artChips(page);
   assert.ok(arts.length >= 2, 'expected artwork chips');
@@ -292,7 +321,7 @@ test('tee: artwork pick swaps the print, never overlaps the composite', async ()
 
 test('mug: "As shown" default; colour/art flows keep checkout honest', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/merch/zeus/mug/`, { waitUntil: 'load' });
+  await openStorePage(page, '/store/merch/zeus/mug/');
   await page.waitForTimeout(400);
   let s = await snap(page);
   assert.ok(s.src.includes('mockups'), 'mug init shows the composite');
@@ -314,7 +343,7 @@ test('mug: "As shown" default; colour/art flows keep checkout honest', async () 
 
 test('tote: "As shown" + colour pick gives visible tint feedback; exact preview after art pick', async () => {
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
-  await page.goto(`${base}/store/merch/zeus/tote/`, { waitUntil: 'load' });
+  await openStorePage(page, '/store/merch/zeus/tote/');
   await page.waitForTimeout(400);
   const chips = await colourChips(page);
   assert.ok(chips.length >= 2, 'tote should have colour chips');
@@ -340,7 +369,7 @@ test('tote: "As shown" + colour pick gives visible tint feedback; exact preview 
 
 test('mobile viewport: stage box constant across colour picks', async () => {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-  await page.goto(`${base}/store/merch/zeus/tee/`, { waitUntil: 'load' });
+  await openStorePage(page, '/store/merch/zeus/tee/');
   await page.waitForTimeout(400);
   const init = await snap(page);
   const boxes = new Set([JSON.stringify(init.stageBox)]);
@@ -352,6 +381,125 @@ test('mobile viewport: stage box constant across colour picks', async () => {
     boxes.add(JSON.stringify(s.stageBox));
   }
   assert.strictEqual(boxes.size, 1, `mobile stage box changed: ${[...boxes]}`);
+  await page.close();
+});
+
+test('art directory: All Art survives an empty Creatives API and every pill remains populated', async () => {
+  const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
+  const errors = [];
+  page.on('pageerror', (err) => {
+    // The static harness has no service-worker scope; that browser noise is
+    // unrelated to the art directory's own script health.
+    if (!err.message.includes('Failed to update a ServiceWorker')) errors.push(err.message);
+  });
+  await page.route('**/api/v1/creatives/**', (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: true, data: { assets: [] } }),
+    })
+  );
+  await page.goto(`${base}/store/art/`, { waitUntil: 'domcontentloaded' });
+  await dismissConsent(page);
+  const staticCount = await page
+    .locator('#art-static-data')
+    .evaluate((el) => JSON.parse(el.textContent).length);
+  assert.ok(staticCount > 100, `expected the static collection, got ${staticCount}`);
+  await page.waitForFunction(
+    (count) => document.querySelectorAll('#art-grid .art-card').length === count,
+    staticCount
+  );
+  assert.ok(await page.locator('#art-empty').isHidden(), 'All Art falsely shows its empty state');
+  assert.ok((await page.locator('#art-grid [data-kind="gallery"]').count()) > 0);
+  assert.ok((await page.locator('#art-grid [data-kind="commons"]').count()) > 0);
+
+  await page.locator('[data-cat="commons"]').click();
+  assert.ok(await page.locator('#art-commons').isVisible());
+  assert.ok(await page.locator('#art-directory').isHidden());
+  assert.ok((await page.locator('#art-commons .art-card').count()) > 0);
+  await page.locator('[data-cat="galleries"]').click();
+  assert.ok(await page.locator('#art-galleries').isVisible());
+  assert.ok((await page.locator('#art-galleries .art-card').count()) > 0);
+  await page
+    .locator('[data-cat="all"]')
+    .evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  await page.locator('[data-cat="all"]').click();
+  assert.strictEqual(await page.locator('#art-grid .art-card').count(), staticCount);
+  assert.deepStrictEqual(errors, [], `art directory browser errors: ${errors.join('; ')}`);
+  await page.close();
+});
+
+test('art directory: Creatives merge into All Art without leaking into the Creatives-only view', async () => {
+  const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
+  const creative = {
+    id: 'browser-contract-work',
+    kind: 'gallery',
+    href: 'https://invalid.example/spoofed-static-destination',
+    meta: 'Spoofed static metadata',
+    title: 'Browser Contract Work',
+    description: 'A university test artwork',
+    department: 'Greek',
+    creatorName: 'Test Creator',
+    tags: ['mythology'],
+    priceCents: 1200,
+    createdAt: '2026-11-01T00:00:00.000Z',
+    thumbnailUrl: '/assets/brand/02-favicons/favicon.svg',
+  };
+  await page.route('**/api/v1/creatives/**', (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: true, data: { assets: [creative] } }),
+    })
+  );
+  await page.goto(`${base}/store/art/`, { waitUntil: 'domcontentloaded' });
+  await dismissConsent(page);
+  const staticCount = await page
+    .locator('#art-static-data')
+    .evaluate((el) => JSON.parse(el.textContent).length);
+  await page.waitForFunction(
+    (count) => document.querySelectorAll('#art-grid .art-card').length === count,
+    staticCount + 1
+  );
+  assert.strictEqual(await page.locator('#art-grid .art-card').count(), staticCount + 1);
+  assert.strictEqual(await page.locator('#art-grid h3:text("Browser Contract Work")').count(), 1);
+  assert.strictEqual(
+    await page.locator('#art-grid a[href="/creatives/?asset=browser-contract-work"]').count(),
+    1,
+    'API records must not override their Creative destination with static-card fields'
+  );
+  assert.strictEqual(await page.locator('#art-grid a[href*="invalid.example"]').count(), 0);
+  await page.locator('[data-cat="creatives"]').click();
+  assert.strictEqual(await page.locator('#art-grid2 .art-card').count(), 1);
+  assert.strictEqual(await page.locator('#art-grid2 h3').textContent(), 'Browser Contract Work');
+  assert.strictEqual(await page.locator('#art-grid2 .price').textContent(), '$12.00');
+  await page.close();
+});
+
+test('temple art room: pills, deep links, canonical swap, and global temple chrome work in a browser', async () => {
+  const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
+  await page.goto(`${base}/sites/athena/art/`, { waitUntil: 'domcontentloaded' });
+  await dismissConsent(page);
+  assert.strictEqual(await page.locator('.global-strip').count(), 1);
+  assert.strictEqual(await page.locator('.site-footer').count(), 1);
+  assert.strictEqual(await page.locator('.temple-breadcrumb').count(), 1);
+  assert.ok(await page.locator('#art-grid-all').isVisible());
+  assert.ok((await page.locator('#art-grid-all .art-card').count()) > 0);
+
+  await page.locator('[data-cat="temple"]').click();
+  assert.ok(await page.locator('#art-grid-temple').isVisible());
+  assert.ok((await page.locator('#art-grid-temple .art-card').count()) > 0);
+  assert.ok(page.url().includes('?view=temple'));
+  assert.ok((await page.locator('#art-canonical').getAttribute('href')).includes('?view=temple'));
+  assert.ok((await page.locator('#art-og-url').getAttribute('content')).includes('?view=temple'));
+
+  await page.goto(`${base}/sites/athena/art/?view=creatives`, {
+    waitUntil: 'domcontentloaded',
+  });
+  assert.ok(await page.locator('#art-grid-creatives').isVisible());
+  assert.ok(
+    (await page.locator('#art-canonical').getAttribute('href')).includes('?view=creatives')
+  );
   await page.close();
 });
 
@@ -378,7 +526,7 @@ async function run() {
       console.error(
         `    ${String(err.message || err)
           .split('\n')
-          .slice(0, 5)
+          .slice(0, 20)
           .join('\n    ')}`
       );
     }

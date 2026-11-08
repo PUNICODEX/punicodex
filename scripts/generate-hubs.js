@@ -84,12 +84,12 @@ function pageHtml(hubId, hub, active) {
     <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf23">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="/css/hub.css?v=2">
-    <link rel="stylesheet" href="/css/footer.css?v=5">
+    <link rel="stylesheet" href="/css/footer.css?v=6">
     <meta name="theme-color" content="#0e0b08">
     <meta name="color-scheme" content="dark">
     <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>

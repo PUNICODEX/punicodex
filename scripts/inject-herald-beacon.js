@@ -11,6 +11,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { execSync } = require('node:child_process');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const START = '<!-- PUNICODEX-HERALD-BEACON-START -->';
@@ -109,7 +110,7 @@ const processFile = (file) => {
     return;
   }
   if (out !== html) {
-    withRetry(() => fs.writeFileSync(file, out, 'utf8'));
+    writeFileWithRetry(file, out);
     injected++;
   }
 };

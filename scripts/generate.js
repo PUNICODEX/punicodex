@@ -27,8 +27,11 @@
 
 const { spawnSync } = require('child_process');
 const path = require('path');
+const { acquireGenerationLock } = require('./generation-lock.js');
 
 const root = path.join(__dirname, '..');
+acquireGenerationLock('npm run generate');
+process.env.PUNICODEX_GENERATE_LOCK_HELD = '1';
 
 // Steps whose outputs are gitignored binary assets (multi-GB merch composites,
 // .masters/ copies). On a fresh CI checkout they regenerate gigabytes of PNGs
@@ -66,6 +69,9 @@ const allScripts = [
   'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',
   'scripts/create-flagship.js --regenerate-all',
+  // Per-temple Art rooms (sites/{id}/art/) — the /store/art/ architecture in a
+  // temple-scoped instance; an 11th temple page create-flagship does not write.
+  'scripts/generate-temple-art.js',
   // Fix legacy redirect stubs so their canonical / refresh / anchor targets point
   // at the clean /{id}/ form instead of /sites/{id}/. Must run immediately after
   // flagship regeneration because create-flagship.js writes those stubs.

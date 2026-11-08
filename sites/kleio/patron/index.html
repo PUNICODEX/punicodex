@@ -29,7 +29,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/kleio.jpg">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf23">
     <link rel="stylesheet" href="../styles.css?v=perf21">
     <link rel="stylesheet" href="patron.css?v=4">
     <style>
@@ -81,7 +81,7 @@
   ]
 }
     </script>
-    <link rel="stylesheet" href="/css/footer.css?v=5">
+    <link rel="stylesheet" href="/css/footer.css?v=6">
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -116,15 +116,24 @@
                 <!-- Logo injected by JS -->
             </a>
             <div class="nav-links tab-nav-links">
-                <a href="../" class="nav-link">Home</a>
-                <a href="../lore/index.html" class="nav-link">Lore</a>
-                <a href="../gallery/index.html" class="nav-link">Gallery</a>
-                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../index.html" class="nav-link">Home</a>
+                <span class="nav-group">
+                    <a href="../lore/index.html" class="nav-link">Lore</a>
+                    <span class="nav-sub">
+                        <a href="../lore/extended/index.html" class="nav-sub-link">Extended</a>
+                    </span>
+                </span>
+                <span class="nav-group">
+                    <span class="nav-link nav-link--static">Store</span>
+                    <span class="nav-sub">
+                        <a href="/store/merch/kleio/" class="nav-sub-link">Merch</a>
+                        <a href="../art/index.html" class="nav-sub-link">Art</a>
+                    </span>
+                </span>
                 <a href="../patterns/index.html" class="nav-link">Patterns</a>
-                <a href="../blog/index.html" class="nav-link">Blog</a>
                 <a href="../scholars/index.html" class="nav-link">Scholars</a>
-                <a href="../gallery/index.html#creatives" class="nav-link">Creatives</a>
-                <a href="./" class="nav-link active">Patrons</a>
+                <a href="./index.html" class="nav-link active">Patrons</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -144,15 +153,24 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
-        <a href="../" class="nav-link">Home</a>
-        <a href="../lore/index.html" class="nav-link">Lore</a>
-        <a href="../gallery/index.html" class="nav-link">Gallery</a>
-        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../index.html" class="nav-link">Home</a>
+        <span class="nav-group">
+            <a href="../lore/index.html" class="nav-link">Lore</a>
+            <span class="nav-sub">
+                <a href="../lore/extended/index.html" class="nav-sub-link">Extended</a>
+            </span>
+        </span>
+        <span class="nav-group">
+            <span class="nav-link nav-link--static">Store</span>
+            <span class="nav-sub">
+                <a href="/store/merch/kleio/" class="nav-sub-link">Merch</a>
+                <a href="../art/index.html" class="nav-sub-link">Art</a>
+            </span>
+        </span>
         <a href="../patterns/index.html" class="nav-link">Patterns</a>
-        <a href="../blog/index.html" class="nav-link">Blog</a>
         <a href="../scholars/index.html" class="nav-link">Scholars</a>
-        <a href="../gallery/index.html#creatives" class="nav-link">Creatives</a>
-        <a href="./" class="nav-link active">Patrons</a>
+        <a href="./index.html" class="nav-link active">Patrons</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
     </div>
 
     <main class="temple-patron-page">
@@ -351,8 +369,8 @@
                 <div class="footer-column">
                     <h2 class="footer-heading"><a href="/world/">Atlas</a></h2>
                     <p class="footer-role">The Mind of the Pantheon</p>
-                    <a href="/pantheon/origins/">Origins</a>
                     <a href="/pantheon/">Pantheon</a>
+                    <a href="/pantheon/origins/">Origins</a>
                     <a href="/patterns/">Patterns</a>
                     <a href="/connections/">Connections</a>
                 </div>

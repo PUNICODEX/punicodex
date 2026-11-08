@@ -79,18 +79,41 @@ test('the store entrance presents the Merch and Art departments', () => {
   assert.ok(!html.includes('id="grid"'), 'entrance must not carry the collections grid');
 });
 
-test('the art directory shows art immediately and links only live destinations', () => {
+test('the art directory shows every static collection immediately and merges Creatives at runtime', () => {
   const html = read('store/art/index.html');
-  // Art is shown immediately: the directory mounts and fetches the artworks.
   assert.ok(html.includes('id="art-grid"'), 'art: no artwork grid');
   assert.ok(html.includes('/api/v1/creatives/'), 'art: no artwork API source');
-  // Categories are FILTERS, not dead hrefs.
-  for (const cat of ['tattoo', 'commons', 'galleries']) {
+  const dataMatch = html.match(
+    /<script type="application\/json" id="art-static-data">([\s\S]*?)<\/script>/
+  );
+  assert.ok(dataMatch, 'art: no embedded Commons/gallery collection');
+  const staticArt = JSON.parse(dataMatch[1]);
+  const kinds = new Set(staticArt.map((a) => a.kind));
+  assert.ok(staticArt.length > 100, `art: only ${staticArt.length} static works`);
+  assert.ok(kinds.has('commons'), 'art: All Art omits the Commons');
+  assert.ok(kinds.has('gallery'), 'art: All Art omits Temple Galleries');
+  for (const a of staticArt) {
+    assert.ok(a.title && a.thumbnailUrl && a.href, `art: incomplete static card ${a.id}`);
+  }
+  assert.ok(
+    html.includes('STATIC_ART.concat(state.creatives)'),
+    'art: API replaces instead of merges'
+  );
+  assert.ok(
+    html.includes('applyFilters(state.creatives.slice()'),
+    'art: Creatives includes static works'
+  );
+  const allGrid = html.match(/<div class="art-grid" id="art-grid">([\s\S]*?)<\/div>/);
+  assert.ok(allGrid?.[1].includes('class="art-card"'), 'art: no no-JS artwork cards');
+  // Categories are FILTERS, not dead hrefs. Tattoo became a tag-only filter
+  // (the bubble was redundant with the tag selector).
+  for (const cat of ['creatives', 'commons', 'galleries']) {
     assert.ok(html.includes(`data-cat="${cat}"`), `art: missing ${cat} filter`);
   }
+  assert.ok(html.includes('value="tattoo"'), 'art: missing tattoo tag selector');
   assert.ok(!/href="\/store\/art\/(gallery|commons)\/"/.test(html), 'art: dead department hrefs');
   assert.ok(html.includes('href="/store/art/galleries/"'), 'art: no Temple Galleries page link');
-  // The Muse Flame hero animation ships with the page.
+  assert.ok(!html.includes('/gallery/#commons'), 'art: stale pre-restructure Commons links');
   assert.ok(html.includes('pc-fx-muse'), 'art: hero animation missing');
 });
 

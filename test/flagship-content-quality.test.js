@@ -151,12 +151,20 @@ function auditGeneratedPages() {
       ISSUES.missingSections.push(`${id}: lore/extended/index.html missing`);
     }
 
-    // --- Gallery page ---
+    // --- Art room (the gallery collection now lives here) ---
+    const artHtml = loadHtml(id, 'art/index.html');
+    if (!artHtml) {
+      ISSUES.missingSections.push(`${id}: art/index.html missing`);
+    } else if (!artHtml.includes('data-cat="temple"') || !artHtml.includes('data-cat="commons"')) {
+      ISSUES.missingSections.push(`${id}: art room missing Temple Gallery / Commons pills`);
+    }
+
+    // --- Gallery page redirects into the art room (no broken URLs) ---
     const galleryHtml = loadHtml(id, 'gallery/index.html');
     if (!galleryHtml) {
       ISSUES.missingSections.push(`${id}: gallery/index.html missing`);
-    } else if (galleryHtml.includes('Gallery images coming soon')) {
-      ISSUES.emptyGallery.push(id);
+    } else if (!galleryHtml.includes('art/?view=temple')) {
+      ISSUES.missingSections.push(`${id}: gallery page lost its redirect to the art room`);
     }
 
     // --- Restoration-preservation explanation (mechanical) ---

@@ -30,7 +30,7 @@
     <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf23">
     <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
     <link rel="stylesheet" href="patterns.css?v=1">
     <style>
@@ -120,15 +120,24 @@
                 <!-- Logo injected by JS -->
             </a>
             <div class="nav-links tab-nav-links">
-                <a href="../" class="nav-link">Home</a>
-                <a href="../lore/index.html" class="nav-link">Lore</a>
-                <a href="../gallery/index.html" class="nav-link">Gallery</a>
-                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
-                <a href="./" class="nav-link active">Patterns</a>
-                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="../index.html" class="nav-link">Home</a>
+                <span class="nav-group">
+                    <a href="../lore/index.html" class="nav-link">Lore</a>
+                    <span class="nav-sub">
+                        <a href="../lore/extended/index.html" class="nav-sub-link">Extended</a>
+                    </span>
+                </span>
+                <span class="nav-group">
+                    <span class="nav-link nav-link--static">Store</span>
+                    <span class="nav-sub">
+                        <a href="/store/merch/chiron/" class="nav-sub-link">Merch</a>
+                        <a href="../art/index.html" class="nav-sub-link">Art</a>
+                    </span>
+                </span>
+                <a href="./index.html" class="nav-link active">Patterns</a>
                 <a href="../scholars/index.html" class="nav-link">Scholars</a>
-                <a href="../gallery/index.html#creatives" class="nav-link">Creatives</a>
                 <a href="../patron/index.html" class="nav-link">Patrons</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -148,15 +157,24 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
-        <a href="../" class="nav-link">Home</a>
-        <a href="../lore/index.html" class="nav-link">Lore</a>
-        <a href="../gallery/index.html" class="nav-link">Gallery</a>
-        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
-        <a href="./" class="nav-link active">Patterns</a>
-        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="../index.html" class="nav-link">Home</a>
+        <span class="nav-group">
+            <a href="../lore/index.html" class="nav-link">Lore</a>
+            <span class="nav-sub">
+                <a href="../lore/extended/index.html" class="nav-sub-link">Extended</a>
+            </span>
+        </span>
+        <span class="nav-group">
+            <span class="nav-link nav-link--static">Store</span>
+            <span class="nav-sub">
+                <a href="/store/merch/chiron/" class="nav-sub-link">Merch</a>
+                <a href="../art/index.html" class="nav-sub-link">Art</a>
+            </span>
+        </span>
+        <a href="./index.html" class="nav-link active">Patterns</a>
         <a href="../scholars/index.html" class="nav-link">Scholars</a>
-        <a href="../gallery/index.html#creatives" class="nav-link">Creatives</a>
         <a href="../patron/index.html" class="nav-link">Patrons</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
     </div>
 
     <main class="temple-patterns-page">

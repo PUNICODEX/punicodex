@@ -159,7 +159,7 @@ function main() {
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-    <link rel="stylesheet" href="/css/footer.css?v=5">
+    <link rel="stylesheet" href="/css/footer.css?v=6">
     <script type="application/ld+json">${JSON.stringify(itemList)}</script>
     <script src="/js/px-core.js?v=perf23" defer></script>
     <script src="${PINS.NAV_HUBS_JS}" defer></script>

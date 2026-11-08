@@ -130,11 +130,11 @@ const FLAGSHIP_TEMPLATES = [
   'templates/flagship/index.html',
   'templates/flagship/lore/index.html',
   'templates/flagship/lore/extended/index.html',
-  'templates/flagship/gallery/index.html',
+  // gallery/ and creatives/ are redirect stubs into the temple art room —
+  // they intentionally carry no tab nav, mobile menu, or brand cluster.
   'templates/flagship/patterns/index.html',
   'templates/flagship/scholars/index.html',
   'templates/flagship/blog/index.html',
-  'templates/flagship/creatives/index.html',
   'templates/flagship/patron/index.html',
 ];
 

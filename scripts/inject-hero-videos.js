@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -185,7 +186,7 @@ for (const site of sites) {
     console.log(`  ⚠️ ${site.id}: mascot block not found, skipping HTML injection`);
   } else {
     html = html.replace(mascotRegex, replacement);
-    fs.writeFileSync(htmlPath, html, 'utf8');
+    writeFileWithRetry(htmlPath, html, 'utf8');
     console.log(`✓ ${site.id}: video injected into index.html`);
   }
 
@@ -193,7 +194,7 @@ for (const site of sites) {
   let css = fs.readFileSync(cssPath, 'utf8');
   if (!css.includes('HERO VIDEO PORTRAIT')) {
     css += cssBlock;
-    fs.writeFileSync(cssPath, css, 'utf8');
+    writeFileWithRetry(cssPath, css, 'utf8');
     console.log(`✓ ${site.id}: video CSS added`);
   } else {
     console.log(`  ${site.id}: video CSS already present`);
@@ -203,7 +204,7 @@ for (const site of sites) {
   let js = fs.readFileSync(jsPath, 'utf8');
   if (!js.includes('HERO VIDEO PAUSE/PLAY TOGGLE')) {
     js += jsBlock;
-    fs.writeFileSync(jsPath, js, 'utf8');
+    writeFileWithRetry(jsPath, js, 'utf8');
     console.log(`✓ ${site.id}: video JS added`);
   } else {
     console.log(`  ${site.id}: video JS already present`);

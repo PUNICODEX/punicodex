@@ -15,6 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
@@ -161,24 +162,10 @@ function busyWait(ms) {
   while (Date.now() - start < ms) {}
 }
 
-// Truncating writes occasionally fail on Windows with errno UNKNOWN when the
-// indexer/AV has latched onto the file after a mass read pass; a temp-file
-// write + rename sidesteps the share conflict (rename retries like the store
-// generator's atomic write).
+// Atomic replacement prevents concurrent readers from observing a truncated
+// page while this injector rewrites it.
 function writeFileAtomic(filePath, content) {
-  try {
-    fs.writeFileSync(filePath, content, 'utf8');
-  } catch (err) {
-    if (err.code !== 'UNKNOWN' && err.code !== 'EPERM' && err.code !== 'EACCES') throw err;
-    const tmp = `${filePath}.tmp-${process.pid}`;
-    fs.writeFileSync(tmp, content, 'utf8');
-    try {
-      fs.renameSync(tmp, filePath);
-    } catch (renameErr) {
-      fs.unlinkSync(tmp);
-      throw renameErr;
-    }
-  }
+  writeFileWithRetry(filePath, content);
 }
 
 function injectIntoFile(filePath) {

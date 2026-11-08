@@ -55,6 +55,14 @@ const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 const exists = (rel) => fs.existsSync(path.join(root, rel));
 const titleOf = (html) => (html.match(/<title>([^<]*)<\/title>/) || [])[1] || '';
 const descOf = (html) => (html.match(/<meta name="description" content="([^"]*)">/) || [])[1] || '';
+const canonicalOf = (html) => {
+  const tag = html.match(/<link\b[^>]*\brel=["']canonical["'][^>]*>/i)?.[0] || '';
+  return tag.match(/\bhref=["']([^"']+)["']/i)?.[1] || '';
+};
+const ogUrlOf = (html) => {
+  const tag = html.match(/<meta\b[^>]*\bproperty=["']og:url["'][^>]*>/i)?.[0] || '';
+  return tag.match(/\bcontent=["']([^"']+)["']/i)?.[1] || '';
+};
 const LEXICON_IDS = new Set(LEXICON.map((e) => e.id));
 
 /* ------------------------------ blog titles ------------------------------ */
@@ -343,22 +351,24 @@ test('temple canonicals + og:url use the clean /{id}/ form (never /sites/)', () 
       `${id}: still references the /sites/ URL form`
     );
   }
-  // Flagship root + tab pages.
+  // Flagship root + current tab pages (Gallery retired into Art).
   for (const [id, tab] of [
     ['zeus', ''],
     ['zeus', 'lore/'],
     ['athena', ''],
-    ['athena', 'gallery/'],
+    ['athena', 'art/'],
   ]) {
     const rel = `sites/${id}/${tab}index.html`;
     if (!exists(rel)) continue;
     const html = read(rel);
-    assert.ok(
-      html.includes(`<link rel="canonical" href="https://punicodex.com/${id}/${tab}">`),
+    assert.strictEqual(
+      canonicalOf(html),
+      `https://punicodex.com/${id}/${tab}`,
       `${id}/${tab}: canonical is not the clean /${id}/${tab} form`
     );
-    assert.ok(
-      html.includes(`<meta property="og:url" content="https://punicodex.com/${id}/${tab}">`),
+    assert.strictEqual(
+      ogUrlOf(html),
+      `https://punicodex.com/${id}/${tab}`,
       `${id}/${tab}: og:url is not the clean /${id}/${tab} form`
     );
   }
@@ -667,7 +677,7 @@ test('every public HTML page has canonical or noindex robots directive', () => {
       const rel = path.join(dir, file).replace(/\\/g, '/');
       if (SEO_EXCLUDE_RE.test(rel)) return;
       const html = read(rel);
-      const hasCanonical = /<link\s+rel=["']canonical["']\s+href=["'][^"']+["']/i.test(html);
+      const hasCanonical = Boolean(canonicalOf(html));
       const hasNoindex = /<meta[^>]*name=["']robots["'][^>]*noindex/i.test(html);
       if (!hasCanonical && !hasNoindex) missing.push(rel);
     });

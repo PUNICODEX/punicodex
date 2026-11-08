@@ -10,6 +10,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -129,7 +130,7 @@ function injectIntoFile(filePath, headSnippet, bodySnippet) {
     }
   }
 
-  withRetry(() => fs.writeFileSync(filePath, cleaned, 'utf8'));
+  writeFileWithRetry(filePath, cleaned);
   return true;
 }
 
@@ -189,7 +190,7 @@ function stripFromFile(filePath) {
   let cleaned = removeMarkedBlock(html, HEAD_MARKER_START, HEAD_MARKER_END);
   cleaned = removeMarkedBlock(cleaned, BODY_MARKER_START, BODY_MARKER_END);
   if (cleaned !== html) {
-    withRetry(() => fs.writeFileSync(filePath, cleaned, 'utf8'));
+    writeFileWithRetry(filePath, cleaned);
     return true;
   }
   return false;

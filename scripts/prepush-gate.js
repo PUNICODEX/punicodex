@@ -74,6 +74,10 @@ const CANONICAL_SUITES = [
 
 const RULES = [
   {
+    pattern: /^scripts\/(?:generation-lock|write-file-retry|generate|inject-analytics|inject-university-collaborators|inject-herald-beacon|inject-cookie-consent|inject-hero-videos|inject-px-core|generate-strata-page)\.js$|^test\/generation-lock\.test\.js$/,
+    suites: ['Generation Lock Tests'],
+  },
+  {
     pattern: /^scripts\/(arche-chapters|generate-arche-page)\.js$|^js\/arche\.js$|^css\/arche\.css$|^genesis\/|^test\/arche\.test\.js$/,
     suites: ['Archē Tests'],
   },
@@ -88,6 +92,17 @@ const RULES = [
   {
     pattern: /^templates\/flagship\/(gallery|blog|lore|patron|patterns|scholars|index)\.html$|^scripts\/create-flagship\.js$|^assets\/ai-commons\/|^test\/temple-commons-gallery\.test\.js$/,
     suites: ['Temple Commons Gallery Tests'],
+  },
+  {
+    // Temple Art Room — the tab-strip restructure (STORE▾Merch·Art), the
+    // per-temple art pages, and the gallery/creatives redirect stubs.
+    pattern: /^scripts\/(?:generate-temple-art|create-flagship|generate-blog-pages|generate-blog-series-pages)\.js$|^templates\/flagship\/.*\.html$|^test\/(?:temple-art-room|flagship-mobile-nav)\.test\.js$/,
+    suites: [
+      'Temple Art Room Tests',
+      'Flagship Mobile Nav Tests',
+      'Flagship Patterns Tests',
+      'Flagship Content Quality Audit',
+    ],
   },
   {
     pattern: /^scripts\/sync-mobile-menu\.js$|^scripts\/nav-tree\.js$|^scripts\/generate-herald\.js$|^templates\/herald\/|^platform\/public\/scholars\/|^test\/mobile-menu-drift\.test\.js$/,
@@ -454,6 +469,17 @@ function selfTest(suiteCommands) {
   for (const name of named) {
     if (!suiteCommands.has(name)) {
       console.error(`  ${C.red}mapping references unknown suite: ${name}${C.reset}`);
+      ok = false;
+    }
+  }
+  const artRule = RULES.find((rule) => rule.suites.includes('Temple Art Room Tests'));
+  for (const file of [
+    'templates/flagship/index.html',
+    'templates/flagship/blog/index.html',
+    'templates/flagship/creatives/index.html',
+  ]) {
+    if (!artRule?.pattern.test(file)) {
+      console.error(`  ${C.red}temple-art rule does not cover: ${file}${C.reset}`);
       ok = false;
     }
   }

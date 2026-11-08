@@ -550,9 +550,9 @@ ${footerHtml()}
 // ─── Art department (/store/art/) — the Art Directory ───
 // The /creatives marketplace redesigned as the Reliquary's art room: the
 // artworks themselves front and center, with categories as FILTERS (not
-// destinations): Tattoo Art, The Commons, and Temple Galleries all live in
-// the one directory. Temple Galleries additionally has its own ordered page
-// at /store/art/galleries/ (the full story-scroll).
+// destinations). All Art merges the static Commons/gallery collection with
+// the Creatives API; the Creatives view remains creator work only. Temple
+// Galleries additionally has its own ordered page at /store/art/galleries/.
 const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
 const GALLERY_DATA = require(path.join(ROOT, 'scripts', 'gallery-data.json'));
 
@@ -585,24 +585,33 @@ function renderArtDepartment() {
   const traditions = Object.keys(PANTHEON_META)
     .map((id) => PANTHEON_META[id].label || id)
     .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
-  const galleryCovers = galleryTemples()
-    .map(
-      (t) => `<a class="art-card" href="/store/art/galleries/#${t.id}" data-gid="${t.id}">
-      <div class="imgbox"><img src="${esc(t.images[0].src)}" alt="${esc(t.images[0].alt || t.name)}" loading="lazy"></div>
-      <div class="body"><div class="sub">Temple Gallery</div><h3>${esc(t.name)}</h3>
-      <div class="sub" style="text-transform:none;letter-spacing:0">${t.images.length} works${t.script ? ` · ${esc(t.script)}` : ''}</div></div>
-    </a>`
-    )
-    .join('\n    ');
+  const traditionFor = (id) => {
+    const e = LEXICON_BY_ID.get(id);
+    return (e && PANTHEON_META[e.pantheon] && PANTHEON_META[e.pantheon].label) || '';
+  };
+  const galleryItems = galleryTemples().map((t) => ({
+    id: `gallery-${t.id}`,
+    templeId: t.id,
+    kind: 'gallery',
+    title: t.name,
+    description: `${t.images.length} works${t.script ? ` · ${t.script}` : ''}`,
+    department: traditionFor(t.id),
+    tags: ['historical', 'temple-gallery'],
+    createdAt: '',
+    thumbnailUrl: t.images[0].src,
+    alt: t.images[0].alt || t.name,
+    href: `/store/art/galleries/#${t.id}`,
+    meta: 'Temple Gallery',
+  }));
 
   // The Commons — the studio's keeper collection (assets/ai-commons, tracked).
-  // Each work links into its deity's temple gallery Commons section.
+  // Each work links into its deity's temple art room.
   const COMMONS_DIR = path.join(ROOT, 'assets', 'ai-commons');
   const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'oil', 'geometric'];
   const commonsByDeity = new Map();
   try {
     for (const f of fs.readdirSync(COMMONS_DIR).filter((f) => f.endsWith('.jpg'))) {
-      let m = f.match(/^(.+?)-v(\d+\.\d+)\.jpg$/) || f.match(/^([a-z]+)\.jpg$/);
+      const m = f.match(/^(.+?)-v(\d+\.\d+)\.jpg$/) || f.match(/^([a-z]+)\.jpg$/);
       if (!m) continue;
       let deity = m[1];
       // family-tagged files: <deity>-<family>-vN.M.jpg -> deity
@@ -614,19 +623,37 @@ function renderArtDepartment() {
   } catch {
     /* dir absent */
   }
-  const commonsCards = [...commonsByDeity.entries()]
+  const commonsItems = [...commonsByDeity.entries()]
     .sort((a, b) => b[1].length - a[1].length)
     .map(([id, files]) => {
-      const e = LEXICON.find((x) => x.id === id);
+      const e = LEXICON_BY_ID.get(id);
       const f = files.sort()[0];
       const study = (f.match(/-v(\d+\.\d+)\.jpg$/) || [])[1] || 'studio';
-      return `<a class="art-card" href="/${id}/gallery/#commons">
-      <div class="imgbox"><img src="/assets/ai-commons/${f}" alt="${esc(e ? e.unicode : id)} — PuniCodex studio, gold line art" loading="lazy" width="512" height="512"></div>
-      <div class="body"><div class="sub">PuniCodex Studio · Commons</div><h3>${esc(e ? e.unicode : id)}</h3>
-      <div class="sub" style="text-transform:none;letter-spacing:0">study v${study} · CC BY 4.0 · free</div></div>
+      const family = FAMILIES.find((x) => f.includes(`-${x}-`)) || 'classic-gold';
+      return {
+        id: `commons-${id}`,
+        templeId: id,
+        kind: 'commons',
+        title: e ? e.unicode : id,
+        description: `study v${study} · CC BY 4.0 · free`,
+        department: traditionFor(id),
+        tags: ['commons', family],
+        createdAt: study === 'studio' ? '' : study,
+        thumbnailUrl: `/assets/ai-commons/${f}`,
+        alt: `${e ? e.unicode : id} — PuniCodex studio ${family.replace(/-/g, ' ')}`,
+        href: `/${id}/art/?view=commons`,
+        meta: 'PuniCodex Studio · Commons',
+      };
+    });
+  const staticArt = [...galleryItems, ...commonsItems];
+  const staticCard = (a) => `<a class="art-card" href="${esc(a.href)}" data-gid="${esc(a.templeId)}" data-kind="${a.kind}">
+      <div class="imgbox"><img src="${esc(a.thumbnailUrl)}" alt="${esc(a.alt)}" loading="lazy"${a.kind === 'commons' ? ' width="512" height="512"' : ''}></div>
+      <div class="body"><div class="sub">${esc(a.meta)}</div><h3>${esc(a.title)}</h3>
+      <div class="sub" style="text-transform:none;letter-spacing:0">${esc(a.description)}</div></div>
     </a>`;
-    })
-    .join('\n    ');
+  const galleryCovers = galleryItems.map(staticCard).join('\n    ');
+  const commonsCards = commonsItems.map(staticCard).join('\n    ');
+  const allStaticCards = staticArt.map(staticCard).join('\n    ');
   const commonsCount = [...commonsByDeity.values()].reduce((n, f) => n + f.length, 0);
 
   return `${head({
@@ -648,7 +675,7 @@ function renderArtDepartment() {
   </div>
   <div class="art-cats" role="tablist" aria-label="Art categories">
     <button class="art-cat active" data-cat="all" role="tab">All Art</button>
-    <button class="art-cat" data-cat="tattoo" role="tab">Tattoo Art</button>
+    <button class="art-cat" data-cat="creatives" role="tab">Creatives</button>
     <button class="art-cat" data-cat="commons" role="tab">The Commons</button>
     <button class="art-cat" data-cat="galleries" role="tab">Temple Galleries</button>
   </div>
@@ -669,7 +696,9 @@ function renderArtDepartment() {
         <option value="az">A – Z</option>
       </select>
     </div>
-    <div class="art-grid" id="art-grid"></div>
+    <div class="art-grid" id="art-grid">
+    ${allStaticCards}
+    </div>
     <div class="art-empty" id="art-empty" hidden></div>
   </div>
   <div id="art-galleries" hidden>
@@ -679,66 +708,126 @@ function renderArtDepartment() {
     </div>
   </div>
   <div id="art-commons" hidden>
-    <p style="color:var(--dim);padding:1rem 0 0;max-width:70ch">Rights-cleared mythological art in the house style — gold on void — free for all under <strong>CC BY 4.0</strong>. The studio's first collection is live: <strong>${commonsCount} works across ${commonsByDeity.size} beings</strong>, each linked to its temple's gallery. Student and contributor collections join as the university door opens.</p>
+    <p style="color:var(--dim);padding:1rem 0 0;max-width:70ch">Rights-cleared mythological art in the house style — gold on void — free for all under <strong>CC BY 4.0</strong>. The studio's first collection is live: <strong>${commonsCount} works across ${commonsByDeity.size} beings</strong>, each linked to its temple's art room. Student and contributor collections join as the university door opens.</p>
     <div class="art-grid">
     ${commonsCards}
     </div>
   </div>
+  <div id="art-creatives" hidden>
+    <p style="color:var(--dim);padding:1rem 0 0;max-width:70ch">Licensed mythological artwork from verified university creators and independent artists — <strong>credited always, paid properly</strong>. The first artists are being gathered; the university door opens first.</p>
+    <div id="art-directory-creatives">
+      <div class="art-filters">
+        <input id="art-q2" type="search" placeholder="Search by title, myth, or style…" aria-label="Search artworks">
+        <select id="art-tradition2" aria-label="Filter by tradition">
+          <option value="">All Traditions</option>
+          ${traditions.map((t) => `<option value="${esc(t.toLowerCase())}">${esc(t)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="art-grid" id="art-grid2"></div>
+      <div class="art-empty" id="art-empty2" hidden></div>
+    </div>
+  </div>
 </div>
+<script type="application/json" id="art-static-data">${JSON.stringify(staticArt).replace(/</g, '\\u003c')}</script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
 <script>
 (function () {
   var API = '/api/v1/creatives/';
-  var state = { cat: 'all', q: '', tradition: '', tag: '', sort: 'newest', assets: [] };
+  var STATIC_ART = JSON.parse(document.getElementById('art-static-data').textContent);
+  var state = { cat: 'all', q: '', tradition: '', tag: '', sort: 'newest', assets: STATIC_ART.slice(), creatives: [] };
   var grid = document.getElementById('art-grid');
   var empty = document.getElementById('art-empty');
   var dirEl = document.getElementById('art-directory');
   var galEl = document.getElementById('art-galleries');
   var comEl = document.getElementById('art-commons');
+  var creEl = document.getElementById('art-creatives');
+  var grid2 = document.getElementById('art-grid2');
+  var empty2 = document.getElementById('art-empty2');
+
+  // Every pill selection is URL-addressable (?view=) with its own canonical —
+  // each filtered state of the directory is an indexable page.
+  var VIEW_META = {
+    all: { path: '/store/art/', title: 'Art — Tattoo Art, Creatives, the Commons & Temple Galleries | PUNICODEX' },
+    creatives: { path: '/store/art/?view=creatives', title: 'Creatives — Licensed Mythological Art | PUNICODEX' },
+    commons: { path: '/store/art/?view=commons', title: 'The Commons — Free Mythological Art (CC BY 4.0) | PUNICODEX' },
+    galleries: { path: '/store/art/?view=galleries', title: 'Temple Galleries — Art the Temples Kept | PUNICODEX' }
+  };
+  function syncUrl() {
+    var m = VIEW_META[state.cat] || VIEW_META.all;
+    if (history.replaceState) history.replaceState(null, '', m.path);
+    var link = document.querySelector('link[rel="canonical"]');
+    if (link) link.setAttribute('href', 'https://punicodex.com' + m.path);
+    document.title = m.title;
+  }
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   function showView() {
-    dirEl.hidden = state.cat !== 'all' && state.cat !== 'tattoo';
+    dirEl.hidden = state.cat !== 'all';
     galEl.hidden = state.cat !== 'galleries';
     comEl.hidden = state.cat !== 'commons';
+    creEl.hidden = state.cat !== 'creatives';
     if (!dirEl.hidden) render();
+    if (!creEl.hidden) render2();
+    syncUrl();
   }
 
   function card(a) {
-    var price = (a.priceCents > 0) ? '$' + (a.priceCents / 100).toFixed(2) : 'Free';
-    var meta = [a.creatorName, a.department].filter(Boolean).join(' · ');
-    return '<a class="art-card" href="/creatives/?asset=' + encodeURIComponent(a.id) + '">' +
-      '<div class="imgbox"><img src="' + esc(a.thumbnailUrl || a.previewUrl || '') + '" alt="' + esc(a.title) + '" loading="lazy"></div>' +
+    var isStatic = a.kind === 'gallery' || a.kind === 'commons';
+    var href = isStatic ? a.href : '/creatives/?asset=' + encodeURIComponent(a.id);
+    var meta = isStatic ? a.meta : [a.creatorName, a.department].filter(Boolean).join(' · ');
+    var detail = isStatic ? esc(a.description || '') : '<span class="price">' + ((a.priceCents > 0) ? '$' + (a.priceCents / 100).toFixed(2) : 'Free') + '</span>';
+    return '<a class="art-card" href="' + esc(href) + '"' + (isStatic ? ' data-kind="' + esc(a.kind) + '"' : '') + '>' +
+      '<div class="imgbox"><img src="' + esc(a.thumbnailUrl || a.previewUrl || '') + '" alt="' + esc(a.alt || a.title) + '" loading="lazy"></div>' +
       '<div class="body"><div class="sub">' + esc(meta) + '</div><h3>' + esc(a.title) + '</h3>' +
-      '<div class="price">' + price + '</div></div></a>';
+      '<div class="sub" style="text-transform:none;letter-spacing:0">' + detail + '</div></div></a>';
   }
 
-  function render() {
-    var list = state.assets.slice();
-    var q = state.q.toLowerCase();
+  function applyFilters(list, q, tradition, tag) {
     if (q) list = list.filter(function (a) { return (a.title + ' ' + (a.description || '') + ' ' + (a.tags || []).join(' ')).toLowerCase().indexOf(q) !== -1; });
-    if (state.tradition) list = list.filter(function (a) { return (a.department || '').toLowerCase() === state.tradition; });
-    if (state.cat === 'tattoo' || state.tag === 'tattoo') list = list.filter(function (a) { return (a.tags || []).indexOf('tattoo') !== -1 || /tattoo/i.test((a.tags || []).join(' ')); });
+    if (tradition) list = list.filter(function (a) { return (a.department || '').toLowerCase() === tradition; });
+    if (tag === 'tattoo') list = list.filter(function (a) { return (a.tags || []).indexOf('tattoo') !== -1 || /tattoo/i.test((a.tags || []).join(' ')); });
+    return list;
+  }
+  function sortList(list) {
     if (state.sort === 'az') list.sort(function (a, b) { return a.title < b.title ? -1 : 1; });
     if (state.sort === 'newest') list.sort(function (a, b) { return String(b.createdAt || '').localeCompare(String(a.createdAt || '')); });
     if (state.sort === 'oldest') list.sort(function (a, b) { return String(a.createdAt || '').localeCompare(String(b.createdAt || '')); });
+    return list;
+  }
+
+  function render() {
+    var list = sortList(applyFilters(state.assets.slice(), state.q.toLowerCase(), state.tradition, state.tag));
     grid.innerHTML = list.map(card).join('');
     var isEmpty = !list.length;
     empty.hidden = !isEmpty;
-    empty.innerHTML = state.cat === 'tattoo'
-      ? 'No tattoo-ready pieces are published yet. Verified creators tag their work <strong>tattoo-ready</strong> and it appears here.'
+    empty.innerHTML = state.tag === 'tattoo'
+      ? 'No tattoo-ready pieces match these filters yet. Try a broader search.'
       : 'No artworks match these filters yet. Try a broader search.';
+  }
+  function render2() {
+    var q = (document.getElementById('art-q2').value || '').toLowerCase();
+    var tradition = document.getElementById('art-tradition2').value;
+    var list = sortList(applyFilters(state.creatives.slice(), q, tradition, ''));
+    grid2.innerHTML = list.map(card).join('');
+    var isEmpty = !list.length;
+    empty2.hidden = !isEmpty;
+    empty2.innerHTML = 'The first artists are being gathered. Verified university creators and independents will license their mythological work here — open the <a href="/university-sponsorship/" style="color:var(--gold)">university door</a> to join the first cohort.';
   }
 
   async function load() {
     try {
       var res = await fetch(API + '?limit=500');
       var json = await res.json();
-      state.assets = (json.success && json.data && json.data.assets) || [];
-    } catch (e) { state.assets = []; }
+      var assets = (json.success && json.data && json.data.assets) || [];
+      state.creatives = assets.map(function (a) {
+        return Object.assign({}, a, { kind: 'creative', href: '', meta: '' });
+      });
+    } catch (e) { state.creatives = []; }
+    state.assets = STATIC_ART.concat(state.creatives);
     render();
+    if (!creEl.hidden) render2();
   }
 
   document.querySelectorAll('.art-cat').forEach(function (b) {
@@ -753,6 +842,21 @@ function renderArtDepartment() {
   document.getElementById('art-tradition').addEventListener('change', function (e) { state.tradition = e.target.value; render(); });
   document.getElementById('art-tag').addEventListener('change', function (e) { state.tag = e.target.value; render(); });
   document.getElementById('art-sort').addEventListener('change', function (e) { state.sort = e.target.value; render(); });
+  document.getElementById('art-q2').addEventListener('input', render2);
+  document.getElementById('art-tradition2').addEventListener('change', render2);
+
+  // Deep-link: ?view=creatives|tattoo|commons|galleries opens that pill.
+  try {
+    var v = new URLSearchParams(location.search).get('view');
+    if (v === 'tattoo') {
+      state.tag = 'tattoo';
+      var tagSel = document.getElementById('art-tag');
+      if (tagSel) tagSel.value = 'tattoo';
+    } else if (v && VIEW_META[v]) {
+      state.cat = v;
+      document.querySelectorAll('.art-cat').forEach(function (x) { x.classList.toggle('active', x.getAttribute('data-cat') === v); });
+    }
+  } catch (e) {}
 
   load();
   showView();

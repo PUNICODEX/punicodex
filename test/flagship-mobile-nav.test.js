@@ -14,7 +14,18 @@ const assert = require('node:assert');
 const SITES_DIR = path.join(__dirname, '..', 'sites');
 const BASE_CSS = path.join(__dirname, '..', 'css', 'temple-base.css');
 
-const SUB_PAGES = ['', 'lore/', 'gallery/', 'scholars/', 'creatives/', 'patron/', 'patterns/'];
+// gallery/ and creatives/ are redirect stubs into the art room — not tabbed
+// pages; the art room joins the tabbed set instead.
+const SUB_PAGES = [
+  '',
+  'lore/',
+  'art/',
+  'scholars/',
+  'patron/',
+  'patterns/',
+  'blog/',
+  'blog/canonical/',
+];
 
 function getFlagshipDirs() {
   return fs
@@ -119,8 +130,8 @@ test('mobile menu links are reachable and contain expected sections', () => {
       `${id}: expected Lore link`
     );
     assert.ok(
-      hrefs.some((h) => h.includes('gallery')),
-      `${id}: expected Gallery link`
+      hrefs.some((h) => h.includes('art')),
+      `${id}: expected Art link under Store`
     );
     assert.ok(
       hrefs.some((h) => h.includes('patron')),
@@ -156,6 +167,22 @@ test('every flagship tabbed page loads px-core.js so the hamburger actually work
         html.includes('/js/px-core.js'),
         `${id}/${subPath || 'index.html'}: missing px-core.js — hamburger would be non-functional`
       );
+    }
+  }
+});
+
+test('nested blog tab links use the temple root, not the blog directory', () => {
+  for (const id of ids) {
+    const $ = loadPage(id, 'blog/canonical/');
+    if (!$) continue;
+    const hrefs = $('#tab-nav a[href^="../"], #temple-mobile-menu a[href^="../"]')
+      .map((_, el) => $(el).attr('href'))
+      .get();
+    assert.ok(hrefs.length >= 10, `${id}: nested blog tab links missing`);
+    for (const href of hrefs) {
+      assert.ok(href.startsWith('../../'), `${id}: wrong-depth blog tab link ${href}`);
+      const target = path.resolve(SITES_DIR, id, 'blog', 'canonical', href);
+      assert.ok(fs.existsSync(target), `${id}: unresolved blog tab link ${href} → ${target}`);
     }
   }
 });

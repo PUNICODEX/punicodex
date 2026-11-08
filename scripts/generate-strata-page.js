@@ -162,7 +162,7 @@ function layerScene(l, idx) {
     <p class="stx-summary">${esc(l.summary)}</p>
     ${beings ? `<div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips">${beings}</div></div>` : ''}
     ${survivals ? `<div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul>${survivals}</ul></div>` : ''}
-    <a class="stx-pantheon-link" href="${pantheonPath(l.pantheon)}">Open the ${esc(l.name)} pantheon →</a>
+    <a class="stx-pantheon-link" href="${pantheonPath(l.pantheon)}">Open the ${esc(l.name.replace(/^The\s+/i, ''))} pantheon →</a>
   </div>
   ${fault}
 </section>`;
@@ -393,5 +393,5 @@ ${scenes}
 `;
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
-fs.writeFileSync(OUT, html);
+require('./write-file-retry.js').writeFileWithRetry(OUT, html);
 console.log(`STRATA: wrote ${path.relative(ROOT, OUT)} (${layers.length} strata, ${html.length} bytes)`);

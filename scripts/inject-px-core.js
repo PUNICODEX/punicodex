@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const { globSync } = require('glob');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const PX_CORE_TAG = '<script src="/js/px-core.js?v=perf9"></script>';
@@ -38,7 +39,7 @@ function main() {
     const content = fs.readFileSync(file, 'utf-8');
     if (!needsInjection(content)) continue;
     const newContent = inject(content);
-    fs.writeFileSync(file, newContent);
+    writeFileWithRetry(file, newContent);
     console.log('✓', path.relative(ROOT, file));
     updated++;
   }
