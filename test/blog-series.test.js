@@ -230,7 +230,17 @@ test('every built flagship has a canonical register entry with truthful ASCII st
       /flattened form|fallback|acceptable everywhere/i.test(post.body),
       `${id}: ASCII status content missing`
     );
-    assert.ok(post.body.includes('IDNA 2008'), `${id}: IDNA section missing`);
+    const entry = LEXICON_BY_ID.get(id);
+    const caseOnly = entry.unicode.toLowerCase() === entry.ascii.toLowerCase();
+    if (/^[\x00-\x7F]+$/.test(entry.unicode)) {
+      assert.ok(
+        post.body.includes('The Address, Without an Encoding Detour'),
+        `${id}: ASCII-form canonical address explanation missing`
+      );
+      assert.ok(!post.body.includes('IDNA 2008'), `${id}: irrelevant IDNA section remains`);
+    } else {
+      assert.ok(post.body.includes('IDNA 2008'), `${id}: IDNA section missing`);
+    }
     titles.add(post.title);
     descriptions.add(post.description);
     // The machine-readable register agrees with the lexicon.
@@ -240,10 +250,8 @@ test('every built flagship has a canonical register entry with truthful ASCII st
       rec.asciiStatus === 'canonical' || rec.asciiStatus === 'fallback',
       `${id}: bad asciiStatus`
     );
-    const entry = LEXICON_BY_ID.get(id);
     assert.strictEqual(rec.canonical, entry.unicode, `${id}: canonical mismatch`);
     // ASCII status must be truthful: canonical only when forms coincide but for case.
-    const caseOnly = entry.unicode.toLowerCase() === entry.ascii.toLowerCase();
     assert.strictEqual(rec.asciiStatus === 'canonical', caseOnly, `${id}: asciiStatus untruthful`);
     // The register never lists the plain ASCII form as a false form.
     for (const f of rec.falseForms) {

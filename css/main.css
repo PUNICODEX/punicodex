@@ -696,6 +696,12 @@ body.menu-open {
     contain-intrinsic-size: 0 480px;
 }
 
+.site-footer .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
 .site-footer::before {
     content: '';
     position: absolute;
@@ -943,6 +949,10 @@ body.menu-open {
 @media (max-width: 768px) {
     .site-footer {
         padding: 24px 0 12px;
+    }
+
+    .site-footer .container {
+        padding: 0 var(--space-3);
     }
 
     /* Six short hub columns fit two tidy rows of three on phones. */

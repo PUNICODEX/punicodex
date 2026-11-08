@@ -93,7 +93,7 @@ const allScripts = [
   'scripts/backfill-scholars-content.js',
   'scripts/generate-scholars-manifests.js',
   'scripts/generate-scholars.js',
-  'scripts/generate-blog-content.js',
+  'scripts/generate-blog-content.js --regenerate',
   'scripts/generate-blog-series-restoration.js',
   'scripts/backfill-series-restoration.js',
   'scripts/generate-blog-series-resonance.js',

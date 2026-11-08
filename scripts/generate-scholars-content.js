@@ -25,6 +25,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { preservationLabel } = require('./lib/preservation-label.js');
+const { isAsciiForm, asciiEditorialText } = require('./lib/ascii-editorial.js');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'platform', 'scholars', 'content');
@@ -361,9 +363,15 @@ function buildOverview(ctx) {
   const domainLink = archetype.domainUnicode
     ? `[${archetype.domainUnicode}](${templeUrl(archetype)})`
     : `[its temple](${templeUrl(archetype)})`;
-  paragraphs.push(
-    `PuniCodex restores the name as **${entry.unicode}** and serves its temple at ${domainLink}. ${preservationSentence(entry)} The plain ASCII form *${entry.ascii}* survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete${cite(pickSource(pool, 2))}.`
-  );
+  if (isAsciiForm(entry.unicode)) {
+    paragraphs.push(
+      `PuniCodex records the canonical scholarly spelling **${entry.unicode}** and serves its temple at ${domainLink}. ${preservationSentence(entry)} The plain ASCII form *${entry.ascii}* contains the same letters: no recovered diacritics or special encoding is claimed. The work here is consistent citation, capitalization, provenance, and cultural context${cite(pickSource(pool, 2))}.`
+    );
+  } else {
+    paragraphs.push(
+      `PuniCodex restores the name as **${entry.unicode}** and serves its temple at ${domainLink}. ${preservationSentence(entry)} The plain ASCII form *${entry.ascii}* survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete${cite(pickSource(pool, 2))}.`
+    );
+  }
 
   return {
     body: paragraphs.join('\n\n'),
@@ -450,9 +458,15 @@ function buildTheName(ctx) {
   } else {
     featureSentence = 'the full diacritic detail of the scholarly transliteration';
   }
-  parts.push(
-    `The ASCII form *${entry.ascii}* survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration **${entry.unicode}** recovers ${featureSentence} directly in the address bar. ${preservationSentence(entry)}`
-  );
+  if (isAsciiForm(entry.unicode)) {
+    parts.push(
+      `The canonical spelling **${entry.unicode}** matches the conventional scholarly romanization. The plain ASCII form *${entry.ascii}* contains the same letters, so no lost diacritics or encoding transition is claimed. The editorial work is to fix one reviewed reference spelling, preserve capitalization and provenance, and keep the original evidence visible. ${preservationSentence(entry)}`
+    );
+  } else {
+    parts.push(
+      `The ASCII form *${entry.ascii}* survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration **${entry.unicode}** recovers ${featureSentence} directly in the address bar. ${preservationSentence(entry)}`
+    );
+  }
 
   parts.push(
     ['The letter-by-letter transformation runs:', '']
@@ -587,9 +601,15 @@ function buildOriginalScript(ctx) {
           : hasLength
             ? 'its vowel quantity'
             : 'its full diacritic detail';
-    parts.push(
-      `The name is written in ${ctx.scriptName} as **${ctx.originalScript}**. This ${ctx.scriptLabel.toLowerCase()} is the form against which the ASCII fallback *${entry.ascii}* and the PuniCodex restoration **${entry.unicode}** are measured: the restoration preserves ${preserved} of the written form, so that a reader typing the modern address still speaks the ancient name.`
-    );
+    if (isAsciiForm(entry.unicode)) {
+      parts.push(
+        `The name is written in ${ctx.scriptName} as **${ctx.originalScript}**. That attested script remains the primary evidence for the conventional romanization **${entry.unicode}**. The canonical Latin spelling does not pretend to recover marks it never contained: it fixes one reviewed reference form while leaving the original script visible for comparison.`
+      );
+    } else {
+      parts.push(
+        `The name is written in ${ctx.scriptName} as **${ctx.originalScript}**. This ${ctx.scriptLabel.toLowerCase()} is the form against which the ASCII fallback *${entry.ascii}* and the PuniCodex restoration **${entry.unicode}** are measured: the restoration preserves ${preserved} of the written form, so that a reader typing the modern address still speaks the ancient name.`
+      );
+    }
   } else {
     generatedFrom.push('original-scripts:no-script-note');
     parts.push(ctx.noScriptNote);
@@ -817,7 +837,9 @@ function buildMeditation(ctx) {
       : '';
     body = [
       `To contemplate ${entry.unicode} is to hold the idea of ${lowerFirst(entry.domain)} in the mind and to ask what of it endures. The name means "${entry.meaning}"${cite(pickSource(pool, 0))} — and a name that carries its meaning so openly invites meditation rather than mere recollection. ${tagline}`.trim(),
-      `Sit with the restored form — ${entry.unicode} — and the diacritics themselves become the practice: each mark is a small act of attention, a refusal to let the plain ASCII form *${entry.ascii}* stand in for the whole. What the tradition preserved in this name, the restoration asks the reader to preserve in turn.`,
+      isAsciiForm(entry.unicode)
+        ? `Sit with the canonical form — ${entry.unicode} — and the discipline is fidelity rather than ornament: no diacritics are required to make this name whole. What the tradition preserved in this name, consistent citation asks the reader to preserve in turn.`
+        : `Sit with the restored form — ${entry.unicode} — and the diacritics themselves become the practice: each mark is a small act of attention, a refusal to let the plain ASCII form *${entry.ascii}* stand in for the whole. What the tradition preserved in this name, the restoration asks the reader to preserve in turn.`,
     ].join('\n\n');
   }
 
@@ -879,9 +901,12 @@ function buildContentFile(archetype, stats) {
   const sections = {};
 
   const existing = loadExistingContent(archetype.id);
+  const asciiOnly = isAsciiForm(ctx.entry.unicode);
+  const rebuildAsciiSections = new Set(['overview', 'the-name', 'original-script', 'meditation']);
   if (existing && existing.sections && typeof existing.sections === 'object') {
     for (const [key, value] of Object.entries(existing.sections)) {
       if (value && typeof value.body === 'string' && value.body.trim() !== '') {
+        if (asciiOnly && value.bespoke === false && rebuildAsciiSections.has(key)) continue;
         sections[key] = value;
         stats.sectionsPreserved += 1;
       }
@@ -895,6 +920,7 @@ function buildContentFile(archetype, stats) {
   }
 
   for (const [key, section] of Object.entries(sections)) {
+    if (asciiOnly) section.body = asciiEditorialText(section.body);
     if (shouldWatermark(section.body)) {
       section.body = applyCanaryWatermark(section.body);
     }
@@ -929,7 +955,7 @@ function main() {
     if (prev === next) {
       filesUnchanged += 1;
     } else {
-      fs.writeFileSync(file, next);
+      writeFileWithRetry(file, next);
       filesWritten += 1;
     }
   }

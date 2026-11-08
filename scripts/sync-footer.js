@@ -161,6 +161,8 @@ const TARGETS = [
   path.join('terms', 'api', 'index.html'),
   // Wing hub pages (scripts/generate-hubs.js emits this same builder).
   path.join('world', 'index.html'),
+  path.join('world', 'sacred', 'index.html'),
+  path.join('pantheon', 'origins', 'index.html'),
   path.join('culture', 'index.html'),
   path.join('instruments', 'index.html'),
   path.join('library', 'index.html'),
@@ -193,8 +195,17 @@ function findBalancedEnd(html, startIdx, tag) {
 }
 
 function ensureCssLink(html, href) {
-  if (html.includes(href)) return html;
-  return html.replace('</head>', `    <link rel="stylesheet" href="${href}">\n</head>`);
+  let found = false;
+  const next = html.replace(
+    /\s*<link\s+rel="stylesheet"\s+href="\/css\/footer\.css(?:\?v=[^"]*)?"\s*>/g,
+    (link) => {
+      if (found) return '';
+      found = true;
+      return link.replace(/href="[^"]*"/, `href="${href}"`);
+    }
+  );
+  if (found) return next;
+  return next.replace('</head>', `    <link rel="stylesheet" href="${href}">\n</head>`);
 }
 
 /* css/footer.css is the footer stylesheet for pages that do not load
@@ -214,7 +225,7 @@ function buildFooterCss() {
   const next = rest.search(/\n\/\* ───/);
   if (next === -1) throw new Error('main.css: footer section unterminated');
   const section = src.slice(start, start + marker.length + next).trim();
-  const used = new Set();
+  const used = new Set(['--container-max']);
   for (const m of section.matchAll(/var\((--[a-z0-9-]+)\)/g)) used.add(m[1]);
   const defs = [];
   for (const name of [...used].sort()) {
@@ -251,8 +262,13 @@ function syncPage(rel, opts = {}) {
     html = `${html.slice(0, bodyClose)}    ${footerHtml()}\n${html.slice(bodyClose)}`;
   }
 
-  if (!html.includes('/css/main.css')) {
-    html = ensureCssLink(html, '/css/footer.css?v=6');
+  if (html.includes('/css/main.css')) {
+    html = html.replace(
+      /\s*<link\s+rel="stylesheet"\s+href="\/css\/footer\.css(?:\?v=[^"]*)?"\s*>/g,
+      ''
+    );
+  } else {
+    html = ensureCssLink(html, '/css/footer.css?v=8');
   }
 
   writeFileWithRetry(filePath, html, 'utf8');

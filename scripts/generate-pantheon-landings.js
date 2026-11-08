@@ -285,7 +285,7 @@ ${themes.map((t) => `                <span class="pl-theme-chip">${escapeHtml(t)
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/main.css?v=perf39">
+    <link rel="stylesheet" href="/css/main.css?v=perf40">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="/css/pantheon.css?v=perf22">
     <link rel="stylesheet" href="/css/pantheon-landing.css?v=1">

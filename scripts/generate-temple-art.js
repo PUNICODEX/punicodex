@@ -159,7 +159,7 @@ function renderTempleArt(a) {
 <link rel="stylesheet" href="../styles.css?v=${cssPin}">
 <link rel="stylesheet" href="/css/temple-base.css?v=perf23">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
-<link rel="stylesheet" href="/css/footer.css?v=6">
+<link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>
 <style>

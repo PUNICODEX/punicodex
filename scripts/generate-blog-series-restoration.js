@@ -18,6 +18,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { preservationLabel } = require('./lib/preservation-label.js');
+const { isAsciiForm, asciiEditorialText } = require('./lib/ascii-editorial.js');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -60,7 +62,9 @@ const TEXT_TITLE = new Map(TEXTS.texts.map((t) => [t.id, t.title]));
 function preservationSentence(entry) {
   // Mechanical, from the displayed form — same computation as the temples.
   const label = preservationLabel(entry.unicode);
-  return label.charAt(0).toLowerCase() + label.slice(1);
+  return label === 'ASCII-equivalent form'
+    ? 'The displayed form is ASCII-equivalent.'
+    : label.charAt(0).toLowerCase() + label.slice(1);
 }
 function marksList(entry) {
   const marks = (entry.breakdown || []).filter((b) => b.type === 'stress' || b.type === 'length');
@@ -123,12 +127,19 @@ function archLedger(entry, script, lore) {
   const arch = V.loreArchaeology(lore);
   const seats = seatsFor(entry.id);
   const texts = textsLinks(entry);
-  const openers = [
-    `Every name in this series was once flattened to fit a keyboard. **${u}** is what the evidence put back.`,
-    `Some restorations are cosmetic. **${u}** is not — the marks in this name are the difference between reading the sources and guessing at them.`,
-    `The domain you're reading about exists because someone refused to let **${u}** stay *${entry.ascii}*.`,
-    `There is a version of this name the early internet had to settle for: *${entry.ascii}*. This is the file on how **${u}** replaced it.`,
-  ];
+  const openers = isAsciiForm(u)
+    ? [
+        `Some names need no recovered marks. **${u}** is already whole; the evidence explains why this exact spelling matters.`,
+        `A plain Latin spelling can still demand serious philology. **${u}** is the proof.`,
+        `The temple of **${u}** exists to keep one reviewed spelling attached to its sources, not to invent diacritics the name never had.`,
+        `There is no broken version of this name to repair. There is a record to preserve: **${u}**, exactly as the scholarly convention supports it.`,
+      ]
+    : [
+        `Every name in this series was once flattened to fit a keyboard. **${u}** is what the evidence put back.`,
+        `Some restorations are cosmetic. **${u}** is not — the marks in this name are the difference between reading the sources and guessing at them.`,
+        `The domain you're reading about exists because someone refused to let **${u}** stay *${entry.ascii}*.`,
+        `There is a version of this name the early internet had to settle for: *${entry.ascii}*. This is the file on how **${u}** replaced it.`,
+      ];
   const parts = [];
   parts.push(V.pick(entry.id, 31, openers));
   if (lead) parts.push(lead);
@@ -304,11 +315,19 @@ function archBench(entry, script, lore) {
   }
 
   const rejected = ['## What We Rejected', ''];
-  rejected.push(V.pick(entry.id, 72, [
-    `The plain ASCII *${entry.ascii}* — admissible as a fallback, never as the primary. A wrong accent would have been worse: the rulebook is explicit that a misplaced mark is worse than none.`,
-    `*${entry.ascii}* as the primary form. It survives as the convenience it is; it does not get to lead. The hierarchy is full restoration first, and this name can afford to stand at the top of it.`,
-    `Any form invented for availability. The rule on the bench: if the evidence does not carry it, the domain does not get it — whatever the registrar has in stock.`,
-  ]));
+  if (isAsciiForm(u)) {
+    rejected.push(V.pick(entry.id, 72, [
+      `Invented diacritics. The canonical form **${u}** is already complete; adding a mark for visual sophistication would be less accurate, not more.`,
+      `Any romanization that contradicts the attested convention. The plain form *${entry.ascii}* shares the same letters and is not being rejected.`,
+      `Any form invented for availability. The rule on the bench: if the evidence does not carry it, the spelling does not get it.`,
+    ]));
+  } else {
+    rejected.push(V.pick(entry.id, 72, [
+      `The plain ASCII *${entry.ascii}* — admissible as a fallback, never as the primary. A wrong accent would have been worse: the rulebook is explicit that a misplaced mark is worse than none.`,
+      `*${entry.ascii}* as the primary form. It survives as the convenience it is; it does not get to lead. The hierarchy is full restoration first, and this name can afford to stand at the top of it.`,
+      `Any form invented for availability. The rule on the bench: if the evidence does not carry it, the domain does not get it — whatever the registrar has in stock.`,
+    ]));
+  }
   parts.push(rejected.join('\n'));
 
   const setDown = ['## What We Set Down', ''];
@@ -531,7 +550,7 @@ function main() {
         entry.unicode,
         entry.ascii,
         `${entry.pantheon} mythology`,
-        'Unicode domain',
+        isAsciiForm(entry.unicode) ? 'canonical spelling' : 'Unicode domain',
         'restoration',
         'The Restoration Files',
         'PuniCodex',
@@ -541,9 +560,9 @@ function main() {
       author: 'PuniCodex Team',
       publishedAt: '2026-07-31',
       readingTime: `${readMin} min read`,
-      body: fullBody,
+      body: isAsciiForm(entry.unicode) ? asciiEditorialText(fullBody) : fullBody,
     };
-    fs.writeFileSync(path.join(OUT_DIR, `${id}.json`), `${JSON.stringify(post, null, 2)}\n`, 'utf8');
+    writeFileWithRetry(path.join(OUT_DIR, `${id}.json`), `${JSON.stringify(post, null, 2)}\n`, 'utf8');
     written++;
   }
 

@@ -101,7 +101,7 @@ test('art rooms preserve canonical temple chrome, metadata, and a pinned real st
     const html = read(path.join('sites', a.id, 'art', 'index.html'));
     assert.ok(html.includes('class="global-strip"'), `${a.id}: global hub strip missing`);
     assert.ok(html.includes('class="site-footer"'), `${a.id}: canonical site footer missing`);
-    assert.ok(html.includes('/css/footer.css?v=6'), `${a.id}: footer CSS pin missing`);
+    assert.ok(html.includes('/css/footer.css?v=8'), `${a.id}: current footer CSS pin missing`);
     assert.ok(!html.includes('../css/flagship.css'), `${a.id}: nonexistent stylesheet URL`);
     assert.ok(html.includes(`../styles.css?v=`), `${a.id}: temple stylesheet missing`);
     assert.ok(!html.includes('../styles.css?v=perf21'), `${a.id}: unbaked stylesheet pin`);

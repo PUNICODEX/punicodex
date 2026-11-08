@@ -22,10 +22,11 @@ const HUBS = {
     tagline: 'The mapped world of names',
     blurb:
       'Every name in the pantheon, charted — the beings themselves, the threads that connect them, the patterns they form, and the live frontier of the Unicode web.',
-    footer: ['Pantheon', 'Origins', 'Patterns', 'Connections'],
+    footer: ['Pantheon', 'Strata', 'Sacred Geography', 'Patterns', 'Connections'],
     items: [
-      { label: 'Pantheon', href: '/pantheon/', blurb: 'All 980 restorations, filterable by tradition.', children: 'pantheon' },
-      { label: 'Origins', href: '/pantheon/origins/', blurb: 'The strata of the pantheons, laid down in deep time — from the first Dreaming to the present day.' },
+      { label: 'Pantheon', href: '/pantheon/', blurb: 'All 983 restorations, filterable by tradition.', children: 'pantheon' },
+      { label: 'Strata', href: '/pantheon/origins/', blurb: 'An evidence-guided journey through the historical layers of the pantheons.' },
+      { label: 'Sacred Geography', href: '/world/sacred/', blurb: 'An interactive globe of sacred places and the digital temples they meet.' },
       { label: 'Connections', href: '/connections/', blurb: 'Cognates and kinships across traditions.' },
       { label: 'Patterns', href: '/patterns/', blurb: 'Recurring threads across the names, and what they mean.' },
       { label: 'Trending', href: '/trending/', blurb: 'What the world is searching in the pantheon.' },
@@ -77,7 +78,7 @@ const HUBS = {
       'The evidence behind every restoration — the lexicon and its sources, primary texts in the original languages, the codex essays, and the university-edited scholarly edition.',
     footer: ['Lexicon', 'Scholars', 'Texts', 'Blog'],
     items: [
-      { label: 'Lexicon', href: '/lexicon/', blurb: 'All 980 entries, with sources.' },
+      { label: 'Lexicon', href: '/lexicon/', blurb: 'All 983 entries, with sources.' },
       { label: 'Texts', href: '/texts/', blurb: 'Primary sources in the original languages.' },
       { label: 'Blog', href: '/blog/', blurb: 'One story per flagship temple.' },
       { label: 'Scholars', href: '/scholars/', blurb: 'The university-edited scholarly edition.' },

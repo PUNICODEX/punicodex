@@ -17,7 +17,7 @@ const PROLOGUE = {
     'Before the gods had names, the world had urges.',
     'Chaos before Khaos. Order before any throne.',
     'This is the ascent — principle by principle,',
-    'every pantheon answering the same first questions.',
+    'different traditions answering recurring questions in different ways.',
   ],
   prompt: 'Descend to begin the ascent',
 };
@@ -31,14 +31,14 @@ const ASCENT = [
     title: 'The Unshaped',
     epigraph: 'χάος · the yawning gap',
     verse: [
-      'In the beginning there was no beginning —',
-      'a yawning without edge, depth without floor.',
-      'Nearly every tradition opens its story here;',
-      'the void that precedes even the first word.',
-      'The physicists tell it again today: everything, from nothing,',
-      'in one blazing instant older than time itself.',
-      'The Aboriginal peoples refuse the question entirely —',
-      'the Dreaming never began. It always was.',
+      'Many cosmogonies open with water, darkness, a gap,',
+      'or a whole not yet divided. Others begin with a creator,',
+      'an egg, a word — or reject the premise of a first cause.',
+      'These are recurring images, not interchangeable doctrines.',
+      'Modern cosmology offers an expanding early universe,',
+      'not a simple lesson that everything came from nothing.',
+      'Aboriginal traditions cannot be drafted into one story of origin:',
+      'the Dreaming is not merely another name for chaos.',
     ],
     deities: [
       { id: 'chaos', line: 'The Greek yawning gap — the first of all beings, not a mess but an opening.' },
@@ -91,9 +91,9 @@ const ASCENT = [
     epigraph: 'ἀντί · the one who answers back',
     verse: [
       'No creation is complete without its refusal.',
-      'Every faith keeps an adversary — not evil for its own sake,',
-      'but the weight that pulls against the making,',
-      'the storm the mountain teaches itself to survive.',
+      'Many traditions give form to what resists the making —',
+      'not always evil, not always a single adversary,',
+      'but the storm the mountain teaches itself to survive.',
     ],
     deities: [
       { id: 'ahriman', line: 'The Zoroastrian destructive spirit — Angra Mainyu, the uncreated twin who opposes all good.' },
@@ -141,8 +141,9 @@ const ASCENT = [
     verse: [
       'Then came the first division — the wound that made space.',
       'Sky lifted from earth, light from dark, above from below.',
-      'Nearly every people tells this story the same way:',
-      'a father of heaven, a mother of land, and between them — room for everything.',
+      'Many peoples imagine earth and sky parted, but not in the same way:',
+      'some embrace, some are forced apart, some are shaped rather than separated.',
+      'The motif is shared; the meanings remain distinct.',
     ],
     deities: [
       { id: 'ouranos', line: 'The Greek sky, father of the Titans, locked in eternal embrace with Gaia.' },
@@ -174,7 +175,7 @@ const ASCENT = [
     deities: [
       { id: 'ra', line: 'The Egyptian sun at full power — the king of the gods who sails the sky.' },
       { id: 'helios', line: 'The Greek all-seeing sun, witness of oaths, driver of the flaming chariot.' },
-      { id: 'sol', line: 'The Roman sun — Sol Indiges, the invoked, the claimed.' },
+      { id: 'sol', line: 'The Norse solar goddess — Sól, sister of Máni, driving the sun across the sky.' },
       { id: 'surya', line: 'The Vedic sun, all-seeing and life-giving, praised at first light.' },
       { id: 'savitri', line: 'The Vedic stimulator — the divine spark that sets things moving.' },
       { id: 'shamash', line: 'The Mesopotamian sun, judge and lawgiver, who sees every hidden thing.' },
@@ -199,7 +200,7 @@ const ASCENT = [
     title: 'The Deep',
     epigraph: 'ὕδωρ · the first element',
     verse: [
-      'Water came before land in nearly every account —',
+      'Many cosmogonies make water primordial —',
       'the element that is never one thing:',
       'giver and taker, road and wall, mirror and abyss.',
     ],

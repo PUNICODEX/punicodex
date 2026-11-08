@@ -194,9 +194,9 @@ const jsonLd = JSON.stringify(
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'PuniCodex Blog — Unicode Restoration Essays',
+    name: 'PuniCodex Blog — Restoration & Canonical Name Essays',
     description:
-      'Long-read essays on the restoration of flagship Unicode names: mythology, original scripts, pronunciation, archaeology, and the IDN engineering that brings ancient names to the address bar.',
+      'Long-read essays on the restoration and canonical documentation of flagship names: mythology, original scripts, pronunciation, archaeology, and the digital engineering that brings ancient names to the address bar.',
     url: 'https://punicodex.com/blog/',
     isPartOf: { '@type': 'WebSite', name: 'PUNICODEX', url: 'https://punicodex.com' },
     mainEntity: {
@@ -230,14 +230,14 @@ const html = `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog — ${total} Unicode Restoration Essays | PUNICODEX</title>
-    <meta name="description" content="Long-read essays on the flagship Unicode restorations — ${total} essays: mythology, original scripts, pronunciation, archaeology, and the IDN engineering behind ancient names.">
+    <title>Blog — ${total} Restoration & Canonical Name Essays | PUNICODEX</title>
+    <meta name="description" content="Long-read essays on the flagship restorations and canonical names — ${total} essays: mythology, original scripts, pronunciation, archaeology, and the digital engineering behind ancient names.">
     <link rel="canonical" href="https://punicodex.com/blog/">
 
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Blog — ${total} Unicode Restoration Essays | PUNICODEX">
-    <meta property="og:description" content="Long-read essays on the flagship Unicode restorations — ${total} essays across ${pantheonCount} flagship pantheons (25 in the full lexicon).">
+    <meta property="og:title" content="Blog — ${total} Restoration & Canonical Name Essays | PUNICODEX">
+    <meta property="og:description" content="Long-read essays on the flagship restorations and canonical names — ${total} essays across ${pantheonCount} flagship pantheons (25 in the full lexicon).">
     <meta property="og:url" content="https://punicodex.com/blog/">
     <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
     <meta name="twitter:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
@@ -246,8 +246,8 @@ const html = `<!DOCTYPE html>
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Blog — ${total} Unicode Restoration Essays | PUNICODEX">
-    <meta name="twitter:description" content="Long-read essays on the flagship Unicode restorations — ${total} essays across ${pantheonCount} flagship pantheons (25 in the full lexicon).">
+    <meta name="twitter:title" content="Blog — ${total} Restoration & Canonical Name Essays | PUNICODEX">
+    <meta name="twitter:description" content="Long-read essays on the flagship restorations and canonical names — ${total} essays across ${pantheonCount} flagship pantheons (25 in the full lexicon).">
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -260,7 +260,7 @@ const html = `<!DOCTYPE html>
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-    <link rel="stylesheet" href="/css/footer.css?v=6">
+    <link rel="stylesheet" href="/css/footer.css?v=8">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
     <style>
@@ -326,7 +326,7 @@ const html = `<!DOCTYPE html>
     <!-- Hero -->
     <section class="blogi-hero">
         <h1 class="blogi-hero-title">The PuniCodex Blog</h1>
-        <p class="blogi-hero-subtitle">Long-read essays on the flagship Unicode restorations — ${total} essays on the mythology, original scripts, pronunciation, archaeology, and IDN engineering behind the ancient names that now live in the address bar.</p>
+        <p class="blogi-hero-subtitle">Long-read essays on the flagship restorations and canonical names — ${total} essays on the mythology, original scripts, pronunciation, archaeology, and digital engineering behind the ancient names that now live in the address bar.</p>
         <div class="blogi-stats">
             <div class="blogi-stat">
                 <span class="blogi-stat-value">${total}</span>

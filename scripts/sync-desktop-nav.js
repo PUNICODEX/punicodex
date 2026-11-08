@@ -128,6 +128,8 @@ const TARGETS = [
   { page: path.join('instruments', 'index.html'), active: '/instruments/' },
   { page: path.join('library', 'index.html'), active: '/library/' },
   { page: path.join('relics', 'index.html'), active: '/relics/' },
+  { page: path.join('pantheon', 'origins', 'index.html'), active: '/pantheon/origins/' },
+  { page: path.join('world', 'sacred', 'index.html'), active: '/world/sacred/' },
 ];
 
 // Per-pantheon landing pages are not in the top nav, but the Pantheon item is

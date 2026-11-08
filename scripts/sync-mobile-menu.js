@@ -157,6 +157,8 @@ const TARGETS = [
   { page: path.join('codex', 'building-the-temple', 'index.html'), active: '/codex/' },
   { page: path.join('codex', 'restoring-the-names', 'index.html'), active: '/codex/' },
   { page: path.join('codex', 'why-greek-accents-matter', 'index.html'), active: '/codex/' },
+  { page: path.join('pantheon', 'origins', 'index.html'), active: '/pantheon/origins/' },
+  { page: path.join('world', 'sacred', 'index.html'), active: '/world/sacred/' },
   { page: path.join('engineering', 'index.html'), active: null },
   { page: path.join('privacy', 'index.html'), active: null },
   { page: path.join('terms', 'advertising', 'index.html'), active: null },

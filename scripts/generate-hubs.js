@@ -89,7 +89,7 @@ function pageHtml(hubId, hub, active) {
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="/css/hub.css?v=2">
-    <link rel="stylesheet" href="/css/footer.css?v=6">
+    <link rel="stylesheet" href="/css/footer.css?v=8">
     <meta name="theme-color" content="#0e0b08">
     <meta name="color-scheme" content="dark">
     <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>

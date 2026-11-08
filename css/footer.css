@@ -3,6 +3,7 @@
    main.css and regenerate instead. */
 
 :root {
+  --container-max: 1440px;
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -34,6 +35,12 @@
     overflow: hidden;
     content-visibility: auto;
     contain-intrinsic-size: 0 480px;
+}
+
+.site-footer .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
 }
 
 .site-footer::before {
@@ -283,6 +290,10 @@
 @media (max-width: 768px) {
     .site-footer {
         padding: 24px 0 12px;
+    }
+
+    .site-footer .container {
+        padding: 0 var(--space-3);
     }
 
     /* Six short hub columns fit two tidy rows of three on phones. */

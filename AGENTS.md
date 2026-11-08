@@ -263,6 +263,21 @@ Names with multiple historically valid **owned** spellings (apollon, hekate,
 nike — both forms live) present the pair on one temple; that presentation is
 derived from the archetype domain set, never from a class field.
 
+**ASCII-form editorial truth:** entries whose displayed name is already plain
+ASCII must never be described as recovering lost diacritics, requiring Punycode,
+or being philologically incomplete. Use "canonical spelling", "scholarly
+transliteration", and "attested form" instead of Unicode-restoration language.
+`scripts/lib/ascii-editorial.js` is the shared guard; the Scholar, founding-blog,
+Restoration Files, Canonical Register, temple, and patron generators all carry
+an ASCII-specific editorial path. Every generated flagship HTML page passes
+through the guard, including main Lore and metadata. It also rejects false
+"DNS compromise", "unregistrable ASCII", and visible-prosody claims when the
+canonical and ASCII spellings are identical. Editorial transforms normalize
+the zero-width canary before phrase matching; content generators reapply the
+watermark afterward. `test/ascii-editorial-truth.test.js` verifies the entire
+cohort across every blog series and temple tab, and its mapping is registered
+in `test/run-all.js` and the pre-push gate.
+
 Do not reintroduce a stored classification: no `tier`/`tierLabel` fields on
 lexicon entries or archetypes, no tier doctrine pages, no tier filter params.
 (Other "tier" vocabulary that remains is unrelated: API pricing tiers, the

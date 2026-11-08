@@ -164,25 +164,84 @@
   }
 })();
 
-/* Station V · Reliquary — colour swatches customise the plinth link:
-   clicking a chip rewrites the anchor's href with ?color= so the Reliquary
-   opens with the choice already made. */
+/* Station V · Reliquary — colour swatches customise both the visible mockup
+   and the product link. The fleet composite stays only for its baked colour;
+   every other colour uses the real blank garment plus the temple's own print. */
 (function () {
+  var PRODUCTS = {
+    '/store/merch/zeus/tee/': { kind: 'tee', art: '/sites/zeus/assets/zeus_mascot.webp', width: 20, top: 23, left: 50, composite: 'Black' },
+    '/store/merch/poseidon/hoodie/': { kind: 'hoodie', art: '/sites/poseidon/assets/poseidon_mascot.webp', width: 21.3, top: 24, left: 50, composite: 'Black' },
+    '/store/merch/hades/tumbler/': { kind: 'tumbler', art: '/sites/hades/assets/hades_mascot.webp', width: 20, top: 29, left: 45, composite: 'Black' },
+    '/store/merch/sunwukong/hoodie/': { kind: 'hoodie', art: '/sites/sunwukong/assets/sunwukong_mascot.webp', width: 21.3, top: 24, left: 50, composite: 'Black' },
+    '/store/merch/anubis/tee/': { kind: 'tee', art: '/sites/anubis/assets/anubis_mascot.webp', width: 20, top: 23, left: 50, composite: 'Black' },
+  };
+
+  function colorSlug(color) {
+    return color.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
   document.querySelectorAll('.fc-swatches').forEach(function (wrap) {
     var plinth = wrap.closest('.fc-plinth');
     if (!plinth) return;
     var go = plinth.querySelector('.fc-plinth-go');
     if (!go) return;
     var base = go.getAttribute('data-base') || go.getAttribute('href');
+    var product = PRODUCTS[base];
+    if (!product) return;
+    var frame = plinth.querySelector('.fc-plinth-img');
+    var picture = frame && frame.querySelector('picture');
+    var image = picture && picture.querySelector('img');
+    var source = picture && picture.querySelector('source');
+    if (!frame || !picture || !image || !source) return;
+    var original = {
+      src: image.getAttribute('src'),
+      srcset: source.getAttribute('srcset'),
+      alt: image.getAttribute('alt') || '',
+    };
+    var print = null;
+
+    function ensurePrint() {
+      if (print) return print;
+      print = document.createElement('img');
+      print.className = 'fc-print';
+      print.src = product.art;
+      print.alt = '';
+      print.setAttribute('aria-hidden', 'true');
+      print.style.width = product.width + '%';
+      print.style.top = product.top + '%';
+      print.style.left = product.left + '%';
+      frame.appendChild(print);
+      return print;
+    }
+
+    wrap.querySelectorAll('.fc-sw').forEach(function (button) {
+      var selected = button.getAttribute('data-c') === product.composite;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+
     wrap.addEventListener('click', function (ev) {
       var btn = ev.target.closest ? ev.target.closest('.fc-sw') : null;
       if (!btn) return;
       ev.preventDefault();
+      var color = btn.getAttribute('data-c');
       wrap.querySelectorAll('.fc-sw').forEach(function (b) {
         b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
       });
-      var c = btn.getAttribute('data-c');
-      go.setAttribute('href', c ? base + '?color=' + encodeURIComponent(c) : base);
+      go.setAttribute('href', color ? base + '?color=' + encodeURIComponent(color) : base);
+      plinth.setAttribute('data-selected-color', color || '');
+      image.alt = original.alt + (color ? ' — ' + color : '');
+      if (color === product.composite) {
+        source.setAttribute('srcset', original.srcset);
+        image.setAttribute('src', original.src);
+        if (print) print.style.display = 'none';
+        return;
+      }
+      var slug = colorSlug(color);
+      source.setAttribute('srcset', '/assets/store-base/' + product.kind + '--' + slug + '.webp');
+      image.setAttribute('src', '/assets/store-base/' + product.kind + '--' + slug + '.jpg');
+      ensurePrint().style.display = '';
     });
   });
 })();

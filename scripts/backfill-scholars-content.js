@@ -19,6 +19,9 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { isAsciiForm, asciiEditorialText } = require('./lib/ascii-editorial.js');
+const { applyCanaryWatermark, shouldWatermark } = require('./lib/canary.js');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const { ARCHETYPES } = require('../js/archetypes-v2.js');
 const { getSectionsForEntry } = require('../platform/scholars/taxonomy.js');
@@ -112,7 +115,7 @@ function buildKitBody(ctx, paragraphs) {
   const citedBody = `${body}${cite(pickSource(ctx.pool, 0))}`;
   ensureSources({ sources }, ctx);
   return {
-    body: citedBody,
+    body: isAsciiForm(ctx.entry.unicode) ? asciiEditorialText(citedBody) : citedBody,
     sources,
     generatedFrom: ['pantheon-kit:backfill', 'lore:canonical', 'lexicon:pantheon'],
     bespoke: false,
@@ -505,9 +508,13 @@ function buildPantheonKitSection(ctx, key) {
 
 const EXPANSIONS = {
   overview: (ctx) =>
-    `The scholarly restoration of ${ctx.entry.unicode} therefore matters on two levels: as a philological correction of the plain ASCII form *${ctx.entry.ascii}*, and as a public assertion that ${domainFirst(ctx.entry)} belongs in the address bar. The PuniCodex temple serves both audiences — the specialist checking the name’s form and the curious visitor encountering the ${ctx.tradition} tradition for the first time.`,
+    isAsciiForm(ctx.entry.unicode)
+      ? `The canonical spelling of ${ctx.entry.unicode} matters on two levels: as a reviewed reference supported by the tradition’s sources, and as a public invitation to explore ${domainFirst(ctx.entry)}. The plain ASCII form *${ctx.entry.ascii}* contains the same letters; no recovery of lost marks is claimed. The PuniCodex temple serves both the specialist checking the name’s form and the curious visitor encountering the ${ctx.tradition} tradition for the first time.`
+      : `The scholarly restoration of ${ctx.entry.unicode} therefore matters on two levels: as a philological correction of the plain ASCII form *${ctx.entry.ascii}*, and as a public assertion that ${domainFirst(ctx.entry)} belongs in the address bar. The PuniCodex temple serves both audiences — the specialist checking the name’s form and the curious visitor encountering the ${ctx.tradition} tradition for the first time.`,
   'the-name': (ctx) =>
-    `Every attested spelling of ${ctx.entry.unicode} reflects a decision about vowel quantity, stress, or script. The PuniCodex entry records those decisions explicitly so that later scholars can evaluate them. The ASCII fallback *${ctx.entry.ascii}* remains a convenience, not a canonical form.`,
+    isAsciiForm(ctx.entry.unicode)
+      ? `The canonical spelling of ${ctx.entry.unicode} reflects a documented scholarly convention, not an arbitrary choice of letters. The plain ASCII form *${ctx.entry.ascii}* contains the same text, so no lost diacritics are claimed. The PuniCodex entry records the attestation, capitalization, variants, and reasoning explicitly so later scholars can evaluate them.`
+      : `Every attested spelling of ${ctx.entry.unicode} reflects a decision about vowel quantity, stress, or script. The PuniCodex entry records those decisions explicitly so that later scholars can evaluate them. The ASCII fallback *${ctx.entry.ascii}* remains a convenience, not a canonical form.`,
   pronunciation: (ctx) =>
     `The pronunciation given above reconstructs the sound world in which ${ctx.entry.unicode} was invoked. Modern speakers should not expect exact identity with ancient phonology; the reconstruction is a scholarly compass, not a performance prescription. The restoration ${ctx.entry.unicode} keeps the prosodic information visible even when the name is typed in plain ASCII.`,
   'original-script': (ctx) =>
@@ -551,7 +558,7 @@ function expandSection(section, key, ctx, isKit) {
     ].join('\n\n');
   }
 
-  section.body = body;
+  section.body = isAsciiForm(ctx.entry.unicode) ? asciiEditorialText(body) : body;
   if (!section.generatedFrom) section.generatedFrom = [];
   if (!section.generatedFrom.includes('backfill:threshold-expansion')) {
     section.generatedFrom.push('backfill:threshold-expansion');
@@ -610,6 +617,12 @@ function backfillArchetype(archetype, stats) {
     }
 
     expandSection(sections[key], key, ctx, isKit);
+    if (isAsciiForm(ctx.entry.unicode)) {
+      sections[key].body = asciiEditorialText(sections[key].body);
+      if (shouldWatermark(sections[key].body)) {
+        sections[key].body = applyCanaryWatermark(sections[key].body);
+      }
+    }
     ensureSources(sections[key], ctx);
   }
 
@@ -631,7 +644,7 @@ function main() {
     if (prevJson === nextJson) {
       stats.filesUnchanged += 1;
     } else {
-      fs.writeFileSync(file, nextJson);
+      writeFileWithRetry(file, nextJson);
       stats.filesChanged += 1;
     }
   }

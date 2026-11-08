@@ -402,6 +402,11 @@ const SUITES = [
   { name: 'STRATA Page Tests', cmd: 'node test/strata-page.test.js', timeout: 30000 },
   { name: 'Temple Art Room Tests', cmd: 'node test/temple-art-room.test.js', timeout: 120000 },
   { name: 'Sacred Atlas Tests', cmd: 'node test/sacred-atlas.test.js', timeout: 30000 },
+  {
+    name: 'ASCII Editorial Truth Tests',
+    cmd: 'node test/ascii-editorial-truth.test.js',
+    timeout: 120000,
+  },
   { name: 'Cards Editions Tests', cmd: 'node --test test/cards-editions.test.js', timeout: 30000 },
   {
     name: 'Domain-less Flagship Tests',

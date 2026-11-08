@@ -55,7 +55,7 @@ module.exports = {
         {
           "key": "the-name",
           "label": "The Name",
-          "purpose": "Etymology, ASCII constraint, Unicode restoration, name variations, tier classification."
+          "purpose": "Etymology, transliteration, canonical spelling, name variations, and evidence preservation."
         },
         {
           "key": "pronunciation",

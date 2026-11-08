@@ -155,11 +155,11 @@ function main() {
     <meta name="twitter:description" content="${total} ordinary words that descend from gods — with the stories and citations behind each.">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/everyday.jpg">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/main.css?v=perf39">
+    <link rel="stylesheet" href="/css/main.css?v=perf40">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-    <link rel="stylesheet" href="/css/footer.css?v=6">
+    <link rel="stylesheet" href="/css/footer.css?v=8">
     <script type="application/ld+json">${JSON.stringify(itemList)}</script>
     <script src="/js/px-core.js?v=perf23" defer></script>
     <script src="${PINS.NAV_HUBS_JS}" defer></script>

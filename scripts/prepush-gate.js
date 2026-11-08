@@ -105,12 +105,16 @@ const RULES = [
     suites: ['Archē Tests'],
   },
   {
-    pattern: /^data\/sacred-sites\.json$|^scripts\/generate-sacred-atlas\.js$|^atlas\/sacred\/|^test\/sacred-atlas\.test\.js$/,
+    pattern: /^data\/sacred-sites\.json$|^scripts\/generate-sacred-atlas\.js$|^world\/sacred\/|^js\/sacred-globe\.js$|^css\/sacred-globe\.css$|^test\/sacred-atlas\.test\.js$/,
     suites: ['Sacred Atlas Tests'],
   },
   {
     pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/origins\/|^test\/strata-page\.test\.js$/,
     suites: ['STRATA Page Tests'],
+  },
+  {
+    pattern: /^scripts\/(?:lib\/ascii-editorial|generate-scholars-content|generate-blog-content|generate-blog-series-restoration|generate-blog-series-canonical|create-flagship)\.js$|^platform\/(?:scholars\/content|blog\/(?:content|series))\/|^test\/ascii-editorial-truth\.test\.js$/,
+    suites: ['ASCII Editorial Truth Tests'],
   },
   {
     pattern: /^templates\/flagship\/(gallery|blog|lore|patron|patterns|scholars|index)\.html$|^scripts\/create-flagship\.js$|^assets\/ai-commons\/|^test\/temple-commons-gallery\.test\.js$/,

@@ -56,15 +56,19 @@ test('page: every site is plotted and dossiered', () => {
   }
 });
 
-test('page: chrome, canonical, JSON-LD, and the geometric world', () => {
+test('page: canonical chrome, JSON-LD, and the interactive globe', () => {
   const html = read('world/sacred/index.html');
   assert.ok(
     html.includes('rel="canonical" href="https://punicodex.com/world/sacred/"'),
     'canonical'
   );
   assert.ok(html.includes('application/ld+json'), 'JSON-LD');
-  const lands = (html.match(/class="atx-land"/g) || []).length;
-  assert.ok(lands >= 12, `expected >=12 landmasses, got ${lands}`);
+  assert.ok(html.includes('id="main-nav"'), 'canonical menu strip missing');
+  assert.ok(html.includes('class="site-footer"'), 'canonical footer missing');
+  assert.ok(html.includes('id="atx-globe"'), '3D globe canvas missing');
+  assert.ok(html.includes('/js/sacred-globe.js'), 'globe engine missing');
+  assert.ok(html.includes('data-globe-action="zoom-in"'), 'zoom controls missing');
+  assert.ok(html.includes('Sacred Geography'), 'Sacred Geography label missing');
   assert.ok(html.includes('atx-filter'), 'tradition filter present');
 });
 

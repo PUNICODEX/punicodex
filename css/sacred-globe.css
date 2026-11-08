@@ -1,0 +1,215 @@
+.atx-globe-section {
+  position: relative;
+  max-width: 1240px;
+  margin: 1rem auto 4rem;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.atx-globe-heading {
+  max-width: 680px;
+  margin: 0 auto 1.6rem;
+  text-align: center;
+}
+
+.atx-globe-heading h2 {
+  margin: 0.55rem 0 0.75rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.atx-globe-heading p:last-child,
+.atx-globe-help {
+  color: var(--dim);
+  line-height: 1.7;
+}
+
+.atx-globe-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(25, 47, 67, 0.36), transparent 48%),
+    radial-gradient(circle at 18% 12%, rgba(212, 175, 55, 0.08), transparent 34%),
+    #030609;
+  box-shadow:
+    0 32px 100px rgba(0, 0, 0, 0.52),
+    inset 0 0 80px rgba(0, 0, 0, 0.48);
+}
+
+.atx-globe-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.035), transparent 32%),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.38));
+}
+
+#atx-globe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+}
+
+#atx-globe:active {
+  cursor: grabbing;
+}
+
+#atx-globe:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--gold);
+}
+
+.atx-globe-controls {
+  position: absolute;
+  z-index: 4;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+.atx-globe-controls button {
+  min-width: 2.2rem;
+  min-height: 2.2rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  border-radius: 999px;
+  background: rgba(3, 6, 9, 0.86);
+  color: var(--ivory);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.atx-globe-controls button:hover,
+.atx-globe-controls button:focus-visible,
+.atx-globe-controls button[aria-pressed='true'] {
+  border-color: var(--gold);
+  color: var(--gold);
+  outline: none;
+}
+
+.atx-globe-status {
+  position: absolute;
+  z-index: 3;
+  left: 1rem;
+  bottom: 1rem;
+  max-width: min(62%, 620px);
+  margin: 0;
+  color: rgba(245, 241, 230, 0.72);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  pointer-events: none;
+}
+
+.atx-globe-help {
+  max-width: 80ch;
+  margin: 0.9rem auto 0;
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.atx-globe-tooltip {
+  position: absolute;
+  z-index: 6;
+  width: min(260px, calc(100% - 24px));
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(212, 175, 55, 0.42);
+  border-radius: 10px;
+  background: rgba(4, 7, 10, 0.96);
+  color: var(--ivory);
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.55);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  pointer-events: auto;
+  backdrop-filter: blur(12px);
+}
+
+.atx-globe-tooltip[hidden] {
+  display: none;
+}
+
+.atx-globe-tooltip strong,
+.atx-globe-tooltip span {
+  display: block;
+}
+
+.atx-globe-tooltip strong {
+  margin-bottom: 0.25rem;
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.atx-globe-tooltip span {
+  color: var(--dim);
+}
+
+.atx-globe-tooltip button {
+  display: block;
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 6px;
+  background: rgba(212, 175, 55, 0.06);
+  color: var(--ivory);
+  text-align: left;
+  cursor: pointer;
+}
+
+.atx-globe-tooltip button:hover,
+.atx-globe-tooltip button:focus-visible {
+  border-color: var(--gold);
+  color: var(--gold);
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  .atx-globe-section {
+    margin-bottom: 2.5rem;
+    padding: 0 0.75rem;
+  }
+
+  #atx-globe {
+    aspect-ratio: 4 / 5;
+  }
+
+  .atx-globe-controls {
+    right: 0.65rem;
+    bottom: 0.65rem;
+  }
+
+  .atx-globe-status {
+    right: 0.65rem;
+    bottom: 4rem;
+    left: 0.65rem;
+    max-width: none;
+    font-size: 0.6rem;
+  }
+
+  .atx-globe-help {
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #atx-globe {
+    scroll-behavior: auto;
+  }
+}

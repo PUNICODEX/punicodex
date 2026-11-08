@@ -21,6 +21,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { preservationLabel } = require('./lib/preservation-label.js');
+const { isAsciiForm, asciiEditorialText } = require('./lib/ascii-editorial.js');
 const vm = require('node:vm');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 
@@ -426,7 +427,9 @@ function main() {
       ])}`
       : `No alternate form of this name carries documented scholarly support in the lexicon's record. The convention here — ${TRADITION_CONVENTION[entry.pantheon] || 'the tradition\u2019s standard'} — produces exactly one defensible transliteration: **${u}**. Forms that differ from it are not contested; they are simply wrong.`;
 
-    const idnaBlock = IDNA_TELLINGS[V.hashStr(id) % IDNA_TELLINGS.length](id);
+    const idnaBlock = isAsciiForm(u)
+      ? `## The Address, Without an Encoding Detour\n\nThe canonical form **${u}** already uses ordinary Latin letters, so the address bar needs no special encoding narrative. The digital temple can preserve the spelling exactly as the scholarly record presents it. That is the practical point here: consistency between the source, the citation, and the public address.\n\nThis does not make every romanization equally valid. A wrong letter remains wrong even when it is easy to type. Canonical status still depends on the attested convention, never on convenience or registrar inventory.`
+      : IDNA_TELLINGS[V.hashStr(id) % IDNA_TELLINGS.length](id);
     const deepDiveBlock = traditionDeepDive(entry, id);
     const glance = glanceBlock(entry, script, falseForms.length, variants.length);
 
@@ -593,13 +596,16 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
 
     parts.push(closeBlock(entry));
 
+    const bodyText = isAsciiForm(u)
+      ? asciiEditorialText(parts.filter(Boolean).join('\n\n'))
+      : parts.filter(Boolean).join('\n\n');
     const fullBody = `# ${V.pick(id, 304, [
       `The canonical register: ${u}`,
       `${u} — the one true spelling, and the forms that fail it`,
       `The register rules: ${u}`,
       `${u}: canonical, contested, and the false forms on record`,
       architecture === 'dossier' ? `Evidence dossier: ${u}` : architecture === 'trial' ? `${u} versus the internet` : architecture === 'letter' ? `On ${u}: a letter to a colleague` : `The register rules: ${u}`,
-    ])}\n\n${parts.filter(Boolean).join('\n\n')}\n`;
+    ])}\n\n${bodyText}\n`;
 
     const wc = fullBody.split(/\s+/).filter(Boolean).length;
     const readMin = Math.max(3, Math.round(wc / 200));
@@ -610,7 +616,9 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
       architecture,
       title: fullBody.match(/^# (.+)$/m)[1],
       description: padDescription(V.pick(id, 305, [
-        `The Canonical Register: ${u} — the one true spelling, the false forms dissected, the contested forms weighed, and what IDNA 2008 allows.`,
+        isAsciiForm(u)
+          ? `The Canonical Register: ${u} — the attested spelling, the false forms dissected, and the evidence behind the canonical address.`
+          : `The Canonical Register: ${u} — the one true spelling, the false forms dissected, the contested forms weighed, and what IDNA 2008 allows.`,
         `${u}, canonically: the attested form, the status of the plain form, the violations online, and the register's ruling.`,
         `Every false form of ${u} on record — its origin, its violation, and the canonical form that answers it.`,
       ]), id),
@@ -622,7 +630,7 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
         `${entry.pantheon} mythology`,
         'The Canonical Register',
         'PuniCodex',
-        'IDNA 2008',
+        isAsciiForm(u) ? 'canonical spelling' : 'IDNA 2008',
         'philology',
       ],
       tags: [entry.pantheon, preservationLabel(entry.unicode), 'canonical', 'The Canonical Register'],

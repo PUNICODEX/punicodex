@@ -24,6 +24,8 @@ const { SOURCE_CATALOG } = require(path.join(ROOT, 'type', 'js', 'source-catalog
 const { getOriginalScript } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 const PATTERNS = require(path.join(ROOT, 'platform', 'api', 'industry-patterns.json'));
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
+const { isAsciiForm } = require('./lib/ascii-editorial.js');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const WORD_FLOOR = 450;
 const BUILT_IDS = new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
@@ -76,11 +78,11 @@ function padSection(entry) {
 
 This restoration is not a styling choice. **${u}** is the form the ${pantheon} scholarly record supports for the figure whose domain is ${entry.domain || 'mythic'}. ${entry.meaning ? `The name itself carries the meaning "${entry.meaning}".` : ''} ${scriptLine}
 
-${sourcesBlock} Each mark in the restored spelling — every accent, length, and retained letter — is traceable to that record rather than to editorial preference.
+${sourcesBlock} ${isAsciiForm(u) ? `Every letter in the canonical spelling is traceable to that record; no additional marks are needed to make the name complete.` : `Each mark in the restored spelling — every accent, length, and retained letter — is traceable to that record rather than to editorial preference.`}
 
 ${seatsBlock ? seatsBlock + '\n\n' : ''}## Why the Restoration Holds
 
-The ASCII fallback *${ascii}* is useful only where Unicode cannot travel; it is not the name. *${ascii}* loses the information the sources preserve, and a temple built on the fallback would be a temple built on a typo. The file stands where the sources stand: with **${u}**, restored and addressable at [/${entry.id}/](/${entry.id}/).
+${isAsciiForm(u) ? `The plain form *${ascii}* contains the same letters as the canonical **${u}**. Nothing is lost and no typo is being concealed: the file preserves a reviewed spelling, its capitalization, and its evidence at [/${entry.id}/](/${entry.id}/).` : `The ASCII fallback *${ascii}* is useful only where Unicode cannot travel; it is not the name. *${ascii}* loses the information the sources preserve, and a temple built on the fallback would be a temple built on a typo. The file stands where the sources stand: with **${u}**, restored and addressable at [/${entry.id}/](/${entry.id}/).`}
 
 Read the [founding dispatch](/${entry.id}/blog/) for the name's full story, the [Resonance File](/${entry.id}/blog/resonance/) for the archetype at work in modern industries, and the [Scholarly Edition](/${entry.id}/scholars/) for the peer-reviewed record. The [blog index](/blog/) holds the whole archive.`;
 }
@@ -98,7 +100,7 @@ function main() {
     if (!entry) continue;
 
     post.body = post.body.trim() + '\n\n' + padSection(entry);
-    fs.writeFileSync(abs, JSON.stringify(post, null, 2) + '\n', 'utf8');
+    writeFileWithRetry(abs, JSON.stringify(post, null, 2) + '\n', 'utf8');
     fixed++;
     console.log(`  padded ${post.entryId}: ${wc} → ${wordCount(post.body)} words`);
   }

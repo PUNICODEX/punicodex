@@ -102,7 +102,9 @@ test('blog/index.html exists with a complete SEO head', () => {
 
   assert.match(
     html,
-    new RegExp(`<title>Blog — ${EXPECTED_COUNT} Unicode Restoration Essays \\| PUNICODEX</title>`)
+    new RegExp(
+      `<title>Blog — ${EXPECTED_COUNT} Restoration & Canonical Name Essays \\| PUNICODEX</title>`
+    )
   );
   assert.match(html, /<meta name="description" content="[^"]+">/, 'missing meta description');
   assert.match(

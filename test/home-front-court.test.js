@@ -53,6 +53,18 @@ test('the hero and the Collection survive untouched', () => {
   // The grid is JS-populated (js/home.js builds "Reveal all {n} archetypes").
   assert.ok(html.includes('id="pantheon-grid"'), 'pantheon grid mount missing');
   assert.ok(/temples consecrated/.test(html), 'the consecration line missing');
+  assert.ok(html.includes('Station I · The Collection'), 'Station I label missing');
+  assert.ok(!html.includes('true Unicode orthography'), 'ASCII-only temples are overclaimed');
+  assert.ok(html.includes('attested scholarly spelling where ASCII is already sufficient'));
+});
+
+test('the Collection has exactly one following divider', () => {
+  const collection = html.slice(html.indexOf('id="pantheon"'), html.indexOf('id="wall"'));
+  assert.strictEqual(
+    (collection.match(/class="section-divider pc-divider-strip"/g) || []).length,
+    1,
+    'double divider beneath the Collection'
+  );
 });
 
 test('all ten stations exist, in the approved running order', () => {
@@ -203,6 +215,19 @@ test('the interaction layer is wired', () => {
   for (const cls of ['.fc-wall-grid', '.fc-gallery-grid', '.fc-covenant-grid', '.fc-plinths']) {
     assert.ok(css.includes(cls), `home-critical.css missing ${cls}`);
   }
+});
+
+test('Reliquary swatches change the actual mockup and carry colour to checkout', () => {
+  const js = fs.readFileSync(path.join(root, 'js', 'home.js'), 'utf8');
+  assert.ok(js.includes('ensurePrint'), 'blank-garment artwork overlay missing');
+  assert.ok(js.includes('/assets/store-base/'), 'real colour mockup paths missing');
+  assert.ok(js.includes('color === product.composite'), 'baked composite colour is not isolated');
+  assert.ok(
+    js.includes("go.setAttribute('href', color ? base + '?color='"),
+    'checkout colour is not preserved'
+  );
+  const css = fs.readFileSync(path.join(root, 'css', 'home-critical.css'), 'utf8');
+  assert.ok(css.includes('.fc-plinth-img .fc-print'), 'print overlay styles missing');
 });
 
 console.log(`\nFront Court: ${passed} passed, ${failed} failed`);

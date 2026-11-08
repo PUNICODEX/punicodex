@@ -26,7 +26,11 @@ const OUT = path.join(ROOT, 'genesis', 'index.html');
 
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const { INDUSTRY_GROUPS } = require(path.join(ROOT, 'type', 'js', 'industry-patterns.js'));
+const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
+const flagshipIds = new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
 const byId = new Map(LEXICON.map((e) => [e.id, e]));
+const STRATA = require('../data/pantheon-strata.json');
+const strataByPantheon = new Map(STRATA.layers.map((layer) => [layer.pantheon, layer]));
 
 /* Industry id → display name + tagline (the pattern atlas made visible after
  * the Turn). Act II shows INDUSTRIES, mapped to their /patterns/ panels —
@@ -45,12 +49,20 @@ const deityCard = (d, i) => {
   const e = byId.get(d.id);
   if (!e) throw new Error(`arche: unknown lexicon id "${d.id}"`);
   const depth = (i % 3) + 1;
-  return `                <a class="arche-card" href="/${e.id}/" data-depth="${depth}" style="--d:${i}">
-                    <span class="arche-card-name">${esc(e.unicode)}</span>
-                    <span class="arche-card-pantheon">${esc(e.pantheon)}</span>
-                    <span class="arche-card-line">${esc(d.line)}</span>
-                    <span class="arche-card-domain">${esc(e.domain)}</span>
-                </a>`;
+  const stratum = strataByPantheon.get(e.pantheon);
+  return `                <article class="arche-card" data-depth="${depth}" style="--d:${i}">
+                    <a class="arche-card-main" href="/${e.id}/">
+                      <span class="arche-card-name">${esc(e.unicode)}</span>
+                      <span class="arche-card-pantheon">${esc(e.pantheon)}</span>
+                      <span class="arche-card-line">${esc(d.line)}</span>
+                      <span class="arche-card-domain">${esc(e.domain)}</span>
+                    </a>
+                    <nav class="arche-card-links" aria-label="Explore ${esc(e.unicode)}">
+                      <a href="/${e.id}/">Temple</a>
+                      ${stratum ? `<a href="/pantheon/origins/#stratum-${stratum.order}">STRATA</a>` : ''}
+                      ${flagshipIds.has(e.id) ? `<a href="/${e.id}/patterns/">Patterns</a>` : ''}
+                    </nav>
+                </article>`;
 };
 
 const tendrilCard = (t, i) => {
@@ -166,7 +178,7 @@ const chapterPage = (ch, i) => {
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/arche.css">
+    <link rel="stylesheet" href="/css/arche.css?v=2">
 </head>
 <body class="arche-body arche-chapter">
     <a class="arche-exit" href="/genesis/" aria-label="The full Archē experience">
@@ -229,7 +241,7 @@ const page = `<!DOCTYPE html>
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/arche.css">
+    <link rel="stylesheet" href="/css/arche.css?v=2">
     <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
     <link rel="stylesheet" href="/css/arche-identity.css?v=2">
 </head>
@@ -277,6 +289,11 @@ const page = `<!DOCTYPE html>
                 <div class="arche-verse">
 ${verseHtml(PROLOGUE.verse)}
                 </div>
+                <nav class="arche-prologue-links" aria-label="Continue through the collection">
+                  <a class="arche-chip" href="/pantheon/origins/">STRATA · deep history</a>
+                  <a class="arche-chip" href="/world/sacred/">Sacred Geography</a>
+                  <a class="arche-chip" href="/patterns/">The Pattern Atlas</a>
+                </nav>
                 <a class="arche-begin" href="#scene-chaos" data-begin>${esc(PROLOGUE.prompt)}<span aria-hidden="true"> ↓</span></a>
             </div>
         </section>
@@ -342,11 +359,12 @@ ${FINALE.links.map((l) => `                    <a class="arche-cta" href="${esc(
 </html>
 `;
 
+const normalizedPage = page.replace(/[^\S\r\n]+$/gm, '');
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
-if (fs.existsSync(OUT) && fs.readFileSync(OUT, 'utf8') === page) {
+if (fs.existsSync(OUT) && fs.readFileSync(OUT, 'utf8') === normalizedPage) {
   console.log('Archē page: already canonical.');
 } else {
-  writeFileWithRetry(OUT, page, 'utf8');
+  writeFileWithRetry(OUT, normalizedPage, 'utf8');
   console.log(`Archē page: ${path.relative(ROOT, OUT)} written.`);
 }
 
@@ -354,7 +372,7 @@ let chaptersWritten = 0;
 for (let i = 0; i < ASCENT.length; i++) {
   const ch = ASCENT[i];
   const out = path.join(ROOT, 'genesis', ch.id, 'index.html');
-  const html = chapterPage(ch, i);
+  const html = chapterPage(ch, i).replace(/[^\S\r\n]+$/gm, '');
   if (fs.existsSync(out) && fs.readFileSync(out, 'utf8') === html) continue;
   fs.mkdirSync(path.dirname(out), { recursive: true });
   writeFileWithRetry(out, html, 'utf8');

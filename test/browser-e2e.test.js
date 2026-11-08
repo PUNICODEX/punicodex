@@ -118,6 +118,122 @@ async function run() {
       }
     });
 
+    await test('home: Reliquary colour chips swap real mockups without overlapping prints', async () => {
+      await page.goto(`${base}/`, { waitUntil: 'domcontentloaded' });
+      const plinth = page
+        .locator('.fc-plinth-go[data-base="/store/merch/zeus/tee/"]')
+        .locator('..');
+      const img = plinth.locator('.fc-plinth-img img').first();
+      const original = await img.getAttribute('src');
+      await plinth.locator('.fc-sw[data-c="White"]').click();
+      await page.waitForTimeout(120);
+      const changed = await img.getAttribute('src');
+      if (!changed.includes('/assets/store-base/tee--white.jpg') || changed === original) {
+        throw new Error(`white mockup did not render: ${changed}`);
+      }
+      const print = plinth.locator('.fc-print');
+      if (!(await print.count()) || !(await print.isVisible())) {
+        throw new Error('temple artwork did not appear on the white garment');
+      }
+      const href = await plinth.locator('.fc-plinth-go').getAttribute('href');
+      if (!href.includes('color=White')) throw new Error(`checkout colour not preserved: ${href}`);
+      await plinth.locator('.fc-sw[data-c="Black"]').click();
+      await page.waitForTimeout(80);
+      if ((await img.getAttribute('src')) !== original)
+        throw new Error('composite did not restore');
+      if (await print.isVisible()) throw new Error('print overlaps the baked composite');
+    });
+
+    await test('STRATA: canonical chrome and evidence-guided content render', async () => {
+      await page.goto(`${base}/pantheon/origins/`, { waitUntil: 'domcontentloaded' });
+      if (!(await page.locator('#main-nav').isVisible())) throw new Error('menu strip missing');
+      if (!(await page.locator('.site-footer').isVisible())) throw new Error('footer missing');
+      if (!/STRATA/.test(await page.locator('h1').first().textContent())) {
+        throw new Error('STRATA title missing');
+      }
+      const body = await page.textContent('body');
+      if (!body.includes('does not demonstrate one unchanged religious system')) {
+        throw new Error('Sahul continuity caveat missing');
+      }
+      if (!body.includes('Archē · the first principles'))
+        throw new Error('Archē cross-link missing');
+      if (process.env.PUNICODEX_SCREENSHOTS) {
+        await page.screenshot({ path: '/tmp/punicodex-strata.png', fullPage: false });
+      }
+    });
+
+    await test('Sacred Geography: globe zooms, clusters, and opens real dossiers', async () => {
+      await page.goto(`${base}/world/sacred/`, { waitUntil: 'domcontentloaded' });
+      if (!(await page.locator('#main-nav').isVisible())) throw new Error('menu strip missing');
+      if (!(await page.locator('.site-footer').isVisible())) throw new Error('footer missing');
+      const canvas = page.locator('#atx-globe');
+      await canvas.waitFor({ state: 'visible', timeout: 10000 });
+      const initial = await page.evaluate(() =>
+        document.querySelector('#atx-globe').sacredGlobe.getState()
+      );
+      if (initial.siteCount < 90 || initial.visibleSites < 20) {
+        throw new Error(`globe data did not project: ${JSON.stringify(initial)}`);
+      }
+      await page.locator('[data-globe-action="zoom-in"]').click();
+      await page.waitForTimeout(220);
+      const zoomed = await page.evaluate(() =>
+        document.querySelector('#atx-globe').sacredGlobe.getState()
+      );
+      if (zoomed.targetZoom <= initial.targetZoom) throw new Error('zoom control did nothing');
+      await canvas.focus();
+      await canvas.press('Enter');
+      await page.waitForTimeout(120);
+      const siteButton = page.locator('[data-globe-site]').first();
+      if (await siteButton.count()) await siteButton.click();
+      if (!(await page.locator('#atx-panel.open').count())) {
+        throw new Error('site selection did not open a dossier');
+      }
+      await page.locator('#atx-close').click();
+      await page.locator('[data-globe-action="reset"]').click();
+      if (process.env.PUNICODEX_SCREENSHOTS) {
+        await page.screenshot({ path: '/tmp/punicodex-sacred-globe.png', fullPage: false });
+      }
+    });
+
+    await test('hub footers: canonical markup and computed layout match the homepage', async () => {
+      async function footerSnapshot(url) {
+        await page.goto(url, { waitUntil: 'domcontentloaded' });
+        return page.evaluate(() => {
+          const footer = document.querySelector('.site-footer');
+          const grid = footer.querySelector('.footer-grid');
+          const heading = footer.querySelector('.footer-heading');
+          return {
+            html: footer.outerHTML,
+            columns: getComputedStyle(grid).gridTemplateColumns,
+            gridWidth: getComputedStyle(grid).width,
+            gridGap: getComputedStyle(grid).columnGap,
+            containerWidth: getComputedStyle(footer.querySelector('.container')).width,
+            align: getComputedStyle(heading).textAlign,
+            color: getComputedStyle(heading).color,
+          };
+        });
+      }
+      for (const width of [1366, 390]) {
+        await page.setViewportSize({ width, height: 900 });
+        const home = await footerSnapshot(`${base}/`);
+        for (const hub of ['world', 'culture', 'instruments', 'library', 'relics', 'about']) {
+          const other = await footerSnapshot(`${base}/${hub}/`);
+          if (other.html !== home.html)
+            throw new Error(`${hub}: footer markup diverged at ${width}`);
+          if (
+            other.columns !== home.columns ||
+            other.align !== home.align ||
+            other.color !== home.color
+          ) {
+            throw new Error(
+              `${hub}: footer layout diverged at ${width}: hub ${JSON.stringify(other)} vs home ${JSON.stringify(home)}`
+            );
+          }
+        }
+      }
+      await page.setViewportSize({ width: 1366, height: 900 });
+    });
+
     await test('type tool: typing a name offers the canonical Unicode completion', async () => {
       await page.goto(`${base}/type/`, { waitUntil: 'domcontentloaded' });
       const input = page.locator('#type-input, input[type="text"]').first();
@@ -176,6 +292,35 @@ async function run() {
         await page.waitForTimeout(400);
         const email = page.locator('#booking-email[aria-label]');
         if (!(await email.count())) throw new Error('booking email input lacks aria-label');
+      }
+    });
+
+    await test('ASCII temple: canonical prose renders without Unicode claims or broken Lore styling', async () => {
+      await page.goto(`${base}/sites/ninlil/lore/`, { waitUntil: 'domcontentloaded' });
+      const description = await page.locator('meta[name="description"]').getAttribute('content');
+      if (
+        !description.includes('canonical digital temple') ||
+        /Unicode|Punycode/i.test(description)
+      ) {
+        throw new Error(`Lore metadata was not corrected: ${description}`);
+      }
+      const card = page.locator('.card-unicode').first();
+      if (!(await card.count()))
+        throw new Error('Lore card class was damaged by editorial transforms');
+      const cardDisplay = await card.evaluate((element) => getComputedStyle(element).display);
+      if (cardDisplay === 'none') throw new Error('Lore card is hidden');
+      const loreText = await page.locator('body').textContent();
+      if (/Unicode Restoration|DNS compromise|unregistrable plain-ASCII/i.test(loreText)) {
+        throw new Error('false ASCII claim remains visible in Lore');
+      }
+
+      await page.goto(`${base}/sites/bunjil/scholars/`, { waitUntil: 'domcontentloaded' });
+      const scholarText = await page.locator('body').textContent();
+      if (!scholarText.includes('differs only in capitalization')) {
+        throw new Error('ASCII-identical capitalization explanation is missing');
+      }
+      if (/DNS compromise|domain-name compromise|Unicode restoration/i.test(scholarText)) {
+        throw new Error('false ASCII claim remains visible in Scholars');
       }
     });
 

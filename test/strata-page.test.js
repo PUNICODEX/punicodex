@@ -77,6 +77,24 @@ test('station II pantheons rectangle enters the column', () => {
   assert.ok(block, 'the 25-pantheons rectangle points at /pantheon/origins/');
 });
 
+test('canonical chrome, scholarly limits, and collection cross-links are present', () => {
+  const html = read('pantheon/origins/index.html');
+  assert.ok(html.includes('id="main-nav"'), 'canonical menu strip missing');
+  assert.ok(html.includes('class="site-footer"'), 'canonical footer missing');
+  assert.ok(html.includes('<h1 class="reveal">STRATA</h1>'), 'STRATA title missing');
+  assert.ok(html.includes('Archē · the first principles'), 'Archē cross-link missing');
+  assert.ok(html.includes('Sacred Geography · the living globe'), 'globe cross-link missing');
+  assert.ok(html.includes('Pattern Atlas · the modern world'), 'Pattern Atlas cross-link missing');
+  assert.ok(
+    html.includes('does not demonstrate one unchanged religious system'),
+    'Sahul continuity caveat missing'
+  );
+  assert.ok(
+    !html.includes('carried unbroken since the first settlement of Sahul'),
+    'unsupported continuity claim remains'
+  );
+});
+
 test('all 25 pantheons are covered exactly once', () => {
   const seen = DATA.layers.map((l) => l.pantheon);
   assert.strictEqual(seen.length, 25);

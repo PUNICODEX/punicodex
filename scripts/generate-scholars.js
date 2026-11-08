@@ -15,6 +15,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { preservationLabel } = require('./lib/preservation-label.js');
+const { asciiTempleText } = require('./lib/ascii-editorial.js');
 const url = require('node:url');
 
 const ROOT = path.join(__dirname, '..');
@@ -343,7 +344,7 @@ function generateScholarsPage(templeId, manifestOverride) {
     const value = vars[key] == null ? '' : String(vars[key]);
     html = html.split(`{{${key}}}`).join(value);
   }
-  return html;
+  return asciiTempleText(html, entry);
 }
 
 function sleep(ms) {

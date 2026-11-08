@@ -870,3 +870,45 @@ body[data-fx='d-end'] { --arche-gold: #8a2f2f; --arche-gold-dim: #5c1e1e; }
     grid-template-columns: 1fr;
   }
 }
+
+
+.arche-card-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.arche-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.7rem;
+  margin-top: 0.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--arche-line);
+}
+
+.arche-card-links a {
+  color: var(--arche-gold-dim);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.arche-card-links a:hover,
+.arche-card-links a:focus-visible {
+  color: var(--arche-gold);
+  text-decoration: underline;
+}
+
+.arche-prologue-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.4rem auto 0;
+}

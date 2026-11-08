@@ -1937,3 +1937,26 @@ body.menu-open {
     position: relative;
     z-index: 1;
 }
+
+
+/* Station V · live colour previews: the transparent temple print sits only on
+   the selected blank garment, never over a baked composite. */
+.fc-plinth-img {
+  position: relative;
+}
+
+.fc-plinth-img picture {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.fc-plinth-img .fc-print {
+  position: absolute;
+  z-index: 2;
+  max-width: none;
+  border-radius: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.28));
+}

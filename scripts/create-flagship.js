@@ -20,6 +20,7 @@ const url = require('node:url');
 const { unicodeName } = require('unicode-name');
 const { autoLink } = require('./lib/crosslink.js');
 const { preservationLabel } = require('./lib/preservation-label.js');
+const { asciiTempleText } = require('./lib/ascii-editorial.js');
 const { templeBreadcrumb, templeBreadcrumbNav } = require('./lib/breadcrumb.js');
 const { wikidataUrlFor } = require('./lib/wikidata-links.js');
 const { PANTHEON_META } = require('../type/js/pantheon-meta.js');
@@ -1277,13 +1278,13 @@ function buildNameProse(entry) {
   const original = hasOriginal
     ? `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested in the source tradition${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`
     : isAsciiOnlyUnicode(entry)
-      ? `The name survives in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, documented in academic sources${meaningClause}. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.`
+      ? `The name survives in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, documented in academic sources${meaningClause}. The spelling uses ordinary Latin letters, so the canonical form and the ASCII form coincide.`
       : `The name survives only in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, documented in academic sources${meaningClause}. Its ${featureList} preserve distinctions lost in plain ASCII.`;
   const ascii = isAsciiOnlyUnicode(entry)
-    ? `The plain <strong>${entry.ascii}</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.`
+    ? `The plain <strong>${entry.ascii}</strong> form shares the canonical spelling. Because this name is already written in Latin letters, no recovered diacritics are required; capitalization follows the proper-noun convention.`
     : `Reduced to plain <strong>${entry.ascii}</strong>, the name loses everything that made it specific: ${featureList}. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.`;
   const unicode = isAsciiOnlyUnicode(entry)
-    ? `The Unicode restoration does not need to recover lost marks for <strong>${entry.unicode}</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.`
+    ? `The canonical spelling of <strong>${entry.unicode}</strong> needs no recovered marks. Its value is consistent citation, transparent provenance, and a stable digital home for the scholarly record. The address is readable as-is to both DNS and humanity.`
     : `The Unicode restoration recovers what ASCII flattened. <strong>${entry.unicode}</strong> restores ${featureList}, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.`;
   return { original, ascii, unicode };
 }
@@ -2236,7 +2237,9 @@ function buildFaqItems(entry, catalogEntry) {
     });
   }
   items.push({
-    q: `Why restore ${entry.unicode} in Unicode?`,
+    q: isAsciiOnlyUnicode(entry)
+      ? `Why use the canonical spelling of ${entry.unicode}?`
+      : `Why restore ${entry.unicode} in Unicode?`,
     a: isAsciiOnlyUnicode(entry)
       ? `<strong>${entry.unicode}</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.`
       : `Plain ASCII <strong>${entry.ascii}</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.`,
@@ -3781,7 +3784,7 @@ function safeRenameSync(src, dest, retries = 20) {
 }
 
 function substituteTempleVars(content, entry, tab = null) {
-  return content
+  const html = content
     .split('{{TEMPLE_ID}}')
     .join(entry.id)
     .split('{{UNICODE}}')
@@ -3794,6 +3797,7 @@ function substituteTempleVars(content, entry, tab = null) {
     .join(templeBreadcrumb(entry, tab))
     .split('{{BREADCRUMB_NAV}}')
     .join(templeBreadcrumbNav(entry, tab));
+  return asciiTempleText(html, entry);
 }
 
 function copyCreativesTemplate(siteDir, templateDir, entry, catalogEntry = null) {
@@ -4059,7 +4063,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
   html = replacePlaceholders(html, vars);
   html = applyBespokeCanvas(html, entry.id, palette.primary, palette.secondary);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
-  return html;
+  return asciiTempleText(html, entry);
 }
 
 // Anchor links for the extended page's slim subnav — built from the sections
@@ -4223,6 +4227,9 @@ function createFlagship(templeId, options = {}) {
   };
   const extended = generateExtendedPage(entry, palette, TEMPLATE_DIR, catalog);
   if (extended) outputs['lore/extended/index.html'] = extended;
+  for (const [file, content] of Object.entries(outputs)) {
+    if (file.endsWith('.html')) outputs[file] = asciiTempleText(content, entry);
+  }
 
   if (!skipValidation) {
     const issues = validateGenerated(templeId, outputs);

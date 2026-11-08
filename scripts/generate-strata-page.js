@@ -18,6 +18,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { LEXICON } = require('../type/js/lexicon.js');
+const { fullNavHtml } = require('./sync-desktop-nav.js');
+const { footerHtml } = require('./sync-footer.js');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'pantheon-strata.json'), 'utf8'));
@@ -133,6 +136,33 @@ function chip(id) {
 // Aboriginal Dreamtime foundation, 25 is the mythic map, and the finale
 // breaches the surface into the present.
 const layers = [...DATA.layers].sort((a, b) => a.order - b.order);
+const ARCHAE_BY_PANTHEON = {
+  aboriginal: 'the-one',
+  mesopotamian: 'water',
+  egyptian: 'light',
+  sanskrit: 'thunder',
+  hittite: 'thunder',
+  canaanite: 'thunder',
+  phoenician: 'thunder',
+  zoroastrian: 'the-rebel',
+  greek: 'the-one',
+  roman: 'the-one',
+  celtic: 'renewal',
+  norse: 'the-end',
+  baltic: 'thunder',
+  slavic: 'thunder',
+  buddhist: 'renewal',
+  chinese: 'the-one',
+  taoist: 'the-one',
+  korean: 'the-one',
+  japanese: 'light',
+  polynesian: 'water',
+  nahuatl: 'renewal',
+  incan: 'light',
+  yoruba: 'thunder',
+  mapuche: 'the-wild',
+  'greek-location': 'separation',
+};
 const displayNum = (order) => String(order).padStart(2, '0');
 const N_LAYERS = layers.length;
 
@@ -144,6 +174,7 @@ function layerScene(l, idx) {
   const beings = l.beings.map(chip).join('');
   const survivals = l.survivals.map((s) => `<li>${esc(s)}</li>`).join('');
   const fault = FAULTS[l.pantheon] ? `<p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>${esc(FAULTS[l.pantheon])}</p>` : '';
+  const principle = ARCHAE_BY_PANTHEON[l.pantheon];
   return `
 <section class="stx-stratum ${tex}" id="stratum-${l.order}" data-order="${l.order}" style="--warm:${warm}">
   <div class="stx-stratum-inner">
@@ -162,7 +193,10 @@ function layerScene(l, idx) {
     <p class="stx-summary">${esc(l.summary)}</p>
     ${beings ? `<div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips">${beings}</div></div>` : ''}
     ${survivals ? `<div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul>${survivals}</ul></div>` : ''}
-    <a class="stx-pantheon-link" href="${pantheonPath(l.pantheon)}">Open the ${esc(l.name.replace(/^The\s+/i, ''))} pantheon →</a>
+    <div class="stx-layer-links">
+      <a class="stx-pantheon-link" href="${pantheonPath(l.pantheon)}">Open the ${esc(l.name.replace(/^The\s+/i, ''))} pantheon →</a>
+      ${principle ? `<a class="stx-pantheon-link" href="/genesis/#scene-${principle}">Compare this tradition in Archē →</a>` : ''}
+    </div>
   </div>
   ${fault}
 </section>`;
@@ -218,6 +252,11 @@ const html = `<!DOCTYPE html>
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf23">
+<link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
+<link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
+<link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
+<link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
 <style>
 :root{--gold:#d4af37;--gold-dim:rgba(212,175,55,.35);--ivory:#f5f1e6;--dim:#b8b2a2;--void:#050505;--line:rgba(245,241,230,.12)}
@@ -234,7 +273,7 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 .stx-rail-dot span{display:flex;align-items:center;justify-content:center;width:1.35rem;height:1.35rem;border-radius:50%;font-family:'Montserrat',sans-serif;font-size:.5rem;letter-spacing:.02em;color:var(--dim);border:1px solid transparent;transition:all .2s}
 .stx-rail-dot:hover span{color:var(--ivory)}
 .stx-rail-dot.active span{color:var(--void);background:var(--gold);font-weight:700}
-.stx-stage{position:relative;z-index:1}
+.stx-stage{position:relative;z-index:1;padding-top:var(--nav-height,72px)}
 .stx-surface{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 8rem;position:relative;background:radial-gradient(ellipse 120% 60% at 50% -10%,rgba(212,175,55,.14),transparent 60%),var(--void)}
 .stx-surface-kicker{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
 .stx-surface h1{font-size:clamp(3rem,9vw,7rem);letter-spacing:.18em;margin:.6rem 0 1rem;font-weight:600}
@@ -267,6 +306,8 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 .stx-survivals ul{list-style:none;display:grid;gap:.45rem;margin-bottom:1.8rem}
 .stx-survivals li{color:var(--dim);line-height:1.6;padding-left:1.3rem;position:relative}
 .stx-survivals li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.stx-layer-links,.stx-crosslinks{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center}
+.stx-crosslinks{justify-content:center;margin:1.8rem auto 0}
 .stx-pantheon-link{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);padding-bottom:.3rem;transition:border-color .2s}
 .stx-pantheon-link:hover{border-color:var(--gold)}
 .stx-fault{max-width:62rem;margin:3.5rem auto 0;position:relative;padding-top:1.2rem;color:var(--dim);font-style:italic;font-size:.95rem;line-height:1.6}
@@ -320,14 +361,19 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 </style>
 </head>
 <body>
+${fullNavHtml('/pantheon/origins/')}
 <canvas id="stx-fx" aria-hidden="true"></canvas>
-<a class="stx-exit" href="/" aria-label="PuniCodex home"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png" alt="PuniCodex" width="173" height="18"></a>
 <nav class="stx-rail" aria-label="Strata">${railDots}</nav>
 <main class="stx-stage">
 <section class="stx-surface" id="surface">
   <p class="stx-surface-kicker reveal">The bedrock — in the beginning, the Dreaming</p>
   <h1 class="reveal">STRATA</h1>
   <p class="stx-surface-sub reveal">${esc(DATA.subtitle)}</p>
+  <nav class="stx-crosslinks reveal" aria-label="Explore the collection">
+    <a class="stx-pantheon-link" href="/genesis/">Archē · the first principles</a>
+    <a class="stx-pantheon-link" href="/world/sacred/">Sacred Geography · the living globe</a>
+    <a class="stx-pantheon-link" href="/patterns/">Pattern Atlas · the modern world</a>
+  </nav>
   <a class="stx-rise reveal" href="#stratum-1"><span>Rise through deep time</span><span class="stx-rise-shaft" aria-hidden="true"></span></a>
   <div class="stx-column-map reveal">
     <p class="stx-beings-label">The column — ${N_LAYERS} strata, oldest at the base</p>
@@ -338,14 +384,17 @@ ${scenes}
 <section class="stx-core" id="core">
   <p class="stx-surface-kicker reveal">The breach — the strata reach the surface</p>
   <h2 class="reveal">Every layer is still holding.</h2>
-  <p class="reveal">Twenty-five strata rise from the Dreamtime to the mythic map — and then they breach the surface, here, now. The days of the week are Norse. The alphabet is Phoenician. The flood is Sumerian. Yoga is Vedic, mindfulness is Buddhist, the obelisk is Egyptian, the map is Greek — and beneath them all, never once interrupted, the Dreamtime. The modern world is not built on the ruins of these strata. It is built of them — and the building is still happening, in real time, every time a name is restored to its true spelling. ${esc(DATA.note)}</p>
+  <p class="reveal">Twenty-five strata rise from the Dreamtime to the mythic map — and then they breach the surface, here, now. The days of the week are Norse. The alphabet is Phoenician. The flood is Sumerian. Yoga is Vedic, mindfulness is Buddhist, the obelisk is Egyptian, the map is Greek — and at the foundation, living Aboriginal traditions whose depth must be described with care. The modern world is not built on the ruins of these strata. It is built of them — and the building continues every time a name is carried with greater fidelity. ${esc(DATA.note)}</p>
   <div class="stx-core-cta reveal">
     <a href="/pantheon/">Browse the full pantheon</a>
-    <a href="/world/sacred/">Visit the Sacred Atlas</a>
+    <a href="/genesis/">Compare the first principles</a>
+    <a href="/world/sacred/">Explore Sacred Geography</a>
   </div>
 </section>
 </main>
-<script src="/js/newsletter.js" defer></script>
+${footerHtml()}
+<script src="/js/px-core.js?v=perf23" defer></script>
+<script src="${PINS.NAV_HUBS_JS}" defer></script>
 <script>
 (function(){
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;

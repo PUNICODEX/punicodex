@@ -17,6 +17,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { preservationLabel } = require('./lib/preservation-label.js');
+const { isAsciiForm, asciiEditorialText } = require('./lib/ascii-editorial.js');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -450,9 +452,9 @@ function main() {
       author: 'PuniCodex Team',
       publishedAt: '2026-07-31',
       readingTime: `${readMin} min read`,
-      body: fullBody,
+      body: isAsciiForm(entry.unicode) ? asciiEditorialText(fullBody) : fullBody,
     };
-    fs.writeFileSync(path.join(OUT_DIR, `${id}.json`), `${JSON.stringify(post, null, 2)}\n`, 'utf8');
+    writeFileWithRetry(path.join(OUT_DIR, `${id}.json`), `${JSON.stringify(post, null, 2)}\n`, 'utf8');
     written++;
   }
 

@@ -15,6 +15,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { LEXICON } = require('../type/js/lexicon.js');
+const { fullNavHtml } = require('./sync-desktop-nav.js');
+const { footerHtml } = require('./sync-footer.js');
+const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'sacred-sites.json'), 'utf8'));
@@ -22,6 +25,8 @@ const OUT_DIR = path.join(ROOT, 'world', 'sacred');
 const OUT = path.join(OUT_DIR, 'index.html');
 
 const entryById = new Map(LEXICON.map((e) => [e.id, e]));
+const STRATA = require('../data/pantheon-strata.json');
+const strataByPantheon = new Map(STRATA.layers.map((layer) => [layer.pantheon, layer]));
 
 // ---- world geometry: deliberately low-poly. Recognizable at abstraction,
 // unmistakably PuniCodex. Points are [lon, lat].
@@ -87,12 +92,16 @@ function dossier(site) {
     )
     .join('');
   const srcs = (site.sources || []).map((s) => `<li>${esc(s)}</li>`).join('');
-  return `<article class="atx-site" id="site-${site.id}" data-tradition="${esc(site.tradition)}" data-name="${esc(site.name.toLowerCase())}">
+  const stratum = strataByPantheon.get(site.tradition);
+  const strataLink = stratum
+    ? ` · <a href="/pantheon/origins/#stratum-${stratum.order}">STRATA ${String(stratum.order).padStart(2, '0')}</a>`
+    : '';
+  return `<article class="atx-site" id="site-${site.id}" data-site="${site.id}" data-tradition="${esc(site.tradition)}" data-name="${esc(site.name.toLowerCase())}">
   <header class="atx-site-head">
     <h3>${esc(site.name)}</h3>
     ${site.nativeName ? `<p class="atx-native">${esc(site.nativeName)}</p>` : ''}
   </header>
-  <p class="atx-meta">${esc(site.place)} · ${esc(site.country)} · ${esc(site.era)} · <a href="/${site.tradition === 'greek-location' ? 'atlas' : esc(site.tradition)}/">${esc(site.tradition)}</a></p>
+  <p class="atx-meta">${esc(site.place)} · ${esc(site.country)} · ${esc(site.era)} · <a href="/${site.tradition === 'greek-location' ? 'atlas' : esc(site.tradition)}/">${esc(site.tradition)}</a>${strataLink}</p>
   <p class="atx-summary">${esc(site.summary || '')}</p>
   ${beings ? `<div class="atx-beings"><p class="atx-label">Digital temples of its beings</p>${beings}</div>` : ''}
   ${note}
@@ -107,7 +116,7 @@ const withDeity = DATA.sites.filter((s) => s.deities.length).length;
 const jsonld = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'The Sacred Atlas',
+  name: 'Sacred Geography',
   url: 'https://punicodex.com/world/sacred/',
   description: DATA.subtitle,
   isPartOf: { '@type': 'WebSite', name: 'PuniCodex', url: 'https://punicodex.com/' },
@@ -119,17 +128,23 @@ const html = `<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-<title>The Sacred Atlas — Where the Physical World Meets the Digital Temples | PuniCodex</title>
+<title>Sacred Geography — Where the Physical World Meets the Digital Temples | PuniCodex</title>
 <meta name="description" content="${esc(DATA.subtitle)}">
 <link rel="canonical" href="https://punicodex.com/world/sacred/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The Sacred Atlas">
+<meta property="og:title" content="Sacred Geography">
 <meta property="og:description" content="${esc(DATA.subtitle)}">
 <meta property="og:url" content="https://punicodex.com/world/sacred/">
 <meta property="og:image" content="https://punicodex.com/assets/images/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf23">
+<link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
+<link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
+<link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
+<link rel="stylesheet" href="/css/footer.css?v=8">
+<link rel="stylesheet" href="/css/sacred-globe.css?v=1">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
 <style>
 :root{--gold:#d4af37;--gold-dim:rgba(212,175,55,.35);--ivory:#f5f1e6;--dim:#b8b2a2;--void:#050505;--line:rgba(245,241,230,.12)}
@@ -194,8 +209,9 @@ a{color:var(--gold)}
 </style>
 </head>
 <body>
+${fullNavHtml('/world/sacred/')}
 <header class="atx-hero">
-  <p class="atx-kicker">The Sacred Atlas</p>
+  <p class="atx-kicker">Sacred Geography</p>
   <h1>WHERE THE GODS LEFT STONE</h1>
   <p>${esc(DATA.subtitle)}</p>
   <div class="atx-stats" role="list">
@@ -204,13 +220,25 @@ a{color:var(--gold)}
     <span role="listitem"><b>25</b>Pantheon traditions</span>
   </div>
 </header>
-<div class="atx-mapwrap">
-  <svg class="atx-map" viewBox="0 0 ${W} ${H}" role="img" aria-label="Geometric world map of sacred sites">
-    ${graticule.join('\n    ')}
-    ${landPaths}
-  </svg>
-  ${markers}
-</div>
+<section class="atx-globe-section" aria-labelledby="atx-globe-title">
+  <div class="atx-globe-heading">
+    <p class="atx-kicker">The living globe</p>
+    <h2 id="atx-globe-title">${DATA.sites.length} places. One connected world.</h2>
+    <p>Turn the sphere, move closer, and open a site. Clustered markers separate as you zoom, so no sanctuary is hidden beneath another.</p>
+  </div>
+  <div class="atx-globe-frame">
+    <canvas id="atx-globe" tabindex="0" role="img" aria-label="Interactive three-dimensional globe of sacred sites" aria-describedby="atx-globe-help"></canvas>
+    <div class="atx-globe-tooltip" id="atx-globe-tooltip" role="tooltip" hidden></div>
+    <div class="atx-globe-controls" role="group" aria-label="Globe controls">
+      <button type="button" data-globe-action="zoom-in" aria-label="Zoom in">+</button>
+      <button type="button" data-globe-action="zoom-out" aria-label="Zoom out">−</button>
+      <button type="button" data-globe-action="reset">Reset view</button>
+      <button type="button" data-globe-action="rotate" aria-pressed="false">Auto-rotate</button>
+    </div>
+    <p class="atx-globe-status" id="atx-globe-status" aria-live="polite">Drag to rotate · scroll or pinch to zoom · select a marker to open its dossier</p>
+  </div>
+  <p class="atx-globe-help" id="atx-globe-help">Mouse or touch: drag to rotate, scroll or pinch to zoom, and select a marker. Keyboard: arrow keys rotate, + and − zoom, Enter opens the focused site, and Home resets the view. The complete register below is always available.</p>
+</section>
 <aside class="atx-panel" id="atx-panel" aria-label="Site dossier" aria-hidden="true">
   <button class="atx-panel-close" id="atx-close" aria-label="Close">&times;</button>
   <div id="atx-panel-body"></div>
@@ -221,7 +249,10 @@ a{color:var(--gold)}
   <div class="atx-filter" id="atx-filter" role="group" aria-label="Filter by tradition"></div>
   ${dossiers}
 </section>
-<script src="/js/newsletter.js" defer></script>
+${footerHtml()}
+<script src="/js/sacred-globe.js?v=1"></script>
+<script src="/js/px-core.js?v=perf23" defer></script>
+<script src="${PINS.NAV_HUBS_JS}" defer></script>
 <script>
 (function(){
   const SITES=${JSON.stringify(DATA.sites)};
@@ -261,6 +292,16 @@ a{color:var(--gold)}
     const t=b.dataset.t;
     document.querySelectorAll('.atx-site').forEach(el=>{el.style.display=(t==='all'||el.dataset.tradition===t)?'':'none';});
   });
+  if(window.SacredGlobe){
+    window.SacredGlobe.create(document.getElementById('atx-globe'),{
+      sites:SITES,
+      land:${JSON.stringify(Object.values(LAND))},
+      tooltip:document.getElementById('atx-globe-tooltip'),
+      status:document.getElementById('atx-globe-status'),
+      controls:document.querySelector('[data-globe-action="reset"]').parentElement,
+      onSelect:open
+    });
+  }
   if(location.hash.startsWith('#site-')){const el=document.querySelector(location.hash);if(el)el.scrollIntoView();}
 })();
 </script>

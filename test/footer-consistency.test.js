@@ -162,15 +162,20 @@ test('no leftover retired footer variants (stacked lockup, text wordmark)', () =
   }
 });
 
-test('pages without main.css link the shared footer stylesheet', () => {
+test('footer stylesheet is singular, current, and never duplicates main.css', () => {
   for (const rel of TARGETS) {
     const html = readIfExists(rel);
     if (!html) {
       console.warn(`    ⚠ ${rel} missing, skipping footer stylesheet check`);
       continue;
     }
-    if (!html.includes('/css/main.css')) {
-      assert.ok(html.includes('/css/footer.css'), `${rel}: footer.css not linked`);
+    const links =
+      html.match(/<link\s+rel="stylesheet"\s+href="\/css\/footer\.css[^"]*"\s*>/g) || [];
+    if (html.includes('/css/main.css')) {
+      assert.strictEqual(links.length, 0, `${rel}: footer.css duplicates main.css`);
+    } else {
+      assert.strictEqual(links.length, 1, `${rel}: expected exactly one footer.css link`);
+      assert.ok(links[0].includes('/css/footer.css?v=8'), `${rel}: stale footer.css version`);
     }
   }
 });
@@ -188,6 +193,21 @@ test('responsive grid rules exist for every width band (6-up → 3-up → 2-up)'
   );
   assert.ok(shared.includes('width: 150px'), 'footer.css missing compact mobile wordmark');
   const main = read(path.join('css', 'main.css'));
+  for (const [label, css] of [
+    ['main.css', main],
+    ['footer.css', shared],
+  ]) {
+    assert.match(
+      css,
+      /\.site-footer \.container\s*\{[^}]*padding: 0 var\(--space-6\);/,
+      `${label}: footer must own the homepage desktop container padding`
+    );
+    assert.match(
+      css,
+      /@media \(max-width: 768px\)[\s\S]*?\.site-footer \.container\s*\{[^}]*padding: 0 var\(--space-3\);/,
+      `${label}: footer must own the homepage mobile container padding`
+    );
+  }
   assert.ok(main.includes('repeat(6, 1fr)'), 'main.css missing the six-hub desktop grid');
   const mainMobile = main.slice(main.lastIndexOf('@media (max-width: 768px)'));
   assert.ok(

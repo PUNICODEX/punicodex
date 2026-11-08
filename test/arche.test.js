@@ -129,7 +129,7 @@ test('EVERY lexicon entry appears exactly once: voiced, choir, or finale', () =>
   // The page renders every one: voiced cards + choir chips + finale chorus.
   const html = read('genesis/index.html');
   const cards = new Set(
-    [...html.matchAll(/class="arche-card" href="\/([a-z0-9-]+)\//g)].map((m) => m[1])
+    [...html.matchAll(/class="arche-card-main" href="\/([a-z0-9-]+)\//g)].map((m) => m[1])
   );
   const chips = new Set(
     [...html.matchAll(/class="arche-chip[^"]*" href="\/([a-z0-9-]+)\//g)].map((m) => m[1])
@@ -188,7 +188,10 @@ test('Act II shows the pattern-atlas industries — names lead, no gods after th
   const turnIdx = html.indexOf('id="turn"');
   const act2 = html.slice(turnIdx);
   assert.ok(!act2.includes('arche-seat'), 'Act II must not carry temple seats');
-  assert.ok(!/class="arche-card" href="\/[a-z]/.test(act2), 'Act II must not carry deity cards');
+  assert.ok(
+    !/class="arche-card-main" href="\/[a-z]/.test(act2),
+    'Act II must not carry deity cards'
+  );
   // Every thesis states the concrete mapping — no vague metaphor may regress.
   for (const ch of DESCENT) {
     assert.ok(
@@ -216,7 +219,7 @@ test('page exists with a scene per chapter plus prologue, turn, finale', () => {
 test('every deity card links a live temple; every tendril anchors a real atlas panel', () => {
   const html = read('genesis/index.html');
   const ids = new Set(LEXICON.map((e) => e.id));
-  for (const m of html.matchAll(/class="arche-card" href="\/([a-z0-9-]+)\//g)) {
+  for (const m of html.matchAll(/class="arche-card-main" href="\/([a-z0-9-]+)\//g)) {
     assert.ok(ids.has(m[1]), `card links unknown temple "/${m[1]}/"`);
   }
   const inds = new Set(INDUSTRY_GROUPS.map((g) => g.industry));
@@ -240,8 +243,15 @@ test('page carries canonical chrome, SEO meta, and JSON-LD without JS dependency
   ]) {
     assert.ok(html.includes(marker), `missing ${marker}`);
   }
-  // Verse content must be server-rendered (readable without JS).
-  assert.ok(html.includes('In the beginning there was no beginning'));
+  // Verse content and the historical/modern cross-navigation must be
+  // server-rendered (readable without JS).
+  assert.ok(html.includes('Before the gods had names'));
+  assert.ok(html.includes('STRATA · deep history'));
+  assert.ok(html.includes('Sacred Geography'));
+  assert.ok(html.includes('class="arche-card-links"'));
+  assert.ok(html.includes('/zeus/patterns/'));
+  assert.ok(!html.includes('/nyx/patterns/'));
+  assert.ok(html.includes('The Norse solar goddess — Sól'));
 });
 
 // ---------------------------------------------------------------------------
@@ -341,7 +351,7 @@ test('every chapter has a crawlable share page at /genesis/{id}/', () => {
     assert.ok(html.includes(esc(ch.verse[0])), `${ch.id}: verse`);
     assert.ok(html.includes('arche-chapter-nav'), `${ch.id}: prev/next nav`);
     const ids = new Set(LEXICON.map((e) => e.id));
-    for (const m of html.matchAll(/class="arche-card" href="\/([a-z0-9-]+)\//g)) {
+    for (const m of html.matchAll(/class="arche-card-main" href="\/([a-z0-9-]+)\//g)) {
       assert.ok(ids.has(m[1]), `${ch.id}: card links unknown temple ${m[1]}`);
     }
   }
