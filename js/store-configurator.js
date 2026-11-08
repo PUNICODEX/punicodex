@@ -123,6 +123,20 @@
     var b = activeBtn(colorBtns);
     return b ? b.getAttribute('data-c') : null;
   }
+  // Deep-link support: ?color=Black preselects that colourway (used by the
+  // home page's Reliquary plinths, which customise the link before the
+  // visitor arrives).
+  (function preselectFromQuery() {
+    try {
+      var wanted = new URLSearchParams(window.location.search).get('color');
+      if (!wanted) return;
+      var match = null;
+      for (var i = 0; i < colorBtns.length; i++) {
+        if (colorBtns[i].getAttribute('data-c') === wanted) { match = colorBtns[i]; break; }
+      }
+      if (match) match.click();
+    } catch (e) { /* never break the PDP over a query param */ }
+  })();
   function activeSize() {
     var b = activeBtn(sizeBtns);
     return b ? b.getAttribute('data-s') : null;

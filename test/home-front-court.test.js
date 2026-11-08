@@ -38,13 +38,13 @@ const STATIONS = [
   ['wall', 'The Consecrated Wall'],
   ['gallery', 'The Gallery'],
   ['breath', 'The First Breath'],
-  ['commons', 'The Commons & Creatives'],
+  ['reliquary', 'The Reliquary'],
   ['covenant', 'The Covenant'],
   ['pattern', 'The Pattern'],
-  ['academics', 'Academics'],
-  ['reliquary', 'The Reliquary'],
   ['instruments', 'The Instruments'],
+  ['commons', 'The Commons & Creatives'],
   ['herald-chronicle', 'The Herald'],
+  ['academics', 'Academics'],
 ];
 
 test('the hero and the Collection survive untouched', () => {
@@ -80,7 +80,7 @@ test('the kept tail survives: keyband, newsletter, collaborators, footer', () =>
 });
 
 test('the Reliquary shows real product mockups, not bare mascots', () => {
-  const section = html.slice(html.indexOf('id="reliquary"'), html.indexOf('id="instruments"'));
+  const section = html.slice(html.indexOf('id="reliquary"'), html.indexOf('id="covenant"'));
   const prices = section.match(/\$\d+/g) || [];
   assert.ok(prices.length >= 4, `expected 4 priced plinths, found ${prices.length}`);
   const mockups = section.match(/punycodex-masters\.vercel\.app\/mockups\/[a-z-]+\.jpg/g) || [];
@@ -165,7 +165,7 @@ test('the Gallery lightbox is wired and every work is viewable full-size', () =>
 });
 
 test('the Commons window shows real studio works (not an empty state)', () => {
-  const section = html.slice(html.indexOf('id="commons"'), html.indexOf('id="covenant"'));
+  const section = html.slice(html.indexOf('id="commons"'), html.indexOf('id="herald-chronicle"'));
   const imgs = section.match(/\/assets\/ai-commons\/[a-z-]+\.jpg/g) || [];
   assert.ok(imgs.length >= 8, `expected 8+ Commons works on display, found ${imgs.length}`);
   for (const src of new Set(imgs)) {
