@@ -1,11 +1,13 @@
 /**
  * STRATA page contract (/pantheon/origins/).
  *
- * The excavation renders every canonical stratum from
- * data/pantheon-strata.json as a server-readable scene, newest at the
- * surface scrolling down to the Dreamtime bedrock; every being chip links a
- * real temple; the syncretism fault-lines and the core sample close the
- * page; Station II's pantheons rectangle enters here.
+ * The column renders every canonical stratum from
+ * data/pantheon-strata.json as a server-readable scene, oldest at the base:
+ * you rise from the Dreamtime bedrock (01) through twenty-five laid-down
+ * layers to the breach at the surface — the present; every being chip links a
+ * real temple; the syncretism fault-lines run between strata; the route map
+ * and the core sample sit at the trailhead; Station II's pantheons rectangle
+ * enters here.
  */
 
 const assert = require('node:assert');
@@ -64,7 +66,7 @@ test('surface, fault-lines, core sample, and finale are present', () => {
   assert.ok(faults >= 20, `expected >=20 fault-lines, got ${faults}`);
 });
 
-test('station II pantheons rectangle enters the excavation', () => {
+test('station II pantheons rectangle enters the column', () => {
   const html = read('index.html');
   const block = html.match(/href="\/pantheon\/origins\/"[\s\S]*?Pantheons[\s\S]*?<\/a>/);
   assert.ok(block, 'the 25-pantheons rectangle points at /pantheon/origins/');

@@ -3,11 +3,13 @@
  * PuniCodex — STRATA page generator (/pantheon/origins/).
  *
  * Reads the canonical chronicle data/pantheon-strata.json + the lexicon and
- * writes pantheon/origins/index.html — a geological excavation through the
- * pantheons: the surface is today, scrolling down digs deeper and older,
- * bedrock is the Aboriginal Dreamtime (~65,000 years), the finale is the
- * core sample. All layer content is server-rendered for SEO; JS only adds
- * atmosphere (sediment canvas, reveals, depth rail).
+ * writes pantheon/origins/index.html — the column of the pantheons: strata
+ * are laid down upward, oldest at the base. You begin at the bedrock (01, the
+ * Aboriginal Dreamtime, ~65,000 years) and rise through twenty-five deposited
+ * layers until the column breaches the surface — the present. The background
+ * warms from void to sunrise as you climb. All layer content is
+ * server-rendered for SEO; JS only adds atmosphere (sediment canvas, reveals,
+ * the ascent rail).
  *
  * Canonical: data/pantheon-strata.json. Regenerate: npm run generate.
  */
@@ -50,7 +52,7 @@ const FAULTS = {
   polynesian: 'The greatest dispersal in human history sailed a tenth of the planet\'s water with the pantheon in memory alone.',
   nahuatl: 'On obsidian foundations older than their name, the Mexica built the last great state cult of the Americas.',
   incan: 'The Andes stacked three thousand years of cult before the Inca wove them into one state religion of stone.',
-  yoruba: 'The orisha crossed the Middle Passage in the minds of the enslaved — the deepest survival in this excavation.',
+  yoruba: 'The orisha crossed the Middle Passage in the minds of the enslaved — the deepest survival in the column.',
   mapuche: 'The land\'s own covenant: volcanoes as thunder-spirits, hills as treaty ground — a theology of place still defended.',
   'greek-location': 'The youngest stratum of all: not a people but a move — the map itself joining the pantheon. This is where PuniCodex\'s work begins.'
 };
@@ -127,20 +129,23 @@ function chip(id) {
   return `<a class="stx-chip" href="/${e.id}/" title="${esc(e.domain)}">${esc(e.unicode)}</a>`;
 }
 
-// Layers render newest-first (surface → bedrock): reverse the dataset order.
-// Display numbers run 01 at the surface → 25 at bedrock (dig order).
-const layers = [...DATA.layers].sort((a, b) => b.order - a.order);
-const displayNum = (order) => String(26 - order).padStart(2, '0');
+// Layers render oldest-first: an ascent through deep time — 01 is the
+// Aboriginal Dreamtime foundation, 25 is the mythic map, and the finale
+// breaches the surface into the present.
+const layers = [...DATA.layers].sort((a, b) => a.order - b.order);
+const displayNum = (order) => String(order).padStart(2, '0');
+const N_LAYERS = layers.length;
 
 function layerScene(l, idx) {
   const tex = MATERIAL_CLASS[materialKey(l.material)] || 'stx-tex-granite';
   const num = displayNum(l.order);
-  const depth = l.order === 1 ? 'bedrock — the deepest layer' : `stratum ${num} of 25`;
+  const depth = l.order === 1 ? 'stratum 01 — the foundation' : `stratum ${num} of ${N_LAYERS}`;
+  const warm = (l.order / N_LAYERS).toFixed(3);
   const beings = l.beings.map(chip).join('');
   const survivals = l.survivals.map((s) => `<li>${esc(s)}</li>`).join('');
   const fault = FAULTS[l.pantheon] ? `<p class="stx-fault"><span class="stx-fault-line" aria-hidden="true"></span>${esc(FAULTS[l.pantheon])}</p>` : '';
   return `
-<section class="stx-stratum ${tex}" id="stratum-${l.order}" data-order="${l.order}">
+<section class="stx-stratum ${tex}" id="stratum-${l.order}" data-order="${l.order}" style="--warm:${warm}">
   <div class="stx-stratum-inner">
     <header class="stx-stratum-head">
       <span class="stx-depth-mark" aria-hidden="true">${num}</span>
@@ -165,17 +170,20 @@ function layerScene(l, idx) {
 
 const scenes = layers.map(layerScene).join('\n');
 
+// The rail follows the journey: the bedrock (the hero) at the top, the
+// twenty-five strata in ascent order, and the breach — the surface, today —
+// at the bottom.
 const railDots = [
-  `<button class="stx-rail-dot" data-goto="surface" aria-label="The surface — today"><span>◈</span></button>`,
+  `<button class="stx-rail-dot" data-goto="surface" aria-label="The bedrock — the beginning"><span>◆</span></button>`,
   ...layers.map(
     (l) =>
       `<button class="stx-rail-dot" data-goto="stratum-${l.order}" aria-label="${esc(l.name)}"><span>${displayNum(l.order)}</span></button>`
   ),
-  `<button class="stx-rail-dot" data-goto="core" aria-label="The core"><span>◆</span></button>`,
+  `<button class="stx-rail-dot" data-goto="core" aria-label="The breach — the surface, today"><span>◈</span></button>`,
 ].join('\n');
 
 const coreBands = [...DATA.layers]
-  .sort((a, b) => b.order - a.order)
+  .sort((a, b) => a.order - b.order)
   .map((l) => {
     const tex = MATERIAL_CLASS[materialKey(l.material)] || 'stx-tex-granite';
     return `<button class="stx-core-band ${tex}" data-goto="stratum-${l.order}" title="${esc(l.name)}"><span>${displayNum(l.order)} · ${esc(l.name)}</span></button>`;
@@ -231,11 +239,15 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 .stx-surface-kicker{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
 .stx-surface h1{font-size:clamp(3rem,9vw,7rem);letter-spacing:.18em;margin:.6rem 0 1rem;font-weight:600}
 .stx-surface-sub{max-width:62ch;color:var(--dim);font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.7}
-.stx-dig{margin-top:2.6rem;display:inline-flex;flex-direction:column;align-items:center;gap:.7rem;color:var(--gold);font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase}
-.stx-dig-shaft{width:1px;height:64px;background:linear-gradient(var(--gold),transparent);animation:stxSink 2.2s ease-in-out infinite}
-@keyframes stxSink{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+.stx-rise{margin-top:2.6rem;display:inline-flex;flex-direction:column;align-items:center;gap:.7rem;color:var(--gold);font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;text-decoration:none}
+.stx-rise-shaft{width:1px;height:64px;background:linear-gradient(transparent,var(--gold));transform-origin:bottom;animation:stxRise 2.2s ease-in-out infinite}
+@keyframes stxRise{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+.stx-column-map{width:100%;max-width:46rem;margin-top:3.2rem}
+.stx-column-map .stx-beings-label{margin-bottom:.8rem}
 .stx-stratum{position:relative;padding:7rem 1.5rem 5rem;border-top:1px solid var(--line)}
-.stx-stratum::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 46px,rgba(212,175,55,.028) 46px 48px);pointer-events:none}
+/* the line texture carries each substance; the radial warms the stratum
+   toward sunrise as the column nears the surface (--warm rises with order) */
+.stx-stratum::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 46px,rgba(212,175,55,.028) 46px 48px),radial-gradient(ellipse 130% 55% at 50% 0%,rgba(255,166,48,calc(var(--warm,0)*.17)),transparent 62%);pointer-events:none}
 .stx-stratum-inner{max-width:62rem;margin:0 auto;position:relative;padding-right:3rem}
 @media (max-width:720px){.stx-stratum-inner{padding-right:2.4rem}}
 .stx-surface,.stx-core{padding-right:3rem;padding-left:3rem}
@@ -280,10 +292,12 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 .stx-tex-obsidian{background:linear-gradient(180deg,rgba(30,25,45,.3),rgba(12,10,22,.5))}
 .stx-tex-laterite{background:linear-gradient(180deg,rgba(150,60,30,.12),rgba(90,35,18,.22))}
 .stx-tex-seaworn{background:linear-gradient(180deg,rgba(90,120,125,.08),rgba(40,70,75,.16))}
-.stx-core{min-height:100vh;padding:8rem 1.5rem;text-align:center;position:relative;background:radial-gradient(ellipse 90% 55% at 50% 115%,rgba(212,175,55,.16),transparent 60%),var(--void)}
+/* the breach — the column breaks the surface into daylight: sun colours,
+   never white */
+.stx-core{min-height:100vh;padding:8rem 1.5rem;text-align:center;position:relative;background:radial-gradient(ellipse 95% 55% at 50% 115%,rgba(255,166,48,.34),rgba(255,120,30,.10) 48%,transparent 70%),linear-gradient(180deg,#050505,#120c05 52%,#221306)}
 .stx-core h2{font-size:clamp(2rem,5vw,3.4rem);margin:.8rem 0 1.2rem}
 .stx-core p{max-width:62ch;margin:0 auto 2.4rem;color:var(--dim);line-height:1.75}
-.stx-core-sample{display:flex;flex-direction:column;max-width:46rem;margin:0 auto 2.6rem;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stx-core-sample{display:flex;flex-direction:column;max-width:46rem;margin:0 auto;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(5,5,5,.6)}
 .stx-core-band{appearance:none;border:0;cursor:pointer;padding:.68rem 1rem;text-align:left;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;color:var(--ivory);border-bottom:1px solid var(--line);transition:all .15s}
 .stx-core-band:last-child{border-bottom:0}
 .stx-core-band:hover{padding-left:1.5rem;color:var(--gold)}
@@ -300,7 +314,7 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 }
 @media (prefers-reduced-motion:reduce){
   .stx-reveal{opacity:1;transform:none;transition:none}
-  .stx-dig-shaft{animation:none}
+  .stx-rise-shaft{animation:none}
   html{scroll-behavior:auto}
 }
 </style>
@@ -311,17 +325,20 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 <nav class="stx-rail" aria-label="Strata">${railDots}</nav>
 <main class="stx-stage">
 <section class="stx-surface" id="surface">
-  <p class="stx-surface-kicker reveal">The excavation begins at the surface</p>
+  <p class="stx-surface-kicker reveal">The bedrock — in the beginning, the Dreaming</p>
   <h1 class="reveal">STRATA</h1>
   <p class="stx-surface-sub reveal">${esc(DATA.subtitle)}</p>
-  <a class="stx-dig reveal" href="#stratum-25"><span>Begin the descent</span><span class="stx-dig-shaft" aria-hidden="true"></span></a>
+  <a class="stx-rise reveal" href="#stratum-1"><span>Rise through deep time</span><span class="stx-rise-shaft" aria-hidden="true"></span></a>
+  <div class="stx-column-map reveal">
+    <p class="stx-beings-label">The column — ${N_LAYERS} strata, oldest at the base</p>
+    <div class="stx-core-sample" aria-label="The route — jump to any stratum">${coreBands}</div>
+  </div>
 </section>
 ${scenes}
 <section class="stx-core" id="core">
-  <p class="stx-surface-kicker reveal">The load-bearing truth</p>
+  <p class="stx-surface-kicker reveal">The breach — the strata reach the surface</p>
   <h2 class="reveal">Every layer is still holding.</h2>
-  <p class="reveal">Nothing in this excavation is dead weight. The days of the week are Norse. The alphabet is Phoenician. The flood is Sumerian. Yoga is Vedic, mindfulness is Buddhist, the obelisk is Egyptian, the map is Greek — and beneath them all, never once interrupted, the Dreamtime. The modern world is not built on the ruins of these strata. It is built of them. ${esc(DATA.note)}</p>
-  <div class="stx-core-sample reveal" aria-label="The core sample — jump to any stratum">${coreBands}</div>
+  <p class="reveal">Twenty-five strata rise from the Dreamtime to the mythic map — and then they breach the surface, here, now. The days of the week are Norse. The alphabet is Phoenician. The flood is Sumerian. Yoga is Vedic, mindfulness is Buddhist, the obelisk is Egyptian, the map is Greek — and beneath them all, never once interrupted, the Dreamtime. The modern world is not built on the ruins of these strata. It is built of them — and the building is still happening, in real time, every time a name is restored to its true spelling. ${esc(DATA.note)}</p>
   <div class="stx-core-cta reveal">
     <a href="/pantheon/">Browse the full pantheon</a>
     <a href="/world/sacred/">Visit the Sacred Atlas</a>
@@ -344,24 +361,27 @@ ${scenes}
   const sections=[...document.querySelectorAll('[id^="stratum-"],#surface,#core')];
   const rail=new IntersectionObserver((es)=>{for(const e of es){if(e.isIntersecting){const id=e.target.id;dots.forEach(d=>d.classList.toggle('active',d.dataset.goto===id));}}},{rootMargin:'-45% 0px -45% 0px'});
   sections.forEach(s=>rail.observe(s));
-  // sediment canvas — drifting gold motes rising toward the surface
+  // sediment canvas — gold motes rising through the column; the air itself
+  // warms from void to sunrise as the strata near the surface
   const cv=document.getElementById('stx-fx'),ctx=cv.getContext('2d');
   let W,H,parts=[];
   function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
   resize();addEventListener('resize',resize);
   const N=reduce?0:Math.min(90,Math.floor(innerWidth/14));
   for(let i=0;i<N;i++)parts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.35+.08,a:Math.random()*.5+.15});
-  let depthGlow=0;
   function frame(){
     ctx.clearRect(0,0,W,H);
     const max=document.documentElement.scrollHeight-innerHeight;
     const p=max>0?scrollY/max:0;
-    depthGlow=p;
+    // sun-warm wash — amber, never white
+    ctx.fillStyle='rgba(255,150,40,'+(p*.085).toFixed(3)+')';
+    ctx.fillRect(0,0,W,H);
+    const r=(212+43*p)|0,g=(175-25*p)|0,b=(55-5*p)|0;
     for(const m of parts){
       m.y-=m.s;m.x+=Math.sin((m.y+m.r*100)*.008)*.18;
       if(m.y<-4){m.y=H+4;m.x=Math.random()*W;}
       const tw=m.a*(0.55+0.45*Math.sin(m.y*.02+m.r*40));
-      ctx.beginPath();ctx.arc(m.x,m.y,m.r,0,7);ctx.fillStyle='rgba(212,175,55,'+(tw*(0.5+depthGlow*.5)).toFixed(3)+')';ctx.fill();
+      ctx.beginPath();ctx.arc(m.x,m.y,m.r,0,7);ctx.fillStyle='rgba('+r+','+g+','+b+','+(tw*(0.5+p*.5)).toFixed(3)+')';ctx.fill();
     }
     requestAnimationFrame(frame);
   }

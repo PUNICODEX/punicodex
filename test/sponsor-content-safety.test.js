@@ -183,6 +183,59 @@ test('a booking abandoned after reservation never strands inventory', async () =
   assert.strictEqual(readSlot(slotId).status, 'available');
 });
 
+// ── 3. Truth in outreach — every domain claimed in sponsor evidence is owned ──
+//
+// prospect-evidence.json copy is quoted verbatim into sponsor pitch emails.
+// Claiming an unowned domain (the 2026-10 Nike incident: "live at nike.com",
+// which belongs to Nike, Inc.) is a misrepresentation a recipient's legal team
+// could act on. Any domain token in evidence text must be on the owned list.
+
+test('every domain claimed in prospect evidence is an owned domain', () => {
+  const evidence = JSON.parse(
+    fs.readFileSync(
+      path.join(ROOT, 'data', 'crawler', 'sponsors', 'prospect-evidence.json'),
+      'utf8'
+    )
+  );
+  const ownedRaw = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'platform', 'db', 'owned-domains.json'), 'utf8')
+  );
+  const owned = new Set(
+    (Array.isArray(ownedRaw) ? ownedRaw : Object.values(ownedRaw)).map((d) =>
+      String(typeof d === 'string' ? d : d.domain || '').toLowerCase()
+    )
+  );
+  const tokenRe = /(?:xn--[a-z0-9-]+|[a-z0-9À-ɏ-]+)\.(?:com|net|org|io|co)\b/gi;
+  const offenders = [];
+  // The prospect's own domain names them in their email; it is not a claim
+  // about the pantheon, so it is exempt from the owned-domain requirement —
+  // UNLESS it is presented as a temple address ("live at nike.com"), which is
+  // precisely the 2026-10 incident: the prospect's trademarked domain claimed
+  // as the temple's own.
+  const livenessRe = (dom) =>
+    new RegExp(
+      `(?:live|lives|served|consecrated|kept|stands?|resides|held|answered)\\s+at\\s+(?:the\\s+\\w+\\s+(?:of\\s+\\w+\\s+)?)?${dom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`,
+      'i'
+    );
+  const walk = (o, p, prospectKey) => {
+    if (typeof o === 'string') {
+      for (const m of o.matchAll(tokenRe)) {
+        const dom = m[0].toLowerCase();
+        if (owned.has(dom)) continue;
+        if (dom === prospectKey && !livenessRe(prospectKey).test(o)) continue;
+        offenders.push(`${p}: claims "${dom}" as a temple address — not in owned-domains.json`);
+      }
+      return;
+    }
+    if (Array.isArray(o)) return o.forEach((v, i) => walk(v, `${p}[${i}]`, prospectKey));
+    if (o && typeof o === 'object')
+      return Object.entries(o).forEach(([k, v]) => walk(v, `${p}.${k}`, prospectKey));
+  };
+  for (const [key, val] of Object.entries(evidence))
+    walk(val, `prospect-evidence.${key}`, key.toLowerCase());
+  assert.deepStrictEqual(offenders, [], 'unowned domain claims in sponsor evidence');
+});
+
 (async () => {
   console.log('\n▸ Sponsor Content Safety\n');
   let passed = 0;

@@ -68,6 +68,8 @@ const cards = rejects
 
 const html = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>PuniCodex — AI art review</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://punicodex.com/store/art/">
 <style>
 body{background:#0b0a08;color:#d8cfb8;font-family:Georgia,serif;margin:0;padding:2rem}
 h1{font-weight:400;letter-spacing:.14em;color:#d4af37}
