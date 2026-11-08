@@ -85,11 +85,23 @@ function pickImages(site) {
 
 let filled = 0;
 let examined = 0;
+// Synchronous sleep (works on every platform node runs on) — the retry
+// below must complete before the pick is evaluated.
+function sleepSync(ms) {
+  const buf = new Int32Array(new SharedArrayBuffer(4));
+  Atomics.wait(buf, 0, 0, ms);
+}
 for (const site of data.sites) {
   if (ONLY && !ONLY.includes(site.id)) continue;
   if ((site.images || []).length >= LIMIT) continue;
   examined++;
-  const picks = pickImages(site);
+  let picks = pickImages(site);
+  if (!picks.length) {
+    // Commons rate-limits burst queries and answers them with empty result
+    // sets — one quiet retry after a pause recovers most of them.
+    sleepSync(4000);
+    picks = pickImages(site);
+  }
   if (picks.length) {
     site.images = picks;
     filled++;

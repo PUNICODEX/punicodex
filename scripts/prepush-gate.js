@@ -527,10 +527,18 @@ function main() {
     // every attempt; a transient kill usually passes on the rerun.
     let lastErr = null;
     let passed = false;
+    // The divergence generate must match CI byte-for-byte. CI sets
+    // PUNICODEX_GENERATE_SKIP_BINARY=1 (the binary-only composites steps
+    // regenerate gitignored multi-GB assets a git diff can never see, and
+    // their fresh outputs can ripple into later store renders); a full local
+    // generate here validates a DIFFERENT artifact than CI will — green gate,
+    // red CI. Skip binaries in the gate too.
+    const GEN_ENV = { ...process.env, PUNICODEX_GENERATE_SKIP_BINARY: '1' };
     for (let attempt = 1; attempt <= 3 && !passed; attempt++) {
       try {
         execFileSync(NPM, ['run', 'generate:check'], {
           cwd: ROOT,
+          env: GEN_ENV,
           stdio: ['ignore', 'ignore', 'pipe'],
           // `npm run generate` prints hundreds of KB (per-site flagship regen
           // lines). The execFileSync default 1 MiB maxBuffer aborts the child
@@ -583,12 +591,12 @@ function main() {
       if (!suiteFailures && process.argv.includes('--fix')) {
         console.log(`\n  ${C.cyan}▸ --fix: running npm run generate…${C.reset}`);
         try {
-          execFileSync(NPM, ['run', 'generate'], { cwd: ROOT, stdio: 'inherit', ...SHELL_OPT });
+          execFileSync(NPM, ['run', 'generate'], { cwd: ROOT, env: GEN_ENV, stdio: 'inherit', ...SHELL_OPT });
           execFileSync('git', ['add', '-A', '--', ':!Kimi_Agent_Unicode Pantheon Animation Plan'], {
             cwd: ROOT,
             stdio: 'inherit',
           });
-          execFileSync(NPM, ['run', 'generate:check'], { cwd: ROOT, stdio: 'inherit', maxBuffer: 64 * 1024 * 1024, ...SHELL_OPT });
+          execFileSync(NPM, ['run', 'generate:check'], { cwd: ROOT, env: GEN_ENV, stdio: 'inherit', maxBuffer: 64 * 1024 * 1024, ...SHELL_OPT });
           console.log(
             `\n  ${C.green}✓ Regenerated, staged, and divergence-clean.${C.reset}` +
               `\n  ${C.dim}Commit the staged files and push again.${C.reset}\n`
