@@ -152,6 +152,19 @@ function run() {
     assert.deepStrictEqual([...new Set(dupes)], [], 'duplicate sitemap URLs');
   });
 
+  test('canonical temple Art rooms replace retired Gallery and Creatives URLs', () => {
+    assert.ok(urlSet.has('https://punicodex.com/apollon/art/'));
+    const retired = urls.filter((url) => {
+      const parts = new URL(url).pathname.split('/').filter(Boolean);
+      return (
+        parts.length === 2 &&
+        LEXICON_IDS.has(parts[0]) &&
+        ['gallery', 'creatives'].includes(parts[1])
+      );
+    });
+    assert.deepStrictEqual(retired.slice(0, 10), [], `${retired.length} retired temple tab URLs`);
+  });
+
   test('every public indexable page is in the sitemap (no orphans)', () => {
     const htmlFiles = execSync('git ls-files "*.html"', { encoding: 'utf8' })
       .split('\n')

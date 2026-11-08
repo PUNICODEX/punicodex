@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Identities | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
+    <link rel="stylesheet" href="../portal.css?v=acabd82adb">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <style>
+        .identity-search{display:flex;gap:.65rem;align-items:end;flex-wrap:wrap}.identity-search .field{min-width:min(420px,100%);flex:1}
+        .identity-detail{display:grid;gap:1rem}.identity-detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.75rem}
+        .identity-fact{padding:.85rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-inset)}
+        .identity-fact-label{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.35rem}
+        .identity-capabilities{display:flex;flex-wrap:wrap;gap:.35rem}.identity-audit{max-height:260px;overflow:auto}
+    </style>
+</head>
+<body data-page="identities" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Identities</h1>
+            <p>Public PuniCodex Accounts across customers, sponsors, patrons, students, and institutions. Admin authentication remains separate.</p>
+        </div>
+        <section class="panel" id="identity-insights" aria-label="Identity intelligence">
+            <div class="panel-head"><div><h2 class="panel-title">Identity Intelligence</h2><p class="panel-sub">Aggregate product signals only. No per-user surveillance or credential identifiers.</p></div></div>
+            <div class="stat-grid" id="identity-kpis"><span class="pz-skeleton pz-skeleton--card"></span><span class="pz-skeleton pz-skeleton--card"></span><span class="pz-skeleton pz-skeleton--card"></span><span class="pz-skeleton pz-skeleton--card"></span></div>
+            <div class="panel-grid-2" style="margin-top:1rem">
+                <div><h3 class="panel-sub">Daily sign-ins</h3><canvas id="identity-login-chart" height="90" aria-label="Daily sign-in trend"></canvas></div>
+                <div><h3 class="panel-sub">Product events</h3><div id="identity-events" class="pz-rank-list"></div></div>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Find an identity">
+            <div class="panel-head"><div><h2 class="panel-title">Find an Identity</h2><p class="panel-sub">Review linked systems and capabilities before changing access.</p></div></div>
+            <form id="identity-search" class="identity-search">
+                <div class="field"><label for="identity-query">Email address</label><input id="identity-query" type="search" placeholder="name@example.com" autocomplete="off"></div>
+                <button class="btn btn-primary" type="submit">Search</button>
+                <button class="btn btn-secondary" type="button" id="identity-refresh">Refresh</button>
+            </form>
+        </section>
+        <section class="panel" aria-label="Identity results">
+            <div class="panel-head"><h2 class="panel-title" id="identity-count">Accounts</h2></div>
+            <div id="identity-table"><div class="state-block">Loading identities…</div></div>
+        </section>
+    </main>
+    <script src="../portal.js?v=1392fad8f2"></script>
+    <script>
+    (function () {
+        var state = { query: '', offset: 0, items: [] };
+
+        function loadInsights() {
+            return Portal.api('/api/admin/portal/analytics/identity/?days=30').then(function (data) {
+                var accepted = data.invitations.byStatus.accepted || 0;
+                var cards = [
+                    [data.accounts.total, 'Public accounts', (data.accounts.byStatus.active || 0) + ' active'],
+                    [accepted, 'Accepted invitations', data.invitations.acceptanceRate === null ? 'No invitations yet' : Math.round(data.invitations.acceptanceRate * 100) + '% acceptance'],
+                    [data.initiation.completed, 'Initiations completed', data.initiation.completionRate === null ? 'No starts yet' : Math.round(data.initiation.completionRate * 100) + '% completion'],
+                    [data.orders.count, 'Paid orders · 30d', '$' + (data.orders.grossCents / 100).toFixed(2) + ' gross'],
+                ];
+                document.getElementById('identity-kpis').innerHTML = cards.map(function (card) {
+                    return '<div class="stat-card"><div class="stat-card-value">' + Portal.escapeHtml(card[0]) + '</div><div class="stat-card-label">' + Portal.escapeHtml(card[1]) + '</div><div class="stat-card-hint">' + Portal.escapeHtml(card[2]) + '</div></div>';
+                }).join('');
+                var labels = {
+                    identity_register: 'Registrations', identity_login: 'Sign-ins', identity_logout: 'Sign-outs',
+                    identity_activate: 'Activations', identity_reset: 'Password resets',
+                    institution_invitation_created: 'Invitations created', institution_invitation_accepted: 'Invitations accepted',
+                    institution_policy_updated: 'Policy updates', initiation_progress: 'Progress writes', store_order_paid: 'Orders paid', account_status_changed: 'Status changes',
+                };
+                document.getElementById('identity-events').innerHTML = Object.keys(labels).map(function (name) {
+                    return '<div class="pz-rank-row"><span>' + labels[name] + '</span><strong>' + Number(data.events.byName[name] || 0) + '</strong></div>';
+                }).join('');
+                Portal.sparkline(document.getElementById('identity-login-chart'), data.events.daily.map(function (day) { return day.events.identity_login || 0; }));
+            }).catch(function (err) {
+                document.getElementById('identity-events').innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            });
+        }
+
+        function load(promise) {
+            document.getElementById('identity-table').innerHTML = '<div class="state-block">Loading identities…</div>';
+            return (promise || Portal.api('/api/admin/portal/identities/?limit=100&search=' + encodeURIComponent(state.query)))
+                .then(function (data) {
+                    state.items = data.items || [];
+                    document.getElementById('identity-count').textContent = data.total + ' account' + (data.total === 1 ? '' : 's');
+                    render();
+                })
+                .catch(function (err) {
+                    document.getElementById('identity-table').innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                });
+        }
+
+        function render() {
+            if (!state.items.length) {
+                document.getElementById('identity-table').innerHTML = '<div class="state-block">No identities match this search.</div>';
+                return;
+            }
+            var rows = state.items.map(function (u) {
+                var action = u.status === 'active' ? 'disabled' : 'active';
+                return '<tr><td><div class="cell-title">' + Portal.escapeHtml(u.email) + '</div><div class="cell-sub">' + Portal.escapeHtml(u.id) + '</div></td>' +
+                    '<td>' + Portal.statusBadge(u.status) + '</td>' +
+                    '<td>' + Number(u.link_count || 0) + '</td><td>' + Number(u.session_count || 0) + '</td>' +
+                    '<td>' + Portal.escapeHtml(Portal.fmtDateTime(u.last_login_at)) + '</td>' +
+                    '<td><div class="cell-actions"><button type="button" class="btn btn-sm btn-secondary" data-detail="' + Portal.escapeHtml(u.id) + '">Review</button>' +
+                    '<button type="button" class="btn btn-sm ' + (action === 'disabled' ? 'btn-danger' : 'btn-success') + '" data-status="' + action + '" data-id="' + Portal.escapeHtml(u.id) + '">' + (action === 'disabled' ? 'Disable' : 'Enable') + '</button></div></td></tr>';
+            }).join('');
+            document.getElementById('identity-table').innerHTML = '<div class="table-wrap"><table class="portal-table"><thead><tr><th>Email / identity</th><th>Status</th><th>Links</th><th>Sessions</th><th>Last login</th><th>Actions</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+            document.querySelectorAll('[data-detail]').forEach(function (button) {
+                button.addEventListener('click', function () { detail(button.getAttribute('data-detail')); });
+            });
+            document.querySelectorAll('[data-status]').forEach(function (button) {
+                button.addEventListener('click', function () { changeStatus(button.getAttribute('data-id'), button.getAttribute('data-status')); });
+            });
+        }
+
+        function detail(id) {
+            Portal.api('/api/admin/portal/identities/' + encodeURIComponent(id) + '/').then(function (data) {
+                var scholars = data.identity.scholars || [];
+                var scholarHtml = scholars.length ? scholars.map(function (s) {
+                    return '<div class="identity-fact"><span class="identity-fact-label">' + Portal.escapeHtml(s.institutionName || 'Institution') + '</span>' + Portal.escapeHtml(s.role) + (s.department ? ' · ' + Portal.escapeHtml(s.department) : '') + '</div>';
+                }).join('') : '<div class="identity-fact"><span class="identity-fact-label">Academic</span>No linked academic profile</div>';
+                var capabilities = (data.capabilities || []).map(function (cap) { return '<span class="badge badge--gold">' + Portal.escapeHtml(cap) + '</span>'; }).join('') || '<span class="cell-sub">No capabilities</span>';
+                var audit = (data.audit || []).slice(0, 20).map(function (row) {
+                    return '<tr><td>' + Portal.escapeHtml(Portal.fmtDateTime(row.created_at)) + '</td><td>' + Portal.escapeHtml(row.action) + '</td><td>' + Portal.escapeHtml(row.resource_type || '—') + '</td></tr>';
+                }).join('') || '<tr><td colspan="3">No audit events yet.</td></tr>';
+                Portal.openModal(
+                    '<h2>' + Portal.escapeHtml(data.account.email) + '</h2><div class="identity-detail">' +
+                    '<div class="identity-detail-grid"><div class="identity-fact"><span class="identity-fact-label">Status</span>' + Portal.statusBadge(data.account.status) + '</div>' +
+                    '<div class="identity-fact"><span class="identity-fact-label">Linked systems</span>' + Portal.escapeHtml((data.identity.linkedSystems || []).join(', ') || 'customer only') + '</div>' +
+                    '<div class="identity-fact"><span class="identity-fact-label">Initiation</span>' + (data.identity.initiation.completedAt ? 'Complete' : 'Chapter ' + data.identity.initiation.currentChapter) + '</div></div>' +
+                    '<div><h3>Academic membership</h3><div class="identity-detail-grid">' + scholarHtml + '</div></div>' +
+                    '<div><h3>Capabilities</h3><div class="identity-capabilities">' + capabilities + '</div></div>' +
+                    '<div><h3>Recent audit</h3><div class="table-wrap identity-audit"><table class="portal-table"><thead><tr><th>When</th><th>Action</th><th>Resource</th></tr></thead><tbody>' + audit + '</tbody></table></div></div>' +
+                    '<div class="modal-actions"><button type="button" class="btn btn-secondary" id="identity-close">Close</button></div></div>',
+                    'Identity review'
+                );
+                document.getElementById('identity-close').addEventListener('click', Portal.closeModal);
+            }).catch(function (err) { Portal.toast(err.message, 'error'); });
+        }
+
+        function changeStatus(id, status) {
+            var verb = status === 'disabled' ? 'Disable' : 'Enable';
+            if (!window.confirm(verb + ' this public account? All linked tenant and Scholar sessions will be revoked immediately.')) return;
+            Portal.api('/api/admin/portal/identities/' + encodeURIComponent(id) + '/status/', { method: 'POST', body: { status: status } })
+                .then(function () { Portal.toast('Account ' + status, 'success'); load(); })
+                .catch(function (err) { Portal.toast(err.message, 'error'); });
+        }
+
+        document.getElementById('identity-search').addEventListener('submit', function (event) {
+            event.preventDefault();
+            state.query = document.getElementById('identity-query').value.trim();
+            load();
+        });
+        document.getElementById('identity-refresh').addEventListener('click', function () { load(); });
+        var first = load();
+        loadInsights();
+        Portal.initShell('identities').then(function (ctx) { if (!ctx) first.catch(function () {}); });
+    })();
+    </script>
+</body>
+</html>

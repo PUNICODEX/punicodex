@@ -365,3 +365,5 @@ module.exports = async (req, res) => {
   }
   return res.status(204).end();
 };
+
+module.exports.writeEventV2 = writeEventV2;

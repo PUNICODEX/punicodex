@@ -62,6 +62,7 @@ const ADMIN_USERS_SCHEMA = `
 const IDEMPOTENT_ALTERATIONS = [
   { table: 'admin_sessions', column: 'admin_user_id', definition: 'INTEGER' },
   { table: 'admin_sessions', column: 'expires_at', definition: 'DATETIME' },
+  { table: 'admin_sessions', column: 'csrf_hash', definition: 'TEXT' },
 ];
 
 function listColumns(db, table) {

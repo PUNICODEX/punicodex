@@ -264,8 +264,12 @@ test('locked account → 401 account_locked even with the correct password', asy
 });
 
 test('disabled account → sessions resolve to 401 on the new routes', async () => {
-  // Disable the scholars account via SQL (the PATCH path is covered by the
-  // base suite); its existing token must die on the next resolve.
+  const warmed = await invoke(newsletterHandler, 'GET', '/api/admin/portal/newsletter/', {
+    headers: adminHeader(roleTokens.scholars),
+  });
+  assert.strictEqual(warmed.status, 200);
+  // Simulate revocation by another serverless instance: no local invalidation
+  // hook runs, so the next request must re-read the operational store.
   db()
     .prepare("UPDATE admin_users SET status = 'disabled' WHERE email = 'scholars@growth.test'")
     .run();
@@ -280,6 +284,26 @@ test('disabled account → sessions resolve to 401 on the new routes', async () 
   const relogin = await portalLogin('scholars@growth.test', 'scholars-password-123');
   assert.strictEqual(relogin.status, 200);
   roleTokens.scholars = relogin.body.token;
+
+  const secondWarm = await invoke(newsletterHandler, 'GET', '/api/admin/portal/newsletter/', {
+    headers: adminHeader(roleTokens.scholars),
+  });
+  assert.strictEqual(secondWarm.status, 200);
+  db()
+    .prepare('DELETE FROM admin_sessions WHERE token = ?')
+    .run(require('../platform/api/admin').hashToken(roleTokens.scholars));
+  const externallyRevoked = await invoke(
+    newsletterHandler,
+    'GET',
+    '/api/admin/portal/newsletter/',
+    {
+      headers: adminHeader(roleTokens.scholars),
+    }
+  );
+  assert.strictEqual(externallyRevoked.status, 401);
+  const finalLogin = await portalLogin('scholars@growth.test', 'scholars-password-123');
+  assert.strictEqual(finalLogin.status, 200);
+  roleTokens.scholars = finalLogin.body.token;
 });
 
 // ── Role matrix ───────────────────────────────────────────────

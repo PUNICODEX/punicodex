@@ -1319,6 +1319,48 @@ async function notifyPatronCancelled({ email, displayName, siteSlug }) {
   });
 }
 
+async function notifyIdentityActivation({ email, token }) {
+  const url = `${PLATFORM_URL}/account/login/?token=${encodeURIComponent(token)}`;
+  return module.exports.sendEmail({
+    to: email,
+    subject: 'Activate your PuniCodex Account',
+    html: `<div style="font-family:system-ui,sans-serif;max-width:540px;margin:0 auto;color:#111">
+      <h2 style="color:#d4af37">Your place in the pantheon</h2>
+      <p>Activate your PuniCodex Account to keep your orders, patronage, sponsorships, scholarly work, and initiation together.</p>
+      <p><a href="${escapeHtml(url)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600">Activate your account</a></p>
+      <p>This one-time link expires in 24 hours. If you did not request it, you can ignore this email.</p>
+    </div>`,
+  });
+}
+
+async function notifyIdentityPasswordReset({ email, token }) {
+  const url = `${PLATFORM_URL}/account/login/?token=${encodeURIComponent(token)}`;
+  return module.exports.sendEmail({
+    to: email,
+    subject: 'Reset your PuniCodex Account password',
+    html: `<div style="font-family:system-ui,sans-serif;max-width:540px;margin:0 auto;color:#111">
+      <h2 style="color:#d4af37">Choose a new password</h2>
+      <p>Use this one-time link within 24 hours. Existing sessions will be revoked when your password changes.</p>
+      <p><a href="${escapeHtml(url)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600">Reset password</a></p>
+      <p>If you did not request a reset, ignore this email and your password will stay unchanged.</p>
+    </div>`,
+  });
+}
+
+async function notifyScholarsInvitation({ email, institutionName, role, setupPath }) {
+  const url = `${PLATFORM_URL}${setupPath}`;
+  return module.exports.sendEmail({
+    to: email,
+    subject: `${institutionName} has invited you to the PuniCodex Scholarly Edition`,
+    html: `<div style="font-family:system-ui,sans-serif;max-width:540px;margin:0 auto;color:#111">
+      <h2 style="color:#d4af37">Your scholarly invitation</h2>
+      <p>${escapeHtml(institutionName)} has invited you to contribute as <strong>${escapeHtml(role.replaceAll('_', ' '))}</strong>. Set your password to connect your university profile to your PuniCodex Account.</p>
+      <p><a href="${escapeHtml(url)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600">Accept invitation</a></p>
+      <p>This invitation expires in seven days. Your institution controls your academic access; any personal purchases always use your own payment method.</p>
+    </div>`,
+  });
+}
+
 module.exports = {
   sendEmail,
   notifyUploadReady,
@@ -1347,6 +1389,9 @@ module.exports = {
   notifyAdminPasswordReset,
   notifyTenantAccountProvisioned,
   notifyTenantPasswordReset,
+  notifyIdentityActivation,
+  notifyIdentityPasswordReset,
+  notifyScholarsInvitation,
   notifyCareersApplication,
   notifyUniversityCallBooked,
   notifyUniversityCallConfirmation,

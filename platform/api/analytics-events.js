@@ -264,6 +264,72 @@ const EVENT_REGISTRY = {
     optionalProps: ['page_type', 'temple_id', 'position'],
     validate: validateSearchResultClick,
   },
+  identity_register: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  identity_login: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  identity_logout: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  identity_activate: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  identity_reset: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  institution_invitation_created: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  institution_invitation_accepted: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  institution_policy_updated: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  initiation_progress: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  store_order_paid: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
+  account_status_changed: {
+    version: 1,
+    requiredProps: ['path', 'session_hash'],
+    optionalProps: ['page_type', 'properties'],
+    validate: validatePathEvent,
+  },
   newsletter_subscribe: {
     version: 1,
     requiredProps: ['path', 'session_hash'],
@@ -328,7 +394,17 @@ function normalizeEvent(event) {
     }
   }
   if (Object.keys(extra).length > 0) {
-    normalized.properties = extra;
+    let existing = {};
+    if (normalized.properties && typeof normalized.properties === 'object') {
+      existing = normalized.properties;
+    } else if (typeof normalized.properties === 'string') {
+      try {
+        existing = JSON.parse(normalized.properties);
+      } catch {
+        existing = {};
+      }
+    }
+    normalized.properties = { ...existing, ...extra };
   }
 
   // Derive page_type and temple_id from path when not explicitly provided.

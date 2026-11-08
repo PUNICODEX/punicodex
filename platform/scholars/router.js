@@ -12,6 +12,7 @@ const {
   hashPassword,
   verifyPassword,
   login,
+  createSession: createLegacySession,
   logout,
   requireAuth,
   validateSession,
@@ -82,6 +83,8 @@ const {
   updateInstitutionSponsorship,
   updateInstitutionAllowlist,
   createUserWithPassword,
+  createSession: createScholarsSessionRecord,
+  deleteSession: deleteScholarsSessionRecord,
   updateUserPassword,
   updateUserStatus,
   updateUserRole,
@@ -157,6 +160,25 @@ function success(data) {
 
 function error(message, code = 400) {
   return { success: false, error: message, code };
+}
+
+async function updateScholarPassword(user, password, { keepSessionId = null } = {}) {
+  const existing = keepSessionId ? validateSession(keepSessionId) : null;
+  const passwordHash = hashPassword(password);
+  updateUserPassword(user.id, passwordHash);
+  const identity = require('../api/identity');
+  const account = await identity.getAccountByEmail(user.email);
+  if (account) await identity.syncPassword(account.id, passwordHash);
+  if (existing) {
+    deleteScholarsSessionRecord(keepSessionId);
+    createScholarsSessionRecord({
+      id: keepSessionId,
+      userId: user.id,
+      expiresAt: existing.expires_at,
+      ipHash: existing.ip_hash,
+      userAgent: existing.user_agent,
+    });
+  }
 }
 
 function asyncHandler(fn) {
@@ -285,6 +307,15 @@ router.post(
       return res.status(401).json(error(result.error, 401));
     }
 
+    const identity = require('../api/identity');
+    const unified = await identity.login({ email, password, req, res });
+    if (!validateSession(result.sessionId)) {
+      result.sessionId = createLegacySession(result.user, {
+        userAgent: req.headers['user-agent'],
+      });
+    }
+    const capabilities = await identity.getCapabilities(unified.account.id);
+
     res.cookie('scholars_session', result.sessionId, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -295,6 +326,9 @@ router.post(
     res.json(
       success({
         token: result.sessionId,
+        identityToken: unified.token,
+        csrfToken: unified.csrfToken,
+        capabilities,
         user: result.user,
         requirePasswordChange: result.requirePasswordChange === true,
       })
@@ -337,6 +371,7 @@ router.post(
   asyncHandler(async (req, res) => {
     const sessionId = req.cookies?.scholars_session || req.headers['x-scholars-session'];
     if (sessionId) logout(sessionId);
+    await require('../api/identity').logout(req, res);
     res.clearCookie('scholars_session');
     res.json(success({ loggedOut: true }));
   })
@@ -374,7 +409,9 @@ router.post(
         .json(error(`New password is too weak: ${passwordCheck.errors.join('; ')}`));
     }
 
-    updateUserPassword(user.id, hashPassword(newPassword));
+    await updateScholarPassword(user, newPassword, {
+      keepSessionId: req.cookies?.scholars_session || req.headers['x-scholars-session'],
+    });
 
     // Revoke every other session for this account; the session that proved
     // knowledge of the old password stays signed in.
@@ -411,7 +448,7 @@ router.post(
     }
 
     const tempPassword = generateTempPassword();
-    updateUserPassword(target.id, hashPassword(tempPassword));
+    await updateScholarPassword(target, tempPassword);
 
     // Immediate revocation: all existing sessions for this account die now.
     deleteSessionsForUser(target.id);
@@ -1140,6 +1177,11 @@ router.post(
     }
 
     res.locals.createdUserId = result.lastInsertRowid;
+    try {
+      await require('../api/identity').linkScholarAccount(normalizedEmail);
+    } catch (err) {
+      console.error('[scholars] identity federation failed:', err.message);
+    }
 
     audit({
       actorId: req.user.id,
@@ -1168,6 +1210,104 @@ router.post(
         tempPassword,
       })
     );
+  })
+);
+
+router.get(
+  '/institution/invitations',
+  requireAuth,
+  createScholarsRateLimit('institution:invitations:list'),
+  asyncHandler(async (req, res) => {
+    const identity = require('../api/identity');
+    const resolved = await identity.requireAccount(req, res);
+    if (!resolved) return;
+    res.json(success({ items: await identity.listInvitations(resolved.account.id) }));
+  })
+);
+
+router.post(
+  '/institution/invitations',
+  requireAuth,
+  createScholarsRateLimit('institution:invitations:create', { tier: 'strict' }),
+  validateInputLength([
+    { key: 'emailsText', max: 30000 },
+    { key: 'department', max: 100 },
+    { key: 'role', max: 30 },
+  ]),
+  asyncHandler(async (req, res) => {
+    const identity = require('../api/identity');
+    const resolved = await identity.requireAccount(req, res, { write: true });
+    if (!resolved) return;
+    const emails = Array.isArray(req.body?.emails)
+      ? req.body.emails
+      : String(req.body?.emailsText || '')
+          .split(/[\s,;]+/)
+          .filter(Boolean);
+    const items = await identity.createInvitations(resolved.account.id, {
+      emails,
+      department: req.body?.department || null,
+      role: req.body?.role || 'student',
+    });
+    const profiles = await identity.getScholarProfiles(resolved.account.id);
+    const institutionName = profiles[0]?.institution_name || 'Your institution';
+    for (const item of items) {
+      if (item.status !== 'pending') continue;
+      emailModule
+        .notifyScholarsInvitation({
+          email: item.email,
+          institutionName,
+          role: item.role,
+          setupPath: item.setupPath,
+        })
+        .catch(() => {});
+    }
+    res.status(201).json(success({ items }));
+  })
+);
+
+router.delete(
+  '/institution/invitations/:id',
+  requireAuth,
+  createScholarsRateLimit('institution:invitations:revoke'),
+  asyncHandler(async (req, res) => {
+    const identity = require('../api/identity');
+    const resolved = await identity.requireAccount(req, res, { write: true });
+    if (!resolved) return;
+    res.json(success(await identity.revokeInvitation(resolved.account.id, req.params.id)));
+  })
+);
+
+router.get(
+  '/institution/policies',
+  requireAuth,
+  createScholarsRateLimit('institution:policies:list'),
+  asyncHandler(async (req, res) => {
+    const identity = require('../api/identity');
+    const resolved = await identity.requireAccount(req, res);
+    if (!resolved) return;
+    res.json(success({ items: await identity.listInstitutionPolicies(resolved.account.id) }));
+  })
+);
+
+router.put(
+  '/institution/policies',
+  requireAuth,
+  createScholarsRateLimit('institution:policies:update'),
+  validateInputLength([
+    { key: 'capability', max: 60 },
+    { key: 'effect', max: 10 },
+    { key: 'department', max: 100 },
+  ]),
+  asyncHandler(async (req, res) => {
+    const identity = require('../api/identity');
+    const resolved = await identity.requireAccount(req, res, { write: true });
+    if (!resolved) return;
+    const policy = await identity.setInstitutionPolicy(resolved.account.id, {
+      capability: req.body?.capability,
+      effect: req.body?.effect,
+      department: req.body?.department || '',
+    });
+    res.json(success(policy));
   })
 );
 
@@ -1265,6 +1405,11 @@ router.patch(
     updateUserProfile(target.id, { displayName, department });
     if (accountStatus !== undefined) {
       updateUserStatus(target.id, accountStatus);
+      if (accountStatus !== 'active') {
+        const identity = require('../api/identity');
+        const account = await identity.getAccountByEmail(target.email);
+        if (account) await identity.revokeAllSessions(account.id);
+      }
     }
 
     audit({
@@ -1298,7 +1443,7 @@ router.post(
     }
 
     const tempPassword = generateTempPassword();
-    updateUserPassword(target.id, hashPassword(tempPassword));
+    await updateScholarPassword(target, tempPassword);
 
     // Immediate revocation: all existing sessions for this account die now.
     deleteSessionsForUser(target.id);

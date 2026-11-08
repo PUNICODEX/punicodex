@@ -6,6 +6,7 @@
  * Reads:
  *   GA_MEASUREMENT_ID   — e.g. G-XXXXXXXXXX
  *   GSC_VERIFICATION    — e.g. abcdefg123456
+ *   PUNICODEX_ANALYTICS_ROOT — optional isolated fixture root for contract tests
  *
  * The first-party beacon (<script src="/js/analytics-beacon.js?v=1" defer>) is
  * ALWAYS injected. GA4/GSC tags are only added when the env vars are set.
@@ -17,10 +18,11 @@ const fs = require('fs');
 const path = require('path');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 
-const ROOT = path.join(__dirname, '..');
-const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
+const ROOT = process.env.PUNICODEX_ANALYTICS_ROOT || path.join(__dirname, '..');
+const SOURCE_ROOT = path.join(__dirname, '..');
+const { PANTHEON_META } = require(path.join(SOURCE_ROOT, 'type', 'js', 'pantheon-meta.js'));
 const SCREEN_INDEX = JSON.parse(
-  fs.readFileSync(path.join(ROOT, 'data', 'screen-index.json'), 'utf8')
+  fs.readFileSync(path.join(SOURCE_ROOT, 'data', 'screen-index.json'), 'utf8')
 );
 const GA_ID = process.env.GA_MEASUREMENT_ID;
 const GSC = process.env.GSC_VERIFICATION;

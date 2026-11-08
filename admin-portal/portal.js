@@ -18,6 +18,15 @@
 
   const TOKEN_KEY = 'punicodex_portal_token';
 
+  function cookie(name) {
+    const prefix = `${name}=`;
+    const part = String(document.cookie || '')
+      .split(';')
+      .map((value) => value.trim())
+      .find((value) => value.startsWith(prefix));
+    return part ? decodeURIComponent(part.slice(prefix.length)) : null;
+  }
+
   // Pages set <body data-depth="1"> when they live one directory below the
   // portal root (applications/, patrons/, scholars/, users/, …).
   const depth = document.body && document.body.getAttribute('data-depth') === '1' ? 1 : 0;
@@ -105,7 +114,13 @@
       label: 'People',
       items: [
         { id: 'newsletter', label: 'Newsletter', href: `${PREFIX}newsletter/`, permission: 'read' },
-        { id: 'users', label: 'Users', href: `${PREFIX}users/`, permission: 'users' },
+        {
+          id: 'identities',
+          label: 'Identities',
+          href: `${PREFIX}identities/`,
+          permission: 'users',
+        },
+        { id: 'users', label: 'Portal Users', href: `${PREFIX}users/`, permission: 'users' },
       ],
     },
     {
@@ -185,8 +200,12 @@
     }
     const token = getToken();
     if (token) headers['x-admin-token'] = token;
+    const method = opts.method || 'GET';
+    if (method !== 'GET' && cookie('punicodex_admin_session')) {
+      headers['x-csrf-token'] = cookie('punicodex_admin_csrf') || '';
+    }
 
-    const fetchOpts = { method: opts.method || 'GET', headers };
+    const fetchOpts = { method, headers, credentials: 'same-origin' };
     if (opts.body !== undefined) {
       headers['Content-Type'] = 'application/json';
       fetchOpts.body = typeof opts.body === 'string' ? opts.body : JSON.stringify(opts.body);

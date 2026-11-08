@@ -57,7 +57,7 @@ function footerHtml() {
             <div class="footer-brand">
                 <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
                 <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
-                <a href="/genesis/" class="footer-begin">Begin the Ascent</a>
+                <a href="/account/initiation/" class="footer-begin">Begin the Ascent</a>
             </div>
             <div class="footer-grid">
                 ${HUB_ORDER.map((id) => columnHtml(HUBS[id])).join('\n                ')}
@@ -80,7 +80,7 @@ function footerHtml() {
 /* Every href the canonical footer links — the audits and tests consume
  * this instead of hardcoding column lists. */
 function footerHrefs() {
-  const hrefs = new Set(['/genesis/', '/privacy/', '/terms/']);
+  const hrefs = new Set(['/account/initiation/', '/privacy/', '/terms/']);
   for (const id of HUB_ORDER) {
     const hub = HUBS[id];
     hrefs.add(hub.href);

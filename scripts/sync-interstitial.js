@@ -23,8 +23,24 @@ function syncInterstitial() {
     process.exit(1);
   }
 
-  fs.copyFileSync(SOURCE, DESTINATION);
-  console.log(`✓ Interstitial synced to ${path.relative(ROOT, DESTINATION)}`);
+  const temporary = `${DESTINATION}.tmp.${process.pid}`;
+  let lastError;
+  for (let attempt = 0; attempt < 40; attempt++) {
+    try {
+      fs.copyFileSync(SOURCE, temporary);
+      fs.renameSync(temporary, DESTINATION);
+      console.log(`✓ Interstitial synced to ${path.relative(ROOT, DESTINATION)}`);
+      return;
+    } catch (err) {
+      lastError = err;
+      if (!['UNKNOWN', 'EBUSY', 'EPERM', 'EACCES'].includes(err.code)) throw err;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 250);
+    }
+  }
+  try {
+    fs.rmSync(temporary, { force: true });
+  } catch {}
+  throw lastError;
 }
 
 syncInterstitial();

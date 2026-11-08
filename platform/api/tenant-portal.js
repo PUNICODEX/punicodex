@@ -200,6 +200,13 @@ async function provisionTenantAccount(email, { kind } = {}) {
     [isSponsor ? 1 : 0, isPatron ? 1 : 0, account.id]
   );
 
+  try {
+    const identity = require('./identity');
+    await identity.linkTenantAccount(normalized);
+  } catch (err) {
+    console.error('[tenant-portal] identity federation failed:', err.message);
+  }
+
   let token = null;
   if (!account.password_hash) {
     token = await issueToken(account.id, 'set_password');

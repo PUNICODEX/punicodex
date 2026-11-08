@@ -161,7 +161,9 @@ async function run() {
       await page.waitForSelector('h1', { timeout: 10000 });
       const h1 = await page.textContent('h1');
       if (!/Zeús|Zeus/i.test(h1)) throw new Error(`unexpected h1: ${h1}`);
-      for (const tab of ['Lore', 'Gallery', 'Blog']) {
+      const store = page.locator('.nav-link--static:has-text("Store")').first();
+      if (!(await store.count())) throw new Error('tab missing: Store');
+      for (const tab of ['Lore', 'Merch', 'Art', 'Blog']) {
         const t = page.locator(`a:has-text("${tab}")`).first();
         if (!(await t.count())) throw new Error(`tab missing: ${tab}`);
       }

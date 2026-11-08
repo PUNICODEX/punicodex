@@ -219,7 +219,7 @@ for (const entry of LEXICON) {
   if (isFlagship) {
     xml += urlEntry(`/${entry.id}/lore/`, '0.7', 'monthly');
     xml += urlEntry(`/${entry.id}/lore/extended/`, '0.6', 'monthly');
-    xml += urlEntry(`/${entry.id}/gallery/`, '0.5', 'monthly');
+    xml += urlEntry(`/${entry.id}/art/`, '0.6', 'weekly');
     xml += urlEntry(`/${entry.id}/blog/`, '0.6', 'monthly', {
       lastmod: blogLastmod('platform', 'blog', 'content', `${entry.id}.json`),
     });
@@ -234,7 +234,6 @@ for (const entry of LEXICON) {
     });
     xml += urlEntry(`/${entry.id}/patterns/`, '0.5', 'monthly');
     xml += urlEntry(`/${entry.id}/scholars/`, '0.7', 'monthly');
-    xml += urlEntry(`/${entry.id}/creatives/`, '0.5', 'monthly');
     xml += urlEntry(`/${entry.id}/patron/`, '0.5', 'monthly');
   }
 }
@@ -255,13 +254,13 @@ xml += '</urlset>\n';
 
 writeFileWithRetry(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
 
-// 11 secondary URLs per flagship: lore, extended lore, gallery, the four
-// blog dispatches, patterns, scholars, creatives, patron.
+// 10 secondary URLs per flagship: lore, extended lore, art, the four blog
+// dispatches, patterns, scholars, patron.
 const urlCount =
   mainPages.length +
   TEXT_REGISTRY.texts.length +
   LEXICON.length +
-  flagshipIds.size * 11 +
+  flagshipIds.size * 10 +
   storeCollectionIds.size +
   POD.count;
 console.log(`Sitemap generated: ${urlCount} URLs`);

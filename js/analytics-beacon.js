@@ -46,12 +46,10 @@
     } catch (e) {
       consent = 'unset';
     }
-    if (consent === 'declined') return;
-    /* Engagement signals (attention, regions, devices, journeys) are
-     * first-party, cookieless, and aggregate-only — no third-party transfer,
-     * no fingerprinting (see /terms/analytics/). They therefore run for
-     * 'unset' visitors too: the banner records a choice, it does not gate
-     * privacy-preserving measurement. Only an explicit decline opts out. */
+    // Visitor analytics are strictly opt-in. Essential account operations
+    // (login, invitations, orders, saved progress) use separate server-side
+    // audit/product events, never this visitor beacon.
+    if (consent !== 'accepted') return;
     var allowEngagement = true;
 
     var sid = '';

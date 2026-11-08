@@ -973,6 +973,11 @@
     activeScene.classList.remove('is-active');
     activeScene = scene;
     activeScene.classList.add('is-active');
+    document.dispatchEvent(
+      new CustomEvent('arche:scene', {
+        detail: { id: scene.id, index: scenes.indexOf(scene), total: scenes.length },
+      })
+    );
     var id = scene.getAttribute('data-fx') || 'chaos';
     if (activeFx && activeFx.id !== id) {
       prevFx = activeFx;

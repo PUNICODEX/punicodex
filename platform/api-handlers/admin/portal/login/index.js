@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
 
   try {
     const { email, password } = req.body || {};
-    const result = await portalAuth.login(email, password);
+    const result = await portalAuth.login(email, password, { res });
     if (!result.success) {
       const status = result.code === 'portal_unconfigured' ? 503 : 401;
       return res.status(status).json({ error: result.message, code: result.code });
@@ -38,6 +38,7 @@ module.exports = async (req, res) => {
     return res.json({
       success: true,
       token: result.token,
+      csrfToken: result.csrfToken,
       user: result.user,
       role: result.role,
       requirePasswordChange: result.requirePasswordChange,

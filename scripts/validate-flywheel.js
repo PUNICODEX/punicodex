@@ -733,7 +733,7 @@ if (!fs.existsSync(sitemapPath)) {
     if (flagshipIds.has(entry.id)) {
       addUrl(`/${entry.id}/lore/`);
       addUrl(`/${entry.id}/lore/extended/`);
-      addUrl(`/${entry.id}/gallery/`);
+      addUrl(`/${entry.id}/art/`);
     }
   }
 

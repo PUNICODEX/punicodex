@@ -191,7 +191,7 @@ async function transaction(fn, opts = {}) {
   const db = new Database(getDbPath());
   db.pragma('journal_mode = WAL');
   db.pragma('busy_timeout = 5000');
-  db.exec(opts.immediate ? 'BEGIN IMMEDIATE' : 'BEGIN');
+  db.exec(opts.immediate === false ? 'BEGIN' : 'BEGIN IMMEDIATE');
 
   const tQuery = (sql, params) => {
     const converted = convertPlaceholders(sql);
@@ -217,10 +217,11 @@ async function transaction(fn, opts = {}) {
   };
 
   try {
-    await fn({ get: tGet, all: tAll, run: tRun, insert: tInsert });
+    const result = await fn({ get: tGet, all: tAll, run: tRun, insert: tInsert });
     db.exec('COMMIT');
+    return result;
   } catch (err) {
-    db.exec('ROLLBACK');
+    if (db.inTransaction) db.exec('ROLLBACK');
     throw err;
   } finally {
     db.close();

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Institution Administration — PuniCodex Account</title>
+  <meta name="description" content="Invite students, review invitations, and control academic and personal-commerce capabilities for your institution.">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
+  <link rel="stylesheet" href="/account/sandbox.css?v=5">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+</head>
+<body data-page="institution">
+  <header class="sb-topbar" id="sandbox-topbar"></header>
+  <main class="sb-main">
+    <div class="sb-page-head"><div><span class="sb-eyebrow">Your Institution</span><h1>People &amp; permissions</h1><p class="sb-page-sub" id="institution-sub">Invite students, control academic access, and make personal-commerce policy explicit.</p></div></div>
+    <div id="institution-forbidden" class="sb-state error" hidden>This account has no institution administration access. <a href="/scholars/dept-admin/">Open the Scholars department portal instead</a> if your institution uses the legacy flow.</div>
+    <div id="institution-app">
+      <section class="sb-section" style="margin-top:0" aria-labelledby="invite-heading">
+        <div class="sb-section-head"><h2 id="invite-heading">Invite students</h2><p class="sb-section-note">Up to 100 per batch · one-time links expire in seven days</p></div>
+        <form class="sb-panel" id="invite-form" novalidate>
+          <div class="sb-field"><label for="invite-emails">Email addresses <span class="sb-field-note">one per line, or separated by commas</span></label><textarea id="invite-emails" rows="5" required placeholder="student@university.edu&#10;colleague@university.edu"></textarea></div>
+          <div class="sb-form-row">
+            <div class="sb-field"><label for="invite-department">Department <span class="sb-field-note">required for department-scoped invitations</span></label><input id="invite-department" type="text" maxlength="100" placeholder="Classics"></div>
+            <div class="sb-field"><label for="invite-role">Academic role</label><select id="invite-role"><option value="student">Student — submit work</option><option value="reviewer">Reviewer — review work</option><option value="dept_admin">Department admin — manage one department</option><option value="inst_admin">Institution admin — manage the institution</option></select></div>
+          </div>
+          <button class="sb-btn sb-btn-primary" id="invite-submit" type="submit">Send Invitations</button>
+          <p class="sb-form-message" id="invite-message" role="alert"></p>
+        </form>
+      </section>
+      <section class="sb-section" aria-labelledby="invitations-heading">
+        <div class="sb-section-head"><h2 id="invitations-heading">Invitations</h2><button class="sb-btn sb-btn-ghost sb-btn-sm" id="invitations-refresh" type="button">Refresh</button></div>
+        <div id="invitations-list"><div class="sb-state">Loading invitations…</div></div>
+      </section>
+      <section class="sb-section" aria-labelledby="policies-heading">
+        <div class="sb-section-head"><h2 id="policies-heading">Capability policy</h2><p class="sb-section-note">Commerce is opt-in and always paid personally, never by the institution</p></div>
+        <div id="policies-list"><div class="sb-state">Loading policy…</div></div>
+      </section>
+      <section class="sb-section" aria-labelledby="members-heading">
+        <div class="sb-section-head"><h2 id="members-heading">Existing members</h2></div>
+        <a class="sb-panel sb-panel-link" href="/scholars/dept-admin/"><h3>Manage current students and reviewers →</h3><p class="sb-panel-sub">Profile changes, role promotions, password resets, and immediate account revocation live in the established Scholars department portal.</p></a>
+      </section>
+    </div>
+  </main>
+  <footer class="sb-footer"><p>© 2026 PuniCodex · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></p></footer>
+  <script src="/account/sandbox.js?v=5"></script>
+  <script src="/account/institution/institution.js?v=1"></script>
+</body>
+</html>

@@ -26,6 +26,34 @@ async function provisionTenantPortalAccount(result) {
       email = result.patron.email;
       kind = 'patron';
     }
+    if (result.type === 'store_order') {
+      email = result.order?.customer_email || null;
+      if (email) {
+        const identity = require('../../platform/api/identity');
+        let account = await identity.getAccountByEmail(email);
+        if (!account) {
+          account = await identity.provisionIdentity({ email, status: 'active', verified: true });
+        }
+        if (!account.password_hash) {
+          const token = await identity.issueAccountToken(account.id, 'activate');
+          const { notifyIdentityActivation } = require('../../platform/api/email');
+          await notifyIdentityActivation({ email, token }).catch(() => {});
+        }
+        await require('../../platform/api/product-analytics').recordProductEvent(
+          'store_order_paid',
+          {
+            accountId: account.id,
+            path: '/account/orders/',
+            properties: {
+              orderRef: result.order.order_ref,
+              productId: result.order.product_id,
+              grossCents: result.order.gross_cents,
+            },
+          }
+        );
+      }
+      return;
+    }
     if (!email) return;
 
     const tenantPortal = require('../../platform/api/tenant-portal');

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js?v=bfdd5f6464" defer></script>
+<script src="/js/analytics-beacon.js?v=98b5b0be84" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
@@ -470,15 +470,15 @@
                         <article class="privacy-article reveal-up" id="website">
                             <h2 class="heading-lg mb-4">3. Website</h2>
 
-                            <h3 class="heading-sm mb-3">3.1 No On-Site Tracking</h3>
-                            <p class="body-md mb-3">The PuniCodex website (<code>punicodex.com</code> and all subdomains serving static content) does not contain analytics scripts, tracking pixels, or third-party cookies. We do not use Google Analytics, Plausible, or any other visitor analytics on the static site. We do not use advertising networks. We do not embed social media widgets that track you across sites.</p>
+                            <h3 class="heading-sm mb-3">3.1 Analytics, Not Ad Tracking</h3>
+                            <p class="body-md mb-3">The PuniCodex website (<code>punicodex.com</code> and all subdomains serving static content) uses a <strong>first-party analytics beacon</strong>, never third-party analytics scripts, tracking pixels, or third-party cookies. We do not use Google Analytics, Plausible, advertising networks, or social media widgets that track you across sites. Visitor analytics are sent only after you explicitly accept analytics in the consent control.</p>
 
                             <h3 class="heading-sm mb-3">3.2 Hosting and Logs</h3>
                             <p class="body-md mb-3">Our website is hosted on Vercel (main site) and Cloudflare Pages (temple subdomain sites). These hosting providers may collect standard server access logs as part of their infrastructure, including your IP address, requested URL and timestamp, browser user-agent string, and referrer header.</p>
                             <p class="body-md mb-3">We do not have direct access to these logs for analytics purposes. Vercel and Cloudflare retain them according to their own privacy policies. We do not combine hosting logs with search query logs or any other dataset.</p>
 
                             <h3 class="heading-sm mb-3">3.3 Cookies and Local Storage</h3>
-                            <p class="body-md">The static website does not set cookies. The Type Tool PWA may store preferences in your browser's localStorage (theme, recent conversions). This data never leaves your device.</p>
+                            <p class="body-md">We use strictly necessary cookies for authentication, CSRF protection, and your consent record. The Type Tool PWA may store preferences in localStorage (theme, recent conversions), and the analytics beacon stores a tab-scoped session identifier only after you accept analytics. Account sessions use HttpOnly, Secure, SameSite cookies in production; legacy bearer sessions are migrated rather than silently retained.</p>
                         </article>
 
                         <hr class="policy-divider">
@@ -498,8 +498,9 @@
                                 <li><strong>Browser environment</strong> — a coarse, non-identifying summary (for example, viewport size category and dark/light preference) used only for layout improvements.</li>
                             </ul>
 
-                            <h3 class="heading-sm mb-3">4.3 Consent Gating</h3>
-                            <p class="body-md mb-3">The beacon is gated by our cookie-consent layer. Until you consent to analytics, the beacon loads but does not transmit events. You can withdraw or change consent at any time through the cookie-consent control; withdrawn consent stops event collection immediately and does not affect previously aggregated data.</p>
+                            <h3 class="heading-sm mb-3">4.3 Consent Gating and Account Operations</h3>
+                            <p class="body-md mb-3">The visitor beacon is gated by our cookie-consent layer. Until you explicitly accept analytics, the beacon loads but does not transmit events. You can withdraw or change consent at any time through the cookie-consent control; withdrawn consent stops visitor event collection immediately and does not affect previously aggregated data.</p>
+                            <p class="body-md mb-3">Separate from the visitor beacon, essential account operations—such as registration, sign-in, invitations, order provisioning, and saving your initiation progress—emit server-side security and product audit events. These events contain no raw email address, password, invitation token, or browser session token. They use daily-rotating account hashes and exist to provide your account history, prevent abuse, and produce aggregate service metrics.</p>
 
                             <h3 class="heading-sm mb-3">4.4 Retention</h3>
                             <p class="body-md mb-3">Analytics data is retained in two layers:</p>
@@ -582,7 +583,7 @@
             <div class="footer-brand">
                 <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
                 <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
-                <a href="/genesis/" class="footer-begin">Begin the Ascent</a>
+                <a href="/account/initiation/" class="footer-begin">Begin the Ascent</a>
             </div>
             <div class="footer-grid">
                 <div class="footer-column">

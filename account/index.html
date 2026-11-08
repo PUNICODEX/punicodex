@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js?v=bfdd5f6464" defer></script>
+<script src="/js/analytics-beacon.js?v=98b5b0be84" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
-  <title>Overview — Sponsor Sandbox · PuniCodex</title>
-  <meta name="description" content="Sponsor Sandbox overview: your temples and placement performance on PuniCodex.">
+  <title>Overview — PuniCodex Account</title>
+  <meta name="description" content="Your orders, patronage, placements, scholarly work, institution, and initiation—together in one PuniCodex Account.">
   <link rel="canonical" href="https://punicodex.com/account/">
   <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
-  <link rel="stylesheet" href="/account/sandbox.css?v=3">
+  <link rel="stylesheet" href="/account/sandbox.css?v=5">
   <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -23,12 +23,50 @@
   <header class="sb-topbar" id="sandbox-topbar"></header>
 
   <main class="sb-main">
-    <div class="sb-page-head">
-      <div>
-        <h1>Overview</h1>
-        <p class="sb-page-sub" id="overview-sub">Your temples and placements at a glance.</p>
+    <section class="sb-identity-hero" aria-labelledby="overview-greeting">
+      <div class="sb-identity-hero-copy">
+        <span class="sb-eyebrow">PuniCodex Account</span>
+        <h1 id="overview-greeting">Your place in the pantheon.</h1>
+        <p>Every order, offering, placement, and scholarly contribution—held together, never fragmented.</p>
+        <div class="sb-identity-roles" id="overview-roles" aria-label="Your memberships"></div>
+        <p class="sb-page-sub" id="overview-sub" hidden></p>
       </div>
-    </div>
+      <div class="sb-identity-sigil" aria-hidden="true"><span>Ω</span></div>
+    </section>
+
+    <section class="sb-initiation-card" aria-labelledby="initiation-heading">
+      <div class="sb-initiation-copy">
+        <span class="sb-eyebrow">The First Principles</span>
+        <h2 id="initiation-heading">Begin at the beginning.</h2>
+        <p>From the first principles of myth to the industries they still shape. Optional, cinematic, and saved to your account—never forced.</p>
+      </div>
+      <div class="sb-initiation-progress">
+        <div class="sb-initiation-progress-meta"><span id="initiation-status">Your initiation awaits</span><span id="initiation-count">0 scenes</span></div>
+        <div class="sb-progress-track" role="progressbar" aria-label="Initiation progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="initiation-bar"><span></span></div>
+        <a class="sb-btn sb-btn-primary" href="/account/initiation/" id="initiation-link">Enter the First Principles</a>
+      </div>
+    </section>
+
+    <section class="sb-module-section" aria-labelledby="account-modules-heading">
+      <div class="sb-section-head"><h2 id="account-modules-heading">Your Instruments</h2><p class="sb-section-note">Only what belongs to you</p></div>
+      <div class="sb-module-grid" id="account-modules">
+        <a class="sb-module-card" href="/account/orders/">
+          <span class="sb-module-icon" aria-hidden="true">◈</span><span class="sb-module-kicker">The Reliquary</span>
+          <h3>Orders &amp; tracking</h3><p>Purchases, fulfillment states, carriers, and tracking links.</p>
+          <span class="sb-module-meta" id="orders-meta">View your orders →</span>
+        </a>
+        <a class="sb-module-card" href="/scholars/" id="scholar-module" hidden>
+          <span class="sb-module-icon" aria-hidden="true">Ψ</span><span class="sb-module-kicker">The Scholarly Edition</span>
+          <h3>Your scholarly work</h3><p>Edits, reviews, and the evidence behind the restorations.</p>
+          <span class="sb-module-meta">Open the Scholars portal →</span>
+        </a>
+        <a class="sb-module-card" href="/account/institution/" id="institution-module" hidden>
+          <span class="sb-module-icon" aria-hidden="true">⌂</span><span class="sb-module-kicker">Your Institution</span>
+          <h3>People &amp; permissions</h3><p>Invite students, manage access, and set department capabilities.</p>
+          <span class="sb-module-meta">Open institution administration →</span>
+        </a>
+      </div>
+    </section>
 
     <!-- ── Action needed (creative uploads / review state) ── -->
     <div id="overview-actions"></div>
@@ -81,7 +119,7 @@
     <p>© 2026 PuniCodex · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></p>
   </footer>
 
-  <script src="/account/sandbox.js?v=4"></script>
-  <script src="/account/index.js?v=4"></script>
+  <script src="/account/sandbox.js?v=5"></script>
+  <script src="/account/index.js?v=5"></script>
 </body>
 </html>

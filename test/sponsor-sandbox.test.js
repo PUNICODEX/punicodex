@@ -331,7 +331,11 @@ const REAL_ENDPOINTS = [
   '/api/account/auth/logout/',
   '/api/account/auth/forgot/',
   '/api/account/auth/set-password/',
+  '/api/account/auth/register/',
+  '/api/account/initiation/',
   '/api/account/me/',
+  '/api/v1/scholars/institution/invitations/',
+  '/api/v1/scholars/institution/policies/',
   '/api/account/analytics/space/',
   '/api/account/analytics/temple/',
   '/api/account/analytics/slot/',
@@ -379,6 +383,21 @@ const PAGES = [
     html: 'login/index.html',
     js: 'login/login.js',
     hooks: ['id="login-form"', 'id="forgot-form"', 'id="set-password-form"'],
+  },
+  {
+    html: 'orders/index.html',
+    js: 'orders/orders.js',
+    hooks: ['id="orders-list"', 'id="orders-empty"'],
+  },
+  {
+    html: 'institution/index.html',
+    js: 'institution/institution.js',
+    hooks: ['id="invite-form"', 'id="invitations-list"', 'id="policies-list"'],
+  },
+  {
+    html: 'initiation/index.html',
+    js: 'initiation/initiation.js',
+    hooks: ['id="initiation-enter"', 'id="initiation-bar"'],
   },
 ];
 

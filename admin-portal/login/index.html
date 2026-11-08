@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js?v=bfdd5f6464" defer></script>
+<script src="/js/analytics-beacon.js?v=98b5b0be84" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
     <meta charset="UTF-8">
@@ -73,6 +73,12 @@
     <script>
     (function () {
         var TOKEN_KEY = 'punicodex_portal_token';
+        function cookie(name) {
+            var prefix = name + '=';
+            var part = String(document.cookie || '').split(';').map(function (v) { return v.trim(); })
+                .find(function (v) { return v.indexOf(prefix) === 0; });
+            return part ? decodeURIComponent(part.slice(prefix.length)) : null;
+        }
         var form = document.getElementById('login-form');
         var passwordForm = document.getElementById('password-form');
         var submitBtn = document.getElementById('login-submit');
@@ -107,12 +113,9 @@
             setupEl.className = 'login-setup';
         }
 
-        // Already signed in? Verify the token and go straight to the dashboard.
+        // Already signed in? Verify the cookie or legacy token and go straight to the dashboard.
         (function checkExistingSession() {
-            var token = null;
-            try { token = localStorage.getItem(TOKEN_KEY); } catch (err) { /* ignore */ }
-            if (!token) return;
-            fetch('/api/admin/portal/me/', { headers: { 'x-admin-token': token, Accept: 'application/json' } })
+            fetch('/api/admin/portal/me/', { credentials: 'same-origin', headers: { Accept: 'application/json' } })
                 .then(function (res) {
                     if (res.ok) window.location.href = getRedirect();
                 })
@@ -139,6 +142,7 @@
             try {
                 res = await fetch('/api/admin/portal/login/', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
                     body: JSON.stringify({ email: email, password: password }),
                 });
@@ -151,7 +155,6 @@
             }
 
             if (res.ok && data && data.token) {
-                try { localStorage.setItem(TOKEN_KEY, data.token); } catch (err) { /* ignore */ }
                 if (data.requirePasswordChange === true) {
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Sign In';
@@ -232,10 +235,12 @@
             try {
                 res = await fetch('/api/admin/portal/me/password/', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     headers: {
                         'Content-Type': 'application/json',
                         Accept: 'application/json',
                         'x-admin-token': token || '',
+                        'x-csrf-token': cookie('punicodex_admin_csrf') || '',
                     },
                     body: JSON.stringify({ currentPassword: currentPassword, newPassword: newPassword }),
                 });

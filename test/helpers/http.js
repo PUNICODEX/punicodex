@@ -43,9 +43,12 @@ function invoke(handler, method, url, options = {}) {
     let ended = false;
 
     res.setHeader = (name, value) => {
-      responseHeaders[name.toLowerCase()] = String(value);
+      responseHeaders[name.toLowerCase()] = Array.isArray(value)
+        ? value.map(String)
+        : String(value);
       return res;
     };
+    res.getHeader = (name) => responseHeaders[name.toLowerCase()];
     res.status = (code) => {
       statusCode = code;
       return res;

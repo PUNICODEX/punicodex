@@ -231,8 +231,22 @@ const page = `<!DOCTYPE html>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/arche.css">
     <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+    <link rel="stylesheet" href="/css/arche-identity.css?v=2">
 </head>
 <body class="arche-body">
+    <aside class="arche-identity-gate" id="arche-identity-gate" hidden aria-labelledby="arche-identity-title">
+        <div class="arche-identity-gate-card">
+            <p class="arche-identity-kicker">The First Principles</p>
+            <h2 id="arche-identity-title">Begin at the beginning.</h2>
+            <p>Before the gods had names, the world had principles. Travel from the unshaped to order, craft, memory, and renewal—then watch those same principles unfold into the industries of the modern world.</p>
+            <p>Your free PuniCodex Account keeps your place. Leave at any scene and return to the same one; the Archē never forces a replay.</p>
+            <div class="arche-identity-actions">
+                <a href="/account/login/?next=/genesis/">Enter with your account</a>
+                <a href="/account/login/?view=register&amp;next=/genesis/">Create a free account</a>
+            </div>
+            <p class="arche-identity-note">No purchase is required. Your progress belongs to you.</p>
+        </div>
+    </aside>
     <canvas id="arche-fx" aria-hidden="true"></canvas>
 
     <a class="arche-exit" href="/" aria-label="PuniCodex home">
@@ -323,6 +337,7 @@ ${FINALE.links.map((l) => `                    <a class="arche-cta" href="${esc(
     </main>
 
     <script src="/js/arche.js" defer></script>
+    <script src="/js/arche-identity.js?v=1" defer></script>
 </body>
 </html>
 `;

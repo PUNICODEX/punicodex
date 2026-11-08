@@ -58,7 +58,8 @@ const ADMIN_SESSIONS_DDL = `
     token TEXT PRIMARY KEY,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     admin_user_id INTEGER,
-    expires_at TIMESTAMPTZ
+    expires_at TIMESTAMPTZ,
+    csrf_hash TEXT
   )
 `;
 
@@ -76,6 +77,7 @@ const COLUMN_DRIFT = [
   { table: 'admin_users', column: 'last_login_at', definition: 'TIMESTAMPTZ' },
   { table: 'admin_sessions', column: 'admin_user_id', definition: 'INTEGER' },
   { table: 'admin_sessions', column: 'expires_at', definition: 'TIMESTAMPTZ' },
+  { table: 'admin_sessions', column: 'csrf_hash', definition: 'TEXT' },
   { table: 'admin_actions', column: 'admin_user_id', definition: 'INTEGER' },
   { table: 'admin_actions', column: 'target', definition: 'TEXT' },
   { table: 'admin_actions', column: 'meta', definition: 'TEXT' },

@@ -155,67 +155,72 @@ async function bootstrap() {
 // Sessions
 // ─────────────────────────────────────────────────────────────
 
-// Session resolution cache. Resolving a portal token costs a database round
-// trip on every request — with cross-region Postgres that is hundreds of
-// milliseconds per portal page. The resolved { user, role } is cached per
-// token hash for up to 30s.
-//
-// TRADE-OFF: this intentionally weakens immediate revocation by up to the
-// TTL. A session destroyed on ANOTHER warm instance (logout, password
-// change/reset, account disable) may keep authenticating here for ≤30s.
-// Every mutation path on THIS instance invalidates synchronously —
-// deleteSession, deleteSessionsForUser (which covers password change/reset
-// and account disable), and user-management updates — so same-instance
-// revocation stays immediate; the window only applies across
-// concurrently-warm instances.
-const SESSION_CACHE_TTL_MS = 30 * 1000;
-const SESSION_CACHE_MAX = 1000;
-const sessionCache = new Map(); // tokenHash → { user, role, userId, sessionExpiresAt, cachedAt }
+const SESSION_COOKIE = 'punicodex_admin_session';
+const CSRF_COOKIE = 'punicodex_admin_csrf';
 
-function cacheResolvedSession(tokenHash, row) {
-  if (sessionCache.size >= SESSION_CACHE_MAX) {
-    // Map iterates in insertion order: drop the oldest entry.
-    sessionCache.delete(sessionCache.keys().next().value);
+function parseCookies(req) {
+  const result = {};
+  for (const part of String(req.headers?.cookie || '').split(';')) {
+    const index = part.indexOf('=');
+    if (index > 0) {
+      try {
+        result[part.slice(0, index).trim()] = decodeURIComponent(part.slice(index + 1).trim());
+      } catch {}
+    }
   }
-  sessionCache.set(tokenHash, {
-    user: sanitizeUser(row),
-    role: row.role,
-    userId: row.id,
-    sessionExpiresAt: row.expires_at || null,
-    cachedAt: Date.now(),
-  });
+  return result;
 }
 
-function invalidateSessionCacheForUser(userId) {
-  for (const [key, entry] of sessionCache) {
-    if (entry.userId === userId) sessionCache.delete(key);
-  }
+function serializeCookie(name, value, httpOnly, maxAge) {
+  const parts = [
+    `${name}=${encodeURIComponent(value)}`,
+    'Path=/',
+    `Max-Age=${Math.floor(maxAge / 1000)}`,
+    'SameSite=Lax',
+  ];
+  if (httpOnly) parts.push('HttpOnly');
+  if (process.env.NODE_ENV === 'production') parts.push('Secure');
+  return parts.join('; ');
 }
 
-async function createSession(userId) {
+function setSessionCookies(res, token, csrfToken) {
+  const existing = res.getHeader?.('Set-Cookie');
+  const cookies = Array.isArray(existing) ? existing : existing ? [existing] : [];
+  cookies.push(serializeCookie(SESSION_COOKIE, token, true, SESSION_TTL_MS));
+  cookies.push(serializeCookie(CSRF_COOKIE, csrfToken, false, SESSION_TTL_MS));
+  res.setHeader('Set-Cookie', cookies);
+}
+
+function clearSessionCookies(res) {
+  const existing = res.getHeader?.('Set-Cookie');
+  const cookies = Array.isArray(existing) ? existing : existing ? [existing] : [];
+  cookies.push(serializeCookie(SESSION_COOKIE, '', true, 0));
+  cookies.push(serializeCookie(CSRF_COOKIE, '', false, 0));
+  res.setHeader('Set-Cookie', cookies);
+}
+
+async function createSession(userId, { res = null } = {}) {
   await ensureAuthSchema();
   const token = crypto.randomBytes(32).toString('hex');
+  const csrfToken = crypto.randomBytes(32).toString('base64url');
   const tokenHash = hashToken(token);
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS).toISOString();
-  await run('INSERT INTO admin_sessions (token, expires_at, admin_user_id) VALUES ($1, $2, $3)', [
-    tokenHash,
-    expiresAt,
-    userId,
-  ]);
-  return token;
+  await run(
+    'INSERT INTO admin_sessions (token, expires_at, admin_user_id, csrf_hash) VALUES ($1, $2, $3, $4)',
+    [tokenHash, expiresAt, userId, hashToken(csrfToken)]
+  );
+  if (res) setSessionCookies(res, token, csrfToken);
+  return { token, csrfToken };
 }
 
 async function deleteSession(token) {
   await ensureAuthSchema();
-  const tokenHash = hashToken(token);
-  await run('DELETE FROM admin_sessions WHERE token = $1', [tokenHash]);
-  sessionCache.delete(tokenHash);
+  await run('DELETE FROM admin_sessions WHERE token = $1', [hashToken(token)]);
 }
 
 async function deleteSessionsForUser(userId) {
   await ensureAuthSchema();
   await run('DELETE FROM admin_sessions WHERE admin_user_id = $1', [userId]);
-  invalidateSessionCacheForUser(userId);
 }
 
 /**
@@ -238,45 +243,28 @@ async function getSessionAdminUserId(token) {
  * Resolve an x-admin-token to a portal user. Returns { user, role } or null.
  * Legacy shared-password sessions (admin_user_id NULL) are not portal
  * sessions and resolve to null here — they still work on legacy endpoints.
+ * Every request reads the operational store so revocation and role changes
+ * propagate immediately across serverless instances.
  */
 async function resolveUser(token) {
   if (!token || typeof token !== 'string') return null;
   await ensureAuthSchema();
-  const tokenHash = hashToken(token);
-
-  const cached = sessionCache.get(tokenHash);
-  if (cached && Date.now() - cached.cachedAt < SESSION_CACHE_TTL_MS) {
-    if (cached.sessionExpiresAt && new Date(cached.sessionExpiresAt) < new Date()) {
-      sessionCache.delete(tokenHash);
-      await deleteSession(token);
-      return null;
-    }
-    return { user: cached.user, role: cached.role };
-  }
-
-  // One JOIN instead of sequential session-then-user queries: a single round
-  // trip per uncached request. Legacy sessions (admin_user_id NULL) and
-  // orphaned sessions simply match no row and resolve to null.
   const row = await get(
     `SELECT u.*, s.token, s.expires_at
      FROM admin_sessions s
      JOIN admin_users u ON u.id = s.admin_user_id
      WHERE s.token = $1`,
-    [tokenHash]
+    [hashToken(token)]
   );
   if (!row) return null;
   if (row.expires_at && new Date(row.expires_at) < new Date()) {
     await deleteSession(token);
     return null;
   }
-  // Immediate revocation: a disabled account loses access on the next
-  // uncached request and all of its sessions are destroyed so they cannot
-  // be reused.
   if (row.status !== 'active') {
     await deleteSessionsForUser(row.id);
     return null;
   }
-  cacheResolvedSession(tokenHash, row);
   return { user: sanitizeUser(row), role: row.role };
 }
 
@@ -285,11 +273,26 @@ async function resolveUser(token) {
  * role matrix. Returns { user, role } or false after writing 401/403.
  */
 async function requirePortal(req, res, permission = 'read') {
-  const token = req.headers['x-admin-token'];
+  const headerToken = req.headers['x-admin-token'];
+  const cookieToken = parseCookies(req)[SESSION_COOKIE] || null;
+  const token = headerToken || cookieToken;
   const resolved = token ? await resolveUser(token) : null;
   if (!resolved) {
     res.status(401).json({ error: 'Unauthorized' });
     return false;
+  }
+  if (!headerToken && cookieToken && !['GET', 'OPTIONS'].includes(req.method)) {
+    const supplied = req.headers['x-csrf-token'] || req.body?.csrfToken;
+    const session = await get('SELECT csrf_hash FROM admin_sessions WHERE token = $1', [
+      hashToken(cookieToken),
+    ]);
+    if (!supplied || !session?.csrf_hash || hashToken(supplied) !== session.csrf_hash) {
+      res.status(403).json({
+        error: 'Your admin session could not be verified. Refresh and try again.',
+        code: 'csrf_required',
+      });
+      return false;
+    }
   }
   if (permission && !roleCan(resolved.role, permission)) {
     res.status(403).json({ error: 'Forbidden', required: permission, role: resolved.role });
@@ -342,7 +345,7 @@ async function logLoginLocked(email) {
   }
 }
 
-async function login(email, password) {
+async function login(email, password, { res = null } = {}) {
   await ensureAuthSchema();
   // Type guard: a truthy non-string email throws on .toLowerCase() and a
   // truthy non-string password crashes bcrypt.compareSync — both surfaced as
@@ -420,18 +423,20 @@ async function login(email, password) {
     [user.id]
   );
 
-  const token = await createSession(user.id);
+  const session = await createSession(user.id, { res });
   return {
     success: true,
-    token,
+    token: session.token,
+    csrfToken: session.csrfToken,
     user: sanitizeUser({ ...user, last_login_at: new Date().toISOString() }),
     role: user.role,
     requirePasswordChange: Boolean(user.temp_password),
   };
 }
 
-async function logout(token) {
+async function logout(token, { res = null } = {}) {
   if (token) await deleteSession(token);
+  if (res) clearSessionCookies(res);
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -553,9 +558,6 @@ async function updateUser(id, { displayName, role, status } = {}, actor) {
   if (status === 'disabled' && target.status !== 'disabled') {
     await deleteSessionsForUser(target.id);
   }
-  // Role/status/display changes must not be served from the session cache:
-  // drop the user's cached resolutions so the next request re-reads the row.
-  invalidateSessionCacheForUser(target.id);
 
   await logAction({
     adminUserId: actorId,

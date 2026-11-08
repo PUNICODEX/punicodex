@@ -1,0 +1,77 @@
+.arche-identity-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: clamp(1.25rem, 5vw, 4rem);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.13), transparent 42%),
+    #07070a;
+}
+
+.arche-identity-gate[hidden] {
+  display: none;
+}
+
+.arche-identity-gate-card {
+  width: min(760px, 100%);
+  padding: clamp(1.5rem, 5vw, 4rem);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(24, 22, 27, 0.98), rgba(10, 10, 14, 0.98));
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+
+.arche-identity-kicker {
+  margin: 0 0 1rem;
+  color: #d4af37;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.arche-identity-gate h2 {
+  margin: 0 0 1.2rem;
+  color: #f0ebdf;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 500;
+}
+
+.arche-identity-gate p {
+  max-width: 62ch;
+  margin: 0 auto 1rem;
+  color: #aaa294;
+  line-height: 1.8;
+}
+
+.arche-identity-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.8rem 0 1.2rem;
+}
+
+.arche-identity-actions a {
+  display: inline-block;
+  padding: 0.8rem 1.25rem;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 8px;
+  color: #d4af37;
+  text-decoration: none;
+}
+
+.arche-identity-actions a:first-child {
+  background: #d4af37;
+  color: #08080a;
+}
+
+.arche-identity-note {
+  color: #80796c;
+  font-size: 0.78rem;
+}

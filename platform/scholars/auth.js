@@ -172,37 +172,71 @@ function logout(sessionId) {
 // Auth middleware
 // ─────────────────────────────────────────────────────────────
 
-function requireAuth(req, res, next) {
+async function requireAuth(req, res, next) {
   const sessionId = req.cookies?.scholars_session || req.headers['x-scholars-session'];
-  if (!sessionId) {
+  if (
+    !sessionId &&
+    !req.cookies?.punicodex_session &&
+    !req.headers?.cookie &&
+    !req.headers?.authorization
+  ) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  const session = getSessionWithUser(sessionId);
-  if (!session) {
+  if (sessionId) {
+    const session = getSessionWithUser(sessionId);
+    if (session) {
+      // Immediate revocation enforcement: a disabled (or otherwise non-active)
+      // account loses access the moment the next request arrives, regardless of
+      // session expiry. The session itself is destroyed so it cannot be reused.
+      if (session.user_account_status && session.user_account_status !== 'active') {
+        deleteSession(sessionId);
+        return res.status(403).json({
+          error: 'Account is not active. Contact your institution admin.',
+          code: 'account_inactive',
+        });
+      }
+      req.scholarsSession = session;
+      req.user = {
+        id: session.user_id,
+        email: session.email,
+        role: session.role,
+        institutionId: session.institution_id,
+        displayName: session.display_name,
+        status: session.user_status,
+        accountStatus: session.user_account_status,
+        department: session.department,
+      };
+      return next();
+    }
+  }
+
+  const identity = require('../api/identity');
+  const resolved = await identity.resolveSession(req, res);
+  if (!resolved) {
     return res.status(401).json({ error: 'Session expired or invalid' });
   }
-  // Immediate revocation enforcement: a disabled (or otherwise non-active)
-  // account loses access the moment the next request arrives, regardless of
-  // session expiry. The session itself is destroyed so it cannot be reused.
-  if (session.user_account_status && session.user_account_status !== 'active') {
-    deleteSession(sessionId);
+  const profiles = await identity.getScholarProfiles(resolved.account.id);
+  const profile = profiles.find(
+    (row) => row.status === 'active' && row.account_status === 'active'
+  );
+  if (!profile) {
     return res.status(403).json({
-      error: 'Account is not active. Contact your institution admin.',
-      code: 'account_inactive',
+      error: 'No active academic profile is linked to this account.',
+      code: 'scholar_not_linked',
     });
   }
-  req.scholarsSession = session;
+  req.identityAccount = resolved.account;
   req.user = {
-    id: session.user_id,
-    email: session.email,
-    role: session.role,
-    institutionId: session.institution_id,
-    displayName: session.display_name,
-    status: session.user_status,
-    accountStatus: session.user_account_status,
-    department: session.department,
+    id: profile.id,
+    email: profile.email,
+    role: profile.role,
+    institutionId: profile.institution_id,
+    displayName: profile.display_name,
+    status: profile.status,
+    accountStatus: profile.account_status,
+    department: profile.department,
   };
-  next();
+  return next();
 }
 
 // ─────────────────────────────────────────────────────────────

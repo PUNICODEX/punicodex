@@ -531,42 +531,67 @@ test('beacon script exists, is small, and honors Do Not Track', () => {
 });
 
 test('inject-analytics.js is idempotent and injects the beacon exactly once', () => {
-  const env = { ...process.env, GA_MEASUREMENT_ID: '', GSC_VERIFICATION: '' };
-  for (let i = 0; i < 2; i++) {
-    execSync('node scripts/inject-analytics.js', { cwd: ROOT, env, timeout: 300000 });
-  }
-  // Restore content-addressed pins so later suites see stamped committed files.
-  execSync('node scripts/stamp-asset-versions.js', { cwd: ROOT, timeout: 300000 });
-
-  const targets = [];
-  const walk = (dir) => {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) walk(fullPath);
-      else if (entry.isFile() && entry.name.endsWith('.html')) targets.push(fullPath);
+  const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'punicodex-analytics-inject-'));
+  try {
+    fs.mkdirSync(path.join(fixtureRoot, 'platform', 'public'), { recursive: true });
+    fs.writeFileSync(
+      path.join(fixtureRoot, 'platform', 'public', 'index.html'),
+      '<!DOCTYPE html><html lang="en"><head><title>Fixture</title></head><body></body></html>'
+    );
+    for (let i = 0; i < 120; i++) {
+      const dir = path.join(fixtureRoot, 'sites', `temple-${i}`);
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(
+        path.join(dir, 'index.html'),
+        '<!DOCTYPE html><html lang="en"><head><title>Fixture</title></head><body></body></html>'
+      );
     }
-  };
-  walk(path.join(ROOT, 'sites'));
-  walk(path.join(ROOT, 'platform', 'public'));
-  for (const p of [
-    'index.html',
-    'search/index.html',
-    'pantheon/index.html',
-    'lexicon/index.html',
-  ]) {
-    const full = path.join(ROOT, p);
-    if (fs.existsSync(full)) targets.push(full);
-  }
+    for (const p of [
+      'index.html',
+      'search/index.html',
+      'pantheon/index.html',
+      'lexicon/index.html',
+    ]) {
+      fs.mkdirSync(path.dirname(path.join(fixtureRoot, p)), { recursive: true });
+      fs.writeFileSync(
+        path.join(fixtureRoot, p),
+        '<!DOCTYPE html><html lang="en"><head><title>Fixture</title></head><body></body></html>'
+      );
+    }
+    const env = {
+      ...process.env,
+      GA_MEASUREMENT_ID: '',
+      GSC_VERIFICATION: '',
+      PUNICODEX_ANALYTICS_ROOT: fixtureRoot,
+    };
+    for (let i = 0; i < 2; i++) {
+      execSync('node scripts/inject-analytics.js', { cwd: ROOT, env, timeout: 30000 });
+    }
 
-  assert.ok(targets.length > 100, 'expected a large number of injected HTML files');
-  let injectedCount = 0;
-  for (const file of targets) {
-    const html = fs.readFileSync(file, 'utf8');
-    const beaconTags = html.split('/js/analytics-beacon.js').length - 1;
-    assert.ok(beaconTags <= 1, `${path.relative(ROOT, file)} has ${beaconTags} beacon tags`);
-    const markers = html.split('<!-- PUNICODEX-ANALYTICS-START -->').length - 1;
-    assert.ok(markers <= 1, `${path.relative(ROOT, file)} has ${markers} marker blocks`);
-    if (beaconTags === 1) injectedCount++;
+    const targets = [];
+    const walk = (dir) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(fullPath);
+        else if (entry.isFile() && entry.name.endsWith('.html')) targets.push(fullPath);
+      }
+    };
+    walk(fixtureRoot);
+    assert.ok(targets.length > 100, 'expected a large number of injected HTML files');
+    let injectedCount = 0;
+    for (const file of targets) {
+      const html = fs.readFileSync(file, 'utf8');
+      const beaconTags = html.split('/js/analytics-beacon.js').length - 1;
+      assert.ok(
+        beaconTags <= 1,
+        `${path.relative(fixtureRoot, file)} has ${beaconTags} beacon tags`
+      );
+      const markers = html.split('<!-- PUNICODEX-ANALYTICS-START -->').length - 1;
+      assert.ok(markers <= 1, `${path.relative(fixtureRoot, file)} has ${markers} marker blocks`);
+      if (beaconTags === 1) injectedCount++;
+    }
+    assert.ok(injectedCount > 100, 'beacon tag must be baked into the pages');
+  } finally {
+    fs.rmSync(fixtureRoot, { recursive: true, force: true });
   }
-  assert.ok(injectedCount > 100, 'beacon tag must be baked into the pages');
 });

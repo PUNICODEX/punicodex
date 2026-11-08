@@ -3,7 +3,7 @@
  *
  * Session-lifecycle attacks against both auth realms (admin portal + tenant
  * panel): fixation, revocation on credential change, expiry, replay of
- * single-use tokens, and transport hygiene (no cookies, hashed at rest).
+ * single-use tokens, and transport hygiene (protected cookies, hashed at rest).
  */
 
 const assert = require('node:assert');
@@ -38,12 +38,27 @@ async function adminLogin(ip = '198.51.100.200') {
   });
 }
 
-test('login never sets cookies (bearer-only, no fixation surface)', async () => {
+test('login sets only server-minted, transport-protected session cookies', async () => {
   const res = await adminLogin();
   assert.strictEqual(res.status, 200);
   const headers = res.headers || {};
   const setCookie = headers['set-cookie'] || headers['Set-Cookie'];
-  assert.ok(!setCookie, 'no Set-Cookie on login');
+  const cookies = Array.isArray(setCookie) ? setCookie : [setCookie];
+  assert.ok(
+    cookies.some(
+      (cookie) =>
+        cookie?.startsWith('punicodex_admin_session=') &&
+        cookie.includes('HttpOnly') &&
+        cookie.includes('SameSite=Lax')
+    ),
+    'admin session cookie is HttpOnly and SameSite=Lax'
+  );
+  assert.ok(
+    cookies.some(
+      (cookie) => cookie?.startsWith('punicodex_admin_csrf=') && cookie.includes('SameSite=Lax')
+    ),
+    'separate CSRF cookie uses SameSite=Lax'
+  );
 });
 
 test('every login issues a distinct session (no fixation/reuse)', async () => {

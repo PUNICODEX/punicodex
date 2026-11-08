@@ -243,9 +243,13 @@ test('getQuarterlyOverview returns current-quarter totals and rankings', async (
 
   assert.strictEqual(overview.yearQuarter, currentQuarter);
   assert.ok(overview.totals);
-  // Current quarter (Q3) human views = today 6 + day-5 14 + day-45 7 + day-35 15 + day-50 1 = 43.
-  assert.strictEqual(overview.totals.humanViews, 43);
-  assert.strictEqual(overview.totals.botViews, 5);
+  const quarterStartMonth = (Number(currentQuarter.slice(-1)) - 1) * 3;
+  const quarterStart = new Date(Date.UTC(Number(currentQuarter.slice(0, 4)), quarterStartMonth, 1));
+  const outsideQuarter = Number(quarterStart) > Number(new Date(`${daysAgo(45)}T00:00:00Z`));
+  // Human views include all seeded rows inside the current quarter. Older Q3
+  // fixtures are excluded automatically once the calendar moves into Q4.
+  assert.strictEqual(overview.totals.humanViews, outsideQuarter ? 35 : 43);
+  assert.strictEqual(overview.totals.botViews, outsideQuarter ? 4 : 5);
 
   const zeus = overview.topTemples.find((t) => t.templeId === 'zeus');
   const nike = overview.topTemples.find((t) => t.templeId === 'nike');
@@ -253,9 +257,9 @@ test('getQuarterlyOverview returns current-quarter totals and rankings', async (
   assert.ok(zeus);
   assert.ok(nike);
   assert.ok(apollo);
-  assert.strictEqual(zeus.human, 28); // 3 today + 8 day-5 + 7 day-45 + 10 day-35
+  assert.strictEqual(zeus.human, outsideQuarter ? 21 : 28);
   assert.strictEqual(nike.human, 11); // 2 today + 4 day-5 + 5 day-35
-  assert.strictEqual(apollo.human, 4); // 1 today + 2 day-5 + 1 day-50
+  assert.strictEqual(apollo.human, outsideQuarter ? 3 : 4);
 
   assert.ok(Array.isArray(overview.topReferrers));
   assert.deepStrictEqual(overview.devices, { mobile: 3, tablet: 0, desktop: 11 });

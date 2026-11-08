@@ -1,10 +1,9 @@
 /**
- * Sponsor Sandbox — login / set-password page.
+ * PuniCodex Account — registration, login, and one-time setup links.
  *
- * Same auth contract as the original portal: the session token lives under
- * the same localStorage key, and the same three endpoints are called
- * (login / forgot / set-password). Supports ?token= (one-time setup or
- * reset link) and ?next= (post-login destination, sandbox paths only).
+ * Authentication uses secure same-origin cookies with CSRF protection. Legacy
+ * bearer sessions remain valid during migration. ?next= is restricted to
+ * account-internal destinations.
  */
 (function () {
   'use strict';
@@ -12,7 +11,7 @@
   var S = window.Sandbox;
 
   function show(viewId) {
-    ['view-login', 'view-set-password'].forEach(function (id) {
+    ['view-login', 'view-register', 'view-set-password'].forEach(function (id) {
       document.getElementById(id).hidden = id !== viewId;
     });
   }
@@ -20,14 +19,13 @@
   function safeNext() {
     var next = new URLSearchParams(window.location.search).get('next');
     // Sandbox-internal paths only — never an open redirect.
-    if (typeof next === 'string' && /^\/account\//.test(next) && next.indexOf('//') !== 0) {
+    if (typeof next === 'string' && /^\/(?:account|genesis)\//.test(next) && next.indexOf('//') !== 0) {
       return next;
     }
     return '/account/';
   }
 
-  function enter(token) {
-    S.setToken(token);
+  function enter() {
     window.location.replace(safeNext());
   }
 
@@ -77,6 +75,47 @@
     });
   }
 
+  function initRegisterView() {
+    document.getElementById('show-register').addEventListener('click', function () {
+      show('view-register');
+    });
+    document.getElementById('show-login').addEventListener('click', function () {
+      show('view-login');
+    });
+    document.getElementById('register-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var msg = document.getElementById('register-message');
+      msg.classList.remove('success');
+      msg.textContent = '';
+      var password = document.getElementById('register-password').value;
+      if (password.length < 12) {
+        msg.textContent = 'Password must be at least 12 characters.';
+        return;
+      }
+      if (password !== document.getElementById('register-confirm').value) {
+        msg.textContent = 'Passwords do not match.';
+        return;
+      }
+      var btn = document.getElementById('register-submit');
+      btn.disabled = true;
+      try {
+        var data = await S.api('/api/account/auth/register/', {
+          method: 'POST',
+          body: {
+            email: document.getElementById('register-email').value.trim(),
+            password: password,
+          },
+        });
+        msg.classList.add('success');
+        msg.textContent = data.message + ' Check your inbox to activate your account.';
+      } catch (err) {
+        msg.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+
   function initSetPasswordView(token) {
     document.getElementById('set-password-form').addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -84,8 +123,8 @@
       msg.textContent = '';
       var password = document.getElementById('new-password').value;
       var confirm = document.getElementById('confirm-password').value;
-      if (password.length < 8) {
-        msg.textContent = 'Password must be at least 8 characters.';
+      if (password.length < 12) {
+        msg.textContent = 'Password must be at least 12 characters.';
         return;
       }
       if (password !== confirm) {
@@ -110,6 +149,7 @@
 
   function init() {
     initLoginView();
+    initRegisterView();
 
     var params = new URLSearchParams(window.location.search);
     var setupToken = params.get('token');
@@ -124,7 +164,18 @@
       return;
     }
 
-    show('view-login');
+    if (params.get('view') === 'register') {
+      show('view-register');
+      return;
+    }
+
+    S.api('/api/account/me/')
+      .then(function () {
+        window.location.replace(safeNext());
+      })
+      .catch(function () {
+        show('view-login');
+      });
   }
 
   init();

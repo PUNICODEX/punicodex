@@ -50,7 +50,10 @@ const flagships = LEXICON.filter((e) => exists(path.join('sites', e.id, 'art', '
 
 test('sample: flagships with commons works render The Commons works', () => {
   const withWorks = flagships.filter((e) => commonsWorksFor(e.id).length > 0);
-  assert.ok(withWorks.length >= 40, `expected >=40 flagships with commons works, got ${withWorks.length}`);
+  assert.ok(
+    withWorks.length >= 40,
+    `expected >=40 flagships with commons works, got ${withWorks.length}`
+  );
   for (const e of withWorks.slice(0, 25)) {
     const html = read(path.join('sites', e.id, 'art', 'index.html'));
     assert.ok(html.includes('data-cat="commons"'), `${e.id}: commons pill present`);

@@ -51,12 +51,26 @@
 
   // ── API ──────────────────────────────────────────────────
 
+  function cookie(name) {
+    var prefix = name + '=';
+    var parts = String(document.cookie || '').split(';');
+    for (var i = 0; i < parts.length; i++) {
+      var part = parts[i].trim();
+      if (part.indexOf(prefix) === 0) return decodeURIComponent(part.slice(prefix.length));
+    }
+    return null;
+  }
+
   async function api(path, options) {
     var opts = options || {};
     var headers = { Accept: 'application/json' };
     var token = getToken();
     if (token) headers.Authorization = 'Bearer ' + token;
-    var fetchOpts = { method: opts.method || 'GET', headers: headers };
+    var method = opts.method || 'GET';
+    if (method !== 'GET' && cookie('punicodex_session')) {
+      headers['x-csrf-token'] = cookie('punicodex_csrf') || '';
+    }
+    var fetchOpts = { method: method, headers: headers, credentials: 'same-origin' };
     if (opts.body !== undefined) {
       headers['Content-Type'] = 'application/json';
       fetchOpts.body = JSON.stringify(opts.body);
@@ -257,19 +271,25 @@
 
   // ── Shell ────────────────────────────────────────────────
 
-  function mountShell(active, email) {
+  function mountShell(active, email, me) {
     var bar = document.getElementById('sandbox-topbar');
     if (!bar) return;
+    var capabilities = (me && me.capabilities) || [];
     var links = [
       ['overview', '/account/', 'Overview'],
-      ['bookings', '/account/bookings/', 'Bookings'],
-      ['brand', '/account/brand/', 'Brand'],
+      ['orders', '/account/orders/', 'Orders'],
+      ['bookings', '/account/bookings/', 'Placements'],
+      ['brand', '/account/brand/', 'Creative Studio'],
+      ['initiation', '/account/initiation/', 'Initiation'],
     ];
+    if (capabilities.indexOf('institution.manage') !== -1) {
+      links.push(['institution', '/account/institution/', 'Institution']);
+    }
     bar.innerHTML =
       '<a class="sb-brand" href="/account/">' +
       '<picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp">' +
       '<img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex" width="680" height="119"></picture>' +
-      '<span class="sb-brand-tag">Sponsor Sandbox</span></a>' +
+      '<span class="sb-brand-tag">PuniCodex Account</span></a>' +
       '<nav class="sb-nav">' +
       links
         .map(function (l) {
@@ -304,10 +324,6 @@
    * no session (or the session died), otherwise returns the /me payload.
    */
   async function requireAccount() {
-    if (!getToken()) {
-      window.location.replace(loginUrl());
-      return null;
-    }
     try {
       return await api('/api/account/me/');
     } catch (err) {

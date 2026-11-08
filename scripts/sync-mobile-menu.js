@@ -82,7 +82,7 @@ function buildSection(id) {
 /* Hub drawers alone keep the quiet text link to the Archē — their strips
  * deliberately hide the Enter CTA (css/hub.css), so without this their
  * mobile visitors would have no road into the experience. */
-const DRAWER_BEGIN = `<a href="/genesis/" class="mobile-menu-begin">Enter</a>\n        `;
+const DRAWER_BEGIN = `<a href="/account/login/" class="mobile-menu-begin">Account</a>\n        `;
 
 const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
         ${HUB_ORDER.map(buildSection).join('\n        ')}

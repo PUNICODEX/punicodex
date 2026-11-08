@@ -183,7 +183,7 @@ test('the gold banner copy never claims a rejected/pending booking is "approved"
 });
 
 test('overview page pins the bumped index.js version', () => {
-  assert.match(indexHtml, /\/account\/index\.js\?v=4/);
+  assert.match(indexHtml, /\/account\/index\.js\?v=5/);
 });
 
 async function run() {

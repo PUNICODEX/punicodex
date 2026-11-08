@@ -215,6 +215,48 @@
     });
   }
 
+  function renderIdentity(me) {
+    var roles = [];
+    if (me.account.isSponsor) roles.push('Sponsor');
+    if (me.account.isPatron) roles.push('Patron');
+    var scholars = (me.identity && me.identity.scholars) || [];
+    scholars.forEach(function (profile) {
+      roles.push(profile.role.replace(/_/g, ' ') + ' · ' + (profile.institutionName || 'Scholar'));
+    });
+    if (!roles.length) roles.push('PuniCodex member');
+    document.getElementById('overview-roles').innerHTML = roles
+      .map(function (role) { return '<span class="sb-identity-role">' + S.esc(role) + '</span>'; })
+      .join('');
+
+    var orders = (me.resources && me.resources.orders) || [];
+    document.getElementById('orders-meta').textContent = orders.length
+      ? orders.length + ' order' + (orders.length === 1 ? '' : 's') + ' · view orders & tracking →'
+      : 'Your orders and tracking will appear here →';
+    document.getElementById('scholar-module').hidden = scholars.length === 0;
+    document.getElementById('institution-module').hidden =
+      !me.capabilities || me.capabilities.indexOf('institution.manage') === -1;
+
+    var initiation = (me.identity && me.identity.initiation) || { currentChapter: 0, totalChapters: 1 };
+    var total = Math.max(1, Number(initiation.totalChapters) || 1);
+    var current = Math.max(0, Number(initiation.currentChapter) || 0);
+    var complete = Boolean(initiation.completedAt);
+    var percent = complete ? 100 : Math.min(100, Math.round((current / total) * 100));
+    document.getElementById('initiation-status').textContent = complete
+      ? 'Initiation complete'
+      : current > 0
+        ? 'Continue your ascent'
+        : 'Your initiation awaits';
+    document.getElementById('initiation-count').textContent = current + ' / ' + total + ' scenes';
+    document.getElementById('initiation-link').textContent = complete
+      ? 'Return to the First Principles'
+      : current > 0
+        ? 'Continue the First Principles'
+        : 'Enter the First Principles';
+    var bar = document.getElementById('initiation-bar');
+    bar.setAttribute('aria-valuenow', String(percent));
+    bar.firstElementChild.style.width = percent + '%';
+  }
+
   async function init() {
     // Forward one-time setup/reset links to the login page, which owns that
     // flow (activation emails point at /account/?token=…).
@@ -227,7 +269,8 @@
     var me = await S.requireAccount();
     if (!me) return; // redirected to login
 
-    S.mountShell('overview', me.account.email);
+    S.mountShell('overview', me.account.email, me);
+    renderIdentity(me);
     var kinds = [];
     if (me.account.isSponsor) kinds.push('Sponsor');
     if (me.account.isPatron) kinds.push('Patron');

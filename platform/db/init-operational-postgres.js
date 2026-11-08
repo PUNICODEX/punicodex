@@ -63,6 +63,14 @@ const OPERATIONAL_TABLES = [
   'tenant_sessions',
   'tenant_tokens',
   'tenant_change_requests',
+  'accounts',
+  'identity_links',
+  'account_sessions',
+  'account_tokens',
+  'account_invitations',
+  'institution_capability_policies',
+  'account_initiation',
+  'account_audit_log',
   'csp_reports',
 ];
 

@@ -267,6 +267,16 @@ try {
   process.exit(1);
 }
 
+// Unified public identity schema (accounts, sessions, institution invitations,
+// capability policies, and initiation progress)
+try {
+  const { execSync } = require('node:child_process');
+  execSync(`node "${path.join(__dirname, 'migrate-identity.js')}"`, { stdio: 'inherit' });
+} catch (err) {
+  console.error('Unified identity migration failed:', err.message);
+  process.exit(1);
+}
+
 // Founding discount codes (idempotent — CI-built deployments get the same
 // durable codes as the developer DB)
 try {

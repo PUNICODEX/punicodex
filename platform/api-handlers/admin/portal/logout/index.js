@@ -18,7 +18,14 @@ module.exports = async (req, res) => {
   try {
     const auth = await portalAuth.requirePortal(req, res, null);
     if (!auth) return;
-    await portalAuth.logout(req.headers['x-admin-token']);
+    const cookieToken = String(req.headers.cookie || '')
+      .split(';')
+      .map((part) => part.trim())
+      .find((part) => part.startsWith('punicodex_admin_session='))
+      ?.split('=')
+      .slice(1)
+      .join('=');
+    await portalAuth.logout(req.headers['x-admin-token'] || cookieToken, { res });
     return res.json({ success: true });
   } catch (err) {
     sendError(res, err);

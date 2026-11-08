@@ -190,6 +190,22 @@ const ROUTES = [
     load: () => require('../../platform/api-handlers/admin/portal/analytics/journeys/index.js'),
   },
   {
+    segments: ['portal', 'analytics', 'identity'],
+    load: () => require('../../platform/api-handlers/admin/portal/analytics/identity/index.js'),
+  },
+  {
+    segments: ['portal', 'identities'],
+    load: () => require('../../platform/api-handlers/admin/portal/identities/index.js'),
+  },
+  {
+    segments: ['portal', 'identities', '[id]'],
+    load: () => require('../../platform/api-handlers/admin/portal/identities/[id]/index.js'),
+  },
+  {
+    segments: ['portal', 'identities', '[id]', 'status'],
+    load: () => require('../../platform/api-handlers/admin/portal/identities/[id]/status/index.js'),
+  },
+  {
     segments: ['portal', 'universities'],
     load: () => require('../../platform/api-handlers/admin/portal/universities/index.js'),
   },
@@ -402,6 +418,7 @@ function selfCheck() {
 if (!process.env.VERCEL && process.env.NODE_ENV !== 'production') selfCheck();
 
 module.exports = async (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
   let parts = req.query.slug || [];
   if (typeof parts === 'string') parts = parts.split('/').filter(Boolean);
 

@@ -30,6 +30,7 @@ const PAGES = [
   'newsletter/index.html',
   'merch/index.html',
   'users/index.html',
+  'identities/index.html',
   'system/index.html',
   'api-keys/index.html',
   'legacy/index.html',
@@ -63,6 +64,10 @@ const API_ROUTES = [
   '/api/admin/analytics/rollup/',
   '/api/admin/analytics/retention/',
   '/api/admin/portal/users/',
+  '/api/admin/portal/identities/',
+  '/api/admin/portal/identities/:id/',
+  '/api/admin/portal/identities/:id/status/',
+  '/api/admin/portal/analytics/identity/',
   '/api/admin/portal/users/:id/',
   '/api/admin/portal/users/:id/disable/',
   '/api/admin/portal/users/:id/reset-password/',
@@ -277,8 +282,16 @@ test('login page has the required form fields, ids, and error surfaces', () => {
   assert.strictEqual($('#login-setup').length, 1, 'expected #login-setup (503 setup message)');
 
   const src = readCanonical('login/index.html');
-  assert.ok(src.includes("TOKEN_KEY = 'punicodex_portal_token'"), 'expected portal token key');
-  assert.ok(src.includes('localStorage.setItem(TOKEN_KEY'), 'expected token storage on success');
+  assert.ok(
+    src.includes("TOKEN_KEY = 'punicodex_portal_token'"),
+    'expected legacy token compatibility'
+  );
+  assert.ok(src.includes("credentials: 'same-origin'"), 'expected cookie-backed admin sessions');
+  assert.ok(src.includes('x-csrf-token'), 'expected CSRF protection on admin mutations');
+  assert.ok(
+    !src.includes('localStorage.setItem(TOKEN_KEY'),
+    'new admin tokens must not be written to localStorage'
+  );
   assert.ok(src.includes('requirePasswordChange'), 'expected forced password-change flow');
   assert.ok(src.includes('portal_unconfigured'), 'expected 503 portal_unconfigured handling');
   assert.ok(src.includes('account_locked'), 'expected account_locked handling');

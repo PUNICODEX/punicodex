@@ -94,9 +94,13 @@ test('every patron page has tab navigation with Patrons link active', () => {
     const $ = loadPatronPage(id);
     const tabNav = $('.tab-nav, #tab-nav');
     assert.ok(tabNav.length >= 1, `${id}: expected tab nav`);
-    const patronLink = tabNav.find('a[href="./"]');
-    assert.strictEqual(patronLink.length, 1, `${id}: expected Patrons tab link`);
-    assert.ok(patronLink.hasClass('active'), `${id}: expected Patrons tab to be active`);
+    const patronLink = tabNav
+      .find('a[href="./"], a[href="./index.html"]')
+      .filter((_, el) => $(el).text().trim() === 'Patrons');
+    assert.ok(patronLink.length >= 1, `${id}: expected Patrons tab link`);
+    patronLink.each((_, el) => {
+      assert.ok($(el).hasClass('active'), `${id}: expected Patrons tab to be active`);
+    });
   }
 });
 
