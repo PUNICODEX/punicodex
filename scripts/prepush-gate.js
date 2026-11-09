@@ -23,6 +23,7 @@
  */
 
 const { execFileSync, execSync } = require('node:child_process');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -73,6 +74,10 @@ const CANONICAL_SUITES = [
 ];
 
 const RULES = [
+  {
+    pattern: /^scripts\/(?:prepush-gate|deploy-release)\.js$|^test\/(?:prepush-attestation|release-orchestration)\.test\.js$/,
+    suites: ['Pre-push Attestation Tests', 'Release Orchestration Tests'],
+  },
   {
     pattern: /^scripts\/(?:generation-lock|write-file-retry|generate|inject-analytics|inject-university-collaborators|inject-herald-beacon|inject-cookie-consent|inject-hero-videos|inject-px-core|generate-strata-page)\.js$|^test\/generation-lock\.test\.js$/,
     suites: ['Generation Lock Tests'],
@@ -489,6 +494,84 @@ function runSuite(name, cmd) {
   }
 }
 
+function suiteCommandsHash(suiteCommands) {
+  return crypto
+    .createHash('sha256')
+    .update(JSON.stringify([...suiteCommands.entries()].sort()))
+    .digest('hex');
+}
+
+function attestationFile() {
+  return process.env.PREPUSH_ATTESTATION_FILE || path.join(ROOT, '.git', 'prepush-attestation.json');
+}
+
+function readAttestation() {
+  try {
+    return JSON.parse(fs.readFileSync(attestationFile(), 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+function workingTreeClean() {
+  return execFileSync('git', ['status', '--porcelain'], { cwd: ROOT, encoding: 'utf8' }).trim() === '';
+}
+
+function currentHeadAndTree() {
+  return {
+    head: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim(),
+    tree: execFileSync('git', ['rev-parse', 'HEAD^{tree}'], {
+      cwd: ROOT,
+      encoding: 'utf8',
+    }).trim(),
+  };
+}
+
+function canReuseAttestation(record, input) {
+  if (!record || input.dirty) return false;
+  if (!record.head || !record.tree || !record.commandsHash) return false;
+  if (
+    record.head !== input.head ||
+    record.tree !== input.tree ||
+    record.commandsHash !== input.commandsHash
+  ) {
+    return false;
+  }
+  const covered = new Set(record.selected || []);
+  if (!input.selected.every((suite) => covered.has(suite))) return false;
+  return !input.canonical || record.canonical === true;
+}
+
+function reusableAttestation(selected, canonical, suiteCommands) {
+  const input = {
+    ...currentHeadAndTree(),
+    selected,
+    canonical,
+    commandsHash: suiteCommandsHash(suiteCommands),
+    dirty: !workingTreeClean(),
+  };
+  const record = readAttestation();
+  return canReuseAttestation(record, input) ? record : null;
+}
+
+function writeAttestation(input) {
+  const record = {
+    version: 1,
+    createdAt: new Date().toISOString(),
+    head: input.head,
+    tree: input.tree,
+    commandsHash: input.commandsHash,
+    selected: [...input.selected].sort(),
+    canonical: input.canonical,
+  };
+  const file = attestationFile();
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const temporary = `${file}.tmp.${process.pid}`;
+  fs.writeFileSync(temporary, `${JSON.stringify(record, null, 2)}\n`, 'utf8');
+  fs.renameSync(temporary, file);
+  return record;
+}
+
 function selfTest(suiteCommands) {
   let ok = true;
   const named = new Set([...ALWAYS_SUITES, ...CANONICAL_SUITES, ...CORE_SUITES]);
@@ -551,6 +634,16 @@ function main() {
   }
 
   const { selected, canonical } = selectSuites(files, suiteCommands);
+  const attestation = reusableAttestation(selected, canonical, suiteCommands);
+  if (attestation) {
+    console.log(
+      `  ${C.green}✓ Reusing exact-tree gate attestation from ${attestation.createdAt}${C.reset}`
+    );
+    console.log(
+      `  ${C.dim}Same commit, generated tree, suite definitions, and clean working tree; no new content to verify.${C.reset}`
+    );
+    return;
+  }
   console.log(`  ${C.dim}${files.length} changed file(s) → ${selected.length} gate(s)${C.reset}`);
   for (const f of files.slice(0, 12)) console.log(`    ${C.dim}· ${f}${C.reset}`);
   if (files.length > 12) console.log(`    ${C.dim}· …and ${files.length - 12} more${C.reset}`);
@@ -668,7 +761,21 @@ function main() {
     );
     process.exit(1);
   }
+  writeAttestation({
+    ...currentHeadAndTree(),
+    selected,
+    canonical,
+    commandsHash: suiteCommandsHash(suiteCommands),
+  });
   console.log(`\n${C.green}${C.bold}✓ Pre-push gate passed — safe to push.${C.reset}\n`);
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = {
+  canReuseAttestation,
+  readAttestation,
+  reusableAttestation,
+  suiteCommandsHash,
+  writeAttestation,
+};

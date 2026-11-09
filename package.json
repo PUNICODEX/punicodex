@@ -20,6 +20,7 @@
     "generate-temples": "node scripts/generate-temples.js",
     "prepush": "npm test && npm run generate:check",
     "prepush:gate": "node scripts/prepush-gate.js",
+    "deploy:release": "node scripts/deploy-release.js",
     "prepare": "node scripts/install-hooks.js",
     "validate": "node type/js/validate.js && node scripts/validate-accuracy.js && node type/js/test-engine.js",
     "lint": "biome lint .",

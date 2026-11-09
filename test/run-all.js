@@ -654,6 +654,8 @@ const SUITES = [
     cmd: 'node test/seo-canonical-audit.test.js',
     timeout: 120000,
   },
+  { name: 'Pre-push Attestation Tests', cmd: 'node --test test/prepush-attestation.test.js' },
+  { name: 'Release Orchestration Tests', cmd: 'node --test test/release-orchestration.test.js' },
   { name: 'Vercel Config Contract', cmd: 'node test/vercel-config.test.js' },
   { name: 'Router Behavior Tests', cmd: 'node test/router-behavior.test.js', timeout: 60000 },
   { name: 'Interstitial Safety', cmd: 'node test/interstitial-safety.test.js' },

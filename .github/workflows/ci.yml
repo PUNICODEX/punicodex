@@ -39,7 +39,16 @@ jobs:
         run: python -m pip install --upgrade pip pillow
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          for attempt in 1 2 3; do
+            if npm ci; then
+              exit 0
+            fi
+            echo "Dependency install attempt $attempt failed; retrying in 20s"
+            sleep 20
+          done
+          echo "Dependency installation failed after 3 attempts"
+          exit 1
 
       - name: Initialize database
         run: npm run db-init
