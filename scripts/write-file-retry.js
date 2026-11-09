@@ -12,7 +12,7 @@ const { acquireGenerationLock } = require('./generation-lock.js');
 const TRANSIENT = new Set(['EPERM', 'EBUSY', 'EAGAIN', 'UNKNOWN']);
 let lockAcquired = false;
 
-function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 5, delay = 50) {
+function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 20, delay = 100) {
   if (!lockAcquired) {
     acquireGenerationLock(`targeted generator (pid ${process.pid})`);
     lockAcquired = true;
