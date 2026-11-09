@@ -67,7 +67,7 @@ Produced by `npm run generate`:
 - Lexicon copies: `extension/shared/`, `mobile/shared/`, `android/app/src/main/assets/shared/`, `platform/browser/renderer/`
 - `platform/api/{similarities,cards}.json`, `game/cards.json`, `js/owned-entries.js`; `middleware.js` (marked blocks)
 - `sites/{id}/` base + flagship temples and their `scholars/`/`blog/` tabs; `platform/scholars/{taxonomy-data.js,manifests/}`; `blog/index.html`
-- Root `scholars/` + `admin-portal/` portal copies; sitemap; mobile menu; university collaborator injections
+- Root `scholars/` + `admin-portal/` portal copies; sitemap; desktop/mobile navigation; `css/site-nav.css` + `css/footer.css` shared chrome; university collaborator injections
 - `texts/` library + reading pages (from `platform/texts/registry.json` + corpora; the 20 `chapters`-texts' `eng.json`/`xref.json` under `platform/texts/{id}/` are CANONICAL — `test/texts-chapters.test.js`; xref forms must be attested capitalized whole words)
 - `everyday/index.html`; `data/ink-index.json`; `data/corpus/*` AI datasets; `data-version.json`; DataCite metadata
 - `assets/og/{id}.jpg` + `assets/images/og-default.{png,webp}` — **platform-specific bakes** (host fonts): generators SKIP existing outputs; committed bytes win. Re-bake only deliberately (`--force`/`--only <id>`; `PUNICODEX_OG_FORCE=1` for og-default) and commit. **Never let a Linux runner re-bake them** — the CI divergence gate depends on it.

@@ -55,6 +55,7 @@ test('every reference to a content-addressed asset carries its current hash pin'
   const files = execFileSync('git', ['ls-files', '*.html'], { cwd: ROOT, encoding: 'utf8' })
     .split('\n')
     .filter(Boolean)
+    .filter((f) => fs.existsSync(path.join(ROOT, f)))
     .filter((f) => !SKIP.test(f));
   const stale = [];
   function checkRef(text, file, ref, asset) {

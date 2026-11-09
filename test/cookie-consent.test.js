@@ -99,6 +99,14 @@ test('consent assets exist and wire the documented key and class', () => {
   assert.ok(css.includes('.pc-cookie'), 'consent css lost its .pc-cookie rules');
 });
 
+test('injector excludes tracked deletions before reading pages', () => {
+  const source = read('scripts/inject-cookie-consent.js');
+  assert.ok(
+    source.includes('.filter((f) => fs.existsSync(path.join(ROOT, f)))'),
+    'cached-but-deleted generated pages must not reach readFileSync'
+  );
+});
+
 test('injector runs after the page generators in the pipeline', () => {
   const pipeline = read('scripts/generate.js');
   const at = (needle) => {

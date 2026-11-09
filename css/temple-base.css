@@ -343,7 +343,7 @@ canvas[data-effect] {
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    overflow-x: auto;
+    overflow: visible;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 4px;
@@ -3047,25 +3047,42 @@ a.crosslink:focus-visible {
 }
 
 @media (max-width: 768px) {
-    .nav-group {
+    .mobile-menu.temple-mobile-menu {
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 2rem 1.25rem 2.5rem;
+    }
+    .temple-mobile-menu .nav-group {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         width: 100%;
     }
-    .nav-sub {
+    .mobile-menu.temple-mobile-menu .nav-group .nav-sub {
         position: static;
         transform: none;
         opacity: 1;
         visibility: visible;
+        align-items: stretch;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
         border: 0;
         background: transparent;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        padding: 0.2rem 0 0.2rem 1.1rem;
-        min-width: 0;
+        padding: 0.2rem 0 0.2rem 1rem;
     }
-    .nav-sub-link {
+    .temple-mobile-menu > .nav-link,
+    .temple-mobile-menu .nav-group > .nav-link,
+    .temple-mobile-menu .nav-sub-link {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+        white-space: normal;
+    }
+    .temple-mobile-menu .nav-sub-link {
         padding: 0.4rem 0.6rem;
     }
 }

@@ -72,8 +72,8 @@ test('page: canonical chrome, JSON-LD, and the interactive globe', () => {
   assert.ok(html.includes('atx-filter'), 'tradition filter present');
 });
 
-test('the Atlas is reachable from STRATA and the ATLAS namespace', () => {
-  const strata = read('pantheon/origins/index.html');
+test('Sacred Geography is reachable from STRATA and the World namespace', () => {
+  const strata = read('pantheon/strata/index.html');
   assert.ok(strata.includes('/world/sacred/'), 'STRATA finale links the Sacred Atlas');
 });
 

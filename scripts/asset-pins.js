@@ -5,6 +5,7 @@
 
 module.exports = {
   NAV_MORE_CSS: '/css/nav-more.css?v=10',
+  SITE_NAV_CSS: '/css/site-nav.css?v=1',
   MOBILE_MENU_CSS: '/css/mobile-menu.css?v=10',
   NAV_HUBS_CSS: '/css/nav-hubs.css?v=4',
   NAV_HUBS_JS: '/js/nav-hubs.js?v=7',

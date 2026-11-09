@@ -3239,6 +3239,21 @@ export default function middleware(request) {
     return fetch(request);
   }
 
+  // STRATA moved out of the About-adjacent "origins" namespace. Keep old
+  // inbound links and their query strings on a single permanent redirect.
+  if (url.pathname === '/pantheon/origins' || url.pathname.startsWith('/pantheon/origins/')) {
+    let rest = url.pathname.slice('/pantheon/origins'.length);
+    if (rest.endsWith('/index.html')) rest = rest.slice(0, -'index.html'.length);
+    url.pathname = '/pantheon/strata' + (rest || '/');
+    return new Response(null, {
+      status: 301,
+      headers: {
+        'Location': url.toString(),
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+      },
+    });
+  }
+
   // ─── 3b. /sites/{id} canonicalization ──────────────────────────────
   // The clean /{id}/ form is the canonical URL for every lexicon-entry
   // temple. Requests to the legacy /sites/{id}/ path 301 to the clean

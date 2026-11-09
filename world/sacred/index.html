@@ -15,8 +15,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf23">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf24">
 <link rel="stylesheet" href="/css/nav-more.css?v=10">
+<link rel="stylesheet" href="/css/site-nav.css?v=1">
 <link rel="stylesheet" href="/css/mobile-menu.css?v=10">
 <link rel="stylesheet" href="/css/nav-hubs.css?v=4">
 <link rel="stylesheet" href="/css/footer.css?v=8">
@@ -42,7 +43,7 @@ a{color:var(--gold)}
 .atx-marker:hover span{transform:scale(1.5)}
 .atx-marker--quiet span{background:transparent;border:1.5px solid var(--gold-dim);box-shadow:none}
 .atx-marker.active span{transform:scale(1.6);outline:2px solid var(--ivory);outline-offset:2px}
-.atx-panel{position:fixed;top:0;right:0;height:100vh;width:min(30rem,94vw);background:#0a0a0c;border-left:1px solid var(--gold-dim);z-index:60;overflow-y:auto;padding:2rem 1.6rem;transform:translateX(102%);transition:transform .3s ease;overscroll-behavior:contain}
+.atx-panel{position:fixed;top:0;right:0;height:100vh;width:min(30rem,94vw);background:#0a0a0c;border-left:1px solid var(--gold-dim);z-index:1200;overflow-y:auto;padding:2rem 1.6rem;transform:translateX(102%);transition:transform .3s ease;overscroll-behavior:contain}
 .atx-panel.open{transform:none}
 .atx-panel-close{position:sticky;top:0;float:right;appearance:none;border:1px solid var(--gold-dim);background:var(--void);color:var(--gold);border-radius:50%;width:2.2rem;height:2.2rem;font-size:1rem;cursor:pointer}
 .atx-panel h2{font-size:1.9rem;margin:.4rem 0 .2rem}
@@ -100,7 +101,7 @@ a{color:var(--gold)}
             <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
             <div class="nav-links">
                 <div class="nav-hub" data-hub="atlas">
-                    <a href="/world/" class="nav-link active" aria-haspopup="true" aria-expanded="false">Atlas</a>
+                    <a href="/world/" class="nav-link active" aria-haspopup="true" aria-expanded="false">World</a>
                     <div class="nav-hub-menu">
                     <div class="nav-hub-item">
                                 <a href="/pantheon/">Pantheon<span class="nav-hub-caret">▸</span></a>
@@ -134,12 +135,12 @@ a{color:var(--gold)}
                                     <a href="/zoroastrian/">Zoroastrian</a>
                                 </div>
                             </div>
-                    <a href="/pantheon/origins/">Strata</a>
-                    <a href="/world/sacred/" aria-current="page">Sacred Geography</a>
-                    <a href="/connections/">Connections</a>
                     <a href="/patterns/">Patterns</a>
                     <a href="/trending/">Trending</a>
+                    <a href="/world/sacred/" aria-current="page">Geography</a>
+                    <a href="/pantheon/strata/">Strata</a>
                     <a href="/search/">Search</a>
+                    <a href="/connections/">Connections</a>
                     </div>
                 </div>
                 <div class="nav-hub" data-hub="culture">
@@ -228,7 +229,7 @@ a{color:var(--gold)}
 
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
-            <a href="/world/" class="mobile-menu-title mobile-menu-title--hub">Atlas</a>
+            <a href="/world/" class="mobile-menu-title mobile-menu-title--hub">World</a>
             <div class="mobile-menu-group">
                 <details class="mobile-sub">
                 <summary><a href="/pantheon/" class="mobile-sub-link">Pantheon</a><span class="mobile-sub-caret">▾</span></summary>
@@ -263,12 +264,12 @@ a{color:var(--gold)}
                     <a href="/zoroastrian/">Zoroastrian</a>
                 </div>
             </details>
-                <a href="/pantheon/origins/">Strata</a>
-                <a href="/world/sacred/" class="active">Sacred Geography</a>
-                <a href="/connections/">Connections</a>
                 <a href="/patterns/">Patterns</a>
                 <a href="/trending/">Trending</a>
+                <a href="/world/sacred/" class="active">Geography</a>
+                <a href="/pantheon/strata/">Strata</a>
                 <a href="/search/">Search</a>
+                <a href="/connections/">Connections</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -391,7 +392,7 @@ a{color:var(--gold)}
     <h3>Giza Pyramid Complex</h3>
     <p class="atx-native">أهرامات الجيزة</p>
   </header>
-  <p class="atx-meta">Giza Plateau · Egypt · c. 2600–2500 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Giza Plateau · Egypt · c. 2600–2500 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/ra/">Rꜥ</a><p class="atx-depict">The king is buried as Osiris and rises as Ra — the Pyramid Texts, the world's oldest religious corpus, line the walls of Unas' pyramid.</p><a class="atx-chip" href="/horus/">Ḥr</a><p class="atx-depict">The living king is Horus; the pyramid is his staircase to join the sun's circuit.</p></div>
   
@@ -405,7 +406,7 @@ a{color:var(--gold)}
     <h3>Abu Simbel</h3>
     <p class="atx-native">أبو سنبل</p>
   </header>
-  <p class="atx-meta">Nubia · Egypt · c. 1264 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Nubia · Egypt · c. 1264 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/ra/">Rꜥ</a><p class="atx-depict">Ramses II enthroned between the falcon-headed Ra-Horakhty and Amun-Ra on the facade; the temple axis was engineered so sunlight reaches the sanctuary on the king's birthday.</p><a class="atx-chip" href="/horus/">Ḥr</a><p class="atx-depict">Ra-Horakhty — Ra as the Horus of the horizon — anchors the facade colossi.</p></div>
   
@@ -419,7 +420,7 @@ a{color:var(--gold)}
     <h3>Karnak Temple Complex</h3>
     <p class="atx-native">الكرنك</p>
   </header>
-  <p class="atx-meta">Thebes · Egypt · c. 2055 BCE – 100 CE, built over 2,000 years · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Thebes · Egypt · c. 2055 BCE – 100 CE, built over 2,000 years · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/amun/">Ꜣmun</a><p class="atx-depict">The Amun precinct — the largest religious complex ever built, grown by every dynasty for two millennia.</p><a class="atx-chip" href="/ra/">Rꜥ</a><p class="atx-depict">Amun-Ra: the hidden one becomes the visible sun; the Great Hypostyle Hall is his forest.</p></div>
   
@@ -433,7 +434,7 @@ a{color:var(--gold)}
     <h3>Luxor Temple</h3>
     <p class="atx-native">معبد الأقصر</p>
   </header>
-  <p class="atx-meta">Thebes · Egypt · c. 1400 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Thebes · Egypt · c. 1400 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/amun/">Ꜣmun</a><p class="atx-depict">The temple of the Opet festival, where Amun's barque procession renewed the king and the flood alike.</p></div>
   
@@ -447,7 +448,7 @@ a{color:var(--gold)}
     <h3>Valley of the Kings</h3>
     <p class="atx-native">وادي الملوك</p>
   </header>
-  <p class="atx-meta">Thebes · Egypt · c. 1539–1075 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Thebes · Egypt · c. 1539–1075 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/osiris/">Wsjr</a><p class="atx-depict">Every royal tomb is a machine for becoming Osiris: the Book of the Dead and Amduat maps of the underworld line the burial chambers.</p></div>
   
@@ -461,7 +462,7 @@ a{color:var(--gold)}
     <h3>Dendera Temple Complex</h3>
     <p class="atx-native">دندرة</p>
   </header>
-  <p class="atx-meta">Dendera · Egypt · c. 54 BCE – 20 BCE (current temple) · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Dendera · Egypt · c. 54 BCE – 20 BCE (current temple) · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/hathor/">Ḥwt-ḥr</a><p class="atx-depict">The Temple of Ḥwt-ḥr, Lady of the Sycamore — the best-preserved temple ceiling in Egypt, blue with Nut's body and the decans.</p></div>
   
@@ -475,7 +476,7 @@ a{color:var(--gold)}
     <h3>Temple of Edfu</h3>
     <p class="atx-native">معبد إدفو</p>
   </header>
-  <p class="atx-meta">Edfu · Egypt · 237–57 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Edfu · Egypt · 237–57 BCE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/horus/">Ḥr</a><p class="atx-depict">The House of Horus — the best-preserved temple in Egypt, where Horus of Behdet triumphed over Seth in the annual drama of the walls.</p></div>
   
@@ -489,7 +490,7 @@ a{color:var(--gold)}
     <h3>Philae — Temple of Isis</h3>
     <p class="atx-native">فيلة</p>
   </header>
-  <p class="atx-meta">Aswan · Egypt · c. 380 BCE – 117 CE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Aswan · Egypt · c. 380 BCE – 117 CE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/isis/">Ꜣst</a><p class="atx-depict">The last temple of ancient Egypt, where Isis' cult outlived the empire and was still honoured in the 6th century CE; moved stone by stone above the flood.</p></div>
   
@@ -503,7 +504,7 @@ a{color:var(--gold)}
     <h3>Great Ziggurat of Ur</h3>
     <p class="atx-native">زقورة أور</p>
   </header>
-  <p class="atx-meta">Tell el-Muqayyar · Iraq · c. 2100 BCE · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/origins/#stratum-2">STRATA 02</a></p>
+  <p class="atx-meta">Tell el-Muqayyar · Iraq · c. 2100 BCE · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/strata/#stratum-2">STRATA 02</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/nanna/">Nanna</a><p class="atx-depict">The moon god Nanna's mountain — Ur's ziggurat, rebuilt by Saddam Hussein and conserved again after 2003.</p></div>
   
@@ -517,7 +518,7 @@ a{color:var(--gold)}
     <h3>Ishtar Gate, Babylon</h3>
     <p class="atx-native">بوابة عشتار</p>
   </header>
-  <p class="atx-meta">Babylon · Iraq · c. 575 BCE · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/origins/#stratum-2">STRATA 02</a></p>
+  <p class="atx-meta">Babylon · Iraq · c. 575 BCE · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/strata/#stratum-2">STRATA 02</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/ishtar/">Ištar</a><p class="atx-depict">Nebuchadnezzar's processional way — glazed lions of Ishtar pacing toward her city's festivals.</p></div>
   
@@ -531,7 +532,7 @@ a{color:var(--gold)}
     <h3>Eanna Precinct, Uruk</h3>
     <p class="atx-native">أوروك</p>
   </header>
-  <p class="atx-meta">Uruk/Warka · Iraq · c. 4000–2900 BCE · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/origins/#stratum-2">STRATA 02</a></p>
+  <p class="atx-meta">Uruk/Warka · Iraq · c. 4000–2900 BCE · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/strata/#stratum-2">STRATA 02</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/inanna/">Inanna</a><p class="atx-depict">The Eanna — 'House of Heaven' — Inanna's precinct at the world's first city, where writing itself was born in her temple's accounts.</p><a class="atx-chip" href="/ishtar/">Ištar</a><p class="atx-depict">Inanna is Ištar's Sumerian name — one goddess, two languages.</p></div>
   
@@ -545,7 +546,7 @@ a{color:var(--gold)}
     <h3>Eridu — Enki's Temple</h3>
     <p class="atx-native">إريدو</p>
   </header>
-  <p class="atx-meta">Tell Abu Shahrain · Iraq · c. 5400 BCE onward · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/origins/#stratum-2">STRATA 02</a></p>
+  <p class="atx-meta">Tell Abu Shahrain · Iraq · c. 5400 BCE onward · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/strata/#stratum-2">STRATA 02</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/ea/">Ēa</a><p class="atx-depict">The Abzu — Enki/Ea's temple over the subterranean fresh-water deep. Sumerian tradition names Eridu's shrine the FIRST temple ever founded.</p></div>
   
@@ -559,7 +560,7 @@ a{color:var(--gold)}
     <h3>Nineveh — Ashurbanipal's Library</h3>
     <p class="atx-native">نينوى</p>
   </header>
-  <p class="atx-meta">Kuyunjik, Mosul · Iraq · c. 668–631 BCE · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/origins/#stratum-2">STRATA 02</a></p>
+  <p class="atx-meta">Kuyunjik, Mosul · Iraq · c. 668–631 BCE · <a href="/mesopotamian/">mesopotamian</a> · <a href="/pantheon/strata/#stratum-2">STRATA 02</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/gilgamesh/">Gilgameš</a><p class="atx-depict">The tablets of the Gilgameš epic slept here for two and a half millennia until Layard's dig — the first hero's afterlife began in this library.</p><a class="atx-chip" href="/ishtar/">Ištar</a><p class="atx-depict">The Ishtar temple of Nineveh stood beside the North Palace.</p></div>
   
@@ -573,7 +574,7 @@ a{color:var(--gold)}
     <h3>The Parthenon</h3>
     <p class="atx-native">Παρθενών</p>
   </header>
-  <p class="atx-meta">Athens · Greece · 447–432 BCE · <a href="/greek/">greek</a> · <a href="/pantheon/origins/#stratum-9">STRATA 09</a></p>
+  <p class="atx-meta">Athens · Greece · 447–432 BCE · <a href="/greek/">greek</a> · <a href="/pantheon/strata/#stratum-9">STRATA 09</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/athena/">Athēnâ</a><p class="atx-depict">Athena Parthenos — Phidias' thirty-foot gold and ivory statue stood where the treasury of an empire funded a goddess' house.</p></div>
   
@@ -587,7 +588,7 @@ a{color:var(--gold)}
     <h3>Delphi — Sanctuary of Apollo</h3>
     <p class="atx-native">Δελφοί</p>
   </header>
-  <p class="atx-meta">Mount Parnassus · Greece · c. 800 BCE onward · <a href="/greek/">greek</a> · <a href="/pantheon/origins/#stratum-9">STRATA 09</a></p>
+  <p class="atx-meta">Mount Parnassus · Greece · c. 800 BCE onward · <a href="/greek/">greek</a> · <a href="/pantheon/strata/#stratum-9">STRATA 09</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/delphoi/">Delphoí</a><p class="atx-depict">The omphalos — the navel of the world — and the Pythia's tripod, where Apollo spoke through the priestess.</p><a class="atx-chip" href="/apollon/">Apóllōn</a><p class="atx-depict">The temple of Apóllōn, slayer of the Python; his oracle shaped the politics of the Greek world for a thousand years.</p></div>
   
@@ -601,7 +602,7 @@ a{color:var(--gold)}
     <h3>Olympia — Temple of Zeus</h3>
     <p class="atx-native">Ὀλυμπία</p>
   </header>
-  <p class="atx-meta">Elis · Greece · 470–456 BCE · <a href="/greek/">greek</a> · <a href="/pantheon/origins/#stratum-9">STRATA 09</a></p>
+  <p class="atx-meta">Elis · Greece · 470–456 BCE · <a href="/greek/">greek</a> · <a href="/pantheon/strata/#stratum-9">STRATA 09</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/zeus/">Zeús</a><p class="atx-depict">Phidias' chryselephantine Zeus — seated, smiling, one of the Seven Wonders of the World; the games honoured him every four years.</p></div>
   
@@ -615,7 +616,7 @@ a{color:var(--gold)}
     <h3>Delos</h3>
     <p class="atx-native">Δήλος</p>
   </header>
-  <p class="atx-meta">Cyclades · Greece · c. 900 BCE onward · <a href="/greek/">greek</a> · <a href="/pantheon/origins/#stratum-9">STRATA 09</a></p>
+  <p class="atx-meta">Cyclades · Greece · c. 900 BCE onward · <a href="/greek/">greek</a> · <a href="/pantheon/strata/#stratum-9">STRATA 09</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/apollon/">Apóllōn</a><p class="atx-depict">The island of Apollo's birth — Leto delivered him here beneath the palm, and the whole island became his sanctuary, treasury and free port.</p></div>
   
@@ -629,7 +630,7 @@ a{color:var(--gold)}
     <h3>Epidaurus — Sanctuary of Asclepius</h3>
     <p class="atx-native">Ἐπίδαυρος</p>
   </header>
-  <p class="atx-meta">Argolis · Greece · c. 400 BCE onward · <a href="/greek/">greek</a> · <a href="/pantheon/origins/#stratum-9">STRATA 09</a></p>
+  <p class="atx-meta">Argolis · Greece · c. 400 BCE onward · <a href="/greek/">greek</a> · <a href="/pantheon/strata/#stratum-9">STRATA 09</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/asklepios/">Asklēpiós</a><p class="atx-depict">The healing god's hospital-sanctuary — incubation halls, the snake, and a theatre with acoustics engineers still cite.</p></div>
   
@@ -643,7 +644,7 @@ a{color:var(--gold)}
     <h3>Mycenae</h3>
     <p class="atx-native">Μυκῆναι</p>
   </header>
-  <p class="atx-meta">Argolis · Greece · c. 1600–1100 BCE · <a href="/greek/">greek</a> · <a href="/pantheon/origins/#stratum-9">STRATA 09</a></p>
+  <p class="atx-meta">Argolis · Greece · c. 1600–1100 BCE · <a href="/greek/">greek</a> · <a href="/pantheon/strata/#stratum-9">STRATA 09</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/zeus/">Zeús</a><p class="atx-depict">The citadel whose Linear B tablets first write the name of Zeus — a god three centuries older than Homer.</p></div>
   
@@ -657,7 +658,7 @@ a{color:var(--gold)}
     <h3>Knossos</h3>
     <p class="atx-native">Κνωσσός</p>
   </header>
-  <p class="atx-meta">Crete · Greece · c. 1900–1450 BCE · <a href="/greek/">greek</a> · <a href="/pantheon/origins/#stratum-9">STRATA 09</a></p>
+  <p class="atx-meta">Crete · Greece · c. 1900–1450 BCE · <a href="/greek/">greek</a> · <a href="/pantheon/strata/#stratum-9">STRATA 09</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/ariadne/">Ariádnē</a><p class="atx-depict">The labyrinth's thread — the Ariadne whose ball of string tamed the Minotaur's maze beneath this palace.</p></div>
   
@@ -673,7 +674,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>The Pantheon</h3>
     <p class="atx-native">Pantheum</p>
   </header>
-  <p class="atx-meta">Rome · Italy · c. 126 CE · <a href="/roman/">roman</a> · <a href="/pantheon/origins/#stratum-10">STRATA 10</a></p>
+  <p class="atx-meta">Rome · Italy · c. 126 CE · <a href="/roman/">roman</a> · <a href="/pantheon/strata/#stratum-10">STRATA 10</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/iuppiter/">Iūpiter</a><p class="atx-depict">The temple of all gods — its dome the vault of heaven, its oculus the sun itself; every god Rome met had a place in the sphere.</p></div>
   
@@ -687,7 +688,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Capitoline Temple (site)</h3>
     <p class="atx-native">Templum Iovis Optimi Maximi Capitolini</p>
   </header>
-  <p class="atx-meta">Rome · Italy · 509 BCE; rebuilt 69 CE · <a href="/roman/">roman</a> · <a href="/pantheon/origins/#stratum-10">STRATA 10</a></p>
+  <p class="atx-meta">Rome · Italy · 509 BCE; rebuilt 69 CE · <a href="/roman/">roman</a> · <a href="/pantheon/strata/#stratum-10">STRATA 10</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/iuppiter/">Iūpiter</a><p class="atx-depict">The Capitolium — Jupiter Optimus Maximus' temple that gave every capital city its name.</p></div>
   
@@ -705,7 +706,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Temple of Isis, Pompeii</h3>
     <p class="atx-native">Iseum</p>
   </header>
-  <p class="atx-meta">Pompeii · Italy · c. 100 BCE; rebuilt 62 CE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/origins/#stratum-3">STRATA 03</a></p>
+  <p class="atx-meta">Pompeii · Italy · c. 100 BCE; rebuilt 62 CE · <a href="/egyptian/">egyptian</a> · <a href="/pantheon/strata/#stratum-3">STRATA 03</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/isis/">Ꜣst</a><p class="atx-depict">An Egyptian goddess in a Roman town — frescoed days before Vesuvius fell, showing Isis' cult as everyday Mediterranean religion.</p></div>
   
@@ -719,7 +720,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Baalbek</h3>
     <p class="atx-native">بعلبك</p>
   </header>
-  <p class="atx-meta">Bekaa Valley · Lebanon · c. 15 BCE – 250 CE (Roman temples) · <a href="/canaanite/">canaanite</a> · <a href="/pantheon/origins/#stratum-6">STRATA 06</a></p>
+  <p class="atx-meta">Bekaa Valley · Lebanon · c. 15 BCE – 250 CE (Roman temples) · <a href="/canaanite/">canaanite</a> · <a href="/pantheon/strata/#stratum-6">STRATA 06</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/baal/">Baꜥal</a><p class="atx-depict">Baal of the Bekaa — the city kept its Canaanite storm god's name through three religions.</p><a class="atx-chip" href="/iuppiter/">Iūpiter</a><p class="atx-depict">Rome's trilithon colossus: Jupiter Heliopolitanus, with Bacchus and Venus completing the triad.</p></div>
   
@@ -733,7 +734,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Jelling — The Conversion Stones</h3>
     <p class="atx-native">Jellingestenene</p>
   </header>
-  <p class="atx-meta">Jutland · Denmark · c. 965 CE · <a href="/norse/">norse</a> · <a href="/pantheon/origins/#stratum-12">STRATA 12</a></p>
+  <p class="atx-meta">Jutland · Denmark · c. 965 CE · <a href="/norse/">norse</a> · <a href="/pantheon/strata/#stratum-12">STRATA 12</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Harald Bluetooth's runestones — Denmark's baptism certificate. The pagan gods are notably absent: that absence is the monument's whole point.</p>
@@ -747,7 +748,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Gamla Uppsala — The Temple Site</h3>
     <p class="atx-native">Gamla Uppsala</p>
   </header>
-  <p class="atx-meta">Uppland · Sweden · attested c. 1070 CE; cult older · <a href="/norse/">norse</a> · <a href="/pantheon/origins/#stratum-12">STRATA 12</a></p>
+  <p class="atx-meta">Uppland · Sweden · attested c. 1070 CE; cult older · <a href="/norse/">norse</a> · <a href="/pantheon/strata/#stratum-12">STRATA 12</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/thor/">Þórr</a><p class="atx-depict">Adam of Bremen (c. 1070) describes the temple: Thor enthroned centrally, flanked by Wodan and Fricco.</p><a class="atx-chip" href="/odinn/">Óðinn</a><p class="atx-depict">Wodan — Óðinn — with his warriors and birds.</p><a class="atx-chip" href="/freyr/">Freyr</a><p class="atx-depict">Fricco — Freyr — with his priapus and peace; the great burial mounds stand beside the site.</p></div>
   
@@ -761,7 +762,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Rök Runestone</h3>
     <p class="atx-native">Rökstenen</p>
   </header>
-  <p class="atx-meta">Ödeshög · Sweden · c. 800 CE · <a href="/norse/">norse</a> · <a href="/pantheon/origins/#stratum-12">STRATA 12</a></p>
+  <p class="atx-meta">Ödeshög · Sweden · c. 800 CE · <a href="/norse/">norse</a> · <a href="/pantheon/strata/#stratum-12">STRATA 12</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/odinn/">Óðinn</a><p class="atx-depict">The longest runic inscription in stone — eight hundred years of scholarship later, its riddles still argue about Óðinn and the dead.</p></div>
   
@@ -775,7 +776,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Newgrange — Brú na Bóinne</h3>
     <p class="atx-native">Brú na Bóinne</p>
   </header>
-  <p class="atx-meta">Boyne Valley · Ireland · c. 3200 BCE · <a href="/celtic/">celtic</a> · <a href="/pantheon/origins/#stratum-11">STRATA 11</a></p>
+  <p class="atx-meta">Boyne Valley · Ireland · c. 3200 BCE · <a href="/celtic/">celtic</a> · <a href="/pantheon/strata/#stratum-11">STRATA 11</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/dagda/">Dagda</a><p class="atx-depict">Older than Stonehenge and the pyramids; later Irish myth made the great mound the síd of the Dagda, lord of the Tuatha Dé Danann.</p></div>
   
@@ -789,7 +790,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Hill of Tara</h3>
     <p class="atx-native">Teamhair na Rí</p>
   </header>
-  <p class="atx-meta">Meath · Ireland · Neolithic – early medieval · <a href="/celtic/">celtic</a> · <a href="/pantheon/origins/#stratum-11">STRATA 11</a></p>
+  <p class="atx-meta">Meath · Ireland · Neolithic – early medieval · <a href="/celtic/">celtic</a> · <a href="/pantheon/strata/#stratum-11">STRATA 11</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/lugh/">Lúg</a><p class="atx-depict">The Hill of Kings — where Lugh's harvest games were played and Ireland's kings were inaugurated with the marriage of the land.</p></div>
   
@@ -803,7 +804,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Avebury</h3>
     
   </header>
-  <p class="atx-meta">Wiltshire · United Kingdom · c. 2850 BCE · <a href="/celtic/">celtic</a> · <a href="/pantheon/origins/#stratum-11">STRATA 11</a></p>
+  <p class="atx-meta">Wiltshire · United Kingdom · c. 2850 BCE · <a href="/celtic/">celtic</a> · <a href="/pantheon/strata/#stratum-11">STRATA 11</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">A Neolithic henge older than any named god in this lexicon — the largest stone circle in Europe, its cult unnamed and unrecovered.</p>
@@ -817,7 +818,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Stonehenge</h3>
     
   </header>
-  <p class="atx-meta">Wiltshire · United Kingdom · c. 3000–1600 BCE · <a href="/celtic/">celtic</a> · <a href="/pantheon/origins/#stratum-11">STRATA 11</a></p>
+  <p class="atx-meta">Wiltshire · United Kingdom · c. 3000–1600 BCE · <a href="/celtic/">celtic</a> · <a href="/pantheon/strata/#stratum-11">STRATA 11</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Built in stages over fifteen centuries. Every named deity attached to it in modern folklore is projection — the builders' gods are lost.</p>
@@ -831,7 +832,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Kailasa Temple, Ellora Cave 16</h3>
     <p class="atx-native">कैलास मन्दिर</p>
   </header>
-  <p class="atx-meta">Ellora, Maharashtra · India · c. 756–773 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Ellora, Maharashtra · India · c. 756–773 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/shiva/">Śiva</a><p class="atx-depict">A mountain carved top-down out of a single basalt cliff — Śiva's home in the real world. The plinth carries the Rāvaṇa shaking-Kailāsa relief; shrine niches across the walls hold the whole pantheon.</p></div>
   
@@ -845,7 +846,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Elephanta Caves</h3>
     <p class="atx-native">घारापुरी</p>
   </header>
-  <p class="atx-meta">Mumbai Harbour · India · c. 5th–7th century CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Mumbai Harbour · India · c. 5th–7th century CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/shiva/">Śiva</a><p class="atx-depict">The Trimūrti — three faces of the Great Lord — carved into the island's basalt; Śiva as creator, preserver and destroyer in one six-metre head.</p></div>
   
@@ -859,7 +860,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Khajuraho</h3>
     <p class="atx-native">खजुराहो</p>
   </header>
-  <p class="atx-meta">Madhya Pradesh · India · c. 950–1050 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Madhya Pradesh · India · c. 950–1050 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/shiva/">Śiva</a><p class="atx-depict">The Kandariya Mahadeo — Śiva's marble mountain, its shikhara carved with eight hundred figures rising to the sky.</p></div>
   
@@ -873,7 +874,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Angkor Wat</h3>
     <p class="atx-native">អង្គរវត្ត</p>
   </header>
-  <p class="atx-meta">Siem Reap · Cambodia · early 12th century CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Siem Reap · Cambodia · early 12th century CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/vishnu/">Viṣṇu</a><p class="atx-depict">The largest religious monument on Earth — built as Viṣṇu's temple, its galleries a four-kilometre relief of the Churning of the Sea of Milk.</p></div>
   
@@ -887,7 +888,7 @@ Feel free to use my photos, but ple</figcaption></figure></div>
     <h3>Brihadisvara Temple, Thanjavur</h3>
     <p class="atx-native">பெருவுடையார் கோயில்</p>
   </header>
-  <p class="atx-meta">Tamil Nadu · India · 1010 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Tamil Nadu · India · 1010 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/shiva/">Śiva</a><p class="atx-depict">The Chola colossus — a vimana of granite crowned with a single eighty-tonne capstone, Śiva's house built to outlast the dynasty.</p></div>
   
@@ -902,7 +903,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Varanasi — Kashi Vishwanath</h3>
     <p class="atx-native">काशी विश्वनाथ</p>
   </header>
-  <p class="atx-meta">Uttar Pradesh · India · city c. 1800 BCE; temple rebuilt 1780 · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Uttar Pradesh · India · city c. 1800 BCE; temple rebuilt 1780 · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/shiva/">Śiva</a><p class="atx-depict">Kāśī — the city founded to Śiva, where the ghats have burned with funeral fires for three thousand years without interruption.</p></div>
   
@@ -916,7 +917,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Ramanathaswamy Temple, Rameswaram</h3>
     <p class="atx-native">ராமேஸ்வரம்</p>
   </header>
-  <p class="atx-meta">Tamil Nadu · India · 12th–17th century CE (current structure) · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Tamil Nadu · India · 12th–17th century CE (current structure) · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/rama/">Rāma</a><p class="atx-depict">The island where Rāma worshipped Śiva before crossing to Laṅkā — the epic's bridge begins here.</p></div>
   
@@ -930,7 +931,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Meenakshi Temple, Madurai</h3>
     <p class="atx-native">மீனாட்சி அம்மன் கோயில்</p>
   </header>
-  <p class="atx-meta">Tamil Nadu · India · current structure 1623–1655 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Tamil Nadu · India · current structure 1623–1655 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/parvati/">Pārvatī</a><p class="atx-depict">Meenakshi — the fish-eyed goddess, a royal form of Pārvatī, who ruled Madurai and married Śiva in the temple's annual grand wedding.</p></div>
   
@@ -944,7 +945,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Konark Sun Temple</h3>
     <p class="atx-native">କୋଣାର୍କ ସୂର୍ୟ ମନ୍ଦିର</p>
   </header>
-  <p class="atx-meta">Odisha · India · c. 1250 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/origins/#stratum-4">STRATA 04</a></p>
+  <p class="atx-meta">Odisha · India · c. 1250 CE · <a href="/sanskrit/">sanskrit</a> · <a href="/pantheon/strata/#stratum-4">STRATA 04</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/surya/">Sūrya</a><p class="atx-depict">The Sun's chariot of stone — twelve carved wheels, seven straining horses, Sūrya rising over the Bay of Bengal.</p></div>
   
@@ -958,7 +959,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Borobudur</h3>
     
   </header>
-  <p class="atx-meta">Central Java · Indonesia · c. 750–850 CE · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/origins/#stratum-15">STRATA 15</a></p>
+  <p class="atx-meta">Central Java · Indonesia · c. 750–850 CE · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/strata/#stratum-15">STRATA 15</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/vairocana/">Mahāvairocana</a><p class="atx-depict">A mandala you climb — two million blocks, ten terraces, and at the summit the great stupa; the central Buddha's identity is debated, with Mahāvairocana the leading reading.</p></div>
   
@@ -972,7 +973,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Sanchi Stupa</h3>
     <p class="atx-native">सांची स्तूप</p>
   </header>
-  <p class="atx-meta">Madhya Pradesh · India · c. 250 BCE (Ashokan core) · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/origins/#stratum-15">STRATA 15</a></p>
+  <p class="atx-meta">Madhya Pradesh · India · c. 250 BCE (Ashokan core) · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/strata/#stratum-15">STRATA 15</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/shakyamuni/">Śākyamuni</a><p class="atx-depict">The Great Stupa — Ashoka raised it over the Buddha's relics; its toranas narrate the life in stone.</p></div>
   
@@ -986,7 +987,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Mahabodhi Temple, Bodh Gaya</h3>
     <p class="atx-native">महाबोधि मंदिर</p>
   </header>
-  <p class="atx-meta">Bihar · India · current structure 5th–6th century CE · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/origins/#stratum-15">STRATA 15</a></p>
+  <p class="atx-meta">Bihar · India · current structure 5th–6th century CE · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/strata/#stratum-15">STRATA 15</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/shakyamuni/">Śākyamuni</a><p class="atx-depict">The diamond throne beneath the Bodhi tree — the exact ground of the awakening, the holiest site in Buddhism.</p></div>
   
@@ -1000,7 +1001,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Tōdai-ji, Nara</h3>
     <p class="atx-native">東大寺</p>
   </header>
-  <p class="atx-meta">Nara · Japan · 752 CE (dedication) · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/origins/#stratum-15">STRATA 15</a></p>
+  <p class="atx-meta">Nara · Japan · 752 CE (dedication) · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/strata/#stratum-15">STRATA 15</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/vairocana/">Mahāvairocana</a><p class="atx-depict">The Daibutsu — Mahāvairocana in gilded bronze, the largest bronze Buddha ever cast when Emperor Shōmu raised it.</p></div>
   
@@ -1014,7 +1015,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Kōtoku-in Daibutsu, Kamakura</h3>
     <p class="atx-native">鎌倉大仏</p>
   </header>
-  <p class="atx-meta">Kamakura · Japan · 1252 CE · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/origins/#stratum-15">STRATA 15</a></p>
+  <p class="atx-meta">Kamakura · Japan · 1252 CE · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/strata/#stratum-15">STRATA 15</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/amida/">Amida</a><p class="atx-depict">Amitābha in the open air — the hall that housed him was swept away by a tsunami in 1498, and the Buddha has sat outdoors ever since.</p></div>
   
@@ -1028,7 +1029,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Ise Jingū</h3>
     <p class="atx-native">伊勢神宮</p>
   </header>
-  <p class="atx-meta">Mie Prefecture · Japan · rebuilt every 20 years since 690 CE · <a href="/japanese/">japanese</a> · <a href="/pantheon/origins/#stratum-19">STRATA 19</a></p>
+  <p class="atx-meta">Mie Prefecture · Japan · rebuilt every 20 years since 690 CE · <a href="/japanese/">japanese</a> · <a href="/pantheon/strata/#stratum-19">STRATA 19</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/amaterasu/">Amaterasu</a><p class="atx-depict">The shrine of the Sun Goddess — Amaterasu's mirror is one of the Three Treasures of the throne; the Shikinen Sengū renewal has kept carpenters in unbroken practice for thirteen centuries.</p></div>
   
@@ -1042,7 +1043,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Fushimi Inari Taisha</h3>
     <p class="atx-native">伏見稲荷大社</p>
   </header>
-  <p class="atx-meta">Kyoto · Japan · 711 CE founding · <a href="/japanese/">japanese</a> · <a href="/pantheon/origins/#stratum-19">STRATA 19</a></p>
+  <p class="atx-meta">Kyoto · Japan · 711 CE founding · <a href="/japanese/">japanese</a> · <a href="/pantheon/strata/#stratum-19">STRATA 19</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/inari/">Inari</a><p class="atx-depict">Ten thousand vermilion torii climbing the mountain — the kami of rice, sake and success, foxes at every gate.</p></div>
   
@@ -1056,7 +1057,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Itsukushima Shrine</h3>
     <p class="atx-native">厳島神社</p>
   </header>
-  <p class="atx-meta">Miyajima · Japan · c. 593 CE; current form 1168 · <a href="/japanese/">japanese</a> · <a href="/pantheon/origins/#stratum-19">STRATA 19</a></p>
+  <p class="atx-meta">Miyajima · Japan · c. 593 CE; current form 1168 · <a href="/japanese/">japanese</a> · <a href="/pantheon/strata/#stratum-19">STRATA 19</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/susanoo/">Susanō</a><p class="atx-depict">The great torii standing in the tide — the shrine honours the three daughters of Susanō, the storm god.</p></div>
   
@@ -1070,7 +1071,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Izumo Taisha</h3>
     <p class="atx-native">出雲大社</p>
   </header>
-  <p class="atx-meta">Shimane Prefecture · Japan · legendary founding; rebuilt 1744 · <a href="/japanese/">japanese</a> · <a href="/pantheon/origins/#stratum-19">STRATA 19</a></p>
+  <p class="atx-meta">Shimane Prefecture · Japan · legendary founding; rebuilt 1744 · <a href="/japanese/">japanese</a> · <a href="/pantheon/strata/#stratum-19">STRATA 19</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/okuninushi/">Ōkuninushi</a><p class="atx-depict">The great shrine of Ōkuninushi, lord of the land who yielded it to Amaterasu's line in exchange for the shrine's rank — Japan's oldest recorded diplomatic settlement.</p></div>
   
@@ -1084,7 +1085,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Kasuga Taisha</h3>
     <p class="atx-native">春日大社</p>
   </header>
-  <p class="atx-meta">Nara · Japan · 768 CE · <a href="/japanese/">japanese</a> · <a href="/pantheon/origins/#stratum-19">STRATA 19</a></p>
+  <p class="atx-meta">Nara · Japan · 768 CE · <a href="/japanese/">japanese</a> · <a href="/pantheon/strata/#stratum-19">STRATA 19</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">The four clan kami of the Fujiwara ride here in annual procession; the Fujiwara kami are not yet in the lexicon.</p>
@@ -1098,7 +1099,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Temple of Heaven</h3>
     <p class="atx-native">天坛</p>
   </header>
-  <p class="atx-meta">Beijing · China · 1406–1420 CE · <a href="/chinese/">chinese</a> · <a href="/pantheon/origins/#stratum-16">STRATA 16</a></p>
+  <p class="atx-meta">Beijing · China · 1406–1420 CE · <a href="/chinese/">chinese</a> · <a href="/pantheon/strata/#stratum-16">STRATA 16</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">The altar of Tiān — Heaven itself, unrepresented as image; the Son of Heaven prayed here for the harvest. The high god Di 帝, named on Shang oracle bones, is the deep ancestor of this rite.</p>
@@ -1112,7 +1113,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>White Cloud Temple</h3>
     <p class="atx-native">白云观</p>
   </header>
-  <p class="atx-meta">Beijing · China · 1224 CE (Quanzhen headquarters) · <a href="/taoist/">taoist</a> · <a href="/pantheon/origins/#stratum-17">STRATA 17</a></p>
+  <p class="atx-meta">Beijing · China · 1224 CE (Quanzhen headquarters) · <a href="/taoist/">taoist</a> · <a href="/pantheon/strata/#stratum-17">STRATA 17</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/laozi/">Lǎozǐ</a><p class="atx-depict">The headquarters of the Complete Perfection order, where Lǎozī is honoured as Taishang Laojun — the Lord Lao Most High.</p></div>
   
@@ -1126,7 +1127,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Lingyin Temple — Feilai Feng</h3>
     <p class="atx-native">灵隐寺</p>
   </header>
-  <p class="atx-meta">Hangzhou · China · 328 CE founding · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/origins/#stratum-15">STRATA 15</a></p>
+  <p class="atx-meta">Hangzhou · China · 328 CE founding · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/strata/#stratum-15">STRATA 15</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/guanyin/">Guānyīn</a><p class="atx-depict">The Peak that Flew from Afar — its cliffs carry Song-dynasty carvings of Guānyīn among the largest surviving stone bodhisattvas in China.</p></div>
   
@@ -1140,7 +1141,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Wudang Mountains</h3>
     <p class="atx-native">武当山</p>
   </header>
-  <p class="atx-meta">Hubei · China · temples 7th–17th century CE · <a href="/taoist/">taoist</a> · <a href="/pantheon/origins/#stratum-17">STRATA 17</a></p>
+  <p class="atx-meta">Hubei · China · temples 7th–17th century CE · <a href="/taoist/">taoist</a> · <a href="/pantheon/strata/#stratum-17">STRATA 17</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/zhenwu/">Zhēnwǔ</a><p class="atx-depict">The Perfected Warrior's mountain — Zhenwu, the dark lord of the north, subdued his serpent and tortoise here; the Ming emperor built the Golden Hall in his honour.</p></div>
   
@@ -1154,7 +1155,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Mount Qingcheng</h3>
     <p class="atx-native">青城山</p>
   </header>
-  <p class="atx-meta">Sichuan · China · tradition c. 143 CE · <a href="/taoist/">taoist</a> · <a href="/pantheon/origins/#stratum-17">STRATA 17</a></p>
+  <p class="atx-meta">Sichuan · China · tradition c. 143 CE · <a href="/taoist/">taoist</a> · <a href="/pantheon/strata/#stratum-17">STRATA 17</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/laozi/">Lǎozǐ</a><p class="atx-depict">The mist mountain where the Way of the Celestial Masters began — organized Taoism's birthplace in the shadow of Dujiangyan's waters.</p></div>
   
@@ -1168,7 +1169,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Naqsh-e Rostam</h3>
     <p class="atx-native">نقش رستم</p>
   </header>
-  <p class="atx-meta">Fars · Iran · c. 550–330 BCE · <a href="/zoroastrian/">zoroastrian</a> · <a href="/pantheon/origins/#stratum-8">STRATA 08</a></p>
+  <p class="atx-meta">Fars · Iran · c. 550–330 BCE · <a href="/zoroastrian/">zoroastrian</a> · <a href="/pantheon/strata/#stratum-8">STRATA 08</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/ahuramazda/">AhuraMazdā</a><p class="atx-depict">Royal tombs cut into the cliff — every investiture scene shows the winged symbol of Ahura Mazdā hovering over the king; a fire altar burns below.</p></div>
   
@@ -1182,7 +1183,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Persepolis</h3>
     <p class="atx-native">پارسه</p>
   </header>
-  <p class="atx-meta">Fars · Iran · c. 518–330 BCE · <a href="/zoroastrian/">zoroastrian</a> · <a href="/pantheon/origins/#stratum-8">STRATA 08</a></p>
+  <p class="atx-meta">Fars · Iran · c. 518–330 BCE · <a href="/zoroastrian/">zoroastrian</a> · <a href="/pantheon/strata/#stratum-8">STRATA 08</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/ahuramazda/">AhuraMazdā</a><p class="atx-depict">Every foundation inscription opens the same way — 'by the favour of Ahura Mazdā'. The apadana's tribute bearers walked past the faravahar of the Wise Lord.</p></div>
   
@@ -1196,7 +1197,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Atash Behram of Yazd</h3>
     <p class="atx-native">آتش بهرام یزد</p>
   </header>
-  <p class="atx-meta">Yazd · Iran · 1934 CE (temple; fire claimed older) · <a href="/zoroastrian/">zoroastrian</a> · <a href="/pantheon/origins/#stratum-8">STRATA 08</a></p>
+  <p class="atx-meta">Yazd · Iran · 1934 CE (temple; fire claimed older) · <a href="/zoroastrian/">zoroastrian</a> · <a href="/pantheon/strata/#stratum-8">STRATA 08</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/ahuramazda/">AhuraMazdā</a><p class="atx-depict">A sacred fire kept burning for centuries — the physical custody of the Wise Lord's truth.</p></div>
   
@@ -1210,7 +1211,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Ugarit (Ras Shamra)</h3>
     <p class="atx-native">أوغاريت</p>
   </header>
-  <p class="atx-meta">Latakia Governorate · Syria · c. 1450–1180 BCE · <a href="/canaanite/">canaanite</a> · <a href="/pantheon/origins/#stratum-6">STRATA 06</a></p>
+  <p class="atx-meta">Latakia Governorate · Syria · c. 1450–1180 BCE · <a href="/canaanite/">canaanite</a> · <a href="/pantheon/strata/#stratum-6">STRATA 06</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/baal/">Baꜥal</a><p class="atx-depict">The tablets of the Baal Cycle — the storm god's battle with Prince Sea was read here until the city burned.</p><a class="atx-chip" href="/el/">Ēl</a><p class="atx-depict">The high god's marzeah — El, Father of Years, enthroned at the source of the rivers.</p><a class="atx-chip" href="/anat/">ꜥAnat</a><p class="atx-depict">ꜥAnat's furious war-poem fills the gaps of the cycle; she waded in blood up to the knees.</p></div>
   
@@ -1224,7 +1225,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Byblos</h3>
     <p class="atx-native">جبيل</p>
   </header>
-  <p class="atx-meta">Jbeil · Lebanon · attested c. 3000 BCE onward · <a href="/phoenician/">phoenician</a> · <a href="/pantheon/origins/#stratum-7">STRATA 07</a></p>
+  <p class="atx-meta">Jbeil · Lebanon · attested c. 3000 BCE onward · <a href="/phoenician/">phoenician</a> · <a href="/pantheon/strata/#stratum-7">STRATA 07</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/astart/">Aštart</a><p class="atx-depict">The Lady of Byblos — Baalat Gebal, the city's mistress, kin to Astarte; her temple endured through five millennia of rebuilds.</p></div>
   
@@ -1238,7 +1239,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Carthage Tophet</h3>
     <p class="atx-native">توبت قرطاج</p>
   </header>
-  <p class="atx-meta">Carthage · Tunisia · c. 750–146 BCE · <a href="/phoenician/">phoenician</a> · <a href="/pantheon/origins/#stratum-7">STRATA 07</a></p>
+  <p class="atx-meta">Carthage · Tunisia · c. 750–146 BCE · <a href="/phoenician/">phoenician</a> · <a href="/pantheon/strata/#stratum-7">STRATA 07</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/astart/">Aštart</a><p class="atx-depict">The precinct of Tanit and Baal Hammon — thousands of stelae to the Lady of Carthage; Tanit is not yet in the lexicon, Astarte's Punic daughter stands here.</p></div>
   
@@ -1252,7 +1253,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Tel Megiddo</h3>
     <p class="atx-native">תל מגידו</p>
   </header>
-  <p class="atx-meta">Jezreel Valley · Israel · c. 7000–300 BCE (26 strata) · <a href="/canaanite/">canaanite</a> · <a href="/pantheon/origins/#stratum-6">STRATA 06</a></p>
+  <p class="atx-meta">Jezreel Valley · Israel · c. 7000–300 BCE (26 strata) · <a href="/canaanite/">canaanite</a> · <a href="/pantheon/strata/#stratum-6">STRATA 06</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Twenty-six layers of cult and war — Armageddon's tel. Canaanite temples stood here; the specific dedications are lost in the strata.</p>
@@ -1266,7 +1267,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Yazılıkaya Rock Sanctuary</h3>
     <p class="atx-native">Yazılıkaya</p>
   </header>
-  <p class="atx-meta">Boğazkale · Türkiye · c. 1250 BCE · <a href="/hittite/">hittite</a> · <a href="/pantheon/origins/#stratum-5">STRATA 05</a></p>
+  <p class="atx-meta">Boğazkale · Türkiye · c. 1250 BCE · <a href="/hittite/">hittite</a> · <a href="/pantheon/strata/#stratum-5">STRATA 05</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/arinniti/">Arinna</a><p class="atx-depict">The rock galleries' procession of gods — the Hittite pantheon carved in basalt relief, marching toward the storm god's embrace.</p><a class="atx-chip" href="/tarhunash/">Tarḫunash</a><p class="atx-depict">The sword-god of Chamber B — the Hittite storm god with his hieroglyphic name.</p></div>
   
@@ -1280,7 +1281,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Hattusa — The Great Temple</h3>
     <p class="atx-native">Ḫattuša</p>
   </header>
-  <p class="atx-meta">Boğazkale · Türkiye · c. 1650–1180 BCE · <a href="/hittite/">hittite</a> · <a href="/pantheon/origins/#stratum-5">STRATA 05</a></p>
+  <p class="atx-meta">Boğazkale · Türkiye · c. 1650–1180 BCE · <a href="/hittite/">hittite</a> · <a href="/pantheon/strata/#stratum-5">STRATA 05</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/tarhunash/">Tarḫunash</a><p class="atx-depict">The storm god of Ḫatti's great temple in the Hittite capital, beside the archives that held 30,000 cuneiform tablets.</p></div>
   
@@ -1294,7 +1295,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Alaca Höyük</h3>
     <p class="atx-native">Alacahöyük</p>
   </header>
-  <p class="atx-meta">Çorum · Türkiye · c. 3000–2000 BCE (royal tombs) · <a href="/hittite/">hittite</a> · <a href="/pantheon/origins/#stratum-5">STRATA 05</a></p>
+  <p class="atx-meta">Çorum · Türkiye · c. 3000–2000 BCE (royal tombs) · <a href="/hittite/">hittite</a> · <a href="/pantheon/strata/#stratum-5">STRATA 05</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Hattian royal tombs at the sacred spring — the stratum beneath the Hittite stratum, before the Indo-European names arrived.</p>
@@ -1308,7 +1309,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Peryn — Perun's Island</h3>
     <p class="atx-native">Перынь</p>
   </header>
-  <p class="atx-meta">Novgorod · Russia · attested 980s; destroyed 988 · <a href="/slavic/">slavic</a> · <a href="/pantheon/origins/#stratum-14">STRATA 14</a></p>
+  <p class="atx-meta">Novgorod · Russia · attested 980s; destroyed 988 · <a href="/slavic/">slavic</a> · <a href="/pantheon/strata/#stratum-14">STRATA 14</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/perun/">Perun</a><p class="atx-depict">The Perun shrine of Novgorod — Vladimir's pantheon head before baptism; the idols were thrown down here in 988.</p></div>
   
@@ -1322,7 +1323,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Arkona — Cape Arkona</h3>
     <p class="atx-native">Kap Arkona</p>
   </header>
-  <p class="atx-meta">Rügen · Germany · destroyed 1168 · <a href="/slavic/">slavic</a> · <a href="/pantheon/origins/#stratum-14">STRATA 14</a></p>
+  <p class="atx-meta">Rügen · Germany · destroyed 1168 · <a href="/slavic/">slavic</a> · <a href="/pantheon/strata/#stratum-14">STRATA 14</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Svantevit's temple-fortress stood on this cape until the Danes razed it in 1168, carrying the idol's head to Lund. Svantevit is not yet in the lexicon.</p>
@@ -1336,7 +1337,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Osun-Osogbo Sacred Grove</h3>
     <p class="atx-native">Igi Ọṣun</p>
   </header>
-  <p class="atx-meta">Osogbo, Osun State · Nigeria · living tradition · <a href="/yoruba/">yoruba</a> · <a href="/pantheon/origins/#stratum-23">STRATA 23</a></p>
+  <p class="atx-meta">Osogbo, Osun State · Nigeria · living tradition · <a href="/yoruba/">yoruba</a> · <a href="/pantheon/strata/#stratum-23">STRATA 23</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/oshun/">Ọṣun</a><p class="atx-depict">Ọṣun's living grove on the river — shrines, sculptures and the goddess's annual festival, unbroken and UNESCO-listed.</p></div>
   
@@ -1350,7 +1351,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Ile-Ife</h3>
     <p class="atx-native">Ilé-Ifẹ̀</p>
   </header>
-  <p class="atx-meta">Osun State · Nigeria · c. 11th–15th century CE florescence · <a href="/yoruba/">yoruba</a> · <a href="/pantheon/origins/#stratum-23">STRATA 23</a></p>
+  <p class="atx-meta">Osun State · Nigeria · c. 11th–15th century CE florescence · <a href="/yoruba/">yoruba</a> · <a href="/pantheon/strata/#stratum-23">STRATA 23</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/oduduwa/">Odùduwà</a><p class="atx-depict">The cradle city of the Yoruba — Odùduwà descended here and founded the line of kings; the naturalistic bronzes of Ife are among humanity's finest portrait sculpture.</p></div>
   
@@ -1364,7 +1365,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Templo Mayor, Tenochtitlan</h3>
     <p class="atx-native">Huey Teocalli</p>
   </header>
-  <p class="atx-meta">Mexico City · Mexico · 1325–1521 CE (seven rebuilds) · <a href="/nahuatl/">nahuatl</a> · <a href="/pantheon/origins/#stratum-21">STRATA 21</a></p>
+  <p class="atx-meta">Mexico City · Mexico · 1325–1521 CE (seven rebuilds) · <a href="/nahuatl/">nahuatl</a> · <a href="/pantheon/strata/#stratum-21">STRATA 21</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/tlaloc/">Tlāloc</a><p class="atx-depict">The double temple's north half — Tlāloc's altar with its blue-and-white paint still bright when Cortés arrived.</p><a class="atx-chip" href="/huitzilopochtli/">Huītzilōpōchtli</a><p class="atx-depict">The south half — Huītzilōpōchtli's shrine, the hummingbird of war, rebuilt five times as the empire grew.</p></div>
   
@@ -1378,7 +1379,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Teotihuacan</h3>
     <p class="atx-native">Teōtīhuacān</p>
   </header>
-  <p class="atx-meta">State of Mexico · Mexico · c. 100 BCE – 550 CE · <a href="/nahuatl/">nahuatl</a> · <a href="/pantheon/origins/#stratum-21">STRATA 21</a></p>
+  <p class="atx-meta">State of Mexico · Mexico · c. 100 BCE – 550 CE · <a href="/nahuatl/">nahuatl</a> · <a href="/pantheon/strata/#stratum-21">STRATA 21</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/quetzalcoatl/">Quetzalcōātl</a><p class="atx-depict">The Feathered Serpent's pyramid — two hundred sacrificed warriors cemented its foundations six hundred years before the Aztec named the city 'the place where the gods were born'.</p></div>
   
@@ -1392,7 +1393,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Great Pyramid of Cholula</h3>
     <p class="atx-native">Tlachihualtepetl</p>
   </header>
-  <p class="atx-meta">Puebla · Mexico · c. 300 BCE – 800 CE · <a href="/nahuatl/">nahuatl</a> · <a href="/pantheon/origins/#stratum-21">STRATA 21</a></p>
+  <p class="atx-meta">Puebla · Mexico · c. 300 BCE – 800 CE · <a href="/nahuatl/">nahuatl</a> · <a href="/pantheon/strata/#stratum-21">STRATA 21</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/quetzalcoatl/">Quetzalcōātl</a><p class="atx-depict">The largest pyramid on Earth by volume — Aztec legend held this was Quetzalcōātl's city before his departure east over the sea.</p></div>
   
@@ -1406,7 +1407,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Qorikancha, Cuzco</h3>
     <p class="atx-native">Quri Kancha</p>
   </header>
-  <p class="atx-meta">Cuzco · Peru · c. 1440s CE (Inca state temple) · <a href="/incan/">incan</a> · <a href="/pantheon/origins/#stratum-22">STRATA 22</a></p>
+  <p class="atx-meta">Cuzco · Peru · c. 1440s CE (Inca state temple) · <a href="/incan/">incan</a> · <a href="/pantheon/strata/#stratum-22">STRATA 22</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/inti/">Inti</a><p class="atx-depict">The golden enclosure of the Sun — walls sheeted in gold that the conquistadors stripped within a year; the Dominican church stands inside its perfect masonry now.</p></div>
   
@@ -1420,7 +1421,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Machu Picchu</h3>
     <p class="atx-native">Machu Pikchu</p>
   </header>
-  <p class="atx-meta">Urubamba Valley · Peru · c. 1450 CE · <a href="/incan/">incan</a> · <a href="/pantheon/origins/#stratum-22">STRATA 22</a></p>
+  <p class="atx-meta">Urubamba Valley · Peru · c. 1450 CE · <a href="/incan/">incan</a> · <a href="/pantheon/strata/#stratum-22">STRATA 22</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/inti/">Inti</a><p class="atx-depict">The Intihuatana — the hitching-post of the sun, where the priests tied the sun to the stone at solstice so it could not wander off.</p></div>
   
@@ -1434,7 +1435,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Sacsayhuamán</h3>
     <p class="atx-native">Saksaq Waman</p>
   </header>
-  <p class="atx-meta">Cuzco · Peru · c. 1450–1500 CE · <a href="/incan/">incan</a> · <a href="/pantheon/origins/#stratum-22">STRATA 22</a></p>
+  <p class="atx-meta">Cuzco · Peru · c. 1450–1500 CE · <a href="/incan/">incan</a> · <a href="/pantheon/strata/#stratum-22">STRATA 22</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">The thunderhead fortress above Cuzco — walls of stones fitted without mortar, the storm's seat above the city of the Sun.</p>
@@ -1448,7 +1449,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Raqch'i — Temple of Viracocha</h3>
     <p class="atx-native">Raqch'i</p>
   </header>
-  <p class="atx-meta">Canchis · Peru · c. 1450 CE · <a href="/incan/">incan</a> · <a href="/pantheon/origins/#stratum-22">STRATA 22</a></p>
+  <p class="atx-meta">Canchis · Peru · c. 1450 CE · <a href="/incan/">incan</a> · <a href="/pantheon/strata/#stratum-22">STRATA 22</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/viracocha/">Wiraqucha</a><p class="atx-depict">The only great temple of Wiraqucha — the creator's house at the centre of the Inca road, its central wall two metres thick and forty metres long.</p></div>
   
@@ -1462,7 +1463,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Puʻuhonua o Hōnaunau</h3>
     <p class="atx-native">Puʻuhonua o Hōnaunau</p>
   </header>
-  <p class="atx-meta">Hawaiʻi Island · United States · pre-contact; restored 1961 · <a href="/polynesian/">polynesian</a> · <a href="/pantheon/origins/#stratum-20">STRATA 20</a></p>
+  <p class="atx-meta">Hawaiʻi Island · United States · pre-contact; restored 1961 · <a href="/polynesian/">polynesian</a> · <a href="/pantheon/strata/#stratum-20">STRATA 20</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/lono/">Lono</a><p class="atx-depict">The city of refuge — under Lono's law of sanctuary, anyone who reached these walls was absolved, whatever their crime.</p></div>
   
@@ -1476,7 +1477,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Taputapuātea</h3>
     <p class="atx-native">Taputapuātea</p>
   </header>
-  <p class="atx-meta">Raiatea · French Polynesia · c. 1000 CE onward · <a href="/polynesian/">polynesian</a> · <a href="/pantheon/origins/#stratum-20">STRATA 20</a></p>
+  <p class="atx-meta">Raiatea · French Polynesia · c. 1000 CE onward · <a href="/polynesian/">polynesian</a> · <a href="/pantheon/strata/#stratum-20">STRATA 20</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">The marae that anchored the voyaging triangle — canoes were dedicated here before the long passages. ʻOro, its war god, is not yet in the lexicon; Taʻaroa of the deep is Tangaroa.</p>
@@ -1490,7 +1491,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Mauna Kea</h3>
     <p class="atx-native">Mauna a Wākea</p>
   </header>
-  <p class="atx-meta">Hawaiʻi Island · United States · sacred continuously · <a href="/polynesian/">polynesian</a> · <a href="/pantheon/origins/#stratum-20">STRATA 20</a></p>
+  <p class="atx-meta">Hawaiʻi Island · United States · sacred continuously · <a href="/polynesian/">polynesian</a> · <a href="/pantheon/strata/#stratum-20">STRATA 20</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Mauna a Wākea — the mountain of the sky father, where the umbilical cord of the islands was buried. Wākea is not yet in the lexicon.</p>
@@ -1504,7 +1505,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Rano Raraku — Moai Quarry</h3>
     <p class="atx-native">Rano Raraku</p>
   </header>
-  <p class="atx-meta">Rapa Nui · Chile · c. 1200–1650 CE · <a href="/polynesian/">polynesian</a> · <a href="/pantheon/origins/#stratum-20">STRATA 20</a></p>
+  <p class="atx-meta">Rapa Nui · Chile · c. 1200–1650 CE · <a href="/polynesian/">polynesian</a> · <a href="/pantheon/strata/#stratum-20">STRATA 20</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/makemake/">Makemake</a><p class="atx-depict">The quarry where the moai were born — under Makemake, the creator who made humanity from a bird-man's egg at Orongo.</p></div>
   
@@ -1518,7 +1519,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Uluru</h3>
     <p class="atx-native">Uluṟu</p>
   </header>
-  <p class="atx-meta">Northern Territory · Australia · sacred for tens of millennia · <a href="/aboriginal/">aboriginal</a> · <a href="/pantheon/origins/#stratum-1">STRATA 01</a></p>
+  <p class="atx-meta">Northern Territory · Australia · sacred for tens of millennia · <a href="/aboriginal/">aboriginal</a> · <a href="/pantheon/strata/#stratum-1">STRATA 01</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Sacred to the Aṉangu. The specific beings of its stories are restricted men's and women's knowledge, not ours to publish — this atlas honours the restriction.</p>
@@ -1532,7 +1533,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Ubirr Rock Art</h3>
     <p class="atx-native">Ubirr</p>
   </header>
-  <p class="atx-meta">Kakadu · Australia · c. 20,000+ years of painting · <a href="/aboriginal/">aboriginal</a> · <a href="/pantheon/origins/#stratum-1">STRATA 01</a></p>
+  <p class="atx-meta">Kakadu · Australia · c. 20,000+ years of painting · <a href="/aboriginal/">aboriginal</a> · <a href="/pantheon/strata/#stratum-1">STRATA 01</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Forty thousand years of painting in one gallery — the Rainbow Serpent's oldest images live here; the Rainbow Serpent is not yet in the lexicon.</p>
@@ -1546,7 +1547,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Budj Bim Cultural Landscape</h3>
     <p class="atx-native">Tae Rak</p>
   </header>
-  <p class="atx-meta">Victoria · Australia · c. 6600 years old · <a href="/aboriginal/">aboriginal</a> · <a href="/pantheon/origins/#stratum-1">STRATA 01</a></p>
+  <p class="atx-meta">Victoria · Australia · c. 6600 years old · <a href="/aboriginal/">aboriginal</a> · <a href="/pantheon/strata/#stratum-1">STRATA 01</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">The oldest aquaculture on Earth — Gunditjmara-engineered eel channels older than the pyramids, still in the story of the landscape serpent.</p>
@@ -1560,7 +1561,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Samseonggung Shrine</h3>
     <p class="atx-native">삼성궁</p>
   </header>
-  <p class="atx-meta">Hadong, South Gyeongsang · South Korea · 1983 CE (shrine; myth far older) · <a href="/korean/">korean</a> · <a href="/pantheon/origins/#stratum-18">STRATA 18</a></p>
+  <p class="atx-meta">Hadong, South Gyeongsang · South Korea · 1983 CE (shrine; myth far older) · <a href="/korean/">korean</a> · <a href="/pantheon/strata/#stratum-18">STRATA 18</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/hananim/">Hwanin</a><p class="atx-depict">The shrine of the three — Hwanin of heaven, Hwanung of the mountain, and Dangun, the bear-son who founded Korea.</p></div>
   
@@ -1574,7 +1575,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Seokguram Grotto</h3>
     <p class="atx-native">석굴암</p>
   </header>
-  <p class="atx-meta">Gyeongju · South Korea · 751 CE · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/origins/#stratum-15">STRATA 15</a></p>
+  <p class="atx-meta">Gyeongju · South Korea · 751 CE · <a href="/buddhist/">buddhist</a> · <a href="/pantheon/strata/#stratum-15">STRATA 15</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/shakyamuni/">Śākyamuni</a><p class="atx-depict">The granite grotto facing the sea — Śākyamuni touches the earth in the pose of the awakening, encircled by bodhisattvas carved from a single granite dome.</p></div>
   
@@ -1588,7 +1589,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Jongmyo Shrine</h3>
     <p class="atx-native">종묘</p>
   </header>
-  <p class="atx-meta">Seoul · South Korea · 1394 CE · <a href="/korean/">korean</a> · <a href="/pantheon/origins/#stratum-18">STRATA 18</a></p>
+  <p class="atx-meta">Seoul · South Korea · 1394 CE · <a href="/korean/">korean</a> · <a href="/pantheon/strata/#stratum-18">STRATA 18</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">The royal ancestral shrine — Korea's kings honoured as spirits, the oldest Confucian royal rite still performed.</p>
@@ -1602,7 +1603,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Cerro Ñielol</h3>
     <p class="atx-native">Cerro Ñielol</p>
   </header>
-  <p class="atx-meta">Temuco · Chile · sacred continuously · <a href="/mapuche/">mapuche</a> · <a href="/pantheon/origins/#stratum-24">STRATA 24</a></p>
+  <p class="atx-meta">Temuco · Chile · sacred continuously · <a href="/mapuche/">mapuche</a> · <a href="/pantheon/strata/#stratum-24">STRATA 24</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">The sacred hill at the heart of Mapuche Temuco — treaty-signed ground beneath native forest, still honoured.</p>
@@ -1616,7 +1617,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Villarrica Volcano</h3>
     <p class="atx-native">Ruka Pillán</p>
   </header>
-  <p class="atx-meta">La Araucanía · Chile · sacred continuously · <a href="/mapuche/">mapuche</a> · <a href="/pantheon/origins/#stratum-24">STRATA 24</a></p>
+  <p class="atx-meta">La Araucanía · Chile · sacred continuously · <a href="/mapuche/">mapuche</a> · <a href="/pantheon/strata/#stratum-24">STRATA 24</a></p>
   <p class="atx-summary"></p>
   
   <p class="atx-note">Ruka Pillán — 'the house of the Pillán', the thunder spirits. The Mapuche name is older than the Spanish volcano.</p>
@@ -1630,7 +1631,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Kernavė</h3>
     <p class="atx-native">Kernavė</p>
   </header>
-  <p class="atx-meta">Neris Valley · Lithuania · c. 13th–14th century CE (pagan capital) · <a href="/baltic/">baltic</a> · <a href="/pantheon/origins/#stratum-13">STRATA 13</a></p>
+  <p class="atx-meta">Neris Valley · Lithuania · c. 13th–14th century CE (pagan capital) · <a href="/baltic/">baltic</a> · <a href="/pantheon/strata/#stratum-13">STRATA 13</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/perkunas/">Perkūnas</a><p class="atx-depict">The last pagan capital's sacred groves — Lithuania kept its oaks and its thunder god until 1387, and Kernavė's hillforts remember.</p></div>
   
@@ -1644,7 +1645,7 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
     <h3>Mount Olympus</h3>
     <p class="atx-native">Ὄλυμπος</p>
   </header>
-  <p class="atx-meta">Thessaly/Macedonia · Greece · sacred from the Mycenaean age · <a href="/atlas/">greek-location</a> · <a href="/pantheon/origins/#stratum-25">STRATA 25</a></p>
+  <p class="atx-meta">Thessaly/Macedonia · Greece · sacred from the Mycenaean age · <a href="/atlas/">greek-location</a> · <a href="/pantheon/strata/#stratum-25">STRATA 25</a></p>
   <p class="atx-summary"></p>
   <div class="atx-beings"><p class="atx-label">Digital temples of its beings</p><a class="atx-chip" href="/olympos/">Ólympos</a><p class="atx-depict">The mountain of the gods — Mytikas at 2,917 m was the first Greek peak climbed for its own myth; the gods' city was always above the weather, which is why no one found it.</p></div>
   
@@ -1663,13 +1664,14 @@ Derivative work:  UnpetitproleX</figcaption></figure><figure class="atx-fig"><im
             </div>
             <div class="footer-grid">
                 <div class="footer-column">
-                    <h2 class="footer-heading"><a href="/world/">Atlas</a></h2>
+                    <h2 class="footer-heading"><a href="/world/">World</a></h2>
                     <p class="footer-role">The Mind of the Pantheon</p>
                     <a href="/pantheon/">Pantheon</a>
-                    <a href="/pantheon/origins/">Strata</a>
-                    <a href="/world/sacred/">Sacred Geography</a>
                     <a href="/patterns/">Patterns</a>
-                    <a href="/connections/">Connections</a>
+                    <a href="/trending/">Trending</a>
+                    <a href="/world/sacred/">Geography</a>
+                    <a href="/pantheon/strata/">Strata</a>
+                    <a href="/search/">Search</a>
                 </div>
                 <div class="footer-column">
                     <h2 class="footer-heading"><a href="/culture/">Culture</a></h2>

@@ -1,9 +1,8 @@
 /**
  * PuniCodex — Mobile menu consistency tests
  *
- * Every non-temple navigation page must expose the same canonical,
- * sectioned enterprise mobile menu (Explore / Tools / Resources / About),
- * with a working toggle wired either through js/px-core.js or a local
+ * Every non-temple navigation page must expose the same canonical six-hub
+ * mobile menu, with a working toggle wired either through js/px-core.js or a local
  * page script that references the menu. Guards the unification shipped
  * with scripts/sync-mobile-menu.js.
  */
@@ -25,7 +24,7 @@ const {
 } = require('../scripts/sync-mobile-menu.js');
 
 const CANONICAL_LINKS = [
-  // Atlas
+  // World
   '/world/',
   '/pantheon/',
   '/realms/',
@@ -111,11 +110,10 @@ test('every navigation page carries the exact canonical mobile menu', () => {
     assert.ok(startIdx !== -1, `${rel} has a .mobile-menu`);
     const endIdx = findBalancedDivEnd(html, startIdx);
     assert.ok(endIdx !== -1, `${rel} menu div is balanced`);
-    // keepBegin pages (wing hubs) legitimately carry the drawer Enter link —
-    // their strips hide the Enter CTA (css/hub.css).
+    // Every page uses the same menu; only its active link differs.
     assert.strictEqual(
       html.slice(startIdx, endIdx),
-      menuForPage(target.active, target.keepBegin),
+      menuForPage(target.active),
       `${rel} menu is canonical (active: ${target.active || 'none'})`
     );
   }

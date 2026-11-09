@@ -1,5 +1,5 @@
 /* Generates the six wing hub pages from scripts/nav-tree.js:
-   /world/ (Atlas), /culture/, /tools/, /library/, /relics/, /about/.
+   /world/ (World), /culture/, /instruments/, /library/, /relics/, /about/.
    The former hand-written /about/ page moved to /about/origins/ when the
    About hub shipped — the hub generator owns /about/ now. */
 
@@ -84,11 +84,12 @@ function pageHtml(hubId, hub, active) {
     <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf23">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf24">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
+    <link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-    <link rel="stylesheet" href="/css/hub.css?v=2">
+    <link rel="stylesheet" href="/css/hub.css?v=3">
     <link rel="stylesheet" href="/css/footer.css?v=8">
     <meta name="theme-color" content="#0e0b08">
     <meta name="color-scheme" content="dark">

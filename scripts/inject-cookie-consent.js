@@ -87,6 +87,7 @@ const files = execSync('git ls-files --cached --others --exclude-standard "*.htm
 })
   .split('\n')
   .filter(Boolean)
+  .filter((f) => fs.existsSync(path.join(ROOT, f)))
   .filter((f) => !EXCLUDE.some((re) => re.test(f)));
 
 let injected = 0;

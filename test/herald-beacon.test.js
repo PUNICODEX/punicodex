@@ -118,6 +118,14 @@ async function run() {
     });
   });
 
+  await test('tracked deletions are excluded before injector file reads', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'scripts', 'inject-herald-beacon.js'), 'utf8');
+    assert.ok(
+      source.includes('.filter((f) => fs.existsSync(path.join(ROOT, f)))'),
+      'cached-but-deleted generated pages must not reach readFileSync'
+    );
+  });
+
   const exe = findBrowser();
   if (!exe) {
     console.log('  (browser journeys skipped — no Chrome/Edge binary)');

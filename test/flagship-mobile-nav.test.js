@@ -70,6 +70,14 @@ test('CSS exposes global-strip-height and shows nav-toggle on mobile', () => {
     css.includes('.mobile-menu.temple-mobile-menu'),
     'expected temple mobile menu overlay styles'
   );
+  assert.ok(
+    css.includes('.mobile-menu.temple-mobile-menu .nav-group .nav-sub'),
+    'mobile submenu reset must outrank the desktop hover selector'
+  );
+  assert.ok(
+    /\.tab-nav-links\s*\{[^}]*overflow:\s*visible/.test(css),
+    'desktop tab strip must not clip dropdowns'
+  );
 });
 
 test('every flagship home page has a hamburger and matching mobile menu', () => {
@@ -137,6 +145,31 @@ test('mobile menu links are reachable and contain expected sections', () => {
       hrefs.some((h) => h.includes('patron')),
       `${id}: expected Patrons link`
     );
+  }
+});
+
+test('every flagship Store tab is a real Merch link on desktop and mobile', () => {
+  for (const id of ids) {
+    for (const subPath of SUB_PAGES) {
+      const $ = loadPage(id, subPath);
+      if (!$) continue;
+      const html = fs.readFileSync(path.join(SITES_DIR, id, subPath, 'index.html'), 'utf8');
+      assert.ok(
+        html.includes('/css/temple-base.css?v=perf24'),
+        `${id}/${subPath}: stale immutable temple stylesheet URL`
+      );
+      for (const nav of ['#tab-nav', '#temple-mobile-menu']) {
+        const store = $(nav)
+          .find('a.nav-link')
+          .filter((_, element) => $(element).text().trim() === 'Store');
+        assert.strictEqual(store.length, 1, `${id}/${subPath}${nav}: expected one Store link`);
+        assert.strictEqual(
+          store.attr('href'),
+          `/store/merch/${id}/`,
+          `${id}/${subPath}${nav}: Store must open this temple's Merch collection`
+        );
+      }
+    }
   }
 });
 

@@ -107,8 +107,8 @@ check(
 );
 
 const nav = read('scripts/nav-tree.js');
-check(nav.includes("label: 'Strata'"), 'Atlas: STRATA label missing');
-check(nav.includes("label: 'Sacred Geography'"), 'Atlas: Sacred Geography label missing');
+check(nav.includes("label: 'Strata'"), 'World: STRATA label missing');
+check(nav.includes("label: 'Geography'"), 'World: Geography label missing');
 const strataData = read('data/pantheon-strata.json');
 check(
   strataData.includes('does not demonstrate one unchanged religious system'),

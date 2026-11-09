@@ -1,8 +1,7 @@
 /* ═══════════════════════════════════════════════════════════
-   PuniCodex — Hub pages (Atlas/World, Culture, Tools, Library,
-   Relics, About). Geometric chamfered cards over a 3D tetrahedral
-   hero. Loaded alongside temple-base.css; nav injected by the
-   desktop/mobile syncers.
+   PuniCodex — Hub pages (World, Culture, Tools, Library, Relics,
+   About). Geometric chamfered cards over a 3D tetrahedral hero.
+   Loaded alongside the canonical site navigation and footer.
    ═══════════════════════════════════════════════════════════ */
 
 :root {
@@ -12,13 +11,8 @@
   --hub-obsidian: #0e0b08;
 }
 
-/* ── Nav strip: identical geometry to the home page (css/main.css) ──
-   temple-base reserves --global-strip-height (54–72px) for the retired
-   global announcement strip that hub pages never render — that dead space
-   was the visible "gap above the menu". The temple nav is also 110px tall
-   vs the home page's 72px. Reset both here so the hub strip IS the home
-   strip on every viewport, and retire the Enter CTA (hubs are the
-   navigation surface themselves). */
+/* ── Nav strip: the generated site-nav component owns the shared geometry.
+   Keep only the legacy token reset here for backwards compatibility. ── */
 :root {
   --global-strip-height: 0px;
   --nav-height: 72px;
@@ -30,13 +24,8 @@
   padding: 0;
 }
 
-.nav-cta {
-  display: none;
-}
-
 @media (max-width: 1024px) {
-  .main-nav .nav-links,
-  .main-nav .nav-cta {
+  .main-nav .nav-links {
     display: none;
   }
 

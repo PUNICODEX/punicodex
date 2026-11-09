@@ -2,20 +2,13 @@
 /**
  * Sync the canonical mobile menu across all non-temple navigation pages.
  *
- * Every page that renders `.mobile-menu` must offer the same sectioned
- * menu (Explore / Tools / Resources / About):
- *   Explore: Pantheon (featured), Realms, Patterns, Trending, Store,
- *            Connections, Search, Words, Screen
- *   Tools:   Type, Ink, Oracle, App, Extension, API, Codex, Appraise
- *   Resources: Lexicon, Texts, Blog, Cards, Creatives, Scholars, Herald
- *   About:   About, Founder, Careers, Contact
- * This script replaces each page's `.mobile-menu` block with the canonical
- * markup. Idempotent: running it twice produces byte-identical files.
+ * Every page that renders `.mobile-menu` receives the six hubs and their
+ * spokes from nav-tree.js. This script replaces each page's `.mobile-menu`
+ * block with the canonical markup. Idempotent: running it twice produces
+ * byte-identical files.
  *
- * The Enter CTA lives in the top strip on mobile (main.css ≤1024px rules) —
- * one persistent portal next to the wordmark, no drawer duplicate. Wing hub
- * pages are the deliberate exception: their strip hides the CTA (hub.css),
- * so their drawer keeps a quiet text link to the Archē.
+ * The Account CTA lives in the top strip on mobile (main.css ≤1024px rules) —
+ * one persistent portal next to the wordmark, with no drawer duplicate.
  *
  * Temple pages (sites/, platform/public/) are intentionally excluded —
  * they use the flagship temple strip navigation.
@@ -79,11 +72,6 @@ function buildSection(id) {
         </div>`;
 }
 
-/* Hub drawers alone keep the quiet text link to the Archē — their strips
- * deliberately hide the Enter CTA (css/hub.css), so without this their
- * mobile visitors would have no road into the experience. */
-const DRAWER_BEGIN = `<a href="/account/login/" class="mobile-menu-begin">Account</a>\n        `;
-
 const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
         ${HUB_ORDER.map(buildSection).join('\n        ')}
     </div>`;
@@ -92,12 +80,11 @@ const MENU_OPEN = '<div class="mobile-menu" id="mobile-menu">';
 
 // Non-temple navigation pages that carry the standard .mobile-menu overlay.
 // `active` marks the page's own link inside the menu (styled by main.css).
-// `keepBegin` restores the drawer Enter link (hub pages — see DRAWER_BEGIN).
 const TARGETS = [
   { page: '404.html', active: null },
   { page: 'index.html', active: null },
   { page: path.join('oracle', 'index.html'), active: '/oracle/' },
-  { page: path.join('about', 'index.html'), active: '/about/', keepBegin: true },
+  { page: path.join('about', 'index.html'), active: '/about/' },
   { page: path.join('about', 'authenticity.html'), active: null },
   { page: path.join('appraise', 'index.html'), active: '/appraise/' },
   { page: path.join('art', 'index.html'), active: null },
@@ -147,17 +134,15 @@ const TARGETS = [
   { page: path.join('screen', 'index.html'), active: '/screen/' },
   // 2026-11 nav audit: bespoke menu found on the trending temple drill-down.
   { page: path.join('trending', 'temple', 'index.html'), active: '/trending/' },
-  // Wing hub pages carry the overlay too; their strips hide the Enter CTA,
-  // so their drawers alone keep the quiet Archē link.
-  { page: path.join('world', 'index.html'), active: '/world/', keepBegin: true },
-  { page: path.join('culture', 'index.html'), active: '/culture/', keepBegin: true },
+  { page: path.join('world', 'index.html'), active: '/world/' },
+  { page: path.join('culture', 'index.html'), active: '/culture/' },
   // Hand-maintained pages that carry the standard overlay (sync normalizes
   // their menus; they were found by the chrome-drift audit).
   { page: path.join('codex', 'anatomy-of-a-punycode-domain', 'index.html'), active: '/codex/' },
   { page: path.join('codex', 'building-the-temple', 'index.html'), active: '/codex/' },
   { page: path.join('codex', 'restoring-the-names', 'index.html'), active: '/codex/' },
   { page: path.join('codex', 'why-greek-accents-matter', 'index.html'), active: '/codex/' },
-  { page: path.join('pantheon', 'origins', 'index.html'), active: '/pantheon/origins/' },
+  { page: path.join('pantheon', 'strata', 'index.html'), active: '/pantheon/strata/' },
   { page: path.join('world', 'sacred', 'index.html'), active: '/world/sacred/' },
   { page: path.join('engineering', 'index.html'), active: null },
   { page: path.join('privacy', 'index.html'), active: null },
@@ -167,9 +152,9 @@ const TARGETS = [
   { page: path.join('university-sponsorship', 'index.html'), active: null },
   { page: path.join('university', 'book', 'index.html'), active: null },
   { page: path.join('platform', 'public', 'scholars', 'index.html'), active: '/scholars/' },
-  { page: path.join('instruments', 'index.html'), active: null, keepBegin: true },
-  { page: path.join('library', 'index.html'), active: '/library/', keepBegin: true },
-  { page: path.join('relics', 'index.html'), active: '/relics/', keepBegin: true },
+  { page: path.join('instruments', 'index.html'), active: null },
+  { page: path.join('library', 'index.html'), active: '/library/' },
+  { page: path.join('relics', 'index.html'), active: '/relics/' },
 ];
 
 // Per-pantheon landing pages mark the Pantheon section active in the mobile menu.
@@ -180,14 +165,10 @@ for (const id of Object.keys(PANTHEON_META).sort()) {
 /**
  * The canonical menu for one page, with the page's own link marked active.
  * The Pantheon link is always featured; when it is active it keeps the
- * featured class and adds the active class. `keepBegin` restores the drawer
- * Enter link for pages whose strip hides the Enter CTA (the wing hubs).
+ * featured class and adds the active class.
  */
-function menuForPage(activeHref, keepBegin = false) {
-  let menu = CANONICAL_MENU;
-  if (keepBegin) {
-    menu = menu.replace('<div class="mobile-menu" id="mobile-menu">\n        ', `<div class="mobile-menu" id="mobile-menu">\n        ${DRAWER_BEGIN}`);
-  }
+function menuForPage(activeHref) {
+  const menu = CANONICAL_MENU;
   if (!activeHref) return menu;
   const plainNeedle = `<a href="${activeHref}">`;
   const featuredNeedle = `<a href="${activeHref}" class="mobile-link--featured">`;
@@ -229,9 +210,9 @@ function findBalancedDivEnd(html, startIdx) {
   }
 }
 
-function syncFile(filePath, activeHref, keepBegin = false) {
+function syncFile(filePath, activeHref) {
   const html = fs.readFileSync(filePath, 'utf8');
-  const expectedMenu = menuForPage(activeHref, keepBegin);
+  const expectedMenu = menuForPage(activeHref);
   const startIdx = html.indexOf(MENU_OPEN);
   if (startIdx === -1) {
     // No menu yet: insert the canonical one right after the main nav.
@@ -282,7 +263,7 @@ function main() {
       problems.push(`${rel} (missing file)`);
       continue;
     }
-    const result = syncFile(full, target.active, target.keepBegin);
+    const result = syncFile(full, target.active);
     if (result === 'updated' || result === 'inserted') {
       updated++;
       console.log(`  ✓ ${rel} (${result})`);

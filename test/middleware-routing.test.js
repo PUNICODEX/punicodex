@@ -259,6 +259,20 @@ async function run() {
     assert.strictEqual(arbitrage.headers.get('Location'), 'https://punicodex.com/search/');
   });
 
+  await test('legacy STRATA URLs permanently redirect to the new canonical path', async () => {
+    const root = await middleware(req('https://punicodex.com/pantheon/origins/'));
+    assert.strictEqual(root.status, 301);
+    assert.strictEqual(root.headers.get('Location'), 'https://punicodex.com/pantheon/strata/');
+    const deep = await middleware(req('https://punicodex.com/pantheon/origins/index.html?utm=old'));
+    assert.strictEqual(deep.status, 301);
+    assert.strictEqual(
+      deep.headers.get('Location'),
+      'https://punicodex.com/pantheon/strata/?utm=old'
+    );
+    const canonical = await middleware(req('https://punicodex.com/pantheon/strata/'));
+    assert.ok(canonical.__fetched, 'canonical STRATA path must not redirect again');
+  });
+
   await test('STORE_LEGACY_IDS matches the catalog collections exhaustively', async () => {
     const src = fs.readFileSync(SRC, 'utf8');
     const m = src.match(/const STORE_LEGACY_IDS = new Set\(\[([\s\S]*?)\]\);/);

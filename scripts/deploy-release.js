@@ -137,8 +137,9 @@ async function waitForWorkflow(file, headSha, token, timeoutMinutes) {
 
 async function verifyProduction() {
   const expectations = [
-    ['/pantheon/origins/', 'STRATA'],
+    ['/pantheon/strata/', 'STRATA'],
     ['/world/sacred/', 'Sacred Geography'],
+    ['/', '>World</a>'],
     ['/ninlil/lore/', 'canonical digital temple'],
     ['/', 'Station I · The Collection'],
   ];

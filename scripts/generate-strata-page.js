@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * PuniCodex — STRATA page generator (/pantheon/origins/).
+ * PuniCodex — STRATA page generator (/pantheon/strata/).
  *
  * Reads the canonical chronicle data/pantheon-strata.json + the lexicon and
- * writes pantheon/origins/index.html — the column of the pantheons: strata
+ * writes pantheon/strata/index.html — the column of the pantheons: strata
  * are laid down upward, oldest at the base. You begin at the bedrock (01, the
  * Aboriginal Dreamtime, ~65,000 years) and rise through twenty-five deposited
  * layers until the column breaches the surface — the present. The background
@@ -24,7 +24,7 @@ const PINS = require('./asset-pins.js');
 
 const ROOT = path.join(__dirname, '..');
 const DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'pantheon-strata.json'), 'utf8'));
-const OUT_DIR = path.join(ROOT, 'pantheon', 'origins');
+const OUT_DIR = path.join(ROOT, 'pantheon', 'strata');
 const OUT = path.join(OUT_DIR, 'index.html');
 
 const entryById = new Map(LEXICON.map((e) => [e.id, e]));
@@ -228,7 +228,7 @@ const jsonld = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'STRATA — The Deep History of the Pantheons',
-  url: 'https://punicodex.com/pantheon/origins/',
+  url: 'https://punicodex.com/pantheon/strata/',
   description: DATA.subtitle,
   isPartOf: { '@type': 'WebSite', name: 'PuniCodex', url: 'https://punicodex.com/' },
   about: DATA.layers.map((l) => ({ '@type': 'Thing', name: l.name, alternateName: l.eraLabel })),
@@ -242,18 +242,19 @@ const html = `<!DOCTYPE html>
 <meta name="theme-color" content="#050505">
 <title>STRATA — The Deep History of the Pantheons | PuniCodex</title>
 <meta name="description" content="${esc(DATA.subtitle)}">
-<link rel="canonical" href="https://punicodex.com/pantheon/origins/">
+<link rel="canonical" href="https://punicodex.com/pantheon/strata/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="STRATA — The Deep History of the Pantheons">
 <meta property="og:description" content="${esc(DATA.subtitle)}">
-<meta property="og:url" content="https://punicodex.com/pantheon/origins/">
+<meta property="og:url" content="https://punicodex.com/pantheon/strata/">
 <meta property="og:image" content="https://punicodex.com/assets/images/og-default.png">
 <meta property="og:site_name" content="PuniCodex">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf23">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf24">
 <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
+<link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">
 <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
 <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <link rel="stylesheet" href="/css/footer.css?v=8">
@@ -283,15 +284,13 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 @keyframes stxRise{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 .stx-column-map{width:100%;max-width:46rem;margin-top:3.2rem}
 .stx-column-map .stx-beings-label{margin-bottom:.8rem}
-.stx-stratum{position:relative;padding:7rem 1.5rem 5rem;border-top:1px solid var(--line)}
+.stx-stratum{position:relative;padding:7rem 5rem 5rem 1.5rem;border-top:1px solid var(--line)}
 /* the line texture carries each substance; the radial warms the stratum
    toward sunrise as the column nears the surface (--warm rises with order) */
 .stx-stratum::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 46px,rgba(212,175,55,.028) 46px 48px),radial-gradient(ellipse 130% 55% at 50% 0%,rgba(255,166,48,calc(var(--warm,0)*.17)),transparent 62%);pointer-events:none}
-.stx-stratum-inner{max-width:62rem;margin:0 auto;position:relative;padding-right:3rem}
-@media (max-width:720px){.stx-stratum-inner{padding-right:2.4rem}}
-.stx-surface,.stx-core{padding-right:3rem;padding-left:3rem}
-@media (max-width:720px){.stx-surface,.stx-core{padding-right:2.6rem;padding-left:1.1rem}}
-.stx-depth-mark{position:absolute;left:-.2rem;top:-4.6rem;font-size:clamp(3.4rem,7vw,5.6rem);font-weight:700;color:transparent;-webkit-text-stroke:1px var(--gold-dim);letter-spacing:.05em;font-family:'Montserrat',sans-serif;user-select:none}
+.stx-stratum-inner{max-width:62rem;margin:0 auto;position:relative}
+.stx-surface,.stx-core{padding-right:5rem;padding-left:3rem}
+.stx-depth-mark{position:static;display:block;font-size:clamp(3.4rem,7vw,5.6rem);line-height:.85;margin-bottom:2rem;font-weight:700;color:transparent;-webkit-text-stroke:1px var(--gold-dim);letter-spacing:.05em;font-family:'Montserrat',sans-serif;user-select:none}
 .stx-kicker{font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
 .stx-name{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.05;margin-bottom:1.1rem;font-weight:600}
 .stx-attest{color:var(--dim);font-style:italic;max-width:70ch;line-height:1.65;margin-bottom:1.6rem}
@@ -335,7 +334,7 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 .stx-tex-seaworn{background:linear-gradient(180deg,rgba(90,120,125,.08),rgba(40,70,75,.16))}
 /* the breach — the column breaks the surface into daylight: sun colours,
    never white */
-.stx-core{min-height:100vh;padding:8rem 1.5rem;text-align:center;position:relative;background:radial-gradient(ellipse 95% 55% at 50% 115%,rgba(255,166,48,.34),rgba(255,120,30,.10) 48%,transparent 70%),linear-gradient(180deg,#050505,#120c05 52%,#221306)}
+.stx-core{min-height:100vh;padding:8rem 5rem 8rem 3rem;text-align:center;position:relative;background:radial-gradient(ellipse 95% 55% at 50% 115%,rgba(255,166,48,.34),rgba(255,120,30,.10) 48%,transparent 70%),linear-gradient(180deg,#050505,#120c05 52%,#221306)}
 .stx-core h2{font-size:clamp(2rem,5vw,3.4rem);margin:.8rem 0 1.2rem}
 .stx-core p{max-width:62ch;margin:0 auto 2.4rem;color:var(--dim);line-height:1.75}
 .stx-core-sample{display:flex;flex-direction:column;max-width:46rem;margin:0 auto;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(5,5,5,.6)}
@@ -350,8 +349,9 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 @media (max-width:720px){
   .stx-rail{right:.35rem;gap:2px;padding:.2rem}
   .stx-rail-dot span{width:1.1rem;height:1.1rem;font-size:.44rem}
-  .stx-stratum{padding:5.5rem 1.1rem 3.5rem}
-  .stx-depth-mark{top:-3.4rem;font-size:2.8rem}
+  .stx-stratum{padding:5.5rem 3.4rem 3.5rem 1.1rem}
+  .stx-surface,.stx-core{padding-right:3.6rem;padding-left:1.1rem}
+  .stx-depth-mark{font-size:2.8rem;margin-bottom:1.5rem}
 }
 @media (prefers-reduced-motion:reduce){
   .stx-reveal{opacity:1;transform:none;transition:none}
@@ -361,7 +361,7 @@ body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',
 </style>
 </head>
 <body>
-${fullNavHtml('/pantheon/origins/')}
+${fullNavHtml('/pantheon/strata/')}
 <canvas id="stx-fx" aria-hidden="true"></canvas>
 <nav class="stx-rail" aria-label="Strata">${railDots}</nav>
 <main class="stx-stage">

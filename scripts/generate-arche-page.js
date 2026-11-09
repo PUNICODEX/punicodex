@@ -59,7 +59,7 @@ const deityCard = (d, i) => {
                     </a>
                     <nav class="arche-card-links" aria-label="Explore ${esc(e.unicode)}">
                       <a href="/${e.id}/">Temple</a>
-                      ${stratum ? `<a href="/pantheon/origins/#stratum-${stratum.order}">STRATA</a>` : ''}
+                      ${stratum ? `<a href="/pantheon/strata/#stratum-${stratum.order}">STRATA</a>` : ''}
                       ${flagshipIds.has(e.id) ? `<a href="/${e.id}/patterns/">Patterns</a>` : ''}
                     </nav>
                 </article>`;
@@ -290,7 +290,7 @@ const page = `<!DOCTYPE html>
 ${verseHtml(PROLOGUE.verse)}
                 </div>
                 <nav class="arche-prologue-links" aria-label="Continue through the collection">
-                  <a class="arche-chip" href="/pantheon/origins/">STRATA · deep history</a>
+                  <a class="arche-chip" href="/pantheon/strata/">STRATA · deep history</a>
                   <a class="arche-chip" href="/world/sacred/">Sacred Geography</a>
                   <a class="arche-chip" href="/patterns/">The Pattern Atlas</a>
                 </nav>

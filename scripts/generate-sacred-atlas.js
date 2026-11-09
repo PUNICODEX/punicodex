@@ -94,7 +94,7 @@ function dossier(site) {
   const srcs = (site.sources || []).map((s) => `<li>${esc(s)}</li>`).join('');
   const stratum = strataByPantheon.get(site.tradition);
   const strataLink = stratum
-    ? ` · <a href="/pantheon/origins/#stratum-${stratum.order}">STRATA ${String(stratum.order).padStart(2, '0')}</a>`
+    ? ` · <a href="/pantheon/strata/#stratum-${stratum.order}">STRATA ${String(stratum.order).padStart(2, '0')}</a>`
     : '';
   return `<article class="atx-site" id="site-${site.id}" data-site="${site.id}" data-tradition="${esc(site.tradition)}" data-name="${esc(site.name.toLowerCase())}">
   <header class="atx-site-head">
@@ -139,8 +139,9 @@ const html = `<!DOCTYPE html>
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf23">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf24">
 <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
+<link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">
 <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
 <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
 <link rel="stylesheet" href="/css/footer.css?v=8">
@@ -166,7 +167,7 @@ a{color:var(--gold)}
 .atx-marker:hover span{transform:scale(1.5)}
 .atx-marker--quiet span{background:transparent;border:1.5px solid var(--gold-dim);box-shadow:none}
 .atx-marker.active span{transform:scale(1.6);outline:2px solid var(--ivory);outline-offset:2px}
-.atx-panel{position:fixed;top:0;right:0;height:100vh;width:min(30rem,94vw);background:#0a0a0c;border-left:1px solid var(--gold-dim);z-index:60;overflow-y:auto;padding:2rem 1.6rem;transform:translateX(102%);transition:transform .3s ease;overscroll-behavior:contain}
+.atx-panel{position:fixed;top:0;right:0;height:100vh;width:min(30rem,94vw);background:#0a0a0c;border-left:1px solid var(--gold-dim);z-index:1200;overflow-y:auto;padding:2rem 1.6rem;transform:translateX(102%);transition:transform .3s ease;overscroll-behavior:contain}
 .atx-panel.open{transform:none}
 .atx-panel-close{position:sticky;top:0;float:right;appearance:none;border:1px solid var(--gold-dim);background:var(--void);color:var(--gold);border-radius:50%;width:2.2rem;height:2.2rem;font-size:1rem;cursor:pointer}
 .atx-panel h2{font-size:1.9rem;margin:.4rem 0 .2rem}

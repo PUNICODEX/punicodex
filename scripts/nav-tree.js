@@ -15,22 +15,22 @@ const HUB_ORDER = ['atlas', 'culture', 'tools', 'library', 'relics', 'about'];
 
 const HUBS = {
   atlas: {
-    label: 'Atlas',
+    label: 'World',
     href: '/world/',
     scene: 'sphere',
     role: 'The Mind of the Pantheon',
     tagline: 'The mapped world of names',
     blurb:
       'Every name in the pantheon, charted — the beings themselves, the threads that connect them, the patterns they form, and the live frontier of the Unicode web.',
-    footer: ['Pantheon', 'Strata', 'Sacred Geography', 'Patterns', 'Connections'],
+    footer: ['Pantheon', 'Patterns', 'Trending', 'Geography', 'Strata', 'Search'],
     items: [
       { label: 'Pantheon', href: '/pantheon/', blurb: 'All 983 restorations, filterable by tradition.', children: 'pantheon' },
-      { label: 'Strata', href: '/pantheon/origins/', blurb: 'An evidence-guided journey through the historical layers of the pantheons.' },
-      { label: 'Sacred Geography', href: '/world/sacred/', blurb: 'An interactive globe of sacred places and the digital temples they meet.' },
-      { label: 'Connections', href: '/connections/', blurb: 'Cognates and kinships across traditions.' },
       { label: 'Patterns', href: '/patterns/', blurb: 'Recurring threads across the names, and what they mean.' },
       { label: 'Trending', href: '/trending/', blurb: 'What the world is searching in the pantheon.' },
+      { label: 'Geography', href: '/world/sacred/', blurb: 'An interactive globe of sacred places and the digital temples they meet.' },
+      { label: 'Strata', href: '/pantheon/strata/', blurb: 'An evidence-guided journey through the historical layers of the pantheons.' },
       { label: 'Search', href: '/search/', blurb: 'The search engine for the Unicode web.' },
+      { label: 'Connections', href: '/connections/', blurb: 'Cognates and kinships across traditions.' },
     ],
   },
   culture: {
@@ -124,7 +124,7 @@ const HUBS = {
   },
 };
 
-/* Atlas → Pantheon mega-panel: realms, artifacts, then every pantheon
+/* World → Pantheon mega-panel: realms, artifacts, then every pantheon
  * landing page. Destinations only — filter states like "With Marks"
  * live on /pantheon/ itself and are deliberately not menu entries. */
 const PANTHEON_CHILDREN = [

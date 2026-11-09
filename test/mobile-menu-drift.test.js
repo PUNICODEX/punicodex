@@ -29,6 +29,7 @@ const { CANONICAL_MENU, MENU_OPEN, TARGETS, findBalancedDivEnd, menuForPage } = 
 const files = execFileSync('git', ['ls-files', '*.html'], { cwd: root, encoding: 'utf8' })
   .split('\n')
   .filter(Boolean)
+  .filter((f) => fs.existsSync(path.join(root, f)))
   .filter((f) => !f.startsWith('sites/') && !f.startsWith('archive/tier-system/'));
 
 // Allowed set: the canonical menu plus every self-referenced href marked
@@ -36,11 +37,9 @@ const files = execFileSync('git', ['ls-files', '*.html'], { cwd: root, encoding:
 // the Set dedupes harmlessly).
 const hrefs = [...new Set([...CANONICAL_MENU.matchAll(/href="(\/[^"]*)"/g)].map((m) => m[1]))];
 const allowed = new Set([CANONICAL_MENU, ...hrefs.map((h) => menuForPage(h))]);
-// Wing hub pages legitimately carry the drawer Enter link — their strips
-// hide the Enter CTA (css/hub.css), so their drawers keep the quiet Archē
-// link (DRAWER_BEGIN in sync-mobile-menu). Allow their exact variant.
+// No canonical target adds a second Account link inside the drawer.
 for (const t of TARGETS) {
-  if (t.keepBegin) allowed.add(menuForPage(t.active, true));
+  allowed.add(menuForPage(t.active));
 }
 
 let checked = 0;

@@ -145,7 +145,7 @@ async function run() {
     });
 
     await test('STRATA: canonical chrome and evidence-guided content render', async () => {
-      await page.goto(`${base}/pantheon/origins/`, { waitUntil: 'domcontentloaded' });
+      await page.goto(`${base}/pantheon/strata/`, { waitUntil: 'domcontentloaded' });
       if (!(await page.locator('#main-nav').isVisible())) throw new Error('menu strip missing');
       if (!(await page.locator('.site-footer').isVisible())) throw new Error('footer missing');
       if (!/STRATA/.test(await page.locator('h1').first().textContent())) {
@@ -160,6 +160,70 @@ async function run() {
       if (process.env.PUNICODEX_SCREENSHOTS) {
         await page.screenshot({ path: '/tmp/punicodex-strata.png', fullPage: false });
       }
+    });
+
+    await test('shared chrome: home, STRATA, Geography, and hubs have identical nav geometry', async () => {
+      async function navSnapshot(url) {
+        await page.goto(url, { waitUntil: 'domcontentloaded' });
+        return page.evaluate(() => {
+          const nav = document.querySelector('#main-nav');
+          const inner = nav.querySelector('.nav-inner');
+          const mark = nav.querySelector('.nav-wordmark img');
+          const cta = nav.querySelector('.nav-cta');
+          const navStyle = getComputedStyle(nav);
+          return {
+            height: navStyle.height,
+            top: navStyle.top,
+            innerHeight: getComputedStyle(inner).height,
+            markHeight: getComputedStyle(mark).height,
+            account: cta.textContent.trim(),
+            accountDisplay: getComputedStyle(cta).display,
+          };
+        });
+      }
+      for (const width of [1366, 390]) {
+        await page.setViewportSize({ width, height: 900 });
+        const home = await navSnapshot(`${base}/`);
+        for (const route of [
+          'world',
+          'culture',
+          'instruments',
+          'library',
+          'relics',
+          'about',
+          'pantheon/strata',
+          'world/sacred',
+        ]) {
+          const other = await navSnapshot(`${base}/${route}/`);
+          if (JSON.stringify(other) !== JSON.stringify(home)) {
+            throw new Error(
+              `${route}: nav differs at ${width}: ${JSON.stringify(other)} vs ${JSON.stringify(home)}`
+            );
+          }
+        }
+      }
+      await page.setViewportSize({ width: 1366, height: 900 });
+    });
+
+    await test('STRATA: numerals never collide and the mobile rail never covers reading text', async () => {
+      await page.goto(`${base}/pantheon/strata/`, { waitUntil: 'domcontentloaded' });
+      const collision = await page.evaluate(() => {
+        const mark = document.querySelector('.stx-depth-mark').getBoundingClientRect();
+        const kicker = document.querySelector('.stx-kicker').getBoundingClientRect();
+        return mark.bottom > kicker.top;
+      });
+      if (collision) throw new Error('desktop layer numeral overlaps its kicker');
+      await page.setViewportSize({ width: 390, height: 844 });
+      const overflow = await page.evaluate(() => {
+        const railLeft = document.querySelector('.stx-rail').getBoundingClientRect().left;
+        const selectors =
+          '.stx-stratum-inner,.stx-fault,.stx-surface-sub,.stx-core p,.stx-core-cta';
+        return [...document.querySelectorAll(selectors)]
+          .filter((element) => element.getBoundingClientRect().right > railLeft - 4)
+          .map((element) => element.className);
+      });
+      if (overflow.length) throw new Error(`mobile rail covers: ${overflow.join(', ')}`);
+      await page.setViewportSize({ width: 1366, height: 900 });
     });
 
     await test('Sacred Geography: globe zooms, clusters, and opens real dossiers', async () => {
@@ -195,7 +259,7 @@ async function run() {
       }
     });
 
-    await test('hub footers: canonical markup and computed layout match the homepage', async () => {
+    await test('shared footers: canonical markup and computed layout match the homepage', async () => {
       async function footerSnapshot(url) {
         await page.goto(url, { waitUntil: 'domcontentloaded' });
         return page.evaluate(() => {
@@ -213,20 +277,32 @@ async function run() {
           };
         });
       }
+      const routes = [
+        'world',
+        'culture',
+        'instruments',
+        'library',
+        'relics',
+        'about',
+        'pantheon/strata',
+        'world/sacred',
+        'authenticity',
+        'university/book',
+      ];
       for (const width of [1366, 390]) {
         await page.setViewportSize({ width, height: 900 });
         const home = await footerSnapshot(`${base}/`);
-        for (const hub of ['world', 'culture', 'instruments', 'library', 'relics', 'about']) {
-          const other = await footerSnapshot(`${base}/${hub}/`);
+        for (const route of routes) {
+          const other = await footerSnapshot(`${base}/${route}/`);
           if (other.html !== home.html)
-            throw new Error(`${hub}: footer markup diverged at ${width}`);
+            throw new Error(`${route}: footer markup diverged at ${width}`);
           if (
             other.columns !== home.columns ||
             other.align !== home.align ||
             other.color !== home.color
           ) {
             throw new Error(
-              `${hub}: footer layout diverged at ${width}: hub ${JSON.stringify(other)} vs home ${JSON.stringify(home)}`
+              `${route}: footer layout diverged at ${width}: ${JSON.stringify(other)} vs home ${JSON.stringify(home)}`
             );
           }
         }
@@ -277,13 +353,14 @@ async function run() {
       await page.waitForSelector('h1', { timeout: 10000 });
       const h1 = await page.textContent('h1');
       if (!/Zeús|Zeus/i.test(h1)) throw new Error(`unexpected h1: ${h1}`);
-      const store = page.locator('.nav-link--static:has-text("Store")').first();
+      const store = page
+        .locator('.tab-nav-links > .nav-group > a.nav-link:has-text("Store")')
+        .first();
       if (!(await store.count())) throw new Error('tab missing: Store');
       for (const tab of ['Lore', 'Merch', 'Art', 'Blog']) {
         const t = page.locator(`a:has-text("${tab}")`).first();
         if (!(await t.count())) throw new Error(`tab missing: ${tab}`);
       }
-      // Booking modal: open and verify labeled controls.
       const reserve = page
         .locator('button:has-text("Reserve"), a:has-text("Reserve"), [data-booking-open]')
         .first();
@@ -293,6 +370,100 @@ async function run() {
         const email = page.locator('#booking-email[aria-label]');
         if (!(await email.count())) throw new Error('booking email input lacks aria-label');
       }
+    });
+
+    await test('temple desktop: Lore and Store dropdowns are unclipped and navigate', async () => {
+      async function assertHitTarget(link) {
+        const box = await link.boundingBox();
+        if (!box) throw new Error('dropdown link has no layout box');
+        const hit = await link.evaluate((element) => {
+          const rect = element.getBoundingClientRect();
+          const target = document.elementFromPoint(
+            rect.left + rect.width / 2,
+            rect.top + rect.height / 2
+          );
+          return target && target.closest('a') === element;
+        });
+        if (!hit) throw new Error('dropdown link is clipped or covered');
+      }
+
+      await page.goto(`${base}/sites/zeus/`, { waitUntil: 'domcontentloaded' });
+      const groups = page.locator('.tab-nav-links > .nav-group');
+      await groups.nth(0).hover();
+      await page.waitForTimeout(220);
+      const extended = groups.nth(0).locator('.nav-sub-link:has-text("Extended")');
+      if (!(await extended.isVisible())) throw new Error('Lore dropdown did not open');
+      await assertHitTarget(extended);
+      await Promise.all([
+        page.waitForURL('**/sites/zeus/lore/extended/index.html'),
+        extended.click(),
+      ]);
+
+      await page.goto(`${base}/sites/zeus/`, { waitUntil: 'domcontentloaded' });
+      const store = groups.nth(1).locator(':scope > a.nav-link');
+      if ((await store.getAttribute('href')) !== '/store/merch/zeus/') {
+        throw new Error('Store is not a real temple Merch link');
+      }
+      await Promise.all([page.waitForURL('**/store/merch/zeus/'), store.click()]);
+
+      await page.goto(`${base}/sites/zeus/`, { waitUntil: 'domcontentloaded' });
+      await groups.nth(1).hover();
+      await page.waitForTimeout(220);
+      const art = groups.nth(1).locator('.nav-sub-link:has-text("Art")');
+      if (!(await art.isVisible())) throw new Error('Store dropdown did not open');
+      await assertHitTarget(art);
+      await Promise.all([page.waitForURL('**/sites/zeus/art/index.html'), art.click()]);
+    });
+
+    await test('temple mobile: submenus stay aligned, static, vertical, and inside the viewport', async () => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(`${base}/sites/zeus/`, { waitUntil: 'domcontentloaded' });
+      await page.locator('#nav-toggle').click();
+      await page.waitForTimeout(250);
+      for (const index of [0, 1]) {
+        const group = page.locator('#temple-mobile-menu > .nav-group').nth(index);
+        await group.hover();
+        const sub = group.locator('.nav-sub');
+        const state = await sub.evaluate((element) => ({
+          position: getComputedStyle(element).position,
+          transform: getComputedStyle(element).transform,
+          left: element.getBoundingClientRect().left,
+          right: element.getBoundingClientRect().right,
+        }));
+        if (state.position !== 'static' || state.transform !== 'none') {
+          throw new Error(
+            `mobile submenu ${index} inherited desktop positioning: ${JSON.stringify(state)}`
+          );
+        }
+        if (state.left < 0 || state.right > 390) {
+          throw new Error(`mobile submenu ${index} escaped the viewport: ${JSON.stringify(state)}`);
+        }
+      }
+      const rects = await page.locator('#temple-mobile-menu a').evaluateAll((links) =>
+        links.map((link) => ({
+          text: link.textContent.trim(),
+          top: link.getBoundingClientRect().top,
+          left: link.getBoundingClientRect().left,
+          right: link.getBoundingClientRect().right,
+        }))
+      );
+      for (const rect of rects) {
+        if (rect.left < 0 || rect.right > 390) {
+          throw new Error(`${rect.text} escaped the mobile viewport: ${JSON.stringify(rect)}`);
+        }
+      }
+      for (let index = 1; index < rects.length; index++) {
+        if (rects[index].top < rects[index - 1].top) {
+          throw new Error(
+            `mobile tabs are out of vertical order: ${rects[index - 1].text} / ${rects[index].text}`
+          );
+        }
+      }
+      const store = page.locator('#temple-mobile-menu > .nav-group > a.nav-link:has-text("Store")');
+      if ((await store.getAttribute('href')) !== '/store/merch/zeus/') {
+        throw new Error('mobile Store is not a real temple Merch link');
+      }
+      await page.setViewportSize({ width: 1366, height: 900 });
     });
 
     await test('ASCII temple: canonical prose renders without Unicode claims or broken Lore styling', async () => {

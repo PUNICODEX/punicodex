@@ -4,10 +4,10 @@
  *
  * Sister to sync-desktop-nav.js / sync-mobile-menu.js: the footer is a
  * hub-mirror generated from scripts/nav-tree.js — six columns, one per hub,
- * with the hub page as the column heading, the hub's role line as
- * microcopy, its featured spokes, and an "All of {hub} →" escape. The
- * brand row carries the wordmark, tagline, and the Archē entry ("Begin the
- * Ascent"). Because menu, hubs, and footer all derive from nav-tree.js,
+ * with the hub page as the linked column heading, the hub's role line as
+ * microcopy, and its featured spokes. The brand row carries the wordmark,
+ * tagline, and the account initiation ("Begin the Ascent"). Because menu,
+ * hubs, and footer all derive from nav-tree.js,
  * the surfaces cannot drift apart.
  *
  * This script replaces any existing <footer> block with the canonical one
@@ -162,7 +162,7 @@ const TARGETS = [
   // Wing hub pages (scripts/generate-hubs.js emits this same builder).
   path.join('world', 'index.html'),
   path.join('world', 'sacred', 'index.html'),
-  path.join('pantheon', 'origins', 'index.html'),
+  path.join('pantheon', 'strata', 'index.html'),
   path.join('culture', 'index.html'),
   path.join('instruments', 'index.html'),
   path.join('library', 'index.html'),

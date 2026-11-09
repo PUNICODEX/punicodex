@@ -12,7 +12,7 @@
  *     heading spans the full row.
  *  3. Hub pages carry the system metaphor (Mind/Voice/Hand/Memory/Vault),
  *     the canonical sitewide footer, and the home-identical nav strip
- *     geometry (no global-strip gap, 72px bar, no Enter CTA).
+ *     geometry (no global-strip gap, 72px bar, canonical Account CTA).
  *  4. The Reliquary restructure: /store/ entrance links both departments,
  *     every nav fan-out href exists on disk, and checkout/email order
  *     URLs point at the merch tree.
@@ -125,7 +125,7 @@ test('hub pages carry the system metaphor, canonical footer, and current pins', 
       html.includes('footer-grid'),
       `${OUT_DIRS[id]}: must carry the canonical sitewide footer`
     );
-    assert.ok(html.includes('/css/hub.css?v=2'), `${OUT_DIRS[id]}: hub.css must be cache-bumped`);
+    assert.ok(html.includes('/css/hub.css?v=3'), `${OUT_DIRS[id]}: hub.css must be cache-bumped`);
     assert.ok(html.includes(PINS.NAV_HUBS_CSS), `${OUT_DIRS[id]}: nav-hubs pin current`);
   }
 });
@@ -137,7 +137,7 @@ test('hub.css resets the strip geometry to the home-page nav', () => {
     'the phantom global-strip gap must be zeroed'
   );
   assert.ok(/--nav-height:\s*72px/.test(css), 'hub nav must match the 72px home bar');
-  assert.ok(/\.nav-cta\s*\{[^}]*display:\s*none/.test(css), 'hubs must not render the Enter CTA');
+  assert.ok(!/\.nav-cta\s*\{[^}]*display:\s*none/.test(css), 'hubs must keep the Account CTA');
   assert.ok(
     /@media\s*\(max-width:\s*1024px\)[\s\S]*\.main-nav \.nav-links[\s\S]*display:\s*none/.test(css),
     'hub nav links must hide below the desktop breakpoint (home parity)'

@@ -2,8 +2,8 @@
  * PuniCodex — Menu Consistency Tests
  *
  * Guards the canonical navigation system: every non-temple page must carry
- * the same desktop nav (5 primary links incl. ✦ Herald + sectioned Menu drawer + Enter CTA)
- * and the canonical sectioned mobile menu, with the page's own item marked
+ * the same six-hub desktop nav, Account CTA, and canonical sectioned mobile
+ * menu, with the page's own item marked
  * aria-current. Prevents the hand-maintained drift this audit found
  * (7 different desktop menus across 26 pages).
  */
@@ -58,6 +58,15 @@ test('sync-desktop-nav covers every root navigation page (54+ targets)', () => {
     assert.ok(section.heading, 'every wing must have a heading');
     assert.ok(Array.isArray(section.links), 'every wing must have a links array');
   }
+});
+
+test('World hub uses the public label and requested primary spoke order', () => {
+  assert.strictEqual(HUBS.atlas.label, 'World');
+  assert.deepStrictEqual(
+    HUBS.atlas.items.slice(0, 6).map((item) => item.label),
+    ['Pantheon', 'Patterns', 'Trending', 'Geography', 'Strata', 'Search']
+  );
+  assert.strictEqual(HUBS.atlas.items[4].href, '/pantheon/strata/');
 });
 
 test('fan-out panels: Pantheon mega-panel and Codex panel have their destinations', () => {
@@ -138,7 +147,7 @@ test('every target page carries the wing dropdowns with their destinations', () 
   }
 });
 
-test('every target page has the wordmark lockup, Enter CTA, and nav toggle', () => {
+test('every target page has the wordmark lockup, Account CTA, and nav toggle', () => {
   for (const { page, chrome } of TARGETS) {
     if (chrome === 'search') continue; // search pages keep their compact chrome
     const html = readIfExists(page);
@@ -147,7 +156,12 @@ test('every target page has the wordmark lockup, Enter CTA, and nav toggle', () 
       continue;
     }
     assert.ok(html.includes('punicodex-wordmark-ivory'), `${page}: wordmark missing`);
-    assert.ok(html.includes('class="nav-cta"'), `${page}: Enter CTA missing`);
+    assert.ok(
+      html.includes('<a href="/account/login/" class="nav-cta"') &&
+        html.includes('<span>Account</span>'),
+      `${page}: Account CTA missing`
+    );
+    assert.ok(!html.includes('class="nav-cta" title="The Archē'), `${page}: retired Enter CTA`);
     assert.ok(html.includes('id="nav-toggle"'), `${page}: nav toggle missing`);
   }
 });
@@ -184,7 +198,7 @@ test('pages mark their own item aria-current="page"', () => {
   assert.ok(/<a href="\/codex\/"[^>]*aria-current="page"/.test(article));
 });
 
-test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', () => {
+test('mobile menu is canonical (6 hubs incl. Blog) on pages that carry it', () => {
   const { TARGETS: mobileTargets, CANONICAL_MENU } = require('../scripts/sync-mobile-menu.js');
   assert.ok(
     CANONICAL_MENU.includes('href="/pronunciation/"'),
@@ -226,7 +240,7 @@ test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', 
 });
 
 test('component stylesheets are linked where main.css is absent', () => {
-  for (const { page } of TARGETS) {
+  for (const { page, chrome } of TARGETS) {
     const html = readIfExists(page);
     if (!html) {
       console.warn(`    ⚠ ${page} missing, skipping stylesheet check`);
@@ -234,12 +248,13 @@ test('component stylesheets are linked where main.css is absent', () => {
     }
     if (!html.includes('/css/main.css')) {
       assert.ok(html.includes('/css/nav-more.css'), `${page}: nav-more.css not linked`);
+      if (chrome !== 'search') {
+        assert.ok(html.includes('/css/site-nav.css'), `${page}: site-nav.css not linked`);
+      }
       if (html.includes('class="mobile-menu"')) {
         assert.ok(html.includes('/css/mobile-menu.css'), `${page}: mobile-menu.css not linked`);
       }
     }
-    // The hub dropdown styles load on EVERY page: desktop dropdowns at ≥1024px
-    // and the drawer-hide rules below that both come from nav-hubs.css.
     assert.ok(html.includes('/css/nav-hubs.css'), `${page}: nav-hubs.css not linked`);
     assert.ok(html.includes('/js/nav-hubs.js'), `${page}: nav-hubs.js not loaded`);
   }

@@ -18,6 +18,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { preservationLabel } = require('./lib/preservation-label.js');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
@@ -696,7 +697,7 @@ function applyReplacements(template, replacements) {
 
 function writeFile(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, content, 'utf8');
+  writeFileWithRetry(filePath, content, 'utf8');
 }
 
 function main() {

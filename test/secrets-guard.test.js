@@ -29,7 +29,8 @@ function gitTracked() {
     maxBuffer: 32 * 1024 * 1024,
   })
     .split('\n')
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter((file) => fs.existsSync(path.join(ROOT, file)));
 }
 
 function run() {

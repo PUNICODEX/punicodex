@@ -137,7 +137,7 @@ test('interactive demo has query buttons mapped to sample data', () => {
 
 test('footer exists with the six hub columns', () => {
   assert.strictEqual($('.site-footer').length, 1, 'expected footer');
-  for (const label of ['Atlas', 'Culture', 'Tools', 'Library', 'Relics', 'About']) {
+  for (const label of ['World', 'Culture', 'Tools', 'Library', 'Relics', 'About']) {
     assert.ok(
       $('.site-footer .footer-column:has(.footer-heading a:contains("' + label + '"))').length ===
         1,
@@ -154,7 +154,7 @@ test('footer is the hub-mirror and no longer carries the archived Innovation pag
   );
   // Hub-mirror footer: all six hubs headline their own columns.
   for (const [href, label] of [
-    ['/world/', 'Atlas'],
+    ['/world/', 'World'],
     ['/culture/', 'Culture'],
     ['/instruments/', 'Tools'],
     ['/library/', 'Library'],

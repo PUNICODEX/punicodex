@@ -67,7 +67,7 @@ const mainPages = [
   { loc: '/about/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/about/origins/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/genesis/', priority: '0.9', changefreq: 'monthly' },
-  { loc: '/pantheon/origins/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/pantheon/strata/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/world/sacred/', priority: '0.8', changefreq: 'monthly' },
   ...require('../scripts/arche-chapters.js').ASCENT.map((c) => ({
     loc: `/genesis/${c.id}/`,

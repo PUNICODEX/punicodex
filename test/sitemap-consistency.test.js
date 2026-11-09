@@ -168,7 +168,8 @@ function run() {
   test('every public indexable page is in the sitemap (no orphans)', () => {
     const htmlFiles = execSync('git ls-files "*.html"', { encoding: 'utf8' })
       .split('\n')
-      .filter(Boolean);
+      .filter(Boolean)
+      .filter((file) => fs.existsSync(path.join(ROOT, file)));
     const orphans = [];
     for (const file of htmlFiles) {
       if (!isIndexablePage(file)) continue;

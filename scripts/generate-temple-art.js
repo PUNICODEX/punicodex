@@ -157,7 +157,7 @@ function renderTempleArt(a) {
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=${cssPin}">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf23">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf24">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
@@ -172,7 +172,7 @@ ${CSS}
         <div class="global-strip-inner">
             <a href="${SITE_ORIGIN}/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
             <div class="global-links">
-                <a href="${SITE_ORIGIN}/world/">Atlas</a>
+                <a href="${SITE_ORIGIN}/world/">World</a>
                 <a href="${SITE_ORIGIN}/culture/">Culture</a>
                 <a href="${SITE_ORIGIN}/instruments/">Tools</a>
                 <a href="${SITE_ORIGIN}/library/">Library</a>
@@ -197,7 +197,7 @@ ${CSS}
                     </span>
                 </span>
                 <span class="nav-group">
-                    <span class="nav-link nav-link--static active">Store</span>
+                    <a href="/store/merch/${a.id}/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/${a.id}/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -222,7 +222,7 @@ ${CSS}
             </span>
         </span>
         <span class="nav-group">
-            <span class="nav-link nav-link--static active">Store</span>
+            <a href="/store/merch/${a.id}/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/${a.id}/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>

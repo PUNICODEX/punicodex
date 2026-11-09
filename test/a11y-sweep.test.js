@@ -21,14 +21,18 @@
 
 const assert = require('node:assert');
 const fs = require('node:fs');
+const path = require('node:path');
 const { execSync } = require('node:child_process');
 const cheerio = require('cheerio');
+
+const ROOT = path.join(__dirname, '..');
 
 const files = execSync('git ls-files "*.html"', { encoding: 'utf8' })
   .split('\n')
   .filter(
     (f) =>
       f &&
+      fs.existsSync(path.join(ROOT, f)) &&
       !f.includes('/.backup/') &&
       !f.startsWith('docs/') &&
       !f.startsWith('templates/') &&

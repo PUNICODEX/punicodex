@@ -88,6 +88,10 @@ const files = execSync('git ls-files --cached --others --exclude-standard "*.htm
 })
   .split('\n')
   .filter(Boolean)
+  // `git ls-files --cached` includes tracked deletions until they are staged.
+  // A generated page removed in the working tree is intentionally gone, not
+  // a locked file to retry or a corrupt page to recreate.
+  .filter((f) => fs.existsSync(path.join(ROOT, f)))
   .filter((f) => !EXCLUDE.some((re) => re.test(f)));
 
 let injected = 0;

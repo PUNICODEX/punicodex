@@ -80,7 +80,11 @@ const RULES = [
   },
   {
     pattern: /^scripts\/(?:generation-lock|write-file-retry|generate|inject-analytics|inject-university-collaborators|inject-herald-beacon|inject-cookie-consent|inject-hero-videos|inject-px-core|generate-strata-page)\.js$|^test\/generation-lock\.test\.js$/,
-    suites: ['Generation Lock Tests'],
+    suites: ['Generation Lock Tests', 'Cookie Consent Tests'],
+  },
+  {
+    pattern: /^test\/browser-e2e\.test\.js$/,
+    suites: ['Browser E2E Tests'],
   },
   {
     pattern: /^platform\/(?:api\/(?:identity|identity-analytics|product-analytics|tenant-portal|email)\.js$|db\/(?:migrate-identity|operational)\.js$|api-handlers\/(?:admin\/portal\/(?:identities|analytics\/identity)|analytics\/collect)\/|public\/admin-portal\/(?:identities\/|portal\.js$|login\/index\.html$)|scholars\/(?:auth|router)\.js$)|^api\/(?:account\/|webhook\/index\.js$)|^account\/|^scripts\/migrate-identity-backfill\.js$|^test\/(?:identity|institution-identity|admin-route-authority|admin-cookie-security|analytics-consent)/,
@@ -114,7 +118,7 @@ const RULES = [
     suites: ['Sacred Atlas Tests'],
   },
   {
-    pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/origins\/|^test\/strata-page\.test\.js$/,
+    pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/(?:origins|strata)\/|^test\/strata-page\.test\.js$/,
     suites: ['STRATA Page Tests'],
   },
   {
@@ -128,12 +132,13 @@ const RULES = [
   {
     // Temple Art Room — the tab-strip restructure (STORE▾Merch·Art), the
     // per-temple art pages, and the gallery/creatives redirect stubs.
-    pattern: /^scripts\/(?:generate-temple-art|create-flagship|generate-blog-pages|generate-blog-series-pages)\.js$|^templates\/flagship\/.*\.html$|^test\/(?:temple-art-room|flagship-mobile-nav)\.test\.js$/,
+    pattern: /^scripts\/(?:generate-temple-art|create-flagship|generate-blog-pages|generate-blog-series-pages)\.js$|^templates\/flagship\/.*\.html$|^css\/temple-base\.css$|^test\/(?:temple-art-room|flagship-mobile-nav)\.test\.js$/,
     suites: [
       'Temple Art Room Tests',
       'Flagship Mobile Nav Tests',
       'Flagship Patterns Tests',
       'Flagship Content Quality Audit',
+      'Browser E2E Tests',
     ],
   },
   {
@@ -361,6 +366,7 @@ const RULES = [
       'Mobile Menu Consistency Tests',
       'Footer Consistency Tests',
       'Middleware Execution Tests',
+      'Browser E2E Tests',
       'Store Structure Tests',
     ],
   },

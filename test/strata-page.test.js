@@ -1,5 +1,5 @@
 /**
- * STRATA page contract (/pantheon/origins/).
+ * STRATA page contract (/pantheon/strata/).
  *
  * The column renders every canonical stratum from
  * data/pantheon-strata.json as a server-readable scene, oldest at the base:
@@ -25,7 +25,7 @@ function test(name, fn) {
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 
 test('every canonical stratum renders a scene with its name', () => {
-  const html = read('pantheon/origins/index.html');
+  const html = read('pantheon/strata/index.html');
   for (const l of DATA.layers) {
     assert.ok(html.includes(`id="stratum-${l.order}"`), `${l.pantheon}: scene present`);
     assert.ok(html.includes(l.name), `${l.pantheon}: name present`);
@@ -44,7 +44,7 @@ test('every canonical stratum renders a scene with its name', () => {
 });
 
 test('every being chip links a real temple; every stratum links its pantheon', () => {
-  const html = read('pantheon/origins/index.html');
+  const html = read('pantheon/strata/index.html');
   const { LEXICON } = require('../type/js/lexicon.js');
   const ids = new Set(LEXICON.map((e) => e.id));
   for (const l of DATA.layers) {
@@ -56,7 +56,7 @@ test('every being chip links a real temple; every stratum links its pantheon', (
 });
 
 test('surface, fault-lines, core sample, and finale are present', () => {
-  const html = read('pantheon/origins/index.html');
+  const html = read('pantheon/strata/index.html');
   assert.ok(html.includes('id="surface"'), 'surface hero');
   assert.ok(html.includes('id="core"'), 'core finale');
   assert.ok(html.includes('stx-fault'), 'syncretism fault-lines rendered');
@@ -64,7 +64,7 @@ test('surface, fault-lines, core sample, and finale are present', () => {
   assert.ok(html.includes('/pantheon/'), 'CTA into the full pantheon');
   assert.ok(html.includes('application/ld+json'), 'JSON-LD');
   assert.ok(
-    html.includes('rel="canonical" href="https://punicodex.com/pantheon/origins/"'),
+    html.includes('rel="canonical" href="https://punicodex.com/pantheon/strata/"'),
     'canonical'
   );
   const faults = (html.match(/class="stx-fault"/g) || []).length;
@@ -73,12 +73,33 @@ test('surface, fault-lines, core sample, and finale are present', () => {
 
 test('station II pantheons rectangle enters the column', () => {
   const html = read('index.html');
-  const block = html.match(/href="\/pantheon\/origins\/"[\s\S]*?Pantheons[\s\S]*?<\/a>/);
-  assert.ok(block, 'the 25-pantheons rectangle points at /pantheon/origins/');
+  const block = html.match(/href="\/pantheon\/strata\/"[\s\S]*?Pantheons[\s\S]*?<\/a>/);
+  assert.ok(block, 'the 25-pantheons rectangle points at /pantheon/strata/');
+});
+
+test('layer numerals stay in flow and all reading regions reserve the rail gutter', () => {
+  const html = read('pantheon/strata/index.html');
+  assert.ok(
+    /\.stx-depth-mark\{position:static;display:block/.test(html),
+    'desktop layer numeral must not overlap the stratum kicker'
+  );
+  assert.ok(
+    /\.stx-stratum\{position:relative;padding:7rem 5rem 5rem 1\.5rem/.test(html),
+    'desktop reading gutter missing'
+  );
+  assert.ok(
+    /\.stx-stratum\{padding:5\.5rem 3\.4rem 3\.5rem 1\.1rem/.test(html),
+    'mobile layer and fault-line gutter missing'
+  );
+  assert.ok(
+    /\.stx-surface,\.stx-core\{padding-right:3\.6rem;padding-left:1\.1rem/.test(html),
+    'mobile surface and finale gutter missing'
+  );
+  assert.ok(html.includes('/css/site-nav.css?v=1'), 'canonical site navigation stylesheet missing');
 });
 
 test('canonical chrome, scholarly limits, and collection cross-links are present', () => {
-  const html = read('pantheon/origins/index.html');
+  const html = read('pantheon/strata/index.html');
   assert.ok(html.includes('id="main-nav"'), 'canonical menu strip missing');
   assert.ok(html.includes('class="site-footer"'), 'canonical footer missing');
   assert.ok(html.includes('<h1 class="reveal">STRATA</h1>'), 'STRATA title missing');

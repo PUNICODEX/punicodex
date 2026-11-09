@@ -69,6 +69,15 @@ describe('Herald landing page', () => {
   });
 });
 
+describe('Herald generator', () => {
+  it('uses atomic retrying writes for large generated pages', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'scripts', 'generate-herald.js'), 'utf8');
+    assert(source.includes("require('./write-file-retry.js')"));
+    assert(source.includes('writeFileWithRetry(filePath, content'));
+    assert(!source.includes('fs.writeFileSync(filePath, content'));
+  });
+});
+
 describe('Herald book chapters', () => {
   edition.chapters.forEach((chapter, idx) => {
     const filePath = path.join(ROOT, 'herald', edition.id, chapter.slug, 'index.html');
