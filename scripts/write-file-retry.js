@@ -12,7 +12,7 @@ const { acquireGenerationLock } = require('./generation-lock.js');
 const TRANSIENT = new Set(['EPERM', 'EBUSY', 'EAGAIN', 'UNKNOWN']);
 let lockAcquired = false;
 
-function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 20, delay = 100) {
+function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 60, delay = 150) {
   if (!lockAcquired) {
     acquireGenerationLock(`targeted generator (pid ${process.pid})`);
     lockAcquired = true;
@@ -30,7 +30,8 @@ function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 20, del
         try { fs.unlinkSync(tmpPath); } catch {}
         throw err;
       }
-      const ms = delay * attempt;
+      const backoff = delay * attempt;
+      const ms = backoff + Math.floor(Math.random() * Math.min(250, backoff));
       console.warn(`  transient rename error for ${filePath} (${err.code}), retrying in ${ms}ms...`);
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
     }
