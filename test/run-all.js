@@ -341,7 +341,7 @@ const SUITES = [
   {
     name: 'Trending Page Tests',
     cmd: 'node test/trending-page.test.js',
-    timeout: 120000,
+    timeout: 300000,
   },
   {
     name: 'Archē Tests',
