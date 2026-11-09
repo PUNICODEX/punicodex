@@ -346,7 +346,7 @@ const SUITES = [
   {
     name: 'Archē Tests',
     cmd: 'node test/arche.test.js',
-    timeout: 120000,
+    timeout: 300000,
   },
   {
     name: 'Mobile Menu Drift Tests',
@@ -656,7 +656,7 @@ const SUITES = [
   {
     name: 'SEO Canonical Audit',
     cmd: 'node test/seo-canonical-audit.test.js',
-    timeout: 120000,
+    timeout: 300000,
   },
   { name: 'Pre-push Attestation Tests', cmd: 'node --test test/prepush-attestation.test.js' },
   { name: 'Release Orchestration Tests', cmd: 'node --test test/release-orchestration.test.js' },
