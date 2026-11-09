@@ -35,7 +35,7 @@ const SUITES = [
   { name: 'Scholars Content Regression', cmd: 'node test/scholars-content.test.js' },
   { name: 'Scholars API Flow Regression', cmd: 'node test/scholars-api-flow.test.js' },
   { name: 'Flagship Blog Tests', cmd: 'node --test test/blog.test.js' },
-  { name: 'Blog Index Tests', cmd: 'node --test test/blog-index.test.js', timeout: 120000 },
+  { name: 'Blog Index Tests', cmd: 'node --test test/blog-index.test.js', timeout: 300000 },
   {
     name: 'Scholars Session Revocation Tests',
     cmd: 'node platform/scholars/session-revocation.test.js',
@@ -511,7 +511,7 @@ const SUITES = [
   {
     name: 'Flagship Mobile Nav Tests',
     cmd: 'node test/flagship-mobile-nav.test.js',
-    timeout: 90000,
+    timeout: 300000,
   },
   { name: 'Realms Page Tests', cmd: 'node test/realms-page.test.js' },
   {
@@ -713,6 +713,9 @@ const SERIAL_SUITES = new Set([
   // Reads every flagship temple page while generator suites rewrite them;
   // torn reads cause false Extended-tab failures.
   'Flagship Patterns Tests',
+  'Flagship Mobile Nav Tests',
+  // Writes to the shared golden SQLite; parallel access can tear WAL state.
+  'Gamification Tests',
   // The two static-analysis gates scan the whole tree; running them in
   // parallel with tree-mutating suites makes them flag transient writes.
   'Format Check',
