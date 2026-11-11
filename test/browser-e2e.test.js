@@ -540,6 +540,100 @@ async function run() {
       await mob.close();
     });
 
+    await test('admin portal: cookie-only sign-in stays on the dashboard and sends CSRF', async () => {
+      const admin = await browser.newContext({ viewport: { width: 1366, height: 900 } });
+      try {
+        await admin.addCookies([
+          { name: 'punicodex_admin_csrf', value: 'browser-csrf-token', url: base },
+        ]);
+        await admin.route('**/api/**', (route) =>
+          route.fulfill({ status: 200, contentType: 'application/json', body: '{}' })
+        );
+        await admin.route('**/api/admin/portal/login/', (route) =>
+          route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            headers: {
+              'Set-Cookie':
+                'punicodex_admin_session=browser-admin-session; Path=/; HttpOnly; SameSite=Lax',
+            },
+            body: JSON.stringify({
+              success: true,
+              token: 'browser-admin-session',
+              csrfToken: 'browser-csrf-token',
+              user: { email: 'cookie-session@example.test' },
+              role: 'viewer',
+            }),
+          })
+        );
+        await admin.route('**/api/admin/portal/me/', (route) => {
+          const cookies = route.request().headers().cookie || '';
+          const authenticated = cookies.includes('punicodex_admin_session=browser-admin-session');
+          return route.fulfill({
+            status: authenticated ? 200 : 401,
+            contentType: 'application/json',
+            body: JSON.stringify(
+              authenticated
+                ? {
+                    user: { email: 'cookie-session@example.test', displayName: 'Cookie Session' },
+                    role: 'viewer',
+                    permissions: ['read'],
+                  }
+                : { error: 'Authentication required', code: 'auth_required' }
+            ),
+          });
+        });
+        let mutationHeaders = null;
+        await admin.route('**/api/admin/portal/csrf-probe/', (route) => {
+          mutationHeaders = route.request().headers();
+          return route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            body: '{"success":true}',
+          });
+        });
+
+        const ap = await admin.newPage();
+        const navigations = [];
+        ap.on('framenavigated', (frame) => {
+          if (frame === ap.mainFrame()) navigations.push(frame.url());
+        });
+        await ap.goto(`${base}/admin-portal/login/`, { waitUntil: 'domcontentloaded' });
+        await ap.locator('#email').fill('cookie-session@example.test');
+        await ap.locator('#password').fill('not-a-real-password');
+        await ap.locator('#login-submit').click();
+        await ap.waitForURL(`${base}/admin-portal/`);
+        await ap.locator('.pz-sidebar-user').waitFor({ state: 'visible' });
+        await ap.waitForTimeout(700);
+        if (new URL(ap.url()).pathname !== '/admin-portal/') {
+          throw new Error(
+            `cookie session bounced away from dashboard: ${navigations.join(' -> ')}`
+          );
+        }
+        if (navigations.length !== 2) {
+          throw new Error(`unexpected admin redirect cycle: ${navigations.join(' -> ')}`);
+        }
+        const legacyToken = await ap.evaluate(() => localStorage.getItem('punicodex_portal_token'));
+        if (legacyToken !== null) throw new Error('test did not exercise a cookie-only session');
+        if ((await ap.locator('.pz-sidebar-user').textContent()) !== 'Cookie Session') {
+          throw new Error('cookie-authenticated identity did not render');
+        }
+
+        await ap.evaluate(() =>
+          window.Portal.api('/api/admin/portal/csrf-probe/', { method: 'POST', body: {} })
+        );
+        if (!mutationHeaders) throw new Error('CSRF probe did not reach the server');
+        if (mutationHeaders['x-csrf-token'] !== 'browser-csrf-token') {
+          throw new Error('cookie-authenticated mutation omitted its CSRF token');
+        }
+        if (!(mutationHeaders.cookie || '').includes('punicodex_admin_session=')) {
+          throw new Error('cookie-authenticated mutation omitted its session cookie');
+        }
+      } finally {
+        await admin.close();
+      }
+    });
+
     await test('search page: labeled query input and submit control exist', async () => {
       await page.goto(`${base}/search/`, { waitUntil: 'domcontentloaded' });
       const input = page.locator('#searchInput').first();

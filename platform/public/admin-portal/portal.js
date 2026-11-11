@@ -201,9 +201,8 @@
     const token = getToken();
     if (token) headers['x-admin-token'] = token;
     const method = opts.method || 'GET';
-    if (method !== 'GET' && cookie('punicodex_admin_session')) {
-      headers['x-csrf-token'] = cookie('punicodex_admin_csrf') || '';
-    }
+    const csrfToken = cookie('punicodex_admin_csrf');
+    if (method !== 'GET' && csrfToken) headers['x-csrf-token'] = csrfToken;
 
     const fetchOpts = { method, headers, credentials: 'same-origin' };
     if (opts.body !== undefined) {
@@ -411,10 +410,6 @@
   // Auth guard: verifies the session, renders the shell, and resolves with
   // the /me context ({user, role, permissions}). Redirects to login on 401.
   async function initShell(pageId) {
-    if (!getToken()) {
-      redirectToLogin();
-      return null;
-    }
     let ctx;
     try {
       ctx = await me();
