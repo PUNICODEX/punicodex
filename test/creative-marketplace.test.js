@@ -219,6 +219,43 @@ async function runTests() {
     assert.strictEqual(instDashboardRes.body.data.approvedCount, 1);
     console.log('  ✓ institution dashboard reports approved count');
 
+    const identity = require('../platform/api/identity');
+    const operational = require('../platform/db/operational');
+    await operational.run("UPDATE scholars_institutions SET status = 'active' WHERE id = $1", [
+      ctx.institutionId,
+    ]);
+    const unifiedAccount = await identity.provisionIdentity({
+      email: 'unified-admin@loadtest.academy',
+      status: 'active',
+      verified: true,
+    });
+    await identity.adminSetInstitutionAccess(42, unifiedAccount.id, {
+      institutionId: ctx.institutionId,
+      role: 'inst_admin',
+    });
+    const unifiedSession = await identity.createSession(unifiedAccount.id);
+    const unifiedRes = await request('GET', '/api/v1/creatives/institution/dashboard', {
+      headers: {
+        cookie: `punicodex_session=${unifiedSession.token}; punicodex_csrf=${unifiedSession.csrfToken}`,
+      },
+    });
+    assert.strictEqual(unifiedRes.status, 200, JSON.stringify(unifiedRes.body));
+    assert.strictEqual(unifiedRes.body.data.approvedCount, 1);
+
+    const ordinaryAccount = await identity.provisionIdentity({
+      email: 'ordinary-member@loadtest.academy',
+      status: 'active',
+      verified: true,
+    });
+    const ordinarySession = await identity.createSession(ordinaryAccount.id);
+    const forbiddenRes = await request('GET', '/api/v1/creatives/institution/dashboard', {
+      headers: {
+        cookie: `punicodex_session=${ordinarySession.token}; punicodex_csrf=${ordinarySession.csrfToken}`,
+      },
+    });
+    assert.strictEqual(forbiddenRes.status, 403);
+    console.log('  ✓ unified account sessions expose institution analytics only to granted admins');
+
     // Tags are persisted and returned in public listings.
     const taggedList = await request('GET', '/api/v1/creatives');
     assert.strictEqual(taggedList.status, 200);

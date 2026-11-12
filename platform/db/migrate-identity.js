@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
 const path = require('node:path');
-const { run, isPostgres } = require('./operational');
+const operational = require('./operational');
 
 const TABLES = [
   'accounts',
@@ -134,9 +134,9 @@ function migrate(db) {
   db.exec(SQLITE_SCHEMA);
 }
 
-async function migratePostgres() {
-  if (!isPostgres()) return;
-  await run(PG_SCHEMA);
+async function migratePostgres(helpers = operational) {
+  if (!helpers.isPostgres()) return;
+  await helpers.exec(PG_SCHEMA);
 }
 
 function runStandalone() {

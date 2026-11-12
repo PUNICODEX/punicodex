@@ -1,12 +1,8 @@
 const { handleError, setCors } = require('../_utils');
-const { getDb } = require('../../platform/db/connection');
-const { migrate: migrateTenantPortal } = require('../../platform/db/migrate-tenant-portal');
 const tenantPortal = require('../../platform/api/tenant-portal');
 const identity = require('../../platform/api/identity');
 const { checkRateLimit } = require('../../platform/api/api-rate-limiter');
 const { getClientIp } = require('../../platform/api/client-ip');
-
-migrateTenantPortal(getDb());
 
 async function checkAuthRateLimit(req, res, bucket) {
   const key = `${bucket}:${getClientIp(req)}`;
@@ -175,6 +171,17 @@ module.exports = async (req, res) => {
         return res.json(await identity.updateInitiation(resolved.account.id, body));
       }
       return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    if (
+      slugParts.length === 2 &&
+      slugParts[0] === 'institution' &&
+      slugParts[1] === 'overview' &&
+      req.method === 'GET'
+    ) {
+      const resolved = await identity.requireAccount(req, res);
+      if (!resolved) return;
+      return res.json(await identity.getInstitutionOverview(resolved.account.id));
     }
 
     if (slugParts[0] === 'analytics' && req.method === 'GET') {

@@ -67,9 +67,8 @@
     var token = getToken();
     if (token) headers.Authorization = 'Bearer ' + token;
     var method = opts.method || 'GET';
-    if (method !== 'GET' && cookie('punicodex_session')) {
-      headers['x-csrf-token'] = cookie('punicodex_csrf') || '';
-    }
+    var csrfToken = cookie('punicodex_csrf');
+    if (method !== 'GET' && csrfToken) headers['x-csrf-token'] = csrfToken;
     var fetchOpts = { method: method, headers: headers, credentials: 'same-origin' };
     if (opts.body !== undefined) {
       headers['Content-Type'] = 'application/json';
@@ -83,10 +82,13 @@
       data = null;
     }
     if (!res.ok) {
-      // The server error body carries a human-readable message; the bare
-      // fallback must too — pages render err.message verbatim to sponsors.
+      var serverError = data && data.error;
+      if (serverError && typeof serverError === 'object') {
+        serverError = serverError.message || serverError.code;
+      }
       var err = new Error(
-        (data && data.error) ||
+        (typeof serverError === 'string' && serverError) ||
+          (data && typeof data.message === 'string' && data.message) ||
           'Something went wrong on our side (error ' + res.status + '). Please try again.'
       );
       err.status = res.status;
@@ -275,13 +277,20 @@
     var bar = document.getElementById('sandbox-topbar');
     if (!bar) return;
     var capabilities = (me && me.capabilities) || [];
+    var account = (me && me.account) || {};
+    var canManageSponsorship =
+      capabilities.indexOf('sponsorship.manage') !== -1 || Boolean(account.isSponsor);
+    var canManagePatronage =
+      capabilities.indexOf('patron.manage') !== -1 || Boolean(account.isPatron);
     var links = [
       ['overview', '/account/', 'Overview'],
       ['orders', '/account/orders/', 'Orders'],
-      ['bookings', '/account/bookings/', 'Placements'],
-      ['brand', '/account/brand/', 'Creative Studio'],
-      ['initiation', '/account/initiation/', 'Initiation'],
     ];
+    if (canManageSponsorship || canManagePatronage) {
+      links.push(['bookings', '/account/bookings/', 'Placements']);
+      links.push(['brand', '/account/brand/', 'Creative Studio']);
+    }
+    links.push(['initiation', '/account/initiation/', 'Initiation']);
     if (capabilities.indexOf('institution.manage') !== -1) {
       links.push(['institution', '/account/institution/', 'Institution']);
     }

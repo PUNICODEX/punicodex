@@ -16,6 +16,7 @@
 
 const Database = require('better-sqlite3');
 const path = require('node:path');
+const operational = require('./operational');
 
 const DB_PATH = process.env.PUNICODEX_TEST_DB_PATH || path.join(__dirname, 'punicodex.db');
 
@@ -44,6 +45,16 @@ function migrate(db) {
   );
 }
 
+async function migratePostgres(helpers = operational) {
+  if (!helpers.isPostgres()) return;
+  for (const column of ['slot_slug TEXT', 'visible_seconds REAL', 'visible_percent REAL']) {
+    await helpers.run(`ALTER TABLE analytics_events ADD COLUMN IF NOT EXISTS ${column}`);
+  }
+  await helpers.run(
+    'CREATE INDEX IF NOT EXISTS idx_analytics_events_booking_slot ON analytics_events(booking_id, slot_slug)'
+  );
+}
+
 function runMigration() {
   const { getDb } = require('./connection');
   migrate(getDb());
@@ -62,4 +73,10 @@ if (require.main === module) {
   runStandalone();
 }
 
-module.exports = { migrate, runMigration, runStandalone, addColumnIfMissing };
+module.exports = {
+  migrate,
+  migratePostgres,
+  runMigration,
+  runStandalone,
+  addColumnIfMissing,
+};

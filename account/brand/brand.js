@@ -556,7 +556,7 @@
   async function init() {
     var me = await S.requireAccount();
     if (!me) return;
-    S.mountShell('brand', me.account.email);
+    S.mountShell('brand', me.account.email, me);
     renderStudio(me);
     loadRequests();
   }

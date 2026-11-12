@@ -905,8 +905,29 @@ a.sb-panel-link:hover > h3 {
 /* ── Responsive ───────────────────────────────────────────── */
 
 @media (max-width: 760px) {
+  .sb-topbar {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: var(--sb-topbar-h);
+    gap: 0.5rem;
+    padding: 0.65rem 0.9rem;
+  }
+
   .sb-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: 0.15rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .sb-nav::-webkit-scrollbar {
     display: none;
+  }
+
+  .sb-nav a {
+    white-space: nowrap;
   }
 
   .sb-brand-tag {
@@ -1103,7 +1124,10 @@ a.sb-panel-link:hover > h3 {
   text-align: center;
 }
 
-/* The img/empty display rules above beat the UA [hidden] rule — restore it. */
+[hidden] {
+  display: none !important;
+}
+
 .sb-frame-img[hidden],
 .sb-frame-empty[hidden] {
   display: none;

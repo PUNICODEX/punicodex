@@ -188,6 +188,9 @@ async function run() {
       domain: 'identity.test',
     });
     const institutionId = institution.lastInsertRowid;
+    await operational.run("UPDATE scholars_institutions SET status = 'active' WHERE id = $1", [
+      institutionId,
+    ]);
     scholarsDb.updateInstitutionSponsorship(institutionId, { sponsorshipStatus: 'active' });
     scholarsDb.createUserWithPassword({
       email: 'dean@identity.test',
@@ -288,6 +291,47 @@ async function run() {
         department: 'History',
       }),
       /only within their own department/
+    );
+  });
+
+  await test('admin institution grants are scoped, observable, and immediately revocable', async () => {
+    const session = await activate('granted-dean@identity.test');
+    const institution = scholarsDb.getInstitutionBySlug('identity-university');
+    assert.ok(!(await identity.getCapabilities(session.account.id)).includes('institution.manage'));
+
+    const granted = await identity.adminSetInstitutionAccess(42, session.account.id, {
+      institutionId: institution.id,
+      role: 'dept_admin',
+      department: 'Classics',
+    });
+    assert.ok(granted.capabilities.includes('institution.manage'));
+    assert.ok(granted.capabilities.includes('institution.invite'));
+    assert.ok(!granted.capabilities.includes('sponsorship.book'));
+    const departmentOverview = await identity.getInstitutionOverview(session.account.id);
+    assert.strictEqual(departmentOverview.institution.department, 'Classics');
+    assert.ok(departmentOverview.members.students >= 1);
+
+    const elevated = await identity.adminSetInstitutionAccess(42, session.account.id, {
+      institutionId: institution.id,
+      role: 'inst_admin',
+    });
+    assert.strictEqual(elevated.identity.scholars[0].role, 'inst_admin');
+    const institutionOverview = await identity.getInstitutionOverview(session.account.id);
+    assert.strictEqual(institutionOverview.institution.department, null);
+    assert.ok(institutionOverview.members.total >= departmentOverview.members.total);
+
+    await identity.adminRevokeInstitutionAccess(42, session.account.id, institution.id);
+    assert.ok(!(await identity.getCapabilities(session.account.id)).includes('institution.manage'));
+    assert.strictEqual(await identity.resolveSession(request(session), response()), null);
+    const audit = await identity.adminGetAccount(session.account.id);
+    assert.ok(audit.audit.some((row) => row.action === 'admin.institution_access_granted'));
+    assert.ok(audit.audit.some((row) => row.action === 'admin.institution_access_revoked'));
+    await assert.rejects(
+      identity.adminSetInstitutionAccess(42, session.account.id, {
+        institutionId: institution.id,
+        role: 'student',
+      }),
+      /valid institution and administration role/
     );
   });
 

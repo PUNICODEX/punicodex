@@ -206,6 +206,15 @@ const ROUTES = [
     load: () => require('../../platform/api-handlers/admin/portal/identities/[id]/status/index.js'),
   },
   {
+    segments: ['portal', 'identities', '[id]', 'institution'],
+    load: () =>
+      require('../../platform/api-handlers/admin/portal/identities/[id]/institution/index.js'),
+  },
+  {
+    segments: ['portal', 'institutions'],
+    load: () => require('../../platform/api-handlers/admin/portal/institutions/index.js'),
+  },
+  {
     segments: ['portal', 'universities'],
     load: () => require('../../platform/api-handlers/admin/portal/universities/index.js'),
   },

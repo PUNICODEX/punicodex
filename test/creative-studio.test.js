@@ -37,7 +37,7 @@ test('staged upload previews inside the frame (what you see is what runs)', () =
 test('studio styles exist and page versions bumped', () => {
   assert.match(sandboxCss, /\.sb-dropzone/);
   assert.match(sandboxCss, /\.sb-steps/);
-  assert.match(brandHtml, /brand\.js\?v=5/);
+  assert.match(brandHtml, /brand\.js\?v=6/);
   assert.match(brandHtml, /Creative Studio/);
 });
 

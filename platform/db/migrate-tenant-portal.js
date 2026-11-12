@@ -24,6 +24,7 @@
 
 const Database = require('better-sqlite3');
 const path = require('node:path');
+const operational = require('./operational');
 
 const DB_PATH = process.env.PUNICODEX_TEST_DB_PATH || path.join(__dirname, 'punicodex.db');
 
@@ -91,8 +92,18 @@ const TENANT_PORTAL_SCHEMA = `
   CREATE INDEX IF NOT EXISTS idx_tenant_change_requests_status ON tenant_change_requests(status);
 `;
 
+const PG_SCHEMA = TENANT_PORTAL_SCHEMA.replace(
+  /INTEGER PRIMARY KEY AUTOINCREMENT/g,
+  'SERIAL PRIMARY KEY'
+).replace(/DATETIME/g, 'TIMESTAMPTZ');
+
 function migrate(db) {
   db.exec(TENANT_PORTAL_SCHEMA);
+}
+
+async function migratePostgres(helpers = operational) {
+  if (!helpers.isPostgres()) return;
+  await helpers.exec(PG_SCHEMA);
 }
 
 function runStandalone() {
@@ -108,4 +119,4 @@ if (require.main === module) {
   runStandalone();
 }
 
-module.exports = { migrate, TENANT_PORTAL_SCHEMA };
+module.exports = { migrate, migratePostgres, TENANT_PORTAL_SCHEMA, PG_SCHEMA };

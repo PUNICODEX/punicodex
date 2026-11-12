@@ -67,6 +67,8 @@ const API_ROUTES = [
   '/api/admin/portal/identities/',
   '/api/admin/portal/identities/:id/',
   '/api/admin/portal/identities/:id/status/',
+  '/api/admin/portal/identities/:id/institution/',
+  '/api/admin/portal/institutions/',
   '/api/admin/portal/analytics/identity/',
   '/api/admin/portal/users/:id/',
   '/api/admin/portal/users/:id/disable/',

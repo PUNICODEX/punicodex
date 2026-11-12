@@ -7,7 +7,7 @@
   <title>Institution Administration — PuniCodex Account</title>
   <meta name="description" content="Invite students, review invitations, and control academic and personal-commerce capabilities for your institution.">
   <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
-  <link rel="stylesheet" href="/account/sandbox.css?v=5">
+  <link rel="stylesheet" href="/account/sandbox.css?v=6">
   <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 </head>
 <body data-page="institution">
@@ -16,7 +16,15 @@
     <div class="sb-page-head"><div><span class="sb-eyebrow">Your Institution</span><h1>People &amp; permissions</h1><p class="sb-page-sub" id="institution-sub">Invite students, control academic access, and make personal-commerce policy explicit.</p></div></div>
     <div id="institution-forbidden" class="sb-state error" hidden>This account has no institution administration access. <a href="/scholars/dept-admin/">Open the Scholars department portal instead</a> if your institution uses the legacy flow.</div>
     <div id="institution-app">
-      <section class="sb-section" style="margin-top:0" aria-labelledby="invite-heading">
+      <section class="sb-section" style="margin-top:0" aria-labelledby="pulse-heading">
+        <div class="sb-section-head"><h2 id="pulse-heading">Institution pulse</h2><p class="sb-section-note">Live operational data, limited to your authorized scope</p></div>
+        <div class="sb-module-grid" id="institution-kpis"><div class="sb-state">Loading your institution…</div></div>
+      </section>
+      <section class="sb-section" aria-labelledby="creative-output-heading">
+        <div class="sb-section-head"><h2 id="creative-output-heading">Student creative output</h2><p class="sb-section-note" id="creative-output-meta">Submissions, review states, and audience response</p></div>
+        <div id="institution-creative-list"><div class="sb-state">Loading creative work…</div></div>
+      </section>
+      <section class="sb-section" aria-labelledby="invite-heading">
         <div class="sb-section-head"><h2 id="invite-heading">Invite students</h2><p class="sb-section-note">Up to 100 per batch · one-time links expire in seven days</p></div>
         <form class="sb-panel" id="invite-form" novalidate>
           <div class="sb-field"><label for="invite-emails">Email addresses <span class="sb-field-note">one per line, or separated by commas</span></label><textarea id="invite-emails" rows="5" required placeholder="student@university.edu&#10;colleague@university.edu"></textarea></div>
@@ -43,7 +51,7 @@
     </div>
   </main>
   <footer class="sb-footer"><p>© 2026 PuniCodex · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></p></footer>
-  <script src="/account/sandbox.js?v=5"></script>
-  <script src="/account/institution/institution.js?v=1"></script>
+  <script src="/account/sandbox.js?v=6"></script>
+  <script src="/account/institution/institution.js?v=2"></script>
 </body>
 </html>

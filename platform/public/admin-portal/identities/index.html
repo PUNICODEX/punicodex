@@ -53,7 +53,7 @@
     <script src="../portal.js?v=31887bbf50"></script>
     <script>
     (function () {
-        var state = { query: '', offset: 0, items: [] };
+        var state = { query: '', offset: 0, items: [], institutions: [] };
 
         function loadInsights() {
             return Portal.api('/api/admin/portal/analytics/identity/?days=30').then(function (data) {
@@ -118,12 +118,25 @@
             });
         }
 
+        function loadInstitutions() {
+            return Portal.api('/api/admin/portal/institutions/').then(function (data) {
+                state.institutions = data.items || [];
+            }).catch(function (err) { Portal.toast(err.message, 'error'); });
+        }
+
         function detail(id) {
             Portal.api('/api/admin/portal/identities/' + encodeURIComponent(id) + '/').then(function (data) {
                 var scholars = data.identity.scholars || [];
                 var scholarHtml = scholars.length ? scholars.map(function (s) {
-                    return '<div class="identity-fact"><span class="identity-fact-label">' + Portal.escapeHtml(s.institutionName || 'Institution') + '</span>' + Portal.escapeHtml(s.role) + (s.department ? ' · ' + Portal.escapeHtml(s.department) : '') + '</div>';
+                    return '<div class="identity-fact"><span class="identity-fact-label">' + Portal.escapeHtml(s.institutionName || 'Institution') + '</span>' + Portal.escapeHtml(s.role) + (s.department ? ' · ' + Portal.escapeHtml(s.department) : '') +
+                        '<div class="cell-actions" style="margin-top:.5rem"><button type="button" class="btn btn-sm btn-danger" data-revoke-institution="' + Portal.escapeHtml(s.institutionId) + '">Revoke academic access</button></div></div>';
                 }).join('') : '<div class="identity-fact"><span class="identity-fact-label">Academic</span>No linked academic profile</div>';
+                var activeInstitutions = state.institutions.filter(function (institution) { return institution.accessActive; });
+                var grantHtml = activeInstitutions.length ?
+                    '<form id="identity-grant" class="identity-detail-grid"><div class="field"><label for="identity-institution">Institution</label><select id="identity-institution">' + activeInstitutions.map(function (institution) {
+                        return '<option value="' + Portal.escapeHtml(institution.id) + '">' + Portal.escapeHtml(institution.name) + '</option>';
+                    }).join('') + '</select></div><div class="field"><label for="identity-role">Administration scope</label><select id="identity-role"><option value="inst_admin">Institution-wide</option><option value="dept_admin">One department</option></select></div><div class="field"><label for="identity-department">Department <span class="cell-sub">required for department scope</span></label><input id="identity-department" maxlength="100" placeholder="Classics"></div><div class="field"><button type="submit" class="btn btn-primary" id="identity-grant-submit">Grant administration access</button></div></form>' :
+                    '<div class="state-block">No institution with active sponsorship is available for a new grant.</div>';
                 var capabilities = (data.capabilities || []).map(function (cap) { return '<span class="badge badge--gold">' + Portal.escapeHtml(cap) + '</span>'; }).join('') || '<span class="cell-sub">No capabilities</span>';
                 var audit = (data.audit || []).slice(0, 20).map(function (row) {
                     return '<tr><td>' + Portal.escapeHtml(Portal.fmtDateTime(row.created_at)) + '</td><td>' + Portal.escapeHtml(row.action) + '</td><td>' + Portal.escapeHtml(row.resource_type || '—') + '</td></tr>';
@@ -134,12 +147,53 @@
                     '<div class="identity-fact"><span class="identity-fact-label">Linked systems</span>' + Portal.escapeHtml((data.identity.linkedSystems || []).join(', ') || 'customer only') + '</div>' +
                     '<div class="identity-fact"><span class="identity-fact-label">Initiation</span>' + (data.identity.initiation.completedAt ? 'Complete' : 'Chapter ' + data.identity.initiation.currentChapter) + '</div></div>' +
                     '<div><h3>Academic membership</h3><div class="identity-detail-grid">' + scholarHtml + '</div></div>' +
+                    '<div><h3>Grant institution administration</h3><p class="panel-sub">This unlocks the institution dashboard only for the selected scope. It does not grant PuniCodex admin-portal access.</p>' + grantHtml + '</div>' +
                     '<div><h3>Capabilities</h3><div class="identity-capabilities">' + capabilities + '</div></div>' +
                     '<div><h3>Recent audit</h3><div class="table-wrap identity-audit"><table class="portal-table"><thead><tr><th>When</th><th>Action</th><th>Resource</th></tr></thead><tbody>' + audit + '</tbody></table></div></div>' +
                     '<div class="modal-actions"><button type="button" class="btn btn-secondary" id="identity-close">Close</button></div></div>',
                     'Identity review'
                 );
                 document.getElementById('identity-close').addEventListener('click', Portal.closeModal);
+                var grantForm = document.getElementById('identity-grant');
+                if (grantForm) grantForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    var button = document.getElementById('identity-grant-submit');
+                    button.disabled = true;
+                    Portal.api('/api/admin/portal/identities/' + encodeURIComponent(id) + '/institution/', {
+                        method: 'POST',
+                        body: {
+                            institutionId: Number(document.getElementById('identity-institution').value),
+                            role: document.getElementById('identity-role').value,
+                            department: document.getElementById('identity-department').value.trim() || null,
+                        },
+                    }).then(function () {
+                        Portal.toast('Institution administration access granted', 'success');
+                        Portal.closeModal();
+                        load();
+                        detail(id);
+                    }).catch(function (err) {
+                        button.disabled = false;
+                        Portal.toast(err.message, 'error');
+                    });
+                });
+                document.querySelectorAll('[data-revoke-institution]').forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        if (!window.confirm('Revoke this academic membership and its active sessions immediately?')) return;
+                        button.disabled = true;
+                        Portal.api('/api/admin/portal/identities/' + encodeURIComponent(id) + '/institution/', {
+                            method: 'DELETE',
+                            body: { institutionId: Number(button.getAttribute('data-revoke-institution')) },
+                        }).then(function () {
+                            Portal.toast('Academic access revoked', 'success');
+                            Portal.closeModal();
+                            load();
+                            detail(id);
+                        }).catch(function (err) {
+                            button.disabled = false;
+                            Portal.toast(err.message, 'error');
+                        });
+                    });
+                });
             }).catch(function (err) { Portal.toast(err.message, 'error'); });
         }
 
@@ -159,6 +213,7 @@
         document.getElementById('identity-refresh').addEventListener('click', function () { load(); });
         var first = load();
         loadInsights();
+        loadInstitutions();
         Portal.initShell('identities').then(function (ctx) { if (!ctx) first.catch(function () {}); });
     })();
     </script>

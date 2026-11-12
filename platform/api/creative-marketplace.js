@@ -110,6 +110,25 @@ function asyncHandler(fn) {
   };
 }
 
+async function requireInstitutionAccount(req, res, next) {
+  try {
+    const identity = require('./identity');
+    const resolved = await identity.resolveSession(req, res);
+    if (!resolved) return requireAuth(req, res, next);
+    const actor = await identity.institutionActor(resolved.account.id);
+    req.user = {
+      id: actor.id,
+      email: actor.email,
+      institutionId: actor.institution_id,
+      role: actor.role,
+      department: actor.department,
+    };
+    return next();
+  } catch (err) {
+    return res.status(err.status || 500).json(error(err.message, err.status || 500));
+  }
+}
+
 function sanitizeAsset(asset) {
   if (!asset) return null;
   return {
@@ -259,7 +278,7 @@ router.get(
 
 router.get(
   '/institution/dashboard',
-  requireAuth,
+  requireInstitutionAccount,
   asyncHandler(async (req, res) => {
     const institutionId = req.user.institutionId;
     if (!institutionId) {
@@ -855,7 +874,7 @@ router.get(
 
 router.get(
   '/institution/analytics',
-  requireAuth,
+  requireInstitutionAccount,
   asyncHandler(async (req, res) => {
     if (!req.user.institutionId) {
       return res.status(400).json(error('No institution associated'));

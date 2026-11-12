@@ -119,7 +119,7 @@
   async function init() {
     var me = await S.requireAccount();
     if (!me) return;
-    S.mountShell('bookings', me.account.email);
+    S.mountShell('bookings', me.account.email, me);
     var bookings = me.resources.bookings || [];
     var patrons = me.resources.patrons || [];
     renderBookings(bookings);

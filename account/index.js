@@ -315,13 +315,18 @@
       templeWrap.innerHTML = cards.join('');
     }
 
-    // Placements come from the shared space analytics payload.
-    try {
-      var space = await S.api('/api/account/analytics/space/');
-      renderPlacements(space.slots || []);
-    } catch (err) {
-      document.getElementById('placements-list').innerHTML =
-        '<div class="sb-state error">' + S.esc(err.message) + '</div>';
+    // Only sponsors have placement analytics. Members and patrons never need
+    // to enter the sponsor-only endpoint.
+    if (!(me.resources.bookings || []).length) {
+      document.getElementById('placements-section').hidden = true;
+    } else {
+      try {
+        var space = await S.api('/api/account/analytics/space/');
+        renderPlacements(space.slots || []);
+      } catch (err) {
+        document.getElementById('placements-list').innerHTML =
+          '<div class="sb-state error">' + S.esc(err.message) + '</div>';
+      }
     }
 
     // Nothing at all → one elegant empty state instead of empty sections.

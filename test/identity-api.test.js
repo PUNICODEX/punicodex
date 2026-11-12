@@ -30,6 +30,37 @@ async function run() {
     emailedToken = token;
     return { success: true };
   };
+  await test('Postgres schema self-healing uses multi-statement exec, never prepared run', async () => {
+    const identityMigration = require('../platform/db/migrate-identity');
+    const tenantMigration = require('../platform/db/migrate-tenant-portal');
+    const analyticsMigration = require('../platform/db/migrate-analytics-slot');
+    const schemas = [];
+    const helpers = {
+      isPostgres: () => true,
+      exec: async (sql) => schemas.push(sql),
+      run: async () => {
+        throw new Error('multi-statement schema must not use prepared run');
+      },
+    };
+    await identityMigration.migratePostgres(helpers);
+    await tenantMigration.migratePostgres(helpers);
+    assert.strictEqual(schemas.length, 2);
+    assert.ok(schemas[0].includes('CREATE TABLE IF NOT EXISTS accounts'));
+    assert.ok(schemas[0].includes('CREATE TABLE IF NOT EXISTS account_sessions'));
+    assert.ok(schemas[1].includes('CREATE TABLE IF NOT EXISTS tenant_accounts'));
+    assert.ok(schemas[1].includes('SERIAL PRIMARY KEY'));
+
+    const statements = [];
+    await analyticsMigration.migratePostgres({
+      isPostgres: () => true,
+      run: async (sql) => statements.push(sql),
+    });
+    assert.strictEqual(statements.length, 4);
+    assert.ok(statements[0].includes('slot_slug TEXT'));
+    assert.ok(statements[1].includes('visible_seconds REAL'));
+    assert.ok(statements[2].includes('visible_percent REAL'));
+  });
+
   let setup;
   await test('register and activation set a secure session without exposing account existence', async () => {
     const registration = await invoke(handler, 'POST', '/api/account/auth/register/', {

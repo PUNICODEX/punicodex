@@ -217,7 +217,7 @@
   async function init() {
     var me = await S.requireAccount();
     if (!me) return;
-    S.mountShell('overview', me.account.email);
+    S.mountShell('overview', me.account.email, me);
 
     var bookingId = new URLSearchParams(window.location.search).get('id');
     if (!bookingId) {

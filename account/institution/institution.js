@@ -86,6 +86,43 @@
     });
   }
 
+  function metric(value, label, note) {
+    return '<div class="sb-panel"><div class="sb-metric-value">' + S.esc(S.fmtNumber(value)) + '</div><strong>' + S.esc(label) + '</strong><p class="sb-panel-sub">' + S.esc(note) + '</p></div>';
+  }
+
+  async function loadOverview() {
+    var overview = await S.api('/api/account/institution/overview/');
+    var results = await Promise.allSettled([
+      S.api('/api/v1/creatives/institution/dashboard/'),
+      S.api('/api/v1/creatives/institution/analytics/?days=30'),
+    ]);
+    var dashboard = results[0].status === 'fulfilled' ? results[0].value.data : null;
+    var analytics = results[1].status === 'fulfilled' ? results[1].value.data : null;
+    document.getElementById('institution-kpis').innerHTML = [
+      metric(overview.members.students, 'Active students', overview.members.total + ' active people in this scope'),
+      metric(overview.scholarship.pending, 'Scholarly edits awaiting review', overview.scholarship.total + ' total submissions'),
+      metric(dashboard ? dashboard.pendingReviewCount : 0, 'Creative works awaiting review', dashboard ? dashboard.approvedCount + ' approved works' : 'Creative dashboard unavailable'),
+      metric(analytics ? analytics.views : 0, 'Creative views · 30d', analytics ? analytics.purchases + ' licenses in this window' : 'Audience analytics unavailable'),
+    ].join('');
+
+    if (!dashboard) {
+      document.getElementById('institution-creative-list').innerHTML = '<div class="sb-state error">' + S.esc(results[0].reason.message) + '</div>';
+      return;
+    }
+    var assets = (dashboard.assets || []).slice(0, 8);
+    document.getElementById('creative-output-meta').textContent = dashboard.totalEarningsCents
+      ? '$' + (dashboard.totalEarningsCents / 100).toFixed(2) + ' creator earnings · latest submissions'
+      : 'Latest submissions and their review states';
+    if (!assets.length) {
+      document.getElementById('institution-creative-list').innerHTML = '<div class="sb-state">No student creative work has been submitted yet.</div>';
+      return;
+    }
+    var rows = assets.map(function (asset) {
+      return '<tr><td>' + S.esc(asset.title) + '</td><td>' + S.esc(asset.creator_name || 'Student') + '</td><td>' + S.esc(asset.department) + '</td><td>' + S.statusBadge(asset.status) + '</td><td>' + S.esc(S.fmtDate(asset.created_at)) + '</td></tr>';
+    }).join('');
+    document.getElementById('institution-creative-list').innerHTML = '<div class="sb-table-wrap"><table class="sb-table"><thead><tr><th>Work</th><th>Creator</th><th>Department</th><th>Status</th><th>Submitted</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
   document.getElementById('invite-form').addEventListener('submit', async function (event) {
     event.preventDefault();
     var button = document.getElementById('invite-submit');
@@ -128,7 +165,7 @@
     var profile = institution();
     document.getElementById('institution-sub').textContent = (profile.institutionName || 'Your institution') + (profile.department ? ' · ' + profile.department : '');
     document.getElementById('invite-department').value = profile.department || '';
-    await Promise.all([loadInvitations(), loadPolicies()]);
+    await Promise.all([loadOverview(), loadInvitations(), loadPolicies()]);
   }
 
   init().catch(function (err) {

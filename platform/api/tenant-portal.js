@@ -31,8 +31,8 @@ const bcrypt = require('bcryptjs');
 const { imageSize } = require('image-size');
 const { get, all, run, insert, transaction } = require('../db/operational');
 const { getDb } = require('../db/connection');
-const { migrate: migrateTenantPortal } = require('../db/migrate-tenant-portal');
-const { migrate: migrateAnalyticsSlot } = require('../db/migrate-analytics-slot');
+const migrateTenantPortal = require('../db/migrate-tenant-portal');
+const migrateAnalyticsSlot = require('../db/migrate-analytics-slot');
 const { hashToken } = require('./admin');
 const { goLive, pause } = require('./bookings');
 const { validateMeta } = require('./booking-validation');
@@ -80,12 +80,23 @@ const SOCIAL_PATTERNS = {
 // Cold-start schema: idempotent, once per serverless instance (lazy so
 // importing the module stays cheap). The analytics-slot migration rides
 // along because getBookingEventStats reads analytics_events.slot_slug.
-let schemaReady = false;
-function ensureSchema() {
-  if (schemaReady) return;
-  migrateTenantPortal(getDb());
-  migrateAnalyticsSlot(getDb());
-  schemaReady = true;
+let schemaPromise = null;
+async function ensureSchema() {
+  if (!schemaPromise) {
+    schemaPromise = (async () => {
+      if (process.env.DATABASE_URL) {
+        await migrateTenantPortal.migratePostgres();
+        await migrateAnalyticsSlot.migratePostgres();
+      } else {
+        migrateTenantPortal.migrate(getDb());
+        migrateAnalyticsSlot.migrate(getDb());
+      }
+    })().catch((err) => {
+      schemaPromise = null;
+      throw err;
+    });
+  }
+  return schemaPromise;
 }
 
 function portalError(status, message, code) {
@@ -106,12 +117,12 @@ function isValidEmail(email) {
 }
 
 async function getAccountByEmail(email) {
-  ensureSchema();
+  await ensureSchema();
   return get('SELECT * FROM tenant_accounts WHERE email = $1', [normalizeEmail(email)]);
 }
 
 async function getAccountById(id) {
-  ensureSchema();
+  await ensureSchema();
   return get('SELECT * FROM tenant_accounts WHERE id = $1', [id]);
 }
 
@@ -171,7 +182,7 @@ async function linkTenantAccount(email) {
  * customers keep their existing password).
  */
 async function provisionTenantAccount(email, { kind } = {}) {
-  ensureSchema();
+  await ensureSchema();
   const normalized = normalizeEmail(email);
   if (!isValidEmail(normalized)) {
     throw portalError(400, 'A valid email is required', 'invalid_email');
@@ -220,7 +231,7 @@ async function provisionTenantAccount(email, { kind } = {}) {
 // ─────────────────────────────────────────────────────────────
 
 async function issueToken(accountId, purpose) {
-  ensureSchema();
+  await ensureSchema();
   const token = crypto.randomBytes(32).toString('hex');
   const expiresAt = new Date(Date.now() + TOKEN_TTL_MS).toISOString();
   await run(
@@ -231,7 +242,7 @@ async function issueToken(accountId, purpose) {
 }
 
 async function getValidToken(rawToken, purpose) {
-  ensureSchema();
+  await ensureSchema();
   if (!rawToken || typeof rawToken !== 'string') return null;
   const row = await get('SELECT * FROM tenant_tokens WHERE token = $1', [hashToken(rawToken)]);
   if (row?.purpose !== purpose) return null;
@@ -246,7 +257,7 @@ async function getValidToken(rawToken, purpose) {
  * fresh session is returned so the user lands signed in.
  */
 async function setPassword({ token, password }) {
-  ensureSchema();
+  await ensureSchema();
   if (typeof password !== 'string' || password.length < MIN_PASSWORD_LENGTH) {
     throw portalError(400, `password must be at least ${MIN_PASSWORD_LENGTH} characters`);
   }
@@ -300,7 +311,7 @@ async function setPassword({ token, password }) {
 // ─────────────────────────────────────────────────────────────
 
 async function createSession(accountId) {
-  ensureSchema();
+  await ensureSchema();
   const token = crypto.randomBytes(32).toString('hex');
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS).toISOString();
   await run('INSERT INTO tenant_sessions (token, account_id, expires_at) VALUES ($1, $2, $3)', [
@@ -312,18 +323,18 @@ async function createSession(accountId) {
 }
 
 async function deleteSession(token) {
-  ensureSchema();
+  await ensureSchema();
   await run('DELETE FROM tenant_sessions WHERE token = $1', [hashToken(token)]);
 }
 
 async function deleteSessionsForUser(accountId) {
-  ensureSchema();
+  await ensureSchema();
   await run('DELETE FROM tenant_sessions WHERE account_id = $1', [accountId]);
 }
 
 async function resolveAccount(token) {
   if (!token || typeof token !== 'string') return null;
-  ensureSchema();
+  await ensureSchema();
   const row = await get(
     `SELECT a.*, s.token AS session_token, s.expires_at AS session_expires_at
        FROM tenant_sessions s
@@ -399,7 +410,7 @@ async function logLoginFailure(email, reason) {
 }
 
 async function login({ email, password }) {
-  ensureSchema();
+  await ensureSchema();
   if (typeof email !== 'string' || typeof password !== 'string') {
     throw portalError(401, 'Invalid email or password', 'invalid_credentials');
   }
@@ -440,7 +451,7 @@ async function logout(token) {
  * goes out when an active account exists.
  */
 async function forgot({ email }) {
-  ensureSchema();
+  await ensureSchema();
   const normalized = normalizeEmail(email);
   const account = normalized ? await getAccountByEmail(normalized) : null;
   if (account && account.status === 'active') {
@@ -796,7 +807,7 @@ async function getSlotAnalytics(account, bookingId) {
 // ─────────────────────────────────────────────────────────────
 
 async function getOwnedBooking(account, bookingId) {
-  ensureSchema();
+  await ensureSchema();
   const id = Number.parseInt(bookingId, 10);
   if (Number.isNaN(id)) throw portalError(400, 'booking id must be numeric');
   const booking = await get(
@@ -1033,7 +1044,7 @@ function sanitizeRequest(row) {
  * happens here; the change itself applies only on admin approval.
  */
 async function createChangeRequest(account, { type, target, payload } = {}) {
-  ensureSchema();
+  await ensureSchema();
   if (!['image', 'social_links'].includes(type)) {
     throw portalError(400, "type must be 'image' or 'social_links'");
   }
@@ -1108,7 +1119,7 @@ async function createChangeRequest(account, { type, target, payload } = {}) {
 }
 
 async function listChangeRequests(account) {
-  ensureSchema();
+  await ensureSchema();
   const rows = await all(
     'SELECT * FROM tenant_change_requests WHERE account_id = $1 ORDER BY created_at DESC LIMIT 200',
     [account.id]
@@ -1121,7 +1132,7 @@ async function listChangeRequests(account) {
 // ─────────────────────────────────────────────────────────────
 
 async function adminListChangeRequests({ status = null, limit = 100, offset = 0 } = {}) {
-  ensureSchema();
+  await ensureSchema();
   if (status && !['pending', 'approved', 'rejected'].includes(status)) {
     throw portalError(400, 'status must be one of: pending, approved, rejected');
   }
@@ -1176,7 +1187,7 @@ async function adminListChangeRequests({ status = null, limit = 100, offset = 0 
  * Read-only; N+1 is bounded by limit.
  */
 async function adminListTenants({ limit = 100, offset = 0 } = {}) {
-  ensureSchema();
+  await ensureSchema();
   const rows = await all(
     `SELECT id, email, is_sponsor, is_patron, status, created_at, last_login_at
        FROM tenant_accounts
@@ -1213,7 +1224,7 @@ async function adminListTenants({ limit = 100, offset = 0 } = {}) {
  * so a partial apply is impossible. Audit-logged via admin_actions.
  */
 async function reviewChangeRequest(id, action, { note = null, reviewer = null } = {}) {
-  ensureSchema();
+  await ensureSchema();
   if (!['approve', 'reject'].includes(action)) {
     throw portalError(400, "action must be 'approve' or 'reject'");
   }

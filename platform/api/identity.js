@@ -47,6 +47,8 @@ async function ensureIdentitySchema() {
     schemaPromise = (async () => {
       if (process.env.DATABASE_URL) {
         await migratePostgres();
+        await require('../db/migrate-tenant-portal').migratePostgres();
+        await require('../db/migrate-analytics-slot').migratePostgres();
       } else {
         const { getDb } = require('../db/connection');
         const { migrate: migrateTenant } = require('../db/migrate-tenant-portal');
@@ -1135,6 +1137,175 @@ async function adminSetAccountStatus(actorAdminId, accountId, status) {
   return getAccountById(accountId);
 }
 
+async function getInstitutionOverview(accountId) {
+  const actor = await institutionActor(accountId);
+  const scoped = actor.role === 'dept_admin';
+  const memberWhere = scoped ? 'AND u.department = $2' : '';
+  const params = scoped ? [actor.institution_id, actor.department] : [actor.institution_id];
+  const [memberRows, editRows] = await Promise.all([
+    operational.all(
+      `SELECT u.role, u.status, u.account_status, COUNT(*) AS count
+         FROM scholars_users u WHERE u.institution_id = $1 ${memberWhere}
+        GROUP BY u.role, u.status, u.account_status`,
+      params
+    ),
+    operational.all(
+      `SELECT e.status, COUNT(*) AS count
+         FROM scholars_edits e JOIN scholars_users u ON u.id = e.user_id
+        WHERE u.institution_id = $1 ${memberWhere}
+        GROUP BY e.status`,
+      params
+    ),
+  ]);
+  const members = { students: 0, reviewers: 0, administrators: 0, total: 0 };
+  for (const row of memberRows) {
+    if (row.status !== 'active' || row.account_status !== 'active') continue;
+    const count = Number(row.count || 0);
+    members.total += count;
+    if (row.role === 'student') members.students += count;
+    else if (row.role === 'reviewer') members.reviewers += count;
+    else members.administrators += count;
+  }
+  const scholarship = { pending: 0, approved: 0, needsRevision: 0, rejected: 0, total: 0 };
+  for (const row of editRows) {
+    const count = Number(row.count || 0);
+    scholarship.total += count;
+    if (row.status === 'needs_revision') scholarship.needsRevision += count;
+    else if (Object.hasOwn(scholarship, row.status)) scholarship[row.status] += count;
+  }
+  return {
+    institution: {
+      id: actor.institution_id,
+      name: actor.institution_name,
+      department: scoped ? actor.department : null,
+      role: actor.role,
+    },
+    members,
+    scholarship,
+  };
+}
+
+async function adminListInstitutions() {
+  const rows = await operational.all(
+    `SELECT id, name, slug, status, sponsorship_status, sponsorship_expires_at
+       FROM scholars_institutions ORDER BY name`
+  );
+  return rows.map((row) => ({
+    id: row.id,
+    name: row.name,
+    slug: row.slug,
+    status: row.status,
+    sponsorshipStatus: row.sponsorship_status,
+    sponsorshipExpiresAt: row.sponsorship_expires_at,
+    accessActive:
+      row.status === 'active' &&
+      institutionIsActive({
+        sponsorship_status: row.sponsorship_status,
+        sponsorship_expires_at: row.sponsorship_expires_at,
+      }),
+  }));
+}
+
+async function adminSetInstitutionAccess(
+  actorAdminId,
+  accountId,
+  { institutionId, role, department = null } = {}
+) {
+  const iid = Number.parseInt(institutionId, 10);
+  if (!Number.isInteger(iid) || !['dept_admin', 'inst_admin'].includes(role)) {
+    throw identityError(
+      400,
+      'A valid institution and administration role are required',
+      'invalid_grant'
+    );
+  }
+  const scopedDepartment = role === 'dept_admin' ? String(department || '').trim() : null;
+  if (role === 'dept_admin' && !scopedDepartment) {
+    throw identityError(
+      400,
+      'Department is required for department administrators',
+      'department_required'
+    );
+  }
+  const account = await getAccountById(accountId);
+  if (account?.status !== 'active') {
+    throw identityError(
+      409,
+      'The public account must be active before access is granted',
+      'account_inactive'
+    );
+  }
+  const institution = await operational.get('SELECT * FROM scholars_institutions WHERE id = $1', [
+    iid,
+  ]);
+  if (institution?.status !== 'active' || !institutionIsActive(institution)) {
+    throw identityError(409, 'Institution sponsorship is not active', 'institution_inactive');
+  }
+  await operational.transaction(async (tx) => {
+    let scholar = await tx.get('SELECT * FROM scholars_users WHERE email = $1', [account.email]);
+    if (!scholar) {
+      await tx.run(
+        `INSERT INTO scholars_users
+           (email, institution_id, role, department, password_hash, status, account_status)
+         VALUES ($1, $2, $3, $4, $5, 'active', 'active')`,
+        [account.email, iid, role, scopedDepartment, account.password_hash]
+      );
+      scholar = await tx.get('SELECT * FROM scholars_users WHERE email = $1', [account.email]);
+    } else {
+      await tx.run(
+        `UPDATE scholars_users SET institution_id = $1, role = $2, department = $3,
+           status = 'active', account_status = 'active' WHERE id = $4`,
+        [iid, role, scopedDepartment, scholar.id]
+      );
+    }
+    const owner = await tx.get(
+      "SELECT account_id FROM identity_links WHERE system = 'scholar' AND external_id = $1",
+      [String(scholar.id)]
+    );
+    if (owner && owner.account_id !== accountId) {
+      throw identityError(
+        409,
+        'This academic profile belongs to another account',
+        'identity_conflict'
+      );
+    }
+    await linkIdentity(accountId, 'scholar', scholar.id, tx);
+  });
+  await recordAudit({
+    accountId,
+    actorAdminId,
+    action: 'admin.institution_access_granted',
+    resourceType: 'institution',
+    resourceId: iid,
+    details: { role, department: scopedDepartment },
+  });
+  return adminGetAccount(accountId);
+}
+
+async function adminRevokeInstitutionAccess(actorAdminId, accountId, institutionId) {
+  const account = await getAccountById(accountId);
+  if (!account) throw identityError(404, 'Account not found', 'account_not_found');
+  const scholar = await operational.get('SELECT * FROM scholars_users WHERE email = $1', [
+    account.email,
+  ]);
+  if (!scholar || Number(scholar.institution_id) !== Number(institutionId)) {
+    throw identityError(404, 'Institution membership not found', 'membership_not_found');
+  }
+  await operational.run(
+    "UPDATE scholars_users SET status = 'suspended', account_status = 'disabled' WHERE id = $1",
+    [scholar.id]
+  );
+  await revokeAllSessions(accountId);
+  await recordAudit({
+    accountId,
+    actorAdminId,
+    action: 'admin.institution_access_revoked',
+    resourceType: 'institution',
+    resourceId: institutionId,
+  });
+  return adminGetAccount(accountId);
+}
+
 module.exports = {
   CAPABILITIES,
   COMMERCE_CAPABILITIES,
@@ -1182,8 +1353,13 @@ module.exports = {
   acceptInvitation,
   setInstitutionPolicy,
   listInstitutionPolicies,
+  institutionActor,
+  getInstitutionOverview,
   adminListAccounts,
   adminGetAccount,
   adminSetAccountStatus,
+  adminListInstitutions,
+  adminSetInstitutionAccess,
+  adminRevokeInstitutionAccess,
   recordAudit,
 };
