@@ -333,6 +333,7 @@ const REAL_ENDPOINTS = [
   '/api/account/auth/set-password/',
   '/api/account/auth/register/',
   '/api/account/initiation/',
+  '/api/account/downloads/',
   '/api/account/me/',
   '/api/account/institution/overview/',
   '/api/v1/scholars/institution/invitations/',

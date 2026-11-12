@@ -629,6 +629,9 @@ test('institution page exposes invitations and policy without confusing defaults
   await mockAll(page);
   await page.goto(`${base}/account/institution/`, { waitUntil: 'domcontentloaded' });
   await page.locator('#invite-form').waitFor({ state: 'visible' });
+  await page.waitForFunction(() =>
+    document.getElementById('invitations-list').textContent.includes('student@punicodex.test')
+  );
   assert.ok(
     (await page.locator('#invitations-list').textContent()).includes('student@punicodex.test')
   );

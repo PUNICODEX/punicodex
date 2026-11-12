@@ -136,23 +136,23 @@ function versionsOf(file, asset) {
   return [...html.matchAll(re)].map((m) => m[1] || null);
 }
 
-test('every account page pins the same sandbox.css version (currently v=6)', () => {
+test('every account page pins the same sandbox.css version (currently v=7)', () => {
   for (const page of ACCOUNT_PAGES) {
     const versions = versionsOf(page, 'sandbox.css');
-    assert.deepStrictEqual(versions, ['6'], `${page} sandbox.css pin drifted`);
+    assert.deepStrictEqual(versions, ['7'], `${page} sandbox.css pin drifted`);
   }
 });
 
-test('every account page pins the same sandbox.js version (currently v=6)', () => {
+test('every account page pins the same sandbox.js version (currently v=7)', () => {
   for (const page of ACCOUNT_PAGES) {
     const versions = versionsOf(page, 'sandbox.js');
-    assert.deepStrictEqual(versions, ['6'], `${page} sandbox.js pin drifted`);
+    assert.deepStrictEqual(versions, ['7'], `${page} sandbox.js pin drifted`);
   }
 });
 
 test('changed page scripts carry their bumped pins', () => {
-  assert.match(read('account/index.html'), /\/account\/index\.js\?v=6/);
-  assert.match(read('account/brand/index.html'), /\/account\/brand\/brand\.js\?v=6/);
+  assert.match(read('account/index.html'), /\/account\/index\.js\?v=7/);
+  assert.match(read('account/brand/index.html'), /\/account\/brand\/brand\.js\?v=7/);
 });
 
 // ── Friendly errors, loading & empty states ──────────────────
