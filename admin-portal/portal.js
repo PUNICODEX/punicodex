@@ -184,10 +184,19 @@
     return (base.charAt(base.length - 1) === '/' ? base : `${base}/`) + rest;
   }
 
+  function errorMessage(value) {
+    if (typeof value === 'string') return value;
+    if (!value || typeof value !== 'object') return '';
+    if (typeof value.message === 'string') return value.message;
+    if (typeof value.error === 'string') return value.error;
+    if (value.error && typeof value.error === 'object') return errorMessage(value.error);
+    return '';
+  }
+
   function apiError(message, status, data) {
-    const err = new Error(message);
+    const err = new Error(errorMessage(message) || `Request failed (${status})`);
     err.status = status;
-    err.code = data?.code ? data.code : null;
+    err.code = data?.code || (message && typeof message === 'object' ? message.code : null);
     err.data = data || null;
     return err;
   }

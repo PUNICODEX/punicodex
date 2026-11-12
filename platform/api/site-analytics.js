@@ -936,7 +936,7 @@ async function getSessionDepth({ days = 30 } = {}) {
            WHERE is_bot = 0 AND date(created_at) >= $1 AND session_hash <> ''
            GROUP BY session_hash
           HAVING COUNT(*) = 1
-        )
+        ) AS single_page_sessions
     `,
     [dayList[0]]
   );
@@ -1848,7 +1848,7 @@ async function getCrossTempleFlows({ days = 30, limit = 25, templeId = null } = 
                  ROW_NUMBER() OVER (PARTITION BY session_hash ORDER BY created_at ASC) AS rn
             FROM site_analytics_events
            WHERE is_bot = 0 AND temple_id <> '' AND date(created_at) BETWEEN $1 AND $2
-        )
+        ) AS ranked_temple_visits
        WHERE rn = 1
        GROUP BY temple_id
        ORDER BY sessions DESC, temple_id ASC
@@ -1870,7 +1870,7 @@ async function getCrossTempleFlows({ days = 30, limit = 25, templeId = null } = 
                  ROW_NUMBER() OVER (PARTITION BY session_hash ORDER BY created_at DESC) AS rn
             FROM site_analytics_events
            WHERE is_bot = 0 AND temple_id <> '' AND date(created_at) BETWEEN $1 AND $2
-        )
+        ) AS ranked_temple_visits
        WHERE rn = 1
        GROUP BY temple_id
        ORDER BY sessions DESC, temple_id ASC

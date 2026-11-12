@@ -554,6 +554,45 @@ async function runTests() {
     }
   });
 
+  await test('analytics: every rolling period and cross-temple query remains valid', async () => {
+    for (const days of [7, 30, 90, 120]) {
+      const rolling = await invoke(
+        analyticsHandler,
+        'GET',
+        `/api/admin/portal/analytics/?mode=rolling&days=${days}`,
+        { headers: adminHeader(roleTokens.viewer) }
+      );
+      assert.strictEqual(rolling.status, 200, JSON.stringify(rolling.body).slice(0, 300));
+      assert.strictEqual(rolling.body.overview.periodDays, days);
+      assert.strictEqual(rolling.body.overview.byDay.length, days);
+      assert.strictEqual(rolling.body.depth.periodDays, days);
+
+      const cross = await invoke(
+        analyticsHandler,
+        'GET',
+        `/api/admin/portal/analytics/?mode=cross&days=${days}`,
+        { headers: adminHeader(roleTokens.viewer) }
+      );
+      assert.strictEqual(cross.status, 200, JSON.stringify(cross.body).slice(0, 300));
+      assert.ok(Array.isArray(cross.body.crossTemple.entryTemples));
+      assert.ok(Array.isArray(cross.body.crossTemple.exitTemples));
+    }
+
+    const source = require('node:fs').readFileSync(
+      require('node:path').join(__dirname, '..', 'platform', 'api', 'site-analytics.js'),
+      'utf8'
+    );
+    assert.ok(
+      source.includes(') AS single_page_sessions'),
+      'Postgres bounce subquery needs an alias'
+    );
+    assert.strictEqual(
+      (source.match(/\) AS ranked_temple_visits/g) || []).length,
+      2,
+      'Postgres entry and exit subqueries both need aliases'
+    );
+  });
+
   await test('analytics: days is clamped to the 1–120 window', async () => {
     const high = await invoke(analyticsHandler, 'GET', '/api/admin/portal/analytics/?days=500', {
       headers: adminHeader(roleTokens.viewer),

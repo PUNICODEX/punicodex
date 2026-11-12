@@ -708,6 +708,140 @@ async function run() {
       }
     });
 
+    await test('admin analytics: every timeframe loads and structured failures stay readable', async () => {
+      const admin = await browser.newContext({ viewport: { width: 1366, height: 900 } });
+      const requestedDays = [];
+      const runtimeErrors = [];
+      let fail = false;
+      try {
+        await admin.route('**/api/**', (route) =>
+          route.fulfill({ status: 200, contentType: 'application/json', body: '{}' })
+        );
+        await admin.route('**/api/admin/portal/me/', (route) =>
+          route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify({
+              user: { email: 'analytics@example.test', displayName: 'Analytics Admin' },
+              role: 'viewer',
+              permissions: ['read'],
+            }),
+          })
+        );
+        await admin.route(
+          (url) => url.pathname === '/api/admin/portal/analytics/',
+          (route) => {
+            const url = new URL(route.request().url());
+            const days = Number(url.searchParams.get('days') || 30);
+            if (url.searchParams.get('mode') === 'rolling') requestedDays.push(days);
+            if (fail) {
+              return route.fulfill({
+                status: 500,
+                contentType: 'application/json',
+                body: JSON.stringify({
+                  error: {
+                    message: 'Analytics storage is temporarily unavailable',
+                    code: 'storage_unavailable',
+                  },
+                }),
+              });
+            }
+            const byDay = Array.from({ length: days }, (_, index) => ({
+              day: `2026-11-${String((index % 28) + 1).padStart(2, '0')}`,
+              human: 0,
+              bot: 0,
+            }));
+            return route.fulfill({
+              status: 200,
+              contentType: 'application/json',
+              body: JSON.stringify({
+                mode: 'rolling',
+                days,
+                overview: {
+                  periodDays: days,
+                  totals: { humanViews: 0, botViews: 0, uniqueSessions: 0, botPct: 0 },
+                  byDay,
+                  topTemples: [],
+                  topReferrers: [],
+                  devices: { mobile: 0, tablet: 0, desktop: 0 },
+                  botCategories: [],
+                  topPaths: [],
+                },
+                engagement: {
+                  periodDays: days,
+                  engagements: 0,
+                  avgVisibleMs: 0,
+                  avgScrollPct: 0,
+                  topEngaged: [],
+                },
+                depth: {
+                  periodDays: days,
+                  pagesPerSession: 0,
+                  singlePageSessions: 0,
+                  sessions: 0,
+                  bouncePct: 0,
+                },
+                trends: null,
+                generatedAt: '2026-11-12T12:00:00Z',
+              }),
+            });
+          }
+        );
+        const ap = await admin.newPage();
+        ap.on('pageerror', (error) => runtimeErrors.push(error.message));
+        if (process.env.BROWSER_TEST_DEBUG) {
+          ap.on('console', (message) =>
+            console.log('ADMIN ANALYTICS CONSOLE', message.type(), message.text())
+          );
+          ap.on('response', (response) => {
+            if (response.url().includes('/api/'))
+              console.log('ADMIN ANALYTICS API', response.status(), response.url());
+          });
+        }
+        await ap.goto(`${base}/admin-portal/analytics/`, { waitUntil: 'domcontentloaded' });
+        if (process.env.BROWSER_TEST_DEBUG) {
+          await ap.waitForTimeout(1500);
+          console.log(
+            'ADMIN ANALYTICS BODY',
+            (await ap.locator('body').innerText()).slice(0, 2400)
+          );
+          console.log('ADMIN ANALYTICS RUNTIME ERRORS', runtimeErrors);
+        }
+        await ap.locator('#an-stats .stat-card').first().waitFor({ state: 'visible' });
+        for (const days of [7, 90, 120]) {
+          const response = ap.waitForResponse(
+            (res) =>
+              new URL(res.url()).searchParams.get('days') === String(days) && res.status() === 200
+          );
+          await ap.locator(`.period-btn[data-days="${days}"]`).click();
+          await response;
+          await ap.waitForFunction(
+            (expected) =>
+              document.getElementById('an-chart-sub').textContent.includes(`last ${expected} days`),
+            days
+          );
+        }
+        fail = true;
+        const failedResponse = ap.waitForResponse(
+          (res) => new URL(res.url()).searchParams.get('days') === '7' && res.status() === 500
+        );
+        await ap.locator('.period-btn[data-days="7"]').click();
+        await failedResponse;
+        await ap.waitForFunction(() =>
+          document.body.textContent.includes('Analytics storage is temporarily unavailable')
+        );
+        const body = await ap.locator('body').textContent();
+        if (body.includes('[object Object]'))
+          throw new Error('structured API error leaked as object-object');
+        if (requestedDays.join(',') !== '30,7,90,120,7') {
+          throw new Error(`unexpected timeframe requests: ${requestedDays.join(',')}`);
+        }
+        if (runtimeErrors.length) throw new Error(runtimeErrors.join('; '));
+      } finally {
+        await admin.close();
+      }
+    });
+
     await test('search page: labeled query input and submit control exist', async () => {
       await page.goto(`${base}/search/`, { waitUntil: 'domcontentloaded' });
       const input = page.locator('#searchInput').first();
