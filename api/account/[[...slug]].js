@@ -163,6 +163,25 @@ module.exports = async (req, res) => {
       return getUnifiedMe(req, res);
     }
 
+    if (slugParts.length === 1 && slugParts[0] === 'downloads') {
+      const resolved = await identity.requireAccount(req, res, {
+        write: req.method === 'POST' || req.method === 'DELETE',
+      });
+      if (!resolved) return;
+      if (req.method === 'GET') {
+        return res.json({ items: await identity.getDownloads(resolved.account.id) });
+      }
+      if (req.method === 'POST') {
+        return res
+          .status(201)
+          .json({ item: await identity.recordDownload(resolved.account.id, body.assetId) });
+      }
+      if (req.method === 'DELETE') {
+        return res.json(await identity.clearDownloads(resolved.account.id));
+      }
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
     if (slugParts.length === 1 && slugParts[0] === 'initiation') {
       const resolved = await identity.requireAccount(req, res, { write: req.method === 'PUT' });
       if (!resolved) return;

@@ -22,7 +22,7 @@ const { hexForColor, isColorWord, normalizeColorName } = require(path.join(__dir
 
 function templeAssets(a) {
   const base = `/sites/${a.id}/assets/${a.id}`;
-  return {
+  const assets = {
     mascot: `${base}_mascot.webp`,
     logomark: `${base}_logomark.webp`,
     logolockup: `${base}_logolockup.webp`,
@@ -33,6 +33,10 @@ function templeAssets(a) {
     compMug: `${base}_comp-mug.png`,
     compNotebook: `${base}_comp-notebook.png`,
   };
+  if (fs.existsSync(path.join(ROOT, 'sites', a.id, 'assets', `${a.id}_mascot_anime.webp`))) {
+    assets.anime = `${base}_mascot_anime.webp`;
+  }
+  return assets;
 }
 
 const HOUSE_ASSETS = {
@@ -112,16 +116,16 @@ const OVERLAY_KINDS = new Set([
 // Products whose assets lack the listed keys (the house line) fall back to
 // all of their non-comp arts.
 const KIND_ART_POLICY = {
-  tee: ['mascot', 'logomark', 'logolockup'],
-  hoodie: ['mascot', 'logomark', 'logolockup'],
-  crewneck: ['mascot', 'logomark', 'logolockup'],
-  cap: ['mascot', 'logomark', 'logolockup'],
-  tote: ['mascot', 'logomark', 'logolockup'],
-  mug: ['mascot', 'logomark', 'logolockup'],
-  tumbler: ['mascot', 'logomark', 'logolockup'],
-  print: ['mascot', 'logomark', 'logolockup'],
-  canvas: ['mascot'],
-  phonecase: ['mascot'],
+  tee: ['mascot', 'logomark', 'logolockup', 'anime'],
+  hoodie: ['mascot', 'logomark', 'logolockup', 'anime'],
+  crewneck: ['mascot', 'logomark', 'logolockup', 'anime'],
+  cap: ['mascot', 'logomark', 'logolockup', 'anime'],
+  tote: ['mascot', 'logomark', 'logolockup', 'anime'],
+  mug: ['mascot', 'logomark', 'logolockup', 'anime'],
+  tumbler: ['mascot', 'logomark', 'logolockup', 'anime'],
+  print: ['mascot', 'logomark', 'logolockup', 'anime'],
+  canvas: ['mascot', 'anime'],
+  phonecase: ['mascot', 'anime'],
   pin: ['logomark'],
   notebook: ['design'],
   sticker: ['design'],
@@ -161,6 +165,7 @@ const LOGO_ASPECT = 1.6;
 
 const ARTWORK_LABELS = {
   mascot: 'Mascot',
+  anime: 'Anime Mascot',
   logomark: 'Logomark',
   logolockup: 'Logo lockup',
   wordmark: 'Wordmark',

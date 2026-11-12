@@ -198,6 +198,7 @@ async function mockAll(page) {
     route.fulfill({ status: 204, body: '' })
   );
   await mock(page, '/api/account/me/', fixtureMe());
+  await mock(page, '/api/account/downloads/', { items: [] });
   await mock(
     page,
     '/api/account/initiation/',
@@ -392,6 +393,115 @@ test('account home stays coherent and overflow-safe on mobile', async () => {
   assert.ok(await page.locator('.sb-initiation-card').isVisible());
   await shot(page, 'identity-account-mobile');
   await page.close();
+});
+
+test('Commons download becomes a private library entry with re-download and clear controls', async () => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  const runtimeErrors = [];
+  const writes = [];
+  let items = [];
+  page.on('pageerror', (error) => runtimeErrors.push(error.message));
+  try {
+    await context.addCookies([{ name: 'punicodex_csrf', value: 'browser-csrf', url: base }]);
+    await mockAll(page);
+    await page.route('**/api/account/downloads/', (route) => {
+      const request = route.request();
+      const method = request.method();
+      if (method === 'POST') {
+        writes.push({ method, csrf: request.headers()['x-csrf-token'] });
+        const assetId = request.postDataJSON().assetId;
+        const count = items.length ? items[0].downloadCount + 1 : 1;
+        items = [
+          {
+            id: assetId,
+            templeId: 'zeus',
+            title: 'Zeús — Commons study',
+            assetUrl: '/assets/ai-commons/zeus-anime-mascot-v1.png',
+            detailUrl: `/zeus/art/?view=commons&art=${encodeURIComponent(assetId)}`,
+            license: 'CC BY 4.0',
+            downloadCount: count,
+            firstDownloadedAt: '2026-11-12T10:00:00Z',
+            lastDownloadedAt: '2026-11-12T11:00:00Z',
+          },
+        ];
+        return route.fulfill({
+          status: 201,
+          contentType: 'application/json',
+          body: JSON.stringify({ item: items[0] }),
+        });
+      }
+      if (method === 'DELETE') {
+        writes.push({ method, csrf: request.headers()['x-csrf-token'] });
+        items = [];
+        return route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ success: true }),
+        });
+      }
+      return route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ items }),
+      });
+    });
+
+    await page.goto(`${base}/sites/zeus/art/?view=commons`, { waitUntil: 'domcontentloaded' });
+    await consent(page);
+    const card = page.locator('.art-card[data-kind="commons"][data-art-id]').first();
+    await card.waitFor({ state: 'visible' });
+    const assetId = await card.getAttribute('data-art-id');
+    await card.click();
+    await page.locator('dialog.commons-viewer').waitFor({ state: 'visible' });
+    const recorded = page.waitForRequest(
+      (request) =>
+        new URL(request.url()).pathname === '/api/account/downloads/' && request.method() === 'POST'
+    );
+    const downloaded = page.waitForEvent('download');
+    await page.locator('dialog.commons-viewer a[download]').click();
+    await recorded;
+    await downloaded;
+    assert.strictEqual(writes[0].csrf, 'browser-csrf');
+
+    await page.goto(`${base}/account/`, { waitUntil: 'domcontentloaded' });
+    await page.locator('#download-list .sb-download-card').waitFor({ state: 'visible' });
+    assert.ok((await page.locator('#downloads-meta').textContent()).includes('1 work'));
+    assert.ok((await page.locator('#download-list').textContent()).includes('CC BY 4.0'));
+    assert.ok((await page.locator('#download-list').textContent()).includes('1 download'));
+    assert.ok((await page.locator('#download-list').textContent()).includes(assetId) === false);
+    assert.ok((await page.locator('.sb-download-media').getAttribute('href')).includes(assetId));
+    assert.ok(await noOverflow(page));
+    await page.locator('#download-library').scrollIntoViewIfNeeded();
+    await shot(page, 'identity-download-library-mobile');
+
+    const again = page.waitForRequest(
+      (request) =>
+        new URL(request.url()).pathname === '/api/account/downloads/' && request.method() === 'POST'
+    );
+    const downloadedAgain = page.waitForEvent('download');
+    await page.locator('.sb-download-again').click();
+    await again;
+    await downloadedAgain;
+    await page.waitForFunction(() =>
+      document.getElementById('download-list').textContent.includes('2 downloads')
+    );
+
+    page.once('dialog', (dialog) => dialog.accept());
+    await page.locator('#download-clear').click();
+    await page.waitForFunction(() =>
+      document.getElementById('download-list').textContent.includes('No Commons downloads yet')
+    );
+    assert.strictEqual(await page.locator('#download-clear').isVisible(), false);
+    assert.deepStrictEqual(
+      writes.map((write) => write.method),
+      ['POST', 'POST', 'DELETE']
+    );
+    assert.ok(writes.every((write) => write.csrf === 'browser-csrf'));
+    assert.deepStrictEqual(runtimeErrors, []);
+  } finally {
+    await context.close();
+  }
 });
 
 test('mobile registration, cookie sign-in, member entitlements, and Archē work as one journey', async () => {

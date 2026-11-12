@@ -883,6 +883,77 @@ a.sb-panel-link:hover > h3 {
   border-color: rgba(242, 109, 109, 0.35);
 }
 
+/* ── Private Commons download library ─────────────────────── */
+
+.sb-download-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.sb-download-card {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--sb-panel);
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+}
+
+.sb-download-media {
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(212, 175, 55, 0.08), transparent 60%),
+    var(--sb-inset);
+}
+
+.sb-download-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.sb-download-media:hover img {
+  transform: scale(1.025);
+}
+
+.sb-download-body {
+  padding: 1rem;
+}
+
+.sb-download-body h3 {
+  margin: 0.35rem 0 0.45rem;
+  color: var(--sb-text);
+  font-family: var(--sb-font-display);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.sb-download-body p {
+  margin: 0 0 0.9rem;
+  color: var(--sb-text-muted);
+  font-size: 0.78rem;
+}
+
+.sb-download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sb-download-actions .sb-btn {
+  flex: 1;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.sb-state a {
+  color: var(--sb-gold);
+}
+
 /* ── Footer ───────────────────────────────────────────────── */
 
 .sb-footer {

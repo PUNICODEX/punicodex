@@ -1,0 +1,218 @@
+.commons-viewer {
+  width: min(1120px, 94vw);
+  max-height: 92vh;
+  padding: 0;
+  overflow: hidden;
+  color: var(--ink, #f0ebdf);
+  background: #0c0c10;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.7);
+}
+
+.commons-viewer::backdrop {
+  background: rgba(3, 3, 5, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.cv-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  max-height: 92vh;
+}
+
+.cv-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 520px;
+  overflow: hidden;
+  background: #000;
+}
+
+.cv-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 92vh;
+  object-fit: contain;
+}
+
+.cv-content {
+  position: relative;
+  padding: 2rem 1.6rem 1.4rem;
+  overflow-y: auto;
+}
+
+.cv-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  place-items: center;
+  color: var(--dim, #aaa398);
+  background: transparent;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.cv-close:hover,
+.cv-close:focus-visible {
+  color: var(--gold, #d4af37);
+  border-color: var(--gold, #d4af37);
+}
+
+.cv-kicker {
+  margin: 0 2.5rem 0.55rem 0;
+  color: var(--gold, #d4af37);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cv-title {
+  margin: 0 2rem 1rem 0;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.25;
+}
+
+.cv-provenance {
+  margin: 0 0 1.2rem;
+  color: var(--dim, #aaa398);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.cv-facts {
+  margin: 0 0 1.2rem;
+}
+
+.cv-facts div {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.35fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.cv-facts dt {
+  color: var(--dim, #aaa398);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cv-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.86rem;
+}
+
+.cv-facts a {
+  color: var(--gold, #d4af37);
+}
+
+.cv-attribution {
+  padding: 0.85rem;
+  color: var(--dim, #aaa398);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+  border-radius: 8px;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.cv-attribution strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--ink, #f0ebdf);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+}
+
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55rem;
+  padding: 0.6rem 0.85rem;
+  color: var(--ink, #f0ebdf);
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.78rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cv-btn:hover,
+.cv-btn:focus-visible {
+  color: #0a0a0c;
+  background: var(--gold, #d4af37);
+}
+
+.cv-btn-primary {
+  color: #0a0a0c;
+  background: var(--gold, #d4af37);
+}
+
+.cv-btn-primary:hover,
+.cv-btn-primary:focus-visible {
+  background: var(--gold-bright, #f0d878);
+}
+
+.cv-prompt {
+  margin-top: 1rem;
+  color: var(--dim, #aaa398);
+  font-size: 0.78rem;
+}
+
+.cv-prompt summary {
+  color: var(--gold, #d4af37);
+  cursor: pointer;
+}
+
+.cv-prompt p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .cv-layout {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .cv-media {
+    min-height: 0;
+    max-height: 48vh;
+  }
+
+  .cv-media img {
+    max-height: 48vh;
+  }
+
+  .cv-content {
+    overflow: visible;
+    padding: 1.4rem 1rem 1rem;
+  }
+
+  .cv-facts div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}

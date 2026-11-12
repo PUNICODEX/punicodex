@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
-<script src="/js/university-collaborators.js?v=3" defer></script>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
-
-<!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js?v=98b5b0be84" defer></script>
-<!-- PUNICODEX-ANALYTICS-END -->
-
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +29,7 @@
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
 <link rel="stylesheet" href="/css/temple-base.css?v=perf24">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+<link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Arete — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/arete/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Arete","item":"https://punicodex.com/arete/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/arete/art/"}]}</script>
@@ -46,16 +37,6 @@
 .art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
-<!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
-<script src="/js/herald-beacon.js?v=31810b90ac" defer></script>
-<!-- PUNICODEX-HERALD-BEACON-END -->
-<!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
-<script src="/js/cookie-consent.js?v=1" defer></script>
-<!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
 <body class="temple-page">
     <div class="global-strip">
@@ -152,6 +133,7 @@
     <input id="art-q" type="search" placeholder="Search by title, myth, or style…" aria-label="Search artworks">
     <select id="art-tag" aria-label="Filter by tag">
       <option value="">All Tags</option>
+      <option value="mascot">Mascots</option>
       <option value="tattoo">Tattoo-ready</option>
       <option value="anime">Anime</option>
       <option value="realism">Realism</option>
@@ -167,15 +149,20 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="commons" data-title="Arete study v1.1 classic gold" data-tags="classic-gold" data-date="1.1">
-      <div class="imgbox"><img src="/assets/ai-commons/arete-v1.1.jpg" alt="Arete — PuniCodex studio classic-gold" loading="lazy" width="512" height="512"></div>
-      <div class="body"><div class="sub">The Commons · classic gold</div><h3>Arete — study v1.1</h3>
-      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · free with attribution</div></div>
+    <figure class="art-card" data-kind="commons" data-art-id="commons-arete-arete-anime-mascot-v1" data-title="Arete — anime mascot anime" data-tags="commons anime mascot" data-date="" data-src="/assets/ai-commons/arete-anime-mascot-v1.png" data-license="CC BY 4.0" data-model="Not recorded">
+      <div class="imgbox"><img src="/assets/ai-commons/arete-anime-mascot-v1.png" alt="Arete — anime mascot — PuniCodex studio anime" loading="lazy" width="512" height="512"></div>
+      <div class="body"><div class="sub">The Commons · anime</div><h3>Arete — anime mascot</h3>
+      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · attribution required</div></div>
     </figure>
-    <figure class="art-card" data-kind="commons" data-title="Arete study v1.2 classic gold" data-tags="classic-gold" data-date="1.2">
-      <div class="imgbox"><img src="/assets/ai-commons/arete-v1.2.jpg" alt="Arete — PuniCodex studio classic-gold" loading="lazy" width="512" height="512"></div>
+    <figure class="art-card" data-kind="commons" data-art-id="commons-arete-arete-v1.1" data-title="Arete — study v1.1 classic gold" data-tags="commons classic-gold" data-date="2026-11-07T05:30:25.783Z" data-src="/assets/ai-commons/arete-v1.1.jpg" data-license="CC BY 4.0" data-model="fal-ai/flux/schnell">
+      <div class="imgbox"><img src="/assets/ai-commons/arete-v1.1.jpg" alt="Arete — study v1.1 — PuniCodex studio classic-gold" loading="lazy" width="512" height="512"></div>
+      <div class="body"><div class="sub">The Commons · classic gold</div><h3>Arete — study v1.1</h3>
+      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · attribution required</div></div>
+    </figure>
+    <figure class="art-card" data-kind="commons" data-art-id="commons-arete-arete-v1.2" data-title="Arete — study v1.2 classic gold" data-tags="commons classic-gold" data-date="2026-11-07T05:30:28.937Z" data-src="/assets/ai-commons/arete-v1.2.jpg" data-license="CC BY 4.0" data-model="fal-ai/flux/schnell">
+      <div class="imgbox"><img src="/assets/ai-commons/arete-v1.2.jpg" alt="Arete — study v1.2 — PuniCodex studio classic-gold" loading="lazy" width="512" height="512"></div>
       <div class="body"><div class="sub">The Commons · classic gold</div><h3>Arete — study v1.2</h3>
-      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · free with attribution</div></div>
+      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · attribution required</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
@@ -190,22 +177,23 @@
     </div>
   </div>
   <div class="art-grid" id="art-grid-commons" hidden>
-    <figure class="art-card" data-kind="commons" data-title="Arete study v1.1 classic gold" data-tags="classic-gold" data-date="1.1">
-      <div class="imgbox"><img src="/assets/ai-commons/arete-v1.1.jpg" alt="Arete — PuniCodex studio classic-gold" loading="lazy" width="512" height="512"></div>
-      <div class="body"><div class="sub">The Commons · classic gold</div><h3>Arete — study v1.1</h3>
-      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · free with attribution</div></div>
+    <figure class="art-card" data-kind="commons" data-art-id="commons-arete-arete-anime-mascot-v1" data-title="Arete — anime mascot anime" data-tags="commons anime mascot" data-date="" data-src="/assets/ai-commons/arete-anime-mascot-v1.png" data-license="CC BY 4.0" data-model="Not recorded">
+      <div class="imgbox"><img src="/assets/ai-commons/arete-anime-mascot-v1.png" alt="Arete — anime mascot — PuniCodex studio anime" loading="lazy" width="512" height="512"></div>
+      <div class="body"><div class="sub">The Commons · anime</div><h3>Arete — anime mascot</h3>
+      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · attribution required</div></div>
     </figure>
-    <figure class="art-card" data-kind="commons" data-title="Arete study v1.2 classic gold" data-tags="classic-gold" data-date="1.2">
-      <div class="imgbox"><img src="/assets/ai-commons/arete-v1.2.jpg" alt="Arete — PuniCodex studio classic-gold" loading="lazy" width="512" height="512"></div>
+    <figure class="art-card" data-kind="commons" data-art-id="commons-arete-arete-v1.1" data-title="Arete — study v1.1 classic gold" data-tags="commons classic-gold" data-date="2026-11-07T05:30:25.783Z" data-src="/assets/ai-commons/arete-v1.1.jpg" data-license="CC BY 4.0" data-model="fal-ai/flux/schnell">
+      <div class="imgbox"><img src="/assets/ai-commons/arete-v1.1.jpg" alt="Arete — study v1.1 — PuniCodex studio classic-gold" loading="lazy" width="512" height="512"></div>
+      <div class="body"><div class="sub">The Commons · classic gold</div><h3>Arete — study v1.1</h3>
+      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · attribution required</div></div>
+    </figure>
+    <figure class="art-card" data-kind="commons" data-art-id="commons-arete-arete-v1.2" data-title="Arete — study v1.2 classic gold" data-tags="commons classic-gold" data-date="2026-11-07T05:30:28.937Z" data-src="/assets/ai-commons/arete-v1.2.jpg" data-license="CC BY 4.0" data-model="fal-ai/flux/schnell">
+      <div class="imgbox"><img src="/assets/ai-commons/arete-v1.2.jpg" alt="Arete — study v1.2 — PuniCodex studio classic-gold" loading="lazy" width="512" height="512"></div>
       <div class="body"><div class="sub">The Commons · classic gold</div><h3>Arete — study v1.2</h3>
-      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · free with attribution</div></div>
+      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · attribution required</div></div>
     </figure>
   </div>
 </main>
-
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
-<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 <footer class="site-footer">
         <div class="container">
             <div class="footer-brand">
@@ -279,6 +267,8 @@
             </div>
         </div>
     </footer>
+<script>window.__COMMONS_WORKS__ = [{"id":"commons-arete-arete-anime-mascot-v1","templeId":"arete","title":"Arete — anime mascot","src":"/assets/ai-commons/arete-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Arete — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/arete/art/?view=commons","canonicalUrl":"https://punicodex.com/arete/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."},{"id":"commons-arete-arete-v1.1","templeId":"arete","title":"Arete — study v1.1","src":"/assets/ai-commons/arete-v1.1.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Arete — study v1.1” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/arete/art/?view=commons","canonicalUrl":"https://punicodex.com/arete/art/?view=commons","generatedAt":"2026-11-07T05:30:25.783Z","recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":252491247,"prompt":"Arete, excellence, virtue,, ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body, variation 1","provenance":"Curated PuniCodex studio work promoted into Commons."},{"id":"commons-arete-arete-v1.2","templeId":"arete","title":"Arete — study v1.2","src":"/assets/ai-commons/arete-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Arete — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/arete/art/?view=commons","canonicalUrl":"https://punicodex.com/arete/art/?view=commons","generatedAt":"2026-11-07T05:30:28.937Z","recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1304875103,"prompt":"Arete, excellence, virtue,, ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
+<script src="/js/commons-viewer.js?v=2" defer></script>
 <script src="/js/px-core.js?v=perf23" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>

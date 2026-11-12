@@ -116,6 +116,34 @@ test('starter grant: a curated deck with a real curve and a holo champion', () =
   assert.ok(js.includes('runAiTurn(battle, aiTurnOpts())'), 'difficulty opts not wired');
 });
 
+test('card faces use canonical replacement mascots, never archived anime alternates', () => {
+  for (const card of SET.cards.filter((item) => item.flagship)) {
+    assert.ok(card.art?.mascot, `${card.id}: canonical mascot missing`);
+    assert.ok(!card.art.mascot.includes('_anime'), `${card.id}: archived anime leaked onto card`);
+    const disk = path.join(ROOT, card.art.mascot.replace(/^\//, ''));
+    assert.ok(
+      fs.existsSync(disk) || fs.existsSync(disk.replace(/\.webp$/, '.png')),
+      `${card.id}: mascot asset missing`
+    );
+  }
+});
+
+test('Zeus printings carry four distinct artworks with canonical fallback', () => {
+  const zeus = SET.cards.filter((card) => card.entryId === 'zeus');
+  const faces = new Set(zeus.map((card) => card.art.mascot));
+  assert.strictEqual(faces.size, 4, `expected four Zeus artwork variants, got ${[...faces]}`);
+  for (const edition of ['holo', 'full-art', 'secret']) {
+    const card = zeus.find((item) => item.edition === edition);
+    assert.strictEqual(card.art.mascot, `/assets/card-editions/zeus-${edition}.jpg`);
+    assert.strictEqual(card.art.originalMascot, '/sites/zeus/assets/zeus_mascot.webp');
+    assert.ok(fs.existsSync(path.join(ROOT, 'assets', 'card-editions', `zeus-${edition}.jpg`)));
+  }
+  assert.strictEqual(
+    zeus.find((item) => item.edition === 'common').art.mascot,
+    '/sites/zeus/assets/zeus_mascot.webp'
+  );
+});
+
 test('stale ids migrate: standard→common, original-script→secret', () => {
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
   assert.ok(js.includes('migrateIds'), 'migration present');

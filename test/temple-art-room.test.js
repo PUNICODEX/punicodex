@@ -127,6 +127,8 @@ test('the main Art Directory has the Creatives pill and view addressing', () => 
     html.includes('view=commons') && html.includes('view=galleries'),
     'views not addressable'
   );
+  assert.ok(html.includes('view=commons&art='), 'Commons works do not deep-link into their viewer');
+  assert.ok(html.includes('value="mascot"'), 'global mascot filter missing');
 });
 
 let failures = 0;

@@ -17,7 +17,7 @@
  * Output: transparent PNGs beside the masters in sites/{id}/assets/ (and
  * assets/brand/01-logos/ for house).
  *
- * Usage: node scripts/generate-merch-composites.js [--only <templeId|punicodex>]
+ * Usage: node scripts/generate-merch-composites.js [--only <templeId|punicodex>] [--ids <id,id>] [--force]
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -28,6 +28,10 @@ const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
 
 const args = process.argv.slice(2);
 const ONLY = args.includes('--only') ? args[args.indexOf('--only') + 1] : null;
+const IDS = args.includes('--ids')
+  ? new Set(args[args.indexOf('--ids') + 1].split(',').filter(Boolean))
+  : null;
+const FORCE = args.includes('--force');
 
 function center(bgW, w) {
   return Math.round((bgW - w) / 2);
@@ -194,7 +198,9 @@ async function buildHouseComposites() {
 }
 
 async function main() {
-  const targets = ARCHETYPES.filter((a) => a.built !== false && (!ONLY || a.id === ONLY));
+  const targets = ARCHETYPES.filter(
+    (a) => a.built !== false && (!ONLY || a.id === ONLY) && (!IDS || IDS.has(a.id))
+  );
   const COMP_NAMES = ['comp-sticker', 'comp-canvas', 'comp-tote', 'comp-mug', 'comp-notebook'];
   let count = 0;
   let skipped = 0;
@@ -205,7 +211,7 @@ async function main() {
       continue;
     }
     const allExist = COMP_NAMES.every((n) => fs.existsSync(path.join(dir, `${a.id}_${n}.png`)));
-    if (allExist) {
+    if (allExist && !FORCE) {
       skipped++;
       count++;
       if ((count + skipped) % 25 === 0) {
@@ -219,7 +225,7 @@ async function main() {
       console.log(`  ${count}/${targets.length} temples composited`);
     }
   }
-  if (!ONLY || ONLY === 'punicodex') {
+  if (!IDS && (!ONLY || ONLY === 'punicodex')) {
     await buildHouseComposites();
     console.log('  house composites built');
   }

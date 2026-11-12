@@ -1,14 +1,15 @@
 /**
  * Sponsor Sandbox — Overview page.
  *
- * Scoped to the authenticated tenant:
+ * Scoped to the authenticated account:
  *   0. Action banner — a booking in a creative-changeable status with no
  *      creative yet is the sponsor's #1 job; a pending_approval booking with
  *      a creative is calmly reported as under review.
- *   1. My Temples    — one card per temple the account owns placements on
+ *   1. Download Library — the member's private, clearable Commons history.
+ *   2. My Temples    — one card per temple the account owns placements on
  *                      (traffic + attention + top countries from the guarded
  *                      temple enrichment). Hidden entirely when there are none.
- *   2. My Placements — one row per booking (impressions, viewability, clicks,
+ *   3. My Placements — one row per booking (impressions, viewability, clicks,
  *                      CTR, 30d sparkline); a row opens the placement detail.
  *                      Hidden entirely when there are none.
  *   An account with nothing at all gets ONE elegant empty state instead of a
@@ -257,6 +258,63 @@
     bar.firstElementChild.style.width = percent + '%';
   }
 
+  function renderDownloads(items) {
+    var wrap = document.getElementById('download-list');
+    var clear = document.getElementById('download-clear');
+    clear.hidden = items.length === 0;
+    document.getElementById('downloads-meta').textContent = items.length
+      ? items.length + ' work' + (items.length === 1 ? '' : 's') + ' in your private library →'
+      : 'Your download history will appear here →';
+    if (!items.length) {
+      wrap.className = '';
+      wrap.innerHTML =
+        '<div class="sb-state">No Commons downloads yet. <a href="/store/art/?view=commons">Explore the Commons</a>—anything you download while signed in will be kept here.</div>';
+      return;
+    }
+    wrap.className = 'sb-download-grid';
+    wrap.innerHTML = items
+      .map(function (item) {
+        return (
+          '<article class="sb-download-card">' +
+          '<a class="sb-download-media" href="' + S.esc(item.detailUrl) + '">' +
+          '<img src="' + S.esc(item.assetUrl) + '" alt="' + S.esc(item.title) + '" loading="lazy">' +
+          '</a><div class="sb-download-body">' +
+          '<span class="sb-module-kicker">' + S.esc(item.templeId) + ' · ' + S.esc(item.license) + '</span>' +
+          '<h3>' + S.esc(item.title) + '</h3>' +
+          '<p>' + S.esc(S.fmtNumber(item.downloadCount)) + (item.downloadCount === 1 ? ' download' : ' downloads') +
+          ' · last ' + S.esc(S.fmtDate(item.lastDownloadedAt)) + '</p>' +
+          '<div class="sb-download-actions">' +
+          '<a class="sb-btn sb-btn-ghost sb-btn-sm" href="' + S.esc(item.detailUrl) + '">Details</a>' +
+          '<a class="sb-btn sb-btn-primary sb-btn-sm sb-download-again" data-asset-id="' + S.esc(item.id) + '" href="' + S.esc(item.assetUrl) + '" download>Download again</a>' +
+          '</div></div></article>'
+        );
+      })
+      .join('');
+    Array.prototype.forEach.call(wrap.querySelectorAll('.sb-download-again'), function (link) {
+      link.addEventListener('click', function () {
+        S.api('/api/account/downloads/', {
+          method: 'POST',
+          body: { assetId: link.getAttribute('data-asset-id') },
+        })
+          .then(function () { return loadDownloads(); })
+          .catch(function () {});
+      });
+    });
+  }
+
+  async function loadDownloads() {
+    try {
+      var data = await S.api('/api/account/downloads/');
+      renderDownloads(Array.isArray(data.items) ? data.items : []);
+    } catch (err) {
+      document.getElementById('download-clear').hidden = true;
+      document.getElementById('downloads-meta').textContent = 'Download history unavailable';
+      var wrap = document.getElementById('download-list');
+      wrap.className = '';
+      wrap.innerHTML = '<div class="sb-state error">' + S.esc(err.message) + '</div>';
+    }
+  }
+
   async function init() {
     // Forward one-time setup/reset links to the login page, which owns that
     // flow (activation emails point at /account/?token=…).
@@ -279,6 +337,21 @@
 
     // The sponsor's next move comes first: missing creatives, then review state.
     renderActions(me.resources.bookings || []);
+    loadDownloads();
+
+    var clearDownloads = document.getElementById('download-clear');
+    clearDownloads.addEventListener('click', async function () {
+      if (!window.confirm('Clear your entire download history? The artwork will remain available in the Commons.')) return;
+      clearDownloads.disabled = true;
+      try {
+        await S.api('/api/account/downloads/', { method: 'DELETE' });
+        await loadDownloads();
+      } catch (err) {
+        alert(err.message || 'Could not clear your download history.');
+      } finally {
+        clearDownloads.disabled = false;
+      }
+    });
 
     // Temple cards: per owned temple, with per-card failure isolation.
     var templeIds = [];

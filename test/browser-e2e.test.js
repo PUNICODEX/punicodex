@@ -415,15 +415,43 @@ async function run() {
       await Promise.all([page.waitForURL('**/sites/zeus/art/index.html'), art.click()]);
     });
 
-    await test('temple mobile: submenus stay aligned, static, vertical, and inside the viewport', async () => {
+    await test('temple mobile: seven centred items with accessible Lore and Store expansion', async () => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(`${base}/sites/zeus/`, { waitUntil: 'domcontentloaded' });
       await page.locator('#nav-toggle').click();
       await page.waitForTimeout(250);
-      for (const index of [0, 1]) {
-        const group = page.locator('#temple-mobile-menu > .nav-group').nth(index);
-        await group.hover();
-        const sub = group.locator('.nav-sub');
+      const topLevel = page.locator(
+        '#temple-mobile-menu > a.nav-link, #temple-mobile-menu > .nav-group > a.nav-link'
+      );
+      const labels = await topLevel.allTextContents();
+      const expected = ['Home', 'Lore', 'Store', 'Patterns', 'Scholars', 'Patrons', 'Blog'];
+      if (labels.length !== 7 || labels.some((label, index) => label.trim() !== expected[index])) {
+        throw new Error(`mobile top-level tabs drifted: ${JSON.stringify(labels)}`);
+      }
+      const toggles = page.locator('#temple-mobile-menu .nav-sub-toggle');
+      if ((await toggles.count()) !== 2)
+        throw new Error('Lore and Store need exactly two expanders');
+      for (const group of await page.locator('#temple-mobile-menu > .nav-group').all()) {
+        if (await group.locator('.nav-sub').isVisible()) {
+          throw new Error('mobile submenu started expanded');
+        }
+      }
+      await toggles.nth(0).click();
+      if ((await toggles.nth(0).getAttribute('aria-expanded')) !== 'true') {
+        throw new Error('Lore expander did not update aria-expanded');
+      }
+      const loreSub = page.locator('#temple-mobile-menu > .nav-group').nth(0).locator('.nav-sub');
+      if (!(await loreSub.locator('a:has-text("Extended")').isVisible())) {
+        throw new Error('Extended did not appear under Lore');
+      }
+      await toggles.nth(1).click();
+      const storeSub = page.locator('#temple-mobile-menu > .nav-group').nth(1).locator('.nav-sub');
+      for (const label of ['Merch', 'Art']) {
+        if (!(await storeSub.locator(`a:has-text("${label}")`).isVisible())) {
+          throw new Error(`${label} did not appear under Store`);
+        }
+      }
+      for (const sub of [loreSub, storeSub]) {
         const state = await sub.evaluate((element) => ({
           position: getComputedStyle(element).position,
           transform: getComputedStyle(element).transform,
@@ -431,34 +459,30 @@ async function run() {
           right: element.getBoundingClientRect().right,
         }));
         if (state.position !== 'static' || state.transform !== 'none') {
-          throw new Error(
-            `mobile submenu ${index} inherited desktop positioning: ${JSON.stringify(state)}`
-          );
+          throw new Error(`mobile submenu inherited desktop positioning: ${JSON.stringify(state)}`);
         }
         if (state.left < 0 || state.right > 390) {
-          throw new Error(`mobile submenu ${index} escaped the viewport: ${JSON.stringify(state)}`);
+          throw new Error(`mobile submenu escaped viewport: ${JSON.stringify(state)}`);
         }
       }
-      const rects = await page.locator('#temple-mobile-menu a').evaluateAll((links) =>
-        links.map((link) => ({
-          text: link.textContent.trim(),
-          top: link.getBoundingClientRect().top,
-          left: link.getBoundingClientRect().left,
-          right: link.getBoundingClientRect().right,
-        }))
-      );
-      for (const rect of rects) {
+      const visibleLinks = await page
+        .locator('#temple-mobile-menu a:visible')
+        .evaluateAll((links) =>
+          links.map((link) => ({
+            text: link.textContent.trim(),
+            align: getComputedStyle(link).textAlign,
+            left: link.getBoundingClientRect().left,
+            right: link.getBoundingClientRect().right,
+          }))
+        );
+      for (const rect of visibleLinks) {
+        if (rect.align !== 'center') throw new Error(`${rect.text} is not centre aligned`);
         if (rect.left < 0 || rect.right > 390) {
           throw new Error(`${rect.text} escaped the mobile viewport: ${JSON.stringify(rect)}`);
         }
       }
-      for (let index = 1; index < rects.length; index++) {
-        if (rects[index].top < rects[index - 1].top) {
-          throw new Error(
-            `mobile tabs are out of vertical order: ${rects[index - 1].text} / ${rects[index].text}`
-          );
-        }
-      }
+      await toggles.nth(0).click();
+      if (await loreSub.isVisible()) throw new Error('Lore did not collapse');
       const store = page.locator('#temple-mobile-menu > .nav-group > a.nav-link:has-text("Store")');
       if ((await store.getAttribute('href')) !== '/store/merch/zeus/') {
         throw new Error('mobile Store is not a real temple Merch link');
@@ -538,6 +562,56 @@ async function run() {
         );
       }
       await mob.close();
+    });
+
+    await test('temple Commons: archived mascot opens licensed viewer with download and share', async () => {
+      await page.addInitScript(() => {
+        window.__sharedArtwork = null;
+        Object.defineProperty(navigator, 'share', {
+          configurable: true,
+          value: async (data) => {
+            window.__sharedArtwork = data;
+          },
+        });
+      });
+      const id = 'commons-hermes-hermes-anime-mascot-v1';
+      await page.goto(`${base}/sites/hermes/art/?view=commons&art=${id}`, {
+        waitUntil: 'domcontentloaded',
+      });
+      const dialog = page.locator('dialog.commons-viewer');
+      await dialog.waitFor({ state: 'visible' });
+      if (!(await dialog.textContent()).includes('Hermês — anime mascot')) {
+        throw new Error('archived mascot title missing from viewer');
+      }
+      for (const marker of ['CC BY 4.0', 'Not recorded', 'AI-assisted', 'PuniCodex Studio']) {
+        if (!(await dialog.textContent()).includes(marker)) {
+          throw new Error(`Commons metadata missing: ${marker}`);
+        }
+      }
+      const download = dialog.locator('a[download]');
+      if (
+        (await download.getAttribute('href')) !== '/assets/ai-commons/hermes-anime-mascot-v1.png'
+      ) {
+        throw new Error('full-resolution download is not wired');
+      }
+      await dialog.locator('.cv-btn-primary').click();
+      await dialog.locator('button.cv-btn').first().click();
+      const shared = await page.evaluate(() => window.__sharedArtwork);
+      if (!shared || !shared.url.includes(`/hermes/art/?view=commons`)) {
+        throw new Error(
+          `native share did not carry canonical artwork URL: ${JSON.stringify(shared)}`
+        );
+      }
+      await dialog.locator('.cv-close').click();
+      await page.waitForFunction(() => !new URLSearchParams(location.search).has('art'));
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator(`.art-card[data-art-id="${id}"]`).first().click();
+      await dialog.waitFor({ state: 'visible' });
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth > window.innerWidth + 1
+      );
+      if (overflow) throw new Error('Commons viewer overflows mobile viewport');
+      await page.setViewportSize({ width: 1366, height: 900 });
     });
 
     await test('admin portal: cookie-only sign-in stays on the dashboard and sends CSRF', async () => {

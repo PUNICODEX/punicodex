@@ -3046,6 +3046,10 @@ a.crosslink:focus-visible {
     background: rgba(212, 175, 55, 0.08);
 }
 
+.nav-sub-toggle {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .mobile-menu.temple-mobile-menu {
         align-items: stretch;
@@ -3053,6 +3057,7 @@ a.crosslink:focus-visible {
         padding: 2rem 1.25rem 2.5rem;
     }
     .temple-mobile-menu .nav-group {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -3060,6 +3065,7 @@ a.crosslink:focus-visible {
     }
     .mobile-menu.temple-mobile-menu .nav-group .nav-sub {
         position: static;
+        display: none;
         transform: none;
         opacity: 1;
         visibility: visible;
@@ -3071,7 +3077,28 @@ a.crosslink:focus-visible {
         background: transparent;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        padding: 0.2rem 0 0.2rem 1rem;
+        padding: 0.2rem 0 0.2rem;
+    }
+    .mobile-menu.temple-mobile-menu .nav-group.nav-group-open .nav-sub {
+        display: flex;
+        flex-direction: column;
+    }
+    .temple-mobile-menu .nav-sub-toggle {
+        position: absolute;
+        top: 0;
+        right: 0.25rem;
+        z-index: 2;
+        display: grid;
+        width: 2.5rem;
+        height: 2.5rem;
+        place-items: center;
+        padding: 0;
+        color: var(--primary, #d4af37);
+        background: transparent;
+        border: 0;
+        font: inherit;
+        font-size: 1rem;
+        cursor: pointer;
     }
     .temple-mobile-menu > .nav-link,
     .temple-mobile-menu .nav-group > .nav-link,
@@ -3079,8 +3106,12 @@ a.crosslink:focus-visible {
         display: block;
         width: 100%;
         box-sizing: border-box;
-        text-align: left;
+        text-align: center;
         white-space: normal;
+    }
+    .temple-mobile-menu .nav-group > .nav-link {
+        padding-right: 3rem;
+        padding-left: 3rem;
     }
     .temple-mobile-menu .nav-sub-link {
         padding: 0.4rem 0.6rem;

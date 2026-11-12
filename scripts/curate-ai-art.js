@@ -14,6 +14,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const LIB_PATH = path.join(ROOT, 'data', 'ai-art', 'prompt-library.json');
@@ -64,7 +65,7 @@ if (!entry) {
   console.error(`no generation-log entry for ${base}`);
   process.exit(1);
 }
-fs.writeFileSync(LOG_PATH, lines.join('\n') + '\n');
+writeFileWithRetry(LOG_PATH, lines.join('\n') + '\n');
 
 if (verdict === 'keep') {
   if (entry && entry.verdict === 'reject') {
@@ -99,5 +100,5 @@ if (verdict === 'keep') {
   }
 }
 
-fs.writeFileSync(LIB_PATH, JSON.stringify(lib, null, 2) + '\n');
+writeFileWithRetry(LIB_PATH, JSON.stringify(lib, null, 2) + '\n');
 console.log(`${deity}: ${verdict}${reason ? ` (${reason})` : ''} — wins ${spec.wins} / losses ${spec.losses}, promptVersion ${spec.promptVersion}`);

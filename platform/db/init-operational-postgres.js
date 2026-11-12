@@ -71,6 +71,7 @@ const OPERATIONAL_TABLES = [
   'institution_capability_policies',
   'account_initiation',
   'account_audit_log',
+  'account_downloads',
   'csp_reports',
 ];
 
