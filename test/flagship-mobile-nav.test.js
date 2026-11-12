@@ -173,6 +173,32 @@ test('every flagship Store tab is a real Merch link on desktop and mobile', () =
   }
 });
 
+test('mobile menu has seven top-level items and only Lore and Store own submenus', () => {
+  const expected = ['Home', 'Lore', 'Store', 'Patterns', 'Scholars', 'Patrons', 'Blog'];
+  for (const id of ids) {
+    const $ = loadPage(id, '');
+    const menu = $('#temple-mobile-menu');
+    const topLevel = menu
+      .children('a.nav-link')
+      .add(menu.children('.nav-group').children('a.nav-link'));
+    assert.deepStrictEqual(
+      topLevel.map((_, element) => $(element).text().trim()).get(),
+      expected,
+      `${id}: mobile top-level navigation drifted`
+    );
+    assert.strictEqual(
+      menu.children('.nav-group').length,
+      2,
+      `${id}: expected Lore and Store groups`
+    );
+    assert.strictEqual(
+      menu.children('.nav-group').children('.nav-sub-toggle').length,
+      0,
+      `${id}: expanders must be created accessibly by the shared controller, not duplicated in markup`
+    );
+  }
+});
+
 test('hamburger is always the last visible item in the tab nav inner', () => {
   for (const id of ids) {
     const $ = loadPage(id, '');

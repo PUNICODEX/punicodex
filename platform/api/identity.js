@@ -1306,7 +1306,85 @@ async function adminRevokeInstitutionAccess(actorAdminId, accountId, institution
   return adminGetAccount(accountId);
 }
 
+let commonsWorksById = null;
+
+function getCommonsWork(assetId) {
+  if (typeof assetId !== 'string' || assetId.length < 3 || assetId.length > 240) {
+    throw identityError(400, 'A valid Commons artwork is required', 'invalid_asset');
+  }
+  if (!commonsWorksById) {
+    const manifest = require('../../assets/ai-commons/manifest.json');
+    commonsWorksById = new Map((manifest.items || []).map((work) => [work.id, work]));
+  }
+  const work = commonsWorksById.get(assetId);
+  if (!work) throw identityError(400, 'A valid Commons artwork is required', 'invalid_asset');
+  return work;
+}
+
+function sanitizeDownload(row) {
+  return {
+    id: row.asset_id,
+    templeId: row.temple_id,
+    title: row.title,
+    assetUrl: row.asset_url,
+    detailUrl: `/${encodeURIComponent(row.temple_id)}/art/?view=commons&art=${encodeURIComponent(row.asset_id)}`,
+    license: row.license,
+    downloadCount: Number(row.download_count),
+    firstDownloadedAt: row.first_downloaded_at,
+    lastDownloadedAt: row.last_downloaded_at,
+  };
+}
+
+async function getDownloads(accountId) {
+  await ensureIdentitySchema();
+  const rows = await operational.all(
+    `SELECT * FROM account_downloads WHERE account_id = $1
+     ORDER BY last_downloaded_at DESC, asset_id ASC LIMIT 100`,
+    [accountId]
+  );
+  return rows.map(sanitizeDownload);
+}
+
+async function recordDownload(accountId, assetId) {
+  const work = getCommonsWork(assetId);
+  await ensureIdentitySchema();
+  await operational.run(
+    `INSERT INTO account_downloads
+       (id, account_id, asset_id, temple_id, title, asset_url, license)
+     VALUES ($1, $2, $3, $4, $5, $6, $7)
+     ON CONFLICT (account_id, asset_id) DO UPDATE SET
+       download_count = account_downloads.download_count + 1,
+       last_downloaded_at = CURRENT_TIMESTAMP,
+       title = EXCLUDED.title,
+       asset_url = EXCLUDED.asset_url,
+       license = EXCLUDED.license`,
+    [
+      crypto.randomUUID(),
+      accountId,
+      work.id,
+      work.templeId,
+      work.title,
+      work.src,
+      work.license || 'CC BY 4.0',
+    ]
+  );
+  const row = await operational.get(
+    'SELECT * FROM account_downloads WHERE account_id = $1 AND asset_id = $2',
+    [accountId, work.id]
+  );
+  return sanitizeDownload(row);
+}
+
+async function clearDownloads(accountId) {
+  await ensureIdentitySchema();
+  await operational.run('DELETE FROM account_downloads WHERE account_id = $1', [accountId]);
+  return { success: true };
+}
+
 module.exports = {
+  getDownloads,
+  recordDownload,
+  clearDownloads,
   CAPABILITIES,
   COMMERCE_CAPABILITIES,
   SESSION_COOKIE,

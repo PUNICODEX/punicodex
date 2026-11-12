@@ -594,6 +594,11 @@ function deriveFlavor(entry, archetype, lore) {
 
 const MASTERS_BASE = 'https://punycodex-masters.vercel.app';
 
+function editionArtPath(entryId, edition) {
+  const file = path.join(__dirname, '..', 'assets', 'card-editions', `${entryId}-${edition}.jpg`);
+  return fs.existsSync(file) ? `/assets/card-editions/${entryId}-${edition}.jpg` : null;
+}
+
 // ── The Edition Ladder (rarity = printing, never ownership) ─────────────────
 // Every flagship archetype is printed in four editions of escalating scarcity
 // and spectacle: common, holo, full-art, and the original-script secret rare.
@@ -701,11 +706,12 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition 
     ownedDomain: archetype?.domainUnicode || null,
     art: archetype
       ? {
-          mascot: archetype.mascotPath || null,
+          mascot: editionArtPath(entry.id, edition) || archetype.mascotPath || null,
+          originalMascot: archetype.mascotPath || null,
           logomark: archetype.logomarkPath || null,
           fullArt:
             edition === 'full-art' || edition === 'secret'
-              ? `${MASTERS_BASE}/${entry.id}_comp-canvas.png`
+              ? editionArtPath(entry.id, edition) || `${MASTERS_BASE}/${entry.id}_comp-canvas.png`
               : null,
           colors: archetype.colors || null,
           artist: null,

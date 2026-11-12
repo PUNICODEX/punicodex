@@ -35,30 +35,42 @@ const built = ARCHETYPES.filter((a) => a.built);
 console.log(`Temple art rooms: ${built.length} built flagships`);
 
 const commonsIndex = new Map();
+function addCommonsWork(id, work) {
+  if (!commonsIndex.has(id)) commonsIndex.set(id, []);
+  commonsIndex.get(id).push(work);
+}
 try {
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(COMMONS_DIR, 'manifest.json'), 'utf8')
+  );
+  for (const item of manifest.items || []) addCommonsWork(item.templeId, item);
+} catch {
   for (const f of fs.readdirSync(COMMONS_DIR).filter((x) => x.endsWith('.jpg'))) {
-    let m = f.match(/^(.+?)-v(\d+\.\d+)\.jpg$/) || f.match(/^([a-z]+)\.jpg$/);
+    const m = f.match(/^(.+?)-v(\d+\.\d+)\.jpg$/) || f.match(/^([a-z]+)\.jpg$/);
     if (!m) continue;
     let deity = m[1];
     const fam = FAMILIES.find((x) => deity.endsWith('-' + x));
     if (fam) deity = deity.slice(0, -(fam.length + 1));
-    if (!commonsIndex.has(deity)) commonsIndex.set(deity, []);
-    commonsIndex.get(deity).push(f);
+    addCommonsWork(deity, {
+      src: `/assets/ai-commons/${f}`,
+      family: fam || 'classic-gold',
+      title: `${deity} — study v${m[2] || 'studio'}`,
+    });
   }
-} catch {
-  /* commons dir absent */
 }
 
 function commonsCards(id, entry) {
-  const files = (commonsIndex.get(id) || []).sort();
-  return files
-    .map((f) => {
-      const study = (f.match(/-v(\d+\.\d+)\.jpg$/) || [])[1] || 'studio';
-      const family = FAMILIES.find((x) => f.includes('-' + x + '-')) || 'classic-gold';
-      return `<figure class="art-card" data-kind="commons" data-title="${esc(entry.unicode)} study v${study} ${family.replace(/-/g, ' ')}" data-tags="${family}" data-date="${study.replace('v', '')}">
-      <div class="imgbox"><img src="/assets/ai-commons/${f}" alt="${esc(entry.unicode)} — PuniCodex studio ${family}" loading="lazy" width="512" height="512"></div>
-      <div class="body"><div class="sub">The Commons · ${family.replace(/-/g, ' ')}</div><h3>${esc(entry.unicode)} — study v${study}</h3>
-      <div class="sub" style="text-transform:none;letter-spacing:0">CC BY 4.0 · free with attribution</div></div>
+  const works = (commonsIndex.get(id) || []).sort((a, b) => a.src.localeCompare(b.src));
+  return works
+    .map((work) => {
+      const family = work.family || 'classic-gold';
+      const title = work.title || `${entry.unicode} — Commons study`;
+      const tags = (work.tags || ['commons', family]).join(' ');
+      const date = work.generatedAt || '';
+      return `<figure class="art-card" data-kind="commons" data-art-id="${esc(work.id || '')}" data-title="${esc(title)} ${family.replace(/-/g, ' ')}" data-tags="${esc(tags)}" data-date="${esc(date)}" data-src="${esc(work.src)}" data-license="${esc(work.license || 'CC BY 4.0')}" data-model="${esc(work.model || 'Not recorded')}">
+      <div class="imgbox"><img src="${esc(work.src)}" alt="${esc(title)} — PuniCodex studio ${family}" loading="lazy" width="512" height="512"></div>
+      <div class="body"><div class="sub">The Commons · ${family.replace(/-/g, ' ')}</div><h3>${esc(title)}</h3>
+      <div class="sub" style="text-transform:none;letter-spacing:0">${esc(work.license || 'CC BY 4.0')} · attribution required</div></div>
     </figure>`;
     })
     .join('\n    ');
@@ -102,6 +114,7 @@ function renderTempleArt(a) {
   const entry = LEX_BY_ID.get(a.id);
   const name = entry ? entry.unicode : a.name || a.id;
   const gallery = galleryCards(a.id, entry || { unicode: name });
+  const commonsWorks = commonsIndex.get(a.id) || [];
   const commons = commonsCards(a.id, entry || { unicode: name });
   const creatives = creativesEmpty(entry || { unicode: name });
   const all = [gallery, commons].filter(Boolean).join('\n    ');
@@ -159,6 +172,7 @@ function renderTempleArt(a) {
 <link rel="stylesheet" href="../styles.css?v=${cssPin}">
 <link rel="stylesheet" href="/css/temple-base.css?v=perf24">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+<link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>
@@ -262,6 +276,7 @@ ${CSS}
     <input id="art-q" type="search" placeholder="Search by title, myth, or style…" aria-label="Search artworks">
     <select id="art-tag" aria-label="Filter by tag">
       <option value="">All Tags</option>
+      <option value="mascot">Mascots</option>
       <option value="tattoo">Tattoo-ready</option>
       <option value="anime">Anime</option>
       <option value="realism">Realism</option>
@@ -290,6 +305,8 @@ ${CSS}
   </div>
 </main>
 ${footerHtml()}
+<script>window.__COMMONS_WORKS__ = ${JSON.stringify(commonsWorks).replace(/</g, '\\u003c')};</script>
+<script src="/js/commons-viewer.js?v=2" defer></script>
 <script src="/js/px-core.js?v=perf23" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>

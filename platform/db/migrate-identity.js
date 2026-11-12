@@ -11,6 +11,7 @@ const TABLES = [
   'institution_capability_policies',
   'account_initiation',
   'account_audit_log',
+  'account_downloads',
 ];
 
 const SQLITE_SCHEMA = `
@@ -109,6 +110,22 @@ const SQLITE_SCHEMA = `
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES accounts(id)
   );
+
+  CREATE TABLE IF NOT EXISTS account_downloads (
+    id TEXT PRIMARY KEY,
+    account_id TEXT NOT NULL,
+    asset_id TEXT NOT NULL,
+    temple_id TEXT NOT NULL,
+    title TEXT NOT NULL,
+    asset_url TEXT NOT NULL,
+    license TEXT NOT NULL,
+    download_count INTEGER NOT NULL DEFAULT 1 CHECK (download_count > 0),
+    first_downloaded_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    last_downloaded_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(account_id, asset_id),
+    FOREIGN KEY (account_id) REFERENCES accounts(id)
+  );
+  CREATE INDEX IF NOT EXISTS idx_account_downloads_recent ON account_downloads(account_id, last_downloaded_at DESC);
 
   CREATE TABLE IF NOT EXISTS account_audit_log (
     id TEXT PRIMARY KEY,

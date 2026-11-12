@@ -415,15 +415,43 @@ async function run() {
       await Promise.all([page.waitForURL('**/sites/zeus/art/index.html'), art.click()]);
     });
 
-    await test('temple mobile: submenus stay aligned, static, vertical, and inside the viewport', async () => {
+    await test('temple mobile: seven centred items with accessible Lore and Store expansion', async () => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(`${base}/sites/zeus/`, { waitUntil: 'domcontentloaded' });
       await page.locator('#nav-toggle').click();
       await page.waitForTimeout(250);
-      for (const index of [0, 1]) {
-        const group = page.locator('#temple-mobile-menu > .nav-group').nth(index);
-        await group.hover();
-        const sub = group.locator('.nav-sub');
+      const topLevel = page.locator(
+        '#temple-mobile-menu > a.nav-link, #temple-mobile-menu > .nav-group > a.nav-link'
+      );
+      const labels = await topLevel.allTextContents();
+      const expected = ['Home', 'Lore', 'Store', 'Patterns', 'Scholars', 'Patrons', 'Blog'];
+      if (labels.length !== 7 || labels.some((label, index) => label.trim() !== expected[index])) {
+        throw new Error(`mobile top-level tabs drifted: ${JSON.stringify(labels)}`);
+      }
+      const toggles = page.locator('#temple-mobile-menu .nav-sub-toggle');
+      if ((await toggles.count()) !== 2)
+        throw new Error('Lore and Store need exactly two expanders');
+      for (const group of await page.locator('#temple-mobile-menu > .nav-group').all()) {
+        if (await group.locator('.nav-sub').isVisible()) {
+          throw new Error('mobile submenu started expanded');
+        }
+      }
+      await toggles.nth(0).click();
+      if ((await toggles.nth(0).getAttribute('aria-expanded')) !== 'true') {
+        throw new Error('Lore expander did not update aria-expanded');
+      }
+      const loreSub = page.locator('#temple-mobile-menu > .nav-group').nth(0).locator('.nav-sub');
+      if (!(await loreSub.locator('a:has-text("Extended")').isVisible())) {
+        throw new Error('Extended did not appear under Lore');
+      }
+      await toggles.nth(1).click();
+      const storeSub = page.locator('#temple-mobile-menu > .nav-group').nth(1).locator('.nav-sub');
+      for (const label of ['Merch', 'Art']) {
+        if (!(await storeSub.locator(`a:has-text("${label}")`).isVisible())) {
+          throw new Error(`${label} did not appear under Store`);
+        }
+      }
+      for (const sub of [loreSub, storeSub]) {
         const state = await sub.evaluate((element) => ({
           position: getComputedStyle(element).position,
           transform: getComputedStyle(element).transform,
@@ -431,34 +459,30 @@ async function run() {
           right: element.getBoundingClientRect().right,
         }));
         if (state.position !== 'static' || state.transform !== 'none') {
-          throw new Error(
-            `mobile submenu ${index} inherited desktop positioning: ${JSON.stringify(state)}`
-          );
+          throw new Error(`mobile submenu inherited desktop positioning: ${JSON.stringify(state)}`);
         }
         if (state.left < 0 || state.right > 390) {
-          throw new Error(`mobile submenu ${index} escaped the viewport: ${JSON.stringify(state)}`);
+          throw new Error(`mobile submenu escaped viewport: ${JSON.stringify(state)}`);
         }
       }
-      const rects = await page.locator('#temple-mobile-menu a').evaluateAll((links) =>
-        links.map((link) => ({
-          text: link.textContent.trim(),
-          top: link.getBoundingClientRect().top,
-          left: link.getBoundingClientRect().left,
-          right: link.getBoundingClientRect().right,
-        }))
-      );
-      for (const rect of rects) {
+      const visibleLinks = await page
+        .locator('#temple-mobile-menu a:visible')
+        .evaluateAll((links) =>
+          links.map((link) => ({
+            text: link.textContent.trim(),
+            align: getComputedStyle(link).textAlign,
+            left: link.getBoundingClientRect().left,
+            right: link.getBoundingClientRect().right,
+          }))
+        );
+      for (const rect of visibleLinks) {
+        if (rect.align !== 'center') throw new Error(`${rect.text} is not centre aligned`);
         if (rect.left < 0 || rect.right > 390) {
           throw new Error(`${rect.text} escaped the mobile viewport: ${JSON.stringify(rect)}`);
         }
       }
-      for (let index = 1; index < rects.length; index++) {
-        if (rects[index].top < rects[index - 1].top) {
-          throw new Error(
-            `mobile tabs are out of vertical order: ${rects[index - 1].text} / ${rects[index].text}`
-          );
-        }
-      }
+      await toggles.nth(0).click();
+      if (await loreSub.isVisible()) throw new Error('Lore did not collapse');
       const store = page.locator('#temple-mobile-menu > .nav-group > a.nav-link:has-text("Store")');
       if ((await store.getAttribute('href')) !== '/store/merch/zeus/') {
         throw new Error('mobile Store is not a real temple Merch link');
@@ -538,6 +562,56 @@ async function run() {
         );
       }
       await mob.close();
+    });
+
+    await test('temple Commons: archived mascot opens licensed viewer with download and share', async () => {
+      await page.addInitScript(() => {
+        window.__sharedArtwork = null;
+        Object.defineProperty(navigator, 'share', {
+          configurable: true,
+          value: async (data) => {
+            window.__sharedArtwork = data;
+          },
+        });
+      });
+      const id = 'commons-hermes-hermes-anime-mascot-v1';
+      await page.goto(`${base}/sites/hermes/art/?view=commons&art=${id}`, {
+        waitUntil: 'domcontentloaded',
+      });
+      const dialog = page.locator('dialog.commons-viewer');
+      await dialog.waitFor({ state: 'visible' });
+      if (!(await dialog.textContent()).includes('Hermês — anime mascot')) {
+        throw new Error('archived mascot title missing from viewer');
+      }
+      for (const marker of ['CC BY 4.0', 'Not recorded', 'AI-assisted', 'PuniCodex Studio']) {
+        if (!(await dialog.textContent()).includes(marker)) {
+          throw new Error(`Commons metadata missing: ${marker}`);
+        }
+      }
+      const download = dialog.locator('a[download]');
+      if (
+        (await download.getAttribute('href')) !== '/assets/ai-commons/hermes-anime-mascot-v1.png'
+      ) {
+        throw new Error('full-resolution download is not wired');
+      }
+      await dialog.locator('.cv-btn-primary').click();
+      await dialog.locator('button.cv-btn').first().click();
+      const shared = await page.evaluate(() => window.__sharedArtwork);
+      if (!shared || !shared.url.includes(`/hermes/art/?view=commons`)) {
+        throw new Error(
+          `native share did not carry canonical artwork URL: ${JSON.stringify(shared)}`
+        );
+      }
+      await dialog.locator('.cv-close').click();
+      await page.waitForFunction(() => !new URLSearchParams(location.search).has('art'));
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator(`.art-card[data-art-id="${id}"]`).first().click();
+      await dialog.waitFor({ state: 'visible' });
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth > window.innerWidth + 1
+      );
+      if (overflow) throw new Error('Commons viewer overflows mobile viewport');
+      await page.setViewportSize({ width: 1366, height: 900 });
     });
 
     await test('admin portal: cookie-only sign-in stays on the dashboard and sends CSRF', async () => {
@@ -629,6 +703,140 @@ async function run() {
         if (!(mutationHeaders.cookie || '').includes('punicodex_admin_session=')) {
           throw new Error('cookie-authenticated mutation omitted its session cookie');
         }
+      } finally {
+        await admin.close();
+      }
+    });
+
+    await test('admin analytics: every timeframe loads and structured failures stay readable', async () => {
+      const admin = await browser.newContext({ viewport: { width: 1366, height: 900 } });
+      const requestedDays = [];
+      const runtimeErrors = [];
+      let fail = false;
+      try {
+        await admin.route('**/api/**', (route) =>
+          route.fulfill({ status: 200, contentType: 'application/json', body: '{}' })
+        );
+        await admin.route('**/api/admin/portal/me/', (route) =>
+          route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify({
+              user: { email: 'analytics@example.test', displayName: 'Analytics Admin' },
+              role: 'viewer',
+              permissions: ['read'],
+            }),
+          })
+        );
+        await admin.route(
+          (url) => url.pathname === '/api/admin/portal/analytics/',
+          (route) => {
+            const url = new URL(route.request().url());
+            const days = Number(url.searchParams.get('days') || 30);
+            if (url.searchParams.get('mode') === 'rolling') requestedDays.push(days);
+            if (fail) {
+              return route.fulfill({
+                status: 500,
+                contentType: 'application/json',
+                body: JSON.stringify({
+                  error: {
+                    message: 'Analytics storage is temporarily unavailable',
+                    code: 'storage_unavailable',
+                  },
+                }),
+              });
+            }
+            const byDay = Array.from({ length: days }, (_, index) => ({
+              day: `2026-11-${String((index % 28) + 1).padStart(2, '0')}`,
+              human: 0,
+              bot: 0,
+            }));
+            return route.fulfill({
+              status: 200,
+              contentType: 'application/json',
+              body: JSON.stringify({
+                mode: 'rolling',
+                days,
+                overview: {
+                  periodDays: days,
+                  totals: { humanViews: 0, botViews: 0, uniqueSessions: 0, botPct: 0 },
+                  byDay,
+                  topTemples: [],
+                  topReferrers: [],
+                  devices: { mobile: 0, tablet: 0, desktop: 0 },
+                  botCategories: [],
+                  topPaths: [],
+                },
+                engagement: {
+                  periodDays: days,
+                  engagements: 0,
+                  avgVisibleMs: 0,
+                  avgScrollPct: 0,
+                  topEngaged: [],
+                },
+                depth: {
+                  periodDays: days,
+                  pagesPerSession: 0,
+                  singlePageSessions: 0,
+                  sessions: 0,
+                  bouncePct: 0,
+                },
+                trends: null,
+                generatedAt: '2026-11-12T12:00:00Z',
+              }),
+            });
+          }
+        );
+        const ap = await admin.newPage();
+        ap.on('pageerror', (error) => runtimeErrors.push(error.message));
+        if (process.env.BROWSER_TEST_DEBUG) {
+          ap.on('console', (message) =>
+            console.log('ADMIN ANALYTICS CONSOLE', message.type(), message.text())
+          );
+          ap.on('response', (response) => {
+            if (response.url().includes('/api/'))
+              console.log('ADMIN ANALYTICS API', response.status(), response.url());
+          });
+        }
+        await ap.goto(`${base}/admin-portal/analytics/`, { waitUntil: 'domcontentloaded' });
+        if (process.env.BROWSER_TEST_DEBUG) {
+          await ap.waitForTimeout(1500);
+          console.log(
+            'ADMIN ANALYTICS BODY',
+            (await ap.locator('body').innerText()).slice(0, 2400)
+          );
+          console.log('ADMIN ANALYTICS RUNTIME ERRORS', runtimeErrors);
+        }
+        await ap.locator('#an-stats .stat-card').first().waitFor({ state: 'visible' });
+        for (const days of [7, 90, 120]) {
+          const response = ap.waitForResponse(
+            (res) =>
+              new URL(res.url()).searchParams.get('days') === String(days) && res.status() === 200
+          );
+          await ap.locator(`.period-btn[data-days="${days}"]`).click();
+          await response;
+          await ap.waitForFunction(
+            (expected) =>
+              document.getElementById('an-chart-sub').textContent.includes(`last ${expected} days`),
+            days
+          );
+        }
+        fail = true;
+        const failedResponse = ap.waitForResponse(
+          (res) => new URL(res.url()).searchParams.get('days') === '7' && res.status() === 500
+        );
+        await ap.locator('.period-btn[data-days="7"]').click();
+        await failedResponse;
+        await ap.waitForFunction(() =>
+          document.body.textContent.includes('Analytics storage is temporarily unavailable')
+        );
+        const body = await ap.locator('body').textContent();
+        if (body.includes('[object Object]'))
+          throw new Error('structured API error leaked as object-object');
+        if (requestedDays.join(',') !== '30,7,90,120,7') {
+          throw new Error(`unexpected timeframe requests: ${requestedDays.join(',')}`);
+        }
+        if (runtimeErrors.length) throw new Error(runtimeErrors.join('; '));
       } finally {
         await admin.close();
       }

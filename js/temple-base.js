@@ -82,6 +82,31 @@
         });
     });
 
+    // Mobile tab groups: seven top-level destinations, with Extended, Merch,
+    // and Art revealed only by their accessible arrow controls.
+    const templeMobileMenu = document.querySelector('.temple-mobile-menu');
+    if (templeMobileMenu) {
+        templeMobileMenu.querySelectorAll(':scope > .nav-group').forEach((group, index) => {
+            const submenu = group.querySelector(':scope > .nav-sub');
+            if (!submenu) return;
+            const toggle = document.createElement('button');
+            toggle.type = 'button';
+            toggle.className = 'nav-sub-toggle';
+            toggle.textContent = '▸';
+            submenu.id = submenu.id || `temple-mobile-sub-${index}`;
+            toggle.setAttribute('aria-controls', submenu.id);
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', `Expand ${group.querySelector(':scope > .nav-link')?.textContent.trim() || 'submenu'}`);
+            toggle.addEventListener('click', () => {
+                const open = group.classList.toggle('nav-group-open');
+                toggle.setAttribute('aria-expanded', String(open));
+                toggle.setAttribute('aria-label', `${open ? 'Collapse' : 'Expand'} ${group.querySelector(':scope > .nav-link')?.textContent.trim() || 'submenu'}`);
+                toggle.textContent = open ? '▾' : '▸';
+            });
+            group.insertBefore(toggle, submenu);
+        });
+    }
+
     // ============================
     // Generic Particle Canvas
     // (for base temples without custom canvas)

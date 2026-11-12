@@ -40,8 +40,13 @@ function commonsWorksFor(id) {
   if (!exists('assets/ai-commons')) return [];
   return fs
     .readdirSync(COMMONS_DIR)
-    .filter((f) => f.endsWith('.jpg'))
-    .filter((f) => f.startsWith(`${id}-v`) || (LEGACY_COMMONS.has(id) && f === `${id}.jpg`))
+    .filter((f) => f.endsWith('.jpg') || f.endsWith('-anime-mascot-v1.png'))
+    .filter(
+      (f) =>
+        f.startsWith(`${id}-v`) ||
+        f === `${id}-anime-mascot-v1.png` ||
+        (LEGACY_COMMONS.has(id) && f === `${id}.jpg`)
+    )
     .sort();
 }
 
@@ -84,7 +89,7 @@ test('the retired gallery/creatives pages redirect into the art room', () => {
   }
 });
 
-test('referenced commons assets exist on disk and are 512x512', () => {
+test('referenced commons assets exist on disk', () => {
   let checked = 0;
   for (const e of flagships) {
     for (const f of commonsWorksFor(e.id).slice(0, 2)) {
@@ -92,6 +97,25 @@ test('referenced commons assets exist on disk and are 512x512', () => {
       checked++;
       if (checked >= 60) return;
     }
+  }
+});
+
+test('archived mascots carry provenance and appear in global and temple Commons', () => {
+  const manifest = JSON.parse(read('assets/ai-commons/manifest.json'));
+  const archived = manifest.items.filter((item) => item.kind === 'mascot');
+  assert.ok(archived.length >= 200, `expected >=200 archived mascots, got ${archived.length}`);
+  const globalArt = read('store/art/index.html');
+  for (const item of archived.slice(0, 20)) {
+    assert.ok(exists(item.src.slice(1)), `${item.src} exists`);
+    assert.strictEqual(item.license, 'CC BY 4.0');
+    assert.ok(item.attribution.includes('PuniCodex Studio'));
+    assert.ok(item.attribution.includes(item.canonicalUrl));
+    assert.ok(item.model, `${item.id}: model disclosure missing`);
+    assert.ok(item.provenance.includes('preserved in Commons'));
+    assert.ok(item.tags.includes('mascot'));
+    const templeArt = read(path.join('sites', item.templeId, 'art', 'index.html'));
+    assert.ok(templeArt.includes(item.src), `${item.templeId}: archived mascot missing`);
+    assert.ok(globalArt.includes(item.src), `global Commons: ${item.src} missing`);
   }
 });
 

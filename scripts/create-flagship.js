@@ -3613,10 +3613,12 @@ function commonsWorksFor(entry) {
   try {
     return fs
       .readdirSync(COMMONS_DIR)
-      .filter((f) => f.endsWith('.jpg'))
+      .filter((f) => f.endsWith('.jpg') || f.endsWith('-anime-mascot-v1.png'))
       .filter(
         (f) =>
-          f.startsWith(`${entry.id}-v`) || (LEGACY_COMMONS.has(entry.id) && f === `${entry.id}.jpg`)
+          f.startsWith(`${entry.id}-v`) ||
+          f === `${entry.id}-anime-mascot-v1.png` ||
+          (LEGACY_COMMONS.has(entry.id) && f === `${entry.id}.jpg`)
       )
       .sort();
   } catch {

@@ -184,6 +184,37 @@ async function runTests() {
     }
   });
 
+  await test('portal API turns structured server errors into readable messages', async () => {
+    const vm = require('node:vm');
+    const sandbox = {
+      document: { cookie: '', body: { getAttribute: () => null } },
+      window: { location: { pathname: '/admin-portal/analytics/', search: '' } },
+      localStorage: { getItem: () => 'test-admin-token' },
+      fetch: async () => ({
+        status: 500,
+        ok: false,
+        json: async () => ({
+          error: {
+            message: 'Analytics storage is temporarily unavailable',
+            code: 'storage_unavailable',
+          },
+        }),
+      }),
+    };
+    vm.createContext(sandbox);
+    vm.runInContext(readCanonical('portal.js'), sandbox, { filename: 'portal.js' });
+    await assert.rejects(
+      sandbox.window.Portal.api('/api/admin/portal/analytics/?days=7'),
+      (err) => {
+        assert.strictEqual(err.message, 'Analytics storage is temporarily unavailable');
+        assert.strictEqual(err.code, 'storage_unavailable');
+        assert.strictEqual(err.status, 500);
+        assert.ok(!err.message.includes('[object Object]'));
+        return true;
+      }
+    );
+  });
+
   await test('command page relabels request-log telemetry as API Calls, never a work queue', () => {
     const src = readCanonical('index.html');
     assert.ok(

@@ -604,28 +604,38 @@ function renderArtDepartment() {
     meta: 'Temple Gallery',
   }));
 
-  // The Commons — the studio's keeper collection (assets/ai-commons, tracked).
-  // Each work links into its deity's temple art room.
+  // Every Commons work is listed, including archived flagship mascots.
   const COMMONS_DIR = path.join(ROOT, 'assets', 'ai-commons');
   const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'oil', 'geometric'];
   const commonsByDeity = new Map();
+  let commonsItems = [];
   try {
+    const manifest = JSON.parse(fs.readFileSync(path.join(COMMONS_DIR, 'manifest.json'), 'utf8'));
+    commonsItems = (manifest.items || []).map((item) => ({
+      id: item.id,
+      templeId: item.templeId,
+      kind: 'commons',
+      title: item.title,
+      description: `${item.family.replace(/-/g, ' ')} · ${item.license} · attribution required`,
+      department: traditionFor(item.templeId),
+      tags: item.tags,
+      createdAt: item.generatedAt || '',
+      thumbnailUrl: item.src,
+      alt: `${item.title} — PuniCodex Studio`,
+      href: `/${item.templeId}/art/?view=commons&art=${encodeURIComponent(item.id)}`,
+      meta: 'PuniCodex Studio · Commons',
+    }));
+  } catch {
     for (const f of fs.readdirSync(COMMONS_DIR).filter((f) => f.endsWith('.jpg'))) {
       const m = f.match(/^(.+?)-v(\d+\.\d+)\.jpg$/) || f.match(/^([a-z]+)\.jpg$/);
       if (!m) continue;
       let deity = m[1];
-      // family-tagged files: <deity>-<family>-vN.M.jpg -> deity
       const fam = FAMILIES.find((x) => deity.endsWith('-' + x));
       if (fam) deity = deity.slice(0, -(fam.length + 1));
       if (!commonsByDeity.has(deity)) commonsByDeity.set(deity, []);
       commonsByDeity.get(deity).push(f);
     }
-  } catch {
-    /* dir absent */
-  }
-  const commonsItems = [...commonsByDeity.entries()]
-    .sort((a, b) => b[1].length - a[1].length)
-    .map(([id, files]) => {
+    commonsItems = [...commonsByDeity.entries()].map(([id, files]) => {
       const e = LEXICON_BY_ID.get(id);
       const f = files.sort()[0];
       const study = (f.match(/-v(\d+\.\d+)\.jpg$/) || [])[1] || 'studio';
@@ -635,7 +645,7 @@ function renderArtDepartment() {
         templeId: id,
         kind: 'commons',
         title: e ? e.unicode : id,
-        description: `study v${study} · CC BY 4.0 · free`,
+        description: `study v${study} · CC BY 4.0 · attribution required`,
         department: traditionFor(id),
         tags: ['commons', family],
         createdAt: study === 'studio' ? '' : study,
@@ -645,6 +655,7 @@ function renderArtDepartment() {
         meta: 'PuniCodex Studio · Commons',
       };
     });
+  }
   const staticArt = [...galleryItems, ...commonsItems];
   const staticCard = (a) => `<a class="art-card" href="${esc(a.href)}" data-gid="${esc(a.templeId)}" data-kind="${a.kind}">
       <div class="imgbox"><img src="${esc(a.thumbnailUrl)}" alt="${esc(a.alt)}" loading="lazy"${a.kind === 'commons' ? ' width="512" height="512"' : ''}></div>
@@ -654,7 +665,7 @@ function renderArtDepartment() {
   const galleryCovers = galleryItems.map(staticCard).join('\n    ');
   const commonsCards = commonsItems.map(staticCard).join('\n    ');
   const allStaticCards = staticArt.map(staticCard).join('\n    ');
-  const commonsCount = [...commonsByDeity.values()].reduce((n, f) => n + f.length, 0);
+  const commonsCount = commonsItems.length;
 
   return `${head({
     title: 'Art — Tattoo Art, Creatives, the Commons & Temple Galleries | PUNICODEX',
@@ -688,7 +699,14 @@ function renderArtDepartment() {
       </select>
       <select id="art-tag" aria-label="Filter by tag">
         <option value="">All Tags</option>
+        <option value="mascot">Mascots</option>
+        <option value="anime">Anime</option>
+        <option value="realism">Realism</option>
         <option value="tattoo">Tattoo-ready</option>
+        <option value="bw-engraving">Black &amp; white engraving</option>
+        <option value="oil">Oil painting</option>
+        <option value="geometric">Geometric</option>
+        <option value="classic-gold">Classic gold</option>
       </select>
       <select id="art-sort" aria-label="Sort artworks">
         <option value="newest">Newest First</option>
@@ -708,7 +726,7 @@ function renderArtDepartment() {
     </div>
   </div>
   <div id="art-commons" hidden>
-    <p style="color:var(--dim);padding:1rem 0 0;max-width:70ch">Rights-cleared mythological art in the house style — gold on void — free for all under <strong>CC BY 4.0</strong>. The studio's first collection is live: <strong>${commonsCount} works across ${commonsByDeity.size} beings</strong>, each linked to its temple's art room. Student and contributor collections join as the university door opens.</p>
+    <p style="color:var(--dim);padding:1rem 0 0;max-width:70ch">Rights-cleared mythological art in the house style — gold on void — free for all under <strong>CC BY 4.0</strong>. The studio's first collection is live: <strong>${commonsCount} works across ${new Set(commonsItems.map((item) => item.templeId)).size} beings</strong>, each linked to its temple's art room. Student and contributor collections join as the university door opens.</p>
     <div class="art-grid">
     ${commonsCards}
     </div>

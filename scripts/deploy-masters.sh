@@ -31,4 +31,12 @@ echo "Pre-flight OK — deploying punycodex-masters."
 cd .masters
 # 17k+ files exceed the 15,000-item upload cap — archive upload is mandatory
 # (same doctrine as the main site's deploys).
-exec vercel deploy --prod --yes --archive=tgz
+VERCEL_CLI=(vercel)
+if [ -n "${VERCEL_CLI_PACKAGE:-}" ]; then
+  VERCEL_CLI=(npx "$VERCEL_CLI_PACKAGE")
+fi
+TOKEN_ARGS=()
+if [ -n "${VERCEL_TOKEN:-}" ]; then
+  TOKEN_ARGS=(--token "$VERCEL_TOKEN")
+fi
+exec "${VERCEL_CLI[@]}" deploy --prod --yes --archive=tgz "${TOKEN_ARGS[@]}"

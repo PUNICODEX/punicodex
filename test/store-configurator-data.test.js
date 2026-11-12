@@ -148,13 +148,28 @@ test('placement is garment geometry for every kind (universal overlay)', () => {
   }
 });
 
-test('per-kind artwork policies: canvas/phonecase mascot-only, pin logomark-only, notebook/sticker single design', () => {
+test('per-kind artwork policies keep the new mascot first and archived anime optional', () => {
   for (const p of CATALOG.products) {
     if (!p.temple) continue; // house line keeps its own art set
     const kind = kindOf(p);
     const keys = p.artworks.map((a) => a.key);
+    const hasAnime = p.artworks.some((a) => a.key === 'anime');
+    if (hasAnime) {
+      assert.ok(
+        p.artworks[0].key === 'mascot' && p.artworks[0].src.includes('_mascot.webp'),
+        `${p.id}: canonical mascot is not the default`
+      );
+      assert.ok(
+        p.artworks.some((a) => a.src.includes('_mascot_anime.webp')),
+        `${p.id}: anime does not use the preserved asset`
+      );
+    }
     if (kind === 'canvas' || kind === 'phonecase') {
-      assert.deepStrictEqual(keys, ['mascot'], `${p.id}: ${kind} must offer the mascot only`);
+      assert.deepStrictEqual(
+        keys,
+        hasAnime ? ['mascot', 'anime'] : ['mascot'],
+        `${p.id}: ${kind} artwork order drifted`
+      );
     } else if (kind === 'pin') {
       assert.deepStrictEqual(keys, ['logomark'], `${p.id}: pin must offer the logomark only`);
     } else if (kind === 'notebook' || kind === 'sticker') {
@@ -168,8 +183,10 @@ test('per-kind artwork policies: canvas/phonecase mascot-only, pin logomark-only
     ) {
       assert.deepStrictEqual(
         keys,
-        ['mascot', 'logomark', 'logolockup'],
-        `${p.id}: ${kind} offers the three temple arts`
+        hasAnime
+          ? ['mascot', 'logomark', 'logolockup', 'anime']
+          : ['mascot', 'logomark', 'logolockup'],
+        `${p.id}: ${kind} artwork order drifted`
       );
     }
   }

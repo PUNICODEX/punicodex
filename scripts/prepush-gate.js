@@ -87,7 +87,11 @@ const RULES = [
     suites: ['Browser E2E Tests'],
   },
   {
-    pattern: /^platform\/(?:api\/(?:identity|identity-analytics|product-analytics|tenant-portal|email)\.js$|db\/(?:migrate-identity|operational)\.js$|api-handlers\/(?:admin\/portal\/(?:identities|analytics\/identity)|analytics\/collect)\/|public\/admin-portal\/(?:identities\/|portal\.js$|login\/index\.html$)|scholars\/(?:auth|router)\.js$)|^api\/(?:account\/|webhook\/index\.js$)|^account\/|^scripts\/migrate-identity-backfill\.js$|^test\/(?:identity|institution-identity|admin-route-authority|admin-cookie-security|analytics-consent)/,
+    pattern: /^\.github\/workflows\/deploy-masters\.yml$|^scripts\/(?:deploy-masters\.sh|sync-masters-legacy-root\.js|masters-legacy-root\.json)$|^test\/release-orchestration\.test\.js$/,
+    suites: ['Release Orchestration Tests'],
+  },
+  {
+    pattern: /^platform\/(?:api\/(?:identity|identity-analytics|product-analytics|tenant-portal|email)\.js$|db\/(?:migrate-identity|init-operational-postgres|operational)\.js$|api-handlers\/(?:admin\/portal\/(?:identities|analytics\/identity)|analytics\/collect)\/|public\/admin-portal\/(?:identities\/|portal\.js$|login\/index\.html$)|scholars\/(?:auth|router)\.js$)|^api\/(?:account\/|webhook\/index\.js$)|^account\/|^scripts\/migrate-identity-backfill\.js$|^test\/(?:identity|institution-identity|admin-route-authority|admin-cookie-security|analytics-consent)/,
     suites: [
       'Identity Kernel Tests',
       'Public Identity API Tests',
@@ -132,7 +136,7 @@ const RULES = [
   {
     // Temple Art Room — the tab-strip restructure (STORE▾Merch·Art), the
     // per-temple art pages, and the gallery/creatives redirect stubs.
-    pattern: /^scripts\/(?:generate-temple-art|create-flagship|generate-blog-pages|generate-blog-series-pages)\.js$|^templates\/flagship\/.*\.html$|^css\/temple-base\.css$|^test\/(?:temple-art-room|flagship-mobile-nav)\.test\.js$/,
+    pattern: /^scripts\/(?:generate-temple-art|create-flagship|generate-blog-pages|generate-blog-series-pages)\.js$|^templates\/flagship\/.*\.html$|^css\/(?:temple-base|commons-viewer)\.css$|^js\/(?:temple-base|commons-viewer)\.js$|^test\/(?:temple-art-room|flagship-mobile-nav)\.test\.js$/,
     suites: [
       'Temple Art Room Tests',
       'Flagship Mobile Nav Tests',
