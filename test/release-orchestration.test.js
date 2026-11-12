@@ -52,6 +52,7 @@ test('masters CI rebuilds and guards the complete media fleet with scoped creden
   const workflow = fs.readFileSync('.github/workflows/deploy-masters.yml', 'utf8');
   for (const marker of [
     'secrets.VERCEL_TOKEN',
+    'VERCEL_PROJECT_ID: prj_lbdS7vCct1GyAq0fqo37UwvAICGm',
     '--project punycodex-masters',
     'node scripts/generate-merch-composites.js',
     'node scripts/sync-masters-composites.js',

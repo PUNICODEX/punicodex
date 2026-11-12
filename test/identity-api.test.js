@@ -86,6 +86,39 @@ async function run() {
     assert.ok(setup.headers['set-cookie'].some((cookie) => cookie.includes('punicodex_csrf=')));
   });
 
+  await test('registration and reset await delivery and never falsely report provider failures', async () => {
+    emailApi.notifyIdentityActivation = async () => ({
+      success: false,
+      error: 'provider rejected',
+    });
+    const registration = await invoke(handler, 'POST', '/api/account/auth/register/', {
+      headers: { 'x-forwarded-for': '203.0.113.60' },
+      params: { slug: ['auth', 'register'] },
+      body: { email: 'delivery-failure@identity.test', password: 'delivery-password-12' },
+    });
+    assert.strictEqual(registration.status, 503);
+    assert.strictEqual(registration.body.code, 'email_delivery_failed');
+    assert.ok(!registration.body.message);
+
+    emailApi.notifyIdentityPasswordReset = async () => ({
+      success: false,
+      error: 'provider rejected',
+    });
+    const reset = await invoke(handler, 'POST', '/api/account/auth/forgot/', {
+      headers: { 'x-forwarded-for': '203.0.113.61' },
+      params: { slug: ['auth', 'forgot'] },
+      body: { email: 'delivery-failure@identity.test' },
+    });
+    assert.strictEqual(reset.status, 503);
+    assert.strictEqual(reset.body.code, 'email_delivery_failed');
+    assert.ok(!reset.body.message);
+
+    emailApi.notifyIdentityActivation = async ({ token }) => {
+      emailedToken = token;
+      return { success: true };
+    };
+  });
+
   await test('/me exposes only the signed-in identity and initiation writes require CSRF', async () => {
     const cookie = cookieFor(setup.body);
     const me = await invoke(handler, 'GET', '/api/account/me/', {

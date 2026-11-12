@@ -29,6 +29,14 @@ function escapeHtml(text) {
 
 async function sendEmail({ to, subject, html, text, fromName, headers, attachments }) {
   if (!RESEND_API_KEY) {
+    if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
+      console.error('[EMAIL] RESEND_API_KEY is not configured in production');
+      return {
+        success: false,
+        error: 'Email delivery is not configured',
+        code: 'email_not_configured',
+      };
+    }
     console.log('[EMAIL] No RESEND_API_KEY configured. Would send:');
     console.log(`  To: ${to}`);
     console.log(`  Subject: ${subject}`);
@@ -58,38 +66,52 @@ async function sendEmail({ to, subject, html, text, fromName, headers, attachmen
         }))
     : undefined;
 
-  try {
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: `"${displayName}" <${FROM_EMAIL}>`,
-        to: [to],
-        reply_to: REPLY_TO_EMAIL,
-        subject,
-        html,
-        text: text || html.replace(/<[^>]*>/g, ''),
-        ...(headers && typeof headers === 'object' ? { headers } : {}),
-        ...(safeAttachments?.length ? { attachments: safeAttachments } : {}),
-      }),
-    });
+  const body = JSON.stringify({
+    from: `"${displayName}" <${FROM_EMAIL}>`,
+    to: [to],
+    reply_to: REPLY_TO_EMAIL,
+    subject,
+    html,
+    text: text || html.replace(/<[^>]*>/g, ''),
+    ...(headers && typeof headers === 'object' ? { headers } : {}),
+    ...(safeAttachments?.length ? { attachments: safeAttachments } : {}),
+  });
+  let lastError = 'Email delivery failed';
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body,
+        signal: AbortSignal.timeout(10_000),
+      });
 
-    if (!res.ok) {
-      const err = await res.text();
-      console.error('[EMAIL] Resend error:', err);
-      return { success: false, error: err };
+      if (!res.ok) {
+        lastError = await res.text();
+        if (attempt < 3 && (res.status === 429 || res.status >= 500)) {
+          await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** (attempt - 1)));
+          continue;
+        }
+        console.error('[EMAIL] Resend error:', lastError);
+        return { success: false, error: lastError };
+      }
+
+      const data = await res.json();
+      console.log('[EMAIL] Sent to', to, '-', subject);
+      return { success: true, id: data.id };
+    } catch (err) {
+      lastError = err.cause?.message || err.message;
+      if (attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** (attempt - 1)));
+        continue;
+      }
     }
-
-    const data = await res.json();
-    console.log('[EMAIL] Sent to', to, '-', subject);
-    return { success: true, id: data.id };
-  } catch (err) {
-    console.error('[EMAIL] Failed:', err.message);
-    return { success: false, error: err.message };
   }
+  console.error('[EMAIL] Failed after 3 attempts:', lastError);
+  return { success: false, error: lastError };
 }
 
 /**

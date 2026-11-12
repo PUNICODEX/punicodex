@@ -24,7 +24,9 @@ const ASSETS = [
   '/js/analytics-beacon.js',
   '/js/herald-beacon.js',
   '/js/newsletter.js',
+  '/js/px-core.js',
   '/js/temple-base.js',
+  '/css/temple-base.css',
   '/assets/fonts/fonts.css',
   '/admin-portal/portal.css',
   '/admin-portal/portal.js',
@@ -59,6 +61,7 @@ test('every reference to a content-addressed asset carries its current hash pin'
     .filter((f) => !SKIP.test(f));
   const stale = [];
   function checkRef(text, file, ref, asset) {
+    if (!text.includes(ref)) return;
     const want = `${ref}?v=${hashOf(asset)}`;
     const escaped = ref.replace(/[./]/g, '\\$&');
     const anyRef = new RegExp(`${escaped}(?:\\?v=([A-Za-z0-9_-]+))?`, 'g');

@@ -154,9 +154,10 @@ test('every flagship Store tab is a real Merch link on desktop and mobile', () =
       const $ = loadPage(id, subPath);
       if (!$) continue;
       const html = fs.readFileSync(path.join(SITES_DIR, id, subPath, 'index.html'), 'utf8');
-      assert.ok(
-        html.includes('/css/temple-base.css?v=perf24'),
-        `${id}/${subPath}: stale immutable temple stylesheet URL`
+      assert.match(
+        html,
+        /\/css\/temple-base\.css\?v=[a-f0-9]{10}/,
+        `${id}/${subPath}: temple stylesheet must use a content-addressed cache pin`
       );
       for (const nav of ['#tab-nav', '#temple-mobile-menu']) {
         const store = $(nav)

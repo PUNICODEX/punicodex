@@ -346,7 +346,7 @@ const RULES = [
     suites: ['Texts Section Tests', 'Texts Chapters Tests'],
   },
   {
-    pattern: /^js\/(?!archetypes-v2)|^css\//,
+    pattern: /^js\/(?!archetypes-v2)|^css\/|^scripts\/stamp-asset-versions\.js$|^test\/asset-versions\.test\.js$/,
     suites: ['Frontend Smoke Tests', 'Asset Version Tests'],
   },
   {

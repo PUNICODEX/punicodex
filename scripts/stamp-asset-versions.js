@@ -46,7 +46,9 @@ const ASSETS = [
   '/js/analytics-beacon.js',
   '/js/herald-beacon.js',
   '/js/newsletter.js',
+  '/js/px-core.js',
   '/js/temple-base.js',
+  '/css/temple-base.css',
   '/js/store-configurator.js',
   '/css/store-configurator.css',
   '/js/arche.js',
@@ -126,11 +128,11 @@ function main() {
     }
     let out = text;
     for (const [asset, hash] of pins) {
-      out = stampAbsolute(out, asset, hash);
+      if (out.includes(asset)) out = stampAbsolute(out, asset, hash);
       const aliases = RELATIVE_ALIASES.get(asset);
       if (aliases) {
         for (const alias of aliases) {
-          out = stampRelative(out, alias, hash);
+          if (out.includes(alias)) out = stampRelative(out, alias, hash);
         }
       }
     }

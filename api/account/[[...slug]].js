@@ -132,9 +132,16 @@ module.exports = async (req, res) => {
         const result = await identity.register(body);
         if (result.token) {
           const { notifyIdentityActivation } = require('../../platform/api/email');
-          notifyIdentityActivation({ email: result.account.email, token: result.token }).catch(
-            () => {}
-          );
+          const delivery = await notifyIdentityActivation({
+            email: result.account.email,
+            token: result.token,
+          });
+          if (!delivery.success) {
+            return res.status(503).json({
+              error: 'We could not send the activation email. Please try again shortly.',
+              code: 'email_delivery_failed',
+            });
+          }
         }
         return res.json({ success: true, message: result.message });
       }
@@ -151,9 +158,16 @@ module.exports = async (req, res) => {
         const result = await identity.forgot(body);
         if (result.token) {
           const { notifyIdentityPasswordReset } = require('../../platform/api/email');
-          notifyIdentityPasswordReset({ email: result.account.email, token: result.token }).catch(
-            () => {}
-          );
+          const delivery = await notifyIdentityPasswordReset({
+            email: result.account.email,
+            token: result.token,
+          });
+          if (!delivery.success) {
+            return res.status(503).json({
+              error: 'We could not send the reset email. Please try again shortly.',
+              code: 'email_delivery_failed',
+            });
+          }
         }
         return res.json({ success: true, message: result.message });
       }

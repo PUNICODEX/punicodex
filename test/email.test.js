@@ -324,4 +324,34 @@ test('notifyPaymentFailed links the dashboard and escapes its fields', async () 
   assert.ok(!sent[0].html.includes('<b>Bad</b>'), 'no raw HTML injection');
 });
 
+test('sendEmail retries a transient network failure before reporting success', async () => {
+  const emailPath = require.resolve('../platform/api/email.js');
+  const originalFetch = globalThis.fetch;
+  const hadKey = 'RESEND_API_KEY' in process.env;
+  const priorKey = process.env.RESEND_API_KEY;
+  let attempts = 0;
+  globalThis.fetch = async () => {
+    attempts++;
+    if (attempts === 1) throw new Error('fetch failed');
+    return { ok: true, json: async () => ({ id: 'resent-after-retry' }) };
+  };
+  try {
+    process.env.RESEND_API_KEY = 'test-resend-key';
+    delete require.cache[emailPath];
+    const freshEmail = require(emailPath);
+    const result = await freshEmail.notifyIdentityActivation({
+      email: 'member@example.com',
+      token: 'one-time-token',
+    });
+    assert.strictEqual(attempts, 2);
+    assert.strictEqual(result.success, true);
+    assert.strictEqual(result.id, 'resent-after-retry');
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (hadKey) process.env.RESEND_API_KEY = priorKey;
+    else delete process.env.RESEND_API_KEY;
+    delete require.cache[emailPath];
+  }
+});
+
 run();
