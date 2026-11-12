@@ -87,6 +87,10 @@ const RULES = [
     suites: ['Browser E2E Tests'],
   },
   {
+    pattern: /^\.github\/workflows\/deploy-masters\.yml$|^scripts\/(?:deploy-masters\.sh|sync-masters-legacy-root\.js|masters-legacy-root\.json)$|^test\/release-orchestration\.test\.js$/,
+    suites: ['Release Orchestration Tests'],
+  },
+  {
     pattern: /^platform\/(?:api\/(?:identity|identity-analytics|product-analytics|tenant-portal|email)\.js$|db\/(?:migrate-identity|init-operational-postgres|operational)\.js$|api-handlers\/(?:admin\/portal\/(?:identities|analytics\/identity)|analytics\/collect)\/|public\/admin-portal\/(?:identities\/|portal\.js$|login\/index\.html$)|scholars\/(?:auth|router)\.js$)|^api\/(?:account\/|webhook\/index\.js$)|^account\/|^scripts\/migrate-identity-backfill\.js$|^test\/(?:identity|institution-identity|admin-route-authority|admin-cookie-security|analytics-consent)/,
     suites: [
       'Identity Kernel Tests',

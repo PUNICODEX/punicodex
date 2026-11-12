@@ -46,3 +46,34 @@ test('only completed successful workflows pass the deployment gate', () => {
     assert.equal(workflowOutcome({ status: 'completed', conclusion }), 'failure');
   }
 });
+
+test('masters CI rebuilds and guards the complete media fleet with scoped credentials', () => {
+  const fs = require('node:fs');
+  const workflow = fs.readFileSync('.github/workflows/deploy-masters.yml', 'utf8');
+  for (const marker of [
+    'secrets.VERCEL_TOKEN',
+    '--project punycodex-masters',
+    'node scripts/generate-merch-composites.js',
+    'node scripts/sync-masters-composites.js',
+    'node scripts/sync-masters-assets.js',
+    'node scripts/sync-masters-legacy-root.js',
+    'node scripts/generate-local-mockups.js',
+    'bash scripts/deploy-masters.sh',
+    'Verify production mockup bytes',
+  ]) {
+    assert.ok(workflow.includes(marker), `masters workflow missing ${marker}`);
+  }
+  assert.ok(!workflow.includes('secrets.VERCEL_PROJECT_ID'));
+
+  const { legacyRootIds } = require('../scripts/masters-legacy-root.json');
+  assert.equal(new Set(legacyRootIds).size, legacyRootIds.length);
+  assert.ok(legacyRootIds.length >= 55);
+  for (const id of legacyRootIds) {
+    for (const kind of ['mascot', 'logomark']) {
+      assert.ok(fs.existsSync(`sites/${id}/assets/${id}_${kind}.png`), `${id} ${kind}`);
+    }
+  }
+  const deployScript = fs.readFileSync('scripts/deploy-masters.sh', 'utf8');
+  assert.ok(deployScript.includes('VERCEL_CLI_PACKAGE'));
+  assert.ok(deployScript.includes('TOKEN_ARGS=(--token "$VERCEL_TOKEN")'));
+});
