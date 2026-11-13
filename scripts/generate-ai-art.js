@@ -95,7 +95,8 @@ function compilePrompt(spec, family) {
   const styleDna = fam && fam.dna ? fam.dna : lib.traditions[spec.tradition].styleDna;
   const attr = spec.attributes.join(', ');
   const traditionGuidance = family === 'classic-gold' ? null : lib.traditions[spec.tradition]?.iconography;
-  const mutations = (spec.activeMutations || []).map((m) => lib.mutationOperators[m]).filter(Boolean);
+  const operators = fam?.mutationOperators || lib.mutationOperators;
+  const mutations = (spec.activeMutations || []).map((m) => operators[m]).filter(Boolean);
   return [
     `${title(spec.name || '')}, ${attr},`,
     styleDna,
@@ -232,13 +233,19 @@ async function main({
         continue;
       }
       const t0 = Date.now();
+      let charged = false;
       try {
         const res = await falGenerate(`${prompt}, variation ${v}`, { key, model, fetchImpl });
+        // FAL is billed once a successful generation exists, even if the
+        // downstream download or image validation fails afterward. Account
+        // for that charge before deciding whether the spend ceiling allows
+        // another attempt.
+        spent += unitCost;
+        charged = true;
         await downloadImage(res.url, out, fetchImpl);
         const sharp = require('sharp');
         const metadata = await sharp(out).metadata();
         if (!metadata.width || !metadata.height) throw new Error('downloaded image has invalid dimensions');
-        spent += unitCost;
         generated++;
         const autoFlags = family === 'classic-gold' ? await cornerFlags(out) : [];
         appendGeneration(logPath, {
@@ -262,6 +269,7 @@ async function main({
           family,
           model,
           prompt: `${prompt}, variation ${v}`,
+          cost: charged ? unitCost : 0,
           error: error.message.slice(0, 200),
           verdict: 'error',
         });

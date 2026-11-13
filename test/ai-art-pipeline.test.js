@@ -52,6 +52,12 @@ test('every built flagship has a compilable tattoo prompt with tradition safegua
     assert.ok(spec, `${archetype.id} has a prompt specification`);
     const prompt = compilePrompt({ ...spec, name: archetype.id }, 'tattoo');
     assert.match(prompt, /blackwork tattoo illustration/);
+    assert.match(prompt, /generous white margin on every side/);
+    assert.doesNotMatch(
+      prompt,
+      /generous black space|pure black background|gold and black/i,
+      `${archetype.id} prompt leaks classic-gold mutations into tattoo`
+    );
     assert.ok(
       library.traditions[spec.tradition]?.iconography,
       `${archetype.id} has tradition guidance`
@@ -119,20 +125,26 @@ test('generation validates real images, enforces spend limits, and resumes witho
 test('invalid image payloads never become generation candidates', async (t) => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'punicodex-ai-art-invalid-'));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const calls = [];
   const result = await main({
     key: 'test-secret',
     selectedNames: ['zeus'],
     family: 'tattoo',
-    variants: 1,
+    variants: 2,
+    maxSpend: 0.003,
     outDir: directory,
     logPath: path.join(directory, 'generation-log.jsonl'),
-    fetchImpl: mockFetch(Buffer.from('not an image'), []),
+    fetchImpl: mockFetch(Buffer.from('not an image'), calls),
     logger: silentLogger,
   });
   assert.equal(result.generated, 0);
+  assert.equal(result.spent, 0.003);
+  assert.equal(result.budgetReached, true);
+  assert.equal(calls.length, 2);
   assert.equal(fs.readdirSync(directory).filter((file) => file.endsWith('.jpg')).length, 0);
   const log = JSON.parse(fs.readFileSync(path.join(directory, 'generation-log.jsonl'), 'utf8'));
   assert.equal(log.verdict, 'error');
+  assert.equal(log.cost, 0.003);
 });
 
 test('downloads reject non-image responses without touching an existing file', async (t) => {
