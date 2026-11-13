@@ -19,6 +19,55 @@ const traditionAliases = {
   titan: 'greek',
 };
 
+// Subject-form overrides keep human deity styling away from creatures,
+// hybrid monsters, places, and symbols. The default remains anthropomorphic
+// because most lexicon entries are divine persons.
+const SUBJECT_OVERRIDES = {
+  creature: new Set([
+    'apep', 'audhumla', 'cerberus', 'chimaira', 'drakon', 'eachuisge', 'eingana',
+    'fafnir', 'fenrir', 'garmr', 'hydra', 'jormungandr', 'kamapuaa', 'kebechet',
+    'long', 'longwang', 'matsya', 'ngalyod', 'pegasos', 'phoenix', 'python',
+    'quetzalcoatl', 'ratatoskr', 'renenutet', 'serket', 'sleipnir', 'typhon',
+    'wadjet', 'yongwang', 'yurlungur', 'zmeygorynych',
+  ]),
+  hybrid: new Set([
+    'arachne', 'bunjil', 'makemake', 'medousa', 'narasimha', 'sphinx', 'xolotl',
+  ]),
+  location: new Set([
+    'acheron', 'alfheimr', 'annwn', 'baekdusan', 'fuji', 'ginnungagap', 'helheimr',
+    'hokkaido', 'honshu', 'ise', 'jotunheimr', 'karnak', 'kobe', 'kumano', 'kyoto',
+    'kyushu', 'luxor', 'meru', 'midgardr', 'muspellheimr', 'nagoya', 'niflheimr',
+    'nikko', 'nikkō', 'osaka', 'sarnath', 'shikoku', 'styx', 'tartaros', 'uppsala',
+    'valholl', 'vanaheimr',
+  ]),
+  emblem: new Set([
+    'adamas', 'ankh', 'bagua', 'bifrost', 'keraunos', 'mjolnir', 'om', 'omphalos',
+    'taichi', 'wuji', 'wuxing', 'yinyang',
+  ]),
+};
+
+function classifySubject(archetype) {
+  if (archetype.pantheon.endsWith('-location') || SUBJECT_OVERRIDES.location.has(archetype.id)) return 'location';
+  for (const type of ['creature', 'hybrid', 'emblem']) {
+    if (SUBJECT_OVERRIDES[type].has(archetype.id)) return type;
+  }
+  return 'being';
+}
+
+function deriveAttributes(archetype, entry) {
+  const splitAttributes = (value) =>
+    String(value || '')
+      .split(/[;,·]/)
+      .map((part) => part.replace(/\(.*?\)/g, '').replace(/\s+/g, ' ').trim())
+      .filter((part) => part && part !== 'Phonological Reconstruction' && part.length <= 72);
+  return [
+    ...new Set([
+      ...splitAttributes(`${archetype.domain || ''}; ${archetype.tagline || ''}`),
+      ...splitAttributes(entry?.meaning),
+    ]),
+  ].slice(0, 4);
+}
+
 const guidance = {
   aboriginal: 'community-specific visual evidence only; no generic dot painting, no imitation of restricted sacred symbols, no pseudo-script',
   abrahamic: 'early Christian and Byzantine visual composition, period-appropriate garments and objects only, no pseudo-script',
@@ -66,32 +115,38 @@ try {
 } catch {}
 let added = 0;
 for (const archetype of ARCHETYPES.filter((entry) => entry.built)) {
-  if (lib.deities[archetype.id]) continue;
   const entry = lexiconById.get(archetype.id);
   const tradition = traditionAliases[archetype.pantheon] || archetype.pantheon;
-  const attributes = String(entry?.meaning || archetype.tagline || archetype.domain || '')
-    .split(/[;,]/)
-    .map((value) => value.trim())
-    .filter(Boolean)
-    .slice(0, 4);
-  lib.deities[archetype.id] = {
-    tradition,
-    attributes: attributes.length ? attributes : [archetype.tagline || archetype.domain || archetype.name],
-    promptVersion: 1,
-    wins: 0,
-    losses: 0,
-    activeMutations: [],
-    demandTier: demand[archetype.id]?.tier || 3,
-  };
-  added++;
+  const attributes = deriveAttributes(archetype, entry);
+  const subjectType = classifySubject(archetype);
+  if (!lib.deities[archetype.id]) {
+    lib.deities[archetype.id] = {
+      tradition,
+      attributes: attributes.length ? attributes : [archetype.tagline || archetype.domain || archetype.name],
+      subjectType,
+      promptVersion: 1,
+      wins: 0,
+      losses: 0,
+      activeMutations: [],
+      demandTier: demand[archetype.id]?.tier || 3,
+    };
+    added++;
+    continue;
+  }
+  const spec = lib.deities[archetype.id];
+  spec.tradition = tradition;
+  spec.attributes = attributes.length ? attributes : spec.attributes;
+  spec.subjectType = subjectType;
+  spec.demandTier = demand[archetype.id]?.tier || spec.demandTier || 3;
 }
 
 const familyDefinitions = {
   tattoo: {
     dna: 'museum-quality blackwork tattoo illustration, bold confident contours, intricate fine-line detail, dotwork and controlled crosshatching, single coherent silhouette, balanced negative space, clean stencil-friendly edges, full-length subject fully contained within the canvas: head-to-toe depiction for anthropomorphic beings with feet fully visible, complete object or emblem for non-anthropomorphic subjects, generous white margin on every side, no cropped anatomy, no cropped wings or attributes, isolated on a plain white background, no background scene, no text, no letters, no pseudo-script, no watermark, no border, no frame',
     mutationOperators: {
-      'garbled-text': 'append: no text, no letters, no inscription, no watermark',
-      'wrong-attributes': 'reorder: lead with the missed attribute; drop the misread one',
+      'garbled-text': 'hard exclusion: absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, logos or watermarks anywhere in the image',
+      'wrong-attributes': 'corrective priority: make {attribute} the unmistakable hero of the composition; remove every unrelated weapon, animal, costume detail and symbol; do not invent substitutes',
+      'wrong-tradition': 'cultural correction: use only this tradition’s visual language; remove all deity regalia, poses, scripts, architecture and ornament from unrelated cultures',
       'cropped-subject': 'strengthen: full-length subject with the entire silhouette and every extremity inside the frame, generous white margin on every side, no cropped anatomy or attributes',
       'weak-composition': 'alternate layout: single central subject, complete and fully contained, centered, generous white space',
       anatomy: 'append: anatomically correct hands and faces, clean linework',
@@ -104,7 +159,8 @@ const familyDefinitions = {
     dna: 'museum-quality black and white copperplate engraving in the tradition of Gustave Doré, precise burin line, rich controlled crosshatching, sculptural chiaroscuro, full-length subject fully contained within the plate, complete figure or object with elegant negative space, printed on warm ivory paper, no border, no plate mark, no caption, no letters, no pseudo-script, no watermark',
     mutationOperators: {
       'garbled-text': 'append: no caption, no letters, no inscription, no watermark',
-      'wrong-attributes': 'reorder: lead with the missed attribute; drop the misread one',
+      'wrong-attributes': 'corrective priority: make {attribute} the unmistakable hero of the composition; remove every unrelated weapon, animal, costume detail and symbol; do not invent substitutes',
+      'wrong-tradition': 'cultural correction: use only this tradition’s visual language; remove all deity regalia, poses, scripts, architecture and ornament from unrelated cultures',
       'cropped-subject': 'strengthen: full plate composition with the entire subject and all attributes inside the frame, generous ivory margin on every side',
       'weak-composition': 'alternate layout: single monumental central subject, complete and fully contained, balanced engraved negative space',
       anatomy: 'append: anatomically correct hands and faces, disciplined burin linework',
@@ -116,8 +172,9 @@ const familyDefinitions = {
   geometric: {
     dna: 'elite sacred-geometry art print, precise low-poly facets, golden-ratio construction, harmonious radial symmetry, jewel-like gold deep indigo and weathered stone palette, crisp vector-clean edges, dimensional yet minimalist, full emblem or subject fully contained with generous margins, no text, no letters, no pseudo-script, no watermark, no border, no frame',
     mutationOperators: {
-      'garbled-text': 'append: no symbols that resemble letters, no inscription, no watermark',
-      'wrong-attributes': 'reorder: construct the missed attribute as the dominant geometric form; drop the misread one',
+      'garbled-text': 'hard exclusion: no symbols that resemble letters, no inscription, no signature, no watermark',
+      'wrong-attributes': 'corrective priority: construct {attribute} as the dominant geometric form; remove every unrelated weapon, animal, costume detail and symbol; do not invent substitutes',
+      'wrong-tradition': 'cultural correction: derive the geometric language only from this tradition; remove all deity regalia, poses, scripts, architecture and ornament from unrelated cultures',
       'cropped-subject': 'strengthen: complete radial emblem fully inside the frame with generous margins on every side, no cropped points or facets',
       'weak-composition': 'alternate layout: centered radial construction, complete and symmetrical, balanced negative space',
       anatomy: 'append: coherent anatomy translated into clean geometric planes',
@@ -129,8 +186,9 @@ const familyDefinitions = {
   realism: {
     dna: 'museum-grade cinematic realism, breathtakingly detailed, physically accurate anatomy and materials, natural skin, hair, metal and fabric texture, painterly photographic finish, dramatic volumetric light, rich cinematic colour grading, full subject fully contained with breathing room, tasteful dark museum backdrop only when it serves the subject, no text, no letters, no pseudo-script, no watermark, no border, no frame',
     mutationOperators: {
-      'garbled-text': 'append: no text, no letters, no inscription, no watermark',
-      'wrong-attributes': 'reorder: make the missed attribute physically prominent and unmistakable; drop the misread one',
+      'garbled-text': 'hard exclusion: absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, logos or watermarks anywhere in the image',
+      'wrong-attributes': 'corrective priority: make {attribute} physically prominent and unmistakable; remove every unrelated weapon, animal, costume detail and symbol; do not invent substitutes',
+      'wrong-tradition': 'cultural correction: use only this tradition’s materials, garments, environment and symbolism; remove all deity regalia, poses, scripts, architecture and ornament from unrelated cultures',
       'cropped-subject': 'strengthen: complete full-length subject inside the frame with generous negative space on every side, no cropped anatomy, wings or attributes',
       'weak-composition': 'alternate layout: cinematic full-subject portrait, complete and fully contained, balanced negative space',
       anatomy: 'append: physically accurate anatomy, hands, faces and material behaviour',
@@ -142,8 +200,9 @@ const familyDefinitions = {
   masterpiece: {
     dna: 'elite collector-grade digital masterpiece, hyper-detailed cinematic fantasy realism, intricate jewelry and material microtexture, dramatic volumetric lighting, museum-quality composition, rich layered colour depth, awe-inspiring presence, full subject fully contained with elegant negative space, no text, no letters, no pseudo-script, no watermark, no border, no frame',
     mutationOperators: {
-      'garbled-text': 'append: no text, no letters, no inscription, no watermark',
-      'wrong-attributes': 'reorder: make the missed attribute an unmistakable hero detail; drop the misread one',
+      'garbled-text': 'hard exclusion: absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, logos or watermarks anywhere in the image',
+      'wrong-attributes': 'corrective priority: make {attribute} an unmistakable hero detail; remove every unrelated weapon, animal, costume detail and symbol; do not invent substitutes',
+      'wrong-tradition': 'cultural correction: use only this tradition’s materials, garments, environment and symbolism; remove all deity regalia, poses, scripts, architecture and ornament from unrelated cultures',
       'cropped-subject': 'strengthen: complete monumental subject fully inside the frame with elegant negative space on every side',
       'weak-composition': 'alternate layout: single monumental hero subject, complete and fully contained, cinematic balance',
       anatomy: 'append: masterful anatomy, hands, faces, eyes and material microtexture',
@@ -162,6 +221,13 @@ for (const [family, definition] of Object.entries(familyDefinitions)) {
     notes: [...new Set([...(lib.families[family]?.notes || []), ...definition.notes])],
   };
 }
+
+lib.mutationOperators = {
+  ...lib.mutationOperators,
+  'garbled-text': 'hard exclusion: absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, logos or watermarks anywhere in the image',
+  'wrong-attributes': 'corrective priority: make {attribute} the unmistakable hero of the composition; remove every unrelated weapon, animal, costume detail and symbol; do not invent substitutes',
+  'wrong-tradition': 'cultural correction: use only this tradition’s visual language; remove all deity regalia, poses, scripts, architecture and ornament from unrelated cultures',
+};
 
 writeFileWithRetry(LIB_PATH, `${JSON.stringify(lib, null, 2)}\n`);
 console.log(`AI art library: ${added} flagship deities added; ${Object.keys(lib.deities).length} total; ${Object.keys(lib.traditions).length} traditions.`);

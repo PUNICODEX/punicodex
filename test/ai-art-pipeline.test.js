@@ -9,6 +9,7 @@ const sharp = require('sharp');
 const {
   compilePrompt,
   downloadImage,
+  edgeContactFlags,
   falGenerate,
   main,
   produced,
@@ -100,6 +101,55 @@ test('every built flagship has compilable production prompts in every premium fa
       );
     }
   }
+});
+
+test('subject typing prevents human deity styling on creatures places and emblems', () => {
+  const library = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '..', 'data', 'ai-art', 'prompt-library.json'), 'utf8')
+  );
+  const cases = [
+    ['hydra', 'creature', /no human torso, human arms, deity face, crown, jewelry, regalia/],
+    ['medousa', 'hybrid', /mythic human-animal hybrid/],
+    ['acheron', 'location', /sacred place, landscape or realm as the primary subject/],
+    ['bifrost', 'emblem', /symbolic emblem or sacred object as the primary subject/],
+  ];
+  for (const [id, subjectType, pattern] of cases) {
+    const spec = library.deities[id];
+    assert.equal(spec.subjectType, subjectType, `${id} subject type`);
+    const prompt = compilePrompt({ ...spec, name: id }, 'tattoo');
+    assert.match(prompt, pattern, `${id} subject-form guidance`);
+    assert.doesNotMatch(
+      prompt,
+      /classical Greek drapery, contrapposto|classical Roman contrapposto/i,
+      `${id} received anthropomorphic tradition styling`
+    );
+  }
+  const hydraPrompt = compilePrompt({ ...library.deities.hydra, name: 'hydra' }, 'tattoo');
+  assert.match(hydraPrompt, /make Many-Headed Serpent the unmistakable hero/);
+  assert.doesNotMatch(hydraPrompt, /missed attribute/);
+});
+
+test('tattoo edge contact is auto-flagged for curation', async (t) => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'punicodex-ai-art-edge-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const file = path.join(directory, 'edge.jpg');
+  await sharp({
+    create: { width: 64, height: 64, channels: 3, background: '#ffffff' },
+  })
+    .composite([
+      {
+        input: Buffer.alloc(64 * 4 * 3, 0),
+        raw: { width: 64, height: 4, channels: 3 },
+        top: 60,
+        left: 0,
+      },
+    ])
+    .jpeg()
+    .toFile(file);
+  assert.deepEqual(await edgeContactFlags(file, 'tattoo'), [
+    'tattoo-edge-contact(256 dark border pixels)',
+  ]);
+  assert.deepEqual(await edgeContactFlags(file, 'realism'), []);
 });
 
 test('fal credentials travel only in the authorization header', async () => {

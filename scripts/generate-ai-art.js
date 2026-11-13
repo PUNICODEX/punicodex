@@ -92,19 +92,37 @@ if (batchIdx !== -1) {
 }
 if (!names.length) names = Object.keys(lib.deities).sort(demandSort);
 
+function subjectGuidance(spec) {
+  const attr = spec.attributes.join(', ');
+  const primary = spec.attributes[0] || 'the canonical subject';
+  switch (spec.subjectType) {
+    case 'creature':
+      return `SUBJECT FORM: non-anthropomorphic creature; ${attr}; the creature body itself is the entire subject; absolutely no human torso, human arms, deity face, crown, jewelry, regalia, worship posture or multi-armed humanoid form; use only the anatomy and attributes named here`;
+    case 'hybrid':
+      return `SUBJECT FORM: mythic human-animal hybrid; ${attr}; integrate the human and animal anatomy deliberately and anatomically; no unrelated deity regalia, extra arms, scripts or cultural symbols`;
+    case 'location':
+      return `SUBJECT FORM: sacred place, landscape or realm as the primary subject; ${attr}; no human portrait, deity figure or regalia unless the source tradition explicitly requires personification`;
+    case 'emblem':
+      return `SUBJECT FORM: symbolic emblem or sacred object as the primary subject; ${attr}; no deity portrait, human body, regalia or narrative scene unless explicitly named`;
+    default:
+      return null;
+  }
+}
+
 function compilePrompt(spec, family) {
   const fam = (lib.families && lib.families[family]) || null;
+  const name = title(spec.name || '');
   const styleDna = fam && fam.dna ? fam.dna : lib.traditions[spec.tradition].styleDna;
   const attr = spec.attributes.join(', ');
-  const traditionGuidance = family === 'classic-gold' ? null : lib.traditions[spec.tradition]?.iconography;
+  const primary = spec.attributes[0] || 'the canonical attribute';
+  const baseTraditionGuidance = family === 'classic-gold' ? null : lib.traditions[spec.tradition]?.iconography;
+  const traditionGuidance = subjectGuidance(spec) || baseTraditionGuidance;
   const operators = fam?.mutationOperators || lib.mutationOperators;
-  const mutations = (spec.activeMutations || []).map((m) => operators[m]).filter(Boolean);
-  return [
-    `${title(spec.name || '')}, ${attr},`,
-    styleDna,
-    traditionGuidance,
-    ...mutations,
-  ].filter(Boolean).join(', ');
+  const mutations = (spec.activeMutations || [])
+    .map((m) => operators[m]?.replaceAll('{attribute}', primary))
+    .filter(Boolean);
+  const identity = `CANONICAL IDENTITY: ${name} is ${attr}; make ${primary} unmistakable and central; use only the attributes named here; do not substitute unrelated weapons, animals, clothing, symbols or secondary figures; absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, watermarks, borders or frames`;
+  return [identity, styleDna, traditionGuidance, ...mutations].filter(Boolean).join(', ');
 }
 
 function title(id) {
@@ -190,6 +208,32 @@ async function cornerFlags(file) {
   }
 }
 
+async function edgeContactFlags(file, family) {
+  if (family !== 'tattoo') return [];
+  try {
+    const sharp = require('sharp');
+    const { data, info } = await sharp(file).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+    const band = 4;
+    const darkThreshold = 235;
+    let edgePixels = 0;
+    const visit = (x, y) => {
+      const i = (y * info.width + x) * 3;
+      if (Math.max(data[i], data[i + 1], data[i + 2]) <= darkThreshold) edgePixels++;
+    };
+    for (let x = 0; x < info.width; x++) {
+      for (let y = 0; y < Math.min(band, info.height); y++) visit(x, y);
+      for (let y = Math.max(0, info.height - band); y < info.height; y++) visit(x, y);
+    }
+    for (let y = Math.min(band, info.height); y < Math.max(0, info.height - band); y++) {
+      for (let x = 0; x < Math.min(band, info.width); x++) visit(x, y);
+      for (let x = Math.max(0, info.width - band); x < info.width; x++) visit(x, y);
+    }
+    return edgePixels > 20 ? [`tattoo-edge-contact(${edgePixels} dark border pixels)`] : [];
+  } catch {
+    return [];
+  }
+}
+
 async function main({
   fetchImpl = fetch,
   key = process.env.FAL_KEY,
@@ -254,7 +298,8 @@ async function main({
         const metadata = await sharp(out).metadata();
         if (!metadata.width || !metadata.height) throw new Error('downloaded image has invalid dimensions');
         generated++;
-        const autoFlags = family === 'classic-gold' ? await cornerFlags(out) : [];
+        const autoFlags =
+          family === 'classic-gold' ? await cornerFlags(out) : await edgeContactFlags(out, family);
         appendGeneration(logPath, {
           ts: new Date().toISOString(),
           deity: name,
@@ -306,6 +351,7 @@ module.exports = {
   cornerFlags,
   costPerImage,
   downloadImage,
+  edgeContactFlags,
   falGenerate,
   main,
   produced,
