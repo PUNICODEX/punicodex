@@ -117,12 +117,14 @@ function compilePrompt(spec, family) {
   const primary = spec.attributes[0] || 'the canonical attribute';
   const baseTraditionGuidance = family === 'classic-gold' ? null : lib.traditions[spec.tradition]?.iconography;
   const traditionGuidance = subjectGuidance(spec) || baseTraditionGuidance;
+  const culturalBoundary = lib.traditions[spec.tradition]?.culturalBoundary;
   const operators = fam?.mutationOperators || lib.mutationOperators;
   const mutations = (spec.activeMutations || [])
     .map((m) => operators[m]?.replaceAll('{attribute}', primary))
     .filter(Boolean);
   const identity = `CANONICAL IDENTITY: ${name} is ${attr}; make ${primary} unmistakable and central; use only the attributes named here; do not substitute unrelated weapons, animals, clothing, symbols or secondary figures; absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, watermarks, borders or frames`;
-  return [identity, styleDna, traditionGuidance, ...mutations].filter(Boolean).join(', ');
+  const boundary = culturalBoundary ? `FINAL CULTURAL BOUNDARY: ${culturalBoundary}` : null;
+  return [identity, styleDna, traditionGuidance, boundary, ...mutations].filter(Boolean).join(', ');
 }
 
 function title(id) {

@@ -46,6 +46,54 @@ const SUBJECT_OVERRIDES = {
   ]),
 };
 
+const ATTRIBUTE_OVERRIDES = {
+  zeus: ['mature bearded Greek sky father', 'thunderbolt held prominently', 'eagle', 'laurel crown'],
+  apollon: ['young Greek archer-musician', 'lyre', 'bow', 'laurel wreath'],
+  aphrodite: ['adult Greek goddess of love', 'sea-foam birth drapery', 'doves', 'roses'],
+  ares: ['Greek war god in armor', 'spear', 'helmet', 'shield'],
+  artemis: ['Greek huntress goddess', 'bow and quiver', 'crescent moon', 'deer'],
+  athena: ['Greek goddess in helmet', 'owl', 'olive branch', 'aegis'],
+  demeter: ['Greek grain goddess', 'wheat sheaf', 'torch', 'cornucopia'],
+  hades: ['mature bearded Greek god of the dead', 'dark royal robe', 'cornucopia', 'Cerberus at heel'],
+  hephaistos: ['Greek smith god', 'hammer', 'tongs', 'forge flame'],
+  hera: ['Greek queen of the gods', 'peacock', 'diadem', 'royal scepter'],
+  hermes: ['Greek herald god', 'caduceus', 'winged sandals', 'traveler hat'],
+  hestia: ['Greek hearth goddess', 'sacred hearth flame', 'kettle', 'modest drapery'],
+  poseidon: ['Greek sea god', 'trident', 'waves', 'dolphins'],
+  nike: ['winged Greek goddess of victory', 'outstretched wings', 'laurel wreath', 'flowing chiton'],
+  persephone: ['Greek queen of the underworld', 'pomegranate', 'torch', 'spring flowers'],
+  odin: ['one-eyed Norse god', 'wide-brimmed hat', 'two ravens', 'spear Gungnir'],
+  thor: ['red-bearded Norse thunder god', 'Mjolnir hammer', 'iron gloves', 'belt Megingjord'],
+  loki: ['sly Norse shapeshifter god', 'knotted hair', 'Norse clothing', 'no horns or demon wings'],
+  freyja: ['Norse love goddess', 'falcon cloak', 'two cats', 'amber Brisingamen necklace'],
+  freyr: ['Norse fertility god', 'antler', 'golden boar Gullinbursti', 'fertile grain'],
+  hel: ['half-living half-skeletal Norse goddess', 'dark mantle', 'underworld shadows'],
+  ra: ['ancient Egyptian sun god', 'falcon head', 'sun disk with uraeus', 'was scepter'],
+  anubis: ['jackal-headed Egyptian god', 'embalming tools', 'sacred scales', 'black canine form'],
+  osiris: ['mummiform Egyptian god', 'atef crown', 'crook and flail', 'white wrappings'],
+  isis: ['Egyptian winged goddess', 'throne headdress', 'outstretched wings', 'ankh'],
+  horus: ['falcon-headed Egyptian sky god', 'Eye of Horus', 'double crown', 'solar disk'],
+  bastet: ['cat-headed Egyptian goddess', 'sistrum', 'protective basket', 'feline grace'],
+  thoth: ['ibis-headed Egyptian scribe god', 'scribal palette', 'moon disk', 'hieroglyph-free precision'],
+  kali: ['dark Hindu goddess Kali', 'lolling tongue', 'four canonical arms', 'sword and garland'],
+  shiva: ['Hindu god Shiva', 'third eye', 'crescent moon', 'trident and damaru'],
+  ganesha: ['elephant-headed Hindu god Ganesha', 'broken tusk', 'modak sweet', 'mouse companion'],
+  hanuman: ['devoted monkey-god Hanuman', 'mace', 'long tail', 'mountain of healing herbs'],
+  vishnu: ['blue Hindu preserver god', 'conch shell', 'discus', 'lotus and mace'],
+  lakshmi: ['Hindu goddess Lakshmi', 'lotus flowers', 'gold coins', 'elephants of abundance'],
+  saraswati: ['Hindu goddess Saraswati', 'veena', 'white swan', 'book of wisdom'],
+  amaterasu: ['Japanese Shinto sun goddess', 'sacred mirror', 'sun disk', 'Shinto robes'],
+  susanoo: ['Japanese storm god Susanoo', 'wild storm clouds', 'sword', 'Japanese armor'],
+  tsukuyomi: ['Japanese moon god Tsukuyomi', 'crescent moon', 'night robes', 'lunar disk'],
+  inari: ['Japanese kami Inari', 'fox messenger', 'rice sheaves', 'torii'],
+  sunwukong: ['Chinese Monkey King Sun Wukong', 'Ruyi Jingu Bang staff', 'monkey armor', 'flying cloud'],
+  guanyin: ['Chinese bodhisattva Guanyin', 'lotus', 'willow branch', 'water vase'],
+  change: ['Chinese moon goddess Chang’e', 'moon disk', 'elixir', 'jade rabbit'],
+  caishen: ['Chinese wealth god Caishen', 'ingot of gold', 'prosperity imagery', 'official robes'],
+  quetzalcoatl: ['feathered serpent', 'Mesoamerican featherwork', 'coiled serpent body', 'wind and morning star'],
+  huitzilopochtli: ['Aztec warrior-sun god', 'hummingbird ornament', 'solar rays', 'Xiuhcoatl serpent'],
+};
+
 function classifySubject(archetype) {
   if (archetype.pantheon.endsWith('-location') || SUBJECT_OVERRIDES.location.has(archetype.id)) return 'location';
   for (const type of ['creature', 'hybrid', 'emblem']) {
@@ -55,6 +103,7 @@ function classifySubject(archetype) {
 }
 
 function deriveAttributes(archetype, entry) {
+  if (ATTRIBUTE_OVERRIDES[archetype.id]) return ATTRIBUTE_OVERRIDES[archetype.id];
   const splitAttributes = (value) =>
     String(value || '')
       .split(/[;,·]/)
@@ -96,6 +145,34 @@ const guidance = {
   zoroastrian: 'Achaemenid profile composition and entry-specific solar or winged motifs, no pseudo-inscriptions',
 };
 
+const culturalBoundaries = {
+  aboriginal: 'use only the specific Aboriginal community’s ancestral-being visual language; no generic dot painting, no unrelated tribal patterns, no South Asian or East Asian deity regalia',
+  abrahamic: 'use early Jewish, Christian or Byzantine visual language only; no Greco-Roman god nudity, no South Asian deity anatomy, no East Asian scripts or seals',
+  baltic: 'use Baltic folk and solar visual language only; no Norse, Slavic, Greek or South Asian substitutions',
+  buddhist: 'use the specific school and culture’s Buddhist iconography only; no generic demonization, no added limbs or weapons unless canonical for this figure, no pseudo-script',
+  canaanite: 'use Levantine Bronze Age visual language only; no Egyptian, Greek, Mesopotamian or South Asian substitutions',
+  celtic: 'use the specific Celtic tradition’s La Tène and Insular visual language only; no Norse, Greek or generic tribal substitutions',
+  chinese: 'use Chinese visual language only; no Japanese kimono or seals, no South Asian multi-armed deity anatomy, no pseudo-characters',
+  egyptian: 'use ancient Egyptian canonical regalia and profile conventions only; no Greek or Roman clothing, no South Asian deity anatomy, no pseudo-hieroglyphs',
+  greek: 'use ancient Greek Mediterranean visual language only; no Roman imperial styling, no South Asian multi-armed anatomy, Indian crowns or jewelry, no trident except for Poseidon, no third eye or bindi, no East Asian robes, seals or scripts',
+  hittite: 'use Anatolian Bronze Age visual language only; no Greek, Egyptian, Mesopotamian or South Asian substitutions',
+  incan: 'use Andean and Inka visual language only; no Aztec, Maya, generic tribal or European substitutions',
+  japanese: 'use Japanese Shinto or Japanese traditional visual language only; no Chinese characters or seals, no South Asian deity anatomy or regalia, no unrelated Buddhist iconography',
+  korean: 'use Korean visual language only; no Chinese or Japanese scripts, no South Asian deity anatomy or regalia',
+  mapuche: 'use Mapuche visual language only; no generic Indigenous or tribal patterns, no Andean, South Asian or East Asian substitutions',
+  mesopotamian: 'use Mesopotamian cylinder-seal and palace visual language only; no Egyptian, Greek or South Asian substitutions, no pseudo-cuneiform',
+  nahuatl: 'use the specific Nahua manuscript and regalia language only; no generic Aztec calendar clichés, no Maya, Andean or European substitutions, no pseudo-glyphs',
+  norse: 'use Norse and Germanic visual language only; no Greek or Roman togas, no Celtic knot substitutions, no South Asian deity anatomy or regalia, no pseudo-runes',
+  phoenician: 'use Levantine maritime and metalwork language only; no Greek, Egyptian or South Asian substitutions',
+  polynesian: 'use the specific Pacific culture’s visual language only; no pan-Polynesian clichés, no Māori or Aboriginal pattern borrowing, no South Asian or East Asian regalia',
+  roman: 'use ancient Roman visual language only; no Greek god nudity unless the entry is directly Greek, no South Asian multi-armed anatomy, no trident except for Neptunus, no East Asian scripts or seals',
+  sanskrit: 'use the specific deity’s established Indian iconography only; no generic demonization, no unrelated deity’s weapon or animal, no extra limbs unless canonical for this figure, no pseudo-script',
+  slavic: 'use Slavic folk visual language only; no Norse, Baltic, Greek or generic tribal substitutions',
+  taoist: 'use Chinese Daoist visual language only; no Buddhist, Japanese or folk substitutions, no characters or trigram marks unless canonical',
+  yoruba: 'use Yoruba orisha iconography only; no generic African tribal patterns, no Dahomean or European substitutions unless historically appropriate',
+  zoroastrian: 'use Iranian and Achaemenid visual language only; no Hindu, Buddhist, Greek or generic Persian substitutions, no pseudo-inscriptions',
+};
+
 for (const tradition of new Set([...Object.keys(guidance), ...Object.values(traditionAliases)])) {
   const existing = lib.traditions[tradition] || { wins: 0, losses: 0, notes: [] };
   lib.traditions[tradition] = {
@@ -105,6 +182,7 @@ for (const tradition of new Set([...Object.keys(guidance), ...Object.values(trad
         ? `respectful Australian Aboriginal visual references, ${guidance.aboriginal}`
         : existing.styleDna || `museum-quality figurative illustration, ${guidance[tradition]}`,
     iconography: guidance[tradition],
+    culturalBoundary: culturalBoundaries[tradition],
   };
 }
 

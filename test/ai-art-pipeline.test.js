@@ -95,6 +95,11 @@ test('every built flagship has compilable production prompts in every premium fa
         library.traditions[spec.tradition]?.iconography,
         `${archetype.id} has tradition guidance`
       );
+      assert.match(
+        prompt,
+        /FINAL CULTURAL BOUNDARY:/,
+        `${archetype.id} ${family} cultural boundary`
+      );
       assert.ok(
         !prompt.includes('undefined'),
         `${archetype.id} ${family} prompt has no missing fields`
@@ -127,6 +132,24 @@ test('subject typing prevents human deity styling on creatures places and emblem
   const hydraPrompt = compilePrompt({ ...library.deities.hydra, name: 'hydra' }, 'tattoo');
   assert.match(hydraPrompt, /make Many-Headed Serpent the unmistakable hero/);
   assert.doesNotMatch(hydraPrompt, /missed attribute/);
+});
+
+test('canonical attributes and cultural fences protect known deity identities', () => {
+  const library = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '..', 'data', 'ai-art', 'prompt-library.json'), 'utf8')
+  );
+  const cases = [
+    ['nike', /outstretched wings/, /no trident except for Poseidon/],
+    ['freyja', /falcon cloak/, /no Greek or Roman togas/],
+    ['amaterasu', /sacred mirror/, /no Chinese characters or seals/],
+    ['hades', /mature bearded Greek god of the dead/, /no South Asian multi-armed anatomy/],
+    ['kali', /four canonical arms/, /no generic demonization/],
+  ];
+  for (const [id, attributePattern, boundaryPattern] of cases) {
+    const prompt = compilePrompt({ ...library.deities[id], name: id }, 'tattoo');
+    assert.match(prompt, attributePattern, `${id} canonical attribute`);
+    assert.match(prompt, boundaryPattern, `${id} cultural fence`);
+  }
 });
 
 test('tattoo edge contact is auto-flagged for curation', async (t) => {
