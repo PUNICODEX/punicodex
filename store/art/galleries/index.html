@@ -413,7 +413,7 @@ a:hover{color:var(--gold-bright)}
       '<div>' + license + '</div>' +
       '<div class="gal-lb-links">' +
       (im.sourceUrl ? '<a href="' + esc(im.sourceUrl) + '" target="_blank" rel="noopener">Source &amp; full license on Wikimedia Commons →</a>' : '') +
-      '<a href="/sites/' + esc(t.id) + '/">Enter the ' + esc(t.name) + ' temple →</a></div>';
+      '<a href="/' + esc(t.id) + '/">Enter the ' + esc(t.name) + ' temple →</a></div>';
     lb.hidden = false;
     document.body.style.overflow = 'hidden';
   }
@@ -438,7 +438,7 @@ a:hover{color:var(--gold-bright)}
       '<div class="gal-temple-head"><h2>' + esc(t.name) + '</h2>' +
       (t.script ? '<span class="gal-script">' + esc(t.script) + '</span>' : '') +
       '<span class="gal-count">' + t.images.length + ' works</span>' +
-      '<a class="gal-enter" href="/sites/' + esc(t.id) + '/">Enter the temple →</a></div>' +
+      '<a class="gal-enter" href="/' + esc(t.id) + '/">Enter the temple →</a></div>' +
       '<div class="gal-grid">' + figs + '</div></section>';
   }).join('');
   if (location.hash) {

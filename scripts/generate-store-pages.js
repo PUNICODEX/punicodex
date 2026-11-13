@@ -479,7 +479,7 @@ ${
 <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css?v=perf40">
 <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-${templeId ? `<link rel="stylesheet" href="/css/temple-base.css?v=perf24"><link rel="stylesheet" href="/sites/${templeId}/styles.css?v=${templeCssPin}">` : ''}
+${templeId ? `<link rel="stylesheet" href="/css/temple-base.css?v=perf24"><link rel="stylesheet" href="/${templeId}/styles.css?v=${templeCssPin}">` : ''}
 <style>${BASE_CSS}${css}${MOBILE_SAFE_CSS}</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
@@ -990,7 +990,7 @@ function renderArtGalleries() {
       '<div>' + license + '</div>' +
       '<div class="gal-lb-links">' +
       (im.sourceUrl ? '<a href="' + esc(im.sourceUrl) + '" target="_blank" rel="noopener">Source &amp; full license on Wikimedia Commons →</a>' : '') +
-      '<a href="/sites/' + esc(t.id) + '/">Enter the ' + esc(t.name) + ' temple →</a></div>';
+      '<a href="/' + esc(t.id) + '/">Enter the ' + esc(t.name) + ' temple →</a></div>';
     lb.hidden = false;
     document.body.style.overflow = 'hidden';
   }
@@ -1015,7 +1015,7 @@ function renderArtGalleries() {
       '<div class="gal-temple-head"><h2>' + esc(t.name) + '</h2>' +
       (t.script ? '<span class="gal-script">' + esc(t.script) + '</span>' : '') +
       '<span class="gal-count">' + t.images.length + ' works</span>' +
-      '<a class="gal-enter" href="/sites/' + esc(t.id) + '/">Enter the temple →</a></div>' +
+      '<a class="gal-enter" href="/' + esc(t.id) + '/">Enter the temple →</a></div>' +
       '<div class="gal-grid">' + figs + '</div></section>';
   }).join('');
   if (location.hash) {

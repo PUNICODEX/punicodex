@@ -45,7 +45,7 @@ function templeTabNavHtml(id, name, active = '') {
     </div>
     <nav class="main-nav tab-nav" id="tab-nav">
       <div class="nav-inner">
-        <a href="${templeUrl}" class="nav-logo"><picture><source srcset="/sites/${id}/assets/${id}_logolockup.webp" type="image/webp"><img src="/sites/${id}/assets/${id}_logolockup.png" alt="${esc(name)}" class="nav-logo-img" width="1536" height="1024"></picture></a>
+        <a href="${templeUrl}" class="nav-logo"><picture><source srcset="/${id}/assets/${id}_logolockup.webp" type="image/webp"><img src="/${id}/assets/${id}_logolockup.png" alt="${esc(name)}" class="nav-logo-img" width="1536" height="1024"></picture></a>
         <div class="nav-links tab-nav-links">${tabs}</div>
         <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu"><span></span><span></span><span></span></button>
       </div>
