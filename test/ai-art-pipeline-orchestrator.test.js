@@ -7,7 +7,12 @@ const path = require('node:path');
 const test = require('node:test');
 const sharp = require('sharp');
 const { createPlan, runQc } = require('../scripts/ai-art-pipeline.js');
-const { inspectArtifacts, scanArtwork, writeContactSheet } = require('../scripts/lib/ai-art-qc.js');
+const {
+  inspectArtifacts,
+  marginMarkFlags,
+  scanArtwork,
+  writeContactSheet,
+} = require('../scripts/lib/ai-art-qc.js');
 
 function makeRoot(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'punicodex-art-pipeline-'));
@@ -178,4 +183,24 @@ test('QC auto-rejects structural failures and evolves the next prompt version', 
   assert.equal(log.at(-1).verdict, 'auto-reject');
   assert.equal(log.at(-1).reason, 'quality-gate');
   assert.match(log.at(-1).autoFlags.join(' '), /low-detail/);
+});
+
+test('margin-mark detector isolates signatures without flagging full-bleed subject edges', async (t) => {
+  const root = makeRoot(t);
+  writeLibrary(root);
+  const borderFile = path.join(root, 'ai-art', 'zeus-tattoo-v2.1.jpg');
+  await writeJpeg(borderFile, { border: true });
+  assert.deepEqual(await marginMarkFlags(borderFile, 'tattoo'), []);
+
+  const signatureFile = path.join(root, 'ai-art', 'nike-tattoo-v3.1.jpg');
+  const signature = Buffer.alloc(8 * 18 * 3, 0);
+  await sharp({ create: { width: 768, height: 1024, channels: 3, background: '#ffffff' } })
+    .composite([
+      { input: signature, raw: { width: 8, height: 18, channels: 3 }, top: 940, left: 650 },
+      { input: signature, raw: { width: 8, height: 18, channels: 3 }, top: 940, left: 665 },
+      { input: signature, raw: { width: 8, height: 18, channels: 3 }, top: 940, left: 680 },
+    ])
+    .jpeg()
+    .toFile(signatureFile);
+  assert.match((await marginMarkFlags(signatureFile, 'tattoo')).join(' '), /tattoo-margin-marks/);
 });

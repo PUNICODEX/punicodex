@@ -48,23 +48,64 @@ async function edgeContactFlags(file, family) {
 async function marginMarkFlags(file, family) {
   if (family !== 'tattoo') return [];
   try {
-    const { data, info } = await sharp(file).removeAlpha().raw().toBuffer({ resolveWithObject: true });
-    const marginX = 0.22;
-    const marginY = 0.12;
-    const threshold = 252;
-    const startY = Math.max(0, Math.floor(info.height * (1 - marginY)));
-    const leftEnd = Math.max(0, Math.floor(info.width * marginX));
-    const rightStart = Math.min(info.width, Math.ceil(info.width * (1 - marginX)));
-    let marks = 0;
-    const count = (x, y) => {
-      const i = (y * info.width + x) * 3;
-      if (Math.max(data[i], data[i + 1], data[i + 2]) < threshold) marks++;
-    };
-    for (let y = startY; y < info.height; y++) {
-      for (let x = 0; x < leftEnd; x++) count(x, y);
-      for (let x = rightStart; x < info.width; x++) count(x, y);
+    const { data, info } = await sharp(file)
+      .removeAlpha()
+      .resize(192, 256, { fit: 'fill' })
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    const { width, height } = info;
+    const dark = new Uint8Array(width * height);
+    for (let i = 0; i < dark.length; i++) {
+      const offset = i * 3;
+      dark[i] = Math.min(data[offset], data[offset + 1], data[offset + 2]) < 240 ? 1 : 0;
     }
-    return marks > 20 ? [`tattoo-margin-marks(${marks} dark corner pixels)`] : [];
+    const visited = new Uint8Array(width * height);
+    const inMargin = (x, y) => y >= height * 0.65 && (x < width * 0.22 || x >= width * 0.78);
+    let isolatedMarginPixels = 0;
+    for (let index = 0; index < dark.length; index++) {
+      if (!dark[index] || visited[index]) continue;
+      const stack = [index];
+      visited[index] = 1;
+      let minX = width;
+      let maxX = 0;
+      let minY = height;
+      let maxY = 0;
+      let pixels = 0;
+      let touchesMargin = false;
+      while (stack.length) {
+        const current = stack.pop();
+        const x = current % width;
+        const y = Math.floor(current / width);
+        pixels++;
+        minX = Math.min(minX, x);
+        maxX = Math.max(maxX, x);
+        minY = Math.min(minY, y);
+        maxY = Math.max(maxY, y);
+        if (inMargin(x, y)) touchesMargin = true;
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            if (!dx && !dy) continue;
+            const nx = x + dx;
+            const ny = y + dy;
+            if (nx < 0 || nx >= width || ny < 0 || ny >= height) continue;
+            const next = ny * width + nx;
+            if (dark[next] && !visited[next]) {
+              visited[next] = 1;
+              stack.push(next);
+            }
+          }
+        }
+      }
+      const componentWidth = maxX - minX + 1;
+      const componentHeight = maxY - minY + 1;
+      if (touchesMargin && componentWidth <= width * 0.2 && componentHeight <= height * 0.45) {
+        isolatedMarginPixels += pixels;
+      }
+    }
+    const estimatedOriginalPixels = isolatedMarginPixels * 16;
+    return estimatedOriginalPixels > 20
+      ? [`tattoo-margin-marks(${estimatedOriginalPixels} isolated corner pixels)`]
+      : [];
   } catch {
     return [];
   }
