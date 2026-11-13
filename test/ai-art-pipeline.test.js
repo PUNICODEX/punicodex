@@ -52,6 +52,7 @@ test('every built flagship has a compilable tattoo prompt with tradition safegua
     assert.ok(spec, `${archetype.id} has a prompt specification`);
     const prompt = compilePrompt({ ...spec, name: archetype.id }, 'tattoo');
     assert.match(prompt, /blackwork tattoo illustration/);
+    assert.match(prompt, /head-to-toe depiction/);
     assert.match(prompt, /generous white margin on every side/);
     assert.doesNotMatch(
       prompt,
@@ -107,6 +108,7 @@ test('generation validates real images, enforces spend limits, and resumes witho
   assert.equal(first.spent, 0.006);
   assert.equal(first.budgetReached, true);
   assert.equal(calls.length, 4);
+  assert.equal(JSON.parse(calls[0].options.body).image_size, 'portrait_4_3');
   assert.equal(fs.readdirSync(directory).filter((file) => file.endsWith('.jpg')).length, 2);
 
   const second = await main({ ...options, maxSpend: 1 });

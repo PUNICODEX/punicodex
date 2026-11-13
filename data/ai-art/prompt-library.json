@@ -5,7 +5,7 @@
     "greek": {
       "styleDna": "ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body",
       "wins": 86,
-      "losses": 50,
+      "losses": 52,
       "notes": [
         "style-test-1 (athena, schnell): exceptional — locked as house direction 2026-11-07"
       ],
@@ -205,6 +205,7 @@
   "mutationOperators": {
     "garbled-text": "append: no text, no letters, no inscription, no watermark",
     "wrong-attributes": "reorder: lead with the missed attribute ('holding X prominently'); drop the misread one",
+    "cropped-subject": "strengthen: entire subject fully inside the frame with generous margins on every side, no cropped anatomy, wings or attributes",
     "weak-composition": "alternate layout: single central figure, full body, centered, generous black space",
     "anatomy": "append: anatomically correct hands and faces, clean linework",
     "busy-background": "strengthen: pure black background, no landscape, no scene",
@@ -568,11 +569,12 @@
         "laurel wreath",
         "wings spread"
       ],
-      "promptVersion": 1,
+      "promptVersion": 2,
       "wins": 9,
-      "losses": 0,
+      "losses": 1,
       "activeMutations": [],
-      "demandTier": 1
+      "demandTier": 1,
+      "mutationHistory": []
     },
     "pandora": {
       "tradition": "greek",
@@ -581,16 +583,14 @@
         "ornate jar",
         "curious gaze"
       ],
-      "promptVersion": 1,
+      "promptVersion": 2,
       "wins": 1,
-      "losses": 1,
+      "losses": 2,
       "activeMutations": [
         "wrong-attributes"
       ],
       "demandTier": 1,
-      "mutationHistory": [
-        "wrong-attributes"
-      ]
+      "mutationHistory": []
     },
     "psyche": {
       "tradition": "greek",
@@ -7673,7 +7673,7 @@
       "notes": []
     },
     "tattoo": {
-      "dna": "museum-quality blackwork tattoo illustration, bold confident contours, intricate fine-line detail, dotwork and controlled crosshatching, single coherent silhouette, balanced negative space, clean stencil-friendly edges, complete figure or object fully contained within the canvas, generous white margin on every side, no cropped anatomy, no cropped wings or attributes, isolated on a plain white background, no background scene, no text, no letters, no pseudo-script, no watermark, no border, no frame",
+      "dna": "museum-quality blackwork tattoo illustration, bold confident contours, intricate fine-line detail, dotwork and controlled crosshatching, single coherent silhouette, balanced negative space, clean stencil-friendly edges, full-length subject fully contained within the canvas: head-to-toe depiction for anthropomorphic beings with feet fully visible, complete object or emblem for non-anthropomorphic subjects, generous white margin on every side, no cropped anatomy, no cropped wings or attributes, isolated on a plain white background, no background scene, no text, no letters, no pseudo-script, no watermark, no border, no frame",
       "wins": 0,
       "losses": 0,
       "notes": [
@@ -7682,6 +7682,7 @@
       "mutationOperators": {
         "garbled-text": "append: no text, no letters, no inscription, no watermark",
         "wrong-attributes": "reorder: lead with the missed attribute; drop the misread one",
+        "cropped-subject": "strengthen: full-length subject with the entire silhouette and every extremity inside the frame, generous white margin on every side, no cropped anatomy or attributes",
         "weak-composition": "alternate layout: single central subject, complete and fully contained, centered, generous white space",
         "anatomy": "append: anatomically correct hands and faces, clean linework",
         "busy-background": "strengthen: plain white isolated background, no landscape, no scene, no border",

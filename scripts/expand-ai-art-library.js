@@ -88,10 +88,11 @@ for (const archetype of ARCHETYPES.filter((entry) => entry.built)) {
 
 lib.families.tattoo = {
   ...lib.families.tattoo,
-  dna: 'museum-quality blackwork tattoo illustration, bold confident contours, intricate fine-line detail, dotwork and controlled crosshatching, single coherent silhouette, balanced negative space, clean stencil-friendly edges, complete figure or object fully contained within the canvas, generous white margin on every side, no cropped anatomy, no cropped wings or attributes, isolated on a plain white background, no background scene, no text, no letters, no pseudo-script, no watermark, no border, no frame',
+  dna: 'museum-quality blackwork tattoo illustration, bold confident contours, intricate fine-line detail, dotwork and controlled crosshatching, single coherent silhouette, balanced negative space, clean stencil-friendly edges, full-length subject fully contained within the canvas: head-to-toe depiction for anthropomorphic beings with feet fully visible, complete object or emblem for non-anthropomorphic subjects, generous white margin on every side, no cropped anatomy, no cropped wings or attributes, isolated on a plain white background, no background scene, no text, no letters, no pseudo-script, no watermark, no border, no frame',
   mutationOperators: {
     'garbled-text': 'append: no text, no letters, no inscription, no watermark',
     'wrong-attributes': 'reorder: lead with the missed attribute; drop the misread one',
+    'cropped-subject': 'strengthen: full-length subject with the entire silhouette and every extremity inside the frame, generous white margin on every side, no cropped anatomy or attributes',
     'weak-composition': 'alternate layout: single central subject, complete and fully contained, centered, generous white space',
     anatomy: 'append: anatomically correct hands and faces, clean linework',
     'busy-background': 'strengthen: plain white isolated background, no landscape, no scene, no border',

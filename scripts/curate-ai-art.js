@@ -21,6 +21,9 @@ const LIB_PATH = path.join(ROOT, 'data', 'ai-art', 'prompt-library.json');
 const LOG_PATH = path.join(ROOT, 'data', 'ai-art', 'generation-log.jsonl');
 
 const [file, verdict, reason] = process.argv.slice(2);
+// A visible canvas-edge crop is a structural failure: one curated rejection
+// must immediately evolve the prompt, rather than waiting for three repeats.
+const PROMPT_BUMP_REASONS = new Set(['cropped-subject']);
 if (!file || !['keep', 'reject'].includes(verdict)) {
   console.error('usage: curate-ai-art.js <file> keep|reject [reason]');
   process.exit(1);
@@ -95,7 +98,12 @@ if (verdict === 'keep') {
   spec.activeMutations = [...new Set([...(spec.activeMutations || []), reason])];
   const same = (spec.mutationHistory || []).filter((r) => r === reason).length;
   spec.mutationHistory = [...(spec.mutationHistory || []), reason];
-  if (same >= 2) {
+  if (PROMPT_BUMP_REASONS.has(reason)) {
+    spec.activeMutations = spec.activeMutations.filter((m) => m !== reason);
+    spec.promptVersion++;
+    spec.mutationHistory = [];
+    console.log(`  ↻ "${reason}" is structural — promptVersion → ${spec.promptVersion}, operator rotated out`);
+  } else if (same >= 2) {
     // Escalation: this operator failed repeatedly — rotate it out, bump version.
     spec.activeMutations = spec.activeMutations.filter((m) => m !== reason);
     spec.promptVersion++;

@@ -116,12 +116,12 @@ function appendGeneration(logPath, entry) {
   fs.appendFileSync(logPath, `${JSON.stringify(entry)}\n`);
 }
 
-async function falGenerate(prompt, { key, model = MODEL, fetchImpl = fetch }) {
+async function falGenerate(prompt, { key, model = MODEL, fetchImpl = fetch, imageSize = 'square' }) {
   if (!key) throw new Error('FAL_KEY env required');
   const response = await fetchImpl(`https://fal.run/${model}`, {
     method: 'POST',
     headers: { Authorization: `Key ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt, image_size: 'square' }),
+    body: JSON.stringify({ prompt, image_size: imageSize }),
     signal: AbortSignal.timeout(120000),
   });
   const raw = await response.text();
@@ -197,6 +197,7 @@ async function main({
   family = FAMILY,
   variants = VARIANTS,
   model = MODEL,
+  imageSize = process.env.FAL_IMAGE_SIZE || (family === 'tattoo' ? 'portrait_4_3' : 'square'),
   maxSpend = MAX_SPEND,
   logger = console,
 } = {}) {
@@ -235,7 +236,7 @@ async function main({
       const t0 = Date.now();
       let charged = false;
       try {
-        const res = await falGenerate(`${prompt}, variation ${v}`, { key, model, fetchImpl });
+        const res = await falGenerate(`${prompt}, variation ${v}`, { key, model, fetchImpl, imageSize });
         // FAL is billed once a successful generation exists, even if the
         // downstream download or image validation fails afterward. Account
         // for that charge before deciding whether the spend ceiling allows
@@ -253,6 +254,7 @@ async function main({
           deity: name,
           family,
           model,
+          imageSize,
           prompt: `${prompt}, variation ${v}`,
           seed: res.seed,
           file: path.relative(ROOT, out),
@@ -268,6 +270,7 @@ async function main({
           deity: name,
           family,
           model,
+          imageSize,
           prompt: `${prompt}, variation ${v}`,
           cost: charged ? unitCost : 0,
           error: error.message.slice(0, 200),
