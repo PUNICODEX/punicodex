@@ -25,7 +25,7 @@ const GALLERY_DATA = require(path.join(__dirname, 'gallery-data.json'));
 const ROOT = path.join(__dirname, '..');
 const SITE_ORIGIN = 'https://punicodex.com';
 const COMMONS_DIR = path.join(ROOT, 'assets', 'ai-commons');
-const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'oil', 'geometric'];
+const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'masterpiece', 'oil', 'geometric'];
 
 const esc = (s) =>
   String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -310,6 +310,7 @@ ${CSS}
       <option value="tattoo">Tattoo-ready</option>
       <option value="anime">Anime</option>
       <option value="realism">Realism</option>
+      <option value="masterpiece">Masterpiece</option>
       <option value="bw-engraving">Black &amp; white engraving</option>
       <option value="oil">Oil painting</option>
       <option value="geometric">Geometric</option>

@@ -75,9 +75,11 @@ const demandSort = (a, b) => {
 
 const produced = (name, family, outDir = OUT_DIR) => {
   const familyTag = family === 'classic-gold' ? '' : `${family}-`;
+  const promptVersion = lib.deities[name]?.promptVersion;
+  const prefix = `${name}-${familyTag}v${promptVersion}.`;
   for (const d of [outDir, path.join(outDir, 'keepers'), path.join(outDir, 'review')]) {
     try {
-      if (fs.readdirSync(d).some((f) => f.startsWith(`${name}-${familyTag}v`) && f.endsWith('.jpg'))) return true;
+      if (fs.readdirSync(d).some((f) => f.startsWith(prefix) && f.endsWith('.jpg'))) return true;
     } catch {}
   }
   return false;
@@ -197,7 +199,11 @@ async function main({
   family = FAMILY,
   variants = VARIANTS,
   model = MODEL,
-  imageSize = process.env.FAL_IMAGE_SIZE || (family === 'tattoo' ? 'portrait_4_3' : 'square'),
+  imageSize =
+    process.env.FAL_IMAGE_SIZE ||
+    (['tattoo', 'bw-engraving', 'realism', 'oil', 'masterpiece'].includes(family)
+      ? 'portrait_4_3'
+      : 'square'),
   maxSpend = MAX_SPEND,
   logger = console,
 } = {}) {

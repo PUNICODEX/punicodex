@@ -11,6 +11,7 @@ const {
   downloadImage,
   falGenerate,
   main,
+  produced,
 } = require('../scripts/generate-ai-art.js');
 const { removeConnectedWhiteBackground } = require('../scripts/promote-ai-art-commons.js');
 const { ARCHETYPES } = require('../js/archetypes-v2.js');
@@ -41,7 +42,31 @@ function mockFetch(image, calls) {
   };
 }
 
-test('every built flagship has a compilable tattoo prompt with tradition safeguards', () => {
+const PRODUCTION_FAMILIES = {
+  tattoo: [
+    /blackwork tattoo illustration/,
+    /head-to-toe depiction/,
+    /generous white margin on every side/,
+  ],
+  'bw-engraving': [
+    /copperplate engraving/,
+    /warm ivory paper/,
+    /full-length subject fully contained/,
+  ],
+  geometric: [/sacred-geometry art print/, /low-poly facets/, /generous margins/],
+  realism: [
+    /museum-grade cinematic realism/,
+    /physically accurate anatomy/,
+    /full subject fully contained/,
+  ],
+  masterpiece: [
+    /collector-grade digital masterpiece/,
+    /hyper-detailed cinematic fantasy realism/,
+    /elegant negative space/,
+  ],
+};
+
+test('every built flagship has compilable production prompts in every premium family', () => {
   const built = ARCHETYPES.filter((entry) => entry.built);
   const library = JSON.parse(
     fs.readFileSync(path.join(__dirname, '..', 'data', 'ai-art', 'prompt-library.json'), 'utf8')
@@ -50,20 +75,30 @@ test('every built flagship has a compilable tattoo prompt with tradition safegua
   for (const archetype of built) {
     const spec = library.deities[archetype.id];
     assert.ok(spec, `${archetype.id} has a prompt specification`);
-    const prompt = compilePrompt({ ...spec, name: archetype.id }, 'tattoo');
-    assert.match(prompt, /blackwork tattoo illustration/);
-    assert.match(prompt, /head-to-toe depiction/);
-    assert.match(prompt, /generous white margin on every side/);
-    assert.doesNotMatch(
-      prompt,
-      /generous black space|pure black background|gold and black/i,
-      `${archetype.id} prompt leaks classic-gold mutations into tattoo`
-    );
-    assert.ok(
-      library.traditions[spec.tradition]?.iconography,
-      `${archetype.id} has tradition guidance`
-    );
-    assert.ok(!prompt.includes('undefined'), `${archetype.id} prompt has no missing fields`);
+    for (const [family, patterns] of Object.entries(PRODUCTION_FAMILIES)) {
+      const prompt = compilePrompt({ ...spec, name: archetype.id }, family);
+      assert.ok(library.families[family]?.dna, `${family} is registered`);
+      assert.ok(
+        library.families[family]?.mutationOperators?.['cropped-subject'],
+        `${family} has structural curation`
+      );
+      for (const pattern of patterns) {
+        assert.match(prompt, pattern, `${archetype.id} ${family} prompt`);
+      }
+      assert.doesNotMatch(
+        prompt,
+        /generous black space|pure black background|gold and black/i,
+        `${archetype.id} ${family} prompt leaks classic-gold mutations`
+      );
+      assert.ok(
+        library.traditions[spec.tradition]?.iconography,
+        `${archetype.id} has tradition guidance`
+      );
+      assert.ok(
+        !prompt.includes('undefined'),
+        `${archetype.id} ${family} prompt has no missing fields`
+      );
+    }
   }
 });
 
@@ -179,6 +214,17 @@ test('missing credentials cannot trigger a network request', async () => {
   });
   assert.equal(result.missingCredential, true);
   assert.equal(called, false);
+});
+
+test('prompt-version rejects do not block the next evolved generation', async (t) => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'punicodex-ai-art-version-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const review = path.join(directory, 'review');
+  fs.mkdirSync(review, { recursive: true });
+  fs.writeFileSync(path.join(review, 'nike-tattoo-v1.1.jpg'), 'old review');
+  assert.equal(produced('nike', 'tattoo', directory), false);
+  fs.writeFileSync(path.join(review, 'nike-tattoo-v2.1.jpg'), 'current review');
+  assert.equal(produced('nike', 'tattoo', directory), true);
 });
 
 test('Commons background keying removes only border-connected white pixels', () => {

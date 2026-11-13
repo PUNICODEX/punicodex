@@ -86,25 +86,82 @@ for (const archetype of ARCHETYPES.filter((entry) => entry.built)) {
   added++;
 }
 
-lib.families.tattoo = {
-  ...lib.families.tattoo,
-  dna: 'museum-quality blackwork tattoo illustration, bold confident contours, intricate fine-line detail, dotwork and controlled crosshatching, single coherent silhouette, balanced negative space, clean stencil-friendly edges, full-length subject fully contained within the canvas: head-to-toe depiction for anthropomorphic beings with feet fully visible, complete object or emblem for non-anthropomorphic subjects, generous white margin on every side, no cropped anatomy, no cropped wings or attributes, isolated on a plain white background, no background scene, no text, no letters, no pseudo-script, no watermark, no border, no frame',
-  mutationOperators: {
-    'garbled-text': 'append: no text, no letters, no inscription, no watermark',
-    'wrong-attributes': 'reorder: lead with the missed attribute; drop the misread one',
-    'cropped-subject': 'strengthen: full-length subject with the entire silhouette and every extremity inside the frame, generous white margin on every side, no cropped anatomy or attributes',
-    'weak-composition': 'alternate layout: single central subject, complete and fully contained, centered, generous white space',
-    anatomy: 'append: anatomically correct hands and faces, clean linework',
-    'busy-background': 'strengthen: plain white isolated background, no landscape, no scene, no border',
-    'off-style': 'prepend the style dna twice and append: strictly black linework on white only',
+const familyDefinitions = {
+  tattoo: {
+    dna: 'museum-quality blackwork tattoo illustration, bold confident contours, intricate fine-line detail, dotwork and controlled crosshatching, single coherent silhouette, balanced negative space, clean stencil-friendly edges, full-length subject fully contained within the canvas: head-to-toe depiction for anthropomorphic beings with feet fully visible, complete object or emblem for non-anthropomorphic subjects, generous white margin on every side, no cropped anatomy, no cropped wings or attributes, isolated on a plain white background, no background scene, no text, no letters, no pseudo-script, no watermark, no border, no frame',
+    mutationOperators: {
+      'garbled-text': 'append: no text, no letters, no inscription, no watermark',
+      'wrong-attributes': 'reorder: lead with the missed attribute; drop the misread one',
+      'cropped-subject': 'strengthen: full-length subject with the entire silhouette and every extremity inside the frame, generous white margin on every side, no cropped anatomy or attributes',
+      'weak-composition': 'alternate layout: single central subject, complete and fully contained, centered, generous white space',
+      anatomy: 'append: anatomically correct hands and faces, clean linework',
+      'busy-background': 'strengthen: plain white isolated background, no landscape, no scene, no border',
+      'off-style': 'prepend the style dna twice and append: strictly black linework on white only',
+    },
+    notes: ['2026-11-13: stencil-first blackwork, isolated for transparent Commons and Pinterest derivatives'],
   },
-  notes: [
-    ...new Set([
-      ...(lib.families.tattoo.notes || []),
-      '2026-11-13: stencil-first blackwork, isolated for transparent Commons and Pinterest derivatives',
-    ]),
-  ],
+  'bw-engraving': {
+    dna: 'museum-quality black and white copperplate engraving in the tradition of Gustave Doré, precise burin line, rich controlled crosshatching, sculptural chiaroscuro, full-length subject fully contained within the plate, complete figure or object with elegant negative space, printed on warm ivory paper, no border, no plate mark, no caption, no letters, no pseudo-script, no watermark',
+    mutationOperators: {
+      'garbled-text': 'append: no caption, no letters, no inscription, no watermark',
+      'wrong-attributes': 'reorder: lead with the missed attribute; drop the misread one',
+      'cropped-subject': 'strengthen: full plate composition with the entire subject and all attributes inside the frame, generous ivory margin on every side',
+      'weak-composition': 'alternate layout: single monumental central subject, complete and fully contained, balanced engraved negative space',
+      anatomy: 'append: anatomically correct hands and faces, disciplined burin linework',
+      'busy-background': 'strengthen: warm ivory paper background, no landscape, no scene, no border',
+      'off-style': 'prepend the style dna twice and append: strictly monochrome copperplate engraving only',
+    },
+    notes: ['2026-11-13: plate-first ivory-paper engraving with full-subject margins'],
+  },
+  geometric: {
+    dna: 'elite sacred-geometry art print, precise low-poly facets, golden-ratio construction, harmonious radial symmetry, jewel-like gold deep indigo and weathered stone palette, crisp vector-clean edges, dimensional yet minimalist, full emblem or subject fully contained with generous margins, no text, no letters, no pseudo-script, no watermark, no border, no frame',
+    mutationOperators: {
+      'garbled-text': 'append: no symbols that resemble letters, no inscription, no watermark',
+      'wrong-attributes': 'reorder: construct the missed attribute as the dominant geometric form; drop the misread one',
+      'cropped-subject': 'strengthen: complete radial emblem fully inside the frame with generous margins on every side, no cropped points or facets',
+      'weak-composition': 'alternate layout: centered radial construction, complete and symmetrical, balanced negative space',
+      anatomy: 'append: coherent anatomy translated into clean geometric planes',
+      'busy-background': 'strengthen: restrained geometric background, no landscape, no scene, no border',
+      'off-style': 'prepend the style dna twice and append: strictly precise low-poly sacred geometry with a gold, indigo and stone palette',
+    },
+    notes: ['2026-11-13: radial sacred-geometry print language for premium art derivatives'],
+  },
+  realism: {
+    dna: 'museum-grade cinematic realism, breathtakingly detailed, physically accurate anatomy and materials, natural skin, hair, metal and fabric texture, painterly photographic finish, dramatic volumetric light, rich cinematic colour grading, full subject fully contained with breathing room, tasteful dark museum backdrop only when it serves the subject, no text, no letters, no pseudo-script, no watermark, no border, no frame',
+    mutationOperators: {
+      'garbled-text': 'append: no text, no letters, no inscription, no watermark',
+      'wrong-attributes': 'reorder: make the missed attribute physically prominent and unmistakable; drop the misread one',
+      'cropped-subject': 'strengthen: complete full-length subject inside the frame with generous negative space on every side, no cropped anatomy, wings or attributes',
+      'weak-composition': 'alternate layout: cinematic full-subject portrait, complete and fully contained, balanced negative space',
+      anatomy: 'append: physically accurate anatomy, hands, faces and material behaviour',
+      'busy-background': 'strengthen: restrained dark museum backdrop, no landscape clutter, no scene details competing with the subject',
+      'off-style': 'prepend the style dna twice and append: strictly cinematic realism, no illustration or cartoon styling',
+    },
+    notes: ['2026-11-13: museum-grade realism lane for premium Commons and print derivatives'],
+  },
+  masterpiece: {
+    dna: 'elite collector-grade digital masterpiece, hyper-detailed cinematic fantasy realism, intricate jewelry and material microtexture, dramatic volumetric lighting, museum-quality composition, rich layered colour depth, awe-inspiring presence, full subject fully contained with elegant negative space, no text, no letters, no pseudo-script, no watermark, no border, no frame',
+    mutationOperators: {
+      'garbled-text': 'append: no text, no letters, no inscription, no watermark',
+      'wrong-attributes': 'reorder: make the missed attribute an unmistakable hero detail; drop the misread one',
+      'cropped-subject': 'strengthen: complete monumental subject fully inside the frame with elegant negative space on every side',
+      'weak-composition': 'alternate layout: single monumental hero subject, complete and fully contained, cinematic balance',
+      anatomy: 'append: masterful anatomy, hands, faces, eyes and material microtexture',
+      'busy-background': 'strengthen: elegant atmospheric depth without clutter, no competing scene elements',
+      'off-style': 'prepend the style dna twice and append: strictly collector-grade cinematic realism, no illustration styling',
+    },
+    notes: ['2026-11-13: reserved premium lane for curated high-detail PNG-worthy masterpieces'],
+  },
 };
+
+for (const [family, definition] of Object.entries(familyDefinitions)) {
+  lib.families[family] = {
+    ...lib.families[family],
+    dna: definition.dna,
+    mutationOperators: definition.mutationOperators,
+    notes: [...new Set([...(lib.families[family]?.notes || []), ...definition.notes])],
+  };
+}
 
 writeFileWithRetry(LIB_PATH, `${JSON.stringify(lib, null, 2)}\n`);
 console.log(`AI art library: ${added} flagship deities added; ${Object.keys(lib.deities).length} total; ${Object.keys(lib.traditions).length} traditions.`);

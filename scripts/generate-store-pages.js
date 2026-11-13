@@ -647,7 +647,7 @@ function renderArtDepartment() {
 
   // Every Commons work is listed, including archived flagship mascots.
   const COMMONS_DIR = path.join(ROOT, 'assets', 'ai-commons');
-  const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'oil', 'geometric'];
+  const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'masterpiece', 'oil', 'geometric'];
   const commonsByDeity = new Map();
   let commonsItems = [];
   try {
@@ -743,6 +743,7 @@ function renderArtDepartment() {
         <option value="mascot">Mascots</option>
         <option value="anime">Anime</option>
         <option value="realism">Realism</option>
+        <option value="masterpiece">Masterpiece</option>
         <option value="tattoo">Tattoo-ready</option>
         <option value="bw-engraving">Black &amp; white engraving</option>
         <option value="oil">Oil painting</option>

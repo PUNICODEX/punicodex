@@ -17,7 +17,7 @@ const SOURCE = path.resolve(
 );
 const COMMONS = path.join(ROOT, 'assets', 'ai-commons');
 const MANIFEST = path.join(COMMONS, 'manifest.json');
-const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'oil', 'geometric'];
+const FAMILIES = ['classic-gold', 'anime', 'tattoo', 'bw-engraving', 'realism', 'masterpiece', 'oil', 'geometric'];
 const BUILT = new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
 const NAMES = new Map(LEXICON.map((entry) => [entry.id, entry.unicode]));
 
