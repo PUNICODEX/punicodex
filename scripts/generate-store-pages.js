@@ -29,6 +29,7 @@ const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
 // Canonical chrome builders — never fork the nav/menu/footer item lists.
 const { fullNavHtml } = require('./sync-desktop-nav.js');
 const { menuForPage } = require('./sync-mobile-menu.js');
+const { templeTabNavHtml } = require('./lib/temple-tab-nav.js');
 const { footerHtml } = require('./sync-footer.js');
 // Single source for bare-label color detection (historic COLOR_WORDS set),
 // shared with the products.json colors derivation in generate-pod-products.js.
@@ -143,6 +144,7 @@ function templeMeta(id) {
     mascotPath: a ? a.mascotPath : '',
     url: `/${id}/`,
     rentalTier: a ? a.rentalTier : null,
+    colors: a ? a.colors : null,
     meditation: lore ? lore.extendedMeditation : null,
   };
 }
@@ -399,6 +401,14 @@ a:hover{color:var(--gold-bright)}
 }
 `;
 
+const MOBILE_SAFE_CSS = `
+@media(max-width:820px){
+  .nav-inner{padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+  .store-hero h1,.art-hero h1{font-size:clamp(1.65rem,7vw,2.6rem);overflow-wrap:anywhere}
+  .dept-grid{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
+}
+`;
+
 function head({
   title,
   description,
@@ -409,8 +419,16 @@ function head({
   image = null,
   imageWidth = 0,
   imageHeight = 0,
+  templeId = null,
+  templeActive = 'store',
 }) {
   const pageUrl = `${SITE_ORIGIN}${pagePath}`;
+  const templeCss = templeId
+    ? fs.readFileSync(path.join(ROOT, 'sites', templeId, 'styles.css'), 'utf8').replace(/\r\n/g, '\n')
+    : '';
+  const templeCssPin = templeId
+    ? require('node:crypto').createHash('md5').update(templeCss).digest('hex').slice(0, 10)
+    : '';
   const ogImage = image || DEFAULT_OG_IMAGE;
   const ogW = image ? imageWidth : 1200;
   const ogH = image ? imageHeight : 630;
@@ -461,7 +479,8 @@ ${
 <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css?v=perf40">
 <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-<style>${BASE_CSS}${css}</style>
+${templeId ? `<link rel="stylesheet" href="/css/temple-base.css?v=perf24"><link rel="stylesheet" href="/sites/${templeId}/styles.css?v=${templeCssPin}">` : ''}
+<style>${BASE_CSS}${css}${MOBILE_SAFE_CSS}</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -473,45 +492,61 @@ ${
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
-<body>
-    ${fullNavHtml('/store/')}
-    ${menuForPage('/store/')}
+<body${templeId ? ' class="temple-page"' : ''}>
+${templeId ? templeTabNavHtml(templeId, templeMeta(templeId).name, templeActive) : `${fullNavHtml('/store/')}${menuForPage('/store/')}`}
     <script src="/js/px-core.js?v=perf23" defer></script>
-    <script src="${PINS.NAV_HUBS_JS}" defer></script>
-    <script src="/js/main.js?v=perf12" defer></script>`;
+    ${templeId ? '<script src="/js/temple-base.js?v=2903489bdd" defer></script>' : `<script src="${PINS.NAV_HUBS_JS}" defer></script><script src="/js/main.js?v=perf12" defer></script>`}`;
 }
 
 // ─── Department entrance (/store/) ───
 // Phase B Reliquary restructure: the store is a department store. The
 // entrance page presents the departments; the merch grid itself lives at
 // /store/merch/ (renderMerchIndex) and the art department at /store/art/.
-function renderEntrance(colls) {
+function renderEntrance(colls, templeId = null) {
+  const meta = templeId ? templeMeta(templeId) : null;
+  const products = templeId ? colls.get(templeId) || [] : [];
+  const pagePath = templeId ? `/store/${templeId}/` : '/store/';
+  const merchPath = templeId ? `${MERCH}/${templeId}/` : `${MERCH}/`;
+  const artPath = templeId ? `/${templeId}/art/` : '/store/art/';
+  const pageName = meta ? `The Reliquary of ${meta.name}` : 'The Reliquary — Store of the Unicode Pantheon';
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'The Reliquary — Store of the Unicode Pantheon',
-    url: `${SITE_ORIGIN}/store/`,
+    name: pageName,
+    url: `${SITE_ORIGIN}${pagePath}`,
     hasPart: [
       {
         '@type': 'ProductCollection',
         name: 'Merch',
-        url: `${SITE_ORIGIN}/store/merch/`,
-        description: 'Print-on-demand apparel, prints, drinkware and relics from every temple.',
+        url: `${SITE_ORIGIN}${merchPath}`,
+        description: meta
+          ? `Print-on-demand apparel, prints, drinkware and relics from ${meta.name}.`
+          : 'Print-on-demand apparel, prints, drinkware and relics from every temple.',
       },
       {
         '@type': 'ProductCollection',
         name: 'Art',
-        url: `${SITE_ORIGIN}/store/art/`,
-        description: 'Scholarly creatives, tattoo art, temple galleries and the Commons.',
+        url: `${SITE_ORIGIN}${artPath}`,
+        description: meta
+          ? `The historical gallery, Commons studies and Creatives room of ${meta.name}.`
+          : 'Scholarly creatives, tattoo art, temple galleries and the Commons.',
       },
     ],
   };
+  const theme = meta?.colors?.primary
+    ? `:root{--gold:${meta.colors.primary};--gold-bright:${meta.colors.secondary || '#F0D878'};--line:${meta.colors.primary}2e}`
+    : '';
 
   return `${head({
-    title: 'The Reliquary — Store of the Unicode Pantheon | PUNICODEX',
-    description: `The store of the Unicode Pantheon — ${colls.size} temple merch collections under Merch, and the Art department: scholarly creatives, tattoo art, temple galleries and the Commons.`,
-    path: '/store/',
-    css: `.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;padding:2rem 0 4rem}.dept{position:relative;display:flex;flex-direction:column;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2rem 1.75rem;transition:transform .25s ease,border-color .25s ease}.dept:hover{transform:translateY(-4px);border-color:var(--gold)}.dept .glyph{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);line-height:1}.dept h2{font-size:1.5rem;margin:.4rem 0 .2rem}.dept p{color:var(--dim);font-size:.95rem;flex:1}.dept .go{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.dept--soon{opacity:.85}.dept .soon{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#0a0a0c;background:var(--gold);padding:2px 8px;border-radius:999px;width:max-content}`,
+    title: `${pageName} | PUNICODEX`,
+    description: meta
+      ? `The store of ${meta.name} — ${products.length} print-on-demand pieces under Merch, and the temple's historical gallery, Commons studies and Creatives room under Art.`
+      : `The store of the Unicode Pantheon — ${colls.size} temple merch collections under Merch, and the Art department: scholarly creatives, tattoo art, temple galleries and the Commons.`,
+    path: pagePath,
+    collaborators: true,
+    templeId,
+    templeActive: 'store',
+    css: `${theme}.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;padding:2rem 0 4rem}.dept{position:relative;display:flex;flex-direction:column;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2rem 1.75rem;transition:transform .25s ease,border-color .25s ease}.dept:hover{transform:translateY(-4px);border-color:var(--gold)}.dept .glyph{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);line-height:1}.dept h2{font-size:1.5rem;margin:.4rem 0 .2rem}.dept p{color:var(--dim);font-size:.95rem;flex:1}.dept .go{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.dept--soon{opacity:.85}.dept .soon{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#0a0a0c;background:var(--gold);padding:2px 8px;border-radius:999px;width:max-content}`,
   })}
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <div class="wrap">
@@ -520,20 +555,26 @@ function renderEntrance(colls) {
       <canvas class="pc-fx-brilliant" aria-hidden="true"></canvas>
     </div>
     <span class="pill">Orders Open</span>
-    <h1>THE RELIQUARY</h1>
-    <p class="tag">The store of the Unicode Pantheon. Two departments: <strong>Merch</strong> — every temple's line of apparel, prints, drinkware and relics, printed on demand — and <strong>Art</strong> — the visual life of the pantheon, from scholarly creatives to tattoo art to the galleries of the temples themselves.</p>
+    <h1>${meta ? `THE RELIQUARY OF ${meta.name.toUpperCase()}` : 'THE RELIQUARY'}</h1>
+    <p class="tag">${meta
+      ? `The store of ${meta.name}. Two departments: <strong>Merch</strong> — the temple's own apparel, prints, drinkware and relics, printed on demand — and <strong>Art</strong> — the historical gallery, house Commons studies, and the Creatives room.`
+      : `The store of the Unicode Pantheon. Two departments: <strong>Merch</strong> — every temple's line of apparel, prints, drinkware and relics, printed on demand — and <strong>Art</strong> — the visual life of the pantheon, from scholarly creatives to tattoo art to the galleries of the temples themselves.`}</p>
   </div>
   <div class="dept-grid">
-    <a class="dept" href="${MERCH}/">
+    <a class="dept" href="${merchPath}">
       <span class="glyph" aria-hidden="true">◈</span>
       <h2>Merch</h2>
-      <p>${colls.size} temple collections — tees, hoodies, prints, canvases, mugs, stickers and relics, each built from the temple's own mascot, seal and name lockup. Printed to order, shipped worldwide.</p>
+      <p>${meta
+        ? `${products.length} pieces from ${meta.name} — tees, hoodies, prints, canvases, mugs, stickers and relics, each built from the temple's own mascot, seal and name lockup. Printed to order, shipped worldwide.`
+        : `${colls.size} temple collections — tees, hoodies, prints, canvases, mugs, stickers and relics, each built from the temple's own mascot, seal and name lockup. Printed to order, shipped worldwide.`}</p>
       <span class="go">Enter the Merch Hall →</span>
     </a>
-    <a class="dept" href="/store/art/">
+    <a class="dept" href="${artPath}">
       <span class="glyph" aria-hidden="true">❖</span>
       <h2>Art</h2>
-      <p>Scholarly creatives from verified university creators, tattoo art checked against the attested scripts, the curated galleries of the flagship temples — and the Commons, where contributors leave offerings of their own.</p>
+      <p>${meta
+        ? `The curated historical gallery of ${meta.name}, the temple's Commons studies, and the Creatives room opening to university artists.`
+        : 'Scholarly creatives from verified university creators, tattoo art checked against the attested scripts, the curated galleries of the flagship temples — and the Commons, where contributors leave offerings of their own.'}</p>
       <span class="go">Enter the Art Department →</span>
     </a>
   </div>
@@ -1194,8 +1235,10 @@ ${sorted.map(cardHtml).join('\n')}
     image: absUrl(heroImg),
     imageWidth: heroDims[0],
     imageHeight: heroDims[1],
+    templeId: id === 'punicodex' ? null : id,
+    templeActive: 'merch',
   })}
-<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="${MERCH}/">Merch</a> · <span style="color:var(--gold)">${esc(meta.name)}</span></div>
+<div class="wrap crumbs"><a href="${id === 'punicodex' ? '/store/' : `/store/${id}/`}">The Reliquary of ${esc(meta.name)}</a> · <span style="color:var(--gold)">Merch</span></div>
 <div class="wrap">
   <div class="hero">
     <img src="${esc(heroImg)}" alt="${esc(`${meta.name} — restored temple mascot artwork`)}" width="${heroDims[0]}" height="${heroDims[1]}">
@@ -1390,10 +1433,12 @@ function renderProduct(id, kind, product) {
     image: absUrl(stageImg),
     imageWidth: stageDims[0],
     imageHeight: stageDims[1],
+    templeId: id === 'punicodex' ? null : id,
+    templeActive: 'merch',
     css: `.pdp .stage{aspect-ratio:${stageDims[0]} / ${stageDims[1]}}`,
   })}
 <link rel="stylesheet" href="/css/store-configurator.css?v=1">
-<div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="${MERCH}/">Merch</a> · <a href="${MERCH}/${id}/">${esc(meta.name)}</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
+<div class="wrap crumbs"><a href="${id === 'punicodex' ? '/store/' : `/store/${id}/`}">The Reliquary of ${esc(meta.name)}</a> · <a href="${MERCH}/${id}/">Merch</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
 <div class="wrap pdp">
   <div><div class="stage"><img id="stage-img" src="${esc(stageImg)}" alt="${esc(product.name)}" width="${stageDims[0]}" height="${stageDims[1]}" fetchpriority="high" decoding="async"></div>${colourNote}</div>
   <div>
@@ -1642,6 +1687,14 @@ function main() {
       : 0;
   }
   for (const [id, products] of colls) {
+    if (ARCHETYPES.some((archetype) => archetype.id === id && archetype.built)) {
+      written += writeIfChanged(
+        path.join(ROOT, 'store', id, 'index.html'),
+        renderEntrance(colls, id)
+      )
+        ? 1
+        : 0;
+    }
     written += writeIfChanged(
       path.join(ROOT, 'store', 'merch', id, 'index.html'),
       renderCollection(id, products)
@@ -1658,20 +1711,7 @@ function main() {
         : 0;
     }
   }
-  // Legacy cleanup: the pre-Phase-B tree lived directly under store/{id}/.
-  // Those directories are git-tracked generated output — remove them so a
-  // fresh generate converges (the divergence gate diffs the working tree).
-  let removed = 0;
-  for (const id of colls.keys()) {
-    const legacy = path.join(ROOT, 'store', id);
-    if (fs.existsSync(legacy) && fs.statSync(legacy).isDirectory()) {
-      fs.rmSync(legacy, { recursive: true, force: true });
-      removed++;
-    }
-  }
-  console.log(
-    `Store pages: ${written} written (${colls.size} collections, ${CATALOG.count} products), ${removed} legacy dirs removed.`
-  );
+  console.log(`Store pages: ${written} written (${colls.size} collections, ${CATALOG.count} products).`);
 }
 
 if (require.main === module) main();

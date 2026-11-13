@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=6408c040cf">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Njǫrðr — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/njordr/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Njǫrðr","item":"https://punicodex.com/njordr/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/njordr/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/njordr/" class="nav-link active">Store</a>
+                    <a href="/store/njordr/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/njordr/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/njordr/" class="nav-link active">Store</a>
+            <a href="/store/njordr/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/njordr/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,44 +173,44 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Njörd's desire of the Sea — W Njǫrðr" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-njordr-1" data-title="Njörd's desire of the Sea — W Njǫrðr" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Nj%C3%B6rd%27s_desire_of_the_Sea.jpg/960px-Nj%C3%B6rd%27s_desire_of_the_Sea.jpg" alt="Njörd's desire of the Sea" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Njörd's desire of the Sea — W</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen — Amalia Schoppe Njǫrðr" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-njordr-2" data-title="Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen — Amalia Schoppe Njǫrðr" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Nj%C3%B6r%C3%B0r_%281832%29_from_Die_Helden_und_G%C3%B6tter_des_Nordens%2C_oder_Das_Buch_der_sagen.jpg" alt="Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen — Amalia Schoppe</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="AM 738 4to, 36r, BW Njörðr — Unknown author Unknown author, 1680 [1] Njǫrðr" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-njordr-3" data-title="AM 738 4to, 36r, BW Njörðr — Unknown author Unknown author, 1680 [1] Njǫrðr" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/2/28/AM_738_4to%2C_36r%2C_BW_Nj%C3%B6r%C3%B0r.jpeg" alt="AM 738 4to, 36r, BW Njörðr" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>AM 738 4to, 36r, BW Njörðr — Unknown author Unknown author, 1680 [1]</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Njord dieu de la mer Njǫrðr" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-njordr-4" data-title="Njord dieu de la mer Njǫrðr" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Njord_dieu_de_la_mer.jpg" alt="Njord dieu de la mer" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Njord dieu de la mer</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Njörd's desire of the Sea — W Njǫrðr" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-njordr-1" data-title="Njörd's desire of the Sea — W Njǫrðr" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Nj%C3%B6rd%27s_desire_of_the_Sea.jpg/960px-Nj%C3%B6rd%27s_desire_of_the_Sea.jpg" alt="Njörd's desire of the Sea" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Njörd's desire of the Sea — W</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen — Amalia Schoppe Njǫrðr" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-njordr-2" data-title="Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen — Amalia Schoppe Njǫrðr" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Nj%C3%B6r%C3%B0r_%281832%29_from_Die_Helden_und_G%C3%B6tter_des_Nordens%2C_oder_Das_Buch_der_sagen.jpg" alt="Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen — Amalia Schoppe</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="AM 738 4to, 36r, BW Njörðr — Unknown author Unknown author, 1680 [1] Njǫrðr" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-njordr-3" data-title="AM 738 4to, 36r, BW Njörðr — Unknown author Unknown author, 1680 [1] Njǫrðr" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/2/28/AM_738_4to%2C_36r%2C_BW_Nj%C3%B6r%C3%B0r.jpeg" alt="AM 738 4to, 36r, BW Njörðr" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>AM 738 4to, 36r, BW Njörðr — Unknown author Unknown author, 1680 [1]</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Njord dieu de la mer Njǫrðr" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-njordr-4" data-title="Njord dieu de la mer Njǫrðr" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Njord_dieu_de_la_mer.jpg" alt="Njord dieu de la mer" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Njord dieu de la mer</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -301,8 +305,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-njordr-1","kind":"temple","templeId":"njordr","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Nj%C3%B6rd%27s_desire_of_the_Sea.jpg/960px-Nj%C3%B6rd%27s_desire_of_the_Sea.jpg","title":"Njörd's desire of the Sea — W","alt":"Njörd's desire of the Sea","creator":"W.G. Collingwood (1854 - 1932)","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Njörd's_desire_of_the_Sea.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Njörd's_desire_of_the_Sea.jpg","canonicalUrl":"https://punicodex.com/njordr/art/?view=temple&art=gallery-njordr-1","attribution":"Njörd's desire of the Sea — W by W.G. Collingwood (1854 - 1932), Public domain, via https://commons.wikimedia.org/wiki/File:Njörd's_desire_of_the_Sea.jpg","provenance":"Njörd's desire of the Sea","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-njordr-2","kind":"temple","templeId":"njordr","src":"https://upload.wikimedia.org/wikipedia/commons/a/ae/Nj%C3%B6r%C3%B0r_%281832%29_from_Die_Helden_und_G%C3%B6tter_des_Nordens%2C_oder_Das_Buch_der_sagen.jpg","title":"Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen — Amalia Schoppe","alt":"Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen","creator":"Amalia Schoppe.","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Njörðr_(1832)_from_Die_Helden_und_Götter_des_Nordens,_oder_Das_Buch_der_sagen.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Njörðr_(1832)_from_Die_Helden_und_Götter_des_Nordens,_oder_Das_Buch_der_sagen.jpg","canonicalUrl":"https://punicodex.com/njordr/art/?view=temple&art=gallery-njordr-2","attribution":"Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen — Amalia Schoppe by Amalia Schoppe., Public domain, via https://commons.wikimedia.org/wiki/File:Njörðr_(1832)_from_Die_Helden_und_Götter_des_Nordens,_oder_Das_Buch_der_sagen.jpg","provenance":"Njörðr (1832) from Die Helden und Götter des Nordens, oder Das Buch der sagen","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-njordr-3","kind":"temple","templeId":"njordr","src":"https://upload.wikimedia.org/wikipedia/commons/2/28/AM_738_4to%2C_36r%2C_BW_Nj%C3%B6r%C3%B0r.jpeg","title":"AM 738 4to, 36r, BW Njörðr — Unknown author Unknown author, 1680 [1]","alt":"AM 738 4to, 36r, BW Njörðr","creator":"Unknown authorUnknown author","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:AM_738_4to,_36r,_BW_Njörðr.jpeg","sourceUrl":"https://commons.wikimedia.org/wiki/File:AM_738_4to,_36r,_BW_Njörðr.jpeg","canonicalUrl":"https://punicodex.com/njordr/art/?view=temple&art=gallery-njordr-3","attribution":"AM 738 4to, 36r, BW Njörðr — Unknown author Unknown author, 1680 [1] by Unknown authorUnknown author, Public domain, via https://commons.wikimedia.org/wiki/File:AM_738_4to,_36r,_BW_Njörðr.jpeg","provenance":"AM 738 4to, 36r, BW Njörðr","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-njordr-4","kind":"temple","templeId":"njordr","src":"https://upload.wikimedia.org/wikipedia/commons/9/9a/Njord_dieu_de_la_mer.jpg","title":"Njord dieu de la mer","alt":"Njord dieu de la mer","creator":"commons.wikimedia.org","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Njord_dieu_de_la_mer.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Njord_dieu_de_la_mer.jpg","canonicalUrl":"https://punicodex.com/njordr/art/?view=temple&art=gallery-njordr-4","attribution":"Njord dieu de la mer by commons.wikimedia.org, Public domain, via https://commons.wikimedia.org/wiki/File:Njord_dieu_de_la_mer.jpg","provenance":"Njord dieu de la mer","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -316,8 +321,14 @@
     creatives: { t: 'Creatives for Njǫrðr — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/njordr/art/?view=creatives' },
     commons: { t: 'The Commons — Njǫrðr studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/njordr/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -328,6 +339,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -346,7 +358,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

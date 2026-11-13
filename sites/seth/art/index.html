@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=5538e5ee08">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Stḫ — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/seth/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Stḫ","item":"https://punicodex.com/seth/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/seth/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/seth/" class="nav-link active">Store</a>
+                    <a href="/store/seth/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/seth/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/seth/" class="nav-link active">Store</a>
+            <a href="/store/seth/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/seth/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Set — Set, an ancient Egyptian deity Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-1" data-title="Set — Set, an ancient Egyptian deity Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Set.svg/960px-Set.svg.png" alt="Set, an ancient Egyptian deity. Based on New Kingdom tomb paintings." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Set — Set, an ancient Egyptian deity</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Seth — Seth Egyptian God Photo/art: Medicalmycologist Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-2" data-title="Seth — Seth Egyptian God Photo/art: Medicalmycologist Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Seth.JPG/960px-Seth.JPG" alt="Seth Egyptian God" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Seth — Seth Egyptian God Photo/art: Medicalmycologist</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Set speared Apep — Set killing the demon snake Apep Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-3" data-title="Set speared Apep — Set killing the demon snake Apep Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Set_speared_Apep.jpg/960px-Set_speared_Apep.jpg" alt="Set killing the demon snake Apep. Book of the Dead of Lady Cheritwebeshet (21st Dynasty: ca.1069-945)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Set speared Apep — Set killing the demon snake Apep</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Horus and Seth crowning Ramesses III, detail of Seth — Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-4" data-title="Horus and Seth crowning Ramesses III, detail of Seth — Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Horus_and_Seth_crowning_Ramesses_III%2C_detail_of_Seth.JPG/960px-Horus_and_Seth_crowning_Ramesses_III%2C_detail_of_Seth.JPG" alt="Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III. Twentieth Dynasty, early 12th century BC." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Horus and Seth crowning Ramesses III, detail of Seth — Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Figurine of Seth MET 22 Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-5" data-title="Figurine of Seth MET 22 Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Figurine_of_Seth_MET_22.1.736-AC-2.jpg" alt="Figurine, animal head, Seth" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Figurine of Seth MET 22</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statue depicting the god Seth, softwood - Museo Egizio, Turin S 124… CC0 via Wikimedia Commons Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-6" data-title="Statue depicting the god Seth, softwood - Museo Egizio, Turin S 124… CC0 via Wikimedia Commons Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Statue_depicting_the_god_Seth%2C_softwood_-_Museo_Egizio%2C_Turin_S_1249_p01.jpg/960px-Statue_depicting_the_god_Seth%2C_softwood_-_Museo_Egizio%2C_Turin_S_1249_p01.jpg" alt="Statue depicting the god Seth, softwood - Museo Egizio, Turin S 1249 p01.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statue depicting the god Seth, softwood - Museo Egizio, Turin S 124… CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Set — Set, an ancient Egyptian deity Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-1" data-title="Set — Set, an ancient Egyptian deity Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Set.svg/960px-Set.svg.png" alt="Set, an ancient Egyptian deity. Based on New Kingdom tomb paintings." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Set — Set, an ancient Egyptian deity</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Seth — Seth Egyptian God Photo/art: Medicalmycologist Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-2" data-title="Seth — Seth Egyptian God Photo/art: Medicalmycologist Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Seth.JPG/960px-Seth.JPG" alt="Seth Egyptian God" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Seth — Seth Egyptian God Photo/art: Medicalmycologist</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Set speared Apep — Set killing the demon snake Apep Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-3" data-title="Set speared Apep — Set killing the demon snake Apep Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Set_speared_Apep.jpg/960px-Set_speared_Apep.jpg" alt="Set killing the demon snake Apep. Book of the Dead of Lady Cheritwebeshet (21st Dynasty: ca.1069-945)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Set speared Apep — Set killing the demon snake Apep</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Horus and Seth crowning Ramesses III, detail of Seth — Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-4" data-title="Horus and Seth crowning Ramesses III, detail of Seth — Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Horus_and_Seth_crowning_Ramesses_III%2C_detail_of_Seth.JPG/960px-Horus_and_Seth_crowning_Ramesses_III%2C_detail_of_Seth.JPG" alt="Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III. Twentieth Dynasty, early 12th century BC." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Horus and Seth crowning Ramesses III, detail of Seth — Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Figurine of Seth MET 22 Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-5" data-title="Figurine of Seth MET 22 Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Figurine_of_Seth_MET_22.1.736-AC-2.jpg" alt="Figurine, animal head, Seth" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Figurine of Seth MET 22</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statue depicting the god Seth, softwood - Museo Egizio, Turin S 124… CC0 via Wikimedia Commons Stḫ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-seth-6" data-title="Statue depicting the god Seth, softwood - Museo Egizio, Turin S 124… CC0 via Wikimedia Commons Stḫ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Statue_depicting_the_god_Seth%2C_softwood_-_Museo_Egizio%2C_Turin_S_1249_p01.jpg/960px-Statue_depicting_the_god_Seth%2C_softwood_-_Museo_Egizio%2C_Turin_S_1249_p01.jpg" alt="Statue depicting the god Seth, softwood - Museo Egizio, Turin S 1249 p01.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statue depicting the god Seth, softwood - Museo Egizio, Turin S 124… CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-seth-1","kind":"temple","templeId":"seth","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Set.svg/960px-Set.svg.png","title":"Set — Set, an ancient Egyptian deity","alt":"Set, an ancient Egyptian deity. Based on New Kingdom tomb paintings.","creator":"Jeff Dahl (talk · contribs)","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Set.svg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Set.svg","canonicalUrl":"https://punicodex.com/seth/art/?view=temple&art=gallery-seth-1","attribution":"Set — Set, an ancient Egyptian deity by Jeff Dahl (talk · contribs), CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Set.svg","provenance":"Set, an ancient Egyptian deity. Based on New Kingdom tomb paintings.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-seth-2","kind":"temple","templeId":"seth","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Seth.JPG/960px-Seth.JPG","title":"Seth — Seth Egyptian God Photo/art: Medicalmycologist","alt":"Seth Egyptian God","creator":"Medicalmycologist","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Seth.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Seth.JPG","canonicalUrl":"https://punicodex.com/seth/art/?view=temple&art=gallery-seth-2","attribution":"Seth — Seth Egyptian God Photo/art: Medicalmycologist by Medicalmycologist, Public domain, via https://commons.wikimedia.org/wiki/File:Seth.JPG","provenance":"Seth Egyptian God","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-seth-3","kind":"temple","templeId":"seth","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Set_speared_Apep.jpg/960px-Set_speared_Apep.jpg","title":"Set speared Apep — Set killing the demon snake Apep","alt":"Set killing the demon snake Apep. Book of the Dead of Lady Cheritwebeshet (21st Dynasty: ca.1069-945)","creator":"An unknown workman","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Set_speared_Apep.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Set_speared_Apep.jpg","canonicalUrl":"https://punicodex.com/seth/art/?view=temple&art=gallery-seth-3","attribution":"Set speared Apep — Set killing the demon snake Apep by An unknown workman, Public domain, via https://commons.wikimedia.org/wiki/File:Set_speared_Apep.jpg","provenance":"Set killing the demon snake Apep. Book of the Dead of Lady Cheritwebeshet (21st Dynasty: ca.1069-945)","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-seth-4","kind":"temple","templeId":"seth","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Horus_and_Seth_crowning_Ramesses_III%2C_detail_of_Seth.JPG/960px-Horus_and_Seth_crowning_Ramesses_III%2C_detail_of_Seth.JPG","title":"Horus and Seth crowning Ramesses III, detail of Seth — Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III","alt":"Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III. Twentieth Dynasty, early 12th century BC.","creator":"A. Parrot","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Horus_and_Seth_crowning_Ramesses_III,_detail_of_Seth.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Horus_and_Seth_crowning_Ramesses_III,_detail_of_Seth.JPG","canonicalUrl":"https://punicodex.com/seth/art/?view=temple&art=gallery-seth-4","attribution":"Horus and Seth crowning Ramesses III, detail of Seth — Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III by A. Parrot, CC0, via https://commons.wikimedia.org/wiki/File:Horus_and_Seth_crowning_Ramesses_III,_detail_of_Seth.JPG","provenance":"Detail of Seth's face, from a statue of Horus and Seth placing the crown of Upper Egypt on the head of Ramesses III. Twentieth Dynasty, early 12th century BC.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-seth-5","kind":"temple","templeId":"seth","src":"https://upload.wikimedia.org/wikipedia/commons/1/10/Figurine_of_Seth_MET_22.1.736-AC-2.jpg","title":"Figurine of Seth MET 22","alt":"Figurine, animal head, Seth","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Figurine_of_Seth_MET_22.1.736-AC-2.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Figurine_of_Seth_MET_22.1.736-AC-2.jpg","canonicalUrl":"https://punicodex.com/seth/art/?view=temple&art=gallery-seth-5","attribution":"Figurine of Seth MET 22 by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Figurine_of_Seth_MET_22.1.736-AC-2.jpg","provenance":"Figurine, animal head, Seth","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-seth-6","kind":"temple","templeId":"seth","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Statue_depicting_the_god_Seth%2C_softwood_-_Museo_Egizio%2C_Turin_S_1249_p01.jpg/960px-Statue_depicting_the_god_Seth%2C_softwood_-_Museo_Egizio%2C_Turin_S_1249_p01.jpg","title":"Statue depicting the god Seth, softwood - Museo Egizio, Turin S 124… CC0 via Wikimedia Commons","alt":"Statue depicting the god Seth, softwood - Museo Egizio, Turin S 1249 p01.jpg","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Statue_depicting_the_god_Seth,_softwood_-_Museo_Egizio,_Turin_S_1249_p01.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Statue_depicting_the_god_Seth,_softwood_-_Museo_Egizio,_Turin_S_1249_p01.jpg","canonicalUrl":"https://punicodex.com/seth/art/?view=temple&art=gallery-seth-6","attribution":"Statue depicting the god Seth, softwood - Museo Egizio, Turin S 124… CC0 via Wikimedia Commons by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Statue_depicting_the_god_Seth,_softwood_-_Museo_Egizio,_Turin_S_1249_p01.jpg","provenance":"Statue depicting the god Seth, softwood - Museo Egizio, Turin S 1249 p01.jpg","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Stḫ — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/seth/art/?view=creatives' },
     commons: { t: 'The Commons — Stḫ studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/seth/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

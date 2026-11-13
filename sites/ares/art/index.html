@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Árēs — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/ares/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Árēs","item":"https://punicodex.com/ares/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/ares/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/ares/" class="nav-link active">Store</a>
+                    <a href="/store/ares/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/ares/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/ares/" class="nav-link active">Store</a>
+            <a href="/store/ares/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/ares/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,27 +173,27 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Ares Ludovisi — Roman copy of a Greek original Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-1" data-title="Ares Ludovisi — Roman copy of a Greek original Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Ares_Ludovisi_Altemps_Inv8602.jpg/960px-Ares_Ludovisi_Altemps_Inv8602.jpg.webp" alt="Ares Ludovisi, Roman copy. Palazzo Altemps, Rome." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares Ludovisi — Roman copy of a Greek original</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ares Borghese — The muscular torso of the war god, stripped of armor, raw violence made flesh Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-2" data-title="Ares Borghese — The muscular torso of the war god, stripped of armor, raw violence made flesh Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Ares_Borghese_Louvre_Ma_866_n01.jpg/960px-Ares_Borghese_Louvre_Ma_866_n01.jpg.webp" alt="Ares Borghese, Roman copy. Louvre Museum, Paris." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares Borghese — The muscular torso of the war god, stripped of armor, raw violence made flesh</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.5</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ares and Aphrodite — Attic red-figure, c Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-3" data-title="Ares and Aphrodite — Attic red-figure, c Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Mars%20and%20Venus%20Surprised%20by%20Vulcan%20-%20Tintoretto.jpg/960px-Mars%20and%20Venus%20Surprised%20by%20Vulcan%20-%20Tintoretto.jpg.webp" alt="Mars and Venus Surprised by Vulcan by Tintoretto." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares and Aphrodite — Attic red-figure, c</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ares at Paestum — The war god in South Italian fresco, grim and unsmiling Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-4" data-title="Ares at Paestum — The war god in South Italian fresco, grim and unsmiling Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior%2C_375-370_BC%2C_Paestum_Archaeological_Museum.jpg/960px-Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior%2C_375-370_BC%2C_Paestum_Archaeological_Museum.jpg.webp" alt="Ares, fresco from the Temple of Ares at Paestum." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares at Paestum — The war god in South Italian fresco, grim and unsmiling</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 2.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ares — Roman statue, Vatican Museums Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-5" data-title="Ares — Roman statue, Vatican Museums Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Statua_di_Ares%2C_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio%2C_I-II_sec._-FG.jpg/960px-Statua_di_Ares%2C_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio%2C_I-II_sec._-FG.jpg.webp" alt="Ares, Roman statue. Vatican Museums." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares — Roman statue, Vatican Museums</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -211,27 +215,27 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Ares Ludovisi — Roman copy of a Greek original Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-1" data-title="Ares Ludovisi — Roman copy of a Greek original Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Ares_Ludovisi_Altemps_Inv8602.jpg/960px-Ares_Ludovisi_Altemps_Inv8602.jpg.webp" alt="Ares Ludovisi, Roman copy. Palazzo Altemps, Rome." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares Ludovisi — Roman copy of a Greek original</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ares Borghese — The muscular torso of the war god, stripped of armor, raw violence made flesh Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-2" data-title="Ares Borghese — The muscular torso of the war god, stripped of armor, raw violence made flesh Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Ares_Borghese_Louvre_Ma_866_n01.jpg/960px-Ares_Borghese_Louvre_Ma_866_n01.jpg.webp" alt="Ares Borghese, Roman copy. Louvre Museum, Paris." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares Borghese — The muscular torso of the war god, stripped of armor, raw violence made flesh</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.5</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ares and Aphrodite — Attic red-figure, c Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-3" data-title="Ares and Aphrodite — Attic red-figure, c Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Mars%20and%20Venus%20Surprised%20by%20Vulcan%20-%20Tintoretto.jpg/960px-Mars%20and%20Venus%20Surprised%20by%20Vulcan%20-%20Tintoretto.jpg.webp" alt="Mars and Venus Surprised by Vulcan by Tintoretto." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares and Aphrodite — Attic red-figure, c</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ares at Paestum — The war god in South Italian fresco, grim and unsmiling Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-4" data-title="Ares at Paestum — The war god in South Italian fresco, grim and unsmiling Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior%2C_375-370_BC%2C_Paestum_Archaeological_Museum.jpg/960px-Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior%2C_375-370_BC%2C_Paestum_Archaeological_Museum.jpg.webp" alt="Ares, fresco from the Temple of Ares at Paestum." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares at Paestum — The war god in South Italian fresco, grim and unsmiling</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 2.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ares — Roman statue, Vatican Museums Árēs" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ares-5" data-title="Ares — Roman statue, Vatican Museums Árēs" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Statua_di_Ares%2C_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio%2C_I-II_sec._-FG.jpg/960px-Statua_di_Ares%2C_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio%2C_I-II_sec._-FG.jpg.webp" alt="Ares, Roman statue. Vatican Museums." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ares — Roman statue, Vatican Museums</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -340,8 +344,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-ares-ares-anime-mascot-v1","templeId":"ares","title":"Árēs — anime mascot","src":"/assets/ai-commons/ares-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Árēs — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/ares/art/?view=commons","canonicalUrl":"https://punicodex.com/ares/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."},{"id":"commons-ares-ares-v1.1","templeId":"ares","title":"Árēs — study v1.1","src":"/assets/ai-commons/ares-v1.1.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Árēs — study v1.1” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/ares/art/?view=commons","canonicalUrl":"https://punicodex.com/ares/art/?view=commons","generatedAt":"2026-11-07T05:19:38.012Z","recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1850820669,"prompt":"Árēs, war god, spear and helmet, fierce expression,, ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body, variation 1","provenance":"Curated PuniCodex studio work promoted into Commons."},{"id":"commons-ares-ares-v1.2","templeId":"ares","title":"Árēs — study v1.2","src":"/assets/ai-commons/ares-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Árēs — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/ares/art/?view=commons","canonicalUrl":"https://punicodex.com/ares/art/?view=commons","generatedAt":"2026-11-07T05:19:41.666Z","recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1854042157,"prompt":"Árēs, war god, spear and helmet, fierce expression,, ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-ares-1","kind":"temple","templeId":"ares","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Ares_Ludovisi_Altemps_Inv8602.jpg/960px-Ares_Ludovisi_Altemps_Inv8602.jpg.webp","title":"Ares Ludovisi — Roman copy of a Greek original","alt":"Ares Ludovisi, Roman copy. Palazzo Altemps, Rome.","creator":"commons.wikimedia.org","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Ares_Ludovisi_Altemps_Inv8602.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Ares_Ludovisi_Altemps_Inv8602.jpg","canonicalUrl":"https://punicodex.com/ares/art/?view=temple&art=gallery-ares-1","attribution":"Ares Ludovisi — Roman copy of a Greek original by commons.wikimedia.org, Public domain, via https://commons.wikimedia.org/wiki/File:Ares_Ludovisi_Altemps_Inv8602.jpg","provenance":"Ares Ludovisi, Roman copy. Palazzo Altemps, Rome.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ares-2","kind":"temple","templeId":"ares","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Ares_Borghese_Louvre_Ma_866_n01.jpg/960px-Ares_Borghese_Louvre_Ma_866_n01.jpg.webp","title":"Ares Borghese — The muscular torso of the war god, stripped of armor, raw violence made flesh","alt":"Ares Borghese, Roman copy. Louvre Museum, Paris.","creator":"Marie-Lan Nguyen","license":"CC BY 2.5","licenseUrl":"https://commons.wikimedia.org/wiki/File:Ares_Borghese_Louvre_Ma_866_n01.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Ares_Borghese_Louvre_Ma_866_n01.jpg","canonicalUrl":"https://punicodex.com/ares/art/?view=temple&art=gallery-ares-2","attribution":"Ares Borghese — The muscular torso of the war god, stripped of armor, raw violence made flesh by Marie-Lan Nguyen, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Ares_Borghese_Louvre_Ma_866_n01.jpg","provenance":"Ares Borghese, Roman copy. Louvre Museum, Paris.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ares-3","kind":"temple","templeId":"ares","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Mars%20and%20Venus%20Surprised%20by%20Vulcan%20-%20Tintoretto.jpg/960px-Mars%20and%20Venus%20Surprised%20by%20Vulcan%20-%20Tintoretto.jpg.webp","title":"Ares and Aphrodite — Attic red-figure, c","alt":"Mars and Venus Surprised by Vulcan by Tintoretto.","creator":"GoldenArtists","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Mars_and_Venus_Surprised_by_Vulcan_-_Tintoretto.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Mars_and_Venus_Surprised_by_Vulcan_-_Tintoretto.jpg","canonicalUrl":"https://punicodex.com/ares/art/?view=temple&art=gallery-ares-3","attribution":"Ares and Aphrodite — Attic red-figure, c by GoldenArtists, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Mars_and_Venus_Surprised_by_Vulcan_-_Tintoretto.jpg","provenance":"Mars and Venus Surprised by Vulcan by Tintoretto.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ares-4","kind":"temple","templeId":"ares","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior%2C_375-370_BC%2C_Paestum_Archaeological_Museum.jpg/960px-Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior%2C_375-370_BC%2C_Paestum_Archaeological_Museum.jpg.webp","title":"Ares at Paestum — The war god in South Italian fresco, grim and unsmiling","alt":"Ares, fresco from the Temple of Ares at Paestum.","creator":"Carole Raddato","license":"CC BY-SA 2.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior,_375-370_BC,_Paestum_Archaeological_Museum.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior,_375-370_BC,_Paestum_Archaeological_Museum.jpg","canonicalUrl":"https://punicodex.com/ares/art/?view=temple&art=gallery-ares-4","attribution":"Ares at Paestum — The war god in South Italian fresco, grim and unsmiling by Carole Raddato, CC BY-SA 2.0, via https://commons.wikimedia.org/wiki/File:Lucanian_fresco_tomb_painting_depicting_the_return_of_the_warrior,_375-370_BC,_Paestum_Archaeological_Museum.jpg","provenance":"Ares, fresco from the Temple of Ares at Paestum.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ares-5","kind":"temple","templeId":"ares","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Statua_di_Ares%2C_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio%2C_I-II_sec._-FG.jpg/960px-Statua_di_Ares%2C_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio%2C_I-II_sec._-FG.jpg.webp","title":"Ares — Roman statue, Vatican Museums","alt":"Ares, Roman statue. Vatican Museums.","creator":"Fabrizio Garrisi","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Statua_di_Ares,_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio,_I-II_sec._-FG.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Statua_di_Ares,_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio,_I-II_sec._-FG.jpg","canonicalUrl":"https://punicodex.com/ares/art/?view=temple&art=gallery-ares-5","attribution":"Ares — Roman statue, Vatican Museums by Fabrizio Garrisi, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Statua_di_Ares,_realizzata_con_un_torso_di_Ares_tipo_Borghese_e_una_testa-ritratto_di_Claudio,_I-II_sec._-FG.jpg","provenance":"Ares, Roman statue. Vatican Museums.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-ares-ares-anime-mascot-v1","templeId":"ares","title":"Árēs — anime mascot","src":"/assets/ai-commons/ares-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Árēs — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/ares/art/?view=commons","canonicalUrl":"https://punicodex.com/ares/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."},{"id":"commons-ares-ares-v1.1","templeId":"ares","title":"Árēs — study v1.1","src":"/assets/ai-commons/ares-v1.1.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Árēs — study v1.1” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/ares/art/?view=commons","canonicalUrl":"https://punicodex.com/ares/art/?view=commons","generatedAt":"2026-11-07T05:19:38.012Z","recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1850820669,"prompt":"Árēs, war god, spear and helmet, fierce expression,, ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body, variation 1","provenance":"Curated PuniCodex studio work promoted into Commons."},{"id":"commons-ares-ares-v1.2","templeId":"ares","title":"Árēs — study v1.2","src":"/assets/ai-commons/ares-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Árēs — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/ares/art/?view=commons","canonicalUrl":"https://punicodex.com/ares/art/?view=commons","generatedAt":"2026-11-07T05:19:41.666Z","recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1854042157,"prompt":"Árēs, war god, spear and helmet, fierce expression,, ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -355,8 +360,14 @@
     creatives: { t: 'Creatives for Árēs — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/ares/art/?view=creatives' },
     commons: { t: 'The Commons — Árēs studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/ares/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -367,6 +378,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -385,7 +397,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

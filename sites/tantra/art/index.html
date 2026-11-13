@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=13e2f5f11e">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Tantra — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/tantra/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Tantra","item":"https://punicodex.com/tantra/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/tantra/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/tantra/" class="nav-link active">Store</a>
+                    <a href="/store/tantra/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/tantra/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/tantra/" class="nav-link active">Store</a>
+            <a href="/store/tantra/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/tantra/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Kundalini Tantra painting (Rajasthan, 18th century) — A painting of the Kundalini Tantra (18th century), 36 Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-1" data-title="Kundalini Tantra painting (Rajasthan, 18th century) — A painting of the Kundalini Tantra (18th century), 36 Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Kundalini_Tantra_painting_%28Rajasthan%2C_18th_century%29.png/960px-Kundalini_Tantra_painting_%28Rajasthan%2C_18th_century%29.png?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="A painting of the Kundalini Tantra (18th century), 36.2 x 28.4cm. It depicts tantric symbolism of Sun and Moon, chakras, snakes (kundalini), yoni and lingam" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kundalini Tantra painting (Rajasthan, 18th century) — A painting of the Kundalini Tantra (18th century), 36</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tantra rajatantra means &quot;Tantra that is king of tantras&quot; Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-2" data-title="Tantra rajatantra means &quot;Tantra that is king of tantras&quot; Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/19th_century_manuscript_copy%2C_older_Tantra_Rajatantra%2C_Schoyen_Collection_Norway.jpg/960px-19th_century_manuscript_copy%2C_older_Tantra_Rajatantra%2C_Schoyen_Collection_Norway.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Tantra rajatantra means &quot;Tantra that is king of tantras&quot;. It is divided into 36 chapters, each with 100 verses. It is dedicated to the goddess Lalita Tripurasundari. The date of Tantrarajatantra's composition is uncle…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tantra rajatantra means &quot;Tantra that is king of tantras&quot;</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-3" data-title="Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Sarvavid_Vairochana%2C_From_a_Set_of_the_Five_Jina_Buddhas%2C_based_on_Complete_Purification_of_All_Evil_Rebirths_%28Sarva_Durgati_Parishodana_Tantra%29_LACMA_AC1994.121.1.jpg/960px-thumbnail.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in. (54.61 x 30.48 cm) Purchased with funds provided by Harry and Yvonne Lenart (AC1994.121.1) South …" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Vasantatilaka-tantra Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-4" data-title="Vasantatilaka-tantra Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Vasantatilaka-tantra._-_btv1b10873070z_%2816_of_19%29.jpg/960px-Vasantatilaka-tantra._-_btv1b10873070z_%2816_of_19%29.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Numérisation effectuée à partir d'un document de substitution : R 82993. Langue : sanskrit" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Vasantatilaka-tantra</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Jvālāvalī-tantra Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-5" data-title="Jvālāvalī-tantra Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Jv%C4%81l%C4%81val%C4%AB-tantra._-_btv1b10082610h_%2812_of_84%29.jpg/960px-Jv%C4%81l%C4%81val%C4%AB-tantra._-_btv1b10082610h_%2812_of_84%29.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Numérisation effectuée à partir d'un document de substitution : R 55090. Langue : sanskrit" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Jvālāvalī-tantra</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Rudrayamala Tantra, Sanskrit language, Newar script — Manuscript of Rudrayamala Photo/art: Unknown author Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-6" data-title="Rudrayamala Tantra, Sanskrit language, Newar script — Manuscript of Rudrayamala Photo/art: Unknown author Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Rudrayamala_Tantra%2C_Sanskrit_language%2C_Newar_script.jpg/960px-Rudrayamala_Tantra%2C_Sanskrit_language%2C_Newar_script.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Manuscript of Rudrayamala" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Rudrayamala Tantra, Sanskrit language, Newar script — Manuscript of Rudrayamala Photo/art: Unknown author</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Kundalini Tantra painting (Rajasthan, 18th century) — A painting of the Kundalini Tantra (18th century), 36 Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-1" data-title="Kundalini Tantra painting (Rajasthan, 18th century) — A painting of the Kundalini Tantra (18th century), 36 Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Kundalini_Tantra_painting_%28Rajasthan%2C_18th_century%29.png/960px-Kundalini_Tantra_painting_%28Rajasthan%2C_18th_century%29.png?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="A painting of the Kundalini Tantra (18th century), 36.2 x 28.4cm. It depicts tantric symbolism of Sun and Moon, chakras, snakes (kundalini), yoni and lingam" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kundalini Tantra painting (Rajasthan, 18th century) — A painting of the Kundalini Tantra (18th century), 36</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tantra rajatantra means &quot;Tantra that is king of tantras&quot; Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-2" data-title="Tantra rajatantra means &quot;Tantra that is king of tantras&quot; Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/19th_century_manuscript_copy%2C_older_Tantra_Rajatantra%2C_Schoyen_Collection_Norway.jpg/960px-19th_century_manuscript_copy%2C_older_Tantra_Rajatantra%2C_Schoyen_Collection_Norway.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Tantra rajatantra means &quot;Tantra that is king of tantras&quot;. It is divided into 36 chapters, each with 100 verses. It is dedicated to the goddess Lalita Tripurasundari. The date of Tantrarajatantra's composition is uncle…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tantra rajatantra means &quot;Tantra that is king of tantras&quot;</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-3" data-title="Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Sarvavid_Vairochana%2C_From_a_Set_of_the_Five_Jina_Buddhas%2C_based_on_Complete_Purification_of_All_Evil_Rebirths_%28Sarva_Durgati_Parishodana_Tantra%29_LACMA_AC1994.121.1.jpg/960px-thumbnail.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in. (54.61 x 30.48 cm) Purchased with funds provided by Harry and Yvonne Lenart (AC1994.121.1) South …" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Vasantatilaka-tantra Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-4" data-title="Vasantatilaka-tantra Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Vasantatilaka-tantra._-_btv1b10873070z_%2816_of_19%29.jpg/960px-Vasantatilaka-tantra._-_btv1b10873070z_%2816_of_19%29.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Numérisation effectuée à partir d'un document de substitution : R 82993. Langue : sanskrit" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Vasantatilaka-tantra</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Jvālāvalī-tantra Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-5" data-title="Jvālāvalī-tantra Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Jv%C4%81l%C4%81val%C4%AB-tantra._-_btv1b10082610h_%2812_of_84%29.jpg/960px-Jv%C4%81l%C4%81val%C4%AB-tantra._-_btv1b10082610h_%2812_of_84%29.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Numérisation effectuée à partir d'un document de substitution : R 55090. Langue : sanskrit" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Jvālāvalī-tantra</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Rudrayamala Tantra, Sanskrit language, Newar script — Manuscript of Rudrayamala Photo/art: Unknown author Tantra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tantra-6" data-title="Rudrayamala Tantra, Sanskrit language, Newar script — Manuscript of Rudrayamala Photo/art: Unknown author Tantra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Rudrayamala_Tantra%2C_Sanskrit_language%2C_Newar_script.jpg/960px-Rudrayamala_Tantra%2C_Sanskrit_language%2C_Newar_script.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Manuscript of Rudrayamala" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Rudrayamala Tantra, Sanskrit language, Newar script — Manuscript of Rudrayamala Photo/art: Unknown author</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-tantra-1","kind":"temple","templeId":"tantra","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Kundalini_Tantra_painting_%28Rajasthan%2C_18th_century%29.png/960px-Kundalini_Tantra_painting_%28Rajasthan%2C_18th_century%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Kundalini Tantra painting (Rajasthan, 18th century) — A painting of the Kundalini Tantra (18th century), 36","alt":"A painting of the Kundalini Tantra (18th century), 36.2 x 28.4cm. It depicts tantric symbolism of Sun and Moon, chakras, snakes (kundalini), yoni and lingam","creator":"Unknown 18th century Indian painter","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kundalini_Tantra_painting_(Rajasthan,_18th_century).png","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kundalini_Tantra_painting_(Rajasthan,_18th_century).png","canonicalUrl":"https://punicodex.com/tantra/art/?view=temple&art=gallery-tantra-1","attribution":"Kundalini Tantra painting (Rajasthan, 18th century) — A painting of the Kundalini Tantra (18th century), 36 by Unknown 18th century Indian painter, Public domain, via https://commons.wikimedia.org/wiki/File:Kundalini_Tantra_painting_(Rajasthan,_18th_century).png","provenance":"A painting of the Kundalini Tantra (18th century), 36.2 x 28.4cm. It depicts tantric symbolism of Sun and Moon, chakras, snakes (kundalini), yoni and lingam","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tantra-2","kind":"temple","templeId":"tantra","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/19th_century_manuscript_copy%2C_older_Tantra_Rajatantra%2C_Schoyen_Collection_Norway.jpg/960px-19th_century_manuscript_copy%2C_older_Tantra_Rajatantra%2C_Schoyen_Collection_Norway.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Tantra rajatantra means \"Tantra that is king of tantras\"","alt":"Tantra rajatantra means \"Tantra that is king of tantras\". It is divided into 36 chapters, each with 100 verses. It is dedicated to the goddess Lalita Tripurasundari. The date of Tantrarajatantra's composition is uncle…","creator":"Ms Sarah Welch","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:19th_century_manuscript_copy,_older_Tantra_Rajatantra,_Schoyen_Collection_Norway.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:19th_century_manuscript_copy,_older_Tantra_Rajatantra,_Schoyen_Collection_Norway.jpg","canonicalUrl":"https://punicodex.com/tantra/art/?view=temple&art=gallery-tantra-2","attribution":"Tantra rajatantra means \"Tantra that is king of tantras\" by Ms Sarah Welch, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:19th_century_manuscript_copy,_older_Tantra_Rajatantra,_Schoyen_Collection_Norway.jpg","provenance":"Tantra rajatantra means \"Tantra that is king of tantras\". It is divided into 36 chapters, each with 100 verses. It is dedicated to the goddess Lalita Tripurasundari. The date of Tantrarajatantra's composition is uncle…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tantra-3","kind":"temple","templeId":"tantra","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Sarvavid_Vairochana%2C_From_a_Set_of_the_Five_Jina_Buddhas%2C_based_on_Complete_Purification_of_All_Evil_Rebirths_%28Sarva_Durgati_Parishodana_Tantra%29_LACMA_AC1994.121.1.jpg/960px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in","alt":"Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in. (54.61 x 30.48 cm) Purchased with funds provided by Harry and Yvonne Lenart (AC1994.121.1) South …","creator":"anonymous","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Sarvavid_Vairochana,_From_a_Set_of_the_Five_Jina_Buddhas,_based_on_Complete_Purification_of_All_Evil_Rebirths_(Sarva_Durgati_Parishodana_Tantra)_LACMA_AC1994.121.1.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Sarvavid_Vairochana,_From_a_Set_of_the_Five_Jina_Buddhas,_based_on_Complete_Purification_of_All_Evil_Rebirths_(Sarva_Durgati_Parishodana_Tantra)_LACMA_AC1994.121.1.jpg","canonicalUrl":"https://punicodex.com/tantra/art/?view=temple&art=gallery-tantra-3","attribution":"Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in by anonymous, Public domain, via https://commons.wikimedia.org/wiki/File:Sarvavid_Vairochana,_From_a_Set_of_the_Five_Jina_Buddhas,_based_on_Complete_Purification_of_All_Evil_Rebirths_(Sarva_Durgati_Parishodana_Tantra)_LACMA_AC1994.121.1.jpg","provenance":"Central Tibet, circa late 13th - early 14th century Paintings Mineral pigments and gold on cotton cloth 21 1/2 x 12 in. (54.61 x 30.48 cm) Purchased with funds provided by Harry and Yvonne Lenart (AC1994.121.1) South …","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tantra-4","kind":"temple","templeId":"tantra","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Vasantatilaka-tantra._-_btv1b10873070z_%2816_of_19%29.jpg/960px-Vasantatilaka-tantra._-_btv1b10873070z_%2816_of_19%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Vasantatilaka-tantra","alt":"Numérisation effectuée à partir d'un document de substitution : R 82993. Langue : sanskrit","creator":"commons.wikimedia.org","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Vasantatilaka-tantra._-_btv1b10873070z_(16_of_19).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Vasantatilaka-tantra._-_btv1b10873070z_(16_of_19).jpg","canonicalUrl":"https://punicodex.com/tantra/art/?view=temple&art=gallery-tantra-4","attribution":"Vasantatilaka-tantra by commons.wikimedia.org, Public domain, via https://commons.wikimedia.org/wiki/File:Vasantatilaka-tantra._-_btv1b10873070z_(16_of_19).jpg","provenance":"Numérisation effectuée à partir d'un document de substitution : R 82993. Langue : sanskrit","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tantra-5","kind":"temple","templeId":"tantra","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Jv%C4%81l%C4%81val%C4%AB-tantra._-_btv1b10082610h_%2812_of_84%29.jpg/960px-Jv%C4%81l%C4%81val%C4%AB-tantra._-_btv1b10082610h_%2812_of_84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Jvālāvalī-tantra","alt":"Numérisation effectuée à partir d'un document de substitution : R 55090. Langue : sanskrit","creator":"commons.wikimedia.org","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Jvālāvalī-tantra._-_btv1b10082610h_(12_of_84).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Jvālāvalī-tantra._-_btv1b10082610h_(12_of_84).jpg","canonicalUrl":"https://punicodex.com/tantra/art/?view=temple&art=gallery-tantra-5","attribution":"Jvālāvalī-tantra by commons.wikimedia.org, Public domain, via https://commons.wikimedia.org/wiki/File:Jvālāvalī-tantra._-_btv1b10082610h_(12_of_84).jpg","provenance":"Numérisation effectuée à partir d'un document de substitution : R 55090. Langue : sanskrit","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tantra-6","kind":"temple","templeId":"tantra","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Rudrayamala_Tantra%2C_Sanskrit_language%2C_Newar_script.jpg/960px-Rudrayamala_Tantra%2C_Sanskrit_language%2C_Newar_script.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Rudrayamala Tantra, Sanskrit language, Newar script — Manuscript of Rudrayamala Photo/art: Unknown author","alt":"Manuscript of Rudrayamala","creator":"Unknown author","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Rudrayamala_Tantra,_Sanskrit_language,_Newar_script.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Rudrayamala_Tantra,_Sanskrit_language,_Newar_script.jpg","canonicalUrl":"https://punicodex.com/tantra/art/?view=temple&art=gallery-tantra-6","attribution":"Rudrayamala Tantra, Sanskrit language, Newar script — Manuscript of Rudrayamala Photo/art: Unknown author by Unknown author, CC0, via https://commons.wikimedia.org/wiki/File:Rudrayamala_Tantra,_Sanskrit_language,_Newar_script.jpg","provenance":"Manuscript of Rudrayamala","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Tantra — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/tantra/art/?view=creatives' },
     commons: { t: 'The Commons — Tantra studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/tantra/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

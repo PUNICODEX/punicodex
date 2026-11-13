@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=eb3ac23b06">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Dagda — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/dagda/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Dagda","item":"https://punicodex.com/dagda/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/dagda/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/dagda/" class="nav-link active">Store</a>
+                    <a href="/store/dagda/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/dagda/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/dagda/" class="nav-link active">Store</a>
+            <a href="/store/dagda/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/dagda/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,44 +173,44 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin Dagda" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-dagda-1" data-title="Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin Dagda" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Dagdas_Vissv%C4%93t%C4%81s_Tr%C4%ABsvien%C4%ABbas_Romas_kato%C4%BCu_bazn%C4%ABca_%281741_fin._Jans_Augusts_Hilzens%29%2C_Alejas_iela_2%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_Vissv%C4%93t%C4%81s_Tr%C4%ABsvien%C4%ABbas_Romas_kato%C4%BCu_bazn%C4%ABca_%281741_fin._Jans_Augusts_Hilzens%29%2C_Alejas_iela_2%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg" alt="Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin. Jans Augusts Hilzens), Alejas iela 2, Dagda, Dagdas novads, Latvia." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Dagdas ala, Dagda, Dagdas novads, Latvia - panoramio — Dagdas ala, Dagda, Dagdas novads, Latvia Dagda" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-dagda-2" data-title="Dagdas ala, Dagda, Dagdas novads, Latvia - panoramio — Dagdas ala, Dagda, Dagdas novads, Latvia Dagda" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Dagdas_ala%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_ala%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg" alt="Dagdas ala, Dagda, Dagdas novads, Latvia." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Dagdas ala, Dagda, Dagdas novads, Latvia - panoramio — Dagdas ala, Dagda, Dagdas novads, Latvia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia Photo/art: M Dagda" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-dagda-3" data-title="Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia Photo/art: M Dagda" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sarkan%C4%81s_armijas_br%C4%81%C4%BCu_kapi_Dagd%C4%81%2C_%28162_kritu%C5%A1ie_WWII%29%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Sarkan%C4%81s_armijas_br%C4%81%C4%BCu_kapi_Dagd%C4%81%2C_%28162_kritu%C5%A1ie_WWII%29%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg" alt="Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia Photo/art: M</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia Dagda" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-dagda-4" data-title="Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia Dagda" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Dagdas_Sv%C4%93t%C4%81_Nikolaja_Br%C4%ABnumdar%C4%ABt%C4%81ja_pareiztic%C4%ABgo_draudzes_bazn%C4%ABca%2C_Pasta_iela_9%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_Sv%C4%93t%C4%81_Nikolaja_Br%C4%ABnumdar%C4%ABt%C4%81ja_pareiztic%C4%ABgo_draudzes_bazn%C4%ABca%2C_Pasta_iela_9%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg" alt="Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin Dagda" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-dagda-1" data-title="Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin Dagda" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Dagdas_Vissv%C4%93t%C4%81s_Tr%C4%ABsvien%C4%ABbas_Romas_kato%C4%BCu_bazn%C4%ABca_%281741_fin._Jans_Augusts_Hilzens%29%2C_Alejas_iela_2%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_Vissv%C4%93t%C4%81s_Tr%C4%ABsvien%C4%ABbas_Romas_kato%C4%BCu_bazn%C4%ABca_%281741_fin._Jans_Augusts_Hilzens%29%2C_Alejas_iela_2%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg" alt="Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin. Jans Augusts Hilzens), Alejas iela 2, Dagda, Dagdas novads, Latvia." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Dagdas ala, Dagda, Dagdas novads, Latvia - panoramio — Dagdas ala, Dagda, Dagdas novads, Latvia Dagda" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-dagda-2" data-title="Dagdas ala, Dagda, Dagdas novads, Latvia - panoramio — Dagdas ala, Dagda, Dagdas novads, Latvia Dagda" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Dagdas_ala%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_ala%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg" alt="Dagdas ala, Dagda, Dagdas novads, Latvia." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Dagdas ala, Dagda, Dagdas novads, Latvia - panoramio — Dagdas ala, Dagda, Dagdas novads, Latvia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia Photo/art: M Dagda" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-dagda-3" data-title="Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia Photo/art: M Dagda" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sarkan%C4%81s_armijas_br%C4%81%C4%BCu_kapi_Dagd%C4%81%2C_%28162_kritu%C5%A1ie_WWII%29%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Sarkan%C4%81s_armijas_br%C4%81%C4%BCu_kapi_Dagd%C4%81%2C_%28162_kritu%C5%A1ie_WWII%29%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg" alt="Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia Photo/art: M</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia Dagda" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-dagda-4" data-title="Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia Dagda" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Dagdas_Sv%C4%93t%C4%81_Nikolaja_Br%C4%ABnumdar%C4%ABt%C4%81ja_pareiztic%C4%ABgo_draudzes_bazn%C4%ABca%2C_Pasta_iela_9%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_Sv%C4%93t%C4%81_Nikolaja_Br%C4%ABnumdar%C4%ABt%C4%81ja_pareiztic%C4%ABgo_draudzes_bazn%C4%ABca%2C_Pasta_iela_9%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg" alt="Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
@@ -301,8 +305,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-dagda-1","kind":"temple","templeId":"dagda","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Dagdas_Vissv%C4%93t%C4%81s_Tr%C4%ABsvien%C4%ABbas_Romas_kato%C4%BCu_bazn%C4%ABca_%281741_fin._Jans_Augusts_Hilzens%29%2C_Alejas_iela_2%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_Vissv%C4%93t%C4%81s_Tr%C4%ABsvien%C4%ABbas_Romas_kato%C4%BCu_bazn%C4%ABca_%281741_fin._Jans_Augusts_Hilzens%29%2C_Alejas_iela_2%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg","title":"Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin","alt":"Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin. Jans Augusts Hilzens), Alejas iela 2, Dagda, Dagdas novads, Latvia.","creator":"M.Strīķis","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Dagdas_Vissvētās_Trīsvienības_Romas_katoļu_baznīca_(1741_fin._Jans_Augusts_Hilzens),_Alejas_iela_2,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Dagdas_Vissvētās_Trīsvienības_Romas_katoļu_baznīca_(1741_fin._Jans_Augusts_Hilzens),_Alejas_iela_2,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","canonicalUrl":"https://punicodex.com/dagda/art/?view=temple&art=gallery-dagda-1","attribution":"Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin by M.Strīķis, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Dagdas_Vissvētās_Trīsvienības_Romas_katoļu_baznīca_(1741_fin._Jans_Augusts_Hilzens),_Alejas_iela_2,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","provenance":"Dagdas Vissvētās Trīsvienības Romas katoļu baznīca (1741 fin. Jans Augusts Hilzens), Alejas iela 2, Dagda, Dagdas novads, Latvia.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-dagda-2","kind":"temple","templeId":"dagda","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Dagdas_ala%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_ala%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg","title":"Dagdas ala, Dagda, Dagdas novads, Latvia - panoramio — Dagdas ala, Dagda, Dagdas novads, Latvia","alt":"Dagdas ala, Dagda, Dagdas novads, Latvia.","creator":"M.Strīķis","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Dagdas_ala,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Dagdas_ala,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","canonicalUrl":"https://punicodex.com/dagda/art/?view=temple&art=gallery-dagda-2","attribution":"Dagdas ala, Dagda, Dagdas novads, Latvia - panoramio — Dagdas ala, Dagda, Dagdas novads, Latvia by M.Strīķis, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Dagdas_ala,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","provenance":"Dagdas ala, Dagda, Dagdas novads, Latvia.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-dagda-3","kind":"temple","templeId":"dagda","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sarkan%C4%81s_armijas_br%C4%81%C4%BCu_kapi_Dagd%C4%81%2C_%28162_kritu%C5%A1ie_WWII%29%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Sarkan%C4%81s_armijas_br%C4%81%C4%BCu_kapi_Dagd%C4%81%2C_%28162_kritu%C5%A1ie_WWII%29%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg","title":"Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia Photo/art: M","alt":"Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia","creator":"M.Strīķis","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Sarkanās_armijas_brāļu_kapi_Dagdā,_(162_kritušie_WWII),_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Sarkanās_armijas_brāļu_kapi_Dagdā,_(162_kritušie_WWII),_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","canonicalUrl":"https://punicodex.com/dagda/art/?view=temple&art=gallery-dagda-3","attribution":"Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia Photo/art: M by M.Strīķis, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Sarkanās_armijas_brāļu_kapi_Dagdā,_(162_kritušie_WWII),_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","provenance":"Sarkanās armijas brāļu kapi Dagdā, (162 kritušie WWII), Dagda, Dagdas novads, Latvia","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-dagda-4","kind":"temple","templeId":"dagda","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Dagdas_Sv%C4%93t%C4%81_Nikolaja_Br%C4%ABnumdar%C4%ABt%C4%81ja_pareiztic%C4%ABgo_draudzes_bazn%C4%ABca%2C_Pasta_iela_9%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg/960px-Dagdas_Sv%C4%93t%C4%81_Nikolaja_Br%C4%ABnumdar%C4%ABt%C4%81ja_pareiztic%C4%ABgo_draudzes_bazn%C4%ABca%2C_Pasta_iela_9%2C_Dagda%2C_Dagdas_novads%2C_Latvia_-_panoramio.jpg","title":"Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia","alt":"Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia.","creator":"M.Strīķis","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Dagdas_Svētā_Nikolaja_Brīnumdarītāja_pareizticīgo_draudzes_baznīca,_Pasta_iela_9,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Dagdas_Svētā_Nikolaja_Brīnumdarītāja_pareizticīgo_draudzes_baznīca,_Pasta_iela_9,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","canonicalUrl":"https://punicodex.com/dagda/art/?view=temple&art=gallery-dagda-4","attribution":"Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia by M.Strīķis, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Dagdas_Svētā_Nikolaja_Brīnumdarītāja_pareizticīgo_draudzes_baznīca,_Pasta_iela_9,_Dagda,_Dagdas_novads,_Latvia_-_panoramio.jpg","provenance":"Dagdas Svētā Nikolaja Brīnumdarītāja pareizticīgo draudzes baznīca, Pasta iela 9, Dagda, Dagdas novads, Latvia.","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -316,8 +321,14 @@
     creatives: { t: 'Creatives for Dagda — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/dagda/art/?view=creatives' },
     commons: { t: 'The Commons — Dagda studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/dagda/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -328,6 +339,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -346,7 +358,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

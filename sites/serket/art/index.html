@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=5538e5ee08">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Srqt — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/serket/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Srqt","item":"https://punicodex.com/serket/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/serket/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/serket/" class="nav-link active">Store</a>
+                    <a href="/store/serket/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/serket/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/serket/" class="nav-link active">Store</a>
+            <a href="/store/serket/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/serket/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Serket (Goddess) — A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 … Photo/art: Eternal Space Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-1" data-title="Serket (Goddess) — A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 … Photo/art: Eternal Space Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Serket_%28Goddess%29.png/960px-Serket_%28Goddess%29.png?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 BCE. This image contains some artistic l…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Serket (Goddess) — A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 … Photo/art: Eternal Space</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statuette of Serket N 5017 mp3h8836 Photo/art: Rama Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-2" data-title="Statuette of Serket N 5017 mp3h8836 Photo/art: Rama Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Statuette_of_Serket_N_5017_mp3h8836.jpg/960px-Statuette_of_Serket_N_5017_mp3h8836.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Statuette of Serket N 5017 mp3h8836.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statuette of Serket N 5017 mp3h8836 Photo/art: Rama</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0 fr</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Strumigenys serket casent0005456 dorsal 1 — Dorsal view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-3" data-title="Strumigenys serket casent0005456 dorsal 1 — Dorsal view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Strumigenys_serket_casent0005456_dorsal_1.jpg/960px-Strumigenys_serket_casent0005456_dorsal_1.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Dorsal view of ant Strumigenys serket specimen casent0005456 ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Strumigenys serket casent0005456 dorsal 1 — Dorsal view of ant Strumigenys serket specimen casent0005456</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Strumigenys serket casent0005456 profile 1 — Profile view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-4" data-title="Strumigenys serket casent0005456 profile 1 — Profile view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Strumigenys_serket_casent0005456_profile_1.jpg/960px-Strumigenys_serket_casent0005456_profile_1.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Profile view of ant Strumigenys serket specimen casent0005456 ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Strumigenys serket casent0005456 profile 1 — Profile view of ant Strumigenys serket specimen casent0005456</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Strumigenys serket casent0005456 label 1 — Label view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-5" data-title="Strumigenys serket casent0005456 label 1 — Label view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Strumigenys_serket_casent0005456_label_1.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail_unscaled" alt="Label view of ant Strumigenys serket specimen casent0005456 ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Strumigenys serket casent0005456 label 1 — Label view of ant Strumigenys serket specimen casent0005456</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="RoyalNefertt Serket of AchetAton — Egyptian Mau black-tabby silver spotted Photo/art: Achet Aton Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-6" data-title="RoyalNefertt Serket of AchetAton — Egyptian Mau black-tabby silver spotted Photo/art: Achet Aton Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/RoyalNefertt_Serket_of_AchetAton.jpg/960px-RoyalNefertt_Serket_of_AchetAton.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Egyptian Mau black-tabby silver spotted" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>RoyalNefertt Serket of AchetAton — Egyptian Mau black-tabby silver spotted Photo/art: Achet Aton</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Serket (Goddess) — A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 … Photo/art: Eternal Space Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-1" data-title="Serket (Goddess) — A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 … Photo/art: Eternal Space Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Serket_%28Goddess%29.png/960px-Serket_%28Goddess%29.png?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 BCE. This image contains some artistic l…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Serket (Goddess) — A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 … Photo/art: Eternal Space</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statuette of Serket N 5017 mp3h8836 Photo/art: Rama Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-2" data-title="Statuette of Serket N 5017 mp3h8836 Photo/art: Rama Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Statuette_of_Serket_N_5017_mp3h8836.jpg/960px-Statuette_of_Serket_N_5017_mp3h8836.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Statuette of Serket N 5017 mp3h8836.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statuette of Serket N 5017 mp3h8836 Photo/art: Rama</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0 fr</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Strumigenys serket casent0005456 dorsal 1 — Dorsal view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-3" data-title="Strumigenys serket casent0005456 dorsal 1 — Dorsal view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Strumigenys_serket_casent0005456_dorsal_1.jpg/960px-Strumigenys_serket_casent0005456_dorsal_1.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Dorsal view of ant Strumigenys serket specimen casent0005456 ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Strumigenys serket casent0005456 dorsal 1 — Dorsal view of ant Strumigenys serket specimen casent0005456</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Strumigenys serket casent0005456 profile 1 — Profile view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-4" data-title="Strumigenys serket casent0005456 profile 1 — Profile view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Strumigenys_serket_casent0005456_profile_1.jpg/960px-Strumigenys_serket_casent0005456_profile_1.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Profile view of ant Strumigenys serket specimen casent0005456 ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Strumigenys serket casent0005456 profile 1 — Profile view of ant Strumigenys serket specimen casent0005456</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Strumigenys serket casent0005456 label 1 — Label view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-5" data-title="Strumigenys serket casent0005456 label 1 — Label view of ant Strumigenys serket specimen casent0005456 Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Strumigenys_serket_casent0005456_label_1.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail_unscaled" alt="Label view of ant Strumigenys serket specimen casent0005456 ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Strumigenys serket casent0005456 label 1 — Label view of ant Strumigenys serket specimen casent0005456</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="RoyalNefertt Serket of AchetAton — Egyptian Mau black-tabby silver spotted Photo/art: Achet Aton Srqt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-serket-6" data-title="RoyalNefertt Serket of AchetAton — Egyptian Mau black-tabby silver spotted Photo/art: Achet Aton Srqt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/RoyalNefertt_Serket_of_AchetAton.jpg/960px-RoyalNefertt_Serket_of_AchetAton.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Egyptian Mau black-tabby silver spotted" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>RoyalNefertt Serket of AchetAton — Egyptian Mau black-tabby silver spotted Photo/art: Achet Aton</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-serket-1","kind":"temple","templeId":"serket","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Serket_%28Goddess%29.png/960px-Serket_%28Goddess%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Serket (Goddess) — A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 … Photo/art: Eternal Space","alt":"A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 BCE. This image contains some artistic l…","creator":"Eternal Space","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Serket_(Goddess).png","sourceUrl":"https://commons.wikimedia.org/wiki/File:Serket_(Goddess).png","canonicalUrl":"https://punicodex.com/serket/art/?view=temple&art=gallery-serket-1","attribution":"Serket (Goddess) — A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 … Photo/art: Eternal Space by Eternal Space, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Serket_(Goddess).png","provenance":"A representation of the Egyptian Goddess Serket as a woman with a scorpion over her head, holding an Ankh and the Was scepter as she was depicted in The Tomb of Nefertari, 1255 BCE. This image contains some artistic l…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-serket-2","kind":"temple","templeId":"serket","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Statuette_of_Serket_N_5017_mp3h8836.jpg/960px-Statuette_of_Serket_N_5017_mp3h8836.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Statuette of Serket N 5017 mp3h8836 Photo/art: Rama","alt":"Statuette of Serket N 5017 mp3h8836.jpg","creator":"Rama","license":"CC BY-SA 3.0 fr","licenseUrl":"https://commons.wikimedia.org/wiki/File:Statuette_of_Serket_N_5017_mp3h8836.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Statuette_of_Serket_N_5017_mp3h8836.jpg","canonicalUrl":"https://punicodex.com/serket/art/?view=temple&art=gallery-serket-2","attribution":"Statuette of Serket N 5017 mp3h8836 Photo/art: Rama by Rama, CC BY-SA 3.0 fr, via https://commons.wikimedia.org/wiki/File:Statuette_of_Serket_N_5017_mp3h8836.jpg","provenance":"Statuette of Serket N 5017 mp3h8836.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-serket-3","kind":"temple","templeId":"serket","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Strumigenys_serket_casent0005456_dorsal_1.jpg/960px-Strumigenys_serket_casent0005456_dorsal_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Strumigenys serket casent0005456 dorsal 1 — Dorsal view of ant Strumigenys serket specimen casent0005456","alt":"Dorsal view of ant Strumigenys serket specimen casent0005456 .","creator":"commons.wikimedia.org","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_dorsal_1.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_dorsal_1.jpg","canonicalUrl":"https://punicodex.com/serket/art/?view=temple&art=gallery-serket-3","attribution":"Strumigenys serket casent0005456 dorsal 1 — Dorsal view of ant Strumigenys serket specimen casent0005456 by commons.wikimedia.org, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_dorsal_1.jpg","provenance":"Dorsal view of ant Strumigenys serket specimen casent0005456 .","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-serket-4","kind":"temple","templeId":"serket","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Strumigenys_serket_casent0005456_profile_1.jpg/960px-Strumigenys_serket_casent0005456_profile_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Strumigenys serket casent0005456 profile 1 — Profile view of ant Strumigenys serket specimen casent0005456","alt":"Profile view of ant Strumigenys serket specimen casent0005456 .","creator":"commons.wikimedia.org","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_profile_1.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_profile_1.jpg","canonicalUrl":"https://punicodex.com/serket/art/?view=temple&art=gallery-serket-4","attribution":"Strumigenys serket casent0005456 profile 1 — Profile view of ant Strumigenys serket specimen casent0005456 by commons.wikimedia.org, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_profile_1.jpg","provenance":"Profile view of ant Strumigenys serket specimen casent0005456 .","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-serket-5","kind":"temple","templeId":"serket","src":"https://upload.wikimedia.org/wikipedia/commons/c/c9/Strumigenys_serket_casent0005456_label_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled","title":"Strumigenys serket casent0005456 label 1 — Label view of ant Strumigenys serket specimen casent0005456","alt":"Label view of ant Strumigenys serket specimen casent0005456 .","creator":"April Nobile","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_label_1.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_label_1.jpg","canonicalUrl":"https://punicodex.com/serket/art/?view=temple&art=gallery-serket-5","attribution":"Strumigenys serket casent0005456 label 1 — Label view of ant Strumigenys serket specimen casent0005456 by April Nobile, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Strumigenys_serket_casent0005456_label_1.jpg","provenance":"Label view of ant Strumigenys serket specimen casent0005456 .","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-serket-6","kind":"temple","templeId":"serket","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/RoyalNefertt_Serket_of_AchetAton.jpg/960px-RoyalNefertt_Serket_of_AchetAton.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"RoyalNefertt Serket of AchetAton — Egyptian Mau black-tabby silver spotted Photo/art: Achet Aton","alt":"Egyptian Mau black-tabby silver spotted","creator":"Achet Aton","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:RoyalNefertt_Serket_of_AchetAton.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:RoyalNefertt_Serket_of_AchetAton.jpg","canonicalUrl":"https://punicodex.com/serket/art/?view=temple&art=gallery-serket-6","attribution":"RoyalNefertt Serket of AchetAton — Egyptian Mau black-tabby silver spotted Photo/art: Achet Aton by Achet Aton, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:RoyalNefertt_Serket_of_AchetAton.jpg","provenance":"Egyptian Mau black-tabby silver spotted","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Srqt — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/serket/art/?view=creatives' },
     commons: { t: 'The Commons — Srqt studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/serket/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

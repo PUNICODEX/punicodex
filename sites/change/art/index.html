@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Chángé — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/change/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Chángé","item":"https://punicodex.com/change/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/change/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/change/" class="nav-link active">Store</a>
+                    <a href="/store/change/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/change/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/change/" class="nav-link active">Store</a>
+            <a href="/store/change/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/change/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,32 +173,32 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="The Moon Goddess Chang E - Unidentified artist, after Tang Yin — The painting depicts the Chinese goddess Chang'e (嫦娥) Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-1" data-title="The Moon Goddess Chang E - Unidentified artist, after Tang Yin — The painting depicts the Chinese goddess Chang'e (嫦娥) Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/The_Moon_Goddess_Chang_E_-_Unidentified_artist%2C_after_Tang_Yin.jpg/960px-The_Moon_Goddess_Chang_E_-_Unidentified_artist%2C_after_Tang_Yin.jpg" alt="The painting depicts the Chinese goddess Chang'e (嫦娥)." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>The Moon Goddess Chang E - Unidentified artist, after Tang Yin — The painting depicts the Chinese goddess Chang'e (嫦娥)</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Anonymous - The Moon Goddess Chang E - 1981 Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-2" data-title="Anonymous - The Moon Goddess Chang E - 1981 Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg/960px-Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg" alt="Anonymous - The Moon Goddess Chang E - 1981.4.2 - Metropolitan Museum of Art.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Anonymous - The Moon Goddess Chang E - 1981</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Chang E, The Moon Goddess Photo/art: Unknown artist Unknown artist Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-3" data-title="Chang E, The Moon Goddess Photo/art: Unknown artist Unknown artist Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Chang_E%2C_The_Moon_Goddess.jpg/960px-Chang_E%2C_The_Moon_Goddess.jpg" alt="Chang E, The Moon Goddess.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Chang E, The Moon Goddess Photo/art: Unknown artist Unknown artist</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="古今百美圖之嫦娥（One hundred beauties Chang'e） — This painting depicts Chang'e（嫦娥） Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-4" data-title="古今百美圖之嫦娥（One hundred beauties Chang'e） — This painting depicts Chang'e（嫦娥） Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/%E5%8F%A4%E4%BB%8A%E7%99%BE%E7%BE%8E%E5%9C%96%E4%B9%8B%E5%AB%A6%E5%A8%A5%EF%BC%88One_hundred_beauties_Chang%27e%EF%BC%89.png/960px-%E5%8F%A4%E4%BB%8A%E7%99%BE%E7%BE%8E%E5%9C%96%E4%B9%8B%E5%AB%A6%E5%A8%A5%EF%BC%88One_hundred_beauties_Chang%27e%EF%BC%89.png" alt="This painting depicts Chang'e（嫦娥）." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>古今百美圖之嫦娥（One hundred beauties Chang'e） — This painting depicts Chang'e（嫦娥）</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Long Corridor-嫦娥 — ​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。 Photo/art: Shizhao Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-5" data-title="Long Corridor-嫦娥 — ​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。 Photo/art: Shizhao Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Long_Corridor-%E5%AB%A6%E5%A8%A5.JPG/960px-Long_Corridor-%E5%AB%A6%E5%A8%A5.JPG" alt="​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Long Corridor-嫦娥 — ​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。 Photo/art: Shizhao</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Chang-e, the Moon Goddess - Vanderbilt Fine Arts Gallery - 2000 Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-6" data-title="Chang-e, the Moon Goddess - Vanderbilt Fine Arts Gallery - 2000 Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Chang-e%2C_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF/lossy-page1-960px-Chang-e%2C_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF.jpg" alt="Chang-e, the Moon Goddess, sculpture by Artist Unknown" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Chang-e, the Moon Goddess - Vanderbilt Fine Arts Gallery - 2000</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -211,32 +215,32 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="The Moon Goddess Chang E - Unidentified artist, after Tang Yin — The painting depicts the Chinese goddess Chang'e (嫦娥) Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-1" data-title="The Moon Goddess Chang E - Unidentified artist, after Tang Yin — The painting depicts the Chinese goddess Chang'e (嫦娥) Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/The_Moon_Goddess_Chang_E_-_Unidentified_artist%2C_after_Tang_Yin.jpg/960px-The_Moon_Goddess_Chang_E_-_Unidentified_artist%2C_after_Tang_Yin.jpg" alt="The painting depicts the Chinese goddess Chang'e (嫦娥)." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>The Moon Goddess Chang E - Unidentified artist, after Tang Yin — The painting depicts the Chinese goddess Chang'e (嫦娥)</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Anonymous - The Moon Goddess Chang E - 1981 Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-2" data-title="Anonymous - The Moon Goddess Chang E - 1981 Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg/960px-Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg" alt="Anonymous - The Moon Goddess Chang E - 1981.4.2 - Metropolitan Museum of Art.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Anonymous - The Moon Goddess Chang E - 1981</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Chang E, The Moon Goddess Photo/art: Unknown artist Unknown artist Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-3" data-title="Chang E, The Moon Goddess Photo/art: Unknown artist Unknown artist Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Chang_E%2C_The_Moon_Goddess.jpg/960px-Chang_E%2C_The_Moon_Goddess.jpg" alt="Chang E, The Moon Goddess.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Chang E, The Moon Goddess Photo/art: Unknown artist Unknown artist</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="古今百美圖之嫦娥（One hundred beauties Chang'e） — This painting depicts Chang'e（嫦娥） Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-4" data-title="古今百美圖之嫦娥（One hundred beauties Chang'e） — This painting depicts Chang'e（嫦娥） Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/%E5%8F%A4%E4%BB%8A%E7%99%BE%E7%BE%8E%E5%9C%96%E4%B9%8B%E5%AB%A6%E5%A8%A5%EF%BC%88One_hundred_beauties_Chang%27e%EF%BC%89.png/960px-%E5%8F%A4%E4%BB%8A%E7%99%BE%E7%BE%8E%E5%9C%96%E4%B9%8B%E5%AB%A6%E5%A8%A5%EF%BC%88One_hundred_beauties_Chang%27e%EF%BC%89.png" alt="This painting depicts Chang'e（嫦娥）." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>古今百美圖之嫦娥（One hundred beauties Chang'e） — This painting depicts Chang'e（嫦娥）</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Long Corridor-嫦娥 — ​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。 Photo/art: Shizhao Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-5" data-title="Long Corridor-嫦娥 — ​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。 Photo/art: Shizhao Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Long_Corridor-%E5%AB%A6%E5%A8%A5.JPG/960px-Long_Corridor-%E5%AB%A6%E5%A8%A5.JPG" alt="​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Long Corridor-嫦娥 — ​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。 Photo/art: Shizhao</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Chang-e, the Moon Goddess - Vanderbilt Fine Arts Gallery - 2000 Chángé" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-change-6" data-title="Chang-e, the Moon Goddess - Vanderbilt Fine Arts Gallery - 2000 Chángé" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Chang-e%2C_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF/lossy-page1-960px-Chang-e%2C_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF.jpg" alt="Chang-e, the Moon Goddess, sculpture by Artist Unknown" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Chang-e, the Moon Goddess - Vanderbilt Fine Arts Gallery - 2000</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -340,8 +344,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-change-change-anime-mascot-v1","templeId":"change","title":"Chángé — anime mascot","src":"/assets/ai-commons/change-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Chángé — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/change/art/?view=commons","canonicalUrl":"https://punicodex.com/change/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."},{"id":"commons-change-change-v1.2","templeId":"change","title":"Chángé — study v1.2","src":"/assets/ai-commons/change-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Chángé — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/change/art/?view=commons","canonicalUrl":"https://punicodex.com/change/art/?view=commons","generatedAt":"2026-11-07T06:41:56.213Z","recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1482615709,"prompt":"Chángé, moon, immortality, mid-autumn,, Japanese ukiyo-e gold line art on pure black background, refined woodblock elegance, no text, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-change-1","kind":"temple","templeId":"change","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/The_Moon_Goddess_Chang_E_-_Unidentified_artist%2C_after_Tang_Yin.jpg/960px-The_Moon_Goddess_Chang_E_-_Unidentified_artist%2C_after_Tang_Yin.jpg","title":"The Moon Goddess Chang E - Unidentified artist, after Tang Yin — The painting depicts the Chinese goddess Chang'e (嫦娥)","alt":"The painting depicts the Chinese goddess Chang'e (嫦娥).","creator":"Unknown artist, after Tang Yin (1470–1524)","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:The_Moon_Goddess_Chang_E_-_Unidentified_artist,_after_Tang_Yin.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:The_Moon_Goddess_Chang_E_-_Unidentified_artist,_after_Tang_Yin.jpg","canonicalUrl":"https://punicodex.com/change/art/?view=temple&art=gallery-change-1","attribution":"The Moon Goddess Chang E - Unidentified artist, after Tang Yin — The painting depicts the Chinese goddess Chang'e (嫦娥) by Unknown artist, after Tang Yin (1470–1524), Public domain, via https://commons.wikimedia.org/wiki/File:The_Moon_Goddess_Chang_E_-_Unidentified_artist,_after_Tang_Yin.jpg","provenance":"The painting depicts the Chinese goddess Chang'e (嫦娥).","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-change-2","kind":"temple","templeId":"change","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg/960px-Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg","title":"Anonymous - The Moon Goddess Chang E - 1981","alt":"Anonymous - The Moon Goddess Chang E - 1981.4.2 - Metropolitan Museum of Art.jpg","creator":"anonymous","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg","canonicalUrl":"https://punicodex.com/change/art/?view=temple&art=gallery-change-2","attribution":"Anonymous - The Moon Goddess Chang E - 1981 by anonymous, Public domain, via https://commons.wikimedia.org/wiki/File:Anonymous_-_The_Moon_Goddess_Chang_E_-_1981.4.2_-_Metropolitan_Museum_of_Art.jpg","provenance":"Anonymous - The Moon Goddess Chang E - 1981.4.2 - Metropolitan Museum of Art.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-change-3","kind":"temple","templeId":"change","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Chang_E%2C_The_Moon_Goddess.jpg/960px-Chang_E%2C_The_Moon_Goddess.jpg","title":"Chang E, The Moon Goddess Photo/art: Unknown artist Unknown artist","alt":"Chang E, The Moon Goddess.jpg","creator":"Unknown artistUnknown artist","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Chang_E,_The_Moon_Goddess.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Chang_E,_The_Moon_Goddess.jpg","canonicalUrl":"https://punicodex.com/change/art/?view=temple&art=gallery-change-3","attribution":"Chang E, The Moon Goddess Photo/art: Unknown artist Unknown artist by Unknown artistUnknown artist, Public domain, via https://commons.wikimedia.org/wiki/File:Chang_E,_The_Moon_Goddess.jpg","provenance":"Chang E, The Moon Goddess.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-change-4","kind":"temple","templeId":"change","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/%E5%8F%A4%E4%BB%8A%E7%99%BE%E7%BE%8E%E5%9C%96%E4%B9%8B%E5%AB%A6%E5%A8%A5%EF%BC%88One_hundred_beauties_Chang%27e%EF%BC%89.png/960px-%E5%8F%A4%E4%BB%8A%E7%99%BE%E7%BE%8E%E5%9C%96%E4%B9%8B%E5%AB%A6%E5%A8%A5%EF%BC%88One_hundred_beauties_Chang%27e%EF%BC%89.png","title":"古今百美圖之嫦娥（One hundred beauties Chang'e） — This painting depicts Chang'e（嫦娥）","alt":"This painting depicts Chang'e（嫦娥）.","creator":"Wu Youru(died c. 1893)","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:古今百美圖之嫦娥（One_hundred_beauties_Chang'e）.png","sourceUrl":"https://commons.wikimedia.org/wiki/File:古今百美圖之嫦娥（One_hundred_beauties_Chang'e）.png","canonicalUrl":"https://punicodex.com/change/art/?view=temple&art=gallery-change-4","attribution":"古今百美圖之嫦娥（One hundred beauties Chang'e） — This painting depicts Chang'e（嫦娥） by Wu Youru(died c. 1893), Public domain, via https://commons.wikimedia.org/wiki/File:古今百美圖之嫦娥（One_hundred_beauties_Chang'e）.png","provenance":"This painting depicts Chang'e（嫦娥）.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-change-5","kind":"temple","templeId":"change","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Long_Corridor-%E5%AB%A6%E5%A8%A5.JPG/960px-Long_Corridor-%E5%AB%A6%E5%A8%A5.JPG","title":"Long Corridor-嫦娥 — ​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。 Photo/art: Shizhao","alt":"​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。","creator":"Shizhao","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Long_Corridor-嫦娥.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Long_Corridor-嫦娥.JPG","canonicalUrl":"https://punicodex.com/change/art/?view=temple&art=gallery-change-5","attribution":"Long Corridor-嫦娥 — ​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。 Photo/art: Shizhao by Shizhao, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Long_Corridor-嫦娥.JPG","provenance":"​颐和园长廊彩绘：广寒秋色，为晚清钱慧安仿清朝画家华秋岳的临摹作。描绘的是李商隐诗《霜月》的意境。","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-change-6","kind":"temple","templeId":"change","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Chang-e%2C_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF/lossy-page1-960px-Chang-e%2C_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF.jpg","title":"Chang-e, the Moon Goddess - Vanderbilt Fine Arts Gallery - 2000","alt":"Chang-e, the Moon Goddess, sculpture by Artist Unknown","creator":"Vanderbilt University","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Chang-e,_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF","sourceUrl":"https://commons.wikimedia.org/wiki/File:Chang-e,_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF","canonicalUrl":"https://punicodex.com/change/art/?view=temple&art=gallery-change-6","attribution":"Chang-e, the Moon Goddess - Vanderbilt Fine Arts Gallery - 2000 by Vanderbilt University, Public domain, via https://commons.wikimedia.org/wiki/File:Chang-e,_the_Moon_Goddess_-_Vanderbilt_Fine_Arts_Gallery_-_2000.105.TIF","provenance":"Chang-e, the Moon Goddess, sculpture by Artist Unknown","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-change-change-anime-mascot-v1","templeId":"change","title":"Chángé — anime mascot","src":"/assets/ai-commons/change-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Chángé — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/change/art/?view=commons","canonicalUrl":"https://punicodex.com/change/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."},{"id":"commons-change-change-v1.2","templeId":"change","title":"Chángé — study v1.2","src":"/assets/ai-commons/change-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Chángé — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/change/art/?view=commons","canonicalUrl":"https://punicodex.com/change/art/?view=commons","generatedAt":"2026-11-07T06:41:56.213Z","recordedAt":"2026-11-12T06:12:58.629Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1482615709,"prompt":"Chángé, moon, immortality, mid-autumn,, Japanese ukiyo-e gold line art on pure black background, refined woodblock elegance, no text, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -355,8 +360,14 @@
     creatives: { t: 'Creatives for Chángé — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/change/art/?view=creatives' },
     commons: { t: 'The Commons — Chángé studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/change/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -367,6 +378,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -385,7 +397,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

@@ -65,13 +65,14 @@ const demandSort = (a, b) => {
   const sb = (lib.deities[b]?.wins || 0) - (lib.deities[b]?.losses || 0);
   return sa - sb;
 };
-// A deity counts as produced when ANY of its generations exists in the
-// inbox, keepers, or review (across families) — the same doctrine the
-// per-file guard applies inside the loop.
-const produced = (name) => {
+// Production is family-aware: an existing classic-gold study must not block
+// a tattoo, anime, or engraving study for the same deity. Within one family,
+// inbox, keeper, and review files all count so nothing is generated twice.
+const produced = (name, family) => {
+  const familyTag = family === 'classic-gold' ? '' : `${family}-`;
   for (const d of [OUT_DIR, path.join(OUT_DIR, 'keepers'), path.join(OUT_DIR, 'review')]) {
     try {
-      if (fs.readdirSync(d).some((f) => f.startsWith(name + '-') && f.endsWith('.jpg'))) return true;
+      if (fs.readdirSync(d).some((f) => f.startsWith(`${name}-${familyTag}v`) && f.endsWith('.jpg'))) return true;
     } catch {
       /* dir may not exist yet */
     }
@@ -80,7 +81,7 @@ const produced = (name) => {
 };
 if (batchIdx !== -1) {
   const n = Number(args[batchIdx + 1]);
-  const unproduced = Object.keys(lib.deities).filter((x) => !produced(x));
+  const unproduced = Object.keys(lib.deities).filter((x) => !produced(x, FAMILY));
   console.log(`batch: ${unproduced.length} unproduced deities in library (${Object.keys(lib.deities).length - unproduced.length} already have art — skipped)`);
   names = unproduced.sort(demandSort).slice(0, n);
 }
@@ -93,12 +94,15 @@ function compilePrompt(spec, family) {
   const styleDna =
     fam && fam.dna ? fam.dna : lib.traditions[spec.tradition].styleDna;
   const attr = spec.attributes.join(', ');
+  const traditionGuidance =
+    family === 'classic-gold' ? null : lib.traditions[spec.tradition]?.iconography;
   const mutations = (spec.activeMutations || []).map((m) => lib.mutationOperators[m]).filter(Boolean);
   return [
     `${title(spec.name || '')}, ${attr},`,
     styleDna,
+    traditionGuidance,
     ...mutations,
-  ].join(', ');
+  ].filter(Boolean).join(', ');
 }
 
 function title(id) {
@@ -170,7 +174,7 @@ async function main() {
     for (let v = 1; v <= VARIANTS; v++) {
       const famTag = FAMILY === 'classic-gold' ? '' : `${FAMILY}-`;
       const out = path.join(OUT_DIR, `${name}-${famTag}v${spec.promptVersion}.${v}.jpg`);
-      // A generation that exists ANYWHERE (inbox, keepers, review) is already
+      // Within this family, a generation that exists anywhere is already
       // produced — never regenerate it just because it left the inbox.
       const alreadyProduced =
         fs.existsSync(out) ||
@@ -182,7 +186,7 @@ async function main() {
         const res = falGenerate(`${prompt}, variation ${v}`);
         execSync(`curl -s "${res.url}" -o "${out}"`);
         spent += COST_PER_IMAGE;
-        const autoFlags = await cornerFlags(out);
+        const autoFlags = FAMILY === 'classic-gold' ? await cornerFlags(out) : [];
         log({ ts: new Date().toISOString(), deity: name, model: MODEL, prompt: `${prompt}, variation ${v}`, seed: res.seed, file: path.relative(ROOT, out), cost: COST_PER_IMAGE, autoFlags, verdict: 'pending' });
         console.log(`✓ ${path.relative(ROOT, out)} (${((Date.now() - t0) / 1000).toFixed(1)}s)${autoFlags.length ? ' ⚑ ' + autoFlags.join(';') : ''}`);
       } catch (e) {

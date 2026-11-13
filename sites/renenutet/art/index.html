@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=5538e5ee08">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Rnnwtt — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/renenutet/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Rnnwtt","item":"https://punicodex.com/renenutet/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/renenutet/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/renenutet/" class="nav-link active">Store</a>
+                    <a href="/store/renenutet/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/renenutet/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/renenutet/" class="nav-link active">Store</a>
+            <a href="/store/renenutet/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/renenutet/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Statuetta della dea Renenutet CHA2600 CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-1" data-title="Statuetta della dea Renenutet CHA2600 CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Statuetta_della_dea_Renenutet_CHA2600.tif/lossy-page1-960px-Statuetta_della_dea_Renenutet_CHA2600.tif.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Statuetta della dea Renenutet CHA2600.tif" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statuetta della dea Renenutet CHA2600 CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-2" data-title="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg/960px-Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 408 p01.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856 CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-3" data-title="Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856 CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif/lossy-page1-960px-Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856.tif" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856 CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Stela dedicated to the snake goddess Renenutet by Mutneferet, limes… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-4" data-title="Stela dedicated to the snake goddess Renenutet by Mutneferet, limes… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet%2C_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg/960px-Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet%2C_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Stela dedicated to the snake goddess Renenutet by Mutneferet, limestone - Museo Egizio Turin S 6138 p01.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Stela dedicated to the snake goddess Renenutet by Mutneferet, limes… CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-5" data-title="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg/960px-Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 408 p01 crop.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Incerta prov Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-6" data-title="Incerta prov Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Incerta_prov.%2C_rilievo_con_renenutet%2C_1539-1292_ac_ca..JPG/960px-Incerta_prov.%2C_rilievo_con_renenutet%2C_1539-1292_ac_ca..JPG?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Egyptian antiquities in the Archeological Museum of Bologna" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Incerta prov</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Statuetta della dea Renenutet CHA2600 CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-1" data-title="Statuetta della dea Renenutet CHA2600 CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Statuetta_della_dea_Renenutet_CHA2600.tif/lossy-page1-960px-Statuetta_della_dea_Renenutet_CHA2600.tif.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Statuetta della dea Renenutet CHA2600.tif" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statuetta della dea Renenutet CHA2600 CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-2" data-title="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg/960px-Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 408 p01.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856 CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-3" data-title="Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856 CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif/lossy-page1-960px-Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856.tif" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856 CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Stela dedicated to the snake goddess Renenutet by Mutneferet, limes… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-4" data-title="Stela dedicated to the snake goddess Renenutet by Mutneferet, limes… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet%2C_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg/960px-Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet%2C_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Stela dedicated to the snake goddess Renenutet by Mutneferet, limestone - Museo Egizio Turin S 6138 p01.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Stela dedicated to the snake goddess Renenutet by Mutneferet, limes… CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-5" data-title="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg/960px-Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 408 p01 crop.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Incerta prov Rnnwtt" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-renenutet-6" data-title="Incerta prov Rnnwtt" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Incerta_prov.%2C_rilievo_con_renenutet%2C_1539-1292_ac_ca..JPG/960px-Incerta_prov.%2C_rilievo_con_renenutet%2C_1539-1292_ac_ca..JPG?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Egyptian antiquities in the Archeological Museum of Bologna" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Incerta prov</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-renenutet-1","kind":"temple","templeId":"renenutet","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Statuetta_della_dea_Renenutet_CHA2600.tif/lossy-page1-960px-Statuetta_della_dea_Renenutet_CHA2600.tif.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Statuetta della dea Renenutet CHA2600 CC0 via Wikimedia Commons","alt":"Statuetta della dea Renenutet CHA2600.tif","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Statuetta_della_dea_Renenutet_CHA2600.tif","sourceUrl":"https://commons.wikimedia.org/wiki/File:Statuetta_della_dea_Renenutet_CHA2600.tif","canonicalUrl":"https://punicodex.com/renenutet/art/?view=temple&art=gallery-renenutet-1","attribution":"Statuetta della dea Renenutet CHA2600 CC0 via Wikimedia Commons by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Statuetta_della_dea_Renenutet_CHA2600.tif","provenance":"Statuetta della dea Renenutet CHA2600.tif","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-renenutet-2","kind":"temple","templeId":"renenutet","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg/960px-Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons","alt":"Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 408 p01.jpg","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Statuette_of_the_goddess_Renenutet,_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Statuette_of_the_goddess_Renenutet,_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg","canonicalUrl":"https://punicodex.com/renenutet/art/?view=temple&art=gallery-renenutet-2","attribution":"Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Statuette_of_the_goddess_Renenutet,_bronze_-_Museo_Egizio_Turin_C_408_p01.jpg","provenance":"Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 408 p01.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-renenutet-3","kind":"temple","templeId":"renenutet","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif/lossy-page1-960px-Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856 CC0 via Wikimedia Commons","alt":"Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856.tif","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif","sourceUrl":"https://commons.wikimedia.org/wiki/File:Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif","canonicalUrl":"https://punicodex.com/renenutet/art/?view=temple&art=gallery-renenutet-3","attribution":"Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856 CC0 via Wikimedia Commons by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Stele_dedicata_da_Mutneferet_alla_dea_serpente_Renenutet_SA63856.tif","provenance":"Stele dedicata da Mutneferet alla dea serpente Renenutet SA63856.tif","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-renenutet-4","kind":"temple","templeId":"renenutet","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet%2C_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg/960px-Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet%2C_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Stela dedicated to the snake goddess Renenutet by Mutneferet, limes… CC0 via Wikimedia Commons","alt":"Stela dedicated to the snake goddess Renenutet by Mutneferet, limestone - Museo Egizio Turin S 6138 p01.jpg","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet,_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet,_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg","canonicalUrl":"https://punicodex.com/renenutet/art/?view=temple&art=gallery-renenutet-4","attribution":"Stela dedicated to the snake goddess Renenutet by Mutneferet, limes… CC0 via Wikimedia Commons by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Stela_dedicated_to_the_snake_goddess_Renenutet_by_Mutneferet,_limestone_-_Museo_Egizio_Turin_S_6138_p01.jpg","provenance":"Stela dedicated to the snake goddess Renenutet by Mutneferet, limestone - Museo Egizio Turin S 6138 p01.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-renenutet-5","kind":"temple","templeId":"renenutet","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg/960px-Statuette_of_the_goddess_Renenutet%2C_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons","alt":"Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 408 p01 crop.jpg","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Statuette_of_the_goddess_Renenutet,_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Statuette_of_the_goddess_Renenutet,_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg","canonicalUrl":"https://punicodex.com/renenutet/art/?view=temple&art=gallery-renenutet-5","attribution":"Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 4… CC0 via Wikimedia Commons by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Statuette_of_the_goddess_Renenutet,_bronze_-_Museo_Egizio_Turin_C_408_p01_crop.jpg","provenance":"Statuette of the goddess Renenutet, bronze - Museo Egizio Turin C 408 p01 crop.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-renenutet-6","kind":"temple","templeId":"renenutet","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Incerta_prov.%2C_rilievo_con_renenutet%2C_1539-1292_ac_ca..JPG/960px-Incerta_prov.%2C_rilievo_con_renenutet%2C_1539-1292_ac_ca..JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Incerta prov","alt":"Egyptian antiquities in the Archeological Museum of Bologna","creator":"Sailko","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Incerta_prov.,_rilievo_con_renenutet,_1539-1292_ac_ca..JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Incerta_prov.,_rilievo_con_renenutet,_1539-1292_ac_ca..JPG","canonicalUrl":"https://punicodex.com/renenutet/art/?view=temple&art=gallery-renenutet-6","attribution":"Incerta prov by Sailko, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Incerta_prov.,_rilievo_con_renenutet,_1539-1292_ac_ca..JPG","provenance":"Egyptian antiquities in the Archeological Museum of Bologna","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Rnnwtt — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/renenutet/art/?view=creatives' },
     commons: { t: 'The Commons — Rnnwtt studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/renenutet/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

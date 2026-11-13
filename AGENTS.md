@@ -55,6 +55,7 @@ Also: `data-version.json` (GENERATED manifest), `extended flagship materials/` (
 - `js/archetypes-v2.js` — hand-built flagship archetypes (597) with domains, rentalTier + canvas assignments. The **canonical temple-domain pairs** live here (`domainUnicode`/`domainPunycode`), UTS#46-validated by `scripts/validate-accuracy.js` — never derive domains from the lexicon `domain` field.
 - `platform/db/owned-domains.json` — the 359 owned Unicode domains; each must be covered by an archetype domain set and routed in `middleware.js`.
 - `scripts/lore-catalog.json` — scholarly narrative for the 597 flagships; `scripts/gallery-data.json` — curated Wikimedia galleries (+ `_honestZero` exemptions).
+- `data/ai-art/prompt-library.json` — curated AI-art prompt DNA, flagship attributes, and curation history; `scripts/expand-ai-art-library.js` fill-only-missing covers new flagships without overwriting editorial mutations.
 - `platform/blog/content/{id}.json` — one canonical blog post per flagship.
 - `platform/public/scholars/` + `platform/public/admin-portal/` — canonical portal sources (root copies are generated).
 - `platform/scholars/content/{id}.json` — per-temple scholarly content (fill-only-missing bootstrap, then canonical).
@@ -117,7 +118,7 @@ Gallery images come ONLY from `scripts/curate-gallery-images.js` (`--only <ids>`
 
 ### Master generator
 
-`scripts/generate.js` runs 46 scripts in dependency order. Order constraints that must not break: `generate-temple-art.js` MUST follow `create-flagship.js` (it content-hashes each temple's generated `styles.css`); WebP conversion MUST follow flagship temples; model corpus → `entries.jsonl` MUST precede the AI corpora and RE-RUNS last so `manifest.json` converges; pronunciation corpus MUST follow model corpus; desktop nav and temple index are canonical — never fork; the three injectors (analytics, university, mobile menu) RE-RUN after store pages, idempotently.
+`scripts/generate.js` runs 47 scripts in dependency order. Order constraints that must not break: `generate-temple-art.js` MUST follow `create-flagship.js` (it content-hashes each temple's generated `styles.css`); WebP conversion MUST follow flagship temples; model corpus → `entries.jsonl` MUST precede the AI corpora and RE-RUNS last so `manifest.json` converges; pronunciation corpus MUST follow model corpus; desktop nav and temple index are canonical — never fork; the three injectors (analytics, university, mobile menu) RE-RUN after store pages, idempotently.
 
 ## Scholarly Edition
 
@@ -158,7 +159,7 @@ Public scholarly datasets (Wikidata, Perseus/LSJ, CDLI, Rundata, …) import thr
 
 ```bash
 npm install  # Node >= 20, npm >= 10
-npm run generate  # regenerate ALL derived artifacts (46 scripts)
+npm run generate  # regenerate ALL derived artifacts (47 scripts)
 # BEFORE COMMITTING generated output, converge the way CI does — the two
 # merch-composites steps only touch gitignored multi-GB binaries, and their
 # fresh outputs can ripple into late store renders, so a full local generate

@@ -114,6 +114,30 @@ test('art rooms preserve canonical temple chrome, metadata, and a pinned real st
   }
 });
 
+test('art filters hide inactive grids and historical works share the accessible viewer', () => {
+  for (const a of built.filter((entry) => entry.id === 'nike' || entry.id === 'zeus')) {
+    const html = read(path.join('sites', a.id, 'art', 'index.html'));
+    assert.ok(
+      html.includes('.art-grid[hidden]{display:none}'),
+      `${a.id}: hidden grids still display`
+    );
+    assert.ok(
+      html.includes('grids[currentCat]'),
+      `${a.id}: filters remain bound to the initial tab`
+    );
+    assert.ok(html.includes('/js/temple-base.js'), `${a.id}: Store expander controller missing`);
+    assert.ok(
+      html.includes('data-kind="temple" data-art-id="gallery-'),
+      `${a.id}: gallery viewer metadata missing`
+    );
+    assert.ok(html.includes('"kind":"temple"'), `${a.id}: historical viewer work missing`);
+    assert.ok(
+      html.includes('max(1.25rem,env(safe-area-inset-left))'),
+      `${a.id}: mobile safe padding missing`
+    );
+  }
+});
+
 test('the main Art Directory has the Creatives pill and view addressing', () => {
   const html = read(path.join('store', 'art', 'index.html'));
   assert.ok(html, '/store/art/ missing');

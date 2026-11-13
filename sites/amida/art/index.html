@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=fb5254dd04">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Amida — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/amida/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Amida","item":"https://punicodex.com/amida/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/amida/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/amida/" class="nav-link active">Store</a>
+                    <a href="/store/amida/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/amida/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/amida/" class="nav-link active">Store</a>
+            <a href="/store/amida/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/amida/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,27 +173,27 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-1" data-title="Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Altarpiece%2C_Buddha_Amida%2C_Bodhisattvas_Kannon_and_Jiz%C3%B3%2C_Japan%2C_18th_c%2CPrague_NG_Vp_2718%2C_141092.jpg/960px-Altarpiece%2C_Buddha_Amida%2C_Bodhisattvas_Kannon_and_Jiz%C3%B3%2C_Japan%2C_18th_c%2CPrague_NG_Vp_2718%2C_141092.jpg" alt="Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó. Japan, 18th century. Wood, carving, gilding, lacquer, polychromy. Prague, NG Vp 2718." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Seated wooden statue of Amida Nyorai (Fumonji Temple) — 木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。 Photo/art: Unknown author (Scanned and edited by 雪野滾滾, the uploader Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-2" data-title="Seated wooden statue of Amida Nyorai (Fumonji Temple) — 木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。 Photo/art: Unknown author (Scanned and edited by 雪野滾滾, the uploader Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Seated_wooden_statue_of_Amida_Nyorai_%28Fumonji_Temple%29.jpg/960px-Seated_wooden_statue_of_Amida_Nyorai_%28Fumonji_Temple%29.jpg" alt="木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Seated wooden statue of Amida Nyorai (Fumonji Temple) — 木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。 Photo/art: Unknown author (Scanned and edited by 雪野滾滾, the uploader</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Amida Buddha — The Amida Buddha inside the temple Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-3" data-title="Amida Buddha — The Amida Buddha inside the temple Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Amida_Buddha.jpg/960px-Amida_Buddha.jpg" alt="The Amida Buddha inside the temple." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Amida Buddha — The Amida Buddha inside the temple</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Amida tricolor photographed in Japan — Amida tricolor tricolor photographed in Japan Photo/art: りなべる aka iNaturalist user @re_nebel Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-4" data-title="Amida tricolor photographed in Japan — Amida tricolor tricolor photographed in Japan Photo/art: りなべる aka iNaturalist user @re_nebel Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Amida_tricolor_photographed_in_Japan.jpg/960px-Amida_tricolor_photographed_in_Japan.jpg" alt="Amida tricolor tricolor photographed in Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Amida tricolor photographed in Japan — Amida tricolor tricolor photographed in Japan Photo/art: りなべる aka iNaturalist user @re_nebel</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Amida Butsu-ETHAS 023580-IMG 9962-black Photo/art: Rama MEG — Musée d’ethnographie de Genève ( official website ) Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-5" data-title="Amida Butsu-ETHAS 023580-IMG 9962-black Photo/art: Rama MEG — Musée d’ethnographie de Genève ( official website ) Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg/960px-Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg" alt="Amida Butsu-ETHAS 023580-IMG 9962-black.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Amida Butsu-ETHAS 023580-IMG 9962-black Photo/art: Rama MEG — Musée d’ethnographie de Genève ( official website )</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0 fr</div></div>
@@ -201,27 +205,27 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-1" data-title="Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Altarpiece%2C_Buddha_Amida%2C_Bodhisattvas_Kannon_and_Jiz%C3%B3%2C_Japan%2C_18th_c%2CPrague_NG_Vp_2718%2C_141092.jpg/960px-Altarpiece%2C_Buddha_Amida%2C_Bodhisattvas_Kannon_and_Jiz%C3%B3%2C_Japan%2C_18th_c%2CPrague_NG_Vp_2718%2C_141092.jpg" alt="Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó. Japan, 18th century. Wood, carving, gilding, lacquer, polychromy. Prague, NG Vp 2718." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Seated wooden statue of Amida Nyorai (Fumonji Temple) — 木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。 Photo/art: Unknown author (Scanned and edited by 雪野滾滾, the uploader Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-2" data-title="Seated wooden statue of Amida Nyorai (Fumonji Temple) — 木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。 Photo/art: Unknown author (Scanned and edited by 雪野滾滾, the uploader Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Seated_wooden_statue_of_Amida_Nyorai_%28Fumonji_Temple%29.jpg/960px-Seated_wooden_statue_of_Amida_Nyorai_%28Fumonji_Temple%29.jpg" alt="木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Seated wooden statue of Amida Nyorai (Fumonji Temple) — 木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。 Photo/art: Unknown author (Scanned and edited by 雪野滾滾, the uploader</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Amida Buddha — The Amida Buddha inside the temple Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-3" data-title="Amida Buddha — The Amida Buddha inside the temple Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Amida_Buddha.jpg/960px-Amida_Buddha.jpg" alt="The Amida Buddha inside the temple." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Amida Buddha — The Amida Buddha inside the temple</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Amida tricolor photographed in Japan — Amida tricolor tricolor photographed in Japan Photo/art: りなべる aka iNaturalist user @re_nebel Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-4" data-title="Amida tricolor photographed in Japan — Amida tricolor tricolor photographed in Japan Photo/art: りなべる aka iNaturalist user @re_nebel Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Amida_tricolor_photographed_in_Japan.jpg/960px-Amida_tricolor_photographed_in_Japan.jpg" alt="Amida tricolor tricolor photographed in Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Amida tricolor photographed in Japan — Amida tricolor tricolor photographed in Japan Photo/art: りなべる aka iNaturalist user @re_nebel</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Amida Butsu-ETHAS 023580-IMG 9962-black Photo/art: Rama MEG — Musée d’ethnographie de Genève ( official website ) Amida" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-amida-5" data-title="Amida Butsu-ETHAS 023580-IMG 9962-black Photo/art: Rama MEG — Musée d’ethnographie de Genève ( official website ) Amida" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg/960px-Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg" alt="Amida Butsu-ETHAS 023580-IMG 9962-black.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Amida Butsu-ETHAS 023580-IMG 9962-black Photo/art: Rama MEG — Musée d’ethnographie de Genève ( official website )</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0 fr</div></div>
@@ -320,8 +324,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-amida-amida-v1.2","templeId":"amida","title":"Amida — study v1.2","src":"/assets/ai-commons/amida-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Amida — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/amida/art/?view=commons","canonicalUrl":"https://punicodex.com/amida/art/?view=commons","generatedAt":"2026-11-07T05:30:01.106Z","recordedAt":"2026-11-12T06:12:58.628Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1687316964,"prompt":"Amida, infinite light, pure land,, Japanese ukiyo-e gold line art on pure black background, refined woodblock elegance, no text, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-amida-1","kind":"temple","templeId":"amida","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Altarpiece%2C_Buddha_Amida%2C_Bodhisattvas_Kannon_and_Jiz%C3%B3%2C_Japan%2C_18th_c%2CPrague_NG_Vp_2718%2C_141092.jpg/960px-Altarpiece%2C_Buddha_Amida%2C_Bodhisattvas_Kannon_and_Jiz%C3%B3%2C_Japan%2C_18th_c%2CPrague_NG_Vp_2718%2C_141092.jpg","title":"Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó","alt":"Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó. Japan, 18th century. Wood, carving, gilding, lacquer, polychromy. Prague, NG Vp 2718.","creator":"Zde","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Altarpiece,_Buddha_Amida,_Bodhisattvas_Kannon_and_Jizó,_Japan,_18th_c,Prague_NG_Vp_2718,_141092.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Altarpiece,_Buddha_Amida,_Bodhisattvas_Kannon_and_Jizó,_Japan,_18th_c,Prague_NG_Vp_2718,_141092.jpg","canonicalUrl":"https://punicodex.com/amida/art/?view=temple&art=gallery-amida-1","attribution":"Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó by Zde, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Altarpiece,_Buddha_Amida,_Bodhisattvas_Kannon_and_Jizó,_Japan,_18th_c,Prague_NG_Vp_2718,_141092.jpg","provenance":"Altarpiece with the Trinity of Buddha Amida, and Quardian Bodhisattvas Kannon and Jizó. Japan, 18th century. Wood, carving, gilding, lacquer, polychromy. Prague, NG Vp 2718.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-amida-2","kind":"temple","templeId":"amida","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Seated_wooden_statue_of_Amida_Nyorai_%28Fumonji_Temple%29.jpg/960px-Seated_wooden_statue_of_Amida_Nyorai_%28Fumonji_Temple%29.jpg","title":"Seated wooden statue of Amida Nyorai (Fumonji Temple) — 木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。 Photo/art: Unknown author (Scanned and edited by 雪野滾滾, the uploader","alt":"木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。","creator":"Unknown author (Scanned and edited by 雪野滾滾, the uploader.)","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Seated_wooden_statue_of_Amida_Nyorai_(Fumonji_Temple).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Seated_wooden_statue_of_Amida_Nyorai_(Fumonji_Temple).jpg","canonicalUrl":"https://punicodex.com/amida/art/?view=temple&art=gallery-amida-2","attribution":"Seated wooden statue of Amida Nyorai (Fumonji Temple) — 木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。 Photo/art: Unknown author (Scanned and edited by 雪野滾滾, the uploader by Unknown author (Scanned and edited by 雪野滾滾, the uploader.), Public domain, via https://commons.wikimedia.org/wiki/File:Seated_wooden_statue_of_Amida_Nyorai_(Fumonji_Temple).jpg","provenance":"木造阿弥陀如来坐像（愛知県豊橋市普門寺）。平安時代（12世紀）の作。国指定重要文化財。写真は愛知県渥美郡役所『渥美郡史 附図』愛知県渥美郡役所、1923年3月31日より。","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-amida-3","kind":"temple","templeId":"amida","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Amida_Buddha.jpg/960px-Amida_Buddha.jpg","title":"Amida Buddha — The Amida Buddha inside the temple","alt":"The Amida Buddha inside the temple.","creator":"Thoradin","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Amida_Buddha.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Amida_Buddha.jpg","canonicalUrl":"https://punicodex.com/amida/art/?view=temple&art=gallery-amida-3","attribution":"Amida Buddha — The Amida Buddha inside the temple by Thoradin, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Amida_Buddha.jpg","provenance":"The Amida Buddha inside the temple.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-amida-4","kind":"temple","templeId":"amida","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Amida_tricolor_photographed_in_Japan.jpg/960px-Amida_tricolor_photographed_in_Japan.jpg","title":"Amida tricolor photographed in Japan — Amida tricolor tricolor photographed in Japan Photo/art: りなべる aka iNaturalist user @re_nebel","alt":"Amida tricolor tricolor photographed in Japan","creator":"りなべる aka iNaturalist user @re_nebel","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Amida_tricolor_photographed_in_Japan.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Amida_tricolor_photographed_in_Japan.jpg","canonicalUrl":"https://punicodex.com/amida/art/?view=temple&art=gallery-amida-4","attribution":"Amida tricolor photographed in Japan — Amida tricolor tricolor photographed in Japan Photo/art: りなべる aka iNaturalist user @re_nebel by りなべる aka iNaturalist user @re_nebel, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Amida_tricolor_photographed_in_Japan.jpg","provenance":"Amida tricolor tricolor photographed in Japan","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-amida-5","kind":"temple","templeId":"amida","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg/960px-Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg","title":"Amida Butsu-ETHAS 023580-IMG 9962-black Photo/art: Rama MEG — Musée d’ethnographie de Genève ( official website )","alt":"Amida Butsu-ETHAS 023580-IMG 9962-black.jpg","creator":"Rama MEG — Musée d’ethnographie de Genève (official website)","license":"CC BY-SA 3.0 fr","licenseUrl":"https://commons.wikimedia.org/wiki/File:Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg","canonicalUrl":"https://punicodex.com/amida/art/?view=temple&art=gallery-amida-5","attribution":"Amida Butsu-ETHAS 023580-IMG 9962-black Photo/art: Rama MEG — Musée d’ethnographie de Genève ( official website ) by Rama MEG — Musée d’ethnographie de Genève (official website), CC BY-SA 3.0 fr, via https://commons.wikimedia.org/wiki/File:Amida_Butsu-ETHAS_023580-IMG_9962-black.jpg","provenance":"Amida Butsu-ETHAS 023580-IMG 9962-black.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-amida-amida-v1.2","templeId":"amida","title":"Amida — study v1.2","src":"/assets/ai-commons/amida-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Amida — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/amida/art/?view=commons","canonicalUrl":"https://punicodex.com/amida/art/?view=commons","generatedAt":"2026-11-07T05:30:01.106Z","recordedAt":"2026-11-12T06:12:58.628Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1687316964,"prompt":"Amida, infinite light, pure land,, Japanese ukiyo-e gold line art on pure black background, refined woodblock elegance, no text, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -335,8 +340,14 @@
     creatives: { t: 'Creatives for Amida — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/amida/art/?view=creatives' },
     commons: { t: 'The Commons — Amida studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/amida/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -347,6 +358,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -365,7 +377,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

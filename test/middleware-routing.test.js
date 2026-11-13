@@ -208,7 +208,6 @@ async function run() {
 
   await test('legacy /store/{collection}/* 301s to the merch tree (Phase B Reliquary)', async () => {
     const cases = [
-      ['https://punicodex.com/store/ab/', 'https://punicodex.com/store/merch/ab/'],
       ['https://punicodex.com/store/ab/tee/', 'https://punicodex.com/store/merch/ab/tee/'],
       [
         'https://punicodex.com/store/ab/tee/index.html',
@@ -238,6 +237,7 @@ async function run() {
       '/store/art/',
       '/store/shipping/',
       '/store/returns/',
+      '/store/ab/',
       '/store/no-such-collection/',
     ]) {
       const res = await middleware(req(`https://punicodex.com${p}`));

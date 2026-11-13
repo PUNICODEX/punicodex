@@ -28,7 +28,7 @@
   }
 
   const dialog = element('dialog', 'commons-viewer');
-  dialog.setAttribute('aria-label', 'Commons artwork details');
+  dialog.setAttribute('aria-label', 'Artwork details');
   const layout = element('div', 'cv-layout');
   const media = element('div', 'cv-media');
   const image = element('img');
@@ -86,23 +86,30 @@
     return Number.isNaN(date.getTime()) ? 'Not recorded' : date.toLocaleString();
   }
 
+  function viewForWork(work) {
+    return work.kind === 'temple' ? 'temple' : 'commons';
+  }
+
   function show(work) {
     image.src = work.src;
-    image.alt = work.title;
-    kicker.textContent = `The Commons · ${String(work.family || 'studio').replace(/-/g, ' ')}`;
+    image.alt = work.alt || work.title;
+    kicker.textContent = work.kind === 'temple'
+      ? 'Temple Gallery · historical collection'
+      : `The Commons · ${String(work.family || 'studio').replace(/-/g, ' ')}`;
     title.textContent = work.title;
     provenance.textContent = work.provenance || 'Curated PuniCodex studio artwork.';
     facts.replaceChildren();
     fact('Creator', work.creator || 'PuniCodex Studio');
     fact('License', work.license || 'CC BY 4.0', work.licenseUrl || 'https://creativecommons.org/licenses/by/4.0/');
     fact('Production', work.aiAssisted ? 'AI-assisted · human-curated' : 'Human-created');
-    fact('Model', work.model || 'Not recorded');
-    fact('Generated', dateLabel(work.generatedAt));
-    fact('Catalogued', dateLabel(work.recordedAt));
+    if (work.aiAssisted || work.model) fact('Model', work.model || 'Not recorded');
+    if (work.generatedAt) fact('Generated', dateLabel(work.generatedAt));
+    if (work.recordedAt) fact('Catalogued', dateLabel(work.recordedAt));
+    if (work.sourceUrl) fact('Source', 'View original source', work.sourceUrl);
     if (work.seed !== null && work.seed !== undefined) fact('Seed', String(work.seed));
     attributionText.textContent = work.attribution || `${work.title} by ${work.creator || 'PuniCodex Studio'}, ${work.license || 'CC BY 4.0'}, via ${work.canonicalUrl}`;
     download.href = work.src;
-    download.download = work.src.split('/').pop();
+    download.download = work.src.split('/').pop().split('?')[0];
     promptDetails.hidden = !work.prompt;
     promptText.textContent = work.prompt || '';
     if (!dialog.open) {
@@ -116,7 +123,7 @@
     if (!work) return;
     show(work);
     if (updateUrl) {
-      history.replaceState(null, '', `?view=commons&art=${encodeURIComponent(id)}`);
+      history.replaceState(null, '', `?view=${viewForWork(work)}&art=${encodeURIComponent(id)}`);
     }
   }
 
@@ -144,9 +151,30 @@
     }).catch(() => {});
   }
 
-  download.addEventListener('click', () => {
+  download.addEventListener('click', async (event) => {
     const work = byId.get(new URLSearchParams(location.search).get('art'));
-    if (work) recordDownload(work);
+    if (!work) return;
+    if (work.kind !== 'temple') recordDownload(work);
+    if (work.src.startsWith('/')) return;
+    event.preventDefault();
+    const label = download.textContent;
+    download.textContent = 'Preparing…';
+    try {
+      const response = await fetch(work.src);
+      if (!response.ok) throw new Error('download_failed');
+      const url = URL.createObjectURL(await response.blob());
+      const anchor = element('a');
+      anchor.href = url;
+      anchor.download = work.src.split('/').pop().split('?')[0];
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch {
+      window.open(work.src, '_blank', 'noopener');
+    } finally {
+      download.textContent = label;
+    }
   });
 
   close.addEventListener('click', () => dialog.close());
@@ -154,8 +182,10 @@
     if (event.target === dialog) dialog.close();
   });
   dialog.addEventListener('close', () => {
-    if (new URLSearchParams(location.search).has('art')) {
-      history.replaceState(null, '', '?view=commons');
+    const params = new URLSearchParams(location.search);
+    const work = byId.get(params.get('art'));
+    if (params.has('art')) {
+      history.replaceState(null, '', `?view=${work ? viewForWork(work) : 'all'}`);
     }
   });
   share.addEventListener('click', async () => {
@@ -187,11 +217,11 @@
     setTimeout(() => { copy.textContent = 'Copy attribution'; }, 1600);
   });
 
-  document.querySelectorAll('.art-card[data-kind="commons"][data-art-id]').forEach((card) => {
+  document.querySelectorAll('.art-card[data-kind="commons"][data-art-id], .art-card[data-kind="temple"][data-art-id]').forEach((card) => {
     const id = card.getAttribute('data-art-id');
     card.tabIndex = 0;
     card.setAttribute('role', 'button');
-    card.setAttribute('aria-label', `View artwork: ${byId.get(id)?.title || 'Commons work'}`);
+    card.setAttribute('aria-label', `View artwork: ${byId.get(id)?.title || 'Artwork'}`);
     card.addEventListener('click', () => openWork(id, true));
     card.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {

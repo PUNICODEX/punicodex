@@ -355,6 +355,11 @@ canvas[data-effect] {
 @media (max-width: 768px) {
     .tab-nav .nav-inner {
         gap: 0.75rem;
+        padding-left: max(1.25rem, env(safe-area-inset-left));
+        padding-right: max(1.25rem, env(safe-area-inset-right));
+    }
+    .tab-nav .nav-toggle {
+        margin-right: 0;
     }
     .tab-nav .tab-nav-links {
         display: none;
@@ -3115,5 +3120,9 @@ a.crosslink:focus-visible {
     }
     .temple-mobile-menu .nav-sub-link {
         padding: 0.4rem 0.6rem;
+        counter-increment: none;
+    }
+    .temple-mobile-menu .nav-sub-link::before {
+        content: none;
     }
 }

@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Dāwîḏ — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/david/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Dāwîḏ","item":"https://punicodex.com/david/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/david/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/david/" class="nav-link active">Store</a>
+                    <a href="/store/david/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/david/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/david/" class="nav-link active">Store</a>
+            <a href="/store/david/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/david/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,22 +173,22 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Harpspelende koning David King David Playing the Harp — Gerard van Honthorst, 1622 date QS:P571,+1622-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-david-1" data-title="Harpspelende koning David King David Playing the Harp — Gerard van Honthorst, 1622 date QS:P571,+1622-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg/960px-Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg" alt="Harpspelende koning David King David Playing the Harp" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Harpspelende koning David King David Playing the Harp — Gerard van Honthorst, 1622 date QS:P571,+1622-00-00T00:00:00Z/9</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Michelangelo's David - right view 2 — Commonists, 2021-08-01 11:59:28 — CC BY-SA 4 Dāwîḏ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-david-2" data-title="Michelangelo's David - right view 2 — Commonists, 2021-08-01 11:59:28 — CC BY-SA 4 Dāwîḏ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Michelangelo%27s_David_-_right_view_2.jpg/960px-Michelangelo%27s_David_-_right_view_2.jpg" alt="Michelangelo's David - right view 2" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Michelangelo's David - right view 2 — Commonists, 2021-08-01 11:59:28 — CC BY-SA 4</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="King David — Guercino, 1651 date QS:P571,+1651-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-david-3" data-title="King David — Guercino, 1651 date QS:P571,+1651-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/%27King_David%27%2C_painting_by_Giovanni_Francesco_Barbieri_%28il_Guercino%29_c._1768.jpg/960px-%27King_David%27%2C_painting_by_Giovanni_Francesco_Barbieri_%28il_Guercino%29_c._1768.jpg" alt="King David" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>King David — Guercino, 1651 date QS:P571,+1651-00-00T00:00:00Z/9</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="American English: King David King David (Poulakis) — Theodore Poulakis, between 1650 and 1692 date QS:P,+1650-00-00T00:00:00Z/7,P1319,+1650-00-00T00:00:00Z/9,P1326,+1692-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-david-4" data-title="American English: King David King David (Poulakis) — Theodore Poulakis, between 1650 and 1692 date QS:P,+1650-00-00T00:00:00Z/7,P1319,+1650-00-00T00:00:00Z/9,P1326,+1692-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/4/40/King_David_Watches_Sunamite_Women_Bathing_Poulakis.png" alt="American English: King David King David (Poulakis)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>American English: King David King David (Poulakis) — Theodore Poulakis, between 1650 and 1692 date QS:P,+1650-00-00T00:00:00Z/7,P1319,+1650-00-00T00:00:00Z/9,P1326,+1692-00-00T00:00:00Z/9</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -196,22 +200,22 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Harpspelende koning David King David Playing the Harp — Gerard van Honthorst, 1622 date QS:P571,+1622-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-david-1" data-title="Harpspelende koning David King David Playing the Harp — Gerard van Honthorst, 1622 date QS:P571,+1622-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg/960px-Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg" alt="Harpspelende koning David King David Playing the Harp" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Harpspelende koning David King David Playing the Harp — Gerard van Honthorst, 1622 date QS:P571,+1622-00-00T00:00:00Z/9</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Michelangelo's David - right view 2 — Commonists, 2021-08-01 11:59:28 — CC BY-SA 4 Dāwîḏ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-david-2" data-title="Michelangelo's David - right view 2 — Commonists, 2021-08-01 11:59:28 — CC BY-SA 4 Dāwîḏ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Michelangelo%27s_David_-_right_view_2.jpg/960px-Michelangelo%27s_David_-_right_view_2.jpg" alt="Michelangelo's David - right view 2" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Michelangelo's David - right view 2 — Commonists, 2021-08-01 11:59:28 — CC BY-SA 4</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="King David — Guercino, 1651 date QS:P571,+1651-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-david-3" data-title="King David — Guercino, 1651 date QS:P571,+1651-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/%27King_David%27%2C_painting_by_Giovanni_Francesco_Barbieri_%28il_Guercino%29_c._1768.jpg/960px-%27King_David%27%2C_painting_by_Giovanni_Francesco_Barbieri_%28il_Guercino%29_c._1768.jpg" alt="King David" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>King David — Guercino, 1651 date QS:P571,+1651-00-00T00:00:00Z/9</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="American English: King David King David (Poulakis) — Theodore Poulakis, between 1650 and 1692 date QS:P,+1650-00-00T00:00:00Z/7,P1319,+1650-00-00T00:00:00Z/9,P1326,+1692-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-david-4" data-title="American English: King David King David (Poulakis) — Theodore Poulakis, between 1650 and 1692 date QS:P,+1650-00-00T00:00:00Z/7,P1319,+1650-00-00T00:00:00Z/9,P1326,+1692-00-00T00:00:00Z/9 Dāwîḏ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/4/40/King_David_Watches_Sunamite_Women_Bathing_Poulakis.png" alt="American English: King David King David (Poulakis)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>American English: King David King David (Poulakis) — Theodore Poulakis, between 1650 and 1692 date QS:P,+1650-00-00T00:00:00Z/7,P1319,+1650-00-00T00:00:00Z/9,P1326,+1692-00-00T00:00:00Z/9</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -310,8 +314,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-david-david-anime-mascot-v1","templeId":"david","title":"Dāwîḏ — anime mascot","src":"/assets/ai-commons/david-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Dāwîḏ — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/david/art/?view=commons","canonicalUrl":"https://punicodex.com/david/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.630Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-david-1","kind":"temple","templeId":"david","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg/960px-Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg","title":"Harpspelende koning David King David Playing the Harp — Gerard van Honthorst, 1622 date QS:P571,+1622-00-00T00:00:00Z/9","alt":"Harpspelende koning David King David Playing the Harp","creator":"Gerard van Honthorst","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg","canonicalUrl":"https://punicodex.com/david/art/?view=temple&art=gallery-david-1","attribution":"Harpspelende koning David King David Playing the Harp — Gerard van Honthorst, 1622 date QS:P571,+1622-00-00T00:00:00Z/9 by Gerard van Honthorst, Public domain, via https://commons.wikimedia.org/wiki/File:Gerard_van_Honthorst_-_King_David_Playing_the_Harp_-_Google_Art_Project.jpg","provenance":"Harpspelende koning David King David Playing the Harp","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-david-2","kind":"temple","templeId":"david","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Michelangelo%27s_David_-_right_view_2.jpg/960px-Michelangelo%27s_David_-_right_view_2.jpg","title":"Michelangelo's David - right view 2 — Commonists, 2021-08-01 11:59:28 — CC BY-SA 4","alt":"Michelangelo's David - right view 2","creator":"Commonists","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Michelangelo's_David_-_right_view_2.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Michelangelo's_David_-_right_view_2.jpg","canonicalUrl":"https://punicodex.com/david/art/?view=temple&art=gallery-david-2","attribution":"Michelangelo's David - right view 2 — Commonists, 2021-08-01 11:59:28 — CC BY-SA 4 by Commonists, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Michelangelo's_David_-_right_view_2.jpg","provenance":"Michelangelo's David - right view 2","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-david-3","kind":"temple","templeId":"david","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/%27King_David%27%2C_painting_by_Giovanni_Francesco_Barbieri_%28il_Guercino%29_c._1768.jpg/960px-%27King_David%27%2C_painting_by_Giovanni_Francesco_Barbieri_%28il_Guercino%29_c._1768.jpg","title":"King David — Guercino, 1651 date QS:P571,+1651-00-00T00:00:00Z/9","alt":"King David","creator":"Guercino","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:'King_David',_painting_by_Giovanni_Francesco_Barbieri_(il_Guercino)_c._1768.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:'King_David',_painting_by_Giovanni_Francesco_Barbieri_(il_Guercino)_c._1768.jpg","canonicalUrl":"https://punicodex.com/david/art/?view=temple&art=gallery-david-3","attribution":"King David — Guercino, 1651 date QS:P571,+1651-00-00T00:00:00Z/9 by Guercino, Public domain, via https://commons.wikimedia.org/wiki/File:'King_David',_painting_by_Giovanni_Francesco_Barbieri_(il_Guercino)_c._1768.jpg","provenance":"King David","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-david-4","kind":"temple","templeId":"david","src":"https://upload.wikimedia.org/wikipedia/commons/4/40/King_David_Watches_Sunamite_Women_Bathing_Poulakis.png","title":"American English: King David King David (Poulakis) — Theodore Poulakis, between 1650 and 1692 date QS:P,+1650-00-00T00:00:00Z/7,P1319,+1650-00-00T00:00:00Z/9,P1326,+1692-00-00T00:00:00Z/9","alt":"American English: King David King David (Poulakis)","creator":"Theodore Poulakis","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:King_David_Watches_Sunamite_Women_Bathing_Poulakis.png","sourceUrl":"https://commons.wikimedia.org/wiki/File:King_David_Watches_Sunamite_Women_Bathing_Poulakis.png","canonicalUrl":"https://punicodex.com/david/art/?view=temple&art=gallery-david-4","attribution":"American English: King David King David (Poulakis) — Theodore Poulakis, between 1650 and 1692 date QS:P,+1650-00-00T00:00:00Z/7,P1319,+1650-00-00T00:00:00Z/9,P1326,+1692-00-00T00:00:00Z/9 by Theodore Poulakis, Public domain, via https://commons.wikimedia.org/wiki/File:King_David_Watches_Sunamite_Women_Bathing_Poulakis.png","provenance":"American English: King David King David (Poulakis)","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-david-david-anime-mascot-v1","templeId":"david","title":"Dāwîḏ — anime mascot","src":"/assets/ai-commons/david-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Dāwîḏ — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/david/art/?view=commons","canonicalUrl":"https://punicodex.com/david/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.630Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -325,8 +330,14 @@
     creatives: { t: 'Creatives for Dāwîḏ — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/david/art/?view=creatives' },
     commons: { t: 'The Commons — Dāwîḏ studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/david/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -337,6 +348,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -355,7 +367,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

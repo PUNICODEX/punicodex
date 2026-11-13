@@ -76,16 +76,41 @@ function commonsCards(id, entry) {
     .join('\n    ');
 }
 
-function galleryCards(id, entry) {
-  const imgs = (GALLERY_DATA[id] || {}).images || [];
-  return imgs
-    .map((im) => {
-      const title = String(im.caption || entry.unicode).replace(/<[^>]*>/g, '').split('.')[0].trim();
-      const host = im.sourceUrl ? String(im.sourceUrl).replace(/^https?:\/\//, '').split('/')[0] : '';
-      const credit = [host, im.license || ''].filter(Boolean).join(' · ');
-      return `<figure class="art-card" data-kind="temple" data-title="${esc(title)} ${esc(entry.unicode)}" data-tags="historical" data-date="">
-      <div class="imgbox"><img src="${esc(im.src)}" alt="${esc(im.alt || entry.unicode)}" loading="lazy"></div>
-      <div class="body"><div class="sub">Temple Gallery</div><h3>${esc(title)}</h3>
+function galleryWorks(id, entry) {
+  return ((GALLERY_DATA[id] || {}).images || []).map((im, index) => {
+    const title = String(im.caption || entry.unicode).replace(/<[^>]*>/g, '').split('.')[0].trim();
+    const host = im.sourceUrl ? String(im.sourceUrl).replace(/^https?:\/\//, '').split('/')[0] : '';
+    const creator = im.artist || host || 'Wikimedia Commons';
+    const license = im.license || 'See source';
+    const workId = `gallery-${id}-${index + 1}`;
+    const canonicalUrl = `${SITE_ORIGIN}/${id}/art/?view=temple&art=${encodeURIComponent(workId)}`;
+    return {
+      id: workId,
+      kind: 'temple',
+      templeId: id,
+      src: im.src,
+      title,
+      alt: im.alt || entry.unicode,
+      creator,
+      license,
+      licenseUrl: im.sourceUrl || '',
+      sourceUrl: im.sourceUrl || '',
+      canonicalUrl,
+      attribution: `${title} by ${creator}, ${license}, via ${im.sourceUrl || canonicalUrl}`,
+      provenance: im.alt || String(im.caption || '').replace(/<[^>]*>/g, ''),
+      aiAssisted: false,
+      host,
+    };
+  });
+}
+
+function galleryCards(id, entry, works) {
+  return works
+    .map((work) => {
+      const credit = [work.host, work.license].filter(Boolean).join(' · ');
+      return `<figure class="art-card" data-kind="temple" data-art-id="${esc(work.id)}" data-title="${esc(work.title)} ${esc(entry.unicode)}" data-tags="historical" data-date="">
+      <div class="imgbox"><img src="${esc(work.src)}" alt="${esc(work.alt)}" loading="lazy"></div>
+      <div class="body"><div class="sub">Temple Gallery</div><h3>${esc(work.title)}</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">${esc(credit)}</div></div>
     </figure>`;
     })
@@ -108,12 +133,17 @@ const VIEW_META = {
   commons: { title: 'The Commons', desc: 'commons' },
 };
 
-const CSS = `.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}`;
+const CSS = `
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+`;
 
 function renderTempleArt(a) {
   const entry = LEX_BY_ID.get(a.id);
   const name = entry ? entry.unicode : a.name || a.id;
-  const gallery = galleryCards(a.id, entry || { unicode: name });
+  const galleryWorkItems = galleryWorks(a.id, entry || { unicode: name });
+  const gallery = galleryCards(a.id, entry || { unicode: name }, galleryWorkItems);
   const commonsWorks = commonsIndex.get(a.id) || [];
   const commons = commonsCards(a.id, entry || { unicode: name });
   const creatives = creativesEmpty(entry || { unicode: name });
@@ -211,7 +241,7 @@ ${CSS}
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/${a.id}/" class="nav-link active">Store</a>
+                    <a href="/store/${a.id}/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/${a.id}/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -236,7 +266,7 @@ ${CSS}
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/${a.id}/" class="nav-link active">Store</a>
+            <a href="/store/${a.id}/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/${a.id}/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -305,8 +335,9 @@ ${CSS}
   </div>
 </main>
 ${footerHtml()}
-<script>window.__COMMONS_WORKS__ = ${JSON.stringify(commonsWorks).replace(/</g, '\\u003c')};</script>
+<script>window.__COMMONS_WORKS__ = ${JSON.stringify([...galleryWorkItems, ...commonsWorks]).replace(/</g, '\\u003c')};</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=perf23" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -320,8 +351,14 @@ ${footerHtml()}
     creatives: { t: 'Creatives for ${esc(name)} — licensed mythological art | PUNICODEX', c: '${SITE_ORIGIN}/${a.id}/art/?view=creatives' },
     commons: { t: 'The Commons — ${esc(name)} studies by the PuniCodex studio | PUNICODEX', c: '${SITE_ORIGIN}/${a.id}/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -332,6 +369,7 @@ ${footerHtml()}
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -350,7 +388,7 @@ ${footerHtml()}
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

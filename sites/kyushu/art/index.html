@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=fb5254dd04">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Kyūshū — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/kyushu/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Kyūshū","item":"https://punicodex.com/kyushu/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/kyushu/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/kyushu/" class="nav-link active">Store</a>
+                    <a href="/store/kyushu/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/kyushu/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/kyushu/" class="nav-link active">Store</a>
+            <a href="/store/kyushu/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/kyushu/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,32 +173,32 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Kyushu Island and Aso Volcano (MODIS 2025-01-06) — Sunny skies allowed a clear view of southern Japan on January 1, 2025 Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-1" data-title="Kyushu Island and Aso Volcano (MODIS 2025-01-06) — Sunny skies allowed a clear view of southern Japan on January 1, 2025 Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Kyushu_Island_and_Aso_Volcano_%28MODIS_2025-01-06%29.jpg/960px-Kyushu_Island_and_Aso_Volcano_%28MODIS_2025-01-06%29.jpg" alt="Sunny skies allowed a clear view of southern Japan on January 1, 2025. The Moderate Resolution Imaging Spectroradiometer (MODIS) acquired this true-color image of the islands of Kyushu and Shikoku and a portion of sou…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kyushu Island and Aso Volcano (MODIS 2025-01-06) — Sunny skies allowed a clear view of southern Japan on January 1, 2025</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Momijigari on Kyushu Island, Japan (MODIS 2021-11-28) — As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-2" data-title="Momijigari on Kyushu Island, Japan (MODIS 2021-11-28) — As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Momijigari_on_Kyushu_Island%2C_Japan_%28MODIS_2021-11-28%29.jpg/960px-Momijigari_on_Kyushu_Island%2C_Japan_%28MODIS_2021-11-28%29.jpg" alt="As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show. The bright reds and yellows start to color the farthest northern regions, on Hokkaid…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Momijigari on Kyushu Island, Japan (MODIS 2021-11-28) — As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kyushu-Japan-ISS-Space — Kyushu, Japan, seen from the International Space Station (17 October 2015) Photo/art: NASA, International Space Station Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-3" data-title="Kyushu-Japan-ISS-Space — Kyushu, Japan, seen from the International Space Station (17 October 2015) Photo/art: NASA, International Space Station Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Kyushu-Japan-ISS-Space.png/960px-Kyushu-Japan-ISS-Space.png" alt="Kyushu, Japan, seen from the International Space Station (17 October 2015)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kyushu-Japan-ISS-Space — Kyushu, Japan, seen from the International Space Station (17 October 2015) Photo/art: NASA, International Space Station</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Terra Kyushu 20091028 — Terra's satellite picture of Kyushu , Japan Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-4" data-title="Terra Kyushu 20091028 — Terra's satellite picture of Kyushu , Japan Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Terra_Kyushu_20091028.jpg/960px-Terra_Kyushu_20091028.jpg" alt="Terra's satellite picture of Kyushu , Japan. 01:55 - 02:00, October 27, 2009(UTC)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Terra Kyushu 20091028 — Terra's satellite picture of Kyushu , Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kyushu-Japan Terra2002145 — 九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影 Photo/art: Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-5" data-title="Kyushu-Japan Terra2002145 — 九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影 Photo/art: Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Kyushu-Japan_Terra2002145.jpg/960px-Kyushu-Japan_Terra2002145.jpg" alt="九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kyushu-Japan Terra2002145 — 九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影 Photo/art: Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kyushu 2017 02 02 (31855799723) — Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-6" data-title="Kyushu 2017 02 02 (31855799723) — Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Kyushu_2017_02_02_%2831855799723%29.jpg/960px-Kyushu_2017_02_02_%2831855799723%29.jpg" alt="Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kyushu 2017 02 02 (31855799723) — Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
@@ -206,32 +210,32 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Kyushu Island and Aso Volcano (MODIS 2025-01-06) — Sunny skies allowed a clear view of southern Japan on January 1, 2025 Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-1" data-title="Kyushu Island and Aso Volcano (MODIS 2025-01-06) — Sunny skies allowed a clear view of southern Japan on January 1, 2025 Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Kyushu_Island_and_Aso_Volcano_%28MODIS_2025-01-06%29.jpg/960px-Kyushu_Island_and_Aso_Volcano_%28MODIS_2025-01-06%29.jpg" alt="Sunny skies allowed a clear view of southern Japan on January 1, 2025. The Moderate Resolution Imaging Spectroradiometer (MODIS) acquired this true-color image of the islands of Kyushu and Shikoku and a portion of sou…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kyushu Island and Aso Volcano (MODIS 2025-01-06) — Sunny skies allowed a clear view of southern Japan on January 1, 2025</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Momijigari on Kyushu Island, Japan (MODIS 2021-11-28) — As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-2" data-title="Momijigari on Kyushu Island, Japan (MODIS 2021-11-28) — As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Momijigari_on_Kyushu_Island%2C_Japan_%28MODIS_2021-11-28%29.jpg/960px-Momijigari_on_Kyushu_Island%2C_Japan_%28MODIS_2021-11-28%29.jpg" alt="As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show. The bright reds and yellows start to color the farthest northern regions, on Hokkaid…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Momijigari on Kyushu Island, Japan (MODIS 2021-11-28) — As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kyushu-Japan-ISS-Space — Kyushu, Japan, seen from the International Space Station (17 October 2015) Photo/art: NASA, International Space Station Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-3" data-title="Kyushu-Japan-ISS-Space — Kyushu, Japan, seen from the International Space Station (17 October 2015) Photo/art: NASA, International Space Station Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Kyushu-Japan-ISS-Space.png/960px-Kyushu-Japan-ISS-Space.png" alt="Kyushu, Japan, seen from the International Space Station (17 October 2015)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kyushu-Japan-ISS-Space — Kyushu, Japan, seen from the International Space Station (17 October 2015) Photo/art: NASA, International Space Station</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Terra Kyushu 20091028 — Terra's satellite picture of Kyushu , Japan Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-4" data-title="Terra Kyushu 20091028 — Terra's satellite picture of Kyushu , Japan Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Terra_Kyushu_20091028.jpg/960px-Terra_Kyushu_20091028.jpg" alt="Terra's satellite picture of Kyushu , Japan. 01:55 - 02:00, October 27, 2009(UTC)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Terra Kyushu 20091028 — Terra's satellite picture of Kyushu , Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kyushu-Japan Terra2002145 — 九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影 Photo/art: Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-5" data-title="Kyushu-Japan Terra2002145 — 九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影 Photo/art: Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Kyushu-Japan_Terra2002145.jpg/960px-Kyushu-Japan_Terra2002145.jpg" alt="九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kyushu-Japan Terra2002145 — 九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影 Photo/art: Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kyushu 2017 02 02 (31855799723) — Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite Kyūshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kyushu-6" data-title="Kyushu 2017 02 02 (31855799723) — Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite Kyūshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Kyushu_2017_02_02_%2831855799723%29.jpg/960px-Kyushu_2017_02_02_%2831855799723%29.jpg" alt="Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kyushu 2017 02 02 (31855799723) — Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
@@ -330,8 +334,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-kyushu-kyushu-anime-mascot-v1","templeId":"kyushu","title":"Kyūshū — anime mascot","src":"/assets/ai-commons/kyushu-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Kyūshū — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/kyushu/art/?view=commons","canonicalUrl":"https://punicodex.com/kyushu/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.631Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-kyushu-1","kind":"temple","templeId":"kyushu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Kyushu_Island_and_Aso_Volcano_%28MODIS_2025-01-06%29.jpg/960px-Kyushu_Island_and_Aso_Volcano_%28MODIS_2025-01-06%29.jpg","title":"Kyushu Island and Aso Volcano (MODIS 2025-01-06) — Sunny skies allowed a clear view of southern Japan on January 1, 2025","alt":"Sunny skies allowed a clear view of southern Japan on January 1, 2025. The Moderate Resolution Imaging Spectroradiometer (MODIS) acquired this true-color image of the islands of Kyushu and Shikoku and a portion of sou…","creator":"MODIS Land Rapid Response Team, NASA GSFC","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kyushu_Island_and_Aso_Volcano_(MODIS_2025-01-06).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kyushu_Island_and_Aso_Volcano_(MODIS_2025-01-06).jpg","canonicalUrl":"https://punicodex.com/kyushu/art/?view=temple&art=gallery-kyushu-1","attribution":"Kyushu Island and Aso Volcano (MODIS 2025-01-06) — Sunny skies allowed a clear view of southern Japan on January 1, 2025 by MODIS Land Rapid Response Team, NASA GSFC, Public domain, via https://commons.wikimedia.org/wiki/File:Kyushu_Island_and_Aso_Volcano_(MODIS_2025-01-06).jpg","provenance":"Sunny skies allowed a clear view of southern Japan on January 1, 2025. The Moderate Resolution Imaging Spectroradiometer (MODIS) acquired this true-color image of the islands of Kyushu and Shikoku and a portion of sou…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kyushu-2","kind":"temple","templeId":"kyushu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Momijigari_on_Kyushu_Island%2C_Japan_%28MODIS_2021-11-28%29.jpg/960px-Momijigari_on_Kyushu_Island%2C_Japan_%28MODIS_2021-11-28%29.jpg","title":"Momijigari on Kyushu Island, Japan (MODIS 2021-11-28) — As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show","alt":"As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show. The bright reds and yellows start to color the farthest northern regions, on Hokkaid…","creator":"MODIS Land Rapid Response Team, NASA GSFC","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Momijigari_on_Kyushu_Island,_Japan_(MODIS_2021-11-28).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Momijigari_on_Kyushu_Island,_Japan_(MODIS_2021-11-28).jpg","canonicalUrl":"https://punicodex.com/kyushu/art/?view=temple&art=gallery-kyushu-2","attribution":"Momijigari on Kyushu Island, Japan (MODIS 2021-11-28) — As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show by MODIS Land Rapid Response Team, NASA GSFC, Public domain, via https://commons.wikimedia.org/wiki/File:Momijigari_on_Kyushu_Island,_Japan_(MODIS_2021-11-28).jpg","provenance":"As autumn’s shortening daylight and cooler temperatures wash across Japan, the foliage of deciduous trees put on a spectacular show. The bright reds and yellows start to color the farthest northern regions, on Hokkaid…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kyushu-3","kind":"temple","templeId":"kyushu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Kyushu-Japan-ISS-Space.png/960px-Kyushu-Japan-ISS-Space.png","title":"Kyushu-Japan-ISS-Space — Kyushu, Japan, seen from the International Space Station (17 October 2015) Photo/art: NASA, International Space Station","alt":"Kyushu, Japan, seen from the International Space Station (17 October 2015)","creator":"NASA, International Space Station","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kyushu-Japan-ISS-Space.png","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kyushu-Japan-ISS-Space.png","canonicalUrl":"https://punicodex.com/kyushu/art/?view=temple&art=gallery-kyushu-3","attribution":"Kyushu-Japan-ISS-Space — Kyushu, Japan, seen from the International Space Station (17 October 2015) Photo/art: NASA, International Space Station by NASA, International Space Station, Public domain, via https://commons.wikimedia.org/wiki/File:Kyushu-Japan-ISS-Space.png","provenance":"Kyushu, Japan, seen from the International Space Station (17 October 2015)","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kyushu-4","kind":"temple","templeId":"kyushu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Terra_Kyushu_20091028.jpg/960px-Terra_Kyushu_20091028.jpg","title":"Terra Kyushu 20091028 — Terra's satellite picture of Kyushu , Japan","alt":"Terra's satellite picture of Kyushu , Japan. 01:55 - 02:00, October 27, 2009(UTC)","creator":"NASA","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Terra_Kyushu_20091028.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Terra_Kyushu_20091028.jpg","canonicalUrl":"https://punicodex.com/kyushu/art/?view=temple&art=gallery-kyushu-4","attribution":"Terra Kyushu 20091028 — Terra's satellite picture of Kyushu , Japan by NASA, Public domain, via https://commons.wikimedia.org/wiki/File:Terra_Kyushu_20091028.jpg","provenance":"Terra's satellite picture of Kyushu , Japan. 01:55 - 02:00, October 27, 2009(UTC)","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kyushu-5","kind":"temple","templeId":"kyushu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Kyushu-Japan_Terra2002145.jpg/960px-Kyushu-Japan_Terra2002145.jpg","title":"Kyushu-Japan Terra2002145 — 九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影 Photo/art: Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC","alt":"九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影","creator":"Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kyushu-Japan_Terra2002145.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kyushu-Japan_Terra2002145.jpg","canonicalUrl":"https://punicodex.com/kyushu/art/?view=temple&art=gallery-kyushu-5","attribution":"Kyushu-Japan Terra2002145 — 九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影 Photo/art: Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC by Jacques Descloitres, MODIS Land Rapid Response Team, NASA/GSFC, Public domain, via https://commons.wikimedia.org/wiki/File:Kyushu-Japan_Terra2002145.jpg","provenance":"九州 周辺の衛星画像、 Terra (MODIS)2002年5月25日撮影","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kyushu-6","kind":"temple","templeId":"kyushu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Kyushu_2017_02_02_%2831855799723%29.jpg/960px-Kyushu_2017_02_02_%2831855799723%29.jpg","title":"Kyushu 2017 02 02 (31855799723) — Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite","alt":"Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite.","creator":"Antti Lipponen","license":"CC BY 2.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kyushu_2017_02_02_(31855799723).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kyushu_2017_02_02_(31855799723).jpg","canonicalUrl":"https://punicodex.com/kyushu/art/?view=temple&art=gallery-kyushu-6","attribution":"Kyushu 2017 02 02 (31855799723) — Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite by Antti Lipponen, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Kyushu_2017_02_02_(31855799723).jpg","provenance":"Kyushu, Japan 2 February 2017 as seen by MODIS on board Terra satellite.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-kyushu-kyushu-anime-mascot-v1","templeId":"kyushu","title":"Kyūshū — anime mascot","src":"/assets/ai-commons/kyushu-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Kyūshū — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/kyushu/art/?view=commons","canonicalUrl":"https://punicodex.com/kyushu/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.631Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -345,8 +350,14 @@
     creatives: { t: 'Creatives for Kyūshū — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/kyushu/art/?view=creatives' },
     commons: { t: 'The Commons — Kyūshū studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/kyushu/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -357,6 +368,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -375,7 +387,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

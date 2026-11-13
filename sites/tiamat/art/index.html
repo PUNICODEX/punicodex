@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=aa63117938">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Tiāmat — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/tiamat/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Tiāmat","item":"https://punicodex.com/tiamat/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/tiamat/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/tiamat/" class="nav-link active">Store</a>
+                    <a href="/store/tiamat/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/tiamat/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/tiamat/" class="nav-link active">Store</a>
+            <a href="/store/tiamat/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/tiamat/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,34 +173,34 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Marduk and the Dragon — Marduk, chief god of Babylon, hurls thunderbolts against Tiamat, the dragon of primeval chaos Tiāmat" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tiamat-1" data-title="Marduk and the Dragon — Marduk, chief god of Babylon, hurls thunderbolts against Tiamat, the dragon of primeval chaos Tiāmat" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Marduk_and_the_Dragon.jpg" alt="Line drawing of Marduk attacking Tiamat, the primeval chaos dragon" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Marduk and the Dragon — Marduk, chief god of Babylon, hurls thunderbolts against Tiamat, the dragon of primeval chaos</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Enuma Elish Tablet from Nineveh — 7th-century BCE cuneiform fragment (K Tiāmat" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tiamat-2" data-title="Enuma Elish Tablet from Nineveh — 7th-century BCE cuneiform fragment (K Tiāmat" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Enuma_Elish_K.3473.jpg/960px-Enuma_Elish_K.3473.jpg" alt="Cuneiform tablet fragment from the Library of Ashurbanipal containing the Babylonian Enuma Elish" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Enuma Elish Tablet from Nineveh — 7th-century BCE cuneiform fragment (K</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Enuma Elish Tablet from the Ashmolean — Cuneiform fragment AN 1926 Tiāmat" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tiamat-3" data-title="Enuma Elish Tablet from the Ashmolean — Cuneiform fragment AN 1926 Tiāmat" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Enuma_elish_AN1926.373.jpg/960px-Enuma_elish_AN1926.373.jpg" alt="Cuneiform tablet fragment AN 1926.373 preserving the Enuma Elish" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Enuma Elish Tablet from the Ashmolean — Cuneiform fragment AN 1926</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Marduk and the Dragon — Marduk, chief god of Babylon, hurls thunderbolts against Tiamat, the dragon of primeval chaos Tiāmat" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tiamat-1" data-title="Marduk and the Dragon — Marduk, chief god of Babylon, hurls thunderbolts against Tiamat, the dragon of primeval chaos Tiāmat" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Marduk_and_the_Dragon.jpg" alt="Line drawing of Marduk attacking Tiamat, the primeval chaos dragon" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Marduk and the Dragon — Marduk, chief god of Babylon, hurls thunderbolts against Tiamat, the dragon of primeval chaos</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Enuma Elish Tablet from Nineveh — 7th-century BCE cuneiform fragment (K Tiāmat" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tiamat-2" data-title="Enuma Elish Tablet from Nineveh — 7th-century BCE cuneiform fragment (K Tiāmat" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Enuma_Elish_K.3473.jpg/960px-Enuma_Elish_K.3473.jpg" alt="Cuneiform tablet fragment from the Library of Ashurbanipal containing the Babylonian Enuma Elish" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Enuma Elish Tablet from Nineveh — 7th-century BCE cuneiform fragment (K</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Enuma Elish Tablet from the Ashmolean — Cuneiform fragment AN 1926 Tiāmat" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tiamat-3" data-title="Enuma Elish Tablet from the Ashmolean — Cuneiform fragment AN 1926 Tiāmat" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Enuma_elish_AN1926.373.jpg/960px-Enuma_elish_AN1926.373.jpg" alt="Cuneiform tablet fragment AN 1926.373 preserving the Enuma Elish" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Enuma Elish Tablet from the Ashmolean — Cuneiform fragment AN 1926</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -291,8 +295,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-tiamat-1","kind":"temple","templeId":"tiamat","src":"https://upload.wikimedia.org/wikipedia/commons/b/b0/Marduk_and_the_Dragon.jpg","title":"Marduk and the Dragon — Marduk, chief god of Babylon, hurls thunderbolts against Tiamat, the dragon of primeval chaos","alt":"Line drawing of Marduk attacking Tiamat, the primeval chaos dragon","creator":"Prof. Charles F. Horne","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Marduk_and_the_Dragon.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Marduk_and_the_Dragon.jpg","canonicalUrl":"https://punicodex.com/tiamat/art/?view=temple&art=gallery-tiamat-1","attribution":"Marduk and the Dragon — Marduk, chief god of Babylon, hurls thunderbolts against Tiamat, the dragon of primeval chaos by Prof. Charles F. Horne, Public domain, via https://commons.wikimedia.org/wiki/File:Marduk_and_the_Dragon.jpg","provenance":"Line drawing of Marduk attacking Tiamat, the primeval chaos dragon","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tiamat-2","kind":"temple","templeId":"tiamat","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Enuma_Elish_K.3473.jpg/960px-Enuma_Elish_K.3473.jpg","title":"Enuma Elish Tablet from Nineveh — 7th-century BCE cuneiform fragment (K","alt":"Cuneiform tablet fragment from the Library of Ashurbanipal containing the Babylonian Enuma Elish","creator":"Zunkir","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Enuma_Elish_K.3473.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Enuma_Elish_K.3473.jpg","canonicalUrl":"https://punicodex.com/tiamat/art/?view=temple&art=gallery-tiamat-2","attribution":"Enuma Elish Tablet from Nineveh — 7th-century BCE cuneiform fragment (K by Zunkir, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Enuma_Elish_K.3473.jpg","provenance":"Cuneiform tablet fragment from the Library of Ashurbanipal containing the Babylonian Enuma Elish","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tiamat-3","kind":"temple","templeId":"tiamat","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Enuma_elish_AN1926.373.jpg/960px-Enuma_elish_AN1926.373.jpg","title":"Enuma Elish Tablet from the Ashmolean — Cuneiform fragment AN 1926","alt":"Cuneiform tablet fragment AN 1926.373 preserving the Enuma Elish","creator":"Zunkir","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Enuma_elish_AN1926.373.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Enuma_elish_AN1926.373.jpg","canonicalUrl":"https://punicodex.com/tiamat/art/?view=temple&art=gallery-tiamat-3","attribution":"Enuma Elish Tablet from the Ashmolean — Cuneiform fragment AN 1926 by Zunkir, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Enuma_elish_AN1926.373.jpg","provenance":"Cuneiform tablet fragment AN 1926.373 preserving the Enuma Elish","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -306,8 +311,14 @@
     creatives: { t: 'Creatives for Tiāmat — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/tiamat/art/?view=creatives' },
     commons: { t: 'The Commons — Tiāmat studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/tiamat/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -318,6 +329,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -336,7 +348,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

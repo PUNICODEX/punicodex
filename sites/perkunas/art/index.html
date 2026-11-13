@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Perkūnas — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/perkunas/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Perkūnas","item":"https://punicodex.com/perkunas/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/perkunas/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/perkunas/" class="nav-link active">Store</a>
+                    <a href="/store/perkunas/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/perkunas/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/perkunas/" class="nav-link active">Store</a>
+            <a href="/store/perkunas/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/perkunas/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Perkunas of Kernavės — A statue depicting Perkūnas, Lithuanian thunder god Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-1" data-title="Perkunas of Kernavės — A statue depicting Perkūnas, Lithuanian thunder god Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Perkunas_of_Kernav%C4%97s.jpg/960px-Perkunas_of_Kernav%C4%97s.jpg" alt="A statue depicting Perkūnas, Lithuanian thunder god. The photograph was taken in 1972, before 1973 therefore subject to 1928 fundamentals, it is a collective work and it is photograph of an ancient work." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Perkunas of Kernavės — A statue depicting Perkūnas, Lithuanian thunder god</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Stone sculpture of the Lithuanian god Perkūnas (A Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-2" data-title="Stone sculpture of the Lithuanian god Perkūnas (A Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Stone_sculpture_of_the_Lithuanian_god_Perk%C5%ABnas_%28A._Raudonis%29%2C_1930%2C_Lithuania.jpg/960px-Stone_sculpture_of_the_Lithuanian_god_Perk%C5%ABnas_%28A._Raudonis%29%2C_1930%2C_Lithuania.jpg" alt="Stone sculpture of the Lithuanian god Perkūnas (A. Raudonis), 1930, Lithuania" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Stone sculpture of the Lithuanian god Perkūnas (A</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Prussian gods (Peckols, Perkunas, Potrimpo) — Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-3" data-title="Prussian gods (Peckols, Perkunas, Potrimpo) — Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Prussian_gods_%28Peckols%2C_Perkunas%2C_Potrimpo%29.jpg/960px-Prussian_gods_%28Peckols%2C_Perkunas%2C_Potrimpo%29.jpg" alt="Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Prussian gods (Peckols, Perkunas, Potrimpo) — Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="House of Perkūnas, Kaunas, Lithuania - Diliff — The exterior of House of Perkūnas in Kaunas, Lithuania Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-4" data-title="House of Perkūnas, Kaunas, Lithuania - Diliff — The exterior of House of Perkūnas in Kaunas, Lithuania Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/House_of_Perk%C5%ABnas%2C_Kaunas%2C_Lithuania_-_Diliff.jpg/960px-House_of_Perk%C5%ABnas%2C_Kaunas%2C_Lithuania_-_Diliff.jpg" alt="The exterior of House of Perkūnas in Kaunas, Lithuania." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>House of Perkūnas, Kaunas, Lithuania - Diliff — The exterior of House of Perkūnas in Kaunas, Lithuania</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Vladas Stumbras „Perkūnas“ (2) — Vladas Stumbras &quot;Perkūnas&quot; (1979), Hill of Witches, Juodkrantė Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-5" data-title="Vladas Stumbras „Perkūnas“ (2) — Vladas Stumbras &quot;Perkūnas&quot; (1979), Hill of Witches, Juodkrantė Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Vladas_Stumbras_%E2%80%9EPerk%C5%ABnas%E2%80%9C_%282%29.jpg/960px-Vladas_Stumbras_%E2%80%9EPerk%C5%ABnas%E2%80%9C_%282%29.jpg" alt="Vladas Stumbras &quot;Perkūnas&quot; (1979), Hill of Witches, Juodkrantė." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Vladas Stumbras „Perkūnas“ (2) — Vladas Stumbras &quot;Perkūnas&quot; (1979), Hill of Witches, Juodkrantė</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="House of Perkunas — House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania Photo/art: KillerTapeSearchParty Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-6" data-title="House of Perkunas — House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania Photo/art: KillerTapeSearchParty Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/House_of_Perkunas.jpg/960px-House_of_Perkunas.jpg" alt="House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>House of Perkunas — House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania Photo/art: KillerTapeSearchParty</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Perkunas of Kernavės — A statue depicting Perkūnas, Lithuanian thunder god Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-1" data-title="Perkunas of Kernavės — A statue depicting Perkūnas, Lithuanian thunder god Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Perkunas_of_Kernav%C4%97s.jpg/960px-Perkunas_of_Kernav%C4%97s.jpg" alt="A statue depicting Perkūnas, Lithuanian thunder god. The photograph was taken in 1972, before 1973 therefore subject to 1928 fundamentals, it is a collective work and it is photograph of an ancient work." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Perkunas of Kernavės — A statue depicting Perkūnas, Lithuanian thunder god</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Stone sculpture of the Lithuanian god Perkūnas (A Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-2" data-title="Stone sculpture of the Lithuanian god Perkūnas (A Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Stone_sculpture_of_the_Lithuanian_god_Perk%C5%ABnas_%28A._Raudonis%29%2C_1930%2C_Lithuania.jpg/960px-Stone_sculpture_of_the_Lithuanian_god_Perk%C5%ABnas_%28A._Raudonis%29%2C_1930%2C_Lithuania.jpg" alt="Stone sculpture of the Lithuanian god Perkūnas (A. Raudonis), 1930, Lithuania" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Stone sculpture of the Lithuanian god Perkūnas (A</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Prussian gods (Peckols, Perkunas, Potrimpo) — Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-3" data-title="Prussian gods (Peckols, Perkunas, Potrimpo) — Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Prussian_gods_%28Peckols%2C_Perkunas%2C_Potrimpo%29.jpg/960px-Prussian_gods_%28Peckols%2C_Perkunas%2C_Potrimpo%29.jpg" alt="Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Prussian gods (Peckols, Perkunas, Potrimpo) — Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="House of Perkūnas, Kaunas, Lithuania - Diliff — The exterior of House of Perkūnas in Kaunas, Lithuania Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-4" data-title="House of Perkūnas, Kaunas, Lithuania - Diliff — The exterior of House of Perkūnas in Kaunas, Lithuania Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/House_of_Perk%C5%ABnas%2C_Kaunas%2C_Lithuania_-_Diliff.jpg/960px-House_of_Perk%C5%ABnas%2C_Kaunas%2C_Lithuania_-_Diliff.jpg" alt="The exterior of House of Perkūnas in Kaunas, Lithuania." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>House of Perkūnas, Kaunas, Lithuania - Diliff — The exterior of House of Perkūnas in Kaunas, Lithuania</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Vladas Stumbras „Perkūnas“ (2) — Vladas Stumbras &quot;Perkūnas&quot; (1979), Hill of Witches, Juodkrantė Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-5" data-title="Vladas Stumbras „Perkūnas“ (2) — Vladas Stumbras &quot;Perkūnas&quot; (1979), Hill of Witches, Juodkrantė Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Vladas_Stumbras_%E2%80%9EPerk%C5%ABnas%E2%80%9C_%282%29.jpg/960px-Vladas_Stumbras_%E2%80%9EPerk%C5%ABnas%E2%80%9C_%282%29.jpg" alt="Vladas Stumbras &quot;Perkūnas&quot; (1979), Hill of Witches, Juodkrantė." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Vladas Stumbras „Perkūnas“ (2) — Vladas Stumbras &quot;Perkūnas&quot; (1979), Hill of Witches, Juodkrantė</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="House of Perkunas — House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania Photo/art: KillerTapeSearchParty Perkūnas" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-perkunas-6" data-title="House of Perkunas — House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania Photo/art: KillerTapeSearchParty Perkūnas" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/House_of_Perkunas.jpg/960px-House_of_Perkunas.jpg" alt="House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>House of Perkunas — House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania Photo/art: KillerTapeSearchParty</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-perkunas-1","kind":"temple","templeId":"perkunas","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Perkunas_of_Kernav%C4%97s.jpg/960px-Perkunas_of_Kernav%C4%97s.jpg","title":"Perkunas of Kernavės — A statue depicting Perkūnas, Lithuanian thunder god","alt":"A statue depicting Perkūnas, Lithuanian thunder god. The photograph was taken in 1972, before 1973 therefore subject to 1928 fundamentals, it is a collective work and it is photograph of an ancient work.","creator":"Society for the Protection of Monuments and Local History of the Lithuanian SSR (Lietuvos TSR paminklų apsaugos ir kraštotyros draugijos)","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Perkunas_of_Kernavės.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Perkunas_of_Kernavės.jpg","canonicalUrl":"https://punicodex.com/perkunas/art/?view=temple&art=gallery-perkunas-1","attribution":"Perkunas of Kernavės — A statue depicting Perkūnas, Lithuanian thunder god by Society for the Protection of Monuments and Local History of the Lithuanian SSR (Lietuvos TSR paminklų apsaugos ir kraštotyros draugijos), Public domain, via https://commons.wikimedia.org/wiki/File:Perkunas_of_Kernavės.jpg","provenance":"A statue depicting Perkūnas, Lithuanian thunder god. The photograph was taken in 1972, before 1973 therefore subject to 1928 fundamentals, it is a collective work and it is photograph of an ancient work.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-perkunas-2","kind":"temple","templeId":"perkunas","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Stone_sculpture_of_the_Lithuanian_god_Perk%C5%ABnas_%28A._Raudonis%29%2C_1930%2C_Lithuania.jpg/960px-Stone_sculpture_of_the_Lithuanian_god_Perk%C5%ABnas_%28A._Raudonis%29%2C_1930%2C_Lithuania.jpg","title":"Stone sculpture of the Lithuanian god Perkūnas (A","alt":"Stone sculpture of the Lithuanian god Perkūnas (A. Raudonis), 1930, Lithuania","creator":"unknown","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Stone_sculpture_of_the_Lithuanian_god_Perkūnas_(A._Raudonis),_1930,_Lithuania.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Stone_sculpture_of_the_Lithuanian_god_Perkūnas_(A._Raudonis),_1930,_Lithuania.jpg","canonicalUrl":"https://punicodex.com/perkunas/art/?view=temple&art=gallery-perkunas-2","attribution":"Stone sculpture of the Lithuanian god Perkūnas (A by unknown, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Stone_sculpture_of_the_Lithuanian_god_Perkūnas_(A._Raudonis),_1930,_Lithuania.jpg","provenance":"Stone sculpture of the Lithuanian god Perkūnas (A. Raudonis), 1930, Lithuania","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-perkunas-3","kind":"temple","templeId":"perkunas","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Prussian_gods_%28Peckols%2C_Perkunas%2C_Potrimpo%29.jpg/960px-Prussian_gods_%28Peckols%2C_Perkunas%2C_Potrimpo%29.jpg","title":"Prussian gods (Peckols, Perkunas, Potrimpo) — Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo","alt":"Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo .","creator":"Caspar Hennenberger / After Simon Grunau","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Prussian_gods_(Peckols,_Perkunas,_Potrimpo).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Prussian_gods_(Peckols,_Perkunas,_Potrimpo).jpg","canonicalUrl":"https://punicodex.com/perkunas/art/?view=temple&art=gallery-perkunas-3","attribution":"Prussian gods (Peckols, Perkunas, Potrimpo) — Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo by Caspar Hennenberger / After Simon Grunau, Public domain, via https://commons.wikimedia.org/wiki/File:Prussian_gods_(Peckols,_Perkunas,_Potrimpo).jpg","provenance":"Prussian pagan Gods of the Baltic mythology : Peckols , Perkūnas , Potrimpo .","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-perkunas-4","kind":"temple","templeId":"perkunas","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/House_of_Perk%C5%ABnas%2C_Kaunas%2C_Lithuania_-_Diliff.jpg/960px-House_of_Perk%C5%ABnas%2C_Kaunas%2C_Lithuania_-_Diliff.jpg","title":"House of Perkūnas, Kaunas, Lithuania - Diliff — The exterior of House of Perkūnas in Kaunas, Lithuania","alt":"The exterior of House of Perkūnas in Kaunas, Lithuania.","creator":"Diliff","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:House_of_Perkūnas,_Kaunas,_Lithuania_-_Diliff.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:House_of_Perkūnas,_Kaunas,_Lithuania_-_Diliff.jpg","canonicalUrl":"https://punicodex.com/perkunas/art/?view=temple&art=gallery-perkunas-4","attribution":"House of Perkūnas, Kaunas, Lithuania - Diliff — The exterior of House of Perkūnas in Kaunas, Lithuania by Diliff, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:House_of_Perkūnas,_Kaunas,_Lithuania_-_Diliff.jpg","provenance":"The exterior of House of Perkūnas in Kaunas, Lithuania.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-perkunas-5","kind":"temple","templeId":"perkunas","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Vladas_Stumbras_%E2%80%9EPerk%C5%ABnas%E2%80%9C_%282%29.jpg/960px-Vladas_Stumbras_%E2%80%9EPerk%C5%ABnas%E2%80%9C_%282%29.jpg","title":"Vladas Stumbras „Perkūnas“ (2) — Vladas Stumbras \"Perkūnas\" (1979), Hill of Witches, Juodkrantė","alt":"Vladas Stumbras \"Perkūnas\" (1979), Hill of Witches, Juodkrantė.","creator":"Turaids","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Vladas_Stumbras_„Perkūnas“_(2).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Vladas_Stumbras_„Perkūnas“_(2).jpg","canonicalUrl":"https://punicodex.com/perkunas/art/?view=temple&art=gallery-perkunas-5","attribution":"Vladas Stumbras „Perkūnas“ (2) — Vladas Stumbras \"Perkūnas\" (1979), Hill of Witches, Juodkrantė by Turaids, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Vladas_Stumbras_„Perkūnas“_(2).jpg","provenance":"Vladas Stumbras \"Perkūnas\" (1979), Hill of Witches, Juodkrantė.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-perkunas-6","kind":"temple","templeId":"perkunas","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/House_of_Perkunas.jpg/960px-House_of_Perkunas.jpg","title":"House of Perkunas — House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania Photo/art: KillerTapeSearchParty","alt":"House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania","creator":"KillerTapeSearchParty","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:House_of_Perkunas.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:House_of_Perkunas.jpg","canonicalUrl":"https://punicodex.com/perkunas/art/?view=temple&art=gallery-perkunas-6","attribution":"House of Perkunas — House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania Photo/art: KillerTapeSearchParty by KillerTapeSearchParty, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:House_of_Perkunas.jpg","provenance":"House of Perkunas, one of the oldest surviving buildings in Kaunas, Lithuania","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Perkūnas — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/perkunas/art/?view=creatives' },
     commons: { t: 'The Commons — Perkūnas studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/perkunas/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

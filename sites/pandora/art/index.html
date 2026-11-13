@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Pandōra — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/pandora/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Pandōra","item":"https://punicodex.com/pandora/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/pandora/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/pandora/" class="nav-link active">Store</a>
+                    <a href="/store/pandora/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/pandora/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/pandora/" class="nav-link active">Store</a>
+            <a href="/store/pandora/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/pandora/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,27 +173,27 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Pandora Loison cour Carree Louvre — Pandora (1861), by Pierre Loison (1816-1886) Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-1" data-title="Pandora Loison cour Carree Louvre — Pandora (1861), by Pierre Loison (1816-1886) Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Pandora_Loison_cour_Carree_Louvre.jpg/960px-Pandora_Loison_cour_Carree_Louvre.jpg" alt="Pandora (1861), by Pierre Loison (1816-1886). East façade of the Cour Carrée in the Louvre palace, Paris." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Pandora Loison cour Carree Louvre — Pandora (1861), by Pierre Loison (1816-1886)</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.5</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="John Gibson-Pandora-Victoria and Albert Museum-2 — Pandora by John Gibson at Victoria and Albert Museum Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-2" data-title="John Gibson-Pandora-Victoria and Albert Museum-2 — Pandora by John Gibson at Victoria and Albert Museum Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg/960px-John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg" alt="Pandora by John Gibson at Victoria and Albert Museum." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>John Gibson-Pandora-Victoria and Albert Museum-2 — Pandora by John Gibson at Victoria and Albert Museum</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Alexandre Cabanel - Pandora - Walters 3799 — Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of &quot;High Society Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-3" data-title="Alexandre Cabanel - Pandora - Walters 3799 — Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of &quot;High Society Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg/960px-Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg" alt="Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of &quot;High Society.&quot; Here, he depicts the Swedish soprano Christine Nilsson as Pandora, the woman in Greek mythology who op…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Alexandre Cabanel - Pandora - Walters 3799 — Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of &quot;High Society</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Pandora-1879 Photo/art: Dante Gabriel Rossetti Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-4" data-title="Pandora-1879 Photo/art: Dante Gabriel Rossetti Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Pandora-1879.jpg/960px-Pandora-1879.jpg" alt="Pandora-1879.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Pandora-1879 Photo/art: Dante Gabriel Rossetti</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ca' Rezzonico - Il vaso di Pandora (Inv Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-5" data-title="Ca' Rezzonico - Il vaso di Pandora (Inv Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Ca%27_Rezzonico_-_Il_vaso_di_Pandora_%28Inv.70%29_-_Pietro_della_Vecchia.jpg/960px-Ca%27_Rezzonico_-_Il_vaso_di_Pandora_%28Inv.70%29_-_Pietro_della_Vecchia.jpg" alt="Ca' Rezzonico - Il vaso di Pandora (Inv.70) - Pietro della Vecchia.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ca' Rezzonico - Il vaso di Pandora (Inv</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -206,27 +210,27 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Pandora Loison cour Carree Louvre — Pandora (1861), by Pierre Loison (1816-1886) Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-1" data-title="Pandora Loison cour Carree Louvre — Pandora (1861), by Pierre Loison (1816-1886) Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Pandora_Loison_cour_Carree_Louvre.jpg/960px-Pandora_Loison_cour_Carree_Louvre.jpg" alt="Pandora (1861), by Pierre Loison (1816-1886). East façade of the Cour Carrée in the Louvre palace, Paris." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Pandora Loison cour Carree Louvre — Pandora (1861), by Pierre Loison (1816-1886)</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.5</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="John Gibson-Pandora-Victoria and Albert Museum-2 — Pandora by John Gibson at Victoria and Albert Museum Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-2" data-title="John Gibson-Pandora-Victoria and Albert Museum-2 — Pandora by John Gibson at Victoria and Albert Museum Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg/960px-John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg" alt="Pandora by John Gibson at Victoria and Albert Museum." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>John Gibson-Pandora-Victoria and Albert Museum-2 — Pandora by John Gibson at Victoria and Albert Museum</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Alexandre Cabanel - Pandora - Walters 3799 — Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of &quot;High Society Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-3" data-title="Alexandre Cabanel - Pandora - Walters 3799 — Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of &quot;High Society Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg/960px-Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg" alt="Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of &quot;High Society.&quot; Here, he depicts the Swedish soprano Christine Nilsson as Pandora, the woman in Greek mythology who op…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Alexandre Cabanel - Pandora - Walters 3799 — Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of &quot;High Society</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Pandora-1879 Photo/art: Dante Gabriel Rossetti Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-4" data-title="Pandora-1879 Photo/art: Dante Gabriel Rossetti Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Pandora-1879.jpg/960px-Pandora-1879.jpg" alt="Pandora-1879.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Pandora-1879 Photo/art: Dante Gabriel Rossetti</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ca' Rezzonico - Il vaso di Pandora (Inv Pandōra" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pandora-5" data-title="Ca' Rezzonico - Il vaso di Pandora (Inv Pandōra" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Ca%27_Rezzonico_-_Il_vaso_di_Pandora_%28Inv.70%29_-_Pietro_della_Vecchia.jpg/960px-Ca%27_Rezzonico_-_Il_vaso_di_Pandora_%28Inv.70%29_-_Pietro_della_Vecchia.jpg" alt="Ca' Rezzonico - Il vaso di Pandora (Inv.70) - Pietro della Vecchia.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ca' Rezzonico - Il vaso di Pandora (Inv</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -330,8 +334,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-pandora-pandora-anime-mascot-v1","templeId":"pandora","title":"Pandōra — anime mascot","src":"/assets/ai-commons/pandora-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Pandōra — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/pandora/art/?view=commons","canonicalUrl":"https://punicodex.com/pandora/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.632Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."},{"id":"commons-pandora-pandora-v1.2","templeId":"pandora","title":"Pandōra — study v1.2","src":"/assets/ai-commons/pandora-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Pandōra — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/pandora/art/?view=commons","canonicalUrl":"https://punicodex.com/pandora/art/?view=commons","generatedAt":"2026-11-07T05:20:46.688Z","recordedAt":"2026-11-12T06:12:58.632Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":142177010,"prompt":"Pandōra, the first woman, ornate jar, curious gaze,, ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-pandora-1","kind":"temple","templeId":"pandora","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Pandora_Loison_cour_Carree_Louvre.jpg/960px-Pandora_Loison_cour_Carree_Louvre.jpg","title":"Pandora Loison cour Carree Louvre — Pandora (1861), by Pierre Loison (1816-1886)","alt":"Pandora (1861), by Pierre Loison (1816-1886). East façade of the Cour Carrée in the Louvre palace, Paris.","creator":"commons.wikimedia.org","license":"CC BY 2.5","licenseUrl":"https://commons.wikimedia.org/wiki/File:Pandora_Loison_cour_Carree_Louvre.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Pandora_Loison_cour_Carree_Louvre.jpg","canonicalUrl":"https://punicodex.com/pandora/art/?view=temple&art=gallery-pandora-1","attribution":"Pandora Loison cour Carree Louvre — Pandora (1861), by Pierre Loison (1816-1886) by commons.wikimedia.org, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Pandora_Loison_cour_Carree_Louvre.jpg","provenance":"Pandora (1861), by Pierre Loison (1816-1886). East façade of the Cour Carrée in the Louvre palace, Paris.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-pandora-2","kind":"temple","templeId":"pandora","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg/960px-John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg","title":"John Gibson-Pandora-Victoria and Albert Museum-2 — Pandora by John Gibson at Victoria and Albert Museum","alt":"Pandora by John Gibson at Victoria and Albert Museum.","creator":"Yair Haklai","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg","canonicalUrl":"https://punicodex.com/pandora/art/?view=temple&art=gallery-pandora-2","attribution":"John Gibson-Pandora-Victoria and Albert Museum-2 — Pandora by John Gibson at Victoria and Albert Museum by Yair Haklai, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:John_Gibson-Pandora-Victoria_and_Albert_Museum-2.jpg","provenance":"Pandora by John Gibson at Victoria and Albert Museum.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-pandora-3","kind":"temple","templeId":"pandora","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg/960px-Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg","title":"Alexandre Cabanel - Pandora - Walters 3799 — Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of \"High Society","alt":"Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of \"High Society.\" Here, he depicts the Swedish soprano Christine Nilsson as Pandora, the woman in Greek mythology who op…","creator":"Alexandre Cabanel","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg","canonicalUrl":"https://punicodex.com/pandora/art/?view=temple&art=gallery-pandora-3","attribution":"Alexandre Cabanel - Pandora - Walters 3799 — Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of \"High Society by Alexandre Cabanel, Public domain, via https://commons.wikimedia.org/wiki/File:Alexandre_Cabanel_-_Pandora_-_Walters_3799.jpg","provenance":"Cabanel, a professor of painting at the École des Beaux-Arts in Paris, specialized in portraits of \"High Society.\" Here, he depicts the Swedish soprano Christine Nilsson as Pandora, the woman in Greek mythology who op…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-pandora-4","kind":"temple","templeId":"pandora","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Pandora-1879.jpg/960px-Pandora-1879.jpg","title":"Pandora-1879 Photo/art: Dante Gabriel Rossetti","alt":"Pandora-1879.jpg","creator":"Dante Gabriel Rossetti","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Pandora-1879.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Pandora-1879.jpg","canonicalUrl":"https://punicodex.com/pandora/art/?view=temple&art=gallery-pandora-4","attribution":"Pandora-1879 Photo/art: Dante Gabriel Rossetti by Dante Gabriel Rossetti, Public domain, via https://commons.wikimedia.org/wiki/File:Pandora-1879.jpg","provenance":"Pandora-1879.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-pandora-5","kind":"temple","templeId":"pandora","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Ca%27_Rezzonico_-_Il_vaso_di_Pandora_%28Inv.70%29_-_Pietro_della_Vecchia.jpg/960px-Ca%27_Rezzonico_-_Il_vaso_di_Pandora_%28Inv.70%29_-_Pietro_della_Vecchia.jpg","title":"Ca' Rezzonico - Il vaso di Pandora (Inv","alt":"Ca' Rezzonico - Il vaso di Pandora (Inv.70) - Pietro della Vecchia.jpg","creator":"Didier Descouens","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Ca'_Rezzonico_-_Il_vaso_di_Pandora_(Inv.70)_-_Pietro_della_Vecchia.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Ca'_Rezzonico_-_Il_vaso_di_Pandora_(Inv.70)_-_Pietro_della_Vecchia.jpg","canonicalUrl":"https://punicodex.com/pandora/art/?view=temple&art=gallery-pandora-5","attribution":"Ca' Rezzonico - Il vaso di Pandora (Inv by Didier Descouens, Public domain, via https://commons.wikimedia.org/wiki/File:Ca'_Rezzonico_-_Il_vaso_di_Pandora_(Inv.70)_-_Pietro_della_Vecchia.jpg","provenance":"Ca' Rezzonico - Il vaso di Pandora (Inv.70) - Pietro della Vecchia.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-pandora-pandora-anime-mascot-v1","templeId":"pandora","title":"Pandōra — anime mascot","src":"/assets/ai-commons/pandora-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Pandōra — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/pandora/art/?view=commons","canonicalUrl":"https://punicodex.com/pandora/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.632Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."},{"id":"commons-pandora-pandora-v1.2","templeId":"pandora","title":"Pandōra — study v1.2","src":"/assets/ai-commons/pandora-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Pandōra — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/pandora/art/?view=commons","canonicalUrl":"https://punicodex.com/pandora/art/?view=commons","generatedAt":"2026-11-07T05:20:46.688Z","recordedAt":"2026-11-12T06:12:58.632Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":142177010,"prompt":"Pandōra, the first woman, ornate jar, curious gaze,, ancient Greek black-figure vase painting style, gold figure on pure black background, fine engraved line detail, full body, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -345,8 +350,14 @@
     creatives: { t: 'Creatives for Pandōra — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/pandora/art/?view=creatives' },
     commons: { t: 'The Commons — Pandōra studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/pandora/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -357,6 +368,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -375,7 +387,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

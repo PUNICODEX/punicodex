@@ -78,11 +78,15 @@ if (verdict === 'keep') {
     spec.wins++;
     lib.traditions[spec.tradition].wins++;
   }
-  // Move the file into the keepers folder when promoted from review.
+  // Move the file into the keepers folder from the inbox or review. Rejected
+  // work stays in review for human second-pass curation; nothing is deleted.
   const inReview = path.join(ROOT, 'ai-art', 'review', path.basename(file));
+  const inbox = path.join(ROOT, 'ai-art', path.basename(file));
   const keeperDest = path.join(ROOT, 'ai-art', 'keepers', path.basename(file));
-  if (fs.existsSync(inReview)) {
-    fs.renameSync(inReview, keeperDest);
+  const source = fs.existsSync(inReview) ? inReview : inbox;
+  if (fs.existsSync(source) && source !== keeperDest) {
+    fs.mkdirSync(path.dirname(keeperDest), { recursive: true });
+    fs.renameSync(source, keeperDest);
     console.log(`  ↑ promoted to ai-art/keepers/${path.basename(file)}`);
   }
 } else {

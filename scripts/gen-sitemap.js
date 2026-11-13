@@ -245,6 +245,7 @@ for (const product of POD.products) {
   const templeId = product.temple || 'punicodex';
   if (!storeCollectionIds.has(templeId)) {
     storeCollectionIds.add(templeId);
+    if (flagshipIds.has(templeId)) xml += urlEntry(`/store/${templeId}/`, '0.6', 'weekly');
     xml += urlEntry(`/store/merch/${templeId}/`, '0.6', 'weekly');
   }
   xml += urlEntry(`/store/merch/${templeId}/${product.id.split('-').pop()}/`, '0.5', 'weekly');
@@ -262,5 +263,6 @@ const urlCount =
   LEXICON.length +
   flagshipIds.size * 10 +
   storeCollectionIds.size +
+  flagshipIds.size +
   POD.count;
 console.log(`Sitemap generated: ${urlCount} URLs`);

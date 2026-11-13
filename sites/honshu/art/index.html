@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=fb5254dd04">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Honshū — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/honshu/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Honshū","item":"https://punicodex.com/honshu/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/honshu/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/honshu/" class="nav-link active">Store</a>
+                    <a href="/store/honshu/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/honshu/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/honshu/" class="nav-link active">Store</a>
+            <a href="/store/honshu/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/honshu/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,22 +173,22 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Satellite image of Honshu in May 2003 — Satellite image of Honshu, the biggest island of Japan Honshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-honshu-1" data-title="Satellite image of Honshu in May 2003 — Satellite image of Honshu, the biggest island of Japan Honshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Satellite_image_of_Honshu_in_May_2003.png/960px-Satellite_image_of_Honshu_in_May_2003.png" alt="Satellite image of Honshu, the biggest island of Japan. Taken from NASA's Visible Earth http://visibleearth.nasa.gov/cgi-bin/viewrecord?25391" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Satellite image of Honshu in May 2003 — Satellite image of Honshu, the biggest island of Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Japan Honshu large — Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook Honshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-honshu-2" data-title="Japan Honshu large — Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook Honshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Japan_Honshu_large.png/960px-Japan_Honshu_large.png" alt="Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Japan Honshu large — Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Snow on Japan's Honshu Island (MODIS 2024-01-14) — On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white Honshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-honshu-3" data-title="Snow on Japan's Honshu Island (MODIS 2024-01-14) — On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white Honshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Snow_on_Japan%27s_Honshu_Island_%28MODIS_2024-01-14%29.jpg/960px-Snow_on_Japan%27s_Honshu_Island_%28MODIS_2024-01-14%29.jpg" alt="On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white. The Moderate Resolution Imaging Spectroradiometer (MODIS) on NASA’s Aqua satellite captured a true-c…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Snow on Japan's Honshu Island (MODIS 2024-01-14) — On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Garnetite from the Miocene of Japan Honshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-honshu-4" data-title="Garnetite from the Miocene of Japan Honshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Garnetite_%28apparently_a_skarn%29_%28Middle_Miocene%3B_garnet_vein_near_Kouse_Magnetite_Mine%2C_near_Tenkawa%2C_Honshu_Island%2C_Japan%29_2_%2833864429995%29.jpg/960px-Garnetite_%28apparently_a_skarn%29_%28Middle_Miocene%3B_garnet_vein_near_Kouse_Magnetite_Mine%2C_near_Tenkawa%2C_Honshu_Island%2C_Japan%29_2_%2833864429995%29.jpg" alt="Garnetite from the Miocene of Japan. (~4.0 cm across at its widest) This is a coarsely-crystalline, garnet-dominated, crystalline metamorphic rock called garnetite. Garnet is a group of silicate minerals. These are an…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Garnetite from the Miocene of Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
@@ -196,22 +200,22 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Satellite image of Honshu in May 2003 — Satellite image of Honshu, the biggest island of Japan Honshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-honshu-1" data-title="Satellite image of Honshu in May 2003 — Satellite image of Honshu, the biggest island of Japan Honshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Satellite_image_of_Honshu_in_May_2003.png/960px-Satellite_image_of_Honshu_in_May_2003.png" alt="Satellite image of Honshu, the biggest island of Japan. Taken from NASA's Visible Earth http://visibleearth.nasa.gov/cgi-bin/viewrecord?25391" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Satellite image of Honshu in May 2003 — Satellite image of Honshu, the biggest island of Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Japan Honshu large — Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook Honshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-honshu-2" data-title="Japan Honshu large — Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook Honshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Japan_Honshu_large.png/960px-Japan_Honshu_large.png" alt="Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Japan Honshu large — Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Snow on Japan's Honshu Island (MODIS 2024-01-14) — On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white Honshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-honshu-3" data-title="Snow on Japan's Honshu Island (MODIS 2024-01-14) — On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white Honshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Snow_on_Japan%27s_Honshu_Island_%28MODIS_2024-01-14%29.jpg/960px-Snow_on_Japan%27s_Honshu_Island_%28MODIS_2024-01-14%29.jpg" alt="On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white. The Moderate Resolution Imaging Spectroradiometer (MODIS) on NASA’s Aqua satellite captured a true-c…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Snow on Japan's Honshu Island (MODIS 2024-01-14) — On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Garnetite from the Miocene of Japan Honshū" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-honshu-4" data-title="Garnetite from the Miocene of Japan Honshū" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Garnetite_%28apparently_a_skarn%29_%28Middle_Miocene%3B_garnet_vein_near_Kouse_Magnetite_Mine%2C_near_Tenkawa%2C_Honshu_Island%2C_Japan%29_2_%2833864429995%29.jpg/960px-Garnetite_%28apparently_a_skarn%29_%28Middle_Miocene%3B_garnet_vein_near_Kouse_Magnetite_Mine%2C_near_Tenkawa%2C_Honshu_Island%2C_Japan%29_2_%2833864429995%29.jpg" alt="Garnetite from the Miocene of Japan. (~4.0 cm across at its widest) This is a coarsely-crystalline, garnet-dominated, crystalline metamorphic rock called garnetite. Garnet is a group of silicate minerals. These are an…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Garnetite from the Miocene of Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
@@ -310,8 +314,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-honshu-honshu-anime-mascot-v1","templeId":"honshu","title":"Honshū — anime mascot","src":"/assets/ai-commons/honshu-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Honshū — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/honshu/art/?view=commons","canonicalUrl":"https://punicodex.com/honshu/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.630Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-honshu-1","kind":"temple","templeId":"honshu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Satellite_image_of_Honshu_in_May_2003.png/960px-Satellite_image_of_Honshu_in_May_2003.png","title":"Satellite image of Honshu in May 2003 — Satellite image of Honshu, the biggest island of Japan","alt":"Satellite image of Honshu, the biggest island of Japan. Taken from NASA's Visible Earth http://visibleearth.nasa.gov/cgi-bin/viewrecord?25391","creator":"Jeff Schmaltz, MODIS Rapid Response Team, NASA/GSFC","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Satellite_image_of_Honshu_in_May_2003.png","sourceUrl":"https://commons.wikimedia.org/wiki/File:Satellite_image_of_Honshu_in_May_2003.png","canonicalUrl":"https://punicodex.com/honshu/art/?view=temple&art=gallery-honshu-1","attribution":"Satellite image of Honshu in May 2003 — Satellite image of Honshu, the biggest island of Japan by Jeff Schmaltz, MODIS Rapid Response Team, NASA/GSFC, Public domain, via https://commons.wikimedia.org/wiki/File:Satellite_image_of_Honshu_in_May_2003.png","provenance":"Satellite image of Honshu, the biggest island of Japan. Taken from NASA's Visible Earth http://visibleearth.nasa.gov/cgi-bin/viewrecord?25391","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-honshu-2","kind":"temple","templeId":"honshu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Japan_Honshu_large.png/960px-Japan_Honshu_large.png","title":"Japan Honshu large — Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook","alt":"Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook.","creator":"No machine-readable author provided. Ningyou assumed (based on copyright claims).","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Japan_Honshu_large.png","sourceUrl":"https://commons.wikimedia.org/wiki/File:Japan_Honshu_large.png","canonicalUrl":"https://punicodex.com/honshu/art/?view=temple&art=gallery-honshu-2","attribution":"Japan Honshu large — Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook by No machine-readable author provided. Ningyou assumed (based on copyright claims)., Public domain, via https://commons.wikimedia.org/wiki/File:Japan_Honshu_large.png","provenance":"Large size map of Japan with Honshu highlighted, self made but originally based on a japanese mapbook.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-honshu-3","kind":"temple","templeId":"honshu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Snow_on_Japan%27s_Honshu_Island_%28MODIS_2024-01-14%29.jpg/960px-Snow_on_Japan%27s_Honshu_Island_%28MODIS_2024-01-14%29.jpg","title":"Snow on Japan's Honshu Island (MODIS 2024-01-14) — On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white","alt":"On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white. The Moderate Resolution Imaging Spectroradiometer (MODIS) on NASA’s Aqua satellite captured a true-c…","creator":"MODIS Land Rapid Response Team, NASA GSFC","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Snow_on_Japan's_Honshu_Island_(MODIS_2024-01-14).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Snow_on_Japan's_Honshu_Island_(MODIS_2024-01-14).jpg","canonicalUrl":"https://punicodex.com/honshu/art/?view=temple&art=gallery-honshu-3","attribution":"Snow on Japan's Honshu Island (MODIS 2024-01-14) — On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white by MODIS Land Rapid Response Team, NASA GSFC, Public domain, via https://commons.wikimedia.org/wiki/File:Snow_on_Japan's_Honshu_Island_(MODIS_2024-01-14).jpg","provenance":"On January 11, 2024, cloudy skies opened over northern Honshu Island, Japan, to reveal a scene painted winter-white. The Moderate Resolution Imaging Spectroradiometer (MODIS) on NASA’s Aqua satellite captured a true-c…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-honshu-4","kind":"temple","templeId":"honshu","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Garnetite_%28apparently_a_skarn%29_%28Middle_Miocene%3B_garnet_vein_near_Kouse_Magnetite_Mine%2C_near_Tenkawa%2C_Honshu_Island%2C_Japan%29_2_%2833864429995%29.jpg/960px-Garnetite_%28apparently_a_skarn%29_%28Middle_Miocene%3B_garnet_vein_near_Kouse_Magnetite_Mine%2C_near_Tenkawa%2C_Honshu_Island%2C_Japan%29_2_%2833864429995%29.jpg","title":"Garnetite from the Miocene of Japan","alt":"Garnetite from the Miocene of Japan. (~4.0 cm across at its widest) This is a coarsely-crystalline, garnet-dominated, crystalline metamorphic rock called garnetite. Garnet is a group of silicate minerals. These are an…","creator":"James St. John","license":"CC BY 2.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Garnetite_(apparently_a_skarn)_(Middle_Miocene;_garnet_vein_near_Kouse_Magnetite_Mine,_near_Tenkawa,_Honshu_Island,_Japan)_2_(33864429995).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Garnetite_(apparently_a_skarn)_(Middle_Miocene;_garnet_vein_near_Kouse_Magnetite_Mine,_near_Tenkawa,_Honshu_Island,_Japan)_2_(33864429995).jpg","canonicalUrl":"https://punicodex.com/honshu/art/?view=temple&art=gallery-honshu-4","attribution":"Garnetite from the Miocene of Japan by James St. John, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Garnetite_(apparently_a_skarn)_(Middle_Miocene;_garnet_vein_near_Kouse_Magnetite_Mine,_near_Tenkawa,_Honshu_Island,_Japan)_2_(33864429995).jpg","provenance":"Garnetite from the Miocene of Japan. (~4.0 cm across at its widest) This is a coarsely-crystalline, garnet-dominated, crystalline metamorphic rock called garnetite. Garnet is a group of silicate minerals. These are an…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-honshu-honshu-anime-mascot-v1","templeId":"honshu","title":"Honshū — anime mascot","src":"/assets/ai-commons/honshu-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Honshū — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/honshu/art/?view=commons","canonicalUrl":"https://punicodex.com/honshu/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.630Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -325,8 +330,14 @@
     creatives: { t: 'Creatives for Honshū — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/honshu/art/?view=creatives' },
     commons: { t: 'The Commons — Honshū studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/honshu/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -337,6 +348,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -355,7 +367,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

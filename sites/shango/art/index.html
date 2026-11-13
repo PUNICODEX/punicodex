@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=6473feaf3a">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Ṣàngó — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/shango/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Ṣàngó","item":"https://punicodex.com/shango/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/shango/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/shango/" class="nav-link active">Store</a>
+                    <a href="/store/shango/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/shango/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/shango/" class="nav-link active">Store</a>
+            <a href="/store/shango/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/shango/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-1" data-title="Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Shango_devotee_figure%2C_Yoruba_people%2C_Southwestern_Nigeria%2C_late_19th_century_AD%2C_wood%2C_pigment_-_Krannert_Art_Museum%2C_UIUC_-_DSC06208.jpg/960px-Shango_devotee_figure%2C_Yoruba_people%2C_Southwestern_Nigeria%2C_late_19th_century_AD%2C_wood%2C_pigment_-_Krannert_Art_Museum%2C_UIUC_-_DSC06208.jpg" alt="Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA. This work is old enough so that it is in the public domain." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Sango in Nara Prefecture — Location Map of Sango in Nara Prefecture, Japan Photo/art: user:alberth2 Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-2" data-title="Sango in Nara Prefecture — Location Map of Sango in Nara Prefecture, Japan Photo/art: user:alberth2 Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Sango_in_Nara_Prefecture.png/960px-Sango_in_Nara_Prefecture.png" alt="Location Map of Sango in Nara Prefecture, Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Sango in Nara Prefecture — Location Map of Sango in Nara Prefecture, Japan Photo/art: user:alberth2</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Shango staff, oshe Shango, World Museum Liverpool — Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-3" data-title="Shango staff, oshe Shango, World Museum Liverpool — Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Shango_staff%2C_oshe_Shango%2C_World_Museum_Liverpool.JPG/960px-Shango_staff%2C_oshe_Shango%2C_World_Museum_Liverpool.JPG" alt="Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Shango staff, oshe Shango, World Museum Liverpool — Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan Photo/art: Nagono Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-4" data-title="3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan Photo/art: Nagono Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/3_Chome-12_Tatsunokita%2C_Sang%C5%8D-ch%C5%8D%2C_Ikoma-gun%2C_Nara-ken_636-0821%2C_Japan_-_panoramio.jpg/960px-3_Chome-12_Tatsunokita%2C_Sang%C5%8D-ch%C5%8D%2C_Ikoma-gun%2C_Nara-ken_636-0821%2C_Japan_-_panoramio.jpg" alt="3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan Photo/art: Nagono</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Brooklyn Museum 1992 Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-5" data-title="Brooklyn Museum 1992 Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_%282%29.jpg/960px-Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_%282%29.jpg" alt="This figure has been attributed to the workshop of the renowned Yoruba carver Toibo, of the town of Erin. It was probably carved in the 1920s or 1930s for the timi (king) of Ede (one of the historic Yoruba kingdoms), …" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Brooklyn Museum 1992</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Female figure with helmet like coiffure, painted with spots Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-6" data-title="Female figure with helmet like coiffure, painted with spots Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg/960px-Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg" alt="Female figure with helmet like coiffure, painted with spots. Large, bulging eyes, and cheek scarification marks. figure wears a striped skirt, and is set on a flat oval base. No legs. Condition: Worn with abrasions an…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Female figure with helmet like coiffure, painted with spots</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 3.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-1" data-title="Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Shango_devotee_figure%2C_Yoruba_people%2C_Southwestern_Nigeria%2C_late_19th_century_AD%2C_wood%2C_pigment_-_Krannert_Art_Museum%2C_UIUC_-_DSC06208.jpg/960px-Shango_devotee_figure%2C_Yoruba_people%2C_Southwestern_Nigeria%2C_late_19th_century_AD%2C_wood%2C_pigment_-_Krannert_Art_Museum%2C_UIUC_-_DSC06208.jpg" alt="Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA. This work is old enough so that it is in the public domain." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Sango in Nara Prefecture — Location Map of Sango in Nara Prefecture, Japan Photo/art: user:alberth2 Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-2" data-title="Sango in Nara Prefecture — Location Map of Sango in Nara Prefecture, Japan Photo/art: user:alberth2 Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Sango_in_Nara_Prefecture.png/960px-Sango_in_Nara_Prefecture.png" alt="Location Map of Sango in Nara Prefecture, Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Sango in Nara Prefecture — Location Map of Sango in Nara Prefecture, Japan Photo/art: user:alberth2</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Shango staff, oshe Shango, World Museum Liverpool — Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-3" data-title="Shango staff, oshe Shango, World Museum Liverpool — Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Shango_staff%2C_oshe_Shango%2C_World_Museum_Liverpool.JPG/960px-Shango_staff%2C_oshe_Shango%2C_World_Museum_Liverpool.JPG" alt="Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Shango staff, oshe Shango, World Museum Liverpool — Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan Photo/art: Nagono Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-4" data-title="3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan Photo/art: Nagono Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/3_Chome-12_Tatsunokita%2C_Sang%C5%8D-ch%C5%8D%2C_Ikoma-gun%2C_Nara-ken_636-0821%2C_Japan_-_panoramio.jpg/960px-3_Chome-12_Tatsunokita%2C_Sang%C5%8D-ch%C5%8D%2C_Ikoma-gun%2C_Nara-ken_636-0821%2C_Japan_-_panoramio.jpg" alt="3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan Photo/art: Nagono</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Brooklyn Museum 1992 Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-5" data-title="Brooklyn Museum 1992 Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_%282%29.jpg/960px-Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_%282%29.jpg" alt="This figure has been attributed to the workshop of the renowned Yoruba carver Toibo, of the town of Erin. It was probably carved in the 1920s or 1930s for the timi (king) of Ede (one of the historic Yoruba kingdoms), …" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Brooklyn Museum 1992</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Female figure with helmet like coiffure, painted with spots Ṣàngó" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shango-6" data-title="Female figure with helmet like coiffure, painted with spots Ṣàngó" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg/960px-Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg" alt="Female figure with helmet like coiffure, painted with spots. Large, bulging eyes, and cheek scarification marks. figure wears a striped skirt, and is set on a flat oval base. No legs. Condition: Worn with abrasions an…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Female figure with helmet like coiffure, painted with spots</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 3.0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-shango-1","kind":"temple","templeId":"shango","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Shango_devotee_figure%2C_Yoruba_people%2C_Southwestern_Nigeria%2C_late_19th_century_AD%2C_wood%2C_pigment_-_Krannert_Art_Museum%2C_UIUC_-_DSC06208.jpg/960px-Shango_devotee_figure%2C_Yoruba_people%2C_Southwestern_Nigeria%2C_late_19th_century_AD%2C_wood%2C_pigment_-_Krannert_Art_Museum%2C_UIUC_-_DSC06208.jpg","title":"Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA","alt":"Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA. This work is old enough so that it is in the public domain.","creator":"Daderot","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Shango_devotee_figure,_Yoruba_people,_Southwestern_Nigeria,_late_19th_century_AD,_wood,_pigment_-_Krannert_Art_Museum,_UIUC_-_DSC06208.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Shango_devotee_figure,_Yoruba_people,_Southwestern_Nigeria,_late_19th_century_AD,_wood,_pigment_-_Krannert_Art_Museum,_UIUC_-_DSC06208.jpg","canonicalUrl":"https://punicodex.com/shango/art/?view=temple&art=gallery-shango-1","attribution":"Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA by Daderot, Public domain, via https://commons.wikimedia.org/wiki/File:Shango_devotee_figure,_Yoruba_people,_Southwestern_Nigeria,_late_19th_century_AD,_wood,_pigment_-_Krannert_Art_Museum,_UIUC_-_DSC06208.jpg","provenance":"Exhibit in the Krannert Art Museum, University of Illinois at Urbana-Champaign - Urbana-Champaign, Illinois, USA. This work is old enough so that it is in the public domain.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-shango-2","kind":"temple","templeId":"shango","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Sango_in_Nara_Prefecture.png/960px-Sango_in_Nara_Prefecture.png","title":"Sango in Nara Prefecture — Location Map of Sango in Nara Prefecture, Japan Photo/art: user:alberth2","alt":"Location Map of Sango in Nara Prefecture, Japan","creator":"user:alberth2","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Sango_in_Nara_Prefecture.png","sourceUrl":"https://commons.wikimedia.org/wiki/File:Sango_in_Nara_Prefecture.png","canonicalUrl":"https://punicodex.com/shango/art/?view=temple&art=gallery-shango-2","attribution":"Sango in Nara Prefecture — Location Map of Sango in Nara Prefecture, Japan Photo/art: user:alberth2 by user:alberth2, Public domain, via https://commons.wikimedia.org/wiki/File:Sango_in_Nara_Prefecture.png","provenance":"Location Map of Sango in Nara Prefecture, Japan","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-shango-3","kind":"temple","templeId":"shango","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Shango_staff%2C_oshe_Shango%2C_World_Museum_Liverpool.JPG/960px-Shango_staff%2C_oshe_Shango%2C_World_Museum_Liverpool.JPG","title":"Shango staff, oshe Shango, World Museum Liverpool — Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England","alt":"Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England.","creator":"Rept0n1x","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Shango_staff,_oshe_Shango,_World_Museum_Liverpool.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Shango_staff,_oshe_Shango,_World_Museum_Liverpool.JPG","canonicalUrl":"https://punicodex.com/shango/art/?view=temple&art=gallery-shango-3","attribution":"Shango staff, oshe Shango, World Museum Liverpool — Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England by Rept0n1x, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Shango_staff,_oshe_Shango,_World_Museum_Liverpool.JPG","provenance":"Shango staff, oshe Shango (Yoruba, Odo Village, Ilorin district, Nigeria), World Museum Liverpool, England.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-shango-4","kind":"temple","templeId":"shango","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/3_Chome-12_Tatsunokita%2C_Sang%C5%8D-ch%C5%8D%2C_Ikoma-gun%2C_Nara-ken_636-0821%2C_Japan_-_panoramio.jpg/960px-3_Chome-12_Tatsunokita%2C_Sang%C5%8D-ch%C5%8D%2C_Ikoma-gun%2C_Nara-ken_636-0821%2C_Japan_-_panoramio.jpg","title":"3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan Photo/art: Nagono","alt":"3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan","creator":"Nagono","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:3_Chome-12_Tatsunokita,_Sangō-chō,_Ikoma-gun,_Nara-ken_636-0821,_Japan_-_panoramio.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:3_Chome-12_Tatsunokita,_Sangō-chō,_Ikoma-gun,_Nara-ken_636-0821,_Japan_-_panoramio.jpg","canonicalUrl":"https://punicodex.com/shango/art/?view=temple&art=gallery-shango-4","attribution":"3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan Photo/art: Nagono by Nagono, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:3_Chome-12_Tatsunokita,_Sangō-chō,_Ikoma-gun,_Nara-ken_636-0821,_Japan_-_panoramio.jpg","provenance":"3 Chome-12 Tatsunokita, Sangō-chō, Ikoma-gun, Nara-ken 636-0821, Japan","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-shango-5","kind":"temple","templeId":"shango","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_%282%29.jpg/960px-Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_%282%29.jpg","title":"Brooklyn Museum 1992","alt":"This figure has been attributed to the workshop of the renowned Yoruba carver Toibo, of the town of Erin. It was probably carved in the 1920s or 1930s for the timi (king) of Ede (one of the historic Yoruba kingdoms), …","creator":"Unknown authorUnknown author","license":"CC BY 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_(2).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_(2).jpg","canonicalUrl":"https://punicodex.com/shango/art/?view=temple&art=gallery-shango-5","attribution":"Brooklyn Museum 1992 by Unknown authorUnknown author, CC BY 3.0, via https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_1992.133.4_Figure_of_Shango_on_Horseback_(2).jpg","provenance":"This figure has been attributed to the workshop of the renowned Yoruba carver Toibo, of the town of Erin. It was probably carved in the 1920s or 1930s for the timi (king) of Ede (one of the historic Yoruba kingdoms), …","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-shango-6","kind":"temple","templeId":"shango","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg/960px-Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg","title":"Female figure with helmet like coiffure, painted with spots","alt":"Female figure with helmet like coiffure, painted with spots. Large, bulging eyes, and cheek scarification marks. figure wears a striped skirt, and is set on a flat oval base. No legs. Condition: Worn with abrasions an…","creator":"Unknown authorUnknown author","license":"CC BY 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg","canonicalUrl":"https://punicodex.com/shango/art/?view=temple&art=gallery-shango-6","attribution":"Female figure with helmet like coiffure, painted with spots by Unknown authorUnknown author, CC BY 3.0, via https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_22.1518_Figure_of_a_Devotee_of_Shango_Holding_an_Oshe_Shango.jpg","provenance":"Female figure with helmet like coiffure, painted with spots. Large, bulging eyes, and cheek scarification marks. figure wears a striped skirt, and is set on a flat oval base. No legs. Condition: Worn with abrasions an…","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Ṣàngó — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/shango/art/?view=creatives' },
     commons: { t: 'The Commons — Ṣàngó studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/shango/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

@@ -503,6 +503,44 @@ test('the store entrance and merch hall link the policy pages', () => {
   }
 });
 
+test('every flagship Store entrance is themed and distinct from Merch, with temple navigation throughout', () => {
+  for (const id of COLLECTION_IDS.filter((value) => value !== 'punicodex')) {
+    const entrance = read(`store/${id}/index.html`);
+    assert.ok(
+      entrance.includes(`href="/store/merch/${id}/"`),
+      `${id}: Merch department link missing`
+    );
+    assert.ok(entrance.includes(`href="/${id}/art/"`), `${id}: Art department link missing`);
+    assert.ok(entrance.includes('pc-fx-brilliant'), `${id}: spinning diamond missing`);
+    assert.ok(entrance.includes('id="temple-mobile-menu"'), `${id}: temple menu missing`);
+    assert.ok(
+      !entrance.includes('id="mobile-menu"'),
+      `${id}: global menu leaked into temple Store`
+    );
+
+    const collection = read(`store/merch/${id}/index.html`);
+    assert.ok(
+      collection.includes('id="temple-mobile-menu"'),
+      `${id}: temple menu missing from Merch`
+    );
+    assert.ok(
+      collection.includes(`href="/store/${id}/"`),
+      `${id}: Store entrance link missing from Merch`
+    );
+    assert.ok(!collection.includes('id="mobile-menu"'), `${id}: global menu leaked into Merch`);
+
+    const product = read(`store/merch/${id}/tee/index.html`);
+    assert.ok(
+      product.includes('id="temple-mobile-menu"'),
+      `${id}: temple menu missing from product`
+    );
+    assert.ok(
+      product.includes(`href="/store/${id}/"`),
+      `${id}: Store entrance link missing from product`
+    );
+  }
+});
+
 test('generator + stamper are idempotent (second run writes zero files)', () => {
   const runScript = (script) =>
     execFileSync(process.execPath, [path.join(ROOT, 'scripts', script)], {

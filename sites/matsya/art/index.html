@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=13e2f5f11e">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Matsya — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/matsya/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Matsya","item":"https://punicodex.com/matsya/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/matsya/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/matsya/" class="nav-link active">Store</a>
+                    <a href="/store/matsya/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/matsya/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/matsya/" class="nav-link active">Store</a>
+            <a href="/store/matsya/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/matsya/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Sculpture depicting Matsya, British Museum 03 — Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-1" data-title="Sculpture depicting Matsya, British Museum 03 — Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Sculpture_depicting_Matsya%2C_British_Museum_03.jpg/960px-Sculpture_depicting_Matsya%2C_British_Museum_03.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations. Dated AD 800-900 from Allahabad District, Uttar Pradesh, British Museum item 1872..0701.50" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Sculpture depicting Matsya, British Museum 03 — Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya avatar — &quot;Painting of Matsya, the fish-incarnation of Viṣṇu Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-2" data-title="Matsya avatar — &quot;Painting of Matsya, the fish-incarnation of Viṣṇu Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Matsya_avatar.jpg/960px-Matsya_avatar.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="&quot;Painting of Matsya, the fish-incarnation of Viṣṇu. The upper body of Viṣṇu emerges from the body of the fish. A silk sash is draped over his elbows and has an intricate design. On laid and water-marked European paper…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya avatar — &quot;Painting of Matsya, the fish-incarnation of Viṣṇu</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple,… Photo/art: SpeakingArch Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-3" data-title="Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple,… Photo/art: SpeakingArch Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Matsya_Avatar_of_Vishnu%2C_circa_10th_century_CE%2C_Bansi_Gopal_Temple%2C_Chamba%2C_Himachal_Pradesh.jpg/960px-Matsya_Avatar_of_Vishnu%2C_circa_10th_century_CE%2C_Bansi_Gopal_Temple%2C_Chamba%2C_Himachal_Pradesh.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple, Chamba, Himachal Pradesh" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple,… Photo/art: SpeakingArch</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-4" data-title="Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple%2C_Guntur.jpg/960px-Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple%2C_Guntur.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple. This temple was located on 5th lane of Brindhavan gardens and was constructed in 1999." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya Raja Ravi Varma Press — Matsya avatar by Raja Ravi Varma Photo/art: Raja Ravi Varma Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-5" data-title="Matsya Raja Ravi Varma Press — Matsya avatar by Raja Ravi Varma Photo/art: Raja Ravi Varma Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Matsya_Raja_Ravi_Varma_Press.jpg/960px-Matsya_Raja_Ravi_Varma_Press.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Matsya avatar by Raja Ravi Varma" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya Raja Ravi Varma Press — Matsya avatar by Raja Ravi Varma Photo/art: Raja Ravi Varma</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya-Puraanamu-Telugu1912 — Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-6" data-title="Matsya-Puraanamu-Telugu1912 — Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Matsya-Puraanamu-Telugu1912.pdf/page1-960px-Matsya-Puraanamu-Telugu1912.pdf.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya-Puraanamu-Telugu1912 — Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Sculpture depicting Matsya, British Museum 03 — Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-1" data-title="Sculpture depicting Matsya, British Museum 03 — Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Sculpture_depicting_Matsya%2C_British_Museum_03.jpg/960px-Sculpture_depicting_Matsya%2C_British_Museum_03.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations. Dated AD 800-900 from Allahabad District, Uttar Pradesh, British Museum item 1872..0701.50" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Sculpture depicting Matsya, British Museum 03 — Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya avatar — &quot;Painting of Matsya, the fish-incarnation of Viṣṇu Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-2" data-title="Matsya avatar — &quot;Painting of Matsya, the fish-incarnation of Viṣṇu Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Matsya_avatar.jpg/960px-Matsya_avatar.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="&quot;Painting of Matsya, the fish-incarnation of Viṣṇu. The upper body of Viṣṇu emerges from the body of the fish. A silk sash is draped over his elbows and has an intricate design. On laid and water-marked European paper…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya avatar — &quot;Painting of Matsya, the fish-incarnation of Viṣṇu</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple,… Photo/art: SpeakingArch Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-3" data-title="Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple,… Photo/art: SpeakingArch Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Matsya_Avatar_of_Vishnu%2C_circa_10th_century_CE%2C_Bansi_Gopal_Temple%2C_Chamba%2C_Himachal_Pradesh.jpg/960px-Matsya_Avatar_of_Vishnu%2C_circa_10th_century_CE%2C_Bansi_Gopal_Temple%2C_Chamba%2C_Himachal_Pradesh.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple, Chamba, Himachal Pradesh" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple,… Photo/art: SpeakingArch</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-4" data-title="Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple%2C_Guntur.jpg/960px-Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple%2C_Guntur.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple. This temple was located on 5th lane of Brindhavan gardens and was constructed in 1999." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya Raja Ravi Varma Press — Matsya avatar by Raja Ravi Varma Photo/art: Raja Ravi Varma Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-5" data-title="Matsya Raja Ravi Varma Press — Matsya avatar by Raja Ravi Varma Photo/art: Raja Ravi Varma Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Matsya_Raja_Ravi_Varma_Press.jpg/960px-Matsya_Raja_Ravi_Varma_Press.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Matsya avatar by Raja Ravi Varma" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya Raja Ravi Varma Press — Matsya avatar by Raja Ravi Varma Photo/art: Raja Ravi Varma</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Matsya-Puraanamu-Telugu1912 — Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives Matsya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-matsya-6" data-title="Matsya-Puraanamu-Telugu1912 — Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives Matsya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Matsya-Puraanamu-Telugu1912.pdf/page1-960px-Matsya-Puraanamu-Telugu1912.pdf.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Matsya-Puraanamu-Telugu1912 — Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-matsya-1","kind":"temple","templeId":"matsya","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Sculpture_depicting_Matsya%2C_British_Museum_03.jpg/960px-Sculpture_depicting_Matsya%2C_British_Museum_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Sculpture depicting Matsya, British Museum 03 — Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations","alt":"Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations. Dated AD 800-900 from Allahabad District, Uttar Pradesh, British Museum item 1872..0701.50","creator":"14GTR","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Sculpture_depicting_Matsya,_British_Museum_03.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Sculpture_depicting_Matsya,_British_Museum_03.jpg","canonicalUrl":"https://punicodex.com/matsya/art/?view=temple&art=gallery-matsya-1","attribution":"Sculpture depicting Matsya, British Museum 03 — Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations by 14GTR, CC0, via https://commons.wikimedia.org/wiki/File:Sculpture_depicting_Matsya,_British_Museum_03.jpg","provenance":"Sandstone sculpture depicting Matsya, the first of Vishnu's ten incarnations. Dated AD 800-900 from Allahabad District, Uttar Pradesh, British Museum item 1872..0701.50","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-matsya-2","kind":"temple","templeId":"matsya","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Matsya_avatar.jpg/960px-Matsya_avatar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Matsya avatar — \"Painting of Matsya, the fish-incarnation of Viṣṇu","alt":"\"Painting of Matsya, the fish-incarnation of Viṣṇu. The upper body of Viṣṇu emerges from the body of the fish. A silk sash is draped over his elbows and has an intricate design. On laid and water-marked European paper…","creator":"Unknown authorUnknown author","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Matsya_avatar.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Matsya_avatar.jpg","canonicalUrl":"https://punicodex.com/matsya/art/?view=temple&art=gallery-matsya-2","attribution":"Matsya avatar — \"Painting of Matsya, the fish-incarnation of Viṣṇu by Unknown authorUnknown author, Public domain, via https://commons.wikimedia.org/wiki/File:Matsya_avatar.jpg","provenance":"\"Painting of Matsya, the fish-incarnation of Viṣṇu. The upper body of Viṣṇu emerges from the body of the fish. A silk sash is draped over his elbows and has an intricate design. On laid and water-marked European paper…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-matsya-3","kind":"temple","templeId":"matsya","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Matsya_Avatar_of_Vishnu%2C_circa_10th_century_CE%2C_Bansi_Gopal_Temple%2C_Chamba%2C_Himachal_Pradesh.jpg/960px-Matsya_Avatar_of_Vishnu%2C_circa_10th_century_CE%2C_Bansi_Gopal_Temple%2C_Chamba%2C_Himachal_Pradesh.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple,… Photo/art: SpeakingArch","alt":"Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple, Chamba, Himachal Pradesh","creator":"SpeakingArch","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Matsya_Avatar_of_Vishnu,_circa_10th_century_CE,_Bansi_Gopal_Temple,_Chamba,_Himachal_Pradesh.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Matsya_Avatar_of_Vishnu,_circa_10th_century_CE,_Bansi_Gopal_Temple,_Chamba,_Himachal_Pradesh.jpg","canonicalUrl":"https://punicodex.com/matsya/art/?view=temple&art=gallery-matsya-3","attribution":"Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple,… Photo/art: SpeakingArch by SpeakingArch, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Matsya_Avatar_of_Vishnu,_circa_10th_century_CE,_Bansi_Gopal_Temple,_Chamba,_Himachal_Pradesh.jpg","provenance":"Matsya Avatar of Vishnu, circa 10th century CE, Bansi Gopal Temple, Chamba, Himachal Pradesh","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-matsya-4","kind":"temple","templeId":"matsya","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple%2C_Guntur.jpg/960px-Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple%2C_Guntur.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple","alt":"Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple. This temple was located on 5th lane of Brindhavan gardens and was constructed in 1999.","creator":"iMahesh","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple,_Guntur.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple,_Guntur.jpg","canonicalUrl":"https://punicodex.com/matsya/art/?view=temple&art=gallery-matsya-4","attribution":"Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple by iMahesh, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Dasavataralu_-_Matsya_avatar_of_Lord_Vishnu_on_Sri_Venkateshwara_temple,_Guntur.jpg","provenance":"Matsya, 1st avatar of Lord Vishnu on Sri Venkateshwara temple. This temple was located on 5th lane of Brindhavan gardens and was constructed in 1999.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-matsya-5","kind":"temple","templeId":"matsya","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Matsya_Raja_Ravi_Varma_Press.jpg/960px-Matsya_Raja_Ravi_Varma_Press.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Matsya Raja Ravi Varma Press — Matsya avatar by Raja Ravi Varma Photo/art: Raja Ravi Varma","alt":"Matsya avatar by Raja Ravi Varma","creator":"Raja Ravi Varma","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Matsya_Raja_Ravi_Varma_Press.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Matsya_Raja_Ravi_Varma_Press.jpg","canonicalUrl":"https://punicodex.com/matsya/art/?view=temple&art=gallery-matsya-5","attribution":"Matsya Raja Ravi Varma Press — Matsya avatar by Raja Ravi Varma Photo/art: Raja Ravi Varma by Raja Ravi Varma, Public domain, via https://commons.wikimedia.org/wiki/File:Matsya_Raja_Ravi_Varma_Press.jpg","provenance":"Matsya avatar by Raja Ravi Varma","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-matsya-6","kind":"temple","templeId":"matsya","src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Matsya-Puraanamu-Telugu1912.pdf/page1-960px-Matsya-Puraanamu-Telugu1912.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail","title":"Matsya-Puraanamu-Telugu1912 — Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives","alt":"Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives.","creator":"Haribhattaraka of 18th century","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Matsya-Puraanamu-Telugu1912.pdf","sourceUrl":"https://commons.wikimedia.org/wiki/File:Matsya-Puraanamu-Telugu1912.pdf","canonicalUrl":"https://punicodex.com/matsya/art/?view=temple&art=gallery-matsya-6","attribution":"Matsya-Puraanamu-Telugu1912 — Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives by Haribhattaraka of 18th century, Public domain, via https://commons.wikimedia.org/wiki/File:Matsya-Puraanamu-Telugu1912.pdf","provenance":"Matsya Puranamu in Telugu by Haribhattaraka published in 1912 and found in Archives.","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Matsya — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/matsya/art/?view=creatives' },
     commons: { t: 'The Commons — Matsya studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/matsya/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

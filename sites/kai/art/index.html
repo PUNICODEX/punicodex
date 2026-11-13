@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=eb3ac23b06">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Kai — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/kai/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Kai","item":"https://punicodex.com/kai/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/kai/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/kai/" class="nav-link active">Store</a>
+                    <a href="/store/kai/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/kai/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/kai/" class="nav-link active">Store</a>
+            <a href="/store/kai/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/kai/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,27 +173,27 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Sir Kay breaketh his sword — Sir Kay breaketh his sword at ye Tournament Photo/art: Howard Pyle Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-1" data-title="Sir Kay breaketh his sword — Sir Kay breaketh his sword at ye Tournament Photo/art: Howard Pyle Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Sir_Kay_breaketh_his_sword.jpg" alt="Sir Kay breaketh his sword at ye Tournament" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Sir Kay breaketh his sword — Sir Kay breaketh his sword at ye Tournament Photo/art: Howard Pyle</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Arthur-Pyle Sir Kay breaketh his sword at ye Tournament — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-2" data-title="Arthur-Pyle Sir Kay breaketh his sword at ye Tournament — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG/960px-Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG" alt="Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www.gallery.oldbookart.com/main.php?g2_itemId=2708 where it was marked as Public Domain." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Arthur-Pyle Sir Kay breaketh his sword at ye Tournament — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Arthur-Pyle Sir Kay showeth the mystic sword unto Sir Ector — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-3" data-title="Arthur-Pyle Sir Kay showeth the mystic sword unto Sir Ector — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG/960px-Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG" alt="Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www.gallery.oldbookart.com/main.php?g2_itemId=2708 where it was marked as Public Domain." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Arthur-Pyle Sir Kay showeth the mystic sword unto Sir Ector — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Hmt Sir Kay FL4070 — Hmt Sir Kay Underway Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-4" data-title="Hmt Sir Kay FL4070 — Hmt Sir Kay Underway Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Hmt_Sir_Kay_FL4070.jpg" alt="Hmt Sir Kay Underway." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Hmt Sir Kay FL4070 — Hmt Sir Kay Underway</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Culhwch — Culhwch entering King Arthur's court Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-5" data-title="Culhwch — Culhwch entering King Arthur's court Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Culhwch.jpg" alt="Culhwch entering King Arthur's court. Created by Alfred Fredericks and published as an illustration to The Boy's Mabinogion: being the earliest Welsh tales of King Arthur in the famous Red Book of Hergest , edited wit…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Culhwch — Culhwch entering King Arthur's court</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -201,27 +205,27 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Sir Kay breaketh his sword — Sir Kay breaketh his sword at ye Tournament Photo/art: Howard Pyle Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-1" data-title="Sir Kay breaketh his sword — Sir Kay breaketh his sword at ye Tournament Photo/art: Howard Pyle Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Sir_Kay_breaketh_his_sword.jpg" alt="Sir Kay breaketh his sword at ye Tournament" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Sir Kay breaketh his sword — Sir Kay breaketh his sword at ye Tournament Photo/art: Howard Pyle</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Arthur-Pyle Sir Kay breaketh his sword at ye Tournament — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-2" data-title="Arthur-Pyle Sir Kay breaketh his sword at ye Tournament — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG/960px-Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG" alt="Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www.gallery.oldbookart.com/main.php?g2_itemId=2708 where it was marked as Public Domain." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Arthur-Pyle Sir Kay breaketh his sword at ye Tournament — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Arthur-Pyle Sir Kay showeth the mystic sword unto Sir Ector — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-3" data-title="Arthur-Pyle Sir Kay showeth the mystic sword unto Sir Ector — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG/960px-Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG" alt="Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www.gallery.oldbookart.com/main.php?g2_itemId=2708 where it was marked as Public Domain." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Arthur-Pyle Sir Kay showeth the mystic sword unto Sir Ector — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Hmt Sir Kay FL4070 — Hmt Sir Kay Underway Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-4" data-title="Hmt Sir Kay FL4070 — Hmt Sir Kay Underway Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Hmt_Sir_Kay_FL4070.jpg" alt="Hmt Sir Kay Underway." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Hmt Sir Kay FL4070 — Hmt Sir Kay Underway</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Culhwch — Culhwch entering King Arthur's court Kai" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kai-5" data-title="Culhwch — Culhwch entering King Arthur's court Kai" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Culhwch.jpg" alt="Culhwch entering King Arthur's court. Created by Alfred Fredericks and published as an illustration to The Boy's Mabinogion: being the earliest Welsh tales of King Arthur in the famous Red Book of Hergest , edited wit…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Culhwch — Culhwch entering King Arthur's court</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -320,8 +324,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-kai-kai-anime-mascot-v1","templeId":"kai","title":"Kai — anime mascot","src":"/assets/ai-commons/kai-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Kai — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/kai/art/?view=commons","canonicalUrl":"https://punicodex.com/kai/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.631Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-kai-1","kind":"temple","templeId":"kai","src":"https://upload.wikimedia.org/wikipedia/commons/e/eb/Sir_Kay_breaketh_his_sword.jpg","title":"Sir Kay breaketh his sword — Sir Kay breaketh his sword at ye Tournament Photo/art: Howard Pyle","alt":"Sir Kay breaketh his sword at ye Tournament","creator":"Howard Pyle","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Sir_Kay_breaketh_his_sword.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Sir_Kay_breaketh_his_sword.jpg","canonicalUrl":"https://punicodex.com/kai/art/?view=temple&art=gallery-kai-1","attribution":"Sir Kay breaketh his sword — Sir Kay breaketh his sword at ye Tournament Photo/art: Howard Pyle by Howard Pyle, Public domain, via https://commons.wikimedia.org/wiki/File:Sir_Kay_breaketh_his_sword.jpg","provenance":"Sir Kay breaketh his sword at ye Tournament","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kai-2","kind":"temple","templeId":"kai","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG/960px-Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG","title":"Arthur-Pyle Sir Kay breaketh his sword at ye Tournament — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www","alt":"Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www.gallery.oldbookart.com/main.php?g2_itemId=2708 where it was marked as Public Domain.","creator":"Howard Pyle","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG","canonicalUrl":"https://punicodex.com/kai/art/?view=temple&art=gallery-kai-2","attribution":"Arthur-Pyle Sir Kay breaketh his sword at ye Tournament — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www by Howard Pyle, Public domain, via https://commons.wikimedia.org/wiki/File:Arthur-Pyle_Sir_Kay_breaketh_his_sword_at_ye_Tournament.JPG","provenance":"Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www.gallery.oldbookart.com/main.php?g2_itemId=2708 where it was marked as Public Domain.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kai-3","kind":"temple","templeId":"kai","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG/960px-Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG","title":"Arthur-Pyle Sir Kay showeth the mystic sword unto Sir Ector — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www","alt":"Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www.gallery.oldbookart.com/main.php?g2_itemId=2708 where it was marked as Public Domain.","creator":"Howard Pyle","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG","canonicalUrl":"https://punicodex.com/kai/art/?view=temple&art=gallery-kai-3","attribution":"Arthur-Pyle Sir Kay showeth the mystic sword unto Sir Ector — Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www by Howard Pyle, Public domain, via https://commons.wikimedia.org/wiki/File:Arthur-Pyle_Sir_Kay_showeth_the_mystic_sword_unto_Sir_Ector.JPG","provenance":"Howard Pyle illustration from the 1903 edition of The Story of King Arthur and His Knights scanned and archived at http://www.gallery.oldbookart.com/main.php?g2_itemId=2708 where it was marked as Public Domain.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kai-4","kind":"temple","templeId":"kai","src":"https://upload.wikimedia.org/wikipedia/commons/c/cc/Hmt_Sir_Kay_FL4070.jpg","title":"Hmt Sir Kay FL4070 — Hmt Sir Kay Underway","alt":"Hmt Sir Kay Underway.","creator":"Royal Navy official photographer","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Hmt_Sir_Kay_FL4070.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Hmt_Sir_Kay_FL4070.jpg","canonicalUrl":"https://punicodex.com/kai/art/?view=temple&art=gallery-kai-4","attribution":"Hmt Sir Kay FL4070 — Hmt Sir Kay Underway by Royal Navy official photographer, Public domain, via https://commons.wikimedia.org/wiki/File:Hmt_Sir_Kay_FL4070.jpg","provenance":"Hmt Sir Kay Underway.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kai-5","kind":"temple","templeId":"kai","src":"https://upload.wikimedia.org/wikipedia/commons/5/56/Culhwch.jpg","title":"Culhwch — Culhwch entering King Arthur's court","alt":"Culhwch entering King Arthur's court. Created by Alfred Fredericks and published as an illustration to The Boy's Mabinogion: being the earliest Welsh tales of King Arthur in the famous Red Book of Hergest , edited wit…","creator":"commons.wikimedia.org","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Culhwch.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Culhwch.jpg","canonicalUrl":"https://punicodex.com/kai/art/?view=temple&art=gallery-kai-5","attribution":"Culhwch — Culhwch entering King Arthur's court by commons.wikimedia.org, Public domain, via https://commons.wikimedia.org/wiki/File:Culhwch.jpg","provenance":"Culhwch entering King Arthur's court. Created by Alfred Fredericks and published as an illustration to The Boy's Mabinogion: being the earliest Welsh tales of King Arthur in the famous Red Book of Hergest , edited wit…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-kai-kai-anime-mascot-v1","templeId":"kai","title":"Kai — anime mascot","src":"/assets/ai-commons/kai-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Kai — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/kai/art/?view=commons","canonicalUrl":"https://punicodex.com/kai/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.631Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -335,8 +340,14 @@
     creatives: { t: 'Creatives for Kai — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/kai/art/?view=creatives' },
     commons: { t: 'The Commons — Kai studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/kai/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -347,6 +358,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -365,7 +377,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

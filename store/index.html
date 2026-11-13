@@ -10,7 +10,6 @@
 <!-- PUNICODEX-ANALYTICS-START -->
 <script src="/js/analytics-beacon.js?v=98b5b0be84" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
@@ -40,6 +39,7 @@
 <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css?v=perf40">
 <link rel="stylesheet" href="/css/nav-hubs.css?v=4">
+
 <style>
 :root{--obsidian:#0A0A0C;--gold:#D4AF37;--gold-bright:#F0D878;--ink:#E8E4DC;--dim:#9a948a;--line:rgba(212,175,55,.18);--card:#121216}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -106,7 +106,13 @@ a:hover{color:var(--gold-bright)}
   .pdp{grid-template-columns:1fr;gap:1.5rem}
   .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
-.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;padding:2rem 0 4rem}.dept{position:relative;display:flex;flex-direction:column;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2rem 1.75rem;transition:transform .25s ease,border-color .25s ease}.dept:hover{transform:translateY(-4px);border-color:var(--gold)}.dept .glyph{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);line-height:1}.dept h2{font-size:1.5rem;margin:.4rem 0 .2rem}.dept p{color:var(--dim);font-size:.95rem;flex:1}.dept .go{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.dept--soon{opacity:.85}.dept .soon{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#0a0a0c;background:var(--gold);padding:2px 8px;border-radius:999px;width:max-content}</style>
+.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;padding:2rem 0 4rem}.dept{position:relative;display:flex;flex-direction:column;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2rem 1.75rem;transition:transform .25s ease,border-color .25s ease}.dept:hover{transform:translateY(-4px);border-color:var(--gold)}.dept .glyph{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);line-height:1}.dept h2{font-size:1.5rem;margin:.4rem 0 .2rem}.dept p{color:var(--dim);font-size:.95rem;flex:1}.dept .go{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.dept--soon{opacity:.85}.dept .soon{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#0a0a0c;background:var(--gold);padding:2px 8px;border-radius:999px;width:max-content}
+@media(max-width:820px){
+  .nav-inner{padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+  .store-hero h1,.art-hero h1{font-size:clamp(1.65rem,7vw,2.6rem);overflow-wrap:anywhere}
+  .dept-grid{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
+}
+</style>
     <link rel="stylesheet" href="/css/mobile-menu.css?v=10">
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
@@ -120,7 +126,7 @@ a:hover{color:var(--gold-bright)}
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
 <body>
-    <nav class="main-nav" id="main-nav">
+<nav class="main-nav" id="main-nav">
         <div class="nav-inner">
             <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
             <div class="nav-links">
@@ -249,8 +255,7 @@ a:hover{color:var(--gold-bright)}
                 <span></span>
             </button>
         </div>
-    </nav>
-    <div class="mobile-menu" id="mobile-menu">
+    </nav><div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
             <a href="/world/" class="mobile-menu-title mobile-menu-title--hub">World</a>
             <div class="mobile-menu-group">
@@ -374,8 +379,7 @@ a:hover{color:var(--gold-bright)}
         </div>
     </div>
     <script src="/js/px-core.js?v=d28727a34e" defer></script>
-    <script src="/js/nav-hubs.js?v=7" defer></script>
-    <script src="/js/main.js?v=bb046cae59" defer></script>
+    <script src="/js/nav-hubs.js?v=7" defer></script><script src="/js/main.js?v=bb046cae59" defer></script>
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <div class="wrap">
   <div class="store-hero">

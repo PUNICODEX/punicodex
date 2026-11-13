@@ -190,6 +190,9 @@ const allScripts = [
   // Runs after all HTML injectors so placeholder pins are replaced with hashes.
   'scripts/stamp-asset-versions.js',
   'scripts/update-data-version.js',
+  // Fill-only-missing flagship prompt coverage for the AI art pipeline;
+  // curation wins/losses and active prompt mutations remain canonical.
+  'scripts/expand-ai-art-library.js',
   // Writes data/corpus/entries.jsonl + manifest.json. MUST run before the
   // corpus generators below, several of which read entries.jsonl — running it
   // after them makes corpus content lag one generate behind canonical changes.

@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=13e2f5f11e">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Kālī — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/kali/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Kālī","item":"https://punicodex.com/kali/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/kali/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/kali/" class="nav-link active">Store</a>
+                    <a href="/store/kali/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/kali/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/kali/" class="nav-link active">Store</a>
+            <a href="/store/kali/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/kali/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,44 +173,44 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Kali — Kalighat painting, 19th century Kālī" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kali-1" data-title="Kali — Kalighat painting, 19th century Kālī" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/India%2C%20Calcutta%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Kali%20-%202003.116%20-%20Cleveland%20Museum%20of%20Art.jpg/960px-India%2C%20Calcutta%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Kali%20-%202003.116%20-%20Cleveland%20Museum%20of%20Art.jpg.webp" alt="Kali, Kalighat painting, 19th century. Cleveland Museum of Art." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kali — Kalighat painting, 19th century</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Dancing Kali — Kalighat painting, 19th century Kālī" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kali-2" data-title="Dancing Kali — Kalighat painting, 19th century Kālī" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/India%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Two%20Aspects%20of%20Kali-%20Kali%20Dancing%20on%20Shiva%20-%201980.216.a%20-%20Cleveland%20Museum%20of%20Art.jpg/960px-India%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Two%20Aspects%20of%20Kali-%20Kali%20Dancing%20on%20Shiva%20-%201980.216.a%20-%20Cleveland%20Museum%20of%20Art.jpg.webp" alt="Kali dancing on Shiva, Kalighat painting, 19th century. Cleveland Museum of Art." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Dancing Kali — Kalighat painting, 19th century</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kali Tantra — Folio from a book of iconography, LACMA Kālī" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kali-3" data-title="Kali Tantra — Folio from a book of iconography, LACMA Kālī" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/A%20Tantric%20Form%20of%20the%20Hindu%20Goddess%20Kali%20(Recto)%2C%20Horse%20(Verso)%2C%20Folio%20from%20a%20Book%20of%20Iconography%20LACMA%20M.81.206.9.jpg/960px-A%20Tantric%20Form%20of%20the%20Hindu%20Goddess%20Kali%20(Recto)%2C%20Horse%20(Verso)%2C%20Folio%20from%20a%20Book%20of%20Iconography%20LACMA%20M.81.206.9.jpg.webp" alt="Tantric form of Kali, folio from a book of iconography. LACMA." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kali Tantra — Folio from a book of iconography, LACMA</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kali Puja - Worship of Goddess Kali 01 — This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti Kālī" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kali-4" data-title="Kali Puja - Worship of Goddess Kali 01 — This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti Kālī" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg/960px-Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg" alt="This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti. The festival is often observed at night, symbolizing the victory of divine power over evil." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kali Puja - Worship of Goddess Kali 01 — This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Kali — Kalighat painting, 19th century Kālī" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kali-1" data-title="Kali — Kalighat painting, 19th century Kālī" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/India%2C%20Calcutta%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Kali%20-%202003.116%20-%20Cleveland%20Museum%20of%20Art.jpg/960px-India%2C%20Calcutta%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Kali%20-%202003.116%20-%20Cleveland%20Museum%20of%20Art.jpg.webp" alt="Kali, Kalighat painting, 19th century. Cleveland Museum of Art." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kali — Kalighat painting, 19th century</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Dancing Kali — Kalighat painting, 19th century Kālī" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kali-2" data-title="Dancing Kali — Kalighat painting, 19th century Kālī" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/India%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Two%20Aspects%20of%20Kali-%20Kali%20Dancing%20on%20Shiva%20-%201980.216.a%20-%20Cleveland%20Museum%20of%20Art.jpg/960px-India%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Two%20Aspects%20of%20Kali-%20Kali%20Dancing%20on%20Shiva%20-%201980.216.a%20-%20Cleveland%20Museum%20of%20Art.jpg.webp" alt="Kali dancing on Shiva, Kalighat painting, 19th century. Cleveland Museum of Art." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Dancing Kali — Kalighat painting, 19th century</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kali Tantra — Folio from a book of iconography, LACMA Kālī" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kali-3" data-title="Kali Tantra — Folio from a book of iconography, LACMA Kālī" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/A%20Tantric%20Form%20of%20the%20Hindu%20Goddess%20Kali%20(Recto)%2C%20Horse%20(Verso)%2C%20Folio%20from%20a%20Book%20of%20Iconography%20LACMA%20M.81.206.9.jpg/960px-A%20Tantric%20Form%20of%20the%20Hindu%20Goddess%20Kali%20(Recto)%2C%20Horse%20(Verso)%2C%20Folio%20from%20a%20Book%20of%20Iconography%20LACMA%20M.81.206.9.jpg.webp" alt="Tantric form of Kali, folio from a book of iconography. LACMA." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kali Tantra — Folio from a book of iconography, LACMA</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kali Puja - Worship of Goddess Kali 01 — This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti Kālī" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kali-4" data-title="Kali Puja - Worship of Goddess Kali 01 — This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti Kālī" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg/960px-Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg" alt="This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti. The festival is often observed at night, symbolizing the victory of divine power over evil." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kali Puja - Worship of Goddess Kali 01 — This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -301,8 +305,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-kali-1","kind":"temple","templeId":"kali","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/India%2C%20Calcutta%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Kali%20-%202003.116%20-%20Cleveland%20Museum%20of%20Art.jpg/960px-India%2C%20Calcutta%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Kali%20-%202003.116%20-%20Cleveland%20Museum%20of%20Art.jpg.webp","title":"Kali — Kalighat painting, 19th century","alt":"Kali, Kalighat painting, 19th century. Cleveland Museum of Art.","creator":"anonymous","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:India,_Calcutta,_Kalighat_painting,_19th_century_-_Kali_-_2003.116_-_Cleveland_Museum_of_Art.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:India,_Calcutta,_Kalighat_painting,_19th_century_-_Kali_-_2003.116_-_Cleveland_Museum_of_Art.jpg","canonicalUrl":"https://punicodex.com/kali/art/?view=temple&art=gallery-kali-1","attribution":"Kali — Kalighat painting, 19th century by anonymous, CC0, via https://commons.wikimedia.org/wiki/File:India,_Calcutta,_Kalighat_painting,_19th_century_-_Kali_-_2003.116_-_Cleveland_Museum_of_Art.jpg","provenance":"Kali, Kalighat painting, 19th century. Cleveland Museum of Art.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kali-2","kind":"temple","templeId":"kali","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/India%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Two%20Aspects%20of%20Kali-%20Kali%20Dancing%20on%20Shiva%20-%201980.216.a%20-%20Cleveland%20Museum%20of%20Art.jpg/960px-India%2C%20Kalighat%20painting%2C%2019th%20century%20-%20Two%20Aspects%20of%20Kali-%20Kali%20Dancing%20on%20Shiva%20-%201980.216.a%20-%20Cleveland%20Museum%20of%20Art.jpg.webp","title":"Dancing Kali — Kalighat painting, 19th century","alt":"Kali dancing on Shiva, Kalighat painting, 19th century. Cleveland Museum of Art.","creator":"anonymous","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:India,_Kalighat_painting,_19th_century_-_Two_Aspects_of_Kali-_Kali_Dancing_on_Shiva_-_1980.216.a_-_Cleveland_Museum_of_Art.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:India,_Kalighat_painting,_19th_century_-_Two_Aspects_of_Kali-_Kali_Dancing_on_Shiva_-_1980.216.a_-_Cleveland_Museum_of_Art.jpg","canonicalUrl":"https://punicodex.com/kali/art/?view=temple&art=gallery-kali-2","attribution":"Dancing Kali — Kalighat painting, 19th century by anonymous, CC0, via https://commons.wikimedia.org/wiki/File:India,_Kalighat_painting,_19th_century_-_Two_Aspects_of_Kali-_Kali_Dancing_on_Shiva_-_1980.216.a_-_Cleveland_Museum_of_Art.jpg","provenance":"Kali dancing on Shiva, Kalighat painting, 19th century. Cleveland Museum of Art.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kali-3","kind":"temple","templeId":"kali","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/A%20Tantric%20Form%20of%20the%20Hindu%20Goddess%20Kali%20(Recto)%2C%20Horse%20(Verso)%2C%20Folio%20from%20a%20Book%20of%20Iconography%20LACMA%20M.81.206.9.jpg/960px-A%20Tantric%20Form%20of%20the%20Hindu%20Goddess%20Kali%20(Recto)%2C%20Horse%20(Verso)%2C%20Folio%20from%20a%20Book%20of%20Iconography%20LACMA%20M.81.206.9.jpg.webp","title":"Kali Tantra — Folio from a book of iconography, LACMA","alt":"Tantric form of Kali, folio from a book of iconography. LACMA.","creator":"commons.wikimedia.org","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:A_Tantric_Form_of_the_Hindu_Goddess_Kali_(Recto),_Horse_(Verso),_Folio_from_a_Book_of_Iconography_LACMA_M.81.206.9.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:A_Tantric_Form_of_the_Hindu_Goddess_Kali_(Recto),_Horse_(Verso),_Folio_from_a_Book_of_Iconography_LACMA_M.81.206.9.jpg","canonicalUrl":"https://punicodex.com/kali/art/?view=temple&art=gallery-kali-3","attribution":"Kali Tantra — Folio from a book of iconography, LACMA by commons.wikimedia.org, Public domain, via https://commons.wikimedia.org/wiki/File:A_Tantric_Form_of_the_Hindu_Goddess_Kali_(Recto),_Horse_(Verso),_Folio_from_a_Book_of_Iconography_LACMA_M.81.206.9.jpg","provenance":"Tantric form of Kali, folio from a book of iconography. LACMA.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kali-4","kind":"temple","templeId":"kali","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg/960px-Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg","title":"Kali Puja - Worship of Goddess Kali 01 — This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti","alt":"This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti. The festival is often observed at night, symbolizing the victory of divine power over evil.","creator":"Shoot stufz","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg","canonicalUrl":"https://punicodex.com/kali/art/?view=temple&art=gallery-kali-4","attribution":"Kali Puja - Worship of Goddess Kali 01 — This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti by Shoot stufz, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Kali_Puja_-_Worship_of_Goddess_Kali_01.jpg","provenance":"This image captures Kali Puja, a Hindu festival dedicated to Goddess Kali, the fierce and protective form of Shakti. The festival is often observed at night, symbolizing the victory of divine power over evil.","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -316,8 +321,14 @@
     creatives: { t: 'Creatives for Kālī — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/kali/art/?view=creatives' },
     commons: { t: 'The Commons — Kālī studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/kali/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -328,6 +339,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -346,7 +358,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

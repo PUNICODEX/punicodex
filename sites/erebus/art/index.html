@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Érebos — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/erebus/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Érebos","item":"https://punicodex.com/erebus/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/erebus/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/erebus/" class="nav-link active">Store</a>
+                    <a href="/store/erebus/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/erebus/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/erebus/" class="nav-link active">Store</a>
+            <a href="/store/erebus/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/erebus/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,34 +173,34 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Aeneas and the Sibyl in the Underworld — Jan Brueghel the Younger, 1630s date QS:P571,+1630-00-00T00:00:00Z/8 Érebos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-erebus-1" data-title="Aeneas and the Sibyl in the Underworld — Jan Brueghel the Younger, 1630s date QS:P571,+1630-00-00T00:00:00Z/8 Érebos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg/960px-Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg" alt="Aeneas and the Sibyl in the Underworld" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Aeneas and the Sibyl in the Underworld — Jan Brueghel the Younger, 1630s date QS:P571,+1630-00-00T00:00:00Z/8</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Juno in der Unterwelt Juno in the Underworld — Jan Brueghel the Elder, from 1596 until 1598 date QS:P571,+1596-00-00T00:00:00Z/8,P580,+1596-00-00T00:00:00Z/9,P582,+1598-00-00T00:00:00Z/9 Érebos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-erebus-2" data-title="Juno in der Unterwelt Juno in the Underworld — Jan Brueghel the Elder, from 1596 until 1598 date QS:P571,+1596-00-00T00:00:00Z/8,P580,+1596-00-00T00:00:00Z/9,P582,+1598-00-00T00:00:00Z/9 Érebos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Juno_in_the_underworld%2C_by_Jan_Brueghel_the_Elder.jpg/960px-Juno_in_the_underworld%2C_by_Jan_Brueghel_the_Elder.jpg" alt="Juno in der Unterwelt Juno in the Underworld" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Juno in der Unterwelt Juno in the Underworld — Jan Brueghel the Elder, from 1596 until 1598 date QS:P571,+1596-00-00T00:00:00Z/8,P580,+1596-00-00T00:00:00Z/9,P582,+1598-00-00T00:00:00Z/9</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Pythagoras Emerging from the Underworld — Salvator Rosa, 1662 Érebos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-erebus-3" data-title="Pythagoras Emerging from the Underworld — Salvator Rosa, 1662 Érebos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/4/40/%27Pythagoras_Emerging_from_the_Underworld%27%2C_oil_on_canvas_painting_by_Salvator_Rosa.jpg" alt="Pythagoras Emerging from the Underworld" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Pythagoras Emerging from the Underworld — Salvator Rosa, 1662</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Aeneas and the Sibyl in the Underworld — Jan Brueghel the Younger, 1630s date QS:P571,+1630-00-00T00:00:00Z/8 Érebos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-erebus-1" data-title="Aeneas and the Sibyl in the Underworld — Jan Brueghel the Younger, 1630s date QS:P571,+1630-00-00T00:00:00Z/8 Érebos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg/960px-Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg" alt="Aeneas and the Sibyl in the Underworld" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Aeneas and the Sibyl in the Underworld — Jan Brueghel the Younger, 1630s date QS:P571,+1630-00-00T00:00:00Z/8</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Juno in der Unterwelt Juno in the Underworld — Jan Brueghel the Elder, from 1596 until 1598 date QS:P571,+1596-00-00T00:00:00Z/8,P580,+1596-00-00T00:00:00Z/9,P582,+1598-00-00T00:00:00Z/9 Érebos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-erebus-2" data-title="Juno in der Unterwelt Juno in the Underworld — Jan Brueghel the Elder, from 1596 until 1598 date QS:P571,+1596-00-00T00:00:00Z/8,P580,+1596-00-00T00:00:00Z/9,P582,+1598-00-00T00:00:00Z/9 Érebos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Juno_in_the_underworld%2C_by_Jan_Brueghel_the_Elder.jpg/960px-Juno_in_the_underworld%2C_by_Jan_Brueghel_the_Elder.jpg" alt="Juno in der Unterwelt Juno in the Underworld" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Juno in der Unterwelt Juno in the Underworld — Jan Brueghel the Elder, from 1596 until 1598 date QS:P571,+1596-00-00T00:00:00Z/8,P580,+1596-00-00T00:00:00Z/9,P582,+1598-00-00T00:00:00Z/9</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Pythagoras Emerging from the Underworld — Salvator Rosa, 1662 Érebos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-erebus-3" data-title="Pythagoras Emerging from the Underworld — Salvator Rosa, 1662 Érebos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/4/40/%27Pythagoras_Emerging_from_the_Underworld%27%2C_oil_on_canvas_painting_by_Salvator_Rosa.jpg" alt="Pythagoras Emerging from the Underworld" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Pythagoras Emerging from the Underworld — Salvator Rosa, 1662</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -291,8 +295,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-erebus-1","kind":"temple","templeId":"erebus","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg/960px-Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg","title":"Aeneas and the Sibyl in the Underworld — Jan Brueghel the Younger, 1630s date QS:P571,+1630-00-00T00:00:00Z/8","alt":"Aeneas and the Sibyl in the Underworld","creator":"Jan Brueghel the Younger","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg","canonicalUrl":"https://punicodex.com/erebus/art/?view=temple&art=gallery-erebus-1","attribution":"Aeneas and the Sibyl in the Underworld — Jan Brueghel the Younger, 1630s date QS:P571,+1630-00-00T00:00:00Z/8 by Jan Brueghel the Younger, CC0, via https://commons.wikimedia.org/wiki/File:Aeneas_and_the_Sibyl_in_the_Underworld_MET_DP234687.jpg","provenance":"Aeneas and the Sibyl in the Underworld","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-erebus-2","kind":"temple","templeId":"erebus","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Juno_in_the_underworld%2C_by_Jan_Brueghel_the_Elder.jpg/960px-Juno_in_the_underworld%2C_by_Jan_Brueghel_the_Elder.jpg","title":"Juno in der Unterwelt Juno in the Underworld — Jan Brueghel the Elder, from 1596 until 1598 date QS:P571,+1596-00-00T00:00:00Z/8,P580,+1596-00-00T00:00:00Z/9,P582,+1598-00-00T00:00:00Z/9","alt":"Juno in der Unterwelt Juno in the Underworld","creator":"Jan Brueghel the Elder","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Juno_in_the_underworld,_by_Jan_Brueghel_the_Elder.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Juno_in_the_underworld,_by_Jan_Brueghel_the_Elder.jpg","canonicalUrl":"https://punicodex.com/erebus/art/?view=temple&art=gallery-erebus-2","attribution":"Juno in der Unterwelt Juno in the Underworld — Jan Brueghel the Elder, from 1596 until 1598 date QS:P571,+1596-00-00T00:00:00Z/8,P580,+1596-00-00T00:00:00Z/9,P582,+1598-00-00T00:00:00Z/9 by Jan Brueghel the Elder, Public domain, via https://commons.wikimedia.org/wiki/File:Juno_in_the_underworld,_by_Jan_Brueghel_the_Elder.jpg","provenance":"Juno in der Unterwelt Juno in the Underworld","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-erebus-3","kind":"temple","templeId":"erebus","src":"https://upload.wikimedia.org/wikipedia/commons/4/40/%27Pythagoras_Emerging_from_the_Underworld%27%2C_oil_on_canvas_painting_by_Salvator_Rosa.jpg","title":"Pythagoras Emerging from the Underworld — Salvator Rosa, 1662","alt":"Pythagoras Emerging from the Underworld","creator":"Salvator Rosa","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:'Pythagoras_Emerging_from_the_Underworld',_oil_on_canvas_painting_by_Salvator_Rosa.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:'Pythagoras_Emerging_from_the_Underworld',_oil_on_canvas_painting_by_Salvator_Rosa.jpg","canonicalUrl":"https://punicodex.com/erebus/art/?view=temple&art=gallery-erebus-3","attribution":"Pythagoras Emerging from the Underworld — Salvator Rosa, 1662 by Salvator Rosa, Public domain, via https://commons.wikimedia.org/wiki/File:'Pythagoras_Emerging_from_the_Underworld',_oil_on_canvas_painting_by_Salvator_Rosa.jpg","provenance":"Pythagoras Emerging from the Underworld","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -306,8 +311,14 @@
     creatives: { t: 'Creatives for Érebos — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/erebus/art/?view=creatives' },
     commons: { t: 'The Commons — Érebos studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/erebus/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -318,6 +329,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -336,7 +348,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

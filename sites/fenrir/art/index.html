@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=6408c040cf">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Fenrir — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/fenrir/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Fenrir","item":"https://punicodex.com/fenrir/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/fenrir/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/fenrir/" class="nav-link active">Store</a>
+                    <a href="/store/fenrir/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/fenrir/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/fenrir/" class="nav-link active">Store</a>
+            <a href="/store/fenrir/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/fenrir/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,32 +173,32 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Tyr and Fenrir-John Bauer — for Our Fathers' Godsaga by Viktor Rydberg Photo/art: John Bauer Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-1" data-title="Tyr and Fenrir-John Bauer — for Our Fathers' Godsaga by Viktor Rydberg Photo/art: John Bauer Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Tyr_and_Fenrir-John_Bauer.jpg" alt="for Our Fathers' Godsaga by Viktor Rydberg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tyr and Fenrir-John Bauer — for Our Fathers' Godsaga by Viktor Rydberg Photo/art: John Bauer</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Fenrir bound manuscript image — Fenrir amarrado, onde um rio flui de sua boca Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-2" data-title="Fenrir bound manuscript image — Fenrir amarrado, onde um rio flui de sua boca Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Fenrir_bound_manuscript_image.jpg/960px-Fenrir_bound_manuscript_image.jpg" alt="Fenrir amarrado, onde um rio flui de sua boca. Fenriswolf gefesselt, aus seinem Mund fließt ein Fluss. Fenrisulfr tied up, a river flows from his mouth." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Fenrir bound manuscript image — Fenrir amarrado, onde um rio flui de sua boca</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Fenrir (Manual of Mythology) — The wolf Fenrir, opening his mouth very wide indeed Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-3" data-title="Fenrir (Manual of Mythology) — The wolf Fenrir, opening his mouth very wide indeed Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Fenrir_%28Manual_of_Mythology%29.jpg/960px-Fenrir_%28Manual_of_Mythology%29.jpg" alt="The wolf Fenrir, opening his mouth very wide indeed." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Fenrir (Manual of Mythology) — The wolf Fenrir, opening his mouth very wide indeed</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="The binding of Fenrir by George Wright — Captioned as &quot;The gods were so delighted that they began to laugh&quot; Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-4" data-title="The binding of Fenrir by George Wright — Captioned as &quot;The gods were so delighted that they began to laugh&quot; Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/The_binding_of_Fenrir_by_George_Wright.jpg/960px-The_binding_of_Fenrir_by_George_Wright.jpg" alt="Captioned as &quot;The gods were so delighted that they began to laugh&quot;. The gods bind the wolf Fenrir." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>The binding of Fenrir by George Wright — Captioned as &quot;The gods were so delighted that they began to laugh&quot;</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Thor Chaining Fenrir by H Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-5" data-title="Thor Chaining Fenrir by H Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Thor_Chaining_Fenrir_by_H._L._M.jpg" alt="Captioned as &quot;Thor Chaining Fenrir&quot;. The god Thor chains the wolf Fenrir." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Thor Chaining Fenrir by H</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="SÁM 66, 78v, Fenrir and Týr — An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-6" data-title="SÁM 66, 78v, Fenrir and Týr — An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/S%C3%81M_66%2C_78v%2C_Fenrir_and_T%C3%BDr.jpg" alt="An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>SÁM 66, 78v, Fenrir and Týr — An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -211,32 +215,32 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Tyr and Fenrir-John Bauer — for Our Fathers' Godsaga by Viktor Rydberg Photo/art: John Bauer Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-1" data-title="Tyr and Fenrir-John Bauer — for Our Fathers' Godsaga by Viktor Rydberg Photo/art: John Bauer Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Tyr_and_Fenrir-John_Bauer.jpg" alt="for Our Fathers' Godsaga by Viktor Rydberg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tyr and Fenrir-John Bauer — for Our Fathers' Godsaga by Viktor Rydberg Photo/art: John Bauer</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Fenrir bound manuscript image — Fenrir amarrado, onde um rio flui de sua boca Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-2" data-title="Fenrir bound manuscript image — Fenrir amarrado, onde um rio flui de sua boca Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Fenrir_bound_manuscript_image.jpg/960px-Fenrir_bound_manuscript_image.jpg" alt="Fenrir amarrado, onde um rio flui de sua boca. Fenriswolf gefesselt, aus seinem Mund fließt ein Fluss. Fenrisulfr tied up, a river flows from his mouth." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Fenrir bound manuscript image — Fenrir amarrado, onde um rio flui de sua boca</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Fenrir (Manual of Mythology) — The wolf Fenrir, opening his mouth very wide indeed Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-3" data-title="Fenrir (Manual of Mythology) — The wolf Fenrir, opening his mouth very wide indeed Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Fenrir_%28Manual_of_Mythology%29.jpg/960px-Fenrir_%28Manual_of_Mythology%29.jpg" alt="The wolf Fenrir, opening his mouth very wide indeed." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Fenrir (Manual of Mythology) — The wolf Fenrir, opening his mouth very wide indeed</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="The binding of Fenrir by George Wright — Captioned as &quot;The gods were so delighted that they began to laugh&quot; Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-4" data-title="The binding of Fenrir by George Wright — Captioned as &quot;The gods were so delighted that they began to laugh&quot; Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/The_binding_of_Fenrir_by_George_Wright.jpg/960px-The_binding_of_Fenrir_by_George_Wright.jpg" alt="Captioned as &quot;The gods were so delighted that they began to laugh&quot;. The gods bind the wolf Fenrir." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>The binding of Fenrir by George Wright — Captioned as &quot;The gods were so delighted that they began to laugh&quot;</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Thor Chaining Fenrir by H Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-5" data-title="Thor Chaining Fenrir by H Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Thor_Chaining_Fenrir_by_H._L._M.jpg" alt="Captioned as &quot;Thor Chaining Fenrir&quot;. The god Thor chains the wolf Fenrir." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Thor Chaining Fenrir by H</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="SÁM 66, 78v, Fenrir and Týr — An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript Fenrir" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fenrir-6" data-title="SÁM 66, 78v, Fenrir and Týr — An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript Fenrir" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/S%C3%81M_66%2C_78v%2C_Fenrir_and_T%C3%BDr.jpg" alt="An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>SÁM 66, 78v, Fenrir and Týr — An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -340,8 +344,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-fenrir-fenrir-v1.1","templeId":"fenrir","title":"Fenrir — study v1.1","src":"/assets/ai-commons/fenrir-v1.1.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Fenrir — study v1.1” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/fenrir/art/?view=commons","canonicalUrl":"https://punicodex.com/fenrir/art/?view=commons","generatedAt":"2026-11-07T06:43:27.701Z","recordedAt":"2026-11-12T06:12:58.630Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":362494031,"prompt":"Fenrir, wolf, destruction, binding,, Viking Urnes style gold knotwork on pure black background, intricate interlaced animal ornament, variation 1","provenance":"Curated PuniCodex studio work promoted into Commons."},{"id":"commons-fenrir-fenrir-v1.2","templeId":"fenrir","title":"Fenrir — study v1.2","src":"/assets/ai-commons/fenrir-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Fenrir — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/fenrir/art/?view=commons","canonicalUrl":"https://punicodex.com/fenrir/art/?view=commons","generatedAt":"2026-11-07T06:43:31.926Z","recordedAt":"2026-11-12T06:12:58.630Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1287666748,"prompt":"Fenrir, wolf, destruction, binding,, Viking Urnes style gold knotwork on pure black background, intricate interlaced animal ornament, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-fenrir-1","kind":"temple","templeId":"fenrir","src":"https://upload.wikimedia.org/wikipedia/commons/1/18/Tyr_and_Fenrir-John_Bauer.jpg","title":"Tyr and Fenrir-John Bauer — for Our Fathers' Godsaga by Viktor Rydberg Photo/art: John Bauer","alt":"for Our Fathers' Godsaga by Viktor Rydberg","creator":"John Bauer","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Tyr_and_Fenrir-John_Bauer.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Tyr_and_Fenrir-John_Bauer.jpg","canonicalUrl":"https://punicodex.com/fenrir/art/?view=temple&art=gallery-fenrir-1","attribution":"Tyr and Fenrir-John Bauer — for Our Fathers' Godsaga by Viktor Rydberg Photo/art: John Bauer by John Bauer, Public domain, via https://commons.wikimedia.org/wiki/File:Tyr_and_Fenrir-John_Bauer.jpg","provenance":"for Our Fathers' Godsaga by Viktor Rydberg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fenrir-2","kind":"temple","templeId":"fenrir","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Fenrir_bound_manuscript_image.jpg/960px-Fenrir_bound_manuscript_image.jpg","title":"Fenrir bound manuscript image — Fenrir amarrado, onde um rio flui de sua boca","alt":"Fenrir amarrado, onde um rio flui de sua boca. Fenriswolf gefesselt, aus seinem Mund fließt ein Fluss. Fenrisulfr tied up, a river flows from his mouth.","creator":"commons.wikimedia.org","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Fenrir_bound_manuscript_image.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Fenrir_bound_manuscript_image.jpg","canonicalUrl":"https://punicodex.com/fenrir/art/?view=temple&art=gallery-fenrir-2","attribution":"Fenrir bound manuscript image — Fenrir amarrado, onde um rio flui de sua boca by commons.wikimedia.org, Public domain, via https://commons.wikimedia.org/wiki/File:Fenrir_bound_manuscript_image.jpg","provenance":"Fenrir amarrado, onde um rio flui de sua boca. Fenriswolf gefesselt, aus seinem Mund fließt ein Fluss. Fenrisulfr tied up, a river flows from his mouth.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fenrir-3","kind":"temple","templeId":"fenrir","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Fenrir_%28Manual_of_Mythology%29.jpg/960px-Fenrir_%28Manual_of_Mythology%29.jpg","title":"Fenrir (Manual of Mythology) — The wolf Fenrir, opening his mouth very wide indeed","alt":"The wolf Fenrir, opening his mouth very wide indeed.","creator":"The image is signed A. Fleming","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Fenrir_(Manual_of_Mythology).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Fenrir_(Manual_of_Mythology).jpg","canonicalUrl":"https://punicodex.com/fenrir/art/?view=temple&art=gallery-fenrir-3","attribution":"Fenrir (Manual of Mythology) — The wolf Fenrir, opening his mouth very wide indeed by The image is signed A. Fleming, Public domain, via https://commons.wikimedia.org/wiki/File:Fenrir_(Manual_of_Mythology).jpg","provenance":"The wolf Fenrir, opening his mouth very wide indeed.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fenrir-4","kind":"temple","templeId":"fenrir","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/The_binding_of_Fenrir_by_George_Wright.jpg/960px-The_binding_of_Fenrir_by_George_Wright.jpg","title":"The binding of Fenrir by George Wright — Captioned as \"The gods were so delighted that they began to laugh\"","alt":"Captioned as \"The gods were so delighted that they began to laugh\". The gods bind the wolf Fenrir.","creator":"George Wright (1872-1951)","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:The_binding_of_Fenrir_by_George_Wright.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:The_binding_of_Fenrir_by_George_Wright.jpg","canonicalUrl":"https://punicodex.com/fenrir/art/?view=temple&art=gallery-fenrir-4","attribution":"The binding of Fenrir by George Wright — Captioned as \"The gods were so delighted that they began to laugh\" by George Wright (1872-1951), Public domain, via https://commons.wikimedia.org/wiki/File:The_binding_of_Fenrir_by_George_Wright.jpg","provenance":"Captioned as \"The gods were so delighted that they began to laugh\". The gods bind the wolf Fenrir.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fenrir-5","kind":"temple","templeId":"fenrir","src":"https://upload.wikimedia.org/wikipedia/commons/3/3c/Thor_Chaining_Fenrir_by_H._L._M.jpg","title":"Thor Chaining Fenrir by H","alt":"Captioned as \"Thor Chaining Fenrir\". The god Thor chains the wolf Fenrir.","creator":"Signed \"H. L. M.\"","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Thor_Chaining_Fenrir_by_H._L._M.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Thor_Chaining_Fenrir_by_H._L._M.jpg","canonicalUrl":"https://punicodex.com/fenrir/art/?view=temple&art=gallery-fenrir-5","attribution":"Thor Chaining Fenrir by H by Signed \"H. L. M.\", Public domain, via https://commons.wikimedia.org/wiki/File:Thor_Chaining_Fenrir_by_H._L._M.jpg","provenance":"Captioned as \"Thor Chaining Fenrir\". The god Thor chains the wolf Fenrir.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fenrir-6","kind":"temple","templeId":"fenrir","src":"https://upload.wikimedia.org/wikipedia/commons/7/7d/S%C3%81M_66%2C_78v%2C_Fenrir_and_T%C3%BDr.jpg","title":"SÁM 66, 78v, Fenrir and Týr — An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript","alt":"An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript.","creator":"Jakob Sigurðsson[2]","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:SÁM_66,_78v,_Fenrir_and_Týr.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:SÁM_66,_78v,_Fenrir_and_Týr.jpg","canonicalUrl":"https://punicodex.com/fenrir/art/?view=temple&art=gallery-fenrir-6","attribution":"SÁM 66, 78v, Fenrir and Týr — An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript by Jakob Sigurðsson[2], Public domain, via https://commons.wikimedia.org/wiki/File:SÁM_66,_78v,_Fenrir_and_Týr.jpg","provenance":"An illustration of the wolf Fenrir biting the right hand off the god Týr , from an Icelandic 18th century manuscript.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-fenrir-fenrir-v1.1","templeId":"fenrir","title":"Fenrir — study v1.1","src":"/assets/ai-commons/fenrir-v1.1.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Fenrir — study v1.1” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/fenrir/art/?view=commons","canonicalUrl":"https://punicodex.com/fenrir/art/?view=commons","generatedAt":"2026-11-07T06:43:27.701Z","recordedAt":"2026-11-12T06:12:58.630Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":362494031,"prompt":"Fenrir, wolf, destruction, binding,, Viking Urnes style gold knotwork on pure black background, intricate interlaced animal ornament, variation 1","provenance":"Curated PuniCodex studio work promoted into Commons."},{"id":"commons-fenrir-fenrir-v1.2","templeId":"fenrir","title":"Fenrir — study v1.2","src":"/assets/ai-commons/fenrir-v1.2.jpg","kind":"study","family":"classic-gold","tags":["commons","classic-gold"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Fenrir — study v1.2” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/fenrir/art/?view=commons","canonicalUrl":"https://punicodex.com/fenrir/art/?view=commons","generatedAt":"2026-11-07T06:43:31.926Z","recordedAt":"2026-11-12T06:12:58.630Z","aiAssisted":true,"model":"fal-ai/flux/schnell","seed":1287666748,"prompt":"Fenrir, wolf, destruction, binding,, Viking Urnes style gold knotwork on pure black background, intricate interlaced animal ornament, variation 2","provenance":"Curated PuniCodex studio work promoted into Commons."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -355,8 +360,14 @@
     creatives: { t: 'Creatives for Fenrir — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/fenrir/art/?view=creatives' },
     commons: { t: 'The Commons — Fenrir studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/fenrir/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -367,6 +378,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -385,7 +397,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

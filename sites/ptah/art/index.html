@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=5538e5ee08">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Ptḥ — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/ptah/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Ptḥ","item":"https://punicodex.com/ptah/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/ptah/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/ptah/" class="nav-link active">Store</a>
+                    <a href="/store/ptah/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/ptah/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/ptah/" class="nav-link active">Store</a>
+            <a href="/store/ptah/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/ptah/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Ptah votive stele — Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valle… Photo/art: Infinitebistromathics Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-1" data-title="Ptah votive stele — Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valle… Photo/art: Infinitebistromathics Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Ptah_votive_stele.JPG/960px-Ptah_votive_stele.JPG" alt="Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valley of the Kings . New Kingdom , XX Dynast…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ptah votive stele — Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valle… Photo/art: Infinitebistromathics</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Egyptian - Stele with King and Ptah - Walters 22319 — This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-2" data-title="Egyptian - Stele with King and Ptah - Walters 22319 — This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg/960px-Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg" alt="This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table. There are inscriptions on the top, bottom, and edges. The corners are broken. The authenticity of this piece i…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Egyptian - Stele with King and Ptah - Walters 22319 — This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ruin Ptah temple Memfis — Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975 Photo/art: Zemanst Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-3" data-title="Ruin Ptah temple Memfis — Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975 Photo/art: Zemanst Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ruin_Ptah_temple_Memfis.jpg/960px-Ruin_Ptah_temple_Memfis.jpg" alt="Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ruin Ptah temple Memfis — Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975 Photo/art: Zemanst</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen Photo/art: Jakub Hałun Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-4" data-title="King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen Photo/art: Jakub Hałun Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/King_Ramesses_II_and_the_God_Ptah%2C_Ny_Carlsberg_Glyptotek%2C_Copenhagen%2C_20220618_1031_6995.jpg/960px-King_Ramesses_II_and_the_God_Ptah%2C_Ny_Carlsberg_Glyptotek%2C_Copenhagen%2C_20220618_1031_6995.jpg" alt="King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen Photo/art: Jakub Hałun</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02 CC0 via Wikimedia Commons Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-5" data-title="Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02 CC0 via Wikimedia Commons Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Statue_of_the_god_Ptah%2C_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg/960px-Statue_of_the_god_Ptah%2C_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg" alt="Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02 CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ptah MET 04 Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-6" data-title="Ptah MET 04 Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Ptah_MET_04.2.406_001.jpg/960px-Ptah_MET_04.2.406_001.jpg" alt="Statuette, Ptah" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ptah MET 04</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Ptah votive stele — Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valle… Photo/art: Infinitebistromathics Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-1" data-title="Ptah votive stele — Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valle… Photo/art: Infinitebistromathics Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Ptah_votive_stele.JPG/960px-Ptah_votive_stele.JPG" alt="Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valley of the Kings . New Kingdom , XX Dynast…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ptah votive stele — Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valle… Photo/art: Infinitebistromathics</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Egyptian - Stele with King and Ptah - Walters 22319 — This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-2" data-title="Egyptian - Stele with King and Ptah - Walters 22319 — This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg/960px-Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg" alt="This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table. There are inscriptions on the top, bottom, and edges. The corners are broken. The authenticity of this piece i…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Egyptian - Stele with King and Ptah - Walters 22319 — This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ruin Ptah temple Memfis — Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975 Photo/art: Zemanst Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-3" data-title="Ruin Ptah temple Memfis — Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975 Photo/art: Zemanst Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ruin_Ptah_temple_Memfis.jpg/960px-Ruin_Ptah_temple_Memfis.jpg" alt="Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ruin Ptah temple Memfis — Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975 Photo/art: Zemanst</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen Photo/art: Jakub Hałun Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-4" data-title="King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen Photo/art: Jakub Hałun Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/King_Ramesses_II_and_the_God_Ptah%2C_Ny_Carlsberg_Glyptotek%2C_Copenhagen%2C_20220618_1031_6995.jpg/960px-King_Ramesses_II_and_the_God_Ptah%2C_Ny_Carlsberg_Glyptotek%2C_Copenhagen%2C_20220618_1031_6995.jpg" alt="King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen Photo/art: Jakub Hałun</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02 CC0 via Wikimedia Commons Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-5" data-title="Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02 CC0 via Wikimedia Commons Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Statue_of_the_god_Ptah%2C_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg/960px-Statue_of_the_god_Ptah%2C_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg" alt="Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02.jpg" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02 CC0 via Wikimedia Commons</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Ptah MET 04 Ptḥ" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-ptah-6" data-title="Ptah MET 04 Ptḥ" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Ptah_MET_04.2.406_001.jpg/960px-Ptah_MET_04.2.406_001.jpg" alt="Statuette, Ptah" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Ptah MET 04</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-ptah-1","kind":"temple","templeId":"ptah","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Ptah_votive_stele.JPG/960px-Ptah_votive_stele.JPG","title":"Ptah votive stele — Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valle… Photo/art: Infinitebistromathics","alt":"Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valley of the Kings . New Kingdom , XX Dynast…","creator":"Infinitebistromathics","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Ptah_votive_stele.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Ptah_votive_stele.JPG","canonicalUrl":"https://punicodex.com/ptah/art/?view=temple&art=gallery-ptah-1","attribution":"Ptah votive stele — Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valle… Photo/art: Infinitebistromathics by Infinitebistromathics, Public domain, via https://commons.wikimedia.org/wiki/File:Ptah_votive_stele.JPG","provenance":"Votive stele dedicated to the god Ptah in the temple of Deir el-Medina by Nakht-em-Mut, foreman of the workers in charge of the building and decoration of the tombs in the Valley of the Kings . New Kingdom , XX Dynast…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ptah-2","kind":"temple","templeId":"ptah","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg/960px-Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg","title":"Egyptian - Stele with King and Ptah - Walters 22319 — This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table","alt":"This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table. There are inscriptions on the top, bottom, and edges. The corners are broken. The authenticity of this piece i…","creator":"Anonymous (Egypt)Unknown author","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg","canonicalUrl":"https://punicodex.com/ptah/art/?view=temple&art=gallery-ptah-2","attribution":"Egyptian - Stele with King and Ptah - Walters 22319 — This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table by Anonymous (Egypt)Unknown author, Public domain, via https://commons.wikimedia.org/wiki/File:Egyptian_-_Stele_with_King_and_Ptah_-_Walters_22319.jpg","provenance":"This stele is carved in low relief and depicts a King and Ptah facing each other across an offering table. There are inscriptions on the top, bottom, and edges. The corners are broken. The authenticity of this piece i…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ptah-3","kind":"temple","templeId":"ptah","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ruin_Ptah_temple_Memfis.jpg/960px-Ruin_Ptah_temple_Memfis.jpg","title":"Ruin Ptah temple Memfis — Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975 Photo/art: Zemanst","alt":"Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975","creator":"Zemanst","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Ruin_Ptah_temple_Memfis.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Ruin_Ptah_temple_Memfis.jpg","canonicalUrl":"https://punicodex.com/ptah/art/?view=temple&art=gallery-ptah-3","attribution":"Ruin Ptah temple Memfis — Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975 Photo/art: Zemanst by Zemanst, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Ruin_Ptah_temple_Memfis.jpg","provenance":"Zbytky chrámu boha Ptaha u vesnice Mit Rahína Memfis 1975","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ptah-4","kind":"temple","templeId":"ptah","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/King_Ramesses_II_and_the_God_Ptah%2C_Ny_Carlsberg_Glyptotek%2C_Copenhagen%2C_20220618_1031_6995.jpg/960px-King_Ramesses_II_and_the_God_Ptah%2C_Ny_Carlsberg_Glyptotek%2C_Copenhagen%2C_20220618_1031_6995.jpg","title":"King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen Photo/art: Jakub Hałun","alt":"King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen","creator":"Jakub Hałun","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:King_Ramesses_II_and_the_God_Ptah,_Ny_Carlsberg_Glyptotek,_Copenhagen,_20220618_1031_6995.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:King_Ramesses_II_and_the_God_Ptah,_Ny_Carlsberg_Glyptotek,_Copenhagen,_20220618_1031_6995.jpg","canonicalUrl":"https://punicodex.com/ptah/art/?view=temple&art=gallery-ptah-4","attribution":"King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen Photo/art: Jakub Hałun by Jakub Hałun, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:King_Ramesses_II_and_the_God_Ptah,_Ny_Carlsberg_Glyptotek,_Copenhagen,_20220618_1031_6995.jpg","provenance":"King Ramesses II and the God Ptah, Ancient Egyptian art collection, Ny Carlsberg Glyptotek, Copenhagen","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ptah-5","kind":"temple","templeId":"ptah","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Statue_of_the_god_Ptah%2C_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg/960px-Statue_of_the_god_Ptah%2C_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg","title":"Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02 CC0 via Wikimedia Commons","alt":"Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02.jpg","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Statue_of_the_god_Ptah,_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Statue_of_the_god_Ptah,_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg","canonicalUrl":"https://punicodex.com/ptah/art/?view=temple&art=gallery-ptah-5","attribution":"Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02 CC0 via Wikimedia Commons by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Statue_of_the_god_Ptah,_granodiorite_-_Museo_Egizio_Turin_C_86_p02.jpg","provenance":"Statue of the god Ptah, granodiorite - Museo Egizio Turin C 86 p02.jpg","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-ptah-6","kind":"temple","templeId":"ptah","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Ptah_MET_04.2.406_001.jpg/960px-Ptah_MET_04.2.406_001.jpg","title":"Ptah MET 04","alt":"Statuette, Ptah","creator":"commons.wikimedia.org","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Ptah_MET_04.2.406_001.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Ptah_MET_04.2.406_001.jpg","canonicalUrl":"https://punicodex.com/ptah/art/?view=temple&art=gallery-ptah-6","attribution":"Ptah MET 04 by commons.wikimedia.org, CC0, via https://commons.wikimedia.org/wiki/File:Ptah_MET_04.2.406_001.jpg","provenance":"Statuette, Ptah","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Ptḥ — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/ptah/art/?view=creatives' },
     commons: { t: 'The Commons — Ptḥ studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/ptah/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

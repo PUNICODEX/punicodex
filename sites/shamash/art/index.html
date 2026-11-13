@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=aa63117938">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Šamaš — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/shamash/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Šamaš","item":"https://punicodex.com/shamash/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/shamash/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/shamash/" class="nav-link active">Store</a>
+                    <a href="/store/shamash/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/shamash/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/shamash/" class="nav-link active">Store</a>
+            <a href="/store/shamash/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/shamash/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,44 +173,44 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Cylinder seal Shamash Louvre AO9132 — Unknown artist Unknown artist Šamaš" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shamash-1" data-title="Cylinder seal Shamash Louvre AO9132 — Unknown artist Unknown artist Šamaš" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cylinder_seal_Shamash_Louvre_AO9132.jpg/960px-Cylinder_seal_Shamash_Louvre_AO9132.jpg" alt="Cylinder seal Shamash Louvre AO9132" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Cylinder seal Shamash Louvre AO9132 — Unknown artist Unknown artist</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Shamash-sun-symbol (2 rays) — AnonMoos, 2011 Šamaš" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shamash-2" data-title="Shamash-sun-symbol (2 rays) — AnonMoos, 2011 Šamaš" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Shamash-sun-symbol_%282_rays%29.svg/960px-Shamash-sun-symbol_%282_rays%29.svg.png" alt="Shamash-sun-symbol (2 rays)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Shamash-sun-symbol (2 rays) — AnonMoos, 2011</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Code of Hammurabi (Louvre Sb 8)-31434550325 — Fred Romero from Paris, France, 2016-08-31 17:26 — CC BY 2 Šamaš" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shamash-3" data-title="Code of Hammurabi (Louvre Sb 8)-31434550325 — Fred Romero from Paris, France, 2016-08-31 17:26 — CC BY 2 Šamaš" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Code_of_Hammurabi_%28Louvre_Sb_8%29-31434550325.jpg/960px-Code_of_Hammurabi_%28Louvre_Sb_8%29-31434550325.jpg" alt="Code of Hammurabi (Louvre Sb 8)-31434550325" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Code of Hammurabi (Louvre Sb 8)-31434550325 — Fred Romero from Paris, France, 2016-08-31 17:26 — CC BY 2</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Relief met Shamash-ush-usur, GD006464 — Unknown author Unknown author, Unknown date Šamaš" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shamash-4" data-title="Relief met Shamash-ush-usur, GD006464 — Unknown author Unknown author, Unknown date Šamaš" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Relief_met_Shamash-ush-usur%2C_GD006464.jpg/960px-Relief_met_Shamash-ush-usur%2C_GD006464.jpg" alt="Relief met Shamash-ush-usur, GD006464" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Relief met Shamash-ush-usur, GD006464 — Unknown author Unknown author, Unknown date</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Cylinder seal Shamash Louvre AO9132 — Unknown artist Unknown artist Šamaš" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shamash-1" data-title="Cylinder seal Shamash Louvre AO9132 — Unknown artist Unknown artist Šamaš" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cylinder_seal_Shamash_Louvre_AO9132.jpg/960px-Cylinder_seal_Shamash_Louvre_AO9132.jpg" alt="Cylinder seal Shamash Louvre AO9132" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Cylinder seal Shamash Louvre AO9132 — Unknown artist Unknown artist</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Shamash-sun-symbol (2 rays) — AnonMoos, 2011 Šamaš" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shamash-2" data-title="Shamash-sun-symbol (2 rays) — AnonMoos, 2011 Šamaš" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Shamash-sun-symbol_%282_rays%29.svg/960px-Shamash-sun-symbol_%282_rays%29.svg.png" alt="Shamash-sun-symbol (2 rays)" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Shamash-sun-symbol (2 rays) — AnonMoos, 2011</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Code of Hammurabi (Louvre Sb 8)-31434550325 — Fred Romero from Paris, France, 2016-08-31 17:26 — CC BY 2 Šamaš" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shamash-3" data-title="Code of Hammurabi (Louvre Sb 8)-31434550325 — Fred Romero from Paris, France, 2016-08-31 17:26 — CC BY 2 Šamaš" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Code_of_Hammurabi_%28Louvre_Sb_8%29-31434550325.jpg/960px-Code_of_Hammurabi_%28Louvre_Sb_8%29-31434550325.jpg" alt="Code of Hammurabi (Louvre Sb 8)-31434550325" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Code of Hammurabi (Louvre Sb 8)-31434550325 — Fred Romero from Paris, France, 2016-08-31 17:26 — CC BY 2</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Relief met Shamash-ush-usur, GD006464 — Unknown author Unknown author, Unknown date Šamaš" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-shamash-4" data-title="Relief met Shamash-ush-usur, GD006464 — Unknown author Unknown author, Unknown date Šamaš" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Relief_met_Shamash-ush-usur%2C_GD006464.jpg/960px-Relief_met_Shamash-ush-usur%2C_GD006464.jpg" alt="Relief met Shamash-ush-usur, GD006464" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Relief met Shamash-ush-usur, GD006464 — Unknown author Unknown author, Unknown date</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -301,8 +305,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-shamash-1","kind":"temple","templeId":"shamash","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cylinder_seal_Shamash_Louvre_AO9132.jpg/960px-Cylinder_seal_Shamash_Louvre_AO9132.jpg","title":"Cylinder seal Shamash Louvre AO9132 — Unknown artist Unknown artist","alt":"Cylinder seal Shamash Louvre AO9132","creator":"Unknown artistUnknown artist","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Cylinder_seal_Shamash_Louvre_AO9132.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Cylinder_seal_Shamash_Louvre_AO9132.jpg","canonicalUrl":"https://punicodex.com/shamash/art/?view=temple&art=gallery-shamash-1","attribution":"Cylinder seal Shamash Louvre AO9132 — Unknown artist Unknown artist by Unknown artistUnknown artist, Public domain, via https://commons.wikimedia.org/wiki/File:Cylinder_seal_Shamash_Louvre_AO9132.jpg","provenance":"Cylinder seal Shamash Louvre AO9132","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-shamash-2","kind":"temple","templeId":"shamash","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Shamash-sun-symbol_%282_rays%29.svg/960px-Shamash-sun-symbol_%282_rays%29.svg.png","title":"Shamash-sun-symbol (2 rays) — AnonMoos, 2011","alt":"Shamash-sun-symbol (2 rays)","creator":"AnonMoos","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Shamash-sun-symbol_(2_rays).svg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Shamash-sun-symbol_(2_rays).svg","canonicalUrl":"https://punicodex.com/shamash/art/?view=temple&art=gallery-shamash-2","attribution":"Shamash-sun-symbol (2 rays) — AnonMoos, 2011 by AnonMoos, Public domain, via https://commons.wikimedia.org/wiki/File:Shamash-sun-symbol_(2_rays).svg","provenance":"Shamash-sun-symbol (2 rays)","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-shamash-3","kind":"temple","templeId":"shamash","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Code_of_Hammurabi_%28Louvre_Sb_8%29-31434550325.jpg/960px-Code_of_Hammurabi_%28Louvre_Sb_8%29-31434550325.jpg","title":"Code of Hammurabi (Louvre Sb 8)-31434550325 — Fred Romero from Paris, France, 2016-08-31 17:26 — CC BY 2","alt":"Code of Hammurabi (Louvre Sb 8)-31434550325","creator":"Fred Romero from Paris, France","license":"CC BY 2.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Code_of_Hammurabi_(Louvre_Sb_8)-31434550325.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Code_of_Hammurabi_(Louvre_Sb_8)-31434550325.jpg","canonicalUrl":"https://punicodex.com/shamash/art/?view=temple&art=gallery-shamash-3","attribution":"Code of Hammurabi (Louvre Sb 8)-31434550325 — Fred Romero from Paris, France, 2016-08-31 17:26 — CC BY 2 by Fred Romero from Paris, France, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Code_of_Hammurabi_(Louvre_Sb_8)-31434550325.jpg","provenance":"Code of Hammurabi (Louvre Sb 8)-31434550325","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-shamash-4","kind":"temple","templeId":"shamash","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Relief_met_Shamash-ush-usur%2C_GD006464.jpg/960px-Relief_met_Shamash-ush-usur%2C_GD006464.jpg","title":"Relief met Shamash-ush-usur, GD006464 — Unknown author Unknown author, Unknown date","alt":"Relief met Shamash-ush-usur, GD006464","creator":"Unknown authorUnknown author","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Relief_met_Shamash-ush-usur,_GD006464.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Relief_met_Shamash-ush-usur,_GD006464.jpg","canonicalUrl":"https://punicodex.com/shamash/art/?view=temple&art=gallery-shamash-4","attribution":"Relief met Shamash-ush-usur, GD006464 — Unknown author Unknown author, Unknown date by Unknown authorUnknown author, Public domain, via https://commons.wikimedia.org/wiki/File:Relief_met_Shamash-ush-usur,_GD006464.jpg","provenance":"Relief met Shamash-ush-usur, GD006464","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -316,8 +321,14 @@
     creatives: { t: 'Creatives for Šamaš — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/shamash/art/?view=creatives' },
     commons: { t: 'The Commons — Šamaš studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/shamash/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -328,6 +339,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -346,7 +358,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

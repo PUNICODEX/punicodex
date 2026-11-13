@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=fb5254dd04">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Kumano — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/kumano/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Kumano","item":"https://punicodex.com/kumano/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/kumano/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/kumano/" class="nav-link active">Store</a>
+                    <a href="/store/kumano/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/kumano/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/kumano/" class="nav-link active">Store</a>
+            <a href="/store/kumano/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/kumano/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Japanese cruiser Kumano — Japanese cruiser Kumano , Mogami class, December 19, 1938 Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-1" data-title="Japanese cruiser Kumano — Japanese cruiser Kumano , Mogami class, December 19, 1938 Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Japanese_cruiser_Kumano.jpg/960px-Japanese_cruiser_Kumano.jpg" alt="Japanese cruiser Kumano , Mogami class, December 19, 1938. Kumano was sunk by aircraft from USS Ticonderoga (CV 14) on November 25, 1944, while undergoing repairs in Santa Cruz on Luzon. Halftone copy from the files o…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Japanese cruiser Kumano — Japanese cruiser Kumano , Mogami class, December 19, 1938</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kumano-194212 — Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M &quot;Pete&quot; reconnaissance seaplane Photo/art: Unknown author Unknown author Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-2" data-title="Kumano-194212 — Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M &quot;Pete&quot; reconnaissance seaplane Photo/art: Unknown author Unknown author Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kumano-194212.jpg/960px-Kumano-194212.jpg" alt="Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M &quot;Pete&quot; reconnaissance seaplane" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kumano-194212 — Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M &quot;Pete&quot; reconnaissance seaplane Photo/art: Unknown author Unknown author</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kumano River Shingu Wakayama02bs5s4320 — Kumano River in Shingū , Wakayama prefecture , Japan Photo/art: 663highland Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-3" data-title="Kumano River Shingu Wakayama02bs5s4320 — Kumano River in Shingū , Wakayama prefecture , Japan Photo/art: 663highland Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Kumano_River_Shingu_Wakayama02bs5s4320.jpg/960px-Kumano_River_Shingu_Wakayama02bs5s4320.jpg" alt="Kumano River in Shingū , Wakayama prefecture , Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kumano River Shingu Wakayama02bs5s4320 — Kumano River in Shingū , Wakayama prefecture , Japan Photo/art: 663highland</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.5</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kumano Town Office — Kumano Town Office in Hiroshima Prefecture, Japan Photo/art: Taisyo at Japanese Wikipedia Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-4" data-title="Kumano Town Office — Kumano Town Office in Hiroshima Prefecture, Japan Photo/art: Taisyo at Japanese Wikipedia Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Kumano_Town_Office.jpg/960px-Kumano_Town_Office.jpg" alt="Kumano Town Office in Hiroshima Prefecture, Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kumano Town Office — Kumano Town Office in Hiroshima Prefecture, Japan Photo/art: Taisyo at Japanese Wikipedia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kumano banner — A banner of a small river in Kumano, Mie, Japan Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-5" data-title="Kumano banner — A banner of a small river in Kumano, Mie, Japan Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Kumano_banner.jpg/960px-Kumano_banner.jpg" alt="A banner of a small river in Kumano, Mie, Japan." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kumano banner — A banner of a small river in Kumano, Mie, Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kiwacho-Kobune, Kumano, Mie-01 — 小船の町並み 三重県熊野市紀和町小船 Photo/art: Gohachiyasu1214 Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-6" data-title="Kiwacho-Kobune, Kumano, Mie-01 — 小船の町並み 三重県熊野市紀和町小船 Photo/art: Gohachiyasu1214 Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Kiwacho-Kobune%2C_Kumano%2C_Mie-01.jpg/960px-Kiwacho-Kobune%2C_Kumano%2C_Mie-01.jpg" alt="小船の町並み 三重県熊野市紀和町小船" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kiwacho-Kobune, Kumano, Mie-01 — 小船の町並み 三重県熊野市紀和町小船 Photo/art: Gohachiyasu1214</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Japanese cruiser Kumano — Japanese cruiser Kumano , Mogami class, December 19, 1938 Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-1" data-title="Japanese cruiser Kumano — Japanese cruiser Kumano , Mogami class, December 19, 1938 Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Japanese_cruiser_Kumano.jpg/960px-Japanese_cruiser_Kumano.jpg" alt="Japanese cruiser Kumano , Mogami class, December 19, 1938. Kumano was sunk by aircraft from USS Ticonderoga (CV 14) on November 25, 1944, while undergoing repairs in Santa Cruz on Luzon. Halftone copy from the files o…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Japanese cruiser Kumano — Japanese cruiser Kumano , Mogami class, December 19, 1938</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kumano-194212 — Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M &quot;Pete&quot; reconnaissance seaplane Photo/art: Unknown author Unknown author Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-2" data-title="Kumano-194212 — Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M &quot;Pete&quot; reconnaissance seaplane Photo/art: Unknown author Unknown author Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kumano-194212.jpg/960px-Kumano-194212.jpg" alt="Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M &quot;Pete&quot; reconnaissance seaplane" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kumano-194212 — Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M &quot;Pete&quot; reconnaissance seaplane Photo/art: Unknown author Unknown author</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kumano River Shingu Wakayama02bs5s4320 — Kumano River in Shingū , Wakayama prefecture , Japan Photo/art: 663highland Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-3" data-title="Kumano River Shingu Wakayama02bs5s4320 — Kumano River in Shingū , Wakayama prefecture , Japan Photo/art: 663highland Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Kumano_River_Shingu_Wakayama02bs5s4320.jpg/960px-Kumano_River_Shingu_Wakayama02bs5s4320.jpg" alt="Kumano River in Shingū , Wakayama prefecture , Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kumano River Shingu Wakayama02bs5s4320 — Kumano River in Shingū , Wakayama prefecture , Japan Photo/art: 663highland</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.5</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kumano Town Office — Kumano Town Office in Hiroshima Prefecture, Japan Photo/art: Taisyo at Japanese Wikipedia Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-4" data-title="Kumano Town Office — Kumano Town Office in Hiroshima Prefecture, Japan Photo/art: Taisyo at Japanese Wikipedia Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Kumano_Town_Office.jpg/960px-Kumano_Town_Office.jpg" alt="Kumano Town Office in Hiroshima Prefecture, Japan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kumano Town Office — Kumano Town Office in Hiroshima Prefecture, Japan Photo/art: Taisyo at Japanese Wikipedia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kumano banner — A banner of a small river in Kumano, Mie, Japan Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-5" data-title="Kumano banner — A banner of a small river in Kumano, Mie, Japan Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Kumano_banner.jpg/960px-Kumano_banner.jpg" alt="A banner of a small river in Kumano, Mie, Japan." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kumano banner — A banner of a small river in Kumano, Mie, Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Kiwacho-Kobune, Kumano, Mie-01 — 小船の町並み 三重県熊野市紀和町小船 Photo/art: Gohachiyasu1214 Kumano" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-kumano-6" data-title="Kiwacho-Kobune, Kumano, Mie-01 — 小船の町並み 三重県熊野市紀和町小船 Photo/art: Gohachiyasu1214 Kumano" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Kiwacho-Kobune%2C_Kumano%2C_Mie-01.jpg/960px-Kiwacho-Kobune%2C_Kumano%2C_Mie-01.jpg" alt="小船の町並み 三重県熊野市紀和町小船" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Kiwacho-Kobune, Kumano, Mie-01 — 小船の町並み 三重県熊野市紀和町小船 Photo/art: Gohachiyasu1214</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-kumano-1","kind":"temple","templeId":"kumano","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Japanese_cruiser_Kumano.jpg/960px-Japanese_cruiser_Kumano.jpg","title":"Japanese cruiser Kumano — Japanese cruiser Kumano , Mogami class, December 19, 1938","alt":"Japanese cruiser Kumano , Mogami class, December 19, 1938. Kumano was sunk by aircraft from USS Ticonderoga (CV 14) on November 25, 1944, while undergoing repairs in Santa Cruz on Luzon. Halftone copy from the files o…","creator":"Unknown authorUnknown author","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Japanese_cruiser_Kumano.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Japanese_cruiser_Kumano.jpg","canonicalUrl":"https://punicodex.com/kumano/art/?view=temple&art=gallery-kumano-1","attribution":"Japanese cruiser Kumano — Japanese cruiser Kumano , Mogami class, December 19, 1938 by Unknown authorUnknown author, Public domain, via https://commons.wikimedia.org/wiki/File:Japanese_cruiser_Kumano.jpg","provenance":"Japanese cruiser Kumano , Mogami class, December 19, 1938. Kumano was sunk by aircraft from USS Ticonderoga (CV 14) on November 25, 1944, while undergoing repairs in Santa Cruz on Luzon. Halftone copy from the files o…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kumano-2","kind":"temple","templeId":"kumano","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kumano-194212.jpg/960px-Kumano-194212.jpg","title":"Kumano-194212 — Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M \"Pete\" reconnaissance seaplane Photo/art: Unknown author Unknown author","alt":"Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M \"Pete\" reconnaissance seaplane","creator":"Unknown authorUnknown author","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kumano-194212.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kumano-194212.jpg","canonicalUrl":"https://punicodex.com/kumano/art/?view=temple&art=gallery-kumano-2","attribution":"Kumano-194212 — Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M \"Pete\" reconnaissance seaplane Photo/art: Unknown author Unknown author by Unknown authorUnknown author, Public domain, via https://commons.wikimedia.org/wiki/File:Kumano-194212.jpg","provenance":"Japanese heavy cruiser Kumano anchored off Rabaul, viewed by a Mitsubishi F1M \"Pete\" reconnaissance seaplane","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kumano-3","kind":"temple","templeId":"kumano","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Kumano_River_Shingu_Wakayama02bs5s4320.jpg/960px-Kumano_River_Shingu_Wakayama02bs5s4320.jpg","title":"Kumano River Shingu Wakayama02bs5s4320 — Kumano River in Shingū , Wakayama prefecture , Japan Photo/art: 663highland","alt":"Kumano River in Shingū , Wakayama prefecture , Japan","creator":"663highland","license":"CC BY 2.5","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kumano_River_Shingu_Wakayama02bs5s4320.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kumano_River_Shingu_Wakayama02bs5s4320.jpg","canonicalUrl":"https://punicodex.com/kumano/art/?view=temple&art=gallery-kumano-3","attribution":"Kumano River Shingu Wakayama02bs5s4320 — Kumano River in Shingū , Wakayama prefecture , Japan Photo/art: 663highland by 663highland, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Kumano_River_Shingu_Wakayama02bs5s4320.jpg","provenance":"Kumano River in Shingū , Wakayama prefecture , Japan","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kumano-4","kind":"temple","templeId":"kumano","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Kumano_Town_Office.jpg/960px-Kumano_Town_Office.jpg","title":"Kumano Town Office — Kumano Town Office in Hiroshima Prefecture, Japan Photo/art: Taisyo at Japanese Wikipedia","alt":"Kumano Town Office in Hiroshima Prefecture, Japan","creator":"Taisyo at Japanese Wikipedia","license":"CC BY 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kumano_Town_Office.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kumano_Town_Office.jpg","canonicalUrl":"https://punicodex.com/kumano/art/?view=temple&art=gallery-kumano-4","attribution":"Kumano Town Office — Kumano Town Office in Hiroshima Prefecture, Japan Photo/art: Taisyo at Japanese Wikipedia by Taisyo at Japanese Wikipedia, CC BY 3.0, via https://commons.wikimedia.org/wiki/File:Kumano_Town_Office.jpg","provenance":"Kumano Town Office in Hiroshima Prefecture, Japan","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kumano-5","kind":"temple","templeId":"kumano","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Kumano_banner.jpg/960px-Kumano_banner.jpg","title":"Kumano banner — A banner of a small river in Kumano, Mie, Japan","alt":"A banner of a small river in Kumano, Mie, Japan.","creator":"Douglas Perkins","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kumano_banner.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kumano_banner.jpg","canonicalUrl":"https://punicodex.com/kumano/art/?view=temple&art=gallery-kumano-5","attribution":"Kumano banner — A banner of a small river in Kumano, Mie, Japan by Douglas Perkins, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Kumano_banner.jpg","provenance":"A banner of a small river in Kumano, Mie, Japan.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-kumano-6","kind":"temple","templeId":"kumano","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Kiwacho-Kobune%2C_Kumano%2C_Mie-01.jpg/960px-Kiwacho-Kobune%2C_Kumano%2C_Mie-01.jpg","title":"Kiwacho-Kobune, Kumano, Mie-01 — 小船の町並み 三重県熊野市紀和町小船 Photo/art: Gohachiyasu1214","alt":"小船の町並み 三重県熊野市紀和町小船","creator":"Gohachiyasu1214","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Kiwacho-Kobune,_Kumano,_Mie-01.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Kiwacho-Kobune,_Kumano,_Mie-01.jpg","canonicalUrl":"https://punicodex.com/kumano/art/?view=temple&art=gallery-kumano-6","attribution":"Kiwacho-Kobune, Kumano, Mie-01 — 小船の町並み 三重県熊野市紀和町小船 Photo/art: Gohachiyasu1214 by Gohachiyasu1214, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Kiwacho-Kobune,_Kumano,_Mie-01.jpg","provenance":"小船の町並み 三重県熊野市紀和町小船","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Kumano — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/kumano/art/?view=creatives' },
     commons: { t: 'The Commons — Kumano studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/kumano/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

@@ -34,6 +34,7 @@
 <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css?v=perf40">
 <link rel="stylesheet" href="/css/nav-hubs.css?v=4">
+
 <style>
 :root{--obsidian:#0A0A0C;--gold:#D4AF37;--gold-bright:#F0D878;--ink:#E8E4DC;--dim:#9a948a;--line:rgba(212,175,55,.18);--card:#121216}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -100,6 +101,12 @@ a:hover{color:var(--gold-bright)}
   .pdp{grid-template-columns:1fr;gap:1.5rem}
   .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
+
+@media(max-width:820px){
+  .nav-inner{padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+  .store-hero h1,.art-hero h1{font-size:clamp(1.65rem,7vw,2.6rem);overflow-wrap:anywhere}
+  .dept-grid{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
+}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
@@ -113,7 +120,7 @@ a:hover{color:var(--gold-bright)}
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
 <body>
-    <nav class="main-nav" id="main-nav">
+<nav class="main-nav" id="main-nav">
         <div class="nav-inner">
             <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
             <div class="nav-links">
@@ -242,8 +249,7 @@ a:hover{color:var(--gold-bright)}
                 <span></span>
             </button>
         </div>
-    </nav>
-    <div class="mobile-menu" id="mobile-menu">
+    </nav><div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
             <a href="/world/" class="mobile-menu-title mobile-menu-title--hub">World</a>
             <div class="mobile-menu-group">
@@ -367,8 +373,7 @@ a:hover{color:var(--gold-bright)}
         </div>
     </div>
     <script src="/js/px-core.js?v=d28727a34e" defer></script>
-    <script src="/js/nav-hubs.js?v=7" defer></script>
-    <script src="/js/main.js?v=bb046cae59" defer></script>
+    <script src="/js/nav-hubs.js?v=7" defer></script><script src="/js/main.js?v=bb046cae59" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <span style="color:var(--gold)">Shipping Policy</span></div>
 <div class="wrap" style="max-width:760px;padding-bottom:4rem">
   <h1 style="margin-bottom:.4rem">Shipping Policy</h1>

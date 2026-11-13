@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Pḗgasos — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/pegasos/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Pḗgasos","item":"https://punicodex.com/pegasos/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/pegasos/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/pegasos/" class="nav-link active">Store</a>
+                    <a href="/store/pegasos/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/pegasos/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/pegasos/" class="nav-link active">Store</a>
+            <a href="/store/pegasos/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/pegasos/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,17 +173,17 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Bronze figurine of Pegasos, 530 BC, NAMA, Kar 71, 225634 — Bronze figurine of the winged horse, Pegasos, from a vase handle Pḗgasos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pegasos-1" data-title="Bronze figurine of Pegasos, 530 BC, NAMA, Kar 71, 225634 — Bronze figurine of the winged horse, Pegasos, from a vase handle Pḗgasos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Bronze_figurine_of_Pegasos%2C_530_BC%2C_NAMA%2C_Kar_71%2C_225634.jpg/960px-Bronze_figurine_of_Pegasos%2C_530_BC%2C_NAMA%2C_Kar_71%2C_225634.jpg" alt="Bronze figurine of the winged horse, Pegasos, from a vase handle. Possibly Laconian workshop, about 530 BC. National Archaeological Museum of Athens, Kar. 71." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Bronze figurine of Pegasos, 530 BC, NAMA, Kar 71, 225634 — Bronze figurine of the winged horse, Pegasos, from a vase handle</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Staatsoper Wien 2017 Statue Muse Pegasos Ernst Hähnel 1 — State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel Pḗgasos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pegasos-2" data-title="Staatsoper Wien 2017 Statue Muse Pegasos Ernst Hähnel 1 — State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel Pḗgasos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_H%C3%A4hnel_1.jpg/960px-Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_H%C3%A4hnel_1.jpg" alt="State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Staatsoper Wien 2017 Statue Muse Pegasos Ernst Hähnel 1 — State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Pegaosos motherboard - &quot;pre-april&quot; version — Płyta główna Pegasos zamontowana w obudowie Pḗgasos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pegasos-3" data-title="Pegaosos motherboard - &quot;pre-april&quot; version — Płyta główna Pegasos zamontowana w obudowie Pḗgasos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Pegaosos_motherboard_-_%22pre-april%22_version.jpg/960px-Pegaosos_motherboard_-_%22pre-april%22_version.jpg" alt="Płyta główna Pegasos zamontowana w obudowie. Wersja &quot;pre-april&quot; z modułem procesora PowerPC 750CXe (tzw. G3)." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Pegaosos motherboard - &quot;pre-april&quot; version — Płyta główna Pegasos zamontowana w obudowie</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -191,17 +195,17 @@
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Bronze figurine of Pegasos, 530 BC, NAMA, Kar 71, 225634 — Bronze figurine of the winged horse, Pegasos, from a vase handle Pḗgasos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pegasos-1" data-title="Bronze figurine of Pegasos, 530 BC, NAMA, Kar 71, 225634 — Bronze figurine of the winged horse, Pegasos, from a vase handle Pḗgasos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Bronze_figurine_of_Pegasos%2C_530_BC%2C_NAMA%2C_Kar_71%2C_225634.jpg/960px-Bronze_figurine_of_Pegasos%2C_530_BC%2C_NAMA%2C_Kar_71%2C_225634.jpg" alt="Bronze figurine of the winged horse, Pegasos, from a vase handle. Possibly Laconian workshop, about 530 BC. National Archaeological Museum of Athens, Kar. 71." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Bronze figurine of Pegasos, 530 BC, NAMA, Kar 71, 225634 — Bronze figurine of the winged horse, Pegasos, from a vase handle</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Staatsoper Wien 2017 Statue Muse Pegasos Ernst Hähnel 1 — State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel Pḗgasos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pegasos-2" data-title="Staatsoper Wien 2017 Statue Muse Pegasos Ernst Hähnel 1 — State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel Pḗgasos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_H%C3%A4hnel_1.jpg/960px-Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_H%C3%A4hnel_1.jpg" alt="State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel ." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Staatsoper Wien 2017 Statue Muse Pegasos Ernst Hähnel 1 — State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Pegaosos motherboard - &quot;pre-april&quot; version — Płyta główna Pegasos zamontowana w obudowie Pḗgasos" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-pegasos-3" data-title="Pegaosos motherboard - &quot;pre-april&quot; version — Płyta główna Pegasos zamontowana w obudowie Pḗgasos" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Pegaosos_motherboard_-_%22pre-april%22_version.jpg/960px-Pegaosos_motherboard_-_%22pre-april%22_version.jpg" alt="Płyta główna Pegasos zamontowana w obudowie. Wersja &quot;pre-april&quot; z modułem procesora PowerPC 750CXe (tzw. G3)." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Pegaosos motherboard - &quot;pre-april&quot; version — Płyta główna Pegasos zamontowana w obudowie</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -300,8 +304,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [{"id":"commons-pegasos-pegasos-anime-mascot-v1","templeId":"pegasos","title":"Pḗgasos — anime mascot","src":"/assets/ai-commons/pegasos-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Pḗgasos — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/pegasos/art/?view=commons","canonicalUrl":"https://punicodex.com/pegasos/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.632Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-pegasos-1","kind":"temple","templeId":"pegasos","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Bronze_figurine_of_Pegasos%2C_530_BC%2C_NAMA%2C_Kar_71%2C_225634.jpg/960px-Bronze_figurine_of_Pegasos%2C_530_BC%2C_NAMA%2C_Kar_71%2C_225634.jpg","title":"Bronze figurine of Pegasos, 530 BC, NAMA, Kar 71, 225634 — Bronze figurine of the winged horse, Pegasos, from a vase handle","alt":"Bronze figurine of the winged horse, Pegasos, from a vase handle. Possibly Laconian workshop, about 530 BC. National Archaeological Museum of Athens, Kar. 71.","creator":"Zde","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Bronze_figurine_of_Pegasos,_530_BC,_NAMA,_Kar_71,_225634.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Bronze_figurine_of_Pegasos,_530_BC,_NAMA,_Kar_71,_225634.jpg","canonicalUrl":"https://punicodex.com/pegasos/art/?view=temple&art=gallery-pegasos-1","attribution":"Bronze figurine of Pegasos, 530 BC, NAMA, Kar 71, 225634 — Bronze figurine of the winged horse, Pegasos, from a vase handle by Zde, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Bronze_figurine_of_Pegasos,_530_BC,_NAMA,_Kar_71,_225634.jpg","provenance":"Bronze figurine of the winged horse, Pegasos, from a vase handle. Possibly Laconian workshop, about 530 BC. National Archaeological Museum of Athens, Kar. 71.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-pegasos-2","kind":"temple","templeId":"pegasos","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_H%C3%A4hnel_1.jpg/960px-Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_H%C3%A4hnel_1.jpg","title":"Staatsoper Wien 2017 Statue Muse Pegasos Ernst Hähnel 1 — State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel","alt":"State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel .","creator":"Manfred Werner (Tsui)","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_Hähnel_1.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_Hähnel_1.jpg","canonicalUrl":"https://punicodex.com/pegasos/art/?view=temple&art=gallery-pegasos-2","attribution":"Staatsoper Wien 2017 Statue Muse Pegasos Ernst Hähnel 1 — State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel by Manfred Werner (Tsui), CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Staatsoper_Wien_2017_Statue_Muse_Pegasos_Ernst_Hähnel_1.jpg","provenance":"State Opera in Vienna , Austria , sculpture of a Muse riding a Pegasus by Ernst Hähnel .","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-pegasos-3","kind":"temple","templeId":"pegasos","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Pegaosos_motherboard_-_%22pre-april%22_version.jpg/960px-Pegaosos_motherboard_-_%22pre-april%22_version.jpg","title":"Pegaosos motherboard - \"pre-april\" version — Płyta główna Pegasos zamontowana w obudowie","alt":"Płyta główna Pegasos zamontowana w obudowie. Wersja \"pre-april\" z modułem procesora PowerPC 750CXe (tzw. G3).","creator":"Tdolphin~plwiki","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Pegaosos_motherboard_-_\"pre-april\"_version.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Pegaosos_motherboard_-_\"pre-april\"_version.jpg","canonicalUrl":"https://punicodex.com/pegasos/art/?view=temple&art=gallery-pegasos-3","attribution":"Pegaosos motherboard - \"pre-april\" version — Płyta główna Pegasos zamontowana w obudowie by Tdolphin~plwiki, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Pegaosos_motherboard_-_\"pre-april\"_version.jpg","provenance":"Płyta główna Pegasos zamontowana w obudowie. Wersja \"pre-april\" z modułem procesora PowerPC 750CXe (tzw. G3).","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"commons-pegasos-pegasos-anime-mascot-v1","templeId":"pegasos","title":"Pḗgasos — anime mascot","src":"/assets/ai-commons/pegasos-anime-mascot-v1.png","kind":"mascot","family":"anime","tags":["commons","anime","mascot"],"creator":"PuniCodex Studio","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/","attribution":"“Pḗgasos — anime mascot” by PuniCodex Studio, CC BY 4.0, via https://punicodex.com/pegasos/art/?view=commons","canonicalUrl":"https://punicodex.com/pegasos/art/?view=commons","generatedAt":null,"recordedAt":"2026-11-12T06:12:58.632Z","aiAssisted":true,"model":"Not recorded","seed":null,"prompt":null,"provenance":"Original flagship mascot preserved in Commons after the consistency replacement."}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -315,8 +320,14 @@
     creatives: { t: 'Creatives for Pḗgasos — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/pegasos/art/?view=creatives' },
     commons: { t: 'The Commons — Pḗgasos studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/pegasos/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -327,6 +338,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -345,7 +357,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

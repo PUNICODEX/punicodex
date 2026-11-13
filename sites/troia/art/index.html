@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=7c87243b9b">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Troíā — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/troia/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Troíā","item":"https://punicodex.com/troia/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/troia/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/troia/" class="nav-link active">Store</a>
+                    <a href="/store/troia/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/troia/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/troia/" class="nav-link active">Store</a>
+            <a href="/store/troia/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/troia/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Stampa della città di Troia — Engraved print of the city of Troia Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-1" data-title="Stampa della città di Troia — Engraved print of the city of Troia Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Stampa_della_citt%C3%A0_di_Troia.jpg/960px-Stampa_della_citt%C3%A0_di_Troia.jpg" alt="Engraved print of the city of Troia. Taken from &quot;The Kingdom of Naples in perspective&quot;. Giovanni Battista Pacichelli Reference Il regno di Napoli in prospettiva diviso in dodeci provincie. Naples: Michele Luigi Muzio …" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Stampa della città di Troia — Engraved print of the city of Troia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Playa Troia Mar, Troia, Portugal, 2021-09-12, DD 05 — Troia Mar Beach, Troia, Portugal Photo/art: Diego Delso Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-2" data-title="Playa Troia Mar, Troia, Portugal, 2021-09-12, DD 05 — Troia Mar Beach, Troia, Portugal Photo/art: Diego Delso Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Playa_Troia_Mar%2C_Troia%2C_Portugal%2C_2021-09-12%2C_DD_05.jpg/960px-Playa_Troia_Mar%2C_Troia%2C_Portugal%2C_2021-09-12%2C_DD_05.jpg" alt="Troia Mar Beach, Troia, Portugal" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Playa Troia Mar, Troia, Portugal, 2021-09-12, DD 05 — Troia Mar Beach, Troia, Portugal Photo/art: Diego Delso</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tróia March 2015-1 — Roman ruins of Tróia, Setúbal, Portugal Photo/art: Alvesgaspar Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-3" data-title="Tróia March 2015-1 — Roman ruins of Tróia, Setúbal, Portugal Photo/art: Alvesgaspar Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Tr%C3%B3ia_March_2015-1.jpg/960px-Tr%C3%B3ia_March_2015-1.jpg" alt="Roman ruins of Tróia, Setúbal, Portugal" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tróia March 2015-1 — Roman ruins of Tróia, Setúbal, Portugal Photo/art: Alvesgaspar</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Setúbal e Troia, Portugal (34836063770) — Setúbal e Troia, Portugal Photo/art: Jorge Brazil from Rio de Janeiro, Brazil Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-4" data-title="Setúbal e Troia, Portugal (34836063770) — Setúbal e Troia, Portugal Photo/art: Jorge Brazil from Rio de Janeiro, Brazil Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Set%C3%BAbal_e_Troia%2C_Portugal_%2834836063770%29.jpg/960px-Set%C3%BAbal_e_Troia%2C_Portugal_%2834836063770%29.jpg" alt="Setúbal e Troia, Portugal" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Setúbal e Troia, Portugal (34836063770) — Setúbal e Troia, Portugal Photo/art: Jorge Brazil from Rio de Janeiro, Brazil</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Roman ruins of Tróia Photo/art: Sanjorgepinho Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-5" data-title="Roman ruins of Tróia Photo/art: Sanjorgepinho Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Roman_ruins_of_Tr%C3%B3ia.jpg/960px-Roman_ruins_of_Tr%C3%B3ia.jpg" alt="Roman ruins of Tróia" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Roman ruins of Tróia Photo/art: Sanjorgepinho</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Cattedrale di Troia 09 — Cattedrale di Troia Photo/art: Barambani at Italian Wikipedia Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-6" data-title="Cattedrale di Troia 09 — Cattedrale di Troia Photo/art: Barambani at Italian Wikipedia Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Cattedrale_di_Troia_09.jpg/960px-Cattedrale_di_Troia_09.jpg" alt="Cattedrale di Troia" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Cattedrale di Troia 09 — Cattedrale di Troia Photo/art: Barambani at Italian Wikipedia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Stampa della città di Troia — Engraved print of the city of Troia Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-1" data-title="Stampa della città di Troia — Engraved print of the city of Troia Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Stampa_della_citt%C3%A0_di_Troia.jpg/960px-Stampa_della_citt%C3%A0_di_Troia.jpg" alt="Engraved print of the city of Troia. Taken from &quot;The Kingdom of Naples in perspective&quot;. Giovanni Battista Pacichelli Reference Il regno di Napoli in prospettiva diviso in dodeci provincie. Naples: Michele Luigi Muzio …" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Stampa della città di Troia — Engraved print of the city of Troia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Playa Troia Mar, Troia, Portugal, 2021-09-12, DD 05 — Troia Mar Beach, Troia, Portugal Photo/art: Diego Delso Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-2" data-title="Playa Troia Mar, Troia, Portugal, 2021-09-12, DD 05 — Troia Mar Beach, Troia, Portugal Photo/art: Diego Delso Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Playa_Troia_Mar%2C_Troia%2C_Portugal%2C_2021-09-12%2C_DD_05.jpg/960px-Playa_Troia_Mar%2C_Troia%2C_Portugal%2C_2021-09-12%2C_DD_05.jpg" alt="Troia Mar Beach, Troia, Portugal" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Playa Troia Mar, Troia, Portugal, 2021-09-12, DD 05 — Troia Mar Beach, Troia, Portugal Photo/art: Diego Delso</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tróia March 2015-1 — Roman ruins of Tróia, Setúbal, Portugal Photo/art: Alvesgaspar Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-3" data-title="Tróia March 2015-1 — Roman ruins of Tróia, Setúbal, Portugal Photo/art: Alvesgaspar Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Tr%C3%B3ia_March_2015-1.jpg/960px-Tr%C3%B3ia_March_2015-1.jpg" alt="Roman ruins of Tróia, Setúbal, Portugal" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tróia March 2015-1 — Roman ruins of Tróia, Setúbal, Portugal Photo/art: Alvesgaspar</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Setúbal e Troia, Portugal (34836063770) — Setúbal e Troia, Portugal Photo/art: Jorge Brazil from Rio de Janeiro, Brazil Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-4" data-title="Setúbal e Troia, Portugal (34836063770) — Setúbal e Troia, Portugal Photo/art: Jorge Brazil from Rio de Janeiro, Brazil Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Set%C3%BAbal_e_Troia%2C_Portugal_%2834836063770%29.jpg/960px-Set%C3%BAbal_e_Troia%2C_Portugal_%2834836063770%29.jpg" alt="Setúbal e Troia, Portugal" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Setúbal e Troia, Portugal (34836063770) — Setúbal e Troia, Portugal Photo/art: Jorge Brazil from Rio de Janeiro, Brazil</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Roman ruins of Tróia Photo/art: Sanjorgepinho Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-5" data-title="Roman ruins of Tróia Photo/art: Sanjorgepinho Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Roman_ruins_of_Tr%C3%B3ia.jpg/960px-Roman_ruins_of_Tr%C3%B3ia.jpg" alt="Roman ruins of Tróia" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Roman ruins of Tróia Photo/art: Sanjorgepinho</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Cattedrale di Troia 09 — Cattedrale di Troia Photo/art: Barambani at Italian Wikipedia Troíā" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-troia-6" data-title="Cattedrale di Troia 09 — Cattedrale di Troia Photo/art: Barambani at Italian Wikipedia Troíā" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Cattedrale_di_Troia_09.jpg/960px-Cattedrale_di_Troia_09.jpg" alt="Cattedrale di Troia" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Cattedrale di Troia 09 — Cattedrale di Troia Photo/art: Barambani at Italian Wikipedia</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-troia-1","kind":"temple","templeId":"troia","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Stampa_della_citt%C3%A0_di_Troia.jpg/960px-Stampa_della_citt%C3%A0_di_Troia.jpg","title":"Stampa della città di Troia — Engraved print of the city of Troia","alt":"Engraved print of the city of Troia. Taken from \"The Kingdom of Naples in perspective\". Giovanni Battista Pacichelli Reference Il regno di Napoli in prospettiva diviso in dodeci provincie. Naples: Michele Luigi Muzio …","creator":"AnonymousUnknown author","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Stampa_della_città_di_Troia.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Stampa_della_città_di_Troia.jpg","canonicalUrl":"https://punicodex.com/troia/art/?view=temple&art=gallery-troia-1","attribution":"Stampa della città di Troia — Engraved print of the city of Troia by AnonymousUnknown author, Public domain, via https://commons.wikimedia.org/wiki/File:Stampa_della_città_di_Troia.jpg","provenance":"Engraved print of the city of Troia. Taken from \"The Kingdom of Naples in perspective\". Giovanni Battista Pacichelli Reference Il regno di Napoli in prospettiva diviso in dodeci provincie. Naples: Michele Luigi Muzio …","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-troia-2","kind":"temple","templeId":"troia","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Playa_Troia_Mar%2C_Troia%2C_Portugal%2C_2021-09-12%2C_DD_05.jpg/960px-Playa_Troia_Mar%2C_Troia%2C_Portugal%2C_2021-09-12%2C_DD_05.jpg","title":"Playa Troia Mar, Troia, Portugal, 2021-09-12, DD 05 — Troia Mar Beach, Troia, Portugal Photo/art: Diego Delso","alt":"Troia Mar Beach, Troia, Portugal","creator":"Diego Delso","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Playa_Troia_Mar,_Troia,_Portugal,_2021-09-12,_DD_05.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Playa_Troia_Mar,_Troia,_Portugal,_2021-09-12,_DD_05.jpg","canonicalUrl":"https://punicodex.com/troia/art/?view=temple&art=gallery-troia-2","attribution":"Playa Troia Mar, Troia, Portugal, 2021-09-12, DD 05 — Troia Mar Beach, Troia, Portugal Photo/art: Diego Delso by Diego Delso, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Playa_Troia_Mar,_Troia,_Portugal,_2021-09-12,_DD_05.jpg","provenance":"Troia Mar Beach, Troia, Portugal","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-troia-3","kind":"temple","templeId":"troia","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Tr%C3%B3ia_March_2015-1.jpg/960px-Tr%C3%B3ia_March_2015-1.jpg","title":"Tróia March 2015-1 — Roman ruins of Tróia, Setúbal, Portugal Photo/art: Alvesgaspar","alt":"Roman ruins of Tróia, Setúbal, Portugal","creator":"Alvesgaspar","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Tróia_March_2015-1.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Tróia_March_2015-1.jpg","canonicalUrl":"https://punicodex.com/troia/art/?view=temple&art=gallery-troia-3","attribution":"Tróia March 2015-1 — Roman ruins of Tróia, Setúbal, Portugal Photo/art: Alvesgaspar by Alvesgaspar, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Tróia_March_2015-1.jpg","provenance":"Roman ruins of Tróia, Setúbal, Portugal","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-troia-4","kind":"temple","templeId":"troia","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Set%C3%BAbal_e_Troia%2C_Portugal_%2834836063770%29.jpg/960px-Set%C3%BAbal_e_Troia%2C_Portugal_%2834836063770%29.jpg","title":"Setúbal e Troia, Portugal (34836063770) — Setúbal e Troia, Portugal Photo/art: Jorge Brazil from Rio de Janeiro, Brazil","alt":"Setúbal e Troia, Portugal","creator":"Jorge Brazil from Rio de Janeiro, Brazil","license":"CC BY 2.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Setúbal_e_Troia,_Portugal_(34836063770).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Setúbal_e_Troia,_Portugal_(34836063770).jpg","canonicalUrl":"https://punicodex.com/troia/art/?view=temple&art=gallery-troia-4","attribution":"Setúbal e Troia, Portugal (34836063770) — Setúbal e Troia, Portugal Photo/art: Jorge Brazil from Rio de Janeiro, Brazil by Jorge Brazil from Rio de Janeiro, Brazil, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Setúbal_e_Troia,_Portugal_(34836063770).jpg","provenance":"Setúbal e Troia, Portugal","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-troia-5","kind":"temple","templeId":"troia","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Roman_ruins_of_Tr%C3%B3ia.jpg/960px-Roman_ruins_of_Tr%C3%B3ia.jpg","title":"Roman ruins of Tróia Photo/art: Sanjorgepinho","alt":"Roman ruins of Tróia","creator":"Sanjorgepinho","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Roman_ruins_of_Tróia.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Roman_ruins_of_Tróia.jpg","canonicalUrl":"https://punicodex.com/troia/art/?view=temple&art=gallery-troia-5","attribution":"Roman ruins of Tróia Photo/art: Sanjorgepinho by Sanjorgepinho, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Roman_ruins_of_Tróia.jpg","provenance":"Roman ruins of Tróia","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-troia-6","kind":"temple","templeId":"troia","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Cattedrale_di_Troia_09.jpg/960px-Cattedrale_di_Troia_09.jpg","title":"Cattedrale di Troia 09 — Cattedrale di Troia Photo/art: Barambani at Italian Wikipedia","alt":"Cattedrale di Troia","creator":"Barambani at Italian Wikipedia","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Cattedrale_di_Troia_09.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Cattedrale_di_Troia_09.jpg","canonicalUrl":"https://punicodex.com/troia/art/?view=temple&art=gallery-troia-6","attribution":"Cattedrale di Troia 09 — Cattedrale di Troia Photo/art: Barambani at Italian Wikipedia by Barambani at Italian Wikipedia, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Cattedrale_di_Troia_09.jpg","provenance":"Cattedrale di Troia","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Troíā — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/troia/art/?view=creatives' },
     commons: { t: 'The Commons — Troíā studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/troia/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

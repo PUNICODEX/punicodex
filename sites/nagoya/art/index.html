@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=fb5254dd04">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Nagoya — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/nagoya/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Nagoya","item":"https://punicodex.com/nagoya/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/nagoya/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/nagoya/" class="nav-link active">Store</a>
+                    <a href="/store/nagoya/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/nagoya/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/nagoya/" class="nav-link active">Store</a>
+            <a href="/store/nagoya/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/nagoya/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Photo of Nagoya Town, 1880-1890 — Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890 Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-1" data-title="Photo of Nagoya Town, 1880-1890 — Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890 Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Photo_of_Nagoya_Town%2C_1880-1890.jpg/960px-Photo_of_Nagoya_Town%2C_1880-1890.jpg" alt="Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890. Albumen silver print. 17.9 cm wide." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Photo of Nagoya Town, 1880-1890 — Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Nagoya Castle(Larger) — The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-2" data-title="Nagoya Castle(Larger) — The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Nagoya_Castle%28Larger%29.jpg/960px-Nagoya_Castle%28Larger%29.jpg" alt="The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan. Originally built around 1525, destroyed during World War II. Reconstructed in 1959, currently under exhibition." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Nagoya Castle(Larger) — The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="MT-Meitetsu Nagoya Station-Platform Track No Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-3" data-title="MT-Meitetsu Nagoya Station-Platform Track No Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg/960px-MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg" alt="Nagoya Railroad Nagoya Main Line Meitetsu Nagoya Station Platform for Gifu and Inuyama" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>MT-Meitetsu Nagoya Station-Platform Track No</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Meitetsu-Nagoya Station ticket place Photo/art: Kzaral Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-4" data-title="Meitetsu-Nagoya Station ticket place Photo/art: Kzaral Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Meitetsu-Nagoya_Station_ticket_place.jpg/960px-Meitetsu-Nagoya_Station_ticket_place.jpg" alt="Meitetsu-Nagoya Station ticket place" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Meitetsu-Nagoya Station ticket place Photo/art: Kzaral</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Nagoya children ca1945 post WWII Photo/art: George Anton Groeschl Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-5" data-title="Nagoya children ca1945 post WWII Photo/art: George Anton Groeschl Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Nagoya_children_ca1945_post_WWII.jpg/960px-Nagoya_children_ca1945_post_WWII.jpg" alt="Nagoya children ca1945 post WWII" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Nagoya children ca1945 post WWII Photo/art: George Anton Groeschl</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Nagoya-mother-with-child-ca1945-post-WWII — Nagoya mother with child ca1945 post WWII Photo/art: George Anton Groeschl Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-6" data-title="Nagoya-mother-with-child-ca1945-post-WWII — Nagoya mother with child ca1945 post WWII Photo/art: George Anton Groeschl Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nagoya-mother-with-child-ca1945-post-WWII.jpg/960px-Nagoya-mother-with-child-ca1945-post-WWII.jpg" alt="Nagoya mother with child ca1945 post WWII" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Nagoya-mother-with-child-ca1945-post-WWII — Nagoya mother with child ca1945 post WWII Photo/art: George Anton Groeschl</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Photo of Nagoya Town, 1880-1890 — Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890 Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-1" data-title="Photo of Nagoya Town, 1880-1890 — Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890 Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Photo_of_Nagoya_Town%2C_1880-1890.jpg/960px-Photo_of_Nagoya_Town%2C_1880-1890.jpg" alt="Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890. Albumen silver print. 17.9 cm wide." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Photo of Nagoya Town, 1880-1890 — Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Nagoya Castle(Larger) — The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-2" data-title="Nagoya Castle(Larger) — The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Nagoya_Castle%28Larger%29.jpg/960px-Nagoya_Castle%28Larger%29.jpg" alt="The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan. Originally built around 1525, destroyed during World War II. Reconstructed in 1959, currently under exhibition." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Nagoya Castle(Larger) — The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 3.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="MT-Meitetsu Nagoya Station-Platform Track No Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-3" data-title="MT-Meitetsu Nagoya Station-Platform Track No Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg/960px-MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg" alt="Nagoya Railroad Nagoya Main Line Meitetsu Nagoya Station Platform for Gifu and Inuyama" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>MT-Meitetsu Nagoya Station-Platform Track No</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Meitetsu-Nagoya Station ticket place Photo/art: Kzaral Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-4" data-title="Meitetsu-Nagoya Station ticket place Photo/art: Kzaral Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Meitetsu-Nagoya_Station_ticket_place.jpg/960px-Meitetsu-Nagoya_Station_ticket_place.jpg" alt="Meitetsu-Nagoya Station ticket place" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Meitetsu-Nagoya Station ticket place Photo/art: Kzaral</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 2.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Nagoya children ca1945 post WWII Photo/art: George Anton Groeschl Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-5" data-title="Nagoya children ca1945 post WWII Photo/art: George Anton Groeschl Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Nagoya_children_ca1945_post_WWII.jpg/960px-Nagoya_children_ca1945_post_WWII.jpg" alt="Nagoya children ca1945 post WWII" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Nagoya children ca1945 post WWII Photo/art: George Anton Groeschl</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Nagoya-mother-with-child-ca1945-post-WWII — Nagoya mother with child ca1945 post WWII Photo/art: George Anton Groeschl Nagoya" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-nagoya-6" data-title="Nagoya-mother-with-child-ca1945-post-WWII — Nagoya mother with child ca1945 post WWII Photo/art: George Anton Groeschl Nagoya" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nagoya-mother-with-child-ca1945-post-WWII.jpg/960px-Nagoya-mother-with-child-ca1945-post-WWII.jpg" alt="Nagoya mother with child ca1945 post WWII" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Nagoya-mother-with-child-ca1945-post-WWII — Nagoya mother with child ca1945 post WWII Photo/art: George Anton Groeschl</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY 4.0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-nagoya-1","kind":"temple","templeId":"nagoya","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Photo_of_Nagoya_Town%2C_1880-1890.jpg/960px-Photo_of_Nagoya_Town%2C_1880-1890.jpg","title":"Photo of Nagoya Town, 1880-1890 — Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890","alt":"Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890. Albumen silver print. 17.9 cm wide.","creator":"Unknown authorUnknown author","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Photo_of_Nagoya_Town,_1880-1890.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Photo_of_Nagoya_Town,_1880-1890.jpg","canonicalUrl":"https://punicodex.com/nagoya/art/?view=temple&art=gallery-nagoya-1","attribution":"Photo of Nagoya Town, 1880-1890 — Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890 by Unknown authorUnknown author, CC0, via https://commons.wikimedia.org/wiki/File:Photo_of_Nagoya_Town,_1880-1890.jpg","provenance":"Photo of Osu Kannon, Nagoya city, Aichi prefecture, Japan in 1880-1890. Albumen silver print. 17.9 cm wide.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-nagoya-2","kind":"temple","templeId":"nagoya","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Nagoya_Castle%28Larger%29.jpg/960px-Nagoya_Castle%28Larger%29.jpg","title":"Nagoya Castle(Larger) — The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan","alt":"The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan. Originally built around 1525, destroyed during World War II. Reconstructed in 1959, currently under exhibition.","creator":"Base64","license":"CC BY-SA 3.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Nagoya_Castle(Larger).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Nagoya_Castle(Larger).jpg","canonicalUrl":"https://punicodex.com/nagoya/art/?view=temple&art=gallery-nagoya-2","attribution":"Nagoya Castle(Larger) — The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan by Base64, CC BY-SA 3.0, via https://commons.wikimedia.org/wiki/File:Nagoya_Castle(Larger).jpg","provenance":"The keep of Nagoya Castle (名古屋城, Nagoya-jō ) located in Nagoya, Aichi Prefecture, Japan. Originally built around 1525, destroyed during World War II. Reconstructed in 1959, currently under exhibition.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-nagoya-3","kind":"temple","templeId":"nagoya","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg/960px-MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg","title":"MT-Meitetsu Nagoya Station-Platform Track No","alt":"Nagoya Railroad Nagoya Main Line Meitetsu Nagoya Station Platform for Gifu and Inuyama","creator":"ButuCC","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg","canonicalUrl":"https://punicodex.com/nagoya/art/?view=temple&art=gallery-nagoya-3","attribution":"MT-Meitetsu Nagoya Station-Platform Track No by ButuCC, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:MT-Meitetsu_Nagoya_Station-Platform_Track_No.1_and_2.jpg","provenance":"Nagoya Railroad Nagoya Main Line Meitetsu Nagoya Station Platform for Gifu and Inuyama","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-nagoya-4","kind":"temple","templeId":"nagoya","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Meitetsu-Nagoya_Station_ticket_place.jpg/960px-Meitetsu-Nagoya_Station_ticket_place.jpg","title":"Meitetsu-Nagoya Station ticket place Photo/art: Kzaral","alt":"Meitetsu-Nagoya Station ticket place","creator":"Kzaral","license":"CC BY 2.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Meitetsu-Nagoya_Station_ticket_place.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Meitetsu-Nagoya_Station_ticket_place.jpg","canonicalUrl":"https://punicodex.com/nagoya/art/?view=temple&art=gallery-nagoya-4","attribution":"Meitetsu-Nagoya Station ticket place Photo/art: Kzaral by Kzaral, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Meitetsu-Nagoya_Station_ticket_place.jpg","provenance":"Meitetsu-Nagoya Station ticket place","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-nagoya-5","kind":"temple","templeId":"nagoya","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Nagoya_children_ca1945_post_WWII.jpg/960px-Nagoya_children_ca1945_post_WWII.jpg","title":"Nagoya children ca1945 post WWII Photo/art: George Anton Groeschl","alt":"Nagoya children ca1945 post WWII","creator":"George Anton Groeschl","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Nagoya_children_ca1945_post_WWII.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Nagoya_children_ca1945_post_WWII.jpg","canonicalUrl":"https://punicodex.com/nagoya/art/?view=temple&art=gallery-nagoya-5","attribution":"Nagoya children ca1945 post WWII Photo/art: George Anton Groeschl by George Anton Groeschl, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Nagoya_children_ca1945_post_WWII.jpg","provenance":"Nagoya children ca1945 post WWII","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-nagoya-6","kind":"temple","templeId":"nagoya","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nagoya-mother-with-child-ca1945-post-WWII.jpg/960px-Nagoya-mother-with-child-ca1945-post-WWII.jpg","title":"Nagoya-mother-with-child-ca1945-post-WWII — Nagoya mother with child ca1945 post WWII Photo/art: George Anton Groeschl","alt":"Nagoya mother with child ca1945 post WWII","creator":"George Anton Groeschl","license":"CC BY 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Nagoya-mother-with-child-ca1945-post-WWII.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Nagoya-mother-with-child-ca1945-post-WWII.jpg","canonicalUrl":"https://punicodex.com/nagoya/art/?view=temple&art=gallery-nagoya-6","attribution":"Nagoya-mother-with-child-ca1945-post-WWII — Nagoya mother with child ca1945 post WWII Photo/art: George Anton Groeschl by George Anton Groeschl, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Nagoya-mother-with-child-ca1945-post-WWII.jpg","provenance":"Nagoya mother with child ca1945 post WWII","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Nagoya — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/nagoya/art/?view=creatives' },
     commons: { t: 'The Commons — Nagoya studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/nagoya/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

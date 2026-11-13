@@ -3290,12 +3290,9 @@ export default function middleware(request) {
   }
 
   // ─── 3c. /store/{collection} legacy canonicalization ───────────────
-  // Phase B Reliquary restructure: merch collections moved from
-  // /store/{id}/* to /store/merch/{id}/*. Legacy collection/product URLs
-  // 301 to the merch form (subpath and trailing slash preserved; a
-  // trailing index.html collapses in the same hop). Unknown /store/ paths
-  // fall through untouched — the entrance, art department, policy pages
-  // and future top-level store pages are never caught by this rule.
+  // A temple's Store root is its two-department entrance. Only legacy
+  // product paths redirect to the merch catalog; the entrance itself and
+  // unrelated store paths fall through to their generated pages.
   if (url.pathname.startsWith('/store/')) {
     const storeSegments = url.pathname.split('/').filter(Boolean); // ['store', id, ...]
     const storeId = storeSegments[1];
@@ -3306,14 +3303,16 @@ export default function middleware(request) {
       } else if (rest.endsWith('/index.html')) {
         rest = rest.slice(0, -'index.html'.length);
       }
-      url.pathname = '/store/merch/' + storeId + (rest === '/' ? '/' : rest);
-      return new Response(null, {
-        status: 301,
-        headers: {
-          'Location': url.toString(),
-          'Cache-Control': 'public, max-age=0, must-revalidate',
-        },
-      });
+      if (rest !== '/' || storeId === 'punicodex') {
+        url.pathname = '/store/merch/' + storeId + rest;
+        return new Response(null, {
+          status: 301,
+          headers: {
+            'Location': url.toString(),
+            'Cache-Control': 'public, max-age=0, must-revalidate',
+          },
+        });
+      }
     }
   }
 

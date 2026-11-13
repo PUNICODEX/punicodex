@@ -401,10 +401,10 @@ async function run() {
 
       await page.goto(`${base}/sites/zeus/`, { waitUntil: 'domcontentloaded' });
       const store = groups.nth(1).locator(':scope > a.nav-link');
-      if ((await store.getAttribute('href')) !== '/store/merch/zeus/') {
-        throw new Error('Store is not a real temple Merch link');
+      if ((await store.getAttribute('href')) !== '/store/zeus/') {
+        throw new Error('Store does not open the temple two-department entrance');
       }
-      await Promise.all([page.waitForURL('**/store/merch/zeus/'), store.click()]);
+      await Promise.all([page.waitForURL('**/store/zeus/'), store.click()]);
 
       await page.goto(`${base}/sites/zeus/`, { waitUntil: 'domcontentloaded' });
       await groups.nth(1).hover();
@@ -484,8 +484,88 @@ async function run() {
       await toggles.nth(0).click();
       if (await loreSub.isVisible()) throw new Error('Lore did not collapse');
       const store = page.locator('#temple-mobile-menu > .nav-group > a.nav-link:has-text("Store")');
-      if ((await store.getAttribute('href')) !== '/store/merch/zeus/') {
-        throw new Error('mobile Store is not a real temple Merch link');
+      if ((await store.getAttribute('href')) !== '/store/zeus/') {
+        throw new Error('mobile Store does not open the temple two-department entrance');
+      }
+      const subPseudo = await storeSub
+        .locator('a')
+        .first()
+        .evaluate((element) => ({
+          marker: getComputedStyle(element, '::before').content,
+          increment: getComputedStyle(element).counterIncrement,
+        }));
+      if (subPseudo.marker !== 'none' || subPseudo.increment !== 'none') {
+        throw new Error(`submenu links must not add menu numbering: ${JSON.stringify(subPseudo)}`);
+      }
+      await page.setViewportSize({ width: 1366, height: 900 });
+    });
+
+    await test('temple art and Store: mobile filters, viewers, safe padding, and temple context', async () => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(`${base}/sites/nike/art/`, { waitUntil: 'domcontentloaded' });
+      await page.locator('dialog.commons-viewer').waitFor({ state: 'attached' });
+      for (const cat of ['temple', 'creatives', 'commons', 'all']) {
+        await page.locator(`[data-cat="${cat}"]`).click();
+        const visible = await page
+          .locator('.art-grid:visible')
+          .evaluateAll((grids) => grids.map((grid) => grid.id));
+        if (visible.length !== 1 || visible[0] !== `art-grid-${cat}`) {
+          throw new Error(`${cat}: visible grids were ${JSON.stringify(visible)}`);
+        }
+      }
+      await page.locator('[data-cat="temple"]').click();
+      const historical = page.locator('#art-grid-temple .art-card').first();
+      await historical.click();
+      if (!(await page.locator('dialog.commons-viewer').isVisible())) {
+        throw new Error('historical artwork did not open the shared viewer');
+      }
+      for (const label of ['Download', 'Share', 'Copy attribution']) {
+        if (!(await page.locator('.cv-actions').getByText(label, { exact: true }).isVisible())) {
+          throw new Error(`historical viewer missing ${label}`);
+        }
+      }
+      if (!page.url().includes('view=temple&art=gallery-nike-')) {
+        throw new Error(`historical viewer URL is wrong: ${page.url()}`);
+      }
+      await page.locator('.cv-close').click();
+      if (!page.url().includes('view=temple'))
+        throw new Error('viewer did not preserve Temple Gallery view');
+      await page.locator('[data-cat="commons"]').click();
+      await page.locator('#art-grid-commons .art-card').first().click();
+      if (!(await page.locator('dialog.commons-viewer').isVisible())) {
+        throw new Error('Commons artwork did not reopen the shared viewer');
+      }
+      await page.locator('.cv-close').click();
+      const geometry = await page.evaluate(() => ({
+        wrapPadding: parseFloat(getComputedStyle(document.querySelector('.wrap')).paddingLeft),
+        toggleRight: document.querySelector('.nav-toggle').getBoundingClientRect().right,
+      }));
+      if (geometry.wrapPadding < 16 || geometry.toggleRight > 374) {
+        throw new Error(`mobile safe padding is inadequate: ${JSON.stringify(geometry)}`);
+      }
+      await page.locator('#nav-toggle').click();
+      if ((await page.locator('#temple-mobile-menu .nav-sub-toggle').count()) !== 2) {
+        throw new Error('art room Store/Lore expanders were not initialized');
+      }
+
+      await page.goto(`${base}/store/nike/`, { waitUntil: 'domcontentloaded' });
+      if (!/THE RELIQUARY OF Níkē/i.test(await page.locator('h1').textContent())) {
+        throw new Error('temple Store entrance is not themed');
+      }
+      if ((await page.locator('.dept-grid .dept').count()) !== 2) {
+        throw new Error('temple Store entrance must offer exactly Merch and Art');
+      }
+      await page.locator('.dept-grid .dept').first().click();
+      await page.waitForURL('**/store/merch/nike/');
+      await page.locator('dialog.commons-viewer').count();
+      const topLevel = page.locator(
+        '#temple-mobile-menu > a.nav-link, #temple-mobile-menu > .nav-group > a.nav-link'
+      );
+      if ((await topLevel.count()) !== 7 || (await page.locator('#main-nav').count())) {
+        throw new Error('Merch lost the seven-item temple menu or gained the global menu');
+      }
+      if ((await page.locator('#temple-mobile-menu .nav-sub-toggle').count()) !== 2) {
+        throw new Error('Merch temple expanders were not initialized');
       }
       await page.setViewportSize({ width: 1366, height: 900 });
     });
@@ -605,7 +685,7 @@ async function run() {
       await dialog.locator('.cv-close').click();
       await page.waitForFunction(() => !new URLSearchParams(location.search).has('art'));
       await page.setViewportSize({ width: 390, height: 844 });
-      await page.locator(`.art-card[data-art-id="${id}"]`).first().click();
+      await page.locator(`#art-grid-commons .art-card[data-art-id="${id}"]`).first().click();
       await dialog.waitFor({ state: 'visible' });
       const overflow = await page.evaluate(
         () => document.documentElement.scrollWidth > window.innerWidth + 1

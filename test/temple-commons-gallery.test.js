@@ -100,6 +100,32 @@ test('referenced commons assets exist on disk', () => {
   }
 });
 
+test('tattoo prompt library covers every flagship and background keying preserves dark linework', () => {
+  const { ARCHETYPES } = require('../js/archetypes-v2.js');
+  const library = JSON.parse(read('data/ai-art/prompt-library.json'));
+  const built = ARCHETYPES.filter((entry) => entry.built);
+  for (const archetype of built) {
+    assert.ok(library.deities[archetype.id], `${archetype.id}: missing tattoo prompt`);
+    assert.ok(
+      library.traditions[library.deities[archetype.id].tradition],
+      `${archetype.id}: tradition missing`
+    );
+  }
+  assert.ok(built.filter((entry) => entry.pantheon === 'aboriginal').length > 5);
+  assert.ok(library.families.tattoo.dna.includes('stencil-friendly'));
+  assert.ok(library.traditions.aboriginal.iconography.includes('no generic dot painting'));
+
+  const { removeConnectedWhiteBackground } = require('../scripts/promote-ai-art-commons.js');
+  const pixels = new Uint8Array(4 * 4 * 3).fill(255);
+  pixels[5 * 3] = 0;
+  pixels[5 * 3 + 1] = 0;
+  pixels[5 * 3 + 2] = 0;
+  const keyed = removeConnectedWhiteBackground(pixels, 4, 4);
+  assert.strictEqual(keyed.alpha[0], 0);
+  assert.strictEqual(keyed.alpha[5], 255);
+  assert.strictEqual(keyed.alpha[15], 0);
+});
+
 test('archived mascots carry provenance and appear in global and temple Commons', () => {
   const manifest = JSON.parse(read('assets/ai-commons/manifest.json'));
   const archived = manifest.items.filter((item) => item.kind === 'mascot');

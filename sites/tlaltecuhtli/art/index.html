@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=9d8c0bf1c1">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Tlāltēcuhtli — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/tlaltecuhtli/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Tlāltēcuhtli","item":"https://punicodex.com/tlaltecuhtli/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/tlaltecuhtli/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/tlaltecuhtli/" class="nav-link active">Store</a>
+                    <a href="/store/tlaltecuhtli/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/tlaltecuhtli/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/tlaltecuhtli/" class="nav-link active">Store</a>
+            <a href="/store/tlaltecuhtli/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/tlaltecuhtli/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Monolito Tlaltecuhtli IMG 1121 — Earth Goddess Tlaltecuhtli monolith in Tenochtitlan Photo/art: Monica-Glez-Glez Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-1" data-title="Monolito Tlaltecuhtli IMG 1121 — Earth Goddess Tlaltecuhtli monolith in Tenochtitlan Photo/art: Monica-Glez-Glez Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Monolito_Tlaltecuhtli_IMG_1121.jpg/960px-Monolito_Tlaltecuhtli_IMG_1121.jpg" alt="Earth Goddess Tlaltecuhtli monolith in Tenochtitlan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Monolito Tlaltecuhtli IMG 1121 — Earth Goddess Tlaltecuhtli monolith in Tenochtitlan Photo/art: Monica-Glez-Glez</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Aztec Stone Relief of Tlaltecuhtli (9782191146) — Templo Mayor Museum at site of Aztec Great Temple, Mexico City Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-2" data-title="Aztec Stone Relief of Tlaltecuhtli (9782191146) — Templo Mayor Museum at site of Aztec Great Temple, Mexico City Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Aztec_Stone_Relief_of_Tlaltecuhtli_%289782191146%29.jpg/960px-Aztec_Stone_Relief_of_Tlaltecuhtli_%289782191146%29.jpg" alt="Templo Mayor Museum at site of Aztec Great Temple, Mexico City. Complete indexed photo collection at WorldHistoryPics.com." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Aztec Stone Relief of Tlaltecuhtli (9782191146) — Templo Mayor Museum at site of Aztec Great Temple, Mexico City</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tlaltecuhtli codex painting — Image of Tlaltecuhtli found in the Codex Borbonicus Photo/art: Pestocavatappi Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-3" data-title="Tlaltecuhtli codex painting — Image of Tlaltecuhtli found in the Codex Borbonicus Photo/art: Pestocavatappi Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Tlaltecuhtli_codex_painting.jpg/960px-Tlaltecuhtli_codex_painting.jpg" alt="Image of Tlaltecuhtli found in the Codex Borbonicus" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tlaltecuhtli codex painting — Image of Tlaltecuhtli found in the Codex Borbonicus Photo/art: Pestocavatappi</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tlaltecuhtli stone carving — Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan Photo/art: Pestocavatappi Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-4" data-title="Tlaltecuhtli stone carving — Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan Photo/art: Pestocavatappi Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Tlaltecuhtli_stone_carving.jpg/960px-Tlaltecuhtli_stone_carving.jpg" alt="Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tlaltecuhtli stone carving — Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan Photo/art: Pestocavatappi</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tlaltecuhtli monolith — Tlaltecuhtli monolith unearthed in Tenochtitlan Photo/art: Unknown photographer of ancient artwork Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-5" data-title="Tlaltecuhtli monolith — Tlaltecuhtli monolith unearthed in Tenochtitlan Photo/art: Unknown photographer of ancient artwork Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Tlaltecuhtli_monolith.jpg/960px-Tlaltecuhtli_monolith.jpg" alt="Tlaltecuhtli monolith unearthed in Tenochtitlan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tlaltecuhtli monolith — Tlaltecuhtli monolith unearthed in Tenochtitlan Photo/art: Unknown photographer of ancient artwork</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tlaltecuhtli — Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico) Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-6" data-title="Tlaltecuhtli — Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico) Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tlaltecuhtli.JPG/960px-Tlaltecuhtli.JPG" alt="Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico)." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tlaltecuhtli — Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico)</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Monolito Tlaltecuhtli IMG 1121 — Earth Goddess Tlaltecuhtli monolith in Tenochtitlan Photo/art: Monica-Glez-Glez Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-1" data-title="Monolito Tlaltecuhtli IMG 1121 — Earth Goddess Tlaltecuhtli monolith in Tenochtitlan Photo/art: Monica-Glez-Glez Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Monolito_Tlaltecuhtli_IMG_1121.jpg/960px-Monolito_Tlaltecuhtli_IMG_1121.jpg" alt="Earth Goddess Tlaltecuhtli monolith in Tenochtitlan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Monolito Tlaltecuhtli IMG 1121 — Earth Goddess Tlaltecuhtli monolith in Tenochtitlan Photo/art: Monica-Glez-Glez</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Aztec Stone Relief of Tlaltecuhtli (9782191146) — Templo Mayor Museum at site of Aztec Great Temple, Mexico City Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-2" data-title="Aztec Stone Relief of Tlaltecuhtli (9782191146) — Templo Mayor Museum at site of Aztec Great Temple, Mexico City Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Aztec_Stone_Relief_of_Tlaltecuhtli_%289782191146%29.jpg/960px-Aztec_Stone_Relief_of_Tlaltecuhtli_%289782191146%29.jpg" alt="Templo Mayor Museum at site of Aztec Great Temple, Mexico City. Complete indexed photo collection at WorldHistoryPics.com." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Aztec Stone Relief of Tlaltecuhtli (9782191146) — Templo Mayor Museum at site of Aztec Great Temple, Mexico City</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tlaltecuhtli codex painting — Image of Tlaltecuhtli found in the Codex Borbonicus Photo/art: Pestocavatappi Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-3" data-title="Tlaltecuhtli codex painting — Image of Tlaltecuhtli found in the Codex Borbonicus Photo/art: Pestocavatappi Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Tlaltecuhtli_codex_painting.jpg/960px-Tlaltecuhtli_codex_painting.jpg" alt="Image of Tlaltecuhtli found in the Codex Borbonicus" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tlaltecuhtli codex painting — Image of Tlaltecuhtli found in the Codex Borbonicus Photo/art: Pestocavatappi</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tlaltecuhtli stone carving — Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan Photo/art: Pestocavatappi Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-4" data-title="Tlaltecuhtli stone carving — Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan Photo/art: Pestocavatappi Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Tlaltecuhtli_stone_carving.jpg/960px-Tlaltecuhtli_stone_carving.jpg" alt="Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tlaltecuhtli stone carving — Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan Photo/art: Pestocavatappi</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tlaltecuhtli monolith — Tlaltecuhtli monolith unearthed in Tenochtitlan Photo/art: Unknown photographer of ancient artwork Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-5" data-title="Tlaltecuhtli monolith — Tlaltecuhtli monolith unearthed in Tenochtitlan Photo/art: Unknown photographer of ancient artwork Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Tlaltecuhtli_monolith.jpg/960px-Tlaltecuhtli_monolith.jpg" alt="Tlaltecuhtli monolith unearthed in Tenochtitlan" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tlaltecuhtli monolith — Tlaltecuhtli monolith unearthed in Tenochtitlan Photo/art: Unknown photographer of ancient artwork</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Tlaltecuhtli — Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico) Tlāltēcuhtli" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-tlaltecuhtli-6" data-title="Tlaltecuhtli — Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico) Tlāltēcuhtli" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tlaltecuhtli.JPG/960px-Tlaltecuhtli.JPG" alt="Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico)." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Tlaltecuhtli — Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico)</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-tlaltecuhtli-1","kind":"temple","templeId":"tlaltecuhtli","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Monolito_Tlaltecuhtli_IMG_1121.jpg/960px-Monolito_Tlaltecuhtli_IMG_1121.jpg","title":"Monolito Tlaltecuhtli IMG 1121 — Earth Goddess Tlaltecuhtli monolith in Tenochtitlan Photo/art: Monica-Glez-Glez","alt":"Earth Goddess Tlaltecuhtli monolith in Tenochtitlan","creator":"Monica-Glez-Glez","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Monolito_Tlaltecuhtli_IMG_1121.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Monolito_Tlaltecuhtli_IMG_1121.jpg","canonicalUrl":"https://punicodex.com/tlaltecuhtli/art/?view=temple&art=gallery-tlaltecuhtli-1","attribution":"Monolito Tlaltecuhtli IMG 1121 — Earth Goddess Tlaltecuhtli monolith in Tenochtitlan Photo/art: Monica-Glez-Glez by Monica-Glez-Glez, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Monolito_Tlaltecuhtli_IMG_1121.jpg","provenance":"Earth Goddess Tlaltecuhtli monolith in Tenochtitlan","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tlaltecuhtli-2","kind":"temple","templeId":"tlaltecuhtli","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Aztec_Stone_Relief_of_Tlaltecuhtli_%289782191146%29.jpg/960px-Aztec_Stone_Relief_of_Tlaltecuhtli_%289782191146%29.jpg","title":"Aztec Stone Relief of Tlaltecuhtli (9782191146) — Templo Mayor Museum at site of Aztec Great Temple, Mexico City","alt":"Templo Mayor Museum at site of Aztec Great Temple, Mexico City. Complete indexed photo collection at WorldHistoryPics.com.","creator":"Gary Todd from Xinzheng, China","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Aztec_Stone_Relief_of_Tlaltecuhtli_(9782191146).jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Aztec_Stone_Relief_of_Tlaltecuhtli_(9782191146).jpg","canonicalUrl":"https://punicodex.com/tlaltecuhtli/art/?view=temple&art=gallery-tlaltecuhtli-2","attribution":"Aztec Stone Relief of Tlaltecuhtli (9782191146) — Templo Mayor Museum at site of Aztec Great Temple, Mexico City by Gary Todd from Xinzheng, China, CC0, via https://commons.wikimedia.org/wiki/File:Aztec_Stone_Relief_of_Tlaltecuhtli_(9782191146).jpg","provenance":"Templo Mayor Museum at site of Aztec Great Temple, Mexico City. Complete indexed photo collection at WorldHistoryPics.com.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tlaltecuhtli-3","kind":"temple","templeId":"tlaltecuhtli","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Tlaltecuhtli_codex_painting.jpg/960px-Tlaltecuhtli_codex_painting.jpg","title":"Tlaltecuhtli codex painting — Image of Tlaltecuhtli found in the Codex Borbonicus Photo/art: Pestocavatappi","alt":"Image of Tlaltecuhtli found in the Codex Borbonicus","creator":"Pestocavatappi","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_codex_painting.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_codex_painting.jpg","canonicalUrl":"https://punicodex.com/tlaltecuhtli/art/?view=temple&art=gallery-tlaltecuhtli-3","attribution":"Tlaltecuhtli codex painting — Image of Tlaltecuhtli found in the Codex Borbonicus Photo/art: Pestocavatappi by Pestocavatappi, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_codex_painting.jpg","provenance":"Image of Tlaltecuhtli found in the Codex Borbonicus","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tlaltecuhtli-4","kind":"temple","templeId":"tlaltecuhtli","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Tlaltecuhtli_stone_carving.jpg/960px-Tlaltecuhtli_stone_carving.jpg","title":"Tlaltecuhtli stone carving — Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan Photo/art: Pestocavatappi","alt":"Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan","creator":"Pestocavatappi","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_stone_carving.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_stone_carving.jpg","canonicalUrl":"https://punicodex.com/tlaltecuhtli/art/?view=temple&art=gallery-tlaltecuhtli-4","attribution":"Tlaltecuhtli stone carving — Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan Photo/art: Pestocavatappi by Pestocavatappi, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_stone_carving.jpg","provenance":"Masculine anthroaormorphization of Tlaltecuhtli, found in Tenochtitlan","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tlaltecuhtli-5","kind":"temple","templeId":"tlaltecuhtli","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Tlaltecuhtli_monolith.jpg/960px-Tlaltecuhtli_monolith.jpg","title":"Tlaltecuhtli monolith — Tlaltecuhtli monolith unearthed in Tenochtitlan Photo/art: Unknown photographer of ancient artwork","alt":"Tlaltecuhtli monolith unearthed in Tenochtitlan","creator":"Unknown photographer of ancient artwork","license":"CC0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_monolith.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_monolith.jpg","canonicalUrl":"https://punicodex.com/tlaltecuhtli/art/?view=temple&art=gallery-tlaltecuhtli-5","attribution":"Tlaltecuhtli monolith — Tlaltecuhtli monolith unearthed in Tenochtitlan Photo/art: Unknown photographer of ancient artwork by Unknown photographer of ancient artwork, CC0, via https://commons.wikimedia.org/wiki/File:Tlaltecuhtli_monolith.jpg","provenance":"Tlaltecuhtli monolith unearthed in Tenochtitlan","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-tlaltecuhtli-6","kind":"temple","templeId":"tlaltecuhtli","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tlaltecuhtli.JPG/960px-Tlaltecuhtli.JPG","title":"Tlaltecuhtli — Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico)","alt":"Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico).","creator":"Chaccard","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Tlaltecuhtli.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:Tlaltecuhtli.JPG","canonicalUrl":"https://punicodex.com/tlaltecuhtli/art/?view=temple&art=gallery-tlaltecuhtli-6","attribution":"Tlaltecuhtli — Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico) by Chaccard, CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Tlaltecuhtli.JPG","provenance":"Monolithe de Tlaltecuhtli (Musée du Templo Mayor, Mexico).","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Tlāltēcuhtli — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/tlaltecuhtli/art/?view=creatives' },
     commons: { t: 'The Commons — Tlāltēcuhtli studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/tlaltecuhtli/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {

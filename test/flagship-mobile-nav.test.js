@@ -148,7 +148,7 @@ test('mobile menu links are reachable and contain expected sections', () => {
   }
 });
 
-test('every flagship Store tab is a real Merch link on desktop and mobile', () => {
+test('every flagship Store tab opens the temple entrance and Merch stays distinct', () => {
   for (const id of ids) {
     for (const subPath of SUB_PAGES) {
       const $ = loadPage(id, subPath);
@@ -166,9 +166,13 @@ test('every flagship Store tab is a real Merch link on desktop and mobile', () =
         assert.strictEqual(store.length, 1, `${id}/${subPath}${nav}: expected one Store link`);
         assert.strictEqual(
           store.attr('href'),
-          `/store/merch/${id}/`,
-          `${id}/${subPath}${nav}: Store must open this temple's Merch collection`
+          `/store/${id}/`,
+          `${id}/${subPath}${nav}: Store must open this temple's two-department entrance`
         );
+        const merch = $(nav)
+          .find('a.nav-sub-link')
+          .filter((_, element) => $(element).text().trim() === 'Merch');
+        assert.strictEqual(merch.attr('href'), `/store/merch/${id}/`);
       }
     }
   }

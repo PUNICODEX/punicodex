@@ -37,14 +37,18 @@
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=fb5254dd04">
-<link rel="stylesheet" href="/css/temple-base.css?v=ff25f9d5e1">
+<link rel="stylesheet" href="/css/temple-base.css?v=ea7ed818e7">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Art of Fūjin — Temple Gallery, Creatives & the Commons","url":"https://punicodex.com/fujin/art/","isPartOf":{"@type":"WebSite","name":"PuniCodex","url":"https://punicodex.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"Pantheon","item":"https://punicodex.com/pantheon/"},{"@type":"ListItem","position":3,"name":"Fūjin","item":"https://punicodex.com/fujin/"},{"@type":"ListItem","position":4,"name":"Art","item":"https://punicodex.com/fujin/art/"}]}</script>
 <style>
-.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.art-hero{text-align:center;padding:4.5rem 0 1.5rem}.art-hero h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.4rem 0 .6rem;overflow-wrap:anywhere}.art-hero .tag{max-width:64ch;margin:0 auto}.art-cats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem 0 0}.art-cat{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.08em;cursor:pointer;font-family:inherit}.art-cat.active,.art-cat:hover{color:var(--gold);border-color:var(--gold)}.art-filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1.4rem 0 .6rem}.art-filters input,.art-filters select{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .8rem;font-size:.88rem;font-family:inherit}.art-filters input{min-width:220px;flex:1}.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;padding:1.4rem 0 4rem}.art-grid[hidden]{display:none}.art-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:var(--ink);text-decoration:none;transition:transform .25s ease,border-color .25s ease;margin:0}.art-card:hover{transform:translateY(-4px);border-color:var(--gold)}.art-card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}.art-card img{width:100%;height:100%;object-fit:cover;display:block}.art-card .body{padding:.8rem .95rem 1rem}.art-card h3{font-size:.95rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}.art-card .sub{font-size:.72rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}.art-empty{border:1px dashed var(--line);border-radius:12px;padding:2.5rem 1.5rem;text-align:center;color:var(--dim);line-height:1.8;grid-column:1/-1}
+@media(max-width:520px){.art-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}.art-filters input{min-width:0;width:100%}.art-filters select{max-width:100%}}
+
 .temple-breadcrumb{position:relative;z-index:5;max-width:var(--container-max,1200px);margin:0 auto;padding:calc(var(--global-strip-height,54px) + var(--nav-height,110px) + .75rem) 1.5rem 0;font-size:.78rem;letter-spacing:.04em}.temple-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0;padding:0}.temple-breadcrumb-list li{display:flex;align-items:center;gap:.4rem;color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list li+li::before{content:'›';color:var(--primary,#d4af37);opacity:.55}.temple-breadcrumb-list a{color:var(--white-dim,#a0a0a0)}.temple-breadcrumb-list a:hover{color:var(--primary-bright,#f0d878)}.temple-breadcrumb-list [aria-current]{color:var(--primary,#d4af37)}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -88,7 +92,7 @@
                     </span>
                 </span>
                 <span class="nav-group">
-                    <a href="/store/merch/fujin/" class="nav-link active">Store</a>
+                    <a href="/store/fujin/" class="nav-link active">Store</a>
                     <span class="nav-sub">
                         <a href="/store/merch/fujin/" class="nav-sub-link">Merch</a>
                         <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -113,7 +117,7 @@
             </span>
         </span>
         <span class="nav-group">
-            <a href="/store/merch/fujin/" class="nav-link active">Store</a>
+            <a href="/store/fujin/" class="nav-link active">Store</a>
             <span class="nav-sub">
                 <a href="/store/merch/fujin/" class="nav-sub-link">Merch</a>
                 <a href="./index.html" class="nav-sub-link active">Art</a>
@@ -169,64 +173,64 @@
     </select>
   </div>
   <div class="art-grid" id="art-grid-all">
-    <figure class="art-card" data-kind="temple" data-title="Statues of Fūjin and Raijin in Sanjūsangen-dō Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-1" data-title="Statues of Fūjin and Raijin in Sanjūsangen-dō Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Statues_of_F%C5%ABjin_and_Raijin_in_Sanj%C5%ABsangen-d%C5%8D._Mid-13th_century.jpg/960px-Statues_of_F%C5%ABjin_and_Raijin_in_Sanj%C5%ABsangen-d%C5%8D._Mid-13th_century.jpg" alt="Statues of Fūjin and Raijin. Anonymous sculptor. Painted wood, Fūjin : H. 112 cm. Raijin : 100 cm. Mid-13th century. Sanjūsangen-dō temple. Kyoto (National Treasure). The gods of wind (Fujin) and thunder (Raijin) loom…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statues of Fūjin and Raijin in Sanjūsangen-dō</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu — Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-2" data-title="Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu — Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png/960px-Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png" alt="Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu. These are deities (kami) in Shinto religion. This artwork is a National Treasure of Japan." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu — Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Taiyuin-Fujin-Dsc3719 — Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-3" data-title="Taiyuin-Fujin-Dsc3719 — Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Taiyuin-Fujin-Dsc3719.jpg/960px-Taiyuin-Fujin-Dsc3719.jpg" alt="Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Taiyuin-Fujin-Dsc3719 — Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Fūjin at Sanjūsangen-dō — Fūjin by anonymous sculptor Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-4" data-title="Fūjin at Sanjūsangen-dō — Fūjin by anonymous sculptor Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/F%C5%ABjin_at_Sanj%C5%ABsangen-d%C5%8D.jpg/960px-F%C5%ABjin_at_Sanj%C5%ABsangen-d%C5%8D.jpg" alt="Fūjin by anonymous sculptor. Painted wood, H. 112 cm. Mid-13th century. Sanjūsangen-dō temple. Kyoto (National Treasure). The gods of wind (Fujin) and thunder (Raijin) loom atop a summit of clouds. The wooden statues …" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Fūjin at Sanjūsangen-dō — Fūjin by anonymous sculptor</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="'Fujin, God of Wind' by Hasegawa Settan — Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum Photo/art: Hasegawa Settan Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-5" data-title="'Fujin, God of Wind' by Hasegawa Settan — Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum Photo/art: Hasegawa Settan Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/%27Fujin%2C_God_of_Wind%27_by_Hasegawa_Settan.JPG/960px-%27Fujin%2C_God_of_Wind%27_by_Hasegawa_Settan.JPG" alt="Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>'Fujin, God of Wind' by Hasegawa Settan — Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum Photo/art: Hasegawa Settan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Raijin (the thunder god) and Fujin (the god of wind), surimono by Y… Photo/art: Wmpearl Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-6" data-title="Raijin (the thunder god) and Fujin (the god of wind), surimono by Y… Photo/art: Wmpearl Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Raijin_%28the_thunder_god%29_and_Fujin_%28the_god_of_wind%29%2C_surimono_by_Yamamoto_Sh%C5%8Dun%2C_private_collection.jpg/960px-Raijin_%28the_thunder_god%29_and_Fujin_%28the_god_of_wind%29%2C_surimono_by_Yamamoto_Sh%C5%8Dun%2C_private_collection.jpg" alt="Raijin (the thunder god) and Fujin (the god of wind), surimono by Yamamoto Shōun, private collection" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Raijin (the thunder god) and Fujin (the god of wind), surimono by Y… Photo/art: Wmpearl</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
   </div>
   <div class="art-grid" id="art-grid-temple" hidden>
-    <figure class="art-card" data-kind="temple" data-title="Statues of Fūjin and Raijin in Sanjūsangen-dō Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-1" data-title="Statues of Fūjin and Raijin in Sanjūsangen-dō Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Statues_of_F%C5%ABjin_and_Raijin_in_Sanj%C5%ABsangen-d%C5%8D._Mid-13th_century.jpg/960px-Statues_of_F%C5%ABjin_and_Raijin_in_Sanj%C5%ABsangen-d%C5%8D._Mid-13th_century.jpg" alt="Statues of Fūjin and Raijin. Anonymous sculptor. Painted wood, Fūjin : H. 112 cm. Raijin : 100 cm. Mid-13th century. Sanjūsangen-dō temple. Kyoto (National Treasure). The gods of wind (Fujin) and thunder (Raijin) loom…" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Statues of Fūjin and Raijin in Sanjūsangen-dō</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · CC BY-SA 4.0</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu — Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-2" data-title="Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu — Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png/960px-Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png" alt="Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu. These are deities (kami) in Shinto religion. This artwork is a National Treasure of Japan." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu — Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Taiyuin-Fujin-Dsc3719 — Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-3" data-title="Taiyuin-Fujin-Dsc3719 — Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Taiyuin-Fujin-Dsc3719.jpg/960px-Taiyuin-Fujin-Dsc3719.jpg" alt="Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan." loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Taiyuin-Fujin-Dsc3719 — Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Fūjin at Sanjūsangen-dō — Fūjin by anonymous sculptor Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-4" data-title="Fūjin at Sanjūsangen-dō — Fūjin by anonymous sculptor Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/F%C5%ABjin_at_Sanj%C5%ABsangen-d%C5%8D.jpg/960px-F%C5%ABjin_at_Sanj%C5%ABsangen-d%C5%8D.jpg" alt="Fūjin by anonymous sculptor. Painted wood, H. 112 cm. Mid-13th century. Sanjūsangen-dō temple. Kyoto (National Treasure). The gods of wind (Fujin) and thunder (Raijin) loom atop a summit of clouds. The wooden statues …" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Fūjin at Sanjūsangen-dō — Fūjin by anonymous sculptor</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="'Fujin, God of Wind' by Hasegawa Settan — Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum Photo/art: Hasegawa Settan Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-5" data-title="'Fujin, God of Wind' by Hasegawa Settan — Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum Photo/art: Hasegawa Settan Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/%27Fujin%2C_God_of_Wind%27_by_Hasegawa_Settan.JPG/960px-%27Fujin%2C_God_of_Wind%27_by_Hasegawa_Settan.JPG" alt="Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>'Fujin, God of Wind' by Hasegawa Settan — Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum Photo/art: Hasegawa Settan</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
     </figure>
-    <figure class="art-card" data-kind="temple" data-title="Raijin (the thunder god) and Fujin (the god of wind), surimono by Y… Photo/art: Wmpearl Fūjin" data-tags="historical" data-date="">
+    <figure class="art-card" data-kind="temple" data-art-id="gallery-fujin-6" data-title="Raijin (the thunder god) and Fujin (the god of wind), surimono by Y… Photo/art: Wmpearl Fūjin" data-tags="historical" data-date="">
       <div class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Raijin_%28the_thunder_god%29_and_Fujin_%28the_god_of_wind%29%2C_surimono_by_Yamamoto_Sh%C5%8Dun%2C_private_collection.jpg/960px-Raijin_%28the_thunder_god%29_and_Fujin_%28the_god_of_wind%29%2C_surimono_by_Yamamoto_Sh%C5%8Dun%2C_private_collection.jpg" alt="Raijin (the thunder god) and Fujin (the god of wind), surimono by Yamamoto Shōun, private collection" loading="lazy"></div>
       <div class="body"><div class="sub">Temple Gallery</div><h3>Raijin (the thunder god) and Fujin (the god of wind), surimono by Y… Photo/art: Wmpearl</h3>
       <div class="sub" style="text-transform:none;letter-spacing:0">commons.wikimedia.org · Public domain</div></div>
@@ -321,8 +325,9 @@
             </div>
         </div>
     </footer>
-<script>window.__COMMONS_WORKS__ = [];</script>
+<script>window.__COMMONS_WORKS__ = [{"id":"gallery-fujin-1","kind":"temple","templeId":"fujin","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Statues_of_F%C5%ABjin_and_Raijin_in_Sanj%C5%ABsangen-d%C5%8D._Mid-13th_century.jpg/960px-Statues_of_F%C5%ABjin_and_Raijin_in_Sanj%C5%ABsangen-d%C5%8D._Mid-13th_century.jpg","title":"Statues of Fūjin and Raijin in Sanjūsangen-dō","alt":"Statues of Fūjin and Raijin. Anonymous sculptor. Painted wood, Fūjin : H. 112 cm. Raijin : 100 cm. Mid-13th century. Sanjūsangen-dō temple. Kyoto (National Treasure). The gods of wind (Fujin) and thunder (Raijin) loom…","creator":"Ismoon (talk) 16:56, 12 May 2021 (UTC)","license":"CC BY-SA 4.0","licenseUrl":"https://commons.wikimedia.org/wiki/File:Statues_of_Fūjin_and_Raijin_in_Sanjūsangen-dō._Mid-13th_century.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Statues_of_Fūjin_and_Raijin_in_Sanjūsangen-dō._Mid-13th_century.jpg","canonicalUrl":"https://punicodex.com/fujin/art/?view=temple&art=gallery-fujin-1","attribution":"Statues of Fūjin and Raijin in Sanjūsangen-dō by Ismoon (talk) 16:56, 12 May 2021 (UTC), CC BY-SA 4.0, via https://commons.wikimedia.org/wiki/File:Statues_of_Fūjin_and_Raijin_in_Sanjūsangen-dō._Mid-13th_century.jpg","provenance":"Statues of Fūjin and Raijin. Anonymous sculptor. Painted wood, Fūjin : H. 112 cm. Raijin : 100 cm. Mid-13th century. Sanjūsangen-dō temple. Kyoto (National Treasure). The gods of wind (Fujin) and thunder (Raijin) loom…","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fujin-2","kind":"temple","templeId":"fujin","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png/960px-Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png","title":"Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu — Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu","alt":"Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu. These are deities (kami) in Shinto religion. This artwork is a National Treasure of Japan.","creator":"俵屋宗達 (Tawaraya Sotatsu) (1570-1643)","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png","sourceUrl":"https://commons.wikimedia.org/wiki/File:Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png","canonicalUrl":"https://punicodex.com/fujin/art/?view=temple&art=gallery-fujin-2","attribution":"Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu — Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu by 俵屋宗達 (Tawaraya Sotatsu) (1570-1643), Public domain, via https://commons.wikimedia.org/wiki/File:Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png","provenance":"Wind God Fujin (right) and Thunder God Raijin (left) by Tawaraya Sotatsu. These are deities (kami) in Shinto religion. This artwork is a National Treasure of Japan.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fujin-3","kind":"temple","templeId":"fujin","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Taiyuin-Fujin-Dsc3719.jpg/960px-Taiyuin-Fujin-Dsc3719.jpg","title":"Taiyuin-Fujin-Dsc3719 — Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan","alt":"Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan.","creator":"Fg2","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Taiyuin-Fujin-Dsc3719.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Taiyuin-Fujin-Dsc3719.jpg","canonicalUrl":"https://punicodex.com/fujin/art/?view=temple&art=gallery-fujin-3","attribution":"Taiyuin-Fujin-Dsc3719 — Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan by Fg2, Public domain, via https://commons.wikimedia.org/wiki/File:Taiyuin-Fujin-Dsc3719.jpg","provenance":"Fūjin 風神 at Taiyū-in Reibyō, Nikkō, Japan.","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fujin-4","kind":"temple","templeId":"fujin","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/F%C5%ABjin_at_Sanj%C5%ABsangen-d%C5%8D.jpg/960px-F%C5%ABjin_at_Sanj%C5%ABsangen-d%C5%8D.jpg","title":"Fūjin at Sanjūsangen-dō — Fūjin by anonymous sculptor","alt":"Fūjin by anonymous sculptor. Painted wood, H. 112 cm. Mid-13th century. Sanjūsangen-dō temple. Kyoto (National Treasure). The gods of wind (Fujin) and thunder (Raijin) loom atop a summit of clouds. The wooden statues …","creator":"Unknown authorUnknown author","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Fūjin_at_Sanjūsangen-dō.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Fūjin_at_Sanjūsangen-dō.jpg","canonicalUrl":"https://punicodex.com/fujin/art/?view=temple&art=gallery-fujin-4","attribution":"Fūjin at Sanjūsangen-dō — Fūjin by anonymous sculptor by Unknown authorUnknown author, Public domain, via https://commons.wikimedia.org/wiki/File:Fūjin_at_Sanjūsangen-dō.jpg","provenance":"Fūjin by anonymous sculptor. Painted wood, H. 112 cm. Mid-13th century. Sanjūsangen-dō temple. Kyoto (National Treasure). The gods of wind (Fujin) and thunder (Raijin) loom atop a summit of clouds. The wooden statues …","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fujin-5","kind":"temple","templeId":"fujin","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/%27Fujin%2C_God_of_Wind%27_by_Hasegawa_Settan.JPG/960px-%27Fujin%2C_God_of_Wind%27_by_Hasegawa_Settan.JPG","title":"'Fujin, God of Wind' by Hasegawa Settan — Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum Photo/art: Hasegawa Settan","alt":"Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum","creator":"Hasegawa Settan","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:'Fujin,_God_of_Wind'_by_Hasegawa_Settan.JPG","sourceUrl":"https://commons.wikimedia.org/wiki/File:'Fujin,_God_of_Wind'_by_Hasegawa_Settan.JPG","canonicalUrl":"https://punicodex.com/fujin/art/?view=temple&art=gallery-fujin-5","attribution":"'Fujin, God of Wind' by Hasegawa Settan — Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum Photo/art: Hasegawa Settan by Hasegawa Settan, Public domain, via https://commons.wikimedia.org/wiki/File:'Fujin,_God_of_Wind'_by_Hasegawa_Settan.JPG","provenance":"Fujin, God of Wind by Hasegawa Settan, Edo period, ink on paper, Cincinnati Art Museum","aiAssisted":false,"host":"commons.wikimedia.org"},{"id":"gallery-fujin-6","kind":"temple","templeId":"fujin","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Raijin_%28the_thunder_god%29_and_Fujin_%28the_god_of_wind%29%2C_surimono_by_Yamamoto_Sh%C5%8Dun%2C_private_collection.jpg/960px-Raijin_%28the_thunder_god%29_and_Fujin_%28the_god_of_wind%29%2C_surimono_by_Yamamoto_Sh%C5%8Dun%2C_private_collection.jpg","title":"Raijin (the thunder god) and Fujin (the god of wind), surimono by Y… Photo/art: Wmpearl","alt":"Raijin (the thunder god) and Fujin (the god of wind), surimono by Yamamoto Shōun, private collection","creator":"Wmpearl","license":"Public domain","licenseUrl":"https://commons.wikimedia.org/wiki/File:Raijin_(the_thunder_god)_and_Fujin_(the_god_of_wind),_surimono_by_Yamamoto_Shōun,_private_collection.jpg","sourceUrl":"https://commons.wikimedia.org/wiki/File:Raijin_(the_thunder_god)_and_Fujin_(the_god_of_wind),_surimono_by_Yamamoto_Shōun,_private_collection.jpg","canonicalUrl":"https://punicodex.com/fujin/art/?view=temple&art=gallery-fujin-6","attribution":"Raijin (the thunder god) and Fujin (the god of wind), surimono by Y… Photo/art: Wmpearl by Wmpearl, Public domain, via https://commons.wikimedia.org/wiki/File:Raijin_(the_thunder_god)_and_Fujin_(the_god_of_wind),_surimono_by_Yamamoto_Shōun,_private_collection.jpg","provenance":"Raijin (the thunder god) and Fujin (the god of wind), surimono by Yamamoto Shōun, private collection","aiAssisted":false,"host":"commons.wikimedia.org"}];</script>
 <script src="/js/commons-viewer.js?v=2" defer></script>
+<script src="/js/temple-base.js?v=2903489bdd" defer></script>
 <script src="/js/px-core.js?v=d28727a34e" defer></script>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-muse.js?v=1" defer></script>
@@ -336,8 +341,14 @@
     creatives: { t: 'Creatives for Fūjin — licensed mythological art | PUNICODEX', c: 'https://punicodex.com/fujin/art/?view=creatives' },
     commons: { t: 'The Commons — Fūjin studies by the PuniCodex studio | PUNICODEX', c: 'https://punicodex.com/fujin/art/?view=commons' }
   };
+  var currentCat = 'all';
   function show(cat, push) {
-    cats.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-cat') === cat); });
+    currentCat = cat;
+    cats.forEach(function (b) {
+      var selected = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-selected', String(selected));
+    });
     Object.keys(grids).forEach(function (k) { document.getElementById(grids[k]).hidden = k !== cat; });
     if (meta[cat]) {
       document.title = meta[cat].t;
@@ -348,6 +359,7 @@
     }
     if (push !== false && history.replaceState) {
       history.replaceState(null, '', cat === 'all' ? location.pathname : '?view=' + cat);
+      applyFilters();
     }
   }
   cats.forEach(function (b) {
@@ -366,7 +378,7 @@
     var q = (document.getElementById('art-q').value || '').toLowerCase().trim();
     var tag = document.getElementById('art-tag').value;
     var sort = document.getElementById('art-sort').value;
-    var grid = document.getElementById(grids[initial]);
+    var grid = document.getElementById(grids[currentCat]);
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('figure.art-card'));
     cards.forEach(function (c) {
