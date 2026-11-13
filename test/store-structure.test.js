@@ -504,27 +504,35 @@ test('the store entrance and merch hall link the policy pages', () => {
 });
 
 test('generator + stamper are idempotent (second run writes zero files)', () => {
-  const runGenerator = () =>
-    execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'generate-store-pages.js')], {
+  const runScript = (script) =>
+    execFileSync(process.execPath, [path.join(ROOT, 'scripts', script)], {
       cwd: ROOT,
       encoding: 'utf8',
     });
-  const runStamper = () =>
-    execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'stamp-asset-versions.js')], {
-      cwd: ROOT,
-      encoding: 'utf8',
-    });
-  runGenerator();
-  runStamper();
-  const first = runGenerator();
-  assert.match(
-    first,
-    /Store pages: 0 written/,
-    'first generator pass wrote pages after stamper — committed store pages may be stale'
-  );
-  runStamper();
-  const second = runGenerator();
-  assert.match(second, /Store pages: 0 written/, 'generator not idempotent after stamper');
+  try {
+    runScript('generate-store-pages.js');
+    runScript('stamp-asset-versions.js');
+    const first = runScript('generate-store-pages.js');
+    assert.match(
+      first,
+      /Store pages: 0 written/,
+      'first generator pass wrote pages after stamper — committed store pages may be stale'
+    );
+    runScript('stamp-asset-versions.js');
+    const second = runScript('generate-store-pages.js');
+    assert.match(second, /Store pages: 0 written/, 'generator not idempotent after stamper');
+  } finally {
+    for (const script of [
+      'sync-desktop-nav.js',
+      'inject-analytics.js',
+      'inject-university-collaborators.js',
+      'inject-herald-beacon.js',
+      'inject-cookie-consent.js',
+      'stamp-asset-versions.js',
+    ]) {
+      runScript(script);
+    }
+  }
 });
 
 async function run() {
