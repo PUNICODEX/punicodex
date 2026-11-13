@@ -177,6 +177,60 @@ async function promote(file) {
   console.log(`Promoted ${id} with transparent Commons and Pinterest derivatives.`);
 }
 
+async function promoteOil(file) {
+  const absolute = path.resolve(ROOT, file);
+  if (!fs.existsSync(absolute)) throw new Error(`keeper image not found: ${file}`);
+  const base = path.basename(absolute);
+  const match = base.match(/^(.+)-oil-v(\d+)\.(\d+)\.(?:jpe?g|png)$/i);
+  if (!match) throw new Error('only curated <deity>-oil-v<version>.<variant> keeper works are supported');
+  const [, deity, promptVersion, variant] = match;
+  const entry = LEXICON.find((candidate) => candidate.id === deity);
+  if (!entry) throw new Error(`unknown temple: ${deity}`);
+  const logs = fs.existsSync(LOG_PATH)
+    ? fs.readFileSync(LOG_PATH, 'utf8').trim().split('\n').filter(Boolean).map((line) => JSON.parse(line))
+    : [];
+  const generation = logs.findLast((item) => item.file?.endsWith(base));
+  if (!generation || generation.verdict !== 'keep') {
+    throw new Error(`${base}: generation must be marked keep before Commons promotion`);
+  }
+
+  fs.mkdirSync(COMMONS_DIR, { recursive: true });
+  const outputBase = `${deity}-oil-v${promptVersion}.${variant}.jpg`;
+  const output = path.join(COMMONS_DIR, outputBase);
+  fs.copyFileSync(absolute, output);
+
+  const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
+  const id = `commons-${deity}-oil-v${promptVersion}-${variant}`;
+  const canonicalUrl = `https://punicodex.com/${deity}/art/?view=commons&art=${encodeURIComponent(id)}`;
+  const title = `${entry.unicode} — classical oil study ${promptVersion}.${variant}`;
+  const work = {
+    id,
+    kind: 'study',
+    templeId: deity,
+    src: `/assets/ai-commons/${outputBase}`,
+    title,
+    family: 'oil',
+    tags: ['commons', 'oil', entry.pantheon],
+    creator: 'PuniCodex Studio',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    attribution: `${title} by PuniCodex Studio, CC BY 4.0, via ${canonicalUrl}`,
+    canonicalUrl,
+    provenance: 'AI-assisted classical oil study, human-curated for the Commons.',
+    aiAssisted: true,
+    model: generation.model || 'Not recorded',
+    seed: generation.seed ?? null,
+    prompt: generation.prompt || '',
+    generatedAt: generation.ts || null,
+    recordedAt: new Date().toISOString(),
+  };
+  manifest.items = (manifest.items || []).filter((item) => item.id !== id);
+  manifest.items.push(work);
+  manifest.items.sort((a, b) => a.id.localeCompare(b.id));
+  writeFileWithRetry(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`);
+  console.log(`Promoted ${id} to the Commons.`);
+}
+
 if (require.main === module) {
   const files = process.argv.slice(2);
   if (!files.length) {
@@ -196,5 +250,6 @@ module.exports = {
   transparentPng,
   pinterestCard,
   promote,
+  promoteOil,
   whitenTattooCornerMarks,
 };

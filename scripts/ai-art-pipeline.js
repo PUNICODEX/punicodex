@@ -183,8 +183,11 @@ async function runQc({ root = ROOT, family = null } = {}) {
 }
 
 async function promoteKeepers({ root = ROOT, family = 'tattoo' } = {}) {
-  if (family !== 'tattoo') throw new Error('automated Commons promotion currently supports the tattoo family');
-  const { promote } = require('./promote-ai-art-commons.js');
+  if (!['tattoo', 'oil'].includes(family)) {
+    throw new Error('automated Commons promotion currently supports the tattoo and oil families');
+  }
+  const { promote, promoteOil } = require('./promote-ai-art-commons.js');
+  const promoteOne = family === 'oil' ? promoteOil : promote;
   const artifacts = scanArtwork({
     root,
     family,
@@ -196,7 +199,7 @@ async function promoteKeepers({ root = ROOT, family = 'tattoo' } = {}) {
   const failed = [];
   for (const artifact of keepers) {
     try {
-      await promote(artifact.file);
+      await promoteOne(artifact.file);
       promoted.push(artifact.file);
     } catch (error) {
       failed.push({ file: artifact.file, error: error.message });
