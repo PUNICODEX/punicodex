@@ -133,7 +133,7 @@ test('subject typing prevents human deity styling on creatures places and emblem
     );
   }
   const hydraPrompt = compilePrompt({ ...library.deities.hydra, name: 'hydra' }, 'tattoo');
-  assert.match(hydraPrompt, /make Many-Headed Serpent the unmistakable hero/);
+  assert.match(hydraPrompt, /make nine-headed Lernaean Hydra unmistakable/);
   assert.doesNotMatch(hydraPrompt, /missed attribute/);
 });
 
@@ -147,7 +147,7 @@ test('canonical attributes and cultural fences protect known deity identities', 
       /loose laurel wreath encircling her hair/,
       /every garment, jewel, weapon, animal and symbol must be explicitly named/,
     ],
-    ['freyja', /falcon cloak/, /no Greek or Roman togas/],
+    ['freyja', /falcon-feather cloak/, /no Greek or Roman togas/],
     ['amaterasu', /sacred mirror/, /no Chinese characters or seals/],
     [
       'hades',
@@ -156,7 +156,7 @@ test('canonical attributes and cultural fences protect known deity identities', 
     ],
     [
       'kali',
-      /four canonical arms/,
+      /four-armed dark Hindu goddess Kali/,
       /every limb, weapon, animal and ornament must be explicitly named/,
     ],
   ];

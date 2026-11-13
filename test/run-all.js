@@ -636,6 +636,10 @@ const SUITES = [
   { name: 'Model Corpus Tests', cmd: 'node test/model-corpus.test.js' },
   { name: 'Teacher Corpus Tests', cmd: 'node test/teacher-corpus.test.js' },
   { name: 'AI Art Pipeline Tests', cmd: 'node --test test/ai-art-pipeline.test.js' },
+  {
+    name: 'AI Art Orchestrator Tests',
+    cmd: 'node --test test/ai-art-pipeline-orchestrator.test.js',
+  },
   { name: 'Safety Corpus Tests', cmd: 'node test/safety-corpus.test.js' },
   { name: 'AI Corpus Phases Tests', cmd: 'node test/ai-corpus-phases.test.js' },
   { name: 'Oracle Doctrine Corpus Tests', cmd: 'node test/oracle-doctrine-corpus.test.js' },

@@ -177,8 +177,8 @@ const RULES = [
     ],
   },
   {
-    pattern: /^scripts\/(?:expand-ai-art-library|generate-ai-art|curate-ai-art|promote-ai-art-commons)\.js$|^data\/ai-art\/|^test\/ai-art-pipeline\.test\.js$/,
-    suites: ['AI Art Pipeline Tests'],
+    pattern: /^scripts\/(?:expand-ai-art-library|generate-ai-art|curate-ai-art|promote-ai-art-commons|ai-art-pipeline)\.js$|^scripts\/lib\/ai-art-qc\.js$|^data\/ai-art\/|^test\/ai-art-pipeline(?:-orchestrator)?\.test\.js$/,
+    suites: ['AI Art Pipeline Tests', 'AI Art Orchestrator Tests'],
   },
   {
     pattern: /^data\/corpus\/|^scripts\/generate-.*corpus|^scripts\/generate-unified-corpus/,

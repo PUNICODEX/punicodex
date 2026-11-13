@@ -20,6 +20,7 @@
  */
 const fs = require('node:fs');
 const path = require('node:path');
+const { imageQualityFlags } = require('./lib/ai-art-qc.js');
 
 const ROOT = path.join(__dirname, '..');
 const LIB_PATH = path.join(ROOT, 'data', 'ai-art', 'prompt-library.json');
@@ -86,9 +87,7 @@ const produced = (name, family, outDir = OUT_DIR) => {
 };
 if (batchIdx !== -1) {
   const n = Number(args[batchIdx + 1]);
-  const unproduced = Object.keys(lib.deities).filter((x) => !produced(x, FAMILY));
-  console.log(`batch: ${unproduced.length} unproduced deities in library (${Object.keys(lib.deities).length - unproduced.length} already have art — skipped)`);
-  names = unproduced.sort(demandSort).slice(0, n);
+  names = Object.keys(lib.deities).filter((x) => !produced(x, FAMILY)).sort(demandSort).slice(0, n);
 }
 if (!names.length) names = Object.keys(lib.deities).sort(demandSort);
 
@@ -118,9 +117,9 @@ function compilePrompt(spec, family) {
   const baseTraditionGuidance = family === 'classic-gold' ? null : lib.traditions[spec.tradition]?.iconography;
   const traditionGuidance = subjectGuidance(spec) || baseTraditionGuidance;
   const culturalBoundary = lib.traditions[spec.tradition]?.culturalBoundary;
-  const operators = fam?.mutationOperators || lib.mutationOperators;
+  const operators = fam?.mutationOperators || {};
   const mutations = (spec.activeMutations || [])
-    .map((m) => operators[m]?.replaceAll('{attribute}', primary))
+    .map((m) => (operators[m] || lib.mutationOperators[m])?.replaceAll('{attribute}', primary))
     .filter(Boolean);
   const identity = `CANONICAL IDENTITY: ${name} is ${attr}; make ${primary} unmistakable and central; use only the attributes named here; do not substitute unrelated weapons, animals, clothing, symbols or secondary figures; absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, watermarks, borders or frames`;
   const boundary = culturalBoundary ? `FINAL CULTURAL BOUNDARY: ${culturalBoundary}` : null;
@@ -257,6 +256,11 @@ async function main({
     logger.error('FAL_KEY env required');
     return { spent: 0, generated: 0, skipped: 0, missingCredential: true };
   }
+  if (batchIdx !== -1) {
+    logger.log(
+      `batch: ${selectedNames.length} planned deities (${Object.keys(lib.deities).length - selectedNames.length} already have art — skipped)`
+    );
+  }
   fs.mkdirSync(outDir, { recursive: true });
   const unitCost = costPerImage(model);
   let spent = 0;
@@ -301,7 +305,7 @@ async function main({
         if (!metadata.width || !metadata.height) throw new Error('downloaded image has invalid dimensions');
         generated++;
         const autoFlags =
-          family === 'classic-gold' ? await cornerFlags(out) : await edgeContactFlags(out, family);
+          family === 'classic-gold' ? await cornerFlags(out) : await imageQualityFlags(out, family);
         appendGeneration(logPath, {
           ts: new Date().toISOString(),
           deity: name,
