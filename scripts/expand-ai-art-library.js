@@ -77,6 +77,9 @@ const ATTRIBUTE_OVERRIDES = {
   bastet: ['cat-headed Egyptian goddess', 'sistrum', 'protective basket', 'feline grace'],
   thoth: ['ibis-headed Egyptian scribe god', 'scribal palette', 'moon disk', 'hieroglyph-free precision'],
   hydra: ['nine-headed Lernaean Hydra', 'regenerating serpent necks', 'entirely serpentine body', 'scales and fangs'],
+  cerberus: ['underworld hound Cerberus with exactly three canine heads on one single body', 'three separate dog heads sharing one neck and torso', 'snake-headed tail', 'chains of Hades'],
+  medousa: ['Gorgon Medousa, a woman with living serpents for hair', 'female face and body', 'petrifying gaze', 'winged sandals of Perseus must NOT appear; no horns, no bat wings, no male or demon anatomy'],
+  herakles: ['Greek hero Herakles in his prime', 'lion skin cape with mane over his shoulders', 'knotted wooden club', 'muscular beardless-to-short-bearded hero', 'no wings, no spear, no aged white beard'],
   kali: ['four-armed dark Hindu goddess Kali', 'lolling tongue', 'sword and trident', 'garland and waist chain'],
   shiva: ['Hindu god Shiva', 'third eye', 'crescent moon', 'trident and damaru'],
   ganesha: ['elephant-headed Hindu god Ganesha', 'broken tusk', 'modak sweet', 'mouse companion'],
@@ -91,9 +94,26 @@ const ATTRIBUTE_OVERRIDES = {
   sunwukong: ['Chinese Monkey King Sun Wukong', 'Ruyi Jingu Bang staff', 'monkey armor', 'flying cloud'],
   guanyin: ['Chinese bodhisattva Guanyin', 'lotus', 'willow branch', 'water vase'],
   change: ['Chinese moon goddess Chang’e', 'moon disk', 'elixir', 'jade rabbit'],
-  caishen: ['Chinese wealth god Caishen', 'ingot of gold', 'prosperity imagery', 'official robes'],
+  caishen: ['Chinese God of Wealth Caishen as a smiling robed court official', 'gold ingot held in both hands', 'scepter of office', 'official’s black gauze hat', 'no dragon body, no creature form'],
   quetzalcoatl: ['feathered serpent', 'Mesoamerican featherwork', 'coiled serpent body', 'wind and morning star'],
   huitzilopochtli: ['Aztec warrior-sun god', 'hummingbird ornament', 'solar rays', 'Xiuhcoatl serpent'],
+  atlas: ['Titan Atlas', 'vast celestial globe held on his shoulders or above his raised arms', 'the weight of the heavens pressing down', 'muscular endurance', 'no trident, no wings, no horned helmet — the sphere is the only object'],
+  odysseus: ['Greek hero Odysseus the wanderer', 'conical pilos traveler’s cap', 'stout spear', 'sea-worn cloak', 'no winged helmet (that is Hermes), no seals or inscriptions'],
+  rama: ['Hindu prince Rama', 'great bow Kodanda in hand', 'quiver of arrows on his back', 'princely royal crown', 'no trident (that is Shiva), no battle-axe (that is Parashurama)'],
+  moses: ['Hebrew lawgiver Moses', 'two stone tablets of the Law held to his chest', 'plain wooden staff', 'rays of light from his brow', 'no crown, no halo, no wings, no sword'],
+  noah: ['patriarch Noah', 'wooden ark behind him', 'dove bearing an olive branch', 'rainbow overhead', 'no crown, no weapons'],
+  david: ['Hebrew king David as a young bearded king', 'harp in his hands', 'sling at his belt', 'subdued lion at his side', 'no cross-topped staff, no angel wings'],
+  el: ['supreme Canaanite god El as the white-bearded ancient king', 'long white beard', 'seated on a simple throne or standing with bull imagery', 'Levantine Bronze Age robe', 'no falcon head, no animal head, no Egyptian regalia'],
+  fionn: ['Irish hero Fionn mac Cumhaill', 'hunter’s spear', 'the salmon of knowledge', 'green Fianna warrior garb', 'no crown, no wizard staff, no horns'],
+  om: ['the sacred syllable Om rendered as one single flowing Devanagari calligraphic symbol', 'pure emblem only', 'no vessels, no weapons, no wings, no extra ornament beyond the syllable itself'],
+  baal: ['Canaanite storm god Baal as a standing striding warrior', 'horned helmet', 'raised spear in one hand and bronze mace in the other', 'victorious forward stride', 'no horse, no bat wings, no demonic or skeletal face'],
+  eris: ['Greek goddess of discord Eris', 'single golden apple of discord held aloft', 'restless wings', 'knowing confrontational stance', 'no mirror, no ring, no crown'],
+  dagda: ['the good god Dagda of the Tuatha Dé Danann', 'enormous great club with a wide blunt spade-like end', 'cauldron of plenty', 'huge jovial bearded chieftain', 'no wings, no horned helmet, no rope'],
+  brigid: ['Irish goddess Brigid', 'sacred flame in her raised hand', 'sword point-down before her', 'woven mantle and celtic knotwork', 'no written letters, no name, no signature anywhere in the image'],
+  kai: ['Sir Kay the seneschal of Arthurian legend as a sturdy knight', 'practical heraldic armor', 'broadsword at his side', 'square-shouldered powerful build and short beard', 'no crown, no ceremonial spear, no bird'],
+  macha: ['Irish sovereignty goddess Macha as a regal woman', 'fiery red hair', 'royal gold torque and crimson cloak', 'a tamed horse standing at her shoulder', 'the figure is a woman, never the horse itself'],
+  sphinx: ['the Sphinx, a creature with the body of a lion and the head of a woman', 'lion paws and haunches', 'serene female face with nemes-style headdress', 'optionally small falcon wings at the shoulders', 'no horns, no bat wings, no demon or dragon anatomy'],
+  izanagi: ['Japanese creator god Izanagi as a dignified male deity', 'jeweled spear Ame-no-Nuhoko', 'formal ancient Japanese court robes', 'commanding creator’s presence', 'no demon horns, no white beard, no calligraphy, no seals'],
 };
 
 function classifySubject(archetype) {
@@ -168,7 +188,7 @@ const culturalBoundaries = {
   phoenician: 'use Levantine maritime and metalwork language only; every garment, jewel, weapon, animal and mark must be explicitly named in the canonical identity; no Greek, Egyptian or South Asian substitutions',
   polynesian: 'use the specific Pacific culture’s visual language only; every garment, jewel, weapon, animal and mark must be explicitly named in the canonical identity; no pan-Polynesian clichés, no Māori or Aboriginal pattern borrowing, no South Asian or East Asian regalia',
   roman: 'use ancient Roman visual language only; every garment, jewel, weapon, animal and symbol must be explicitly named in the canonical identity; no visual element from Greek, South Asian or East Asian traditions unless directly named above',
-  sanskrit: 'use the specific deity’s established Indian iconography only; every limb, weapon, animal and ornament must be explicitly named in the canonical identity; no pseudo-script',
+  sanskrit: 'use the specific deity’s established Indian iconography only; every limb, weapon, animal and ornament must be explicitly named in the canonical identity; ATTRIBUTE EXCLUSIVITY: the trident belongs to Shiva alone, the discus and conch to Vishnu alone, the vina and swan to Saraswati alone, the peacock to Kartikeya alone, the owl to Lakshmi alone, the mace to Vishnu or Hanuman alone — never place another deity’s exclusive attribute in this subject’s hands or background; no extra arms beyond the count named in the identity; no pseudo-script',
   slavic: 'use Slavic folk visual language only; no Norse, Baltic, Greek or generic tribal substitutions',
   taoist: 'use Chinese Daoist visual language only; no Buddhist, Japanese or folk substitutions, no characters or trigram marks unless canonical',
   yoruba: 'use Yoruba orisha iconography only; no generic African tribal patterns, no Dahomean or European substitutions unless historically appropriate',
@@ -218,6 +238,58 @@ for (const archetype of ARCHETYPES.filter((entry) => entry.built)) {
   spec.attributes = attributes.length ? attributes : spec.attributes;
   spec.subjectType = subjectType;
   spec.demandTier = demand[archetype.id]?.tier || spec.demandTier || 3;
+}
+
+// Tradition-level proactive fences: when a failure mode is measured above a
+// rate threshold for a tradition, every deity in that tradition inherits the
+// mutation pre-emptively, not only after individual rejects.
+const PREEMPTIVE_RULES = [
+  { reason: 'garbled-text', minLosses: 3, minRate: 0.3 },
+  { reason: 'wrong-attributes', minLosses: 5, minRate: 0.4 },
+];
+try {
+  const LOG_PATH = path.join(ROOT, 'data', 'ai-art', 'generation-log.jsonl');
+  const stats = new Map();
+  for (const line of fs.readFileSync(LOG_PATH, 'utf8').trim().split('\n')) {
+    if (!line) continue;
+    const e = JSON.parse(line);
+    if (!e.file || !e.verdict) continue;
+    const base = path.basename(e.file);
+    let deity = base.split('-v')[0];
+    for (const fam of Object.keys(lib.families)) {
+      if (deity.endsWith(`-${fam}`)) {
+        deity = deity.slice(0, -(fam.length + 1));
+        break;
+      }
+    }
+    const spec = lib.deities[deity];
+    if (!spec) continue;
+    if (!stats.has(spec.tradition)) stats.set(spec.tradition, new Map());
+    const reasons = stats.get(spec.tradition);
+    const reason = e.reason || 'other';
+    if (!reasons.has(reason)) reasons.set(reason, { losses: 0, total: 0 });
+    const s = reasons.get(reason);
+    s.total++;
+    if (e.verdict === 'reject') s.losses++;
+  }
+  let preempted = 0;
+  for (const [tradition, reasons] of stats) {
+    for (const rule of PREEMPTIVE_RULES) {
+      const s = reasons.get(rule.reason);
+      if (!s || s.losses < rule.minLosses) continue;
+      if (s.losses / s.total < rule.minRate) continue;
+      for (const spec of Object.values(lib.deities)) {
+        if (spec.tradition !== tradition) continue;
+        if (!(spec.activeMutations || []).includes(rule.reason)) {
+          spec.activeMutations = [...(spec.activeMutations || []), rule.reason];
+          preempted++;
+        }
+      }
+    }
+  }
+  if (preempted) console.log(`preemptive tradition fences: ${preempted} deity mutations applied`);
+} catch {
+  // no log yet — nothing to measure
 }
 
 const familyDefinitions = {

@@ -74,10 +74,11 @@ const demandSort = (a, b) => {
   return sa - sb;
 };
 
-const produced = (name, family, outDir = OUT_DIR) => {
+const produced = (name, family, outDir = OUT_DIR, promptVersion = null) => {
   const familyTag = family === 'classic-gold' ? '' : `${family}-`;
-  const promptVersion = lib.deities[name]?.promptVersion;
-  const prefix = `${name}-${familyTag}v${promptVersion}.`;
+  const version = promptVersion ?? lib.deities[name]?.promptVersion;
+  if (!version) return false;
+  const prefix = `${name}-${familyTag}v${version}.`;
   for (const d of [outDir, path.join(outDir, 'keepers'), path.join(outDir, 'review')]) {
     try {
       if (fs.readdirSync(d).some((f) => f.startsWith(prefix) && f.endsWith('.jpg'))) return true;
@@ -121,9 +122,13 @@ function compilePrompt(spec, family) {
   const mutations = (spec.activeMutations || [])
     .map((m) => (operators[m] || lib.mutationOperators[m])?.replaceAll('{attribute}', primary))
     .filter(Boolean);
-  const identity = `CANONICAL IDENTITY: ${name} is ${attr}; make ${primary} unmistakable and central; use only the attributes named here; do not substitute unrelated weapons, animals, clothing, symbols or secondary figures; absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, watermarks, borders or frames`;
+  const identity = `CANONICAL IDENTITY: ${name} is ${attr}; make ${primary} unmistakable and central; use only the attributes named here; do not substitute unrelated weapons, animals, clothing, symbols or secondary figures; the only weapons, animals, ornaments and garments allowed anywhere in this image are the ones named in this identity; a trident may appear ONLY if the word trident is explicitly named in this identity; absolutely no text, letters, pseudo-script, seals, signatures, numbers, dates, watermarks, borders or frames`;
   const boundary = culturalBoundary ? `FINAL CULTURAL BOUNDARY: ${culturalBoundary}` : null;
-  return [identity, styleDna, traditionGuidance, boundary, ...mutations].filter(Boolean).join(', ');
+  const finalCheck =
+    'FINAL CHECK: the finished image contains exactly one subject and nothing else — zero letters, zero characters, zero seal stamps, zero signatures, zero watermarks, zero borders, zero frames, and no weapon, animal, ornament, garment or limb that is not explicitly named in the canonical identity';
+  return [identity, styleDna, traditionGuidance, boundary, ...mutations, finalCheck]
+    .filter(Boolean)
+    .join(', ');
 }
 
 function title(id) {

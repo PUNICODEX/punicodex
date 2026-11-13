@@ -35,7 +35,7 @@ function familyTag(family) {
 function artifactProduced(root, family, name, library) {
   const promptVersion = library.deities[name]?.promptVersion;
   if (!promptVersion) return false;
-  return produced(name, family, path.join(root, 'ai-art'));
+  return produced(name, family, path.join(root, 'ai-art'), promptVersion);
 }
 
 function loadDemand(root) {
