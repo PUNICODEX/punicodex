@@ -326,6 +326,10 @@ const SUITES = [
   { name: 'Cookie Consent Tests', cmd: 'node test/cookie-consent.test.js' },
   { name: 'Lexicon Meaning Style Tests', cmd: 'node test/lexicon-meaning-style.test.js' },
   { name: 'Site Analytics v2 Tests', cmd: 'node test/site-analytics-v2.test.js' },
+  {
+    name: 'Redis Analytics Overview Tests',
+    cmd: 'node --test test/site-analytics-redis.test.js',
+  },
   { name: 'Analytics Depth Tests', cmd: 'node test/analytics-depth.test.js' },
   { name: 'Analytics Anomaly Tests', cmd: 'node --test test/analytics-anomaly.test.js' },
   { name: 'Analytics Quality Tests', cmd: 'node --test test/analytics-quality.test.js' },

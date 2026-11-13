@@ -554,6 +554,45 @@ async function scanKeys(client, pattern) {
   return keys;
 }
 
+function redisResult(result) {
+  if (!Array.isArray(result)) throw new Error('Invalid Redis pipeline response');
+  const [error, value] = result;
+  if (error) throw error;
+  return value;
+}
+
+async function getRedisOverviewDay(client, day, templeId, templeIds) {
+  const pipeline = client.pipeline();
+  for (const tid of templeIds) {
+    pipeline.hgetall(`${KEY_PREFIX}views:${day}:${tid}`);
+    pipeline.scard(`${KEY_PREFIX}uniq:${day}:${tid}`);
+    pipeline.hgetall(`${KEY_PREFIX}devices:${day}:${tid}`);
+    pipeline.hgetall(`${KEY_PREFIX}bots:${day}:${tid}`);
+    pipeline.hgetall(`${KEY_PREFIX}refs:${day}:${tid}`);
+  }
+  pipeline.scard(
+    templeId !== null ? `${KEY_PREFIX}uniq:${day}:${templeId}` : `${KEY_PREFIX}uniq:${day}`
+  );
+  pipeline.hgetall(`${KEY_PREFIX}pathviews:${day}`);
+  const results = await pipeline.exec();
+  if (!Array.isArray(results)) throw new Error('Redis overview pipeline returned no results');
+  let cursor = 0;
+  const rows = templeIds.map((tid) => {
+    const counts = redisResult(results[cursor++]);
+    const uniques = redisResult(results[cursor++]);
+    const devices = redisResult(results[cursor++]);
+    const bots = redisResult(results[cursor++]);
+    const referrers = redisResult(results[cursor++]);
+    return { tid, counts, uniques, devices, bots, referrers };
+  });
+  return {
+    day,
+    rows,
+    uniqueSessions: redisResult(results[cursor++]),
+    pathCounts: redisResult(results[cursor++]) || {},
+  };
+}
+
 async function getRedisOverview({ days, templeId }) {
   const client = getRedisClient();
   if (!client) return null;
@@ -572,52 +611,47 @@ async function getRedisOverview({ days, templeId }) {
     templeMap.set(tid, t);
   };
 
-  for (const day of dayList) {
-    const templeIds = [];
-    if (templeId !== null) {
-      templeIds.push(templeId);
-    } else {
+  const scopes = await Promise.all(
+    dayList.map(async (day) => {
+      if (templeId !== null) return { day, templeIds: [templeId] };
       const prefix = `${KEY_PREFIX}views:${day}:`;
       const keys = await scanKeys(client, `${prefix}*`);
-      for (const key of keys) templeIds.push(key.slice(prefix.length));
-    }
-    for (const tid of templeIds) {
-      const counts = await client.hgetall(`${KEY_PREFIX}views:${day}:${tid}`);
-      const human = toCount(counts.human);
-      const bot = toCount(counts.bot);
-      const dayRow = byDayMap.get(day);
+      return { day, templeIds: keys.map((key) => key.slice(prefix.length)) };
+    })
+  );
+  const dayResults = await Promise.all(
+    scopes.map(({ day, templeIds }) => getRedisOverviewDay(client, day, templeId, templeIds))
+  );
+
+  for (const result of dayResults) {
+    const dayRow = byDayMap.get(result.day);
+    for (const row of result.rows) {
+      const human = toCount(row.counts.human);
+      const bot = toCount(row.counts.bot);
       dayRow.human += human;
       dayRow.bot += bot;
-      bumpTemple(tid, 'human', human);
-      bumpTemple(tid, 'bot', bot);
-      bumpTemple(tid, 'uniques', await client.scard(`${KEY_PREFIX}uniq:${day}:${tid}`));
-      const devCounts = await client.hgetall(`${KEY_PREFIX}devices:${day}:${tid}`);
+      bumpTemple(row.tid, 'human', human);
+      bumpTemple(row.tid, 'bot', bot);
+      bumpTemple(row.tid, 'uniques', toCount(row.uniques));
       for (const name of Object.keys(devices)) {
-        devices[name] += toCount(devCounts[name]);
+        devices[name] += toCount(row.devices[name]);
       }
-      const botCounts = await client.hgetall(`${KEY_PREFIX}bots:${day}:${tid}`);
-      for (const [category, count] of Object.entries(botCounts)) {
+      for (const [category, count] of Object.entries(row.bots || {})) {
         addToMap(botCatMap, category, toCount(count));
       }
-      const refCounts = await client.hgetall(`${KEY_PREFIX}refs:${day}:${tid}`);
-      for (const [domain, count] of Object.entries(refCounts)) {
+      for (const [domain, count] of Object.entries(row.referrers || {})) {
         addToMap(refMap, domain, toCount(count));
       }
     }
-    uniqueSessions += await client.scard(
-      templeId !== null ? `${KEY_PREFIX}uniq:${day}:${templeId}` : `${KEY_PREFIX}uniq:${day}`
-    );
-    // Path-level rollups are site-wide hashes keyed by full path; when the
-    // overview is temple-scoped, keep only that temple's path prefix.
-    const pathCounts = await client.hgetall(`${KEY_PREFIX}pathviews:${day}`);
-    for (const [p, count] of Object.entries(pathCounts || {})) {
+    uniqueSessions += toCount(result.uniqueSessions);
+    for (const [path, count] of Object.entries(result.pathCounts)) {
       if (
         templeId !== null &&
-        !p.startsWith(`/sites/${templeId}/`) &&
-        !p.startsWith(`/${templeId}/`)
+        !path.startsWith(`/sites/${templeId}/`) &&
+        !path.startsWith(`/${templeId}/`)
       )
         continue;
-      addToMap(pathMap, p, toCount(count));
+      addToMap(pathMap, path, toCount(count));
     }
   }
 
@@ -824,11 +858,22 @@ async function getEngagementStats({ days = 30 } = {}) {
       let totalMs = 0;
       let totalScroll = 0;
       const templeMap = new Map();
-      for (const day of dayList) {
-        const keys = await scanKeys(client, `${KEY_PREFIX}eng:${day}:*`);
-        for (const key of keys) {
-          const tid = key.slice(`${KEY_PREFIX}eng:${day}:`.length);
-          const row = await client.hgetall(key);
+      const dayResults = await Promise.all(
+        dayList.map(async (day) => {
+          const keys = await scanKeys(client, `${KEY_PREFIX}eng:${day}:*`);
+          const pipeline = client.pipeline();
+          for (const key of keys) pipeline.hgetall(key);
+          const results = keys.length ? await pipeline.exec() : [];
+          if (!Array.isArray(results))
+            throw new Error('Redis engagement pipeline returned no results');
+          return keys.map((key, index) => ({
+            tid: key.slice(`${KEY_PREFIX}eng:${day}:`.length),
+            row: redisResult(results[index]),
+          }));
+        })
+      );
+      for (const rows of dayResults) {
+        for (const { tid, row } of rows) {
           const e = toCount(row.engagements);
           const ms = toCount(row.totalMs);
           const sc = toCount(row.totalScroll);

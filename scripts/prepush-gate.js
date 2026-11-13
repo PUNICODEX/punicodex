@@ -231,9 +231,10 @@ const RULES = [
     suites: ['Slots Seeded Tests'],
   },
   {
-    pattern: /^platform\/(services|api)\/analytics|^platform\/db\/migrate-analytics/,
+    pattern: /^platform\/(services|api)\/analytics|^platform\/db\/migrate-analytics|^test\/site-analytics-redis\.test\.js$/,
     suites: [
       'Site Analytics Tests',
+      'Redis Analytics Overview Tests',
       'Admin Analytics V2 Tests',
       'Analytics Schema Drift Tests',
       'Analytics E2E Tests',
