@@ -449,7 +449,9 @@ test('Commons download becomes a private library entry with re-download and clea
 
     await page.goto(`${base}/sites/zeus/art/?view=commons`, { waitUntil: 'domcontentloaded' });
     await consent(page);
-    const card = page.locator('#art-grid-commons .art-card[data-kind="commons"][data-art-id]').first();
+    const card = page
+      .locator('#art-grid-commons .art-card[data-kind="commons"][data-art-id]')
+      .first();
     await card.waitFor({ state: 'visible' });
     const assetId = await card.getAttribute('data-art-id');
     await card.click();

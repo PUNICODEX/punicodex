@@ -12,27 +12,24 @@
  *
  * Usage:
  *   FAL_KEY=... node scripts/generate-ai-art.js zeus athena     — named deities
- *   FAL_KEY=... node scripts/generate-ai-art.js --batch 12       — first N by wins
+ *   FAL_KEY=... node scripts/generate-ai-art.js --batch 12       — first N by demand
  *   FAL_KEY=... node scripts/generate-ai-art.js zeus --variants 4
  *
- * Env: FAL_KEY (required), FAL_MODEL (default fal-ai/flux/v1.1-pro).
+ * Env: FAL_KEY (required), FAL_MODEL (default fal-ai/flux/schnell),
+ *      FAL_MAX_SPEND (optional estimated USD ceiling for this run).
  */
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
 const LIB_PATH = path.join(ROOT, 'data', 'ai-art', 'prompt-library.json');
 const LOG_PATH = path.join(ROOT, 'data', 'ai-art', 'generation-log.jsonl');
 const OUT_DIR = path.join(ROOT, 'ai-art');
+const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
 
-const KEY = process.env.FAL_KEY;
-if (!KEY) {
-  console.error('FAL_KEY env required');
-  process.exit(1);
-}
 const MODEL = process.env.FAL_MODEL || 'fal-ai/flux/schnell';
-const COST_PER_IMAGE = MODEL.includes('schnell') ? 0.003 : MODEL.includes('dev') ? 0.025 : 0.04;
+const costPerImage = (model) =>
+  model.includes('schnell') ? 0.003 : model.includes('dev') ? 0.025 : 0.04;
 
 const lib = JSON.parse(fs.readFileSync(LIB_PATH, 'utf8'));
 const args = process.argv.slice(2);
@@ -46,8 +43,19 @@ if (familyIdx !== -1 && (!lib.families || !lib.families[FAMILY])) {
 }
 const batchIdx = args.indexOf('--batch');
 let names = args.filter(
-  (a, i) => !a.startsWith('--') && isNaN(Number(a)) && !['--family', '--variants', '--batch'].includes(args[i - 1])
+  (a, i) => !a.startsWith('--') && isNaN(Number(a)) && !['--family', '--variants', '--batch', '--max-spend'].includes(args[i - 1])
 );
+const maxSpendIdx = args.indexOf('--max-spend');
+const configuredMaxSpend = maxSpendIdx !== -1 ? args[maxSpendIdx + 1] : process.env.FAL_MAX_SPEND;
+const MAX_SPEND = configuredMaxSpend === undefined ? Infinity : Number(configuredMaxSpend);
+if (!Number.isFinite(VARIANTS) || VARIANTS < 1 || !Number.isInteger(VARIANTS)) {
+  console.error('--variants must be a positive integer');
+  process.exit(1);
+}
+if (Number.isNaN(MAX_SPEND) || MAX_SPEND < 0) {
+  console.error('--max-spend must be a non-negative number');
+  process.exit(1);
+}
 const DEMAND = (() => {
   try {
     return JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'ai-art', 'temple-demand.json'), 'utf8'));
@@ -55,8 +63,7 @@ const DEMAND = (() => {
     return {};
   }
 })();
-// Demand ordering: the sponsorship market's own valuation (throne tier from
-// ad_slots) leads; curator win/loss score breaks ties within a tier.
+
 const demandSort = (a, b) => {
   const da = DEMAND[a] ? DEMAND[a].tier : 99;
   const db = DEMAND[b] ? DEMAND[b].tier : 99;
@@ -65,17 +72,13 @@ const demandSort = (a, b) => {
   const sb = (lib.deities[b]?.wins || 0) - (lib.deities[b]?.losses || 0);
   return sa - sb;
 };
-// Production is family-aware: an existing classic-gold study must not block
-// a tattoo, anime, or engraving study for the same deity. Within one family,
-// inbox, keeper, and review files all count so nothing is generated twice.
-const produced = (name, family) => {
+
+const produced = (name, family, outDir = OUT_DIR) => {
   const familyTag = family === 'classic-gold' ? '' : `${family}-`;
-  for (const d of [OUT_DIR, path.join(OUT_DIR, 'keepers'), path.join(OUT_DIR, 'review')]) {
+  for (const d of [outDir, path.join(outDir, 'keepers'), path.join(outDir, 'review')]) {
     try {
       if (fs.readdirSync(d).some((f) => f.startsWith(`${name}-${familyTag}v`) && f.endsWith('.jpg'))) return true;
-    } catch {
-      /* dir may not exist yet */
-    }
+    } catch {}
   }
   return false;
 };
@@ -89,13 +92,9 @@ if (!names.length) names = Object.keys(lib.deities).sort(demandSort);
 
 function compilePrompt(spec, family) {
   const fam = (lib.families && lib.families[family]) || null;
-  // classic-gold (the default) uses the tradition's DNA; other families
-  // override the whole visual register while the deity's attributes stay.
-  const styleDna =
-    fam && fam.dna ? fam.dna : lib.traditions[spec.tradition].styleDna;
+  const styleDna = fam && fam.dna ? fam.dna : lib.traditions[spec.tradition].styleDna;
   const attr = spec.attributes.join(', ');
-  const traditionGuidance =
-    family === 'classic-gold' ? null : lib.traditions[spec.tradition]?.iconography;
+  const traditionGuidance = family === 'classic-gold' ? null : lib.traditions[spec.tradition]?.iconography;
   const mutations = (spec.activeMutations || []).map((m) => lib.mutationOperators[m]).filter(Boolean);
   return [
     `${title(spec.name || '')}, ${attr},`,
@@ -111,30 +110,57 @@ function title(id) {
   return e ? e.unicode : id;
 }
 
-function log(entry) {
-  fs.appendFileSync(LOG_PATH, JSON.stringify(entry) + '\n');
+function appendGeneration(logPath, entry) {
+  fs.mkdirSync(path.dirname(logPath), { recursive: true });
+  fs.appendFileSync(logPath, `${JSON.stringify(entry)}\n`);
 }
 
-function falGenerate(prompt) {
-  // Sync endpoint (fal.run): blocks until the image is ready and returns
-  // the payload inline. The JSON body goes via a temp file — inline -d
-  // quoting through Git Bash + execSync layers mangles it ("error parsing
-  // the body"), the file form is bulletproof.
-  const bodyFile = path.join(require('os').tmpdir(), `fal-body-${process.pid}.json`);
-  fs.writeFileSync(bodyFile, JSON.stringify({ prompt, image_size: 'square' }));
-  const raw = execSync(
-    `curl -s -m 120 -X POST "https://fal.run/${MODEL}" -H "Authorization: Key ${KEY}" -H "Content-Type: application/json" -d @"${bodyFile}"`,
-    { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }
-  );
-  const j = JSON.parse(raw);
-  if (j.images && j.images[0]) return { url: j.images[0].url, seed: j.seed ?? null };
-  throw new Error('fal unexpected: ' + raw.slice(0, 200));
+async function falGenerate(prompt, { key, model = MODEL, fetchImpl = fetch }) {
+  if (!key) throw new Error('FAL_KEY env required');
+  const response = await fetchImpl(`https://fal.run/${model}`, {
+    method: 'POST',
+    headers: { Authorization: `Key ${key}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt, image_size: 'square' }),
+    signal: AbortSignal.timeout(120000),
+  });
+  const raw = await response.text();
+  if (!response.ok) throw new Error(`fal request failed (HTTP ${response.status})`);
+  let payload;
+  try {
+    payload = JSON.parse(raw);
+  } catch {
+    throw new Error('fal returned invalid JSON');
+  }
+  if (payload.images && payload.images[0]?.url) {
+    return { url: payload.images[0].url, seed: payload.seed ?? null };
+  }
+  throw new Error('fal response contained no image');
 }
 
-/* Auto quality gate: sample the four corners — the house style is gold on
- * VOID. Corners that aren't near-black mean a vase crop, stone slab, or
- * white page crept in (the recurring busy-background failure). Flags the
- * entry for the curator; never auto-rejects. */
+async function downloadImage(url, output, fetchImpl = fetch) {
+  const response = await fetchImpl(url, { signal: AbortSignal.timeout(120000) });
+  if (!response.ok) throw new Error(`image download failed (HTTP ${response.status})`);
+  const contentType = response.headers.get('content-type') || '';
+  if (!contentType.startsWith('image/')) throw new Error('image download returned a non-image response');
+  const declaredBytes = Number(response.headers.get('content-length') || 0);
+  if (declaredBytes > MAX_IMAGE_BYTES) throw new Error('image exceeds the 25 MB safety limit');
+  const chunks = [];
+  let bytes = 0;
+  for await (const chunk of response.body) {
+    bytes += chunk.length;
+    if (bytes > MAX_IMAGE_BYTES) throw new Error('image exceeds the 25 MB safety limit');
+    chunks.push(Buffer.from(chunk));
+  }
+  if (!bytes) throw new Error('image download was empty');
+  const temporary = `${output}.${process.pid}.tmp`;
+  try {
+    fs.writeFileSync(temporary, Buffer.concat(chunks));
+    fs.renameSync(temporary, output);
+  } finally {
+    if (fs.existsSync(temporary)) fs.unlinkSync(temporary);
+  }
+}
+
 async function cornerFlags(file) {
   try {
     const sharp = require('sharp');
@@ -161,41 +187,109 @@ async function cornerFlags(file) {
   }
 }
 
-async function main() {
-  fs.mkdirSync(OUT_DIR, { recursive: true });
+async function main({
+  fetchImpl = fetch,
+  key = process.env.FAL_KEY,
+  selectedNames = names,
+  outDir = OUT_DIR,
+  logPath = LOG_PATH,
+  family = FAMILY,
+  variants = VARIANTS,
+  model = MODEL,
+  maxSpend = MAX_SPEND,
+  logger = console,
+} = {}) {
+  if (!key) {
+    logger.error('FAL_KEY env required');
+    return { spent: 0, generated: 0, skipped: 0, missingCredential: true };
+  }
+  fs.mkdirSync(outDir, { recursive: true });
+  const unitCost = costPerImage(model);
   let spent = 0;
-  for (const name of names) {
+  let generated = 0;
+  let skipped = 0;
+  let budgetReached = false;
+  for (const name of selectedNames) {
     const spec = lib.deities[name];
     if (!spec) {
-      console.log(`✗ unknown deity ${name} — add it to the library first`);
+      logger.log(`✗ unknown deity ${name} — add it to the library first`);
       continue;
     }
-    const prompt = compilePrompt({ ...spec, name }, FAMILY);
-    for (let v = 1; v <= VARIANTS; v++) {
-      const famTag = FAMILY === 'classic-gold' ? '' : `${FAMILY}-`;
-      const out = path.join(OUT_DIR, `${name}-${famTag}v${spec.promptVersion}.${v}.jpg`);
-      // Within this family, a generation that exists anywhere is already
-      // produced — never regenerate it just because it left the inbox.
+    const prompt = compilePrompt({ ...spec, name }, family);
+    for (let v = 1; v <= variants; v++) {
+      if (spent + unitCost > maxSpend + Number.EPSILON) {
+        budgetReached = true;
+        break;
+      }
+      const famTag = family === 'classic-gold' ? '' : `${family}-`;
+      const out = path.join(outDir, `${name}-${famTag}v${spec.promptVersion}.${v}.jpg`);
       const alreadyProduced =
         fs.existsSync(out) ||
-        fs.existsSync(path.join(OUT_DIR, 'keepers', path.basename(out))) ||
-        fs.existsSync(path.join(OUT_DIR, 'review', path.basename(out)));
-      if (alreadyProduced) continue;
+        fs.existsSync(path.join(outDir, 'keepers', path.basename(out))) ||
+        fs.existsSync(path.join(outDir, 'review', path.basename(out)));
+      if (alreadyProduced) {
+        skipped++;
+        continue;
+      }
       const t0 = Date.now();
       try {
-        const res = falGenerate(`${prompt}, variation ${v}`);
-        execSync(`curl -s "${res.url}" -o "${out}"`);
-        spent += COST_PER_IMAGE;
-        const autoFlags = FAMILY === 'classic-gold' ? await cornerFlags(out) : [];
-        log({ ts: new Date().toISOString(), deity: name, model: MODEL, prompt: `${prompt}, variation ${v}`, seed: res.seed, file: path.relative(ROOT, out), cost: COST_PER_IMAGE, autoFlags, verdict: 'pending' });
-        console.log(`✓ ${path.relative(ROOT, out)} (${((Date.now() - t0) / 1000).toFixed(1)}s)${autoFlags.length ? ' ⚑ ' + autoFlags.join(';') : ''}`);
-      } catch (e) {
-        log({ ts: new Date().toISOString(), deity: name, model: MODEL, prompt, error: e.message.slice(0, 120), verdict: 'error' });
-        console.log(`✗ ${name} v${v}: ${e.message.slice(0, 100)}`);
+        const res = await falGenerate(`${prompt}, variation ${v}`, { key, model, fetchImpl });
+        await downloadImage(res.url, out, fetchImpl);
+        const sharp = require('sharp');
+        const metadata = await sharp(out).metadata();
+        if (!metadata.width || !metadata.height) throw new Error('downloaded image has invalid dimensions');
+        spent += unitCost;
+        generated++;
+        const autoFlags = family === 'classic-gold' ? await cornerFlags(out) : [];
+        appendGeneration(logPath, {
+          ts: new Date().toISOString(),
+          deity: name,
+          family,
+          model,
+          prompt: `${prompt}, variation ${v}`,
+          seed: res.seed,
+          file: path.relative(ROOT, out),
+          cost: unitCost,
+          autoFlags,
+          verdict: 'pending',
+        });
+        logger.log(`✓ ${path.relative(ROOT, out)} (${((Date.now() - t0) / 1000).toFixed(1)}s)${autoFlags.length ? ` ⚑ ${autoFlags.join(';')}` : ''}`);
+      } catch (error) {
+        if (fs.existsSync(out)) fs.unlinkSync(out);
+        appendGeneration(logPath, {
+          ts: new Date().toISOString(),
+          deity: name,
+          family,
+          model,
+          prompt: `${prompt}, variation ${v}`,
+          error: error.message.slice(0, 200),
+          verdict: 'error',
+        });
+        logger.log(`✗ ${name} v${v}: ${error.message.slice(0, 120)}`);
       }
     }
+    if (budgetReached) break;
   }
-  console.log(`spent ≈ $${spent.toFixed(3)} this run`);
+  logger.log(`spent ≈ $${spent.toFixed(3)} this run`);
+  if (budgetReached) logger.log(`estimated spend ceiling reached ($${maxSpend.toFixed(2)})`);
+  return { spent, generated, skipped, budgetReached };
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (require.main === module) {
+  main().then((result) => {
+    if (result.missingCredential) process.exitCode = 1;
+  }).catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  compilePrompt,
+  cornerFlags,
+  costPerImage,
+  downloadImage,
+  falGenerate,
+  main,
+  produced,
+};
