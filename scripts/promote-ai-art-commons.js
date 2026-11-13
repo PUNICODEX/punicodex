@@ -53,10 +53,32 @@ function removeConnectedWhiteBackground(data, width, height, threshold = 235) {
   return { data: pixels, alpha, width, height };
 }
 
+function whitenTattooCornerMarks(data, width, height, marginX = 0.22, marginY = 0.12, threshold = 252) {
+  const pixels = new Uint8Array(data);
+  const startY = Math.max(0, Math.floor(height * (1 - marginY)));
+  const leftEnd = Math.max(0, Math.floor(width * marginX));
+  const rightStart = Math.min(width, Math.ceil(width * (1 - marginX)));
+  let changed = 0;
+  const whiten = (x, y) => {
+    const offset = (y * width + x) * 3;
+    if (Math.max(pixels[offset], pixels[offset + 1], pixels[offset + 2]) >= threshold) return;
+    pixels[offset] = 255;
+    pixels[offset + 1] = 255;
+    pixels[offset + 2] = 255;
+    changed++;
+  };
+  for (let y = startY; y < height; y++) {
+    for (let x = 0; x < leftEnd; x++) whiten(x, y);
+    for (let x = rightStart; x < width; x++) whiten(x, y);
+  }
+  return { data: pixels, changed };
+}
+
 async function transparentPng(input, output) {
   const image = sharp(input);
   const { data, info } = await image.raw().toBuffer({ resolveWithObject: true });
-  const keyed = removeConnectedWhiteBackground(data, info.width, info.height);
+  const cleaned = whitenTattooCornerMarks(data, info.width, info.height);
+  const keyed = removeConnectedWhiteBackground(cleaned.data, info.width, info.height);
   await sharp(keyed.data, {
     raw: { width: info.width, height: info.height, channels: 3 },
   })
@@ -110,7 +132,7 @@ async function promote(file) {
   await transparentPng(absolute, output);
   const pinterestBase = `${deity}-tattoo-v${promptVersion}.${variant}-pinterest.jpg`;
   await pinterestCard(
-    absolute,
+    output,
     path.join(PINTEREST_DIR, pinterestBase),
     entry.unicode,
     `${entry.pantheon} · tattoo study ${promptVersion}.${variant}`
@@ -142,7 +164,13 @@ async function promote(file) {
     generatedAt: generation.ts || null,
     recordedAt: new Date().toISOString(),
   };
-  manifest.items = (manifest.items || []).filter((item) => item.id !== id);
+  manifest.items = (manifest.items || []).filter((item) => {
+    if (item.id === id) return false;
+    // Supersede legacy white-background tattoo JPEGs for the same temple once
+    // a cleaned transparent PNG has been curated. Keep other PNG studies.
+    const legacyTattoo = item.templeId === deity && item.family === 'tattoo' && item.src?.endsWith('.jpg');
+    return !legacyTattoo;
+  });
   manifest.items.push(work);
   manifest.items.sort((a, b) => a.id.localeCompare(b.id));
   writeFileWithRetry(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`);
@@ -163,4 +191,10 @@ if (require.main === module) {
   });
 }
 
-module.exports = { removeConnectedWhiteBackground, transparentPng, pinterestCard, promote };
+module.exports = {
+  removeConnectedWhiteBackground,
+  transparentPng,
+  pinterestCard,
+  promote,
+  whitenTattooCornerMarks,
+};

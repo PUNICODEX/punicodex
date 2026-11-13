@@ -14,7 +14,10 @@ const {
   main,
   produced,
 } = require('../scripts/generate-ai-art.js');
-const { removeConnectedWhiteBackground } = require('../scripts/promote-ai-art-commons.js');
+const {
+  removeConnectedWhiteBackground,
+  whitenTattooCornerMarks,
+} = require('../scripts/promote-ai-art-commons.js');
 const { ARCHETYPES } = require('../js/archetypes-v2.js');
 
 const silentLogger = { log() {}, error() {} };
@@ -139,11 +142,23 @@ test('canonical attributes and cultural fences protect known deity identities', 
     fs.readFileSync(path.join(__dirname, '..', 'data', 'ai-art', 'prompt-library.json'), 'utf8')
   );
   const cases = [
-    ['nike', /outstretched wings/, /no trident except for Poseidon/],
+    [
+      'nike',
+      /loose laurel wreath encircling her hair/,
+      /every garment, jewel, weapon, animal and symbol must be explicitly named/,
+    ],
     ['freyja', /falcon cloak/, /no Greek or Roman togas/],
     ['amaterasu', /sacred mirror/, /no Chinese characters or seals/],
-    ['hades', /mature bearded Greek god of the dead/, /no South Asian multi-armed anatomy/],
-    ['kali', /four canonical arms/, /no generic demonization/],
+    [
+      'hades',
+      /mature bearded Greek god of the dead/,
+      /every garment, jewel, weapon, animal and symbol must be explicitly named/,
+    ],
+    [
+      'kali',
+      /four canonical arms/,
+      /every limb, weapon, animal and ornament must be explicitly named/,
+    ],
   ];
   for (const [id, attributePattern, boundaryPattern] of cases) {
     const prompt = compilePrompt({ ...library.deities[id], name: id }, 'tattoo');
@@ -294,10 +309,34 @@ test('prompt-version rejects do not block the next evolved generation', async (t
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   const review = path.join(directory, 'review');
   fs.mkdirSync(review, { recursive: true });
+  const library = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '..', 'data', 'ai-art', 'prompt-library.json'), 'utf8')
+  );
+  const currentVersion = library.deities.nike.promptVersion;
   fs.writeFileSync(path.join(review, 'nike-tattoo-v1.1.jpg'), 'old review');
   assert.equal(produced('nike', 'tattoo', directory), false);
-  fs.writeFileSync(path.join(review, 'nike-tattoo-v2.1.jpg'), 'current review');
+  fs.writeFileSync(path.join(review, `nike-tattoo-v${currentVersion}.1.jpg`), 'current review');
   assert.equal(produced('nike', 'tattoo', directory), true);
+});
+
+test('tattoo promotion cleans isolated bottom-corner marks without touching the subject', () => {
+  const pixels = new Uint8Array(10 * 10 * 3).fill(255);
+  const mark = (x, y) => {
+    const offset = (y * 10 + x) * 3;
+    pixels[offset] = 0;
+    pixels[offset + 1] = 0;
+    pixels[offset + 2] = 0;
+  };
+  mark(8, 9);
+  mark(9, 9);
+  mark(5, 9);
+  const cleaned = whitenTattooCornerMarks(pixels, 10, 10, 0.2, 0.1, 245);
+  assert.equal(cleaned.changed, 2);
+  assert.deepEqual(
+    [...cleaned.data.slice((9 * 10 + 8) * 3, (9 * 10 + 10) * 3)],
+    [255, 255, 255, 255, 255, 255]
+  );
+  assert.deepEqual([...cleaned.data.slice((9 * 10 + 5) * 3, (9 * 10 + 6) * 3)], [0, 0, 0]);
 });
 
 test('Commons background keying removes only border-connected white pixels', () => {
