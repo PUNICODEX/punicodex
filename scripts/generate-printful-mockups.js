@@ -11,7 +11,11 @@
  *
  * Usage:
  *   PRINTFUL_API_KEY=... node scripts/generate-printful-mockups.js \
- *     [--only <templeId|punicodex>] [--kinds tee,mug] [--limit N] [--dry-run]
+ *     [--only <templeId|punicodex>] [--kinds tee,mug] [--limit N] [--dry-run] [--force]
+ *
+ * --force re-renders every synced product even when a mockupImage already
+ * exists (the photoreal pass overwrites compositor renders in place; the
+ * mockupImage URL is unchanged, so live PDPs keep working throughout).
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -34,6 +38,7 @@ const ONLY = argValue('--only');
 const KINDS = argValue('--kinds') ? argValue('--kinds').split(',') : null;
 const LIMIT = Number(argValue('--limit') || 0);
 const DRY_RUN = args.includes('--dry-run');
+const FORCE = args.includes('--force');
 
 function argValue(flag) {
   const i = args.indexOf(flag);
@@ -323,7 +328,9 @@ async function main() {
   }
 
   let pending = catalog.products.filter((p) => {
-    if (!p.printfulProductId || p.mockupImage) return false;
+    if (!p.printfulProductId) return false;
+    if (FORCE) return true;
+    if (p.mockupImage) return false;
     if (!state.done[p.id]) return true;
     // Retry transient failures up to MAX_RETRIES.
     if (typeof state.done[p.id] === 'string' && state.done[p.id].startsWith('error')) {
