@@ -61,7 +61,7 @@ for (const archetype of ARCHETYPES) {
     seed: null,
     prompt: null,
     provenance:
-      'Current flagship mascot preserved in the Commons alongside the original anime mascot — the full lineage stays available.',
+      'Current flagship mascot preserved in Commons alongside the original anime mascot — the full lineage stays available.',
   };
   const existing = manifest.items.findIndex((i) => i.id === itemId);
   if (existing !== -1) manifest.items[existing] = work;

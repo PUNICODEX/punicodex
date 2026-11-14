@@ -23,7 +23,7 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const API = 'https://api.printful.com';
 const CATALOG_FILE = path.join(ROOT, 'store', 'products.json');
-const STATE_FILE = path.join(ROOT, 'session-debug', 'printful-mockup-state.json');
+const STATE_FILE = process.env.PRINTFUL_MOCKUP_STATE || path.join(ROOT, 'session-debug', 'printful-mockup-state.json');
 const OUT_DIR = path.join(ROOT, '.masters', 'mockups');
 const MASTERS_BASE = 'https://punycodex-masters.vercel.app';
 // Design fetch URLs are overridable so a preview .masters deployment can serve
