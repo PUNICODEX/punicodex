@@ -221,6 +221,8 @@ for (const entry of LEXICON) {
     image: isFlagship ? `${BASE_URL}/assets/og/${entry.id}.jpg` : null,
   });
 
+  xml += urlEntry(`/${entry.id}/pronunciation/`, '0.6', 'monthly');
+
   if (isFlagship) {
     xml += urlEntry(`/${entry.id}/lore/`, '0.7', 'monthly');
     xml += urlEntry(`/${entry.id}/lore/extended/`, '0.6', 'monthly');

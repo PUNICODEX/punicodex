@@ -363,13 +363,17 @@ const SERIES_SUFFIX = new Map([
 const TRAILING_DROP = /[\s—–-]+(and|or|the|a|an|of|to|in|on|for|with|that|this|is|are|was|were|its|his|her|their|our|your|my|at|by|as|but|not|so|yet|from|into|over|under|after|before)$/i;
 
 function serpTitle(postTitle, suffix) {
-  const tail = SERIES_SUFFIX.has(suffix)
-    ? ` | ${SERIES_SUFFIX.get(suffix)}`
-    : ` | ${suffix} | PUNICODEX`;
-  const full = `${postTitle}${tail}`;
-  if (full.length <= 60) return full;
+  // The article's own headline is the ranking asset — never truncate it to
+  // make room for boilerplate. Drop the per-temple suffix before ever
+  // cutting the headline; the brand tail alone stays for context.
+  for (const tail of [
+    SERIES_SUFFIX.has(suffix) ? ` | ${SERIES_SUFFIX.get(suffix)}` : ` | ${suffix} | PUNICODEX`,
+    ' | PUNICODEX',
+  ]) {
+    if (`${postTitle}${tail}`.length <= 60) return `${postTitle}${tail}`;
+  }
+  const tail = ' | PUNICODEX';
   const budget = Math.max(20, 59 - tail.length); // one column reserved for '…'
-  if (postTitle.length <= budget) return full;
   let cut = postTitle.slice(0, budget);
   const lastSpace = cut.lastIndexOf(' ');
   if (lastSpace > 0) cut = cut.slice(0, lastSpace);

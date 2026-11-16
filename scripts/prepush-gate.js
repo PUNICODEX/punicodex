@@ -126,6 +126,10 @@ const RULES = [
     suites: ['Temple Tab Chrome Tests'],
   },
   {
+    pattern: /^scripts\/generate-pronunciation-pages\.js$|^scripts\/gen-sitemap\.js$|^type\/js\/pronunciation-rules\.js$|^type\/js\/lexicon\.js$|^test\/pronunciation-pages\.test\.js$/,
+    suites: ['Pronunciation Pages Tests'],
+  },
+  {
     pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/(?:origins|strata)\/|^test\/strata-page\.test\.js$/,
     suites: ['STRATA Page Tests'],
   },

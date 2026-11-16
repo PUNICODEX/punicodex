@@ -72,6 +72,10 @@ const allScripts = [
   // Per-temple Art rooms (sites/{id}/art/) — the /store/art/ architecture in a
   // temple-scoped instance; an 11th temple page create-flagship does not write.
   'scripts/generate-temple-art.js',
+  // Per-name Pronunciation pages (sites/{id}/pronunciation/) — indexable
+  // "how to pronounce X" surface served by the canonical engine; linked from
+  // the temple panels below so no orphan pages.
+  'scripts/generate-pronunciation-pages.js',
   // Fix legacy redirect stubs so their canonical / refresh / anchor targets point
   // at the clean /{id}/ form instead of /sites/{id}/. Must run immediately after
   // flagship regeneration because create-flagship.js writes those stubs.

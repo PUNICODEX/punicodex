@@ -60,6 +60,20 @@ function render() {
 <meta name="google" content="notranslate">
 <title>Trending — The Living Ranking | PUNICODEX</title>
 <meta name="description" content="The most visited temples and pages of the Unicode Pantheon, ranked live from PuniCodex first-party analytics. No cookies sold, no trackers — just counts.">
+<meta property="og:title" content="Trending — The Living Ranking">
+<meta property="og:description" content="The most visited temples of the Unicode Pantheon, ranked live. No trackers — just counts.">
+<meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+<meta property="og:url" content="https://punicodex.com/trending/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PuniCodex">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Trending — PuniCodex',
+  url: 'https://punicodex.com/trending/',
+  description: 'The most visited temples and pages of the Unicode Pantheon, ranked live from first-party analytics.',
+}).replace(/</g, '\\u003c')}</script>
 <link rel="canonical" href="https://punicodex.com/trending/">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">

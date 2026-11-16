@@ -291,6 +291,20 @@ function renderAtlas(graph, registry) {
 <meta name="google" content="notranslate">
 <title>The Pattern Atlas — Industries of the Pantheon | PUNICODEX</title>
 <meta name="description" content="The PuniCodex pattern graph in one map: ${graph.meta.industryCount} industries, ${graph.meta.sectorCount} sectors, ${graph.meta.entryCount} temples, ${graph.meta.aliasCount} aliases. Type your trade; find its temples.">
+<meta property="og:title" content="The Pattern Atlas — Industries of the Pantheon">
+<meta property="og:description" content="${graph.meta.industryCount} industries, ${graph.meta.sectorCount} sectors, ${graph.meta.entryCount} temples: type your trade, find its myth.">
+<meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+<meta property="og:url" content="https://punicodex.com/patterns/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PuniCodex">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'The Pattern Atlas — PuniCodex',
+  url: 'https://punicodex.com/patterns/',
+  description: `The PuniCodex pattern graph: ${graph.meta.industryCount} industries mapped to ${graph.meta.entryCount} temples of the pantheon.`,
+}).replace(/</g, '\\u003c')}</script>
 <link rel="canonical" href="https://punicodex.com/patterns/">
 ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/assets/fonts/fonts.css">

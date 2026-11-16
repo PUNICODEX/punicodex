@@ -1463,7 +1463,7 @@ function buildPronunciationPanel(entry) {
                         ${notes}
                 </ul>
                 <p class="pronunciation-rule">${escapeHtml(rule)}</p>
-                <p class="pronunciation-standard">Derived by the PuniCodex pronunciation engine — method at <a href="https://punicodex.com/pronunciation/">The Pronunciation Standard</a>.</p>
+                <p class="pronunciation-standard">Derived by the PuniCodex pronunciation engine — <a href="/${entry.id}/pronunciation/">the full pronunciation page of ${escapeHtml(entry.unicode)}</a> · method at <a href="https://punicodex.com/pronunciation/">The Pronunciation Standard</a>.</p>
             </div>
         </div>
     </section>`;
@@ -3147,18 +3147,20 @@ function generateHomePage(
         : best.replace(' | PUNICODEX', ' · Restored Temple | PUNICODEX');
     })(),
     ABOUT_JSON: (() => {
-      // name is the ASCII form; the Unicode restoration and the original
-      // script (when one exists) are alternates. Wikidata sameAs preserved.
+      // The restored Unicode form is the canonical name of the entity; the
+      // ASCII form and the original script (when one exists) are alternates.
+      // Wikidata sameAs preserved.
       const original = getOriginalScript(entry);
-      const alternateName = [entry.unicode];
+      const alternateName = [entry.ascii];
       if (original && original !== entry.unicode && original !== entry.ascii) {
         alternateName.push(original);
       }
       const about = {
         '@type': 'Thing',
-        name: entry.ascii,
+        name: entry.unicode,
         alternateName,
         description: entry.domain,
+        url: `https://punicodex.com/${templeId}/`,
       };
       const wiki = wikidataUrlFor(entry.id);
       if (wiki) about.sameAs = [wiki];

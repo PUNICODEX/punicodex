@@ -593,7 +593,7 @@ function generateTempleHTML(entry, related) {
                 <div class="explainer-label">Saying It</div>
                 <div class="explainer-box">
                     <code class="explainer-code">${escapeHtml(sayingLine)}</code>
-                    <p class="explainer-note">${escapeHtml(derivedPron.ipaLabel)}.</p>
+                    <p class="explainer-note">${escapeHtml(derivedPron.ipaLabel)}. <a href="/${entry.id}/pronunciation/">Full pronunciation page →</a></p>
                 </div>
             </div>`
       : '';
@@ -636,9 +636,13 @@ ${JSON.stringify(
     url: canonicalUrl,
     about: {
       '@type': 'Thing',
-      name: entry.ascii,
-      alternateName: hasOriginal ? [entry.unicode, originalScript] : [entry.unicode],
+      name: entry.unicode,
+      alternateName: [
+        entry.ascii,
+        ...(hasOriginal && originalScript !== entry.ascii ? [originalScript] : []),
+      ].filter((n) => n !== entry.unicode),
       description: entry.meaning,
+      url: canonicalUrl,
       ...(wikidataUrlFor(entry.id) ? { sameAs: [wikidataUrlFor(entry.id)] } : {}),
     },
     breadcrumb: {
