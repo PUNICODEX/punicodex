@@ -351,6 +351,17 @@ const html = `<!DOCTYPE html>
     <!-- Filters -->
     <section class="blogi-filters">
         <div class="blogi-panel">
+            <nav class="blogi-hubs" aria-label="Browse essays by pantheon" style="margin-bottom:1.25rem">
+                <span class="blogi-group-label" style="margin-bottom:.5rem">Essay hubs by pantheon</span>
+                <div class="blogi-pills">
+${pantheons
+  .map(
+    ([key, count]) =>
+      `                    <a class="blogi-pill" style="text-decoration:none;display:inline-block" href="/blog/pantheon/${escapeHtml(key)}/">${escapeHtml(displayPantheon(key))}<span class="count">${count}</span></a>`
+  )
+  .join('\n')}
+                </div>
+            </nav>
             <div class="blogi-command">
                 <div class="blogi-search">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">

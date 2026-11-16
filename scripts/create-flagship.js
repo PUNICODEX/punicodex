@@ -1960,7 +1960,7 @@ function buildEtymologySection(entry, catalogEntry, sectionNumber = 2) {
         <div class="section-header reveal-up">
             <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Etymology & Word Family</h2>
-            <p class="section-subtitle">From original script to Unicode restoration</p>
+            <p class="section-subtitle">From original script to Unicode restoration — <a href="/${entry.id}/etymology/" style="color:var(--primary,#d4af37)">the full etymology page →</a></p>
         </div>
         <div class="etymology-content">
             <div class="etymology-main reveal-up">

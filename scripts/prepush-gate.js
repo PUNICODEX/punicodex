@@ -130,6 +130,14 @@ const RULES = [
     suites: ['Pronunciation Pages Tests'],
   },
   {
+    pattern: /^scripts\/generate-(?:etymology|script)-pages\.js$|^scripts\/build-provenance-section\.js$|^type\/js\/original-scripts\.js|^type\/js\/lexicon\.js$|^test\/etymology-script-pages\.test\.js$/,
+    suites: ['Etymology & Script Pages Tests'],
+  },
+  {
+    pattern: /^scripts\/generate-blog-(?:index|pantheon-hubs)\.js$|^blog\/|^platform\/blog\/|^test\/blog-pantheon-hubs\.test\.js$/,
+    suites: ['Blog Pantheon Hubs Tests'],
+  },
+  {
     pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/(?:origins|strata)\/|^test\/strata-page\.test\.js$/,
     suites: ['STRATA Page Tests'],
   },

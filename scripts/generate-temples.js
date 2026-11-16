@@ -317,15 +317,16 @@ function getPreservationExplanation(entry) {
 }
 
 function buildOriginalScriptBody(entry, originalScript, hasOriginal) {
+  const fullPage = ` <a href="/${entry.id}/script/" style="color:var(--primary,#d4af37)">The full original-script page →</a>`;
   if (hasOriginal) {
     const provenance = getProvenance(entry);
     if (provenance && Array.isArray(provenance.steps) && provenance.steps.length > 0) {
       const steps = provenance.steps
         .map((s) => `<span class="provenance-step">${escapeHtml(s)}</span>`)
         .join(' · ');
-      return `The name in its original ${getScriptName(entry)} form. <strong>${escapeHtml(originalScript)}</strong> → ${escapeHtml(entry.unicode)}. ${steps}`;
+      return `The name in its original ${getScriptName(entry)} form. <strong>${escapeHtml(originalScript)}</strong> → ${escapeHtml(entry.unicode)}. ${steps}${fullPage}`;
     }
-    return `The name in its original ${getScriptName(entry)} form. <strong>${escapeHtml(originalScript)}</strong> carries the full phonetic and orthographic weight of the source tradition.`;
+    return `The name in its original ${getScriptName(entry)} form. <strong>${escapeHtml(originalScript)}</strong> carries the full phonetic and orthographic weight of the source tradition.${fullPage}`;
   }
   return getNoScriptNote(entry);
 }
@@ -935,7 +936,7 @@ ${JSON.stringify(
             <div class="section-header reveal-up">
                 <span class="section-number">02</span>
                 <h2 class="section-title">Etymology of ${escapeHtml(entry.unicode)}</h2>
-                <p class="section-subtitle">The deep ancestry of <em>${escapeHtml(entry.unicode)}</em></p>
+                <p class="section-subtitle">The deep ancestry of <em>${escapeHtml(entry.unicode)}</em> — <a href="/${entry.id}/etymology/" style="color:var(--primary,#d4af37)">the full etymology page →</a></p>
             </div>
 
             <div class="etymology-proto reveal-up">

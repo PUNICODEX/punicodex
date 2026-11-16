@@ -76,6 +76,10 @@ const allScripts = [
   // "how to pronounce X" surface served by the canonical engine; linked from
   // the temple panels below so no orphan pages.
   'scripts/generate-pronunciation-pages.js',
+  // Per-name Etymology + Original Script pages — "what does X mean" and "how
+  // do you write X" surfaces; linked from the temple sections (no orphans).
+  'scripts/generate-etymology-pages.js',
+  'scripts/generate-script-pages.js',
   // Fix legacy redirect stubs so their canonical / refresh / anchor targets point
   // at the clean /{id}/ form instead of /sites/{id}/. Must run immediately after
   // flagship regeneration because create-flagship.js writes those stubs.
@@ -109,6 +113,9 @@ const allScripts = [
   'scripts/generate-blog-pages.js',
   'scripts/generate-blog-series-pages.js',
   'scripts/generate-blog-index.js',
+  // Topical blog hubs (/blog/pantheon/{key}/) — crawlable clusters behind
+  // the single interactive /blog/ index.
+  'scripts/generate-blog-pantheon-hubs.js',
   // Sacred Texts (/texts/): registry-driven library + reading pages. Must run
   // before the injectors so its fresh pages keep their beacon/consent blocks.
   'scripts/generate-text-pages.js',

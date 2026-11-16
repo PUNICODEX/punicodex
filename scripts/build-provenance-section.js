@@ -235,7 +235,7 @@ function buildRichProvenanceSection(entry, sectionNumber = 2) {
     <div class="section-header reveal-up">
       <span class="section-number">${sectionNum(sectionNumber)}</span>
       <h2 class="section-title">Original Script & Provenance</h2>
-      <p class="section-subtitle">How ${escapeHtml(entry.unicode || '')} travels from ancient script to the modern URL</p>
+      <p class="section-subtitle">How ${escapeHtml(entry.unicode || '')} travels from ancient script to the modern URL — <a href="/${entry.id}/script/" style="color:var(--primary,#d4af37)">the full original-script page →</a></p>
     </div>
 
     <div class="provenance-panel reveal-up">

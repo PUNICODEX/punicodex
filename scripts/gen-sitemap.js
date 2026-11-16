@@ -134,6 +134,18 @@ const mainPages = [
   { loc: '/engineering/', priority: '0.6', changefreq: 'monthly' },
 ];
 
+// Blog pantheon hubs (/blog/pantheon/{key}/) — written by
+// generate-blog-pantheon-hubs.js; read from disk so the sitemap always
+// matches what actually shipped.
+const BLOG_HUB_DIR = path.join(ROOT, 'blog', 'pantheon');
+if (fs.existsSync(BLOG_HUB_DIR)) {
+  for (const key of fs.readdirSync(BLOG_HUB_DIR).sort()) {
+    if (fs.existsSync(path.join(BLOG_HUB_DIR, key, 'index.html'))) {
+      mainPages.push({ loc: `/blog/pantheon/${key}/`, priority: '0.7', changefreq: 'weekly' });
+    }
+  }
+}
+
 // Per-pantheon landing pages (/greek/, /norse/, etc.).
 for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) {
   mainPages.push({ loc: `/${id}/`, priority: '0.8', changefreq: 'monthly' });
@@ -222,6 +234,10 @@ for (const entry of LEXICON) {
   });
 
   xml += urlEntry(`/${entry.id}/pronunciation/`, '0.6', 'monthly');
+  xml += urlEntry(`/${entry.id}/etymology/`, '0.6', 'monthly');
+  if (fs.existsSync(path.join(ROOT, 'sites', entry.id, 'script', 'index.html'))) {
+    xml += urlEntry(`/${entry.id}/script/`, '0.6', 'monthly');
+  }
 
   if (isFlagship) {
     xml += urlEntry(`/${entry.id}/lore/`, '0.7', 'monthly');
@@ -262,14 +278,7 @@ xml += '</urlset>\n';
 
 writeFileWithRetry(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
 
-// 10 secondary URLs per flagship: lore, extended lore, art, the four blog
-// dispatches, patterns, scholars, patron.
-const urlCount =
-  mainPages.length +
-  TEXT_REGISTRY.texts.length +
-  LEXICON.length +
-  flagshipIds.size * 10 +
-  storeCollectionIds.size +
-  flagshipIds.size +
-  POD.count;
+// Count what was actually emitted — a hand-maintained formula here goes
+// stale the moment any family gains a URL shape.
+const urlCount = (xml.match(/<loc>/g) || []).length;
 console.log(`Sitemap generated: ${urlCount} URLs`);
