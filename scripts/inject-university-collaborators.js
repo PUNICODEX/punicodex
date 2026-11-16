@@ -209,6 +209,7 @@ function main() {
   }
 
   walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
+  walk(path.join(ROOT, 'world'), (p) => targets.push(p));
   walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
   // game/ and mobile/ are walked so the app-surface exclusion strips any
   // previously injected blocks from them on every run (deterministic).
@@ -250,6 +251,19 @@ function main() {
 
   for (const p of rootPages) {
     const full = path.join(ROOT, p);
+    if (fs.existsSync(full)) targets.push(full);
+  }
+
+  // Union with the canonical footer targets (2026-11 audit): every public
+  // page that carries the canonical footer must also carry this strip —
+  // world/ (hub + sacred geography + strata), cards/, trending/, patterns/,
+  // blog/, texts/, about/founder, the pantheon landing pages and the rest
+  // were missing it because only rootPages + select walks were covered.
+  // Explicit EXCLUDED_PAGES (university-sponsorship) stay excluded.
+  const { TARGETS: FOOTER_TARGETS } = require('./sync-footer.js');
+  for (const rel of FOOTER_TARGETS) {
+    if (EXCLUDED_PAGES.has(rel)) continue;
+    const full = path.join(ROOT, rel);
     if (fs.existsSync(full)) targets.push(full);
   }
 

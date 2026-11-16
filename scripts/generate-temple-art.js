@@ -200,7 +200,7 @@ function renderTempleArt(a) {
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=${cssPin}">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf24">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf25">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <link rel="stylesheet" href="/css/commons-viewer.css?v=1">
 <link rel="stylesheet" href="/css/footer.css?v=8">

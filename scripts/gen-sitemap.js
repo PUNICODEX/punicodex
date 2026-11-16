@@ -69,6 +69,11 @@ const mainPages = [
   { loc: '/genesis/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/pantheon/strata/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/world/sacred/', priority: '0.8', changefreq: 'monthly' },
+  ...require('../data/sacred-sites.json').sites.map((s) => ({
+    loc: `/world/sacred/${s.id}/`,
+    priority: '0.6',
+    changefreq: 'monthly',
+  })),
   ...require('../scripts/arche-chapters.js').ASCENT.map((c) => ({
     loc: `/genesis/${c.id}/`,
     priority: '0.7',

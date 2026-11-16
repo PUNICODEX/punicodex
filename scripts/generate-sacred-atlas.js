@@ -98,7 +98,7 @@ function dossier(site) {
     : '';
   return `<article class="atx-site" id="site-${site.id}" data-site="${site.id}" data-tradition="${esc(site.tradition)}" data-name="${esc(site.name.toLowerCase())}">
   <header class="atx-site-head">
-    <h3>${esc(site.name)}</h3>
+    <h3><a href="/world/sacred/${site.id}/">${esc(site.name)}</a></h3>
     ${site.nativeName ? `<p class="atx-native">${esc(site.nativeName)}</p>` : ''}
   </header>
   <p class="atx-meta">${esc(site.place)} · ${esc(site.country)} · ${esc(site.era)} · <a href="/${site.tradition === 'greek-location' ? 'atlas' : esc(site.tradition)}/">${esc(site.tradition)}</a>${strataLink}</p>
@@ -107,12 +107,20 @@ function dossier(site) {
   ${note}
   ${imgs ? `<div class="atx-gallery">${imgs}</div>` : ''}
   ${srcs ? `<div class="atx-sources"><p class="atx-label">Sources</p><ul>${srcs}</ul></div>` : ''}
+  <p><a class="atx-chip" href="/world/sacred/${site.id}/">Open the full dossier →</a></p>
 </article>`;
 }
 
 const markers = DATA.sites.map(marker).join('\n      ');
 const dossiers = DATA.sites.map(dossier).join('\n');
 const withDeity = DATA.sites.filter((s) => s.deities.length).length;
+
+// Missing-summary guard: every site must carry an authored significance
+// summary — an empty dossier is a content bug, not a style choice.
+const noSummary = DATA.sites.filter((s) => !s.summary).map((s) => s.id);
+if (noSummary.length) {
+  console.warn(`  warn: ${noSummary.length} site(s) missing summary: ${noSummary.join(', ')}`);
+}
 const jsonld = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -139,7 +147,7 @@ const html = `<!DOCTYPE html>
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf24">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf25">
 <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
 <link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">
 <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
@@ -273,7 +281,7 @@ ${footerHtml()}
       (s.summary?'<p class="atx-summary">'+esc(s.summary)+'</p>':'')+
       (beings?'<p class="atx-label">Digital temples of its beings</p>'+beings:'')+note+
       (srcs?'<div class="atx-sources"><p class="atx-label">Sources</p><ul>'+srcs+'</ul></div>':'')+
-      '<p><a class="atx-chip" href="#site-'+s.id+'">Open the full dossier below ↓</a></p>';
+      '<p><a class="atx-chip" href="/world/sacred/'+s.id+'/">Open the full dossier →</a></p>';
     panel.classList.add('open');panel.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
   }
@@ -313,3 +321,143 @@ ${footerHtml()}
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(OUT, html);
 console.log(`Sacred Atlas: wrote ${path.relative(ROOT, OUT)} (${DATA.sites.length} sites, ${withDeity} with deity links, ${html.length} bytes)`);
+
+// ---- Per-site dossier pages (/world/sacred/{id}/): standalone URLs for SEO,
+// sharing, and deep links. Each carries the full dossier, JSON-LD Place,
+// prev/next navigation, and the canonical nav + footer chrome.
+function traditionLabel(t) {
+  return t === 'greek-location' ? 'greek' : t;
+}
+
+function sitePage(site, idx) {
+  const prev = DATA.sites[(idx - 1 + DATA.sites.length) % DATA.sites.length];
+  const next = DATA.sites[(idx + 1) % DATA.sites.length];
+  const stratum = strataByPantheon.get(site.tradition);
+  const imgs = site.images || [];
+  const hero = imgs[0];
+  const gallery = imgs
+    .map(
+      (im) => `<figure class="atx-fig"><img src="${esc(im.src)}" alt="${esc(im.title || site.name)}" loading="lazy" decoding="async">
+<figcaption>${esc(im.title || '')}${im.license ? ` · <span class="atx-lic">${esc(im.license)}</span>` : ''}${im.artist ? ` · ${esc(im.artist)}` : ''}</figcaption></figure>`
+    )
+    .join('');
+  const beings = site.deities
+    .map((d) => {
+      const e = entryById.get(d.id);
+      if (!e) return '';
+      return `<a class="atx-chip" href="/${e.id}/">${esc(e.unicode)}</a><p class="atx-depict">${esc(d.depiction)}</p>`;
+    })
+    .join('');
+  const srcs = (site.sources || []).map((s) => `<li>${esc(s)}</li>`).join('');
+  const jsonld = {
+    '@context': 'https://schema.org',
+    '@type': 'Place',
+    name: site.name,
+    alternateName: site.nativeName || undefined,
+    description: site.summary || DATA.subtitle,
+    url: `https://punicodex.com/world/sacred/${site.id}/`,
+    image: hero ? hero.src : undefined,
+    geo: { '@type': 'GeoCoordinates', latitude: site.lat, longitude: site.lon },
+    address: { '@type': 'PostalAddress', addressCountry: site.country, addressLocality: site.place },
+    isPartOf: { '@type': 'CollectionPage', name: 'Sacred Geography', url: 'https://punicodex.com/world/sacred/' },
+  };
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>${esc(site.name)} — Sacred Geography | PuniCodex</title>
+<meta name="description" content="${esc((site.summary || '').slice(0, 200))}">
+<link rel="canonical" href="https://punicodex.com/world/sacred/${site.id}/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="${esc(site.name)} — Sacred Geography">
+<meta property="og:description" content="${esc((site.summary || '').slice(0, 200))}">
+<meta property="og:url" content="https://punicodex.com/world/sacred/${site.id}/">
+${hero ? `<meta property="og:image" content="${esc(hero.src)}">` : '<meta property="og:image" content="https://punicodex.com/assets/images/og-default.png">'}
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf25">
+<link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
+<link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">
+<link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
+<link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
+<link rel="stylesheet" href="/css/footer.css?v=8">
+<script type="application/ld+json">${JSON.stringify(jsonld)}</script>
+<style>
+:root{--gold:#d4af37;--gold-dim:rgba(212,175,55,.35);--ivory:#f5f1e6;--dim:#b8b2a2;--void:#050505;--line:rgba(245,241,230,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--void);color:var(--ivory);font-family:'Cormorant Garamond',Georgia,serif}
+a{color:var(--gold)}
+.atx-dossier{max-width:62rem;margin:0 auto;padding:7.5rem 1.2rem 3rem}
+.atx-crumb{font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:1.4rem}
+.atx-crumb a{color:var(--gold);text-decoration:none}
+.atx-dossier .atx-kicker{font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+.atx-dossier h1{font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:.1em;margin:.6rem 0 .3rem}
+.atx-native{color:var(--gold);font-size:1.15rem;margin-bottom:.8rem}
+.atx-hero-fig{margin:1.4rem 0}
+.atx-hero-fig img{width:100%;border-radius:12px;border:1px solid var(--line)}
+.atx-hero-fig figcaption{font-size:.8rem;color:var(--dim);margin-top:.4rem}
+.atx-lic{color:var(--gold)}
+.atx-meta{font-family:'Montserrat',sans-serif;font-size:.74rem;color:var(--dim);letter-spacing:.05em;margin:1rem 0}
+.atx-lede{font-size:1.12rem;line-height:1.75;color:var(--ivory);margin:1.2rem 0 1.6rem}
+.atx-label{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.atx-chip{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.82rem;color:var(--ivory);text-decoration:none;border:1px solid var(--gold-dim);border-radius:999px;padding:.35rem .9rem;margin:0 .4rem .5rem 0;transition:all .2s}
+.atx-chip:hover{background:var(--gold);color:var(--void)}
+.atx-depict{color:var(--dim);font-style:italic;font-size:.95rem;margin:.3rem 0 .9rem;line-height:1.55}
+.atx-note{color:var(--dim);font-size:.92rem;border-left:2px solid var(--gold-dim);padding-left:.8rem;margin:1rem 0;line-height:1.6}
+.atx-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:1rem 0}
+.atx-fig{margin:.8rem 0}
+.atx-fig img{width:100%;border-radius:10px;border:1px solid var(--line)}
+.atx-fig figcaption{font-size:.8rem;color:var(--dim);margin-top:.35rem}
+.atx-sources ul{list-style:none;margin-top:.3rem}
+.atx-sources li{color:var(--dim);font-size:.85rem;padding-left:1.1rem;position:relative;margin-bottom:.25rem}
+.atx-sources li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.atx-geo{font-family:'Montserrat',sans-serif;font-size:.72rem;color:var(--dim);letter-spacing:.08em;margin:1.6rem 0}
+.atx-pn{display:flex;justify-content:space-between;gap:1rem;border-top:1px solid var(--line);margin-top:2.2rem;padding-top:1.2rem;flex-wrap:wrap}
+.atx-pn a{font-family:'Montserrat',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--dim);transition:color .2s}
+.atx-pn a:hover{color:var(--gold)}
+.atx-pn b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.3rem;letter-spacing:.04em;text-transform:none;color:var(--ivory);margin-top:.3rem}
+@media (max-width:720px){.atx-dossier{padding-top:6rem}}
+</style>
+</head>
+<body>
+${fullNavHtml('/world/sacred/')}
+<main>
+<article class="atx-dossier">
+  <nav class="atx-crumb" aria-label="Breadcrumb"><a href="/world/sacred/">Sacred Geography</a> · ${esc(traditionLabel(site.tradition))}</nav>
+  <p class="atx-kicker">${esc(site.place)} — ${esc(site.country)}</p>
+  <h1>${esc(site.name)}</h1>
+  ${site.nativeName ? `<p class="atx-native">${esc(site.nativeName)}</p>` : ''}
+  ${hero ? `<figure class="atx-hero-fig"><img src="${esc(hero.src)}" alt="${esc(hero.title || site.name)}">
+<figcaption>${esc(hero.title || '')}${hero.license ? ` · <span class="atx-lic">${esc(hero.license)}</span>` : ''}${hero.artist ? ` · ${esc(hero.artist)}` : ''}</figcaption></figure>` : ''}
+  <p class="atx-meta">${esc(site.era)} · <a href="/${site.tradition === 'greek-location' ? 'atlas' : esc(site.tradition)}/">${esc(site.tradition)}</a>${stratum ? ` · <a href="/pantheon/strata/#stratum-${stratum.order}">STRATA ${String(stratum.order).padStart(2, '0')} — ${esc(stratum.name)}</a>` : ''}</p>
+  <p class="atx-lede">${esc(site.summary || '')}</p>
+  ${beings ? `<section><p class="atx-label">Digital temples of its beings</p>${beings}</section>` : ''}
+  ${site.deityNote ? `<p class="atx-note">${esc(site.deityNote)}</p>` : ''}
+  ${gallery ? `<section><p class="atx-label">The site in view</p><div class="atx-gallery">${gallery}</div></section>` : ''}
+  ${srcs ? `<section class="atx-sources"><p class="atx-label">Sources</p><ul>${srcs}</ul></section>` : ''}
+  <p class="atx-geo">${site.lat.toFixed(4)}°, ${site.lon.toFixed(4)}° · <a href="/world/sacred/#site-${site.id}">Find it on the living atlas →</a></p>
+  <nav class="atx-pn" aria-label="More sacred sites">
+    <a href="/world/sacred/${prev.id}/">← Previous<b>${esc(prev.name)}</b></a>
+    <a href="/world/sacred/${next.id}/" style="text-align:right">Next →<b>${esc(next.name)}</b></a>
+  </nav>
+</article>
+</main>
+${footerHtml()}
+<script src="/js/px-core.js?v=perf23" defer></script>
+<script src="${PINS.NAV_HUBS_JS}" defer></script>
+</body>
+</html>`;
+}
+
+let pagesWritten = 0;
+for (let i = 0; i < DATA.sites.length; i++) {
+  const site = DATA.sites[i];
+  const dir = path.join(OUT_DIR, site.id);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), sitePage(site, i));
+  pagesWritten++;
+}
+console.log(`Sacred Atlas: wrote ${pagesWritten} per-site dossier pages under world/sacred/{id}/`);

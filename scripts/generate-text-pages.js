@@ -789,7 +789,7 @@ function headHtml({ title, description, canonical, ogDescription, jsonLd, jsonLd
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=1">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf24">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf25">
     <link rel="stylesheet" href="/css/strip-less-nav.css?v=1">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">

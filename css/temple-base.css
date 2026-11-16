@@ -304,13 +304,16 @@ canvas[data-effect] {
     }
 }
 
-.nav-links {
+/* Scoped to .tab-nav: these rules style the TEMPLE strip nav. Unscoped they
+   contaminate the canonical site nav on any page that loads temple-base.css
+   (e.g. /world/sacred/ rendered the hubs uppercase). */
+.tab-nav .nav-links {
     display: flex;
     gap: 2rem;
     align-items: center;
 }
 
-.nav-link {
+.tab-nav .nav-link {
     font-family: var(--font-body);
     font-size: 0.8rem;
     font-weight: 400;
@@ -322,7 +325,7 @@ canvas[data-effect] {
     position: relative;
 }
 
-.nav-link::after {
+.tab-nav .nav-link::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -333,10 +336,10 @@ canvas[data-effect] {
     transition: width 0.4s var(--ease-out-expo);
 }
 
-.nav-link:hover,
-.nav-link.active { color: var(--primary); }
-.nav-link:hover::after,
-.nav-link.active::after { width: 100%; }
+.tab-nav .nav-link:hover,
+.tab-nav .nav-link.active { color: var(--primary); }
+.tab-nav .nav-link:hover::after,
+.tab-nav .nav-link.active::after { width: 100%; }
 
 /* Tab nav: scrollable on small screens */
 .tab-nav-links {
@@ -417,8 +420,9 @@ canvas[data-effect] {
     transform: translateY(-6.5px) rotate(-45deg);
 }
 
-/* ─── Mobile Menu Overlay ─── */
-.mobile-menu {
+/* ─── Mobile Menu Overlay (temple only — scoped so the canonical
+   site mobile menu on non-temple pages is untouched) ─── */
+.temple-mobile-menu {
     counter-reset: menu-item;
     position: fixed;
     top: calc(var(--global-strip-height) + var(--nav-height));
@@ -439,14 +443,14 @@ canvas[data-effect] {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-.mobile-menu.active {
+.temple-mobile-menu.active {
     opacity: 1;
     pointer-events: all;
 }
 body.menu-open {
     overflow: hidden;
 }
-.mobile-menu a {
+.temple-mobile-menu a {
     font-family: var(--font-display);
     font-size: clamp(17px, 4.2vw, 21px);
     color: var(--white-dim);
@@ -460,7 +464,7 @@ body.menu-open {
     transition: color 0.25s ease, letter-spacing 0.25s ease, border-color 0.25s ease;
     counter-increment: menu-item;
 }
-.mobile-menu a::before {
+.temple-mobile-menu a::before {
     content: counter(menu-item, decimal-leading-zero);
     font-family: var(--font-body);
     font-size: 0.62em;
@@ -469,13 +473,13 @@ body.menu-open {
     margin-right: 1.1em;
     letter-spacing: 0.1em;
 }
-.mobile-menu a:hover,
-.mobile-menu a:focus-visible {
+.temple-mobile-menu a:hover,
+.temple-mobile-menu a:focus-visible {
     color: var(--primary);
     letter-spacing: 0.22em;
     border-bottom-color: var(--primary);
 }
-.mobile-menu a.active {
+.temple-mobile-menu a.active {
     color: var(--white);
     border-bottom-color: var(--primary);
 }
@@ -2950,30 +2954,30 @@ a.source-badge {
     outline-offset: 2px;
 }
 
-/* Classy menu entrance: hairline + cascading links */
-.mobile-menu {
+/* Classy menu entrance: hairline + cascading links (temple menu only) */
+.temple-mobile-menu {
     border-top: 1px solid rgba(212,175,55,0.18);
     box-shadow: 0 18px 40px rgba(0,0,0,0.5);
 }
-.mobile-menu a {
+.temple-mobile-menu a {
     opacity: 0;
     transform: translateY(8px);
     transition: color 0.25s ease, letter-spacing 0.25s ease, border-color 0.25s ease, opacity 0.4s ease, transform 0.4s ease;
 }
-.mobile-menu.active a {
+.temple-mobile-menu.active a {
     opacity: 1;
     transform: translateY(0);
 }
-.mobile-menu.active a:nth-child(1) { transition-delay: 0.05s; }
-.mobile-menu.active a:nth-child(2) { transition-delay: 0.1s; }
-.mobile-menu.active a:nth-child(3) { transition-delay: 0.15s; }
-.mobile-menu.active a:nth-child(4) { transition-delay: 0.2s; }
-.mobile-menu.active a:nth-child(5) { transition-delay: 0.25s; }
-.mobile-menu.active a:nth-child(6) { transition-delay: 0.3s; }
-.mobile-menu.active a:nth-child(7) { transition-delay: 0.35s; }
-.mobile-menu.active a:nth-child(8) { transition-delay: 0.4s; }
-.mobile-menu.active a:nth-child(9) { transition-delay: 0.45s; }
-.mobile-menu.active a:nth-child(n+10) { transition-delay: 0.5s; }
+.temple-mobile-menu.active a:nth-child(1) { transition-delay: 0.05s; }
+.temple-mobile-menu.active a:nth-child(2) { transition-delay: 0.1s; }
+.temple-mobile-menu.active a:nth-child(3) { transition-delay: 0.15s; }
+.temple-mobile-menu.active a:nth-child(4) { transition-delay: 0.2s; }
+.temple-mobile-menu.active a:nth-child(5) { transition-delay: 0.25s; }
+.temple-mobile-menu.active a:nth-child(6) { transition-delay: 0.3s; }
+.temple-mobile-menu.active a:nth-child(7) { transition-delay: 0.35s; }
+.temple-mobile-menu.active a:nth-child(8) { transition-delay: 0.4s; }
+.temple-mobile-menu.active a:nth-child(9) { transition-delay: 0.45s; }
+.temple-mobile-menu.active a:nth-child(n+10) { transition-delay: 0.5s; }
 
 /* Crosslinks — deity mentions linked to their temples (scripts/lib/crosslink.js).
    Bright gold + persistent underline so links read as links on dark prose. */
@@ -3124,5 +3128,130 @@ a.crosslink:focus-visible {
     }
     .temple-mobile-menu .nav-sub-link::before {
         content: none;
+    }
+}
+
+/* ─── Temple footer — hub-mirror redesign ───
+   Identity block + the six wing hubs from nav-tree.js. Scoped to
+   .temple-footer so the legacy .footer-* blocks keep working during
+   transition. */
+.temple-footer .tf-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 2fr;
+    gap: 3.5rem;
+    align-items: start;
+    padding: 3.5rem 0 2rem;
+}
+.tf-identity .tf-seal {
+    width: 84px;
+    height: 84px;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 1.1rem;
+    filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.25));
+}
+.tf-wordmark {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.34em;
+    color: var(--primary);
+    text-decoration: none;
+}
+.tf-name {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin: 0.5rem 0 0.4rem;
+}
+.tf-tag {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--white-dim);
+    margin-bottom: 1.3rem;
+    max-width: 34ch;
+}
+.tf-spec {
+    border-top: 1px solid rgba(212, 175, 55, 0.14);
+}
+.tf-spec > div {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+.tf-spec dt {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--primary);
+    opacity: 0.85;
+    flex-shrink: 0;
+}
+.tf-spec dd {
+    font-size: 0.95rem;
+    color: var(--white);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+.tf-hubs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.2rem 2rem;
+    padding-top: 0.4rem;
+}
+.tf-hub-heading {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+.tf-hub-heading a {
+    color: var(--primary);
+    text-decoration: none;
+}
+.tf-hub-heading a:hover {
+    color: var(--primary-bright);
+}
+.tf-hub-role {
+    font-size: 0.76rem;
+    line-height: 1.5;
+    color: var(--white-dim);
+    margin-bottom: 0.7rem;
+}
+.tf-hub-link {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--white-dim);
+    text-decoration: none;
+    padding: 0.16rem 0;
+    transition: color 0.25s ease, padding-left 0.25s ease;
+}
+.tf-hub-link:hover {
+    color: var(--white);
+    padding-left: 0.3rem;
+}
+@media (max-width: 980px) {
+    .temple-footer .tf-grid {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+    }
+    .tf-hubs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 520px) {
+    .tf-hubs {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem 1.2rem;
+    }
+    .tf-spec dd {
+        font-size: 0.85rem;
     }
 }

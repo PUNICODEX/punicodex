@@ -116,7 +116,10 @@ const KIND_PLACEMENTS = {
   tote: { front: 'front', back: 'back' },
   tumbler: { front: 'default', back: null },
   sticker: { front: 'default', back: null },
-  pin: { front: 'front', back: null },
+  // Pin buttons ship as a 5-pack; the catalog exposes five print placements
+  // (front + first..fourth). The same design must be sent for every
+  // placement or Printful renders one designed button and four blanks.
+  pin: { front: ['front', 'first', 'second', 'third', 'fourth'], back: null },
   mug: { front: 'default', back: null },
   phonecase: { front: 'default', back: null },
   cap: { front: 'embroidery_front', back: null },
@@ -131,10 +134,12 @@ function designFiles(product) {
   }
   const files = [];
   for (const [area, assetKey] of byArea) {
-    const placement = conf[area];
-    if (!placement) continue; // single-faced product: skip the back design
+    const placementConf = conf[area];
+    if (!placementConf) continue; // single-faced product: skip the back design
+    const placements = Array.isArray(placementConf) ? placementConf : [placementConf];
     const url = assetUrlFor(product, assetKey);
-    if (url) files.push({ placement, url, assetKey });
+    if (!url) continue;
+    for (const placement of placements) files.push({ placement, url, assetKey });
   }
   return files;
 }
@@ -369,7 +374,9 @@ async function main() {
   // Interleave: keep a window of tasks in flight; poll all of them
   // round-robin each cycle so render time overlaps instead of serializing.
   const inFlight = [];
-  const WINDOW = 8;
+  // Wider window: Printful renders server-side and queues; more in-flight
+  // tasks = more renders overlapping. 429s are retried with backoff in api().
+  const WINDOW = Number(process.env.PRINTFUL_WINDOW || 16);
   let done = 0;
 
   const startNext = async () => {
@@ -430,7 +437,7 @@ async function main() {
   while (done < pending.length) {
     while (inFlight.length < WINDOW && pending[done + inFlight.length]) {
       if (!(await startNext())) break;
-      await sleep(8000);
+      await sleep(Number(process.env.PRINTFUL_CREATE_STAGGER_MS || 500));
     }
     let progressed = false;
     for (let i = inFlight.length - 1; i >= 0; i--) {
@@ -459,7 +466,7 @@ async function main() {
     }
     if (!progressed) {
       console.log(`  ⏳ waiting on ${inFlight.length} mockup task(s) (${done}/${pending.length} done)`);
-      await sleep(10000);
+      await sleep(5000);
     }
   }
   flushCatalog(catalog);

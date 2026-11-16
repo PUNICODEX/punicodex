@@ -1755,76 +1755,31 @@ function buildExtendedLoreCTA(entry, catalogEntry) {
 
 // Extended page builder helpers for create-flagship.js
 
+// Delegates to the shared hub-mirror builder (scripts/temple-footer.js) so
+// new flagships and the sync-temple-footers pass can never drift apart.
 function buildZeusFooter(entry, assetPrefix) {
-  const logomarkPath = `${assetPrefix}assets/${entry.id}_logomark`;
+  const { templeFooterHtml } = require('./temple-footer.js');
   const greek = getOriginalScript(entry);
   const hasOriginal = hasOriginalScript(entry);
   const ownedForms = getOwnedForms(entry);
   const isOwned = ownedForms.length > 0;
-  const domainsLabel = isOwned ? 'Owned Domains' : 'Restoration';
   const domains = isOwned
     ? ownedForms
         .map((f) => `${f}.com`)
         .join(' \u00b7 ')
         .toLowerCase()
     : entry.unicode;
-  const classification = preservationLabel(entry.unicode);
-  // Sitewide footer link block: crawlers get the important collections from
-  // every temple, plus this temple's own Reliquary collection.
-  const exploreLinks = [
-    ['Pantheon', 'https://punicodex.com/pantheon/'],
-    ['Lexicon', 'https://punicodex.com/lexicon/'],
-    ['Texts', 'https://punicodex.com/texts/'],
-    ['Words', 'https://punicodex.com/everyday/'],
-    ['Ink', 'https://punicodex.com/ink/'],
-    ['Pronunciation', 'https://punicodex.com/pronunciation/'],
-    ['Blog', 'https://punicodex.com/blog/'],
-    ['Reliquary', `https://punicodex.com/store/merch/${entry.id}/`],
-  ]
-    .map(
-      ([label, href]) =>
-        `<a href="${href}" style="color:inherit;text-decoration:none;">${label}</a>`
-    )
-    .join(' \u00b7 ');
-  return `    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
-                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
-                </div>
-                <div class="footer-info">
-                    <div class="footer-block">
-                        <span class="footer-label">${domainsLabel}</span>
-                        <span class="footer-value">${domains}</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">Classification</span>
-                        <span class="footer-value">${classification}</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">${getOriginalScriptLabel(entry)}</span>
-                        <span class="footer-value">${hasOriginal ? greek : entry.unicode}</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">Explore</span>
-                        <span class="footer-value">${exploreLinks}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-newsletter" data-newsletter="temple"></div>
-            <div class="footer-seal">
-                <picture><source srcset="${logomarkPath}.webp" type="image/webp"><img src="${logomarkPath}.webp" alt="${entry.unicode} logomark" class="footer-logomark"></picture>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
-                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
-                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
-                    <span class="hekaweb-name">HEKAWEB</span>
-                </a>
-            </div>
-        </div>
-    </footer>`;
+  return templeFooterHtml({
+    name: entry.unicode,
+    pantheon: entry.pantheon,
+    domainsLabel: isOwned ? 'Owned Domains' : 'Restoration',
+    domainsValue: domains,
+    classification: preservationLabel(entry.unicode),
+    scriptLabel: getOriginalScriptLabel(entry),
+    script: hasOriginal ? greek : entry.unicode,
+    logomarkSrc: `${assetPrefix}assets/${entry.id}_logomark.webp`,
+    logomarkAlt: `${entry.unicode} logomark`,
+  });
 }
 
 function buildHeroVisualExtended(entry, assetPrefix) {

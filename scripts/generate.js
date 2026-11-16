@@ -158,6 +158,10 @@ const allScripts = [
   'scripts/sync-desktop-nav.js',
   'scripts/sync-mobile-menu.js',
   'scripts/sync-footer.js',
+  // Temple footers: hub-mirror redesign baked into every sites/{id} page.
+  // Idempotent (skips pages already carrying .temple-footer); must follow
+  // sync-footer so the nav-tree data it mirrors is final.
+  'scripts/sync-temple-footers.js',
   // Scholars portal copy: runs AFTER the chrome syncers — it copies
   // platform/public/scholars (a menu/nav TARGET) into root scholars/, and
   // must not snapshot a pre-sync canonical (drift caught by Mobile Menu

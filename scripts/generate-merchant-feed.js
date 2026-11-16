@@ -49,7 +49,7 @@ const KIND_LABEL = {
   print: 'Art Print',
   canvas: 'Canvas Print',
   sticker: 'Sticker',
-  pin: 'Enamel Pin',
+  pin: 'Pin Button Set',
   mug: 'Mug',
   tumbler: 'Tumbler',
   tote: 'Tote Bag',

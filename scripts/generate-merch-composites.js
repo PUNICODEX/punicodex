@@ -52,6 +52,25 @@ async function scaled(p, { w, h }) {
   return { buf, width: nw, height: nh };
 }
 
+// Like scaled(), but trims transparent padding first so position math uses
+// the visual bounding box — untrimmed masters carry large transparent
+// margins that would otherwise open giant voids in the composition.
+async function scaledTrimmed(p, { w, h }) {
+  const trimmed = await sharp(p).trim().toBuffer();
+  const meta = await sharp(trimmed).metadata();
+  let nw = meta.width;
+  let nh = meta.height;
+  if (w) {
+    nw = w;
+    nh = Math.round((meta.height * w) / meta.width);
+  } else if (h) {
+    nh = h;
+    nw = Math.round((meta.width * h) / meta.height);
+  }
+  const buf = await sharp(trimmed).resize(nw, nh, { fit: 'inside' }).png().toBuffer();
+  return { buf, width: nw, height: nh };
+}
+
 async function transparentCanvas(w, h) {
   return sharp({
     create: { width: w, height: h, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
@@ -104,16 +123,18 @@ async function buildTempleComposites(id) {
     out.push(`${id}_comp-canvas.png`);
   }
 
-  // Tote: lockup large, small mascot tag lower right.
+  // Tote: one cohesive centred column — lockup above, deity below, no void.
   {
     const [l, m] = await Promise.all([
-      scaled(lockup, { w: 2700 }),
-      scaled(mascot, { h: 1050 }),
+      scaledTrimmed(lockup, { w: 2500 }),
+      scaledTrimmed(mascot, { h: 1400 }),
     ]);
-    const bg = await transparentCanvas(3300, 3900);
+    const bg = await transparentCanvas(3000, 3300);
+    const lockupTop = 200;
+    const mascotTop = lockupTop + l.height + 180;
     await compositeToFile(bg, [
-      { buf: l.buf, left: center(3300, l.width), top: 750 },
-      { buf: m.buf, left: 3300 - m.width - 260, top: 3900 - 1050 - 220 },
+      { buf: l.buf, left: center(3000, l.width), top: lockupTop },
+      { buf: m.buf, left: center(3000, m.width), top: mascotTop },
     ], path.join(dir, `${id}_comp-tote.png`));
     out.push(`${id}_comp-tote.png`);
   }

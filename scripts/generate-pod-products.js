@@ -509,9 +509,9 @@ const LINES = [
   {
     kind: 'pin',
     category: 'relics',
-    name: (a) => `${a.name} Seal Enamel Pin`,
+    name: (a) => `${a.name} Seal Pin Button · Set of 5`,
     price: 12.0,
-    blurb: (a) => `The ${a.name} temple mark as a hard enamel pin, gold on obsidian — reads at 25 mm.`,
+    blurb: (a) => `Five glossy tinplate pin buttons of the ${a.name} temple seal — scratch- and UV-resistant, 57 mm.`,
     design: {
       placements: [{ area: 'front', asset: 'logomark', note: 'seal only — reads at 25 mm' }],
     },

@@ -26,6 +26,7 @@ const {
   getNoScriptNote,
 } = require('../type/js/original-scripts.js');
 const { derivePronunciation } = require('../type/js/pronunciation-rules.js');
+const { templeFooterHtml } = require('./temple-footer.js');
 // Stacked diacritics are no longer rendered inline in base temples;
 // they remain available via the Type Tool and flagship temples.
 
@@ -1172,47 +1173,17 @@ ${JSON.stringify(
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
-                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
-                    <p class="footer-tagline">
-                        <a href="https://punicodex.com/pantheon/" style="color:var(--primary);">Pantheon</a> &middot;
-                        <a href="https://punicodex.com/lexicon/" style="color:var(--primary);">Lexicon</a> &middot;
-                        <a href="https://punicodex.com/everyday/" style="color:var(--primary);">Words</a> &middot;
-                        <a href="https://punicodex.com/ink/" style="color:var(--primary);">Ink</a> &middot;
-                        <a href="https://punicodex.com/texts/" style="color:var(--primary);">Texts</a> &middot;
-                        <a href="https://punicodex.com/pronunciation/" style="color:var(--primary);">Pronunciation</a> &middot;
-                        <a href="https://punicodex.com/blog/" style="color:var(--primary);">Blog</a> &middot;
-                        <a href="https://punicodex.com/store/" style="color:var(--primary);">Store</a>
-                    </p>
-                </div>
-                <div class="footer-info">
-                    <div class="footer-block">
-                        <span class="footer-label">${domainStatus.isOwned ? 'Owned Domain' : 'Domain Reference'}</span>
-                        <span class="footer-value">${entry.unicode.toLowerCase()}.com${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ' <small>(registered)</small>' : !domainStatus.isOwned ? ' <small>(reference only)</small>' : ''}</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">Classification</span>
-                        <span class="footer-value">${escapeHtml(subtype)}</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">${getOriginalScriptLabel(entry)}</span>
-                        <span class="footer-value">${hasOriginal ? escapeHtml(originalScript) : escapeHtml(entry.unicode)}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
-                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
-                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
-                    <span class="hekaweb-name">HEKAWEB</span>
-                </a>
-            </div>
-        </div>
-    </footer>
+    ${templeFooterHtml({
+      name: entry.unicode,
+      pantheon: entry.pantheon,
+      domainsLabel: domainStatus.isOwned ? 'Owned Domain' : 'Domain Reference',
+      domainsValue: `${entry.unicode.toLowerCase()}.com${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ' (registered)' : !domainStatus.isOwned ? ' (reference only)' : ''}`,
+      classification: subtype,
+      scriptLabel: getOriginalScriptLabel(entry),
+      script: hasOriginal ? originalScript : entry.unicode,
+      logomarkSrc: `assets/${entry.id}_logomark.webp`,
+      logomarkAlt: `${entry.unicode} logomark`,
+    })}
 
     <script src="https://punicodex.com/js/px-core.js" defer></script>
     <script src="https://punicodex.com/js/temple-base.js" defer></script>
