@@ -122,6 +122,10 @@ const RULES = [
     suites: ['Sacred Atlas Tests'],
   },
   {
+    pattern: /^css\/temple-base\.css$|^scripts\/(?:sync-temple-tab-nav|sync-temple-footers|temple-footer|create-flagship|generate-temples)\.js$|^scripts\/lib\/temple-tab-nav\.js$|^templates\/flagship\/|^sites\/|^store\/zeus\/|^store\/merch\/|^test\/temple-tab-chrome\.test\.js$/,
+    suites: ['Temple Tab Chrome Tests'],
+  },
+  {
     pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/(?:origins|strata)\/|^test\/strata-page\.test\.js$/,
     suites: ['STRATA Page Tests'],
   },

@@ -12,6 +12,7 @@ function templeTabNavHtml(id, name, active = '') {
   const merchUrl = `/store/merch/${id}/`;
   const artUrl = `${templeUrl}art/`;
   const storeActive = active === 'store' || active === 'merch' || active === 'art';
+  const act = (key) => (active === key ? ' active' : '');
   const group = (label, url, children) => `
         <span class="nav-group">
           <a href="${url}" class="nav-link${storeActive && label === 'Store' ? ' active' : ''}">${label}</a>
@@ -29,11 +30,11 @@ function templeTabNavHtml(id, name, active = '') {
      <a href="${artUrl}" class="nav-sub-link${active === 'art' ? ' active' : ''}">Art</a>`
   );
   const tabs = `
-        <a href="${templeUrl}" class="nav-link">Home</a>${lore}${store}
-        <a href="${templeUrl}patterns/" class="nav-link">Patterns</a>
-        <a href="${templeUrl}scholars/" class="nav-link">Scholars</a>
-        <a href="${templeUrl}patron/" class="nav-link">Patrons</a>
-        <a href="${templeUrl}blog/" class="nav-link">Blog</a>`;
+        <a href="${templeUrl}" class="nav-link${act('home')}">Home</a>${lore}${store}
+        <a href="${templeUrl}patterns/" class="nav-link${act('patterns')}">Patterns</a>
+        <a href="${templeUrl}scholars/" class="nav-link${act('scholars')}">Scholars</a>
+        <a href="${templeUrl}patron/" class="nav-link${act('patron')}">Patrons</a>
+        <a href="${templeUrl}blog/" class="nav-link${act('blog')}">Blog</a>`;
   return `
     <div class="global-strip">
       <div class="global-strip-inner">

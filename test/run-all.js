@@ -406,6 +406,7 @@ const SUITES = [
   { name: 'STRATA Page Tests', cmd: 'node test/strata-page.test.js', timeout: 30000 },
   { name: 'Temple Art Room Tests', cmd: 'node test/temple-art-room.test.js', timeout: 120000 },
   { name: 'Sacred Atlas Tests', cmd: 'node test/sacred-atlas.test.js', timeout: 30000 },
+  { name: 'Temple Tab Chrome Tests', cmd: 'node test/temple-tab-chrome.test.js', timeout: 120000 },
   {
     name: 'ASCII Editorial Truth Tests',
     cmd: 'node test/ascii-editorial-truth.test.js',

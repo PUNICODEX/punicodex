@@ -292,13 +292,13 @@ canvas[data-effect] {
         width: auto;
         flex-shrink: 1;
     }
-    .tab-nav .nav-toggle {
+    .tab-nav .nav-toggle, .base-nav .nav-toggle {
         display: flex;
         flex-shrink: 0;
         padding: 0.5rem;
         margin-right: -0.25rem;
     }
-    .tab-nav .nav-toggle span {
+    .tab-nav .nav-toggle span, .base-nav .nav-toggle span {
         width: 22px;
         height: 2px;
     }
@@ -361,7 +361,7 @@ canvas[data-effect] {
         padding-left: max(1.25rem, env(safe-area-inset-left));
         padding-right: max(1.25rem, env(safe-area-inset-right));
     }
-    .tab-nav .nav-toggle {
+    .tab-nav .nav-toggle, .base-nav .nav-toggle {
         margin-right: 0;
     }
     .tab-nav .tab-nav-links {
@@ -391,7 +391,12 @@ canvas[data-effect] {
     }
 }
 
-.nav-toggle {
+/* Scoped to .tab-nav: the TEMPLE strip toggle. Unscoped, these rules fight
+   main.css on pages that load both (store/merch tabs): main.css pins the
+   button at 28×20px, the column flex shrinks the empty spans to height 0,
+   and the hamburger vanishes. The fixed size below overrides main.css
+   (higher specificity) with a real touch target. */
+.tab-nav .nav-toggle, .base-nav .nav-toggle {
     display: none;
     flex-direction: column;
     gap: 5px;
@@ -399,24 +404,30 @@ canvas[data-effect] {
     border: none;
     cursor: pointer;
     padding: 5px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
 }
 
-.nav-toggle span {
+.tab-nav .nav-toggle span, .base-nav .nav-toggle span {
     display: block;
     width: 24px;
     height: 1.5px;
     background: var(--white);
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 
-.nav-toggle.active span:nth-child(1) {
+.tab-nav .nav-toggle.active span:nth-child(1), .base-nav .nav-toggle.active span:nth-child(1) {
     transform: translateY(6.5px) rotate(45deg);
 }
-.nav-toggle.active span:nth-child(2) {
+.tab-nav .nav-toggle.active span:nth-child(2), .base-nav .nav-toggle.active span:nth-child(2) {
     opacity: 0;
 }
-.nav-toggle.active span:nth-child(3) {
+.tab-nav .nav-toggle.active span:nth-child(3), .base-nav .nav-toggle.active span:nth-child(3) {
     transform: translateY(-6.5px) rotate(-45deg);
 }
 
@@ -1706,7 +1717,7 @@ a.source-badge {
         display: flex;
         flex-shrink: 0;
     }
-    .tab-nav .nav-toggle {
+    .tab-nav .nav-toggle, .base-nav .nav-toggle {
         display: flex;
         flex-shrink: 0;
     }

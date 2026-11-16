@@ -4241,6 +4241,19 @@ function createFlagship(templeId, options = {}) {
       .join(`script.js?v=${jsPin}`);
   }
 
+  // Canonical tab-nav: the patron/patterns templates still carry the legacy
+  // "Logo injected by JS" nav (the injection no longer exists — the temple
+  // logolockup would render blank). Swap in the canonical builder.
+  {
+    const { syncHtml } = require('./sync-temple-tab-nav.js');
+    if (outputs['patron/index.html']) {
+      outputs['patron/index.html'] = syncHtml(outputs['patron/index.html'], templeId, 'patron');
+    }
+    if (outputs['patterns/index.html']) {
+      outputs['patterns/index.html'] = syncHtml(outputs['patterns/index.html'], templeId, 'patterns');
+    }
+  }
+
   // Prose-bearing pages: crosslink deity mentions to their temples (first
   // mention per entry per page; the page's own entry is never self-linked).
   const CROSSLINK_PATHS = new Set([

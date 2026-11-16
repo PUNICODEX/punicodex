@@ -162,6 +162,9 @@ const allScripts = [
   // Idempotent (skips pages already carrying .temple-footer); must follow
   // sync-footer so the nav-tree data it mirrors is final.
   'scripts/sync-temple-footers.js',
+  // Temple tab-nav: replaces the legacy JS-injected-logo nav in
+  // patterns/patron tabs with the canonical builder output. Idempotent.
+  'scripts/sync-temple-tab-nav.js',
   // Scholars portal copy: runs AFTER the chrome syncers — it copies
   // platform/public/scholars (a menu/nav TARGET) into root scholars/, and
   // must not snapshot a pre-sync canonical (drift caught by Mobile Menu
