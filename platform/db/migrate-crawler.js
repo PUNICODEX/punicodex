@@ -412,7 +412,7 @@ db.exec(`
     entry_id TEXT NOT NULL UNIQUE,
     domain TEXT NOT NULL,
     punycode TEXT NOT NULL,
-    status TEXT DEFAULT 'available' CHECK (status IN ('available', 'registered', 'unknown')),
+    status TEXT DEFAULT 'available' CHECK (status IN ('available', 'registered', 'live', 'unknown')),
     registrar_links TEXT,
     last_checked DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (entry_id) REFERENCES entries(id)
