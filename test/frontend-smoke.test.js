@@ -63,10 +63,18 @@ test('public search page exists and references search scripts', () => {
 });
 
 test('art marketplace page exists and loads marketplace scripts', () => {
-  const html = readHtml('art/index.html');
+  // /art/ is the canonical redirect stub (SEO wave 1) — the marketplace
+  // itself lives at /store/art/.
+  const stub = readHtml('art/index.html');
+  assert.ok(stub.includes('<title>'));
+  assert.ok(
+    stub.includes('url=https://punicodex.com/store/art/'),
+    '/art/ stub must redirect to /store/art/'
+  );
+  const html = readHtml('store/art/index.html');
   assert.ok(html.includes('<title>'));
-  assert.ok(html.includes('art-marketplace-data.js'));
-  assert.ok(html.includes('art/art.js'));
+  assert.ok(html.includes('pc-fx-core.js'), 'marketplace fx core missing');
+  assert.ok(html.includes('pc-fx-muse.js'), 'marketplace muse fx missing');
 });
 
 test('card game page exists and loads game scripts', () => {

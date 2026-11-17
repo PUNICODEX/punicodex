@@ -42433,6 +42433,13 @@ const LEXICON = [
     "greek": "—",
     "pantheon": "buddhist",
     "domain": "Enlightenment Being, Compassion",
+    "variants": [
+      {
+        "unicode": "bodhisattva",
+        "type": "alt",
+        "note": "Standard transliteration spelling (single d), the form English prose most often uses"
+      }
+    ],
     "meaning": "'Awakening-being' — one who vows Buddhahood for the sake of all beings",
     "senses": [
       {

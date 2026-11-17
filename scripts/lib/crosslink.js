@@ -145,16 +145,29 @@ function capitalize(s) {
 // names such as Nike, Atlas, or Gaia where the context removes ambiguity.
 const MATCHES = [];
 const MATCHES_WITH_AMBIGUOUS = [];
-function pushForm(id, form, { asciiLike = false } = {}) {
+function pushForm(id, form, { asciiLike = false, isVariant = false } = {}) {
   if (!form || form.length < 2) return;
   if (/[^\x00-\x7F]/.test(form)) {
-    MATCHES.push({ id, form });
-    MATCHES_WITH_AMBIGUOUS.push({ id, form });
-  } else if (asciiLike && form.length >= 4) {
+    MATCHES.push({ id, form, isVariant });
+    MATCHES_WITH_AMBIGUOUS.push({ id, form, isVariant });
+  } else if (asciiLike) {
+    // ASCII forms. Capitalized names of 3+ letters link (myth prose
+    // capitalizes deity names: Sif, Geb, Don, Pan, Tyr) — two-letter forms
+    // stay out (sentence-initial "He", "Ka" would false-positive constantly).
+    // Lowercase forms link only for distinctive names of 4+ letters that are
+    // neither common-word nor ambiguous ("bodhisattva" is a common noun in
+    // English prose; "atlas"/"nike" are everyday words).
     if (!NEVER_LINK.has(form.toLowerCase())) {
-      MATCHES_WITH_AMBIGUOUS.push({ id, form });
-      if (!AMBIGUOUS_ASCII.has(form.toLowerCase())) {
-        MATCHES.push({ id, form });
+      if (form.length >= 3) {
+        MATCHES_WITH_AMBIGUOUS.push({ id, form, isVariant });
+        if (!AMBIGUOUS_ASCII.has(form.toLowerCase())) {
+          MATCHES.push({ id, form, isVariant });
+        }
+      }
+      const lower = form.toLowerCase();
+      if (form.length >= 4 && !AMBIGUOUS_ASCII.has(lower) && lower !== form) {
+        MATCHES.push({ id, form: lower, isVariant });
+        MATCHES_WITH_AMBIGUOUS.push({ id, form: lower, isVariant });
       }
     }
   }
@@ -163,15 +176,31 @@ for (const e of entries) {
   if (e.unicode && e.unicode !== e.ascii) pushForm(e.id, e.unicode);
   if (e.ascii && /^[a-z][a-z-]+$/.test(e.ascii)) pushForm(e.id, capitalize(e.ascii), { asciiLike: true });
   for (const v of e.variants || []) {
-    if (v && typeof v.unicode === 'string') pushForm(e.id, v.unicode, { asciiLike: true });
+    if (v && typeof v.unicode === 'string') pushForm(e.id, v.unicode, { asciiLike: true, isVariant: true });
   }
 }
 MATCHES.sort((a, b) => b.form.length - a.form.length);
 MATCHES_WITH_AMBIGUOUS.sort((a, b) => b.form.length - a.form.length);
 
+// A form an entry carries as its OWN name must always win over the same
+// string claimed as a variant by another entry — otherwise "Inanna"
+// resolves to ishtar (whose variant list claims it) and links point at the
+// wrong temple or self-mentions get blocked. Two passes: identity forms
+// first, variants only where no identity form exists.
+function buildFormToId(matchTable) {
+  const map = new Map();
+  for (const { id, form, isVariant } of matchTable) {
+    if (!isVariant) map.set(form, id);
+  }
+  for (const { id, form, isVariant } of matchTable) {
+    if (isVariant && !map.has(form)) map.set(form, id);
+  }
+  return map;
+}
+
 function buildCombinedRegex(matchTable) {
   return new RegExp(
-    `(?<![\\p{L}\\p{M}])(${matchTable.map((m) => escapeRe(m.form)).join('|')})(?![\\p{L}\\p{M}])`,
+    `(?<![\\p{L}\\p{M}])(${matchTable.map((m) => escapeRe(m.form)).join('|')})(?![\\p{L}\\p{M}\\p{Pd}])`,
     'gu'
   );
 }
@@ -179,8 +208,8 @@ function buildCombinedRegex(matchTable) {
 // Combined alternations for candidate discovery (unicode-aware boundaries).
 const COMBINED = buildCombinedRegex(MATCHES);
 const COMBINED_WITH_AMBIGUOUS = buildCombinedRegex(MATCHES_WITH_AMBIGUOUS);
-const FORM_TO_ID = new Map(MATCHES.map((m) => [m.form, m.id]));
-const FORM_TO_ID_WITH_AMBIGUOUS = new Map(MATCHES_WITH_AMBIGUOUS.map((m) => [m.form, m.id]));
+const FORM_TO_ID = buildFormToId(MATCHES);
+const FORM_TO_ID_WITH_AMBIGUOUS = buildFormToId(MATCHES_WITH_AMBIGUOUS);
 
 const SKIP_TAGS = new Set([
   'a',
@@ -359,4 +388,8 @@ module.exports = {
   NEVER_LINK,
   TEXT_CITATIONS,
   BY_ID,
+  MATCHES,
+  MATCHES_WITH_AMBIGUOUS,
+  FORM_TO_ID,
+  FORM_TO_ID_WITH_AMBIGUOUS,
 };

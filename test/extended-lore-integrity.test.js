@@ -199,3 +199,47 @@ test('catalog: no nested foreign entries inside catalog entries', () => {
   }
   assert.deepStrictEqual(bad, [], `nested entries: ${bad.slice(0, 8).join(', ')}`);
 });
+
+test('crosslinks: every deity mention on temple pages resolves to a link', () => {
+  // Fleet-wide guard over the exact match tables + skip zones the crosslink
+  // engine uses. A "gap" means a name form appears in linkable prose but the
+  // page carries no link to that deity's temple — the 2026-11 report that
+  // surfaced missing Demeter-class links, short names (Sif/Geb/Don), lowercase
+  // common nouns (bodhisattva), and variant-shadowed forms (Inanna→ishtar).
+  const cheerio = require('cheerio');
+  const { FORM_TO_ID_WITH_AMBIGUOUS } = require(path.join(ROOT, 'scripts', 'lib', 'crosslink.js'));
+  const formToId = FORM_TO_ID_WITH_AMBIGUOUS;
+  const forms = [...formToId.keys()].sort((a, b) => b.length - a.length);
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const combined = new RegExp(
+    `(?<![\\p{L}\\p{M}])(${forms.map(esc).join('|')})(?![\\p{L}\\p{M}\\p{Pd}])`,
+    'gu'
+  );
+  const SKIP_CLASS = /related|sister|chip|crosslink|toc|nav|footer|badge|pronunciation|phoneme/i;
+  const PAGES = ['index.html', 'lore/index.html', 'lore/extended/index.html'];
+  const gaps = [];
+  for (const id of FLAGSHIPS) {
+    for (const rel of PAGES) {
+      const p = path.join(ROOT, 'sites', id, rel);
+      if (!fs.existsSync(p)) continue;
+      const html = fs.readFileSync(p, 'utf8');
+      const $ = cheerio.load(html, { decodeEntities: false });
+      $('script,style,a,code,pre,cite,h1,h2,h3,h4,h5,h6,head,title,meta,link,option').remove();
+      $('*').each((_, el) => {
+        const c = $(el).attr('class') || '';
+        if (SKIP_CLASS.test(c)) $(el).remove();
+      });
+      const text = $.root().text();
+      const mentioned = new Set();
+      combined.lastIndex = 0;
+      let m;
+      while ((m = combined.exec(text)) !== null) {
+        const fid = formToId.get(m[1]);
+        if (fid && fid !== id) mentioned.add(fid);
+      }
+      const missing = [...mentioned].filter((fid) => !html.includes(`href="/${fid}/"`));
+      if (missing.length) gaps.push(`${id}/${rel}: ${missing.join(', ')}`);
+    }
+  }
+  assert.deepStrictEqual(gaps, [], `unlinked deity mentions:\n${gaps.slice(0, 12).join('\n')}`);
+});

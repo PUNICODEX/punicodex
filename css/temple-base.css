@@ -443,6 +443,38 @@ canvas[data-effect] {
     }
 }
 
+/* Non-temple pages (blog index, hubs…) load temple-base.css WITHOUT
+   main.css — without this bare block their .nav-toggle collapses to 0×0
+   (T3 E2E: menu unclickable at 390px). Scoped temple rules below still
+   override via higher specificity where both apply. */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--white);
+    transition: all 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
 /* Scoped to .tab-nav: the TEMPLE strip toggle. Unscoped, these rules fight
    main.css on pages that load both (store/merch tabs): main.css pins the
    button at 28×20px, the column flex shrinks the empty spans to height 0,
