@@ -26,6 +26,11 @@
  *   chinese / taoist       → Modern Standard Mandarin (tone-marked pinyin;
  *                            the restoration's tone marks become Chao tone
  *                            letters on each syllable's nucleus)
+ *   roman                  → classical Latin (Allen, Vox Latina 1978:
+ *                            quantitative vowels, weight-rule stress)
+ *   buddhist               → romanized Sanskrit names; reuses the Sanskrit
+ *                            (IAST) inventory wholesale — Pāli-only phonology
+ *                            is out of scope
  *   everything else        → fallback orthographic passthrough (derived: false)
  *
  * Stress policy per language:
@@ -35,6 +40,9 @@
  *              the classical recessive rule: stress the penult when heavy
  *              (long nucleus or closed), else the antepenult.
  *   sanskrit — classical weight rule (heavy penult, else antepenult).
+ *   buddhist — as sanskrit (the rule set IS the Sanskrit one).
+ *   roman    — classical weight rule (heavy penult, else antepenult; an
+ *              accent mark in the restoration overrides, as elsewhere).
  *   nahuatl  — penultimate.
  *   norse    — first syllable.
  *   japanese — no lexical stress (stressIndex null).
@@ -590,6 +598,128 @@ function tokenizeSanskrit(form) {
 }
 
 // ---------------------------------------------------------------------------
+// Latin (classical Roman)
+//
+// Restorations of Roman names encode vowel quantity with macrons (Iūnō,
+// Neptūnus) and occasionally stress with a circumflex. Values follow Allen's
+// Vox Latina (1978): quantitative vowel system (5 short/long pairs, y only in
+// Greek loans); c and g are always /k, g/ (also before e/i); v is the
+// consonantal u, /w/; i is consonantal /j/ word-initially before a vowel and
+// between vowels; ae = /ae̯/ (monophthongizing toward /ɛː/ in later classical
+// times), oe = /oe̯/, au/eu/ui falling diphthongs; ph/th/ch are aspirated
+// stops (Greek loans); word-final -m only nasalizes the preceding vowel and
+// leaves the syllable light (Allen's "weak" final -m). Stress is the
+// classical weight rule: a heavy penult (long vowel, diphthong, or closed
+// syllable) takes the accent, otherwise the antepenult; final syllables are
+// never stressed.
+// ---------------------------------------------------------------------------
+
+const LATIN_VOWELS = {
+  a: ['a', 'aː'],
+  e: ['e', 'eː'],
+  i: ['i', 'iː'],
+  o: ['o', 'oː'],
+  u: ['u', 'uː'],
+  y: ['y', 'yː'], // Greek loans (Cybele, …)
+};
+
+const LATIN_DIPHTHONGS = {
+  ae: 'ae̯',
+  oe: 'oe̯',
+  au: 'au̯',
+  eu: 'eu̯',
+  ui: 'ui̯',
+};
+
+const LATIN_ASPIRATES = { ph: 'pʰ', th: 'tʰ', ch: 'kʰ' };
+
+function tokenizeLatin(form) {
+  const gs = graphemes(form);
+  const tokens = [];
+  let i = 0;
+  while (i < gs.length) {
+    const g = gs[i];
+    const m = marksOf(g);
+    const next = gs[i + 1];
+    const pair = next ? g.base + next.base : '';
+    // Diphthongs (vowel pairs) — checked before single vowels. A diaeresis on
+    // the second vowel marks hiatus, not a diphthong (aë, oë).
+    if (next && LATIN_DIPHTHONGS[pair] && !next.marks.includes(MARK.DIAERESIS)) {
+      const m2 = marksOf(next);
+      tokens.push(V(LATIN_DIPHTHONGS[pair], true, m.stress || m2.stress, m.accent || m2.accent));
+      i += 2;
+      continue;
+    }
+    // Consonantal i: /j/ word-initially before a vowel or between vowels
+    // (Iānus /ˈjaːnus/, eius /ˈejjus/). Checked before the vowel branch so a
+    // leading I- before a vowel does not vocalize.
+    const prevIsVowel = i > 0 && !!LATIN_VOWELS[gs[i - 1].base];
+    if (g.base === 'i' && next && LATIN_VOWELS[next.base] && (i === 0 || prevIsVowel)) {
+      tokens.push(C('j'));
+      i += 1;
+      continue;
+    }
+    if (LATIN_VOWELS[g.base]) {
+      const [short, long] = LATIN_VOWELS[g.base];
+      tokens.push(V(m.long ? long : short, m.long, m.stress, m.accent));
+      i += 1;
+      continue;
+    }
+    if (pair === 'qu') {
+      tokens.push(C('kw')); // labiovelar; the u is never a vowel here
+      i += 2;
+      continue;
+    }
+    if (next && LATIN_ASPIRATES[pair]) {
+      tokens.push(C(LATIN_ASPIRATES[pair]));
+      i += 2;
+      continue;
+    }
+    if (g.base === 'v') {
+      tokens.push(C('w')); // consonantal u (Allen, Vox Latina)
+      i += 1;
+      continue;
+    }
+    if (g.base === 'j') {
+      tokens.push(C('j'));
+      i += 1;
+      continue;
+    }
+    if (g.base === 'x') {
+      tokens.push(C('k'));
+      tokens.push(C('s'));
+      i += 1;
+      continue;
+    }
+    if (g.base === 'c' || g.base === 'g') {
+      tokens.push(C(g.base === 'c' ? 'k' : 'g')); // c = /k/ always (even before e/i)
+      i += 1;
+      continue;
+    }
+    // Word-final -m: nasalizes the preceding vowel and does not close the
+    // syllable (Allen's weak final -m) — the letter itself is not sounded.
+    if (g.base === 'm' && i === gs.length - 1) {
+      i += 1;
+      continue;
+    }
+    // Geminates: coda + onset pair so the mora layer counts them.
+    if (next && next.base === g.base && /[bcdfglmnpst]/.test(g.base)) {
+      tokens.push(C(g.base));
+      tokens.push(C(g.base));
+      i += 2;
+      continue;
+    }
+    if (/[bdfhklmnprstwz]/.test(g.base)) {
+      tokens.push(C(g.base));
+      i += 1;
+      continue;
+    }
+    i += 1;
+  }
+  return tokens;
+}
+
+// ---------------------------------------------------------------------------
 // Japanese
 // ---------------------------------------------------------------------------
 
@@ -1095,7 +1225,9 @@ function assignStress(language, syllables, entry) {
     if (fromOriginal !== null) return Math.min(fromOriginal, syllables.length - 1);
     return weightRuleStress(syllables);
   }
-  if (language === 'sanskrit') return weightRuleStress(syllables);
+  if (language === 'sanskrit' || language === 'buddhist' || language === 'roman') {
+    return weightRuleStress(syllables);
+  }
   return null;
 }
 
@@ -1177,6 +1309,14 @@ const PROSODY = {
     conventional: false,
     model: 'mātrā-counted (guru = 2, laghu = 1)',
   },
+  roman: {
+    moraMs: 100,
+    geminate: true,
+    codaWeight: 0.5,
+    codaNasalMora: false,
+    conventional: false,
+    model: 'mora-timed (long vowels and diphthongs = 2 morae; weight-based stress)',
+  },
   japanese: {
     moraMs: 80,
     geminate: true,
@@ -1206,6 +1346,7 @@ const PROSODY = {
 function prosodyFor(language) {
   if (language === 'greek-location') return PROSODY.greek;
   if (language === 'taoist') return PROSODY.chinese;
+  if (language === 'buddhist') return PROSODY.sanskrit;
   return PROSODY[language];
 }
 
@@ -1752,6 +1893,9 @@ const NOTES = {
   ɯ: "ɯ — unrounded 'oo': lips spread as for 'ee', tongue back as for 'oo'",
   ɸ: "ɸ — 'f' blown through both lips, no teeth",
   ʋ: "ʋ — a soft 'v' closer to 'w'",
+  w: "w — classical Latin consonantal u (written v): as English 'w' in 'win'",
+  ae̯: "ae̯ — classical Latin 'ae': 'ah-ee' glided together (later 'eh' held long)",
+  oe̯: "oe̯ — classical Latin 'oe': 'oh-ee' glided together (later 'ay')",
 };
 
 function collectNotes(tokens, extra) {
@@ -1790,9 +1934,32 @@ const CHINESE_SPEC = {
   label: 'Derived from restored orthography (Modern Standard Mandarin, pinyin tone values)',
 };
 
+const SANSKRIT_ONSETS = new Set([
+  'pr',
+  'br',
+  'tr',
+  'dr',
+  'kr',
+  'ɡr',
+  'pl',
+  'kl',
+  'ɡl',
+  'kʰr',
+  'ɡʱr',
+  'tʰr',
+  'dʱr',
+  'pʰr',
+  'bʱr',
+]);
+
 const LANGUAGES = {
   greek: GREEK_SPEC,
   'greek-location': GREEK_SPEC,
+  roman: {
+    tokenize: tokenizeLatin,
+    onsets: new Set(['pr', 'br', 'tr', 'dr', 'kr', 'gr', 'pl', 'bl', 'kl', 'gl']),
+    label: 'Derived from restored orthography (classical Latin, Allen’s Vox Latina values)',
+  },
   nahuatl: {
     tokenize: tokenizeNahuatl,
     onsets: new Set(['kw', 'kj', 'tj']),
@@ -1805,24 +1972,18 @@ const LANGUAGES = {
   },
   sanskrit: {
     tokenize: tokenizeSanskrit,
-    onsets: new Set([
-      'pr',
-      'br',
-      'tr',
-      'dr',
-      'kr',
-      'ɡr',
-      'pl',
-      'kl',
-      'ɡl',
-      'kʰr',
-      'ɡʱr',
-      'tʰr',
-      'dʱr',
-      'pʰr',
-      'bʱr',
-    ]),
+    onsets: SANSKRIT_ONSETS,
     label: 'Derived from restored orthography (classical Sanskrit / IAST)',
+  },
+  // Buddhist entries are romanized Sanskrit names (macrons, IAST diacritics
+  // already present in the restorations); they reuse the Sanskrit inventory
+  // and weight-rule stress wholesale. Pāli-only phonology (e.g. ḷ) is out of
+  // scope — the difference barely surfaces in this name set.
+  buddhist: {
+    tokenize: tokenizeSanskrit,
+    onsets: SANSKRIT_ONSETS,
+    label:
+      'Derived from restored orthography (romanized Sanskrit, classical Sanskrit / IAST values)',
   },
   japanese: {
     tokenize: tokenizeJapanese,

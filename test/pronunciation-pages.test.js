@@ -25,7 +25,11 @@ test('sample pages exist with complete head + chrome', () => {
     const file = path.join(ROOT, 'sites', id, 'pronunciation', 'index.html');
     assert.ok(fs.existsSync(file), `${id}: pronunciation page missing`);
     const html = fs.readFileSync(file, 'utf8');
-    assert.match(html, new RegExp(`<link rel="canonical" href="https://punicodex\\.com/${id}/pronunciation/">`), `${id}: canonical`);
+    assert.match(
+      html,
+      new RegExp(`<link rel="canonical" href="https://punicodex\\.com/${id}/pronunciation/">`),
+      `${id}: canonical`
+    );
     assert.match(html, /property="og:image"/, `${id}: og:image`);
     assert.match(html, /application\/ld\+json/, `${id}: JSON-LD`);
     assert.match(html, /"BreadcrumbList"/, `${id}: breadcrumb JSON-LD`);
@@ -79,14 +83,23 @@ test('family coverage: every temple with a pronunciation-derived entry has a pag
 
 test('sitemap registers the pronunciation family', () => {
   const xml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
-  const count = (xml.match(/<loc>https:\/\/punicodex\.com\/[a-z0-9-]+\/pronunciation\/<\/loc>/g) || []).length;
+  const count = (
+    xml.match(/<loc>https:\/\/punicodex\.com\/[a-z0-9-]+\/pronunciation\/<\/loc>/g) || []
+  ).length;
   assert.ok(count >= 900, `expected ~983 pronunciation URLs in sitemap, got ${count}`);
-  assert.match(xml, /<loc>https:\/\/punicodex\.com\/pronunciation\/<\/loc>/, 'methodology hub in sitemap');
+  assert.match(
+    xml,
+    /<loc>https:\/\/punicodex\.com\/pronunciation\/<\/loc>/,
+    'methodology hub in sitemap'
+  );
 });
 
 test('no orphan pages: every pronunciation page links back to its temple', () => {
   for (const id of SAMPLE_IDS) {
-    const html = fs.readFileSync(path.join(ROOT, 'sites', id, 'pronunciation', 'index.html'), 'utf8');
+    const html = fs.readFileSync(
+      path.join(ROOT, 'sites', id, 'pronunciation', 'index.html'),
+      'utf8'
+    );
     assert.match(html, new RegExp(`href="https://punicodex\\.com/${id}/"`), `${id}: temple link`);
   }
 });

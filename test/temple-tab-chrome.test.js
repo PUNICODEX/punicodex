@@ -52,20 +52,43 @@ test('temple-base.css: nav rules are scoped, no contamination', () => {
 });
 
 test('temple-base.css: tab toggle keeps explicit size and non-shrinking spans', () => {
-  const rules = [...TEMPLE_BASE.matchAll(/\.tab-nav \.nav-toggle, \.base-nav \.nav-toggle\s*\{([\s\S]*?)\}/g)].map((m) => m[1]);
+  // The 2026-11 extended-nav pass added `.extended-nav` to these selector
+  // lists (the extended-lore nav uses the same toggle) — it must not defeat
+  // the pinned-size guard.
+  const rules = [
+    ...TEMPLE_BASE.matchAll(
+      /\.tab-nav \.nav-toggle, \.base-nav \.nav-toggle(?:, \.extended-nav \.nav-toggle)?\s*\{([\s\S]*?)\}/g
+    ),
+  ].map((m) => m[1]);
   const base = rules.find((body) => /width:\s*40px/.test(body));
-  assert.ok(base, '.tab-nav/.base-nav .nav-toggle rule with pinned 40px size missing (main.css 28×20 would shrink spans to 0)');
+  assert.ok(
+    base,
+    '.tab-nav/.base-nav .nav-toggle rule with pinned 40px size missing (main.css 28×20 would shrink spans to 0)'
+  );
   assert.ok(/height:\s*40px/.test(base), 'toggle must pin height');
-  const spans = [...TEMPLE_BASE.matchAll(/\.tab-nav \.nav-toggle span, \.base-nav \.nav-toggle span\s*\{([\s\S]*?)\}/g)].map((m) => m[1]);
+  const spans = [
+    ...TEMPLE_BASE.matchAll(
+      /\.tab-nav \.nav-toggle span, \.base-nav \.nav-toggle span(?:, \.extended-nav \.nav-toggle span)?\s*\{([\s\S]*?)\}/g
+    ),
+  ].map((m) => m[1]);
   assert.ok(spans.length > 0, 'toggle span rule missing');
-  assert.ok(spans.some((body) => /flex-shrink:\s*0/.test(body)), 'toggle spans must not flex-shrink to 0 height');
+  assert.ok(
+    spans.some((body) => /flex-shrink:\s*0/.test(body)),
+    'toggle spans must not flex-shrink to 0 height'
+  );
 });
 
 test('temple tab pages: no legacy JS-injected nav, inline logolockup present', () => {
   const stale = [];
   const missingLogo = [];
   const toggleIssues = [];
-  const TAB_PAGES = ['index.html', 'patterns/index.html', 'patron/index.html', 'blog/index.html', 'lore/index.html'];
+  const TAB_PAGES = [
+    'index.html',
+    'patterns/index.html',
+    'patron/index.html',
+    'blog/index.html',
+    'lore/index.html',
+  ];
   for (const id of templeDirs()) {
     for (const rel of TAB_PAGES) {
       const file = path.join(SITES_DIR, id, rel);
@@ -78,9 +101,21 @@ test('temple tab pages: no legacy JS-injected nav, inline logolockup present', (
       if (toggles !== 1) toggleIssues.push(`${id}/${rel} (${toggles})`);
     }
   }
-  assert.deepStrictEqual(stale, [], `${stale.length} tab pages still carry the legacy injected-logo nav`);
-  assert.deepStrictEqual(missingLogo, [], `${missingLogo.length} tab pages lack the inline logolockup`);
-  assert.deepStrictEqual(toggleIssues, [], `tab pages with toggle count ≠ 1: ${toggleIssues.slice(0, 5).join(', ')}`);
+  assert.deepStrictEqual(
+    stale,
+    [],
+    `${stale.length} tab pages still carry the legacy injected-logo nav`
+  );
+  assert.deepStrictEqual(
+    missingLogo,
+    [],
+    `${missingLogo.length} tab pages lack the inline logolockup`
+  );
+  assert.deepStrictEqual(
+    toggleIssues,
+    [],
+    `tab pages with toggle count ≠ 1: ${toggleIssues.slice(0, 5).join(', ')}`
+  );
 });
 
 test('temple pages: footer present and canonical (temple-footer or site-footer)', () => {

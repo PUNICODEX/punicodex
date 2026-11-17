@@ -63,6 +63,21 @@ function isReconstructedSpecimen(prov) {
   return RECONSTRUCTION_MARKERS.some((re) => re.test(text));
 }
 
+// Specimens written entirely in Latin letters for a non-Latin tradition
+// (Classical Nahuatl macron orthographies like Quetzalcōātl, scholarly
+// Medieval Irish like Manannán, modern Yoruba orthography like Òdùduwà) are
+// scholarly transliterations, NOT attested scripts — the doctrine pill must
+// not read "Original Script" for them. Genuinely Latin traditions (Roman,
+// Etruscan) keep their label.
+const GENUINE_LATIN_PANTHEONS = new Set(['roman', 'etruscan']);
+function isScholarlyLatinSpecimen(entry, script) {
+  if (!script || GENUINE_LATIN_PANTHEONS.has(entry.pantheon)) return false;
+  return [...script].every((ch) => {
+    const c = ch.codePointAt(0);
+    return c < 0x250 || (c >= 0x300 && c <= 0x36f);
+  });
+}
+
 const onlyIdx = process.argv.indexOf('--only');
 const only = onlyIdx > -1 ? new Set(process.argv[onlyIdx + 1].split(',')) : null;
 
@@ -113,13 +128,22 @@ function renderPage(entry) {
 
   const name = entry.unicode;
   const reconstructed = isReconstructedSpecimen(prov);
-  const badge = reconstructed ? 'Reconstructed Specimen' : label;
+  const scholarlyLatin = isScholarlyLatinSpecimen(entry, script);
+  const badge = reconstructed
+    ? 'Reconstructed Specimen'
+    : scholarlyLatin
+      ? 'Scholarly Transliteration'
+      : label;
   const title = reconstructed
     ? `${name} in ${scriptName} — the reconstructed specimen | PUNICODEX`
-    : `${name} in ${scriptName} — the attested original script | PUNICODEX`;
+    : scholarlyLatin
+      ? `${name} in ${scriptName} — the scholarly transliteration | PUNICODEX`
+      : `${name} in ${scriptName} — the attested original script | PUNICODEX`;
   const descSeed = reconstructed
     ? `${name} written in ${scriptName}: ${script}${prov.transliteration ? ` (${prov.transliteration})` : ''}. A reconstructed specimen — scholarly normalization, not a surviving inscription; signs and sources.`
-    : `${name} written in ${scriptName}: ${script}${prov.transliteration ? ` (${prov.transliteration})` : ''}. The attested form, sign by sign, with sources and provenance.`;
+    : scholarlyLatin
+      ? `${name} written in ${scriptName}: ${script}${prov.transliteration ? ` (${prov.transliteration})` : ''}. A scholarly Latin transliteration — standardized orthography, not a manuscript hand; sources and provenance.`
+      : `${name} written in ${scriptName}: ${script}${prov.transliteration ? ` (${prov.transliteration})` : ''}. The attested form, sign by sign, with sources and provenance.`;
   const desc = descSeed.length <= 160 ? descSeed : `${descSeed.slice(0, 157).replace(/\s+\S*$/, '')}…`;
 
   const templeCss = fs.existsSync(path.join(ROOT, 'sites', id, 'styles.css'))
@@ -193,7 +217,7 @@ function renderPage(entry) {
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=${cssPin}">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf25">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf26">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>
 <script type="application/ld+json">${JSON.stringify(breadcrumbLd).replace(/</g, '\\u003c')}</script>
@@ -219,7 +243,9 @@ ${templeTabNavHtml(id, name, '')}
     <p class="tag">${
       reconstructed
         ? 'A reconstructed specimen — the spelling is a scholarly normalization, not a surviving inscription. Signs, steps, and sources below.'
-        : 'The attested writing of the name — specimen, signs, and the road from ancient script to the modern address bar.'
+        : scholarlyLatin
+          ? 'A scholarly transliteration in Latin letters — standardized orthography, not a manuscript hand. Signs, steps, and sources below.'
+          : 'The attested writing of the name — specimen, signs, and the road from ancient script to the modern address bar.'
     }</p>
   </div>
 
@@ -253,7 +279,7 @@ ${templeTabNavHtml(id, name, '')}
     </div>
     <div class="sc-mini">
       <h2>Pronunciation</h2>
-      <p>${reconstructed ? 'How the reconstructed form is read' : 'How the attested form sounds'} — IPA, syllables, stress, mora timing.</p>
+      <p>${reconstructed || scholarlyLatin ? 'How the scholarly form is read' : 'How the attested form sounds'} — IPA, syllables, stress, mora timing.</p>
       <a href="${SITE_ORIGIN}/${id}/pronunciation/">How to pronounce ${esc(name)} →</a>
     </div>
     <div class="sc-mini">

@@ -135,6 +135,16 @@ canvas[data-effect] {
     border-bottom: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
 }
 
+/* Keep the nav glued to the global strip at every breakpoint. Per-temple
+   styles.css (loaded later) pins .tab-nav/.extended-nav to a hardcoded
+   54px that only becomes 72px at ≤640px, overlapping the 72px strip in the
+   641–768px band. The .main-nav.* compound (two classes) beats that
+   single-class pin regardless of stylesheet order — no !important needed. */
+.main-nav.tab-nav,
+.main-nav.extended-nav {
+    top: var(--global-strip-height);
+}
+
 .nav-inner {
     max-width: var(--container-max);
     margin: 0 auto;
@@ -292,13 +302,13 @@ canvas[data-effect] {
         width: auto;
         flex-shrink: 1;
     }
-    .tab-nav .nav-toggle, .base-nav .nav-toggle {
+    .tab-nav .nav-toggle, .base-nav .nav-toggle, .extended-nav .nav-toggle {
         display: flex;
         flex-shrink: 0;
         padding: 0.5rem;
         margin-right: -0.25rem;
     }
-    .tab-nav .nav-toggle span, .base-nav .nav-toggle span {
+    .tab-nav .nav-toggle span, .base-nav .nav-toggle span, .extended-nav .nav-toggle span {
         width: 22px;
         height: 2px;
     }
@@ -341,6 +351,48 @@ canvas[data-effect] {
 .tab-nav .nav-link:hover::after,
 .tab-nav .nav-link.active::after { width: 100%; }
 
+/* Extended-lore nav (templates/flagship/lore/extended): the same fixed-bar
+   row for the ~11 .extended-anchor links injected into .nav-links. */
+.extended-nav .nav-links {
+    display: flex;
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+    margin-left: auto;
+    min-width: 0;
+}
+
+.extended-nav .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--white-dim);
+    text-decoration: none;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.extended-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width 0.4s var(--ease-out-expo);
+}
+
+.extended-nav .nav-link:hover,
+.extended-nav .nav-link.active { color: var(--primary); }
+.extended-nav .nav-link:hover::after,
+.extended-nav .nav-link.active::after { width: 100%; }
+
 /* Tab nav: scrollable on small screens */
 .tab-nav-links {
     display: flex;
@@ -361,7 +413,7 @@ canvas[data-effect] {
         padding-left: max(1.25rem, env(safe-area-inset-left));
         padding-right: max(1.25rem, env(safe-area-inset-right));
     }
-    .tab-nav .nav-toggle, .base-nav .nav-toggle {
+    .tab-nav .nav-toggle, .base-nav .nav-toggle, .extended-nav .nav-toggle {
         margin-right: 0;
     }
     .tab-nav .tab-nav-links {
@@ -396,7 +448,7 @@ canvas[data-effect] {
    button at 28×20px, the column flex shrinks the empty spans to height 0,
    and the hamburger vanishes. The fixed size below overrides main.css
    (higher specificity) with a real touch target. */
-.tab-nav .nav-toggle, .base-nav .nav-toggle {
+.tab-nav .nav-toggle, .base-nav .nav-toggle, .extended-nav .nav-toggle {
     display: none;
     flex-direction: column;
     gap: 5px;
@@ -411,7 +463,7 @@ canvas[data-effect] {
     flex-shrink: 0;
 }
 
-.tab-nav .nav-toggle span, .base-nav .nav-toggle span {
+.tab-nav .nav-toggle span, .base-nav .nav-toggle span, .extended-nav .nav-toggle span {
     display: block;
     width: 24px;
     height: 1.5px;
@@ -421,13 +473,13 @@ canvas[data-effect] {
 }
 
 
-.tab-nav .nav-toggle.active span:nth-child(1), .base-nav .nav-toggle.active span:nth-child(1) {
+.tab-nav .nav-toggle.active span:nth-child(1), .base-nav .nav-toggle.active span:nth-child(1), .extended-nav .nav-toggle.active span:nth-child(1) {
     transform: translateY(6.5px) rotate(45deg);
 }
-.tab-nav .nav-toggle.active span:nth-child(2), .base-nav .nav-toggle.active span:nth-child(2) {
+.tab-nav .nav-toggle.active span:nth-child(2), .base-nav .nav-toggle.active span:nth-child(2), .extended-nav .nav-toggle.active span:nth-child(2) {
     opacity: 0;
 }
-.tab-nav .nav-toggle.active span:nth-child(3), .base-nav .nav-toggle.active span:nth-child(3) {
+.tab-nav .nav-toggle.active span:nth-child(3), .base-nav .nav-toggle.active span:nth-child(3), .extended-nav .nav-toggle.active span:nth-child(3) {
     transform: translateY(-6.5px) rotate(-45deg);
 }
 

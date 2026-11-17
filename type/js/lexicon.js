@@ -6067,7 +6067,7 @@ const LEXICON = [
     "unicode": "Gb",
     "greek": "—",
     "pantheon": "egyptian",
-    "domain": "Earth, Vegetation, Snakes",
+    "domain": "Earth, Vegetation, Earthquakes, Snakes",
     "meaning": "Earth, goose (Egyptian gb)",
     "sources": [
       "Faulkner",
@@ -6877,7 +6877,7 @@ const LEXICON = [
     "greek": "—",
     "pantheon": "sanskrit",
     "domain": "Storms, War, Kingship",
-    "meaning": "the god of the atmosphere and sky",
+    "meaning": "The god of the storm and the thunderbolt — king of the Vedic gods, wielder of the vajra, slayer of the dragon Vṛtra.",
     "senses": [
       {
         "type": "etymology",
@@ -6928,7 +6928,7 @@ const LEXICON = [
     "greek": "—",
     "pantheon": "sanskrit",
     "domain": "Fire, Sacrifice, Messenger",
-    "meaning": "the god of fire, the fire of the stomach, digestive faculty, gastric fluid",
+    "meaning": "The god of fire — the Vedic fire that carries the offering to the gods and the fire of digestion within every body.",
     "senses": [
       {
         "type": "etymology",
@@ -7711,7 +7711,7 @@ const LEXICON = [
     "unicode": "Enlīl",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "domain": "Phonological Reconstruction, Wind, Air, Storms, Kingship",
+    "domain": "Wind, Air, Storms, Kingship",
     "meaning": "Reconstruction node for the Sumerian/Akkadian deity Enlil: the macron marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
       "CAD",
@@ -7806,7 +7806,7 @@ const LEXICON = [
     "unicode": "Ēa",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "domain": "Phonological Reconstruction, Water, Wisdom",
+    "domain": "Water, Wisdom",
     "meaning": "Reconstruction node for the Akkadian deity Ea (Sumerian Enki): the macron marks a discussable vowel length, not a canonical spelling.",
     "sources": [
       "CAD",
@@ -8758,7 +8758,7 @@ const LEXICON = [
     "unicode": "Inari",
     "greek": "稲荷",
     "pantheon": "japanese",
-    "domain": "Rice, Fertility, Foxes",
+    "domain": "Rice, Fertility, Commerce",
     "meaning": "Rice load",
     "sources": [
       "Hepburn",
@@ -9651,7 +9651,7 @@ const LEXICON = [
     "unicode": "Metztli",
     "greek": "—",
     "pantheon": "nahuatl",
-    "domain": "Moon",
+    "domain": "Moon, Months, the Calendar",
     "meaning": "Moon",
     "sources": [
       "Karttunen"
@@ -10261,7 +10261,7 @@ const LEXICON = [
     "unicode": "Belobog",
     "greek": "—",
     "pantheon": "slavic",
-    "domain": "Light, Good, Fortune",
+    "domain": "Light, Goodness (single-source attestation)",
     "meaning": "White god",
     "sources": [
       "Miklosich"
@@ -10408,7 +10408,7 @@ const LEXICON = [
     "unicode": "Radagast",
     "greek": "—",
     "pantheon": "slavic",
-    "domain": "Hospitality, Animals",
+    "domain": "Guest-God (contested attestation)",
     "meaning": "Council of the gods",
     "sources": [
       "Miklosich"
@@ -16023,7 +16023,7 @@ const LEXICON = [
     "unicode": "Theía",
     "greek": "Θεία",
     "pantheon": "greek",
-    "domain": "Titaness of Sight",
+    "domain": "Shining, Mother of the Sun, Moon and Dawn",
     "meaning": "Goddess, divine",
     "sources": [
       "Hesiod",
@@ -17297,7 +17297,7 @@ const LEXICON = [
     "unicode": "Kleiṓ",
     "greek": "Κλειώ",
     "pantheon": "greek",
-    "domain": "History",
+    "domain": "History, Fame, Proclamation",
     "meaning": "Proclaimer, glorifier",
     "sources": [
       "Hesiod",
@@ -21928,7 +21928,7 @@ const LEXICON = [
     "unicode": "Rnnwtt",
     "greek": "—",
     "pantheon": "egyptian",
-    "domain": "Nursing, Harvest",
+    "domain": "Nursing, Harvest, Grain Stores",
     "meaning": "The nursing snake",
     "sources": [
       "Faulkner",
@@ -22200,7 +22200,7 @@ const LEXICON = [
     "greek": "—",
     "originalScript": "𒀭𒀀𒉡",
     "pantheon": "mesopotamian",
-    "domain": "Phonological Reconstruction, Sky, Heaven, Kingship",
+    "domain": "Sky, Heaven, Kingship",
     "meaning": "Reconstruction node for the Sumerian/Akkadian sky god Anu: the circumflex marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
       "ETCSL",
@@ -22579,7 +22579,7 @@ const LEXICON = [
     "unicode": "Tiāmat",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "domain": "Phonological Reconstruction, Salt Water, Chaos",
+    "domain": "Salt Water, Chaos",
     "meaning": "Sea",
     "sources": [
       "Enuma Elish",
@@ -22633,7 +22633,7 @@ const LEXICON = [
     "greek": "—",
     "originalScript": "𒀊𒍪",
     "pantheon": "mesopotamian",
-    "domain": "Phonological Reconstruction, Fresh Water, Abyss",
+    "domain": "Fresh Water, Abyss",
     "meaning": "Reconstruction node for the Mesopotamian abyss Apsu (Sumerian Abzu): the circumflex marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
       "Enuma Elish",
@@ -23914,7 +23914,7 @@ const LEXICON = [
     "greek": "—",
     "pantheon": "sanskrit",
     "domain": "Sacred Formula",
-    "meaning": "a sacred formula addressed to any individual deity (e.g. om SivAya namaH), RTL. 61",
+    "meaning": "A sacred utterance, hymn, or incantation addressed to a deity (from √man, 'to think' — literally 'instrument of thought').",
     "senses": [
       {
         "type": "etymology",
@@ -25620,7 +25620,7 @@ const LEXICON = [
     "unicode": "Ninigi",
     "greek": "邇邇芸命",
     "pantheon": "japanese",
-    "domain": "Rice, Descendant of Amaterasu",
+    "domain": "Heavenly Descent, Imperial Ancestor",
     "meaning": "The august rice spirit",
     "sources": [
       "Kojiki",
@@ -26626,7 +26626,7 @@ const LEXICON = [
     "unicode": "Kamapuaa",
     "greek": "—",
     "pantheon": "polynesian",
-    "domain": "Pig God, Agriculture",
+    "domain": "Pig God, Agriculture, Trickery",
     "meaning": "male fertility deity in Hawaiian mythology",
     "senses": [
       {
@@ -29597,7 +29597,7 @@ const LEXICON = [
     "unicode": "Aganjú",
     "greek": "—",
     "pantheon": "yoruba",
-    "domain": "Wilderness, Earth, Diaspora Volcano",
+    "domain": "Wilderness, Volcanoes, Father of Ṣàngó",
     "meaning": "The uninhabited place",
     "sources": [
       "Bascom",
@@ -31449,7 +31449,7 @@ const LEXICON = [
     "unicode": "Illapa",
     "greek": "—",
     "pantheon": "incan",
-    "domain": "Thunder, Lightning, War",
+    "domain": "Thunder, Lightning, Rain",
     "meaning": "Thunder",
     "sources": [
       "D'Altroy",
@@ -32889,7 +32889,7 @@ const LEXICON = [
     "unicode": "Tàishàng",
     "greek": "太上",
     "pantheon": "chinese",
-    "domain": "Supreme Lord, Dao",
+    "domain": "Supreme Taoist God, Dao, Deified Laozi",
     "meaning": "Supreme, great",
     "sources": [
       "Dao De Jing",
@@ -37768,7 +37768,7 @@ const LEXICON = [
     "unicode": "Magni",
     "greek": "—",
     "pantheon": "norse",
-    "domain": "Strength, Son of Thor",
+    "domain": "Strength, Son of Thor, Heir of Mjölnir",
     "meaning": "The strong one",
     "sources": [
       "Poetic Edda",
@@ -37814,7 +37814,7 @@ const LEXICON = [
     "unicode": "Móði",
     "greek": "—",
     "pantheon": "norse",
-    "domain": "Wrath, Son of Thor",
+    "domain": "Wrath, Son of Thor, Survivor of Ragnarök",
     "meaning": "The angry one",
     "sources": [
       "Poetic Edda",
@@ -38324,7 +38324,7 @@ const LEXICON = [
     "unicode": "Sšꜣt",
     "greek": "—",
     "pantheon": "egyptian",
-    "domain": "Writing, Architecture",
+    "domain": "Writing, Records, Architecture, Astronomy",
     "meaning": "She who scrivens",
     "sources": [
       "Faulkner",
@@ -41718,7 +41718,7 @@ const LEXICON = [
     "unicode": "Mañjuśrī",
     "greek": "—",
     "pantheon": "buddhist",
-    "domain": "Wisdom, Intellect",
+    "domain": "Wisdom, Insight",
     "meaning": "Gentle glory",
     "sources": [
       "Mahayana texts",
@@ -43443,7 +43443,7 @@ const LEXICON = [
     "unicode": "Hwanin",
     "greek": "—",
     "pantheon": "korean",
-    "domain": "Supreme God, Heaven",
+    "domain": "Lord of Heaven, Father of Hwanung",
     "meaning": "Lord of Heaven",
     "sources": [
       "Samguk Yusa",
@@ -45467,7 +45467,7 @@ const LEXICON = [
     "unicode": "Bodhidharma",
     "greek": "菩提達磨",
     "pantheon": "chinese",
-    "domain": "Zen Patriarch, Wall-Gazer",
+    "domain": "Zen Patriarch, Awakening, Martial Arts",
     "meaning": "Dharma of awakening",
     "sources": [
       "Chan texts",
@@ -50830,7 +50830,7 @@ const LEXICON = [
     "unicode": "Lóng",
     "greek": "龍",
     "pantheon": "chinese",
-    "domain": "Dragon",
+    "domain": "Dragons, Rain, Imperial Authority",
     "meaning": "Chinese dragon",
     "sources": [
       "Chinese folklore",
@@ -57542,7 +57542,7 @@ const LEXICON = [
     "unicode": "Kǒngzǐ",
     "greek": "孔子",
     "pantheon": "chinese",
-    "domain": "Confucius, Moral Teaching, Ritual",
+    "domain": "Wisdom, Ethics, Ritual, Learning",
     "meaning": "Master Kong",
     "sources": [
       "Analects",
@@ -58499,7 +58499,7 @@ const LEXICON = [
     unicode: 'Pállas',
     greek: 'Πάλλας',
     pantheon: 'greek',
-    domain: 'Warcraft, Strategy, Celestial Bronze',
+    domain: 'Warcraft, Titan Ancestor of Victory and Might',
     meaning: 'Titan of warcraft; father of Nike, Kratos, Bia, and Zelos',
     sources: ['Hesiod', 'Apollodorus', 'LSJ', 'Pape-Benseler'],
     breakdown: [

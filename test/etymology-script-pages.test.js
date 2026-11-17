@@ -16,10 +16,9 @@ const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
-const {
-  getOriginalScript,
-  hasOriginalScript,
-} = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+const { getOriginalScript, hasOriginalScript } = require(
+  path.join(ROOT, 'type', 'js', 'original-scripts.js')
+);
 
 const SAMPLE = ['zeus', 'anubis', 'aengus', 'enlil', 'freya'].filter((id) =>
   fs.existsSync(path.join(ROOT, 'sites', id, 'index.html'))
@@ -31,12 +30,20 @@ test('etymology pages: complete head + chrome on samples', () => {
     const file = path.join(ROOT, 'sites', id, 'etymology', 'index.html');
     assert.ok(fs.existsSync(file), `${id}: etymology page missing`);
     const html = fs.readFileSync(file, 'utf8');
-    assert.match(html, new RegExp(`<link rel="canonical" href="https://punicodex\\.com/${id}/etymology/">`), `${id}: canonical`);
+    assert.match(
+      html,
+      new RegExp(`<link rel="canonical" href="https://punicodex\\.com/${id}/etymology/">`),
+      `${id}: canonical`
+    );
     assert.match(html, /property="og:image"/, `${id}: og:image`);
     assert.match(html, /"BreadcrumbList"/, `${id}: breadcrumb JSON-LD`);
     assert.match(html, /class="main-nav tab-nav"/, `${id}: tab nav`);
     assert.match(html, /class="site-footer"/, `${id}: footer`);
-    assert.match(html, new RegExp(`href="https://punicodex\\.com/${id}/"`), `${id}: temple link (no orphan)`);
+    assert.match(
+      html,
+      new RegExp(`href="https://punicodex\\.com/${id}/"`),
+      `${id}: temple link (no orphan)`
+    );
   }
 });
 
@@ -51,7 +58,8 @@ test('etymology pages: structured data matches the lexicon', () => {
       assert.ok(html.includes(entry.etymology.protoForm), `${id}: proto form on page`);
     }
     const meaningLead = entry.meaning ? entry.meaning.split(/(?<=[.!?])\s/)[0] : '';
-    if (meaningLead) assert.ok(html.includes(meaningLead.slice(0, 40)), `${id}: meaning lead on page`);
+    if (meaningLead)
+      assert.ok(html.includes(meaningLead.slice(0, 40)), `${id}: meaning lead on page`);
   }
 });
 
@@ -80,13 +88,24 @@ test('script pages: doctrine — only genuinely attested scripts get pages', () 
       const html = fs.readFileSync(page, 'utf8');
       const specimen = getOriginalScript(entry);
       assert.ok(html.includes(specimen), `${entry.id}: specimen ${specimen} on page`);
-      assert.match(html, /Original Script|Scholarly Transliteration/, `${entry}: honest label`);
-      assert.match(html, new RegExp(`href="https://punicodex\\.com/${entry.id}/"`), `${entry.id}: temple link`);
+      assert.match(
+        html,
+        /Original Script|Scholarly Transliteration|Reconstructed Specimen/,
+        `${entry.id}: honest label`
+      );
+      assert.match(
+        html,
+        new RegExp(`href="https://punicodex\\.com/${entry.id}/"`),
+        `${entry.id}: temple link`
+      );
     } else {
       assert.ok(!fs.existsSync(page), `${entry.id}: scriptless entry must NOT have a script page`);
     }
   }
-  assert.ok(withScript > 700, `expected the bulk of entries to carry attested scripts (got ${withScript})`);
+  assert.ok(
+    withScript > 700,
+    `expected the bulk of entries to carry attested scripts (got ${withScript})`
+  );
 });
 
 test('sitemap registers etymology, script, and blog-hub families', () => {

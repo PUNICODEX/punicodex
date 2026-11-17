@@ -255,7 +255,7 @@ const html = `<!DOCTYPE html>
     </script>
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf25">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf26">
     <link rel="stylesheet" href="/css/strip-less-nav.css?v=1">
     <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
     <link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">

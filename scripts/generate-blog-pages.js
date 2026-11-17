@@ -18,11 +18,16 @@ const vm = require('node:vm');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 const { autoLink } = require('./lib/crosslink.js');
 const { templeBreadcrumb } = require('./lib/breadcrumb.js');
+const { templeFooterHtml } = require('./temple-footer.js');
+const {
+  getOriginalScript,
+  getOriginalScriptLabel,
+  hasOriginalScript,
+} = require(path.join(__dirname, '..', 'type', 'js', 'original-scripts.js'));
 const {
   escapeHtml,
   mdToHtml,
   buildTocHtml,
-  buildFooter,
   buildExtendedTab,
   buildPatternsTab,
   buildSeriesLink,
@@ -46,6 +51,44 @@ const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
 
 const TEMPLATE = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
+// Footer spec for the canonical temple footer (scripts/temple-footer.js):
+// harvested from the temple home page's own footer so the blog can never
+// drift from it. Handles both the current temple-footer <dt>/<dd> shape and
+// the legacy footer-label spans; null when neither is present.
+function extractFooterSpec(id) {
+  const homePath = path.join(SITES_DIR, id, 'index.html');
+  if (!fs.existsSync(homePath)) return null;
+  const html = fs.readFileSync(homePath, 'utf8');
+  const dt = html.match(/<dt>(Owned Domains|Domain Reference|Restoration)<\/dt><dd>([\s\S]*?)<\/dd>/);
+  if (dt) return { label: dt[1], value: dt[2].trim() };
+  const span = html.match(
+    /<span class="footer-label">(Owned Domains|Domain Reference|Restoration)<\/span>\s*<span class="footer-value">([^<]+)<\/span>/
+  );
+  if (span) return { label: span[1], value: span[2].trim() };
+  return null;
+}
+
+// Canonical temple footer via the shared hub-mirror builder — the same one
+// sync-temple-footers.js, create-flagship.js and generate-temples.js use —
+// so blog pages carry the pantheon name, the live lexicon count, the
+// doctrine-correct script label, and the ASCII-canonical "recorded under its
+// canonical spelling" wording instead of the stale legacy footer.
+function buildTempleFooter(id, entry, footerSpec, classification) {
+  const script = getOriginalScript(entry);
+  const hasOriginal = hasOriginalScript(entry);
+  return templeFooterHtml({
+    name: entry?.unicode || id,
+    pantheon: entry?.pantheon || '—',
+    domainsLabel: footerSpec?.label || 'Restoration',
+    domainsValue: footerSpec?.value || entry?.unicode || id,
+    classification,
+    scriptLabel: getOriginalScriptLabel(entry),
+    script: hasOriginal ? script : entry?.unicode || id,
+    logomarkSrc: `../assets/${id}_logomark.webp`,
+    logomarkAlt: `${entry?.unicode || id} logomark`,
+  });
+}
+
 // ── Main loop ───────────────────────────────────────────────────────────────
 
 let created = 0;
@@ -63,6 +106,8 @@ for (const id of BUILT_IDS) {
   const entry = LEXICON_BY_ID.get(id);
   const archetype = ARCHETYPES.find((a) => a.id === id);
   const home = extractFromHomePage(id, entry);
+  const footerSpec = extractFooterSpec(id);
+  const domainsText = (footerSpec && footerSpec.value) || home.domainsText;
 
   const unicode = entry?.unicode || id;
   const greek = entry?.greek || '';
@@ -77,7 +122,23 @@ for (const id of BUILT_IDS) {
 
   let html = TEMPLATE;
 
-  const rendered = mdToHtml(post.body);
+  // Doctrine (ACCURACY.md / original-scripts.js): only a name with a real
+  // attested script may claim "the original script". Script-less traditions
+  // get the scholarly-transliteration wording instead.
+  const description = hasOriginalScript(entry)
+    ? post.description
+    : (post.description || '')
+        .replace(/the original script/gi, 'the scholarly transliteration')
+        .replace(/original script/gi, 'scholarly transliteration');
+
+  // Doctrine (scripts/lib/ascii-editorial.js): a plain-ASCII canonical name
+  // is not "restored". Guard against stale content JSONs that still say so.
+  const asciiCanonical = [...unicode].every((c) => c.codePointAt(0) < 128);
+  const body = asciiCanonical
+    ? post.body.replace(/\*\*Restored name:\*\*/g, '**Canonical name:**')
+    : post.body;
+
+  const rendered = mdToHtml(body);
   rendered.html = autoLink(rendered.html, { selfId: id, allowAmbiguousAscii: true });
 
   const replacements = {
@@ -88,14 +149,14 @@ for (const id of BUILT_IDS) {
     DOMAIN: escapeHtml(domain),
     TIER_LABEL: escapeHtml(tierLabel),
     TIER_BADGES: `<span class="meta-badge">${escapeHtml(tierLabel)}</span>`,
-    DOMAINS_TEXT: escapeHtml(home.domainsText),
+    DOMAINS_TEXT: escapeHtml(domainsText),
     EFFECT: escapeHtml(home.effect),
     PRIMARY: escapeHtml(home.primary),
     SECONDARY: escapeHtml(home.secondary),
     POST_TITLE: escapeHtml(post.title),
     POST_TITLE_JSONLD: JSON.stringify(post.title),
-    POST_DESCRIPTION_JSONLD: JSON.stringify(post.description),
-    POST_DESCRIPTION: escapeHtml(post.description),
+    POST_DESCRIPTION_JSONLD: JSON.stringify(description),
+    POST_DESCRIPTION: escapeHtml(description),
     POST_BODY_HTML: rendered.html,
     TOC_HTML: buildTocHtml(rendered.toc),
     POST_KEYWORDS_JSON: post.keywords.map((k) => JSON.stringify(k)).join(', '),
@@ -116,7 +177,7 @@ for (const id of BUILT_IDS) {
     SERIES_NAV_HTML: buildSeriesLink(id),
     EXTENDED_TAB: buildExtendedTab(id, hasExtended, '..'),
     PATTERNS_TAB: buildPatternsTab(id, hasPatterns, '..'),
-    FOOTER: buildFooter(id, entry, home.domainsText, tierLabel, '..'),
+    FOOTER: buildTempleFooter(id, entry, footerSpec, tierLabel),
   };
 
   for (const [key, value] of Object.entries(replacements)) {

@@ -17,15 +17,29 @@ const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
 
 const BUILT = new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
-const ASCII_IDS = LEXICON.filter(
-  (e) => BUILT.has(e.id) && /^[\x00-\x7F]+$/.test(e.unicode)
-).map((e) => e.id);
+const ASCII_IDS = LEXICON.filter((e) => BUILT.has(e.id) && /^[\x00-\x7F]+$/.test(e.unicode)).map(
+  (e) => e.id
+);
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 
 // Deterministic samples across pantheon families + the audit's worst cases.
-const SAMPLE = ['loki', 'amaterasu', 'indra', 'aengus', 'altjira', 'osiris', 'hebe', 'arete', 'moirai', 'hananim', 'adad', 'venus', 'kanaloa', 'freyja', 'nut'].filter((id) =>
-  fs.existsSync(path.join(ROOT, 'sites', id, 'index.html'))
-);
+const SAMPLE = [
+  'loki',
+  'amaterasu',
+  'indra',
+  'aengus',
+  'altjira',
+  'osiris',
+  'hebe',
+  'arete',
+  'moirai',
+  'hananim',
+  'adad',
+  'venus',
+  'kanaloa',
+  'freyja',
+  'nut',
+].filter((id) => fs.existsSync(path.join(ROOT, 'sites', id, 'index.html')));
 const SAMPLE_SET = new Set(SAMPLE);
 
 const FORBIDDEN = [
@@ -64,19 +78,28 @@ test('ASCII-canonical footer: honest tagline, 983 count, no restoration framing'
 
 test('lore card: ASCII Form title on ASCII temples; ASCII Constraint only on marked', () => {
   assert.match(read('sites/loki/lore/index.html'), /ASCII Form/);
-  assert.ok(!/ASCII Constraint/.test(read('sites/loki/lore/index.html')), 'loki must not carry ASCII Constraint title');
+  assert.ok(
+    !/ASCII Constraint/.test(read('sites/loki/lore/index.html')),
+    'loki must not carry ASCII Constraint title'
+  );
   assert.match(read('sites/zeus/lore/index.html'), /ASCII Constraint/);
 });
 
 test('script pages: reconstructed specimens labelled honestly, attested keepers unchanged', () => {
   assert.match(read('sites/loki/script/index.html'), /Reconstructed Specimen/);
-  assert.ok(!/attested original script/.test(read('sites/loki/script/index.html')), 'loki script page must not claim attestation');
+  assert.ok(
+    !/attested original script/.test(read('sites/loki/script/index.html')),
+    'loki script page must not claim attestation'
+  );
   assert.match(read('sites/amaterasu/script/index.html'), /attested original script/);
   assert.match(read('sites/osiris/script/index.html'), /attested original script/);
 });
 
 test('pronunciation pages: canonical-orthography pill on ASCII names, restored kept on marked', () => {
-  assert.match(read('sites/loki/pronunciation/index.html'), /Derived from the canonical orthography/);
+  assert.match(
+    read('sites/loki/pronunciation/index.html'),
+    /Derived from the canonical orthography/
+  );
   assert.ok(!/restored orthography/.test(read('sites/loki/pronunciation/index.html')));
   assert.match(read('sites/zeus/pronunciation/index.html'), /restored orthography/);
 });
@@ -84,8 +107,15 @@ test('pronunciation pages: canonical-orthography pill on ASCII names, restored k
 test('main meta: canonical-name framing on ASCII temples', () => {
   for (const id of ['loki', 'amaterasu', 'indra', 'aengus']) {
     const html = read(`sites/${id}/index.html`);
-    assert.match(html, new RegExp(`the canonical \\w+ name`), `${id}: meta uses 'canonical … name'`);
-    assert.ok(!new RegExp(`the restored \\w+ name`).test(html), `${id}: meta must not say 'the restored … name'`);
+    assert.match(
+      html,
+      new RegExp(`the canonical \\w+ name`),
+      `${id}: meta uses 'canonical … name'`
+    );
+    assert.ok(
+      !new RegExp(`the restored \\w+ name`).test(html),
+      `${id}: meta must not say 'the restored … name'`
+    );
   }
 });
 
@@ -94,7 +124,10 @@ test('blog canonical JSONs: no attestation claims for reconstructed specimens', 
     const file = path.join(ROOT, 'platform', 'blog', 'series', 'canonical', `${id}.json`);
     if (!fs.existsSync(file)) continue;
     const body = read(`platform/blog/series/canonical/${id}.json`);
-    assert.ok(!/The attested form is/.test(body), `${id}: reconstructed specimen must not claim attestation`);
+    assert.ok(
+      !/The attested form is/.test(body),
+      `${id}: reconstructed specimen must not claim attestation`
+    );
   }
   // Attested keepers retain the claim.
   assert.match(read('platform/blog/series/canonical/osiris.json'), /The attested form is/);
@@ -105,7 +138,10 @@ test('blog restoration JSONs: ASCII posts carry no marks-heading', () => {
     const file = path.join(ROOT, 'platform', 'blog', 'series', 'restoration', `${id}.json`);
     if (!fs.existsSync(file)) continue;
     const body = read(`platform/blog/series/restoration/${id}.json`);
-    assert.ok(!/The Name Before the Marks/.test(body), `${id}: ASCII post must not carry marks heading`);
+    assert.ok(
+      !/The Name Before the Marks/.test(body),
+      `${id}: ASCII post must not carry marks heading`
+    );
   }
 });
 

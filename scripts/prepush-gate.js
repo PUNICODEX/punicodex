@@ -142,6 +142,10 @@ const RULES = [
     suites: ['ASCII Doctrine Tests'],
   },
   {
+    pattern: /^scripts\/create-flagship\.js$|^scripts\/lib\/crosslink\.js$|^scripts\/lore-catalog\.json$|^type\/js\/similarity-groups\.js$|^scripts\/generate-similarities\.js$|^platform\/api\/similarities\.json$|^sites\/|^test\/extended-lore-integrity\.test\.js$/,
+    suites: ['Extended Lore Integrity Tests'],
+  },
+  {
     pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/(?:origins|strata)\/|^test\/strata-page\.test\.js$/,
     suites: ['STRATA Page Tests'],
   },

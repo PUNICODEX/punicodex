@@ -1876,7 +1876,7 @@ function buildQuickFactsSection(entry, catalogEntry, sectionNumber = 1) {
   const hasOriginal = hasOriginalScript(entry);
   const pantheonLabel = (entry.pantheon || '')
     .replace(/-/g, ' ')
-    .replace(/\w/g, (c) => c.toUpperCase());
+    .replace(/\b\w/g, (c) => c.toUpperCase());
   const facts = [
     { dt: 'Pantheon', dd: escapeHtml(pantheonLabel) },
     { dt: 'Domain', dd: escapeHtml(entry.domain) },
@@ -1885,13 +1885,25 @@ function buildQuickFactsSection(entry, catalogEntry, sectionNumber = 1) {
     .replace(/<[^>]+>/g, ' ')
     .match(/(?:c\.\s*)?\d{3,4}(?:\s*[–—-]\s*\d{3,4})?\s*(?:BCE|CE|BC|AD)/i);
   if (dating) facts.push({ dt: 'Attested', dd: escapeHtml(dating[0].replace(/\s+/g, ' ')) });
+  // Script card: link the script ROOM only where one exists (hasOriginalScript
+  // mirrors generate-script-pages.js gating). Script-less traditions link the
+  // on-page note when one exists, else render plain text — never a 404.
+  const scriptValue = escapeHtml(hasOriginal ? greek : entry.unicode);
+  const scriptDd = hasOriginal
+    ? `<a href="/${entry.id}/script/" style="color:var(--primary,#d4af37)">${scriptValue} →</a>`
+    : catalogEntry?.originalScriptNote
+      ? `<a href="#original-script-note" style="color:var(--primary,#d4af37)">${scriptValue} →</a>`
+      : scriptValue;
+  facts.push({ dt: getOriginalScriptLabel(entry), dd: scriptDd });
+  // Cited counter: when nothing matches the primary-text patterns, count the
+  // full cited apparatus and relabel the card — "0 cited" above a full
+  // bibliography reads as an authoring error.
+  const primaryN = countPrimarySources(entry, catalogEntry);
+  const totalCited = (entry.sources || []).length + (catalogEntry?.sources || []).length;
+  const citedN = primaryN > 0 ? primaryN : totalCited;
   facts.push({
-    dt: getOriginalScriptLabel(entry),
-    dd: `<a href="/${entry.id}/script/" style="color:var(--primary,#d4af37)">${escapeHtml(hasOriginal ? greek : entry.unicode)} →</a>`,
-  });
-  facts.push({
-    dt: 'Primary Sources',
-    dd: `<a href="#sources" style="color:var(--primary,#d4af37)">${countPrimarySources(entry, catalogEntry)} cited →</a>`,
+    dt: primaryN > 0 ? 'Primary Sources' : 'Cited Works',
+    dd: `<a href="#sources" style="color:var(--primary,#d4af37)">${citedN} cited →</a>`,
   });
   const rows = facts
     .map(
@@ -1996,7 +2008,7 @@ function buildEtymologySection(entry, catalogEntry, sectionNumber = 2) {
         <div class="section-header reveal-up">
             <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Etymology & Word Family</h2>
-            <p class="section-subtitle">From original script to Unicode restoration — <a href="/${entry.id}/etymology/" style="color:var(--primary,#d4af37)">the full etymology page →</a></p>
+            <p class="section-subtitle">${hasOriginal ? 'From original script to Unicode restoration' : 'From attested form to canonical spelling'} — <a href="/${entry.id}/etymology/" style="color:var(--primary,#d4af37)">the full etymology page →</a></p>
         </div>
         <div class="etymology-content">
             <div class="etymology-main reveal-up">
@@ -2315,8 +2327,10 @@ function buildExploreTempleStrip(entry) {
     ['blog/', 'Blog'],
     ['pronunciation/', 'Pronunciation'],
     ['etymology/', 'Etymology'],
-    ['script/', getOriginalScriptLabel(entry)],
   ];
+  // The script room exists only where a real attested script does — the same
+  // hasOriginalScript gate generate-script-pages.js uses to write the page.
+  if (hasOriginalScript(entry)) rooms.push(['script/', getOriginalScriptLabel(entry)]);
   const links = rooms
     .map(([p, label]) => `<a href="/${entry.id}/${p}" class="source-badge">${label}</a>`)
     .join('');
@@ -2374,11 +2388,27 @@ function buildFaqItems(entry, catalogEntry) {
   // plus a link to the section that owns the fact.
   const firstSentence = (html) => {
     const plain = (html || '')
-      .replace(/<[^>]+>/g, ' ')
+      .replace(/<[^>]+>/g, '')
       .replace(/\s+/g, ' ')
+      .replace(/\s+([,.;:!?])/g, '$1')
       .trim();
     const m = plain.match(/^[^.!?]+[.!?]/);
-    return m ? m[0].trim() : plain;
+    if (!m) return plain;
+    let sentence = m[0].trim();
+    // A citation-style opener ("(c.", "(5.") dangles when the sentence break
+    // lands inside it — extend to the closing paren; if none exists, drop the
+    // dangling opener rather than ship broken grammar.
+    const opens = (sentence.match(/\(/g) || []).length;
+    const closes = (sentence.match(/\)/g) || []).length;
+    if (opens > closes) {
+      const rest = plain.slice(sentence.length);
+      const closeIdx = rest.indexOf(')');
+      sentence =
+        closeIdx !== -1
+          ? (sentence + rest.slice(0, closeIdx + 1)).trim()
+          : sentence.replace(/\s*\([^()]*$/, '').trim();
+    }
+    return sentence;
   };
   const items = [];
   if (catalogEntry?.archaeology || catalogEntry?.cult) {
@@ -2424,15 +2454,29 @@ function buildFaqItems(entry, catalogEntry) {
 // FAQPage JSON-LD must mirror the visible FAQ exactly (rubric §4) — both are
 // built from the same item list.
 function faqJsonLd(items) {
+  // Structured data must carry prose, not pointer text — drop anchors
+  // wholesale ("The full cult record →" is UI chrome), then decode entities
+  // (cheerio keeps &amp; / &#39; raw inside <script> JSON).
+  const decodeEntities = (s) =>
+    s
+      .replace(/&(#39|#x27);/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&amp;/g, '&');
   const mainEntity = items.map((it) => ({
     '@type': 'Question',
     name: it.q,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: it.a
-        .replace(/<[^>]+>/g, '')
-        .replace(/\s+/g, ' ')
-        .trim(),
+      text: decodeEntities(
+        it.a
+          .replace(/<a [^>]*>.*?<\/a>/g, '')
+          .replace(/<[^>]+>/g, ' ')
+          .replace(/\s+/g, ' ')
+          .replace(/\s+([,.;:!?])/g, '$1')
+          .trim()
+      ),
     },
   }));
   return `<script type="application/ld+json">
@@ -2685,6 +2729,110 @@ function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
     hindu: 'The <em>Ṛgveda</em>; the <em>Brāhmaṇas</em>; early Upaniṣadic literature.',
     japanese: 'The <em>Kojiki</em>; the <em>Nihon Shoki</em>; shrine ritual records.',
   };
+  // Real general references per tradition — used only when the catalog names
+  // no specific work for the category. Anything still empty is omitted rather
+  // than shipped as a pseudo-citation (audit: "Material evidence — for X and
+  // related cults" undercut the "grounded in scholarship" claim on 575 pages).
+  const PRIMARY_TEXTS_EXTRA = {
+    taoist:
+      'The <em>Daodejing</em> (Tao Te Ching); the <em>Zhuangzi</em>; the Daoist canon (<em>Daozang</em>).',
+    chinese:
+      'The <em>Shan Hai Jing</em> (Classic of Mountains and Seas); the <em>Huainanzi</em>; the <em>Chuci</em>.',
+    korean:
+      'The <em>Samguk Yusa</em> (Memorabilia of the Three Kingdoms); the <em>Samguk Sagi</em>; the <em>Jewang Ungi</em>.',
+    hittite:
+      'The Hittite cult inventories (CTH 501–530); the Kumarbi-cycle mythological texts (CTH 344–345); the royal archives of Ḫattuša.',
+    polynesian:
+      'The <em>Kumulipo</em> (Hawaiian creation chant); orally preserved genealogy and chant corpora across the islands.',
+    aboriginal:
+      'Orally preserved songlines, Dreaming narratives, and ceremony cycles, recorded in community-led collections.',
+    mapuche:
+      'Mapuche oral epic and prayer tradition (<em>ül</em> and <em>nüm</em>) as recorded in twentieth-century ethnographic collections.',
+    baltic:
+      'The Latvian <em>dainas</em> and Lithuanian <em>dainos</em>; chronicle references to Baltic religion.',
+    roman:
+      'Ovid. <em>Metamorphoses</em> and <em>Fasti</em>; Vergil. <em>Aeneid</em>; Roman festival calendars and <em>acta</em>.',
+    phoenician:
+      'The Ugaritic Baal Cycle; Phoenician inscriptions (Karatepe, Kition); Punic votive stelae.',
+    'greek-location':
+      'Pausanias. <em>Description of Greece</em>; Strabo. <em>Geography</em>; the periegetic tradition.',
+  };
+  const ARCHAEOLOGY_BY_PANTHEON = {
+    greek:
+      'Boardman, J. <em>Greek Sculpture: The Classical Period</em>; Carpenter, T. H. <em>Art and Myth in Ancient Greece</em>.',
+    'greek-location':
+      'Carter, J. C., & Morter, J. (eds.). <em>The Countryside of Koresia</em>; survey archaeology of Greek sacred landscapes.',
+    norse:
+      'Foote, P., & Wilson, D. M. <em>The Viking Achievement</em>; Graham-Campbell, J. <em>Viking Art</em>.',
+    egyptian:
+      'Robins, G. <em>The Art of Ancient Egypt</em>; Hornung, E. <em>Conceptions of God in Ancient Egypt</em>.',
+    sanskrit: 'Banerjea, J. N. <em>The Development of Hindu Iconography</em>.',
+    celtic:
+      'Megaw, R., & Megaw, V. <em>Celtic Art: From Its Beginnings to the Book of Kells</em>; Green, M. <em>The Gods of the Celts</em>.',
+    mesopotamian:
+      'Frankfort, H. <em>The Art and Architecture of the Ancient Orient</em>; Collon, D. <em>Near Eastern Seals</em>.',
+    polynesian:
+      "Mead, S. M. (ed.). <em>Te Maori: Maori Art from New Zealand Collections</em>; D'Alleva, A. <em>Arts of the Pacific Islands</em>.",
+    japanese: 'Guth, C. <em>Art of Edo Japan</em>; Kidder, J. E. <em>Early Japanese Art</em>.',
+    nahuatl: 'Pasztory, E. <em>Aztec Art</em>; Umberger, E. <em>The Antiques of the Mexica</em>.',
+    yoruba:
+      'Willett, F. <em>Ife in the History of West African Sculpture</em>; Drewal, H. <em>Yoruba: Nine Centuries of African Art and Thought</em>.',
+    slavic: 'Rybakov, B. A. <em>Язычество древних славян</em> (Paganism of the Ancient Slavs).',
+    zoroastrian: 'Ghirshman, R. <em>Persia: From the Origins to Alexander the Great</em>.',
+    incan:
+      'Bauer, B. <em>The Sacred Landscape of the Inca</em>; Rowe, J. H. studies on Inca art and architecture.',
+    aboriginal:
+      'Morphy, H. <em>Aboriginal Art</em>; Berndt, R. M., & Berndt, C. H. <em>The Speaking Land</em>.',
+    chinese:
+      'Chang, K. C. <em>Art, Myth, and Ritual: The Path to Political Authority in Ancient China</em>.',
+    buddhist: 'Zwalf, W. (ed.). <em>Buddhism: Art and Faith</em>.',
+    taoist: 'Little, S. <em>Taoism and the Arts of China</em>.',
+    korean: 'Kim Won-yong. <em>The Arts of Korea</em>.',
+    canaanite:
+      'Harden, D. <em>The Phoenicians</em>; Pritchard, J. B. (ed.). <em>The Ancient Near East in Pictures</em>.',
+    phoenician: 'Harden, D. <em>The Phoenicians</em>; Markoe, G. <em>Phoenicians</em>.',
+    hittite:
+      'Bittel, K. <em>Hattusha: The Capital of the Hittites</em>; Güterbock, H. G. studies of Hittite art.',
+    mapuche: 'Dillehay, T. D. studies of Araucanian archaeology and culture.',
+    baltic: 'Gimbutas, M. <em>The Balts</em>.',
+    roman: 'Strong, D. <em>Roman Art</em>; Ramage, N., & Ramage, A. <em>Roman Art</em>.',
+  };
+  const RELIGIOUS_STUDIES_BY_PANTHEON = {
+    greek:
+      'Burkert, W. <em>Greek Religion</em>; Nilsson, M. P. <em>Geschichte der griechischen Religion</em>.',
+    'greek-location':
+      'Pausanias. <em>Description of Greece</em>; the study of Greek sacred geography and cult places.',
+    norse:
+      'Turville-Petre, E. O. G. <em>Myth and Religion of the North</em>; Lindow, J. <em>Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs</em>.',
+    egyptian: 'Assmann, J. <em>The Search for God in Ancient Egypt</em>.',
+    sanskrit: 'Gonda, J. <em>Die Religionen Indiens</em>; Doniger, W. studies of Hindu mythology.',
+    celtic: 'Mac Cana, P. <em>Celtic Mythology</em>; Green, M. <em>The Gods of the Celts</em>.',
+    mesopotamian:
+      'Jacobsen, T. <em>The Treasures of Darkness</em>; Bottéro, J. <em>Religion in Ancient Mesopotamia</em>.',
+    polynesian: 'Craig, R. D. <em>Dictionary of Polynesian Mythology</em>.',
+    japanese: 'Aston, W. G. <em>Shinto: The Way of the Gods</em>.',
+    nahuatl: 'Nicholson, H. B. studies of Aztec religion; the ethnohistory of the Sahagún corpus.',
+    yoruba:
+      'Idowu, E. B. <em>Olodumare: God in Yoruba Belief</em>; Bascom, W. <em>Ifa Divination: Communication Between Gods and Men in West Africa</em>.',
+    slavic: 'Ivanits, L. J. <em>Russian Folk Belief</em>.',
+    zoroastrian: 'Boyce, M. <em>Zoroastrians: Their Religious Beliefs and Practices</em>.',
+    incan: 'Classical Inca religion as reconstructed from chronicles and cult-site archaeology.',
+    aboriginal:
+      'Berndt, R. M., & Berndt, C. H. <em>The Speaking Land: Myth and Story in Aboriginal Australia</em>.',
+    chinese: 'Birrell, A. <em>Chinese Mythology: An Introduction</em>.',
+    buddhist: 'Williams, P. <em>Mahāyāna Buddhism: The Doctrinal Foundations</em>.',
+    taoist: 'Robinet, I. <em>Taoism: Growth of a Religion</em>.',
+    korean: 'Grayson, J. H. <em>Korea: A Religious History</em>.',
+    canaanite:
+      'Smith, M. S. <em>The Early History of God: Yahweh and the Other Deities in Ancient Israel</em>.',
+    phoenician: 'Markoe, G. <em>Phoenicians</em>; studies of Punic religion.',
+    hittite:
+      'Haas, V. <em>Geschichte der hethitischen Religion</em>; Popko, M. <em>Religions of Asia Minor</em>.',
+    mapuche:
+      'Cooper, J. M. studies of Araucanian religion in the <em>Handbook of South American Indians</em>.',
+    baltic: 'Greimas, A. J. <em>Of Gods and Men: Studies in Lithuanian Mythology</em>.',
+    roman: 'Beard, M., North, J., & Price, S. <em>Religions of Rome</em>.',
+  };
   const archaeologyPatterns = [
     /Archaeology/,
     /Art History/,
@@ -2717,8 +2865,8 @@ function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
     if (PRIMARY_SOURCE_PATTERNS.some((p) => p.test(s))) primaryFromLex.push(cite);
     else lexItems.push(cite);
   }
-  if (!lexItems.length)
-    lexItems.push(`<cite>Lexical and philological sources for ${entry.unicode}.</cite>`);
+  // Empty categories are omitted below — a content-free card under the
+  // "grounded in established scholarship" banner undercuts the apparatus.
 
   const primaryItems = [...primaryFromLex];
   const archaeologyItems = [];
@@ -2740,22 +2888,16 @@ function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
   }
 
   if (!primaryItems.length) {
-    const primaryText =
-      primaryByPantheon[entry.pantheon] ||
-      `Primary sources in the ${entry.pantheon} tradition for ${entry.unicode}.`;
-    primaryItems.push(`<cite>${primaryText}</cite>`);
+    const primaryText = primaryByPantheon[entry.pantheon] || PRIMARY_TEXTS_EXTRA[entry.pantheon];
+    if (primaryText) primaryItems.push(`<cite>${primaryText}</cite>`);
   }
 
-  if (!archaeologyItems.length) {
-    archaeologyItems.push(
-      `<cite>Material evidence — iconography, inscriptions, and temple archaeology — for ${entry.unicode} and related cults.</cite>`
-    );
+  if (!archaeologyItems.length && ARCHAEOLOGY_BY_PANTHEON[entry.pantheon]) {
+    archaeologyItems.push(`<cite>${ARCHAEOLOGY_BY_PANTHEON[entry.pantheon]}</cite>`);
   }
 
-  if (!religiousItems.length) {
-    religiousItems.push(
-      `<cite>Comparative studies of ${entry.pantheon} religion and the place of ${entry.unicode} within it.</cite>`
-    );
+  if (!religiousItems.length && RELIGIOUS_STUDIES_BY_PANTHEON[entry.pantheon]) {
+    religiousItems.push(`<cite>${RELIGIOUS_STUDIES_BY_PANTHEON[entry.pantheon]}</cite>`);
   }
 
   // NOTE: catalogEntry.archaeology is intentionally NOT rendered here — it has
@@ -2767,7 +2909,7 @@ function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
     { title: 'Primary Texts', icon: '◎', items: primaryItems },
     { title: 'Archaeology & Art History', icon: '◉', items: archaeologyItems },
     { title: 'Religious Studies', icon: '✦', items: religiousItems },
-  ];
+  ].filter((cat) => cat.items.length > 0);
   const categoryGrid = sourceCategories
     .map(
       (cat) => `<div class="source-category reveal-up">
@@ -2786,7 +2928,7 @@ function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
         <div class="section-header reveal-up">
             <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Scholarly Sources</h2>
-            <p class="section-subtitle">The philological foundations of this restoration</p>
+            <p class="section-subtitle">${!/[^\x00-\x7F]/.test(entry.unicode || '') ? 'The philological foundations of the record' : 'The philological foundations of this restoration'}</p>
         </div>
         <div class="sources-content reveal-up">
             <div class="sources-intro">
@@ -2998,14 +3140,23 @@ function buildHomeMetaDescription(entry) {
       ];
   const payloads = asciiOnly
     ? owned
-      ? ['the temple, its Reliquary, and the restored-domain record.', 'the temple and its Reliquary.']
+      ? [
+          'the temple, its Reliquary, and the restored-domain record.',
+          'the temple and its Reliquary.',
+        ]
       : ['the temple, its Reliquary, and its scholarly record.', 'the temple and its Reliquary.']
     : hasScript && owned
-      ? ['original script, the restored domain, and the temple record.', 'original script and the restored domain.']
+      ? [
+          'original script, the restored domain, and the temple record.',
+          'original script and the restored domain.',
+        ]
       : hasScript
         ? ['original script and the temple record.', 'original script and its scholarship.']
         : owned
-          ? ['the restored domain and the temple record.', 'the temple record and the restored domain.']
+          ? [
+              'the restored domain and the temple record.',
+              'the temple record and the restored domain.',
+            ]
           : ['the temple record and its scholarship.', 'the temple record.'];
   const closers = [
     " Sponsor this temple's spaces or shop its Reliquary.",
@@ -3101,7 +3252,12 @@ function buildNameVariationsSection(entry, sectionNumber) {
   if (!family) return buildLegacyNameVariationsSection(entry, sectionNumber);
 
   const source = getOriginalScript(entry);
-  const restores = source ? `Restores <strong>${escapeHtml(source)}</strong>. ` : '';
+  const asciiCanonical = !/[^\x00-\x7F]/.test(entry.unicode || '');
+  const restores = source
+    ? asciiCanonical
+      ? `Original script <strong>${escapeHtml(source)}</strong> — the attested writing of the name. `
+      : `Restores <strong>${escapeHtml(source)}</strong>. `
+    : '';
 
   const cards = [];
   const seen = new Set();
@@ -3200,7 +3356,12 @@ function buildLegacyNameVariationsSection(entry, sectionNumber) {
   const byType = (t) => variants.filter((v) => v && v.type === t && v.unicode);
   const ownedForms = getOwnedForms(entry);
   const isOwnedForm = (form) => OWNED_DOMAINS_SET.has(`${form}.com`.toLowerCase().normalize('NFC'));
-  const restores = source ? `Restores <strong>${escapeHtml(source)}</strong>. ` : '';
+  const asciiCanonical = !/[^\x00-\x7F]/.test(entry.unicode || '');
+  const restores = source
+    ? asciiCanonical
+      ? `Original script <strong>${escapeHtml(source)}</strong> — the attested writing of the name. `
+      : `Restores <strong>${escapeHtml(source)}</strong>. `
+    : '';
 
   const cards = [];
   const seen = new Set();
@@ -4093,11 +4254,18 @@ function copyPatronTemplate(siteDir, templateDir, entry, catalogEntry = null) {
     const dest = path.join(destDir, file.name);
     if (file.name.endsWith('.html')) {
       const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
+      // The patron template still ships the legacy "Logo injected by JS" nav;
+      // swap in the canonical tab-nav like the write loop does for outputs.
+      const { syncHtml } = require('./sync-temple-tab-nav.js');
       safeWriteFileSync(
         dest,
-        substituteTempleVars(content, entry, { name: 'Patron', path: 'patron/' })
-          .split('{{PATRON_INTRO}}')
-          .join(intro),
+        syncHtml(
+          substituteTempleVars(content, entry, { name: 'Patron', path: 'patron/' })
+            .split('{{PATRON_INTRO}}')
+            .join(intro),
+          entry.id,
+          'patron'
+        ),
         'utf8'
       );
     } else {
@@ -4273,6 +4441,10 @@ function buildExtendedMetaDescription(entry, catalogEntry) {
   if (has('iconography')) facets.push('iconography');
   if (has('reception') || has('syncretism') || has('culturalLegacy')) facets.push('reception');
   if (has('extendedMeditation')) facets.push('a meditation on the name');
+  if (parallelsFor(entry.id).length) facets.push('equivalents across traditions');
+  if ((EVERYDAY_WORDS_MAP.get(entry.id) || []).length) facets.push('the name in the modern world');
+  if ((SACRED_SITES?.sites || []).some((s) => (s.deities || []).some((d) => d.id === entry.id)))
+    facets.push('the places that carry the name');
   const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
   const firstClause = (entry.domain || '').split(',')[0].trim();
   const scope = firstClause
@@ -4383,7 +4555,7 @@ function buildExtendedNavLinks(vars) {
   if (vars.RECEPTION) links.push(['#reception', 'Reception']);
   if (vars.PARALLELS) links.push(['#parallels', 'Parallels']);
   if (vars.PLACES) links.push(['#places', 'Places']);
-  if (vars.SCRIPT_NOTE) links.push(['#script-note', 'Script']);
+  if (vars.SCRIPT_NOTE) links.push(['#original-script-note', 'Script']);
   if (vars.MEDITATION) links.push(['#meditation', 'Meditation']);
   if (vars.SCREEN_APPEARANCES) links.push(['#screen-appearances', 'Screen']);
   links.push(['#faq', 'FAQ'], ['#sources', 'Sources']);
@@ -4599,7 +4771,11 @@ function createFlagship(templeId, options = {}) {
       outputs['patron/index.html'] = syncHtml(outputs['patron/index.html'], templeId, 'patron');
     }
     if (outputs['patterns/index.html']) {
-      outputs['patterns/index.html'] = syncHtml(outputs['patterns/index.html'], templeId, 'patterns');
+      outputs['patterns/index.html'] = syncHtml(
+        outputs['patterns/index.html'],
+        templeId,
+        'patterns'
+      );
     }
   }
 

@@ -160,6 +160,18 @@ for (const id of BUILT_IDS) {
       'texts',
       'trending',
       'type',
+      'about',
+      'appraise',
+      'careers',
+      'culture',
+      'engineering',
+      'herald',
+      'instruments',
+      'library',
+      'relics',
+      'screen',
+      'university-sponsorship',
+      'world',
     ]);
     const linkRe = /href="\/(?:sites\/)?([a-z0-9-]+)\//g;
     let match;

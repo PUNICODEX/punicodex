@@ -147,7 +147,7 @@ const html = `<!DOCTYPE html>
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf25">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf26">
 <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
 <link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">
 <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
@@ -378,7 +378,7 @@ ${hero ? `<meta property="og:image" content="${esc(hero.src)}">` : '<meta proper
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf25">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf26">
 <link rel="stylesheet" href="${PINS.NAV_MORE_CSS}">
 <link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">
 <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">

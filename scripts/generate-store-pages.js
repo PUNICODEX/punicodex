@@ -479,7 +479,7 @@ ${
 <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css?v=perf40">
 <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
-${templeId ? `<link rel="stylesheet" href="/css/temple-base.css?v=perf25"><link rel="stylesheet" href="/${templeId}/styles.css?v=${templeCssPin}">` : ''}
+${templeId ? `<link rel="stylesheet" href="/css/temple-base.css?v=perf26"><link rel="stylesheet" href="/${templeId}/styles.css?v=${templeCssPin}">` : ''}
 <style>${BASE_CSS}${css}${MOBILE_SAFE_CSS}</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">

@@ -26,7 +26,11 @@ test('hubs exist for every pantheon with essays', () => {
   assert.ok(keys.length >= 20, `expected 20+ hubs, got ${keys.length}`);
   for (const key of keys) {
     const html = fs.readFileSync(path.join(HUB_ROOT, key, 'index.html'), 'utf8');
-    assert.match(html, new RegExp(`<link rel="canonical" href="https://punicodex\\.com/blog/pantheon/${key}/">`), `${key}: canonical`);
+    assert.match(
+      html,
+      new RegExp(`<link rel="canonical" href="https://punicodex\\.com/blog/pantheon/${key}/">`),
+      `${key}: canonical`
+    );
     assert.match(html, /property="og:image"/, `${key}: og:image`);
     assert.match(html, /"CollectionPage"/, `${key}: JSON-LD`);
     assert.match(html, /class="site-footer"/, `${key}: footer`);
@@ -49,9 +53,6 @@ test('hub titles are unique per pantheon', () => {
 test('main blog index links every hub with crawlable anchors', () => {
   const html = fs.readFileSync(path.join(ROOT, 'blog', 'index.html'), 'utf8');
   for (const key of hubs()) {
-    assert.ok(
-      html.includes(`href="/blog/pantheon/${key}/"`),
-      `/blog/ must link hub ${key}`
-    );
+    assert.ok(html.includes(`href="/blog/pantheon/${key}/"`), `/blog/ must link hub ${key}`);
   }
 });

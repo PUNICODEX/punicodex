@@ -193,7 +193,7 @@ function renderPage(entry) {
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
 <link rel="stylesheet" href="../styles.css?v=${cssPin}">
-<link rel="stylesheet" href="/css/temple-base.css?v=perf25">
+<link rel="stylesheet" href="/css/temple-base.css?v=perf26">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>
 <script type="application/ld+json">${JSON.stringify(breadcrumbLd).replace(/</g, '\\u003c')}</script>

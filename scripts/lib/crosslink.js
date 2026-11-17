@@ -30,7 +30,20 @@ const BY_ID = new Map(entries.map((e) => [e.id, e]));
 //  - AMBIGUOUS_ASCII: names that ARE the deity when capitalized in
 //    mythological prose (Nike, Atlas, Gaia, Hera…) — linked only when the
 //    caller passes allowAmbiguousAscii.
-const NEVER_LINK = new Set(['long', 'day', 'set', 'min', 'nut', 'ran', 'meme']);
+const NEVER_LINK = new Set([
+  'long',
+  'day',
+  'set',
+  'min',
+  'nut',
+  'ran',
+  'meme',
+  // Scholars' first names that collide with entry ids (audit: false links to
+  // /david/, /diana/, /mani/ from citation apparatus and prose).
+  'david',
+  'diana',
+  'mani',
+]);
 const AMBIGUOUS_ASCII = new Set([
   'asia', 'nike', 'atlas', 'rhea', 'hera', 'io', 'ma', 'ba', 'ge', 'ea', 'ab',
   'anu', 'su', 'ki', 'ai', 'ra', 'sol', 'mot', 'ker', 'maat',
@@ -171,6 +184,7 @@ const FORM_TO_ID_WITH_AMBIGUOUS = new Map(MATCHES_WITH_AMBIGUOUS.map((m) => [m.f
 
 const SKIP_TAGS = new Set([
   'a',
+  'cite',
   'code',
   'pre',
   'script',
@@ -263,6 +277,10 @@ function autoLink(
     linkCitations = false,
   } = {}
 ) {
+  // Explicit [[id|Label]] markers first: if autoLink ran before the wikilink
+  // expansion, the bare label inside the brackets would be linked and the
+  // literal "[[…]]" wrapper would survive into rendered HTML.
+  html = transformWikilinks(html, { hrefFor });
   // Citation pass runs as its own DOM walk first, so deity-name linking in
   // the second pass naturally skips text already inside citation anchors
   // (no nested anchors, whatever order names appear in).

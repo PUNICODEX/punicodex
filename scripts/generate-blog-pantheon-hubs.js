@@ -190,7 +190,7 @@ function renderHub(key, posts, allKeys) {
     ${jsonLd}
     </script>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf25">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf26">
     <link rel="stylesheet" href="${PINS.NAV_HUBS_CSS}">
     <link rel="stylesheet" href="${PINS.SITE_NAV_CSS}">
     <link rel="stylesheet" href="${PINS.MOBILE_MENU_CSS}">
