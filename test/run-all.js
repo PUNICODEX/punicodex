@@ -410,6 +410,7 @@ const SUITES = [
   { name: 'Pronunciation Pages Tests', cmd: 'node test/pronunciation-pages.test.js', timeout: 120000 },
   { name: 'Etymology & Script Pages Tests', cmd: 'node test/etymology-script-pages.test.js', timeout: 120000 },
   { name: 'Blog Pantheon Hubs Tests', cmd: 'node test/blog-pantheon-hubs.test.js', timeout: 120000 },
+  { name: 'ASCII Doctrine Tests', cmd: 'node test/ascii-doctrine.test.js', timeout: 120000 },
   {
     name: 'ASCII Editorial Truth Tests',
     cmd: 'node test/ascii-editorial-truth.test.js',

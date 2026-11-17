@@ -36,6 +36,33 @@ const SITE_ORIGIN = 'https://punicodex.com';
 const esc = (s) =>
   String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
+// Provenance strings that mark the SPECIMEN itself as a scholarly reconstruction
+// (not merely a reconstructed vocalisation on an attested script — Egyptian,
+// Phoenician, Ugaritic and Sumerian specimens stay "the attested original script").
+const RECONSTRUCTION_MARKERS = [
+  /normalized phonetic reconstruction/i, // Norse Younger Futhark normalizations, wyrd
+  /attestation or normalized reconstruction/i, // hedged Viking-Age forms
+  /not attested in runic inscriptions/i, // sleipnir
+  /no direct runic inscription/i, // mani
+  /not an attested inscription/i, // wyrd
+  /do not preserve the name directly/i, // bifrost
+  /(?:is|as) a (?:normalized |scholarly )+reconstruction/i, // sigurd, jord, mani
+  /the vowels are reconstructed/i, // nut (audit-verified reconstruction case)
+];
+
+function isReconstructedSpecimen(prov) {
+  if (!prov) return false;
+  const parts = [
+    prov.phoneticReconstruction,
+    prov.normalizedReading,
+    prov.etymology,
+    ...(Array.isArray(prov.steps) ? prov.steps : []),
+    ...(Array.isArray(prov.uncertainties) ? prov.uncertainties : []),
+  ].filter((s) => typeof s === 'string');
+  const text = parts.join('\n');
+  return RECONSTRUCTION_MARKERS.some((re) => re.test(text));
+}
+
 const onlyIdx = process.argv.indexOf('--only');
 const only = onlyIdx > -1 ? new Set(process.argv[onlyIdx + 1].split(',')) : null;
 
@@ -85,8 +112,14 @@ function renderPage(entry) {
   const prov = getProvenance(entry) || {};
 
   const name = entry.unicode;
-  const title = `${name} in ${scriptName} — the attested original script | PUNICODEX`;
-  const descSeed = `${name} written in ${scriptName}: ${script}${prov.transliteration ? ` (${prov.transliteration})` : ''}. The attested form, sign by sign, with sources and provenance.`;
+  const reconstructed = isReconstructedSpecimen(prov);
+  const badge = reconstructed ? 'Reconstructed Specimen' : label;
+  const title = reconstructed
+    ? `${name} in ${scriptName} — the reconstructed specimen | PUNICODEX`
+    : `${name} in ${scriptName} — the attested original script | PUNICODEX`;
+  const descSeed = reconstructed
+    ? `${name} written in ${scriptName}: ${script}${prov.transliteration ? ` (${prov.transliteration})` : ''}. A reconstructed specimen — scholarly normalization, not a surviving inscription; signs and sources.`
+    : `${name} written in ${scriptName}: ${script}${prov.transliteration ? ` (${prov.transliteration})` : ''}. The attested form, sign by sign, with sources and provenance.`;
   const desc = descSeed.length <= 160 ? descSeed : `${descSeed.slice(0, 157).replace(/\s+\S*$/, '')}…`;
 
   const templeCss = fs.existsSync(path.join(ROOT, 'sites', id, 'styles.css'))
@@ -129,7 +162,7 @@ function renderPage(entry) {
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/` },
       { '@type': 'ListItem', position: 2, name: 'Pantheon', item: `${SITE_ORIGIN}/pantheon/` },
       { '@type': 'ListItem', position: 3, name, item: `${SITE_ORIGIN}/${id}/` },
-      { '@type': 'ListItem', position: 4, name: 'Original Script', item: `${SITE_ORIGIN}/${id}/script/` },
+      { '@type': 'ListItem', position: 4, name: badge, item: `${SITE_ORIGIN}/${id}/script/` },
     ],
   };
 
@@ -175,20 +208,24 @@ ${templeTabNavHtml(id, name, '')}
             <li><a href="${SITE_ORIGIN}/">Home</a></li>
             <li><a href="${SITE_ORIGIN}/pantheon/">Pantheon</a></li>
             <li><a href="${SITE_ORIGIN}/${id}/">${esc(name)}</a></li>
-            <li><span aria-current="page">Original Script</span></li>
+            <li><span aria-current="page">${esc(badge)}</span></li>
         </ol>
     </nav>
 
 <main class="wrap">
   <div class="sc-hero">
-    <span class="sc-pill">${esc(label)}</span>
+    <span class="sc-pill">${esc(badge)}</span>
     <h1>${esc(name)} in ${esc(scriptName)}</h1>
-    <p class="tag">The attested writing of the name — specimen, signs, and the road from ancient script to the modern address bar.</p>
+    <p class="tag">${
+      reconstructed
+        ? 'A reconstructed specimen — the spelling is a scholarly normalization, not a surviving inscription. Signs, steps, and sources below.'
+        : 'The attested writing of the name — specimen, signs, and the road from ancient script to the modern address bar.'
+    }</p>
   </div>
 
   <div class="sc-altar">
     <div class="sc-specimen">${esc(script)}</div>
-    <div class="sc-script-name">${esc(scriptName)} · ${esc(label)}</div>
+    <div class="sc-script-name">${esc(scriptName)} · ${esc(badge)}</div>
     ${prov.transliteration ? `<div class="sc-translit">transliteration: ${esc(prov.transliteration)}</div>` : ''}
   </div>
 
@@ -216,7 +253,7 @@ ${templeTabNavHtml(id, name, '')}
     </div>
     <div class="sc-mini">
       <h2>Pronunciation</h2>
-      <p>How the attested form sounds — IPA, syllables, stress, mora timing.</p>
+      <p>${reconstructed ? 'How the reconstructed form is read' : 'How the attested form sounds'} — IPA, syllables, stress, mora timing.</p>
       <a href="${SITE_ORIGIN}/${id}/pronunciation/">How to pronounce ${esc(name)} →</a>
     </div>
     <div class="sc-mini">

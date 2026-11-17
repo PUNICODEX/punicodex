@@ -10,6 +10,7 @@
 'use strict';
 
 const { domainToASCII } = require('node:url');
+const { isAsciiForm } = require('./lib/ascii-editorial.js');
 const {
   getRichProvenance,
   getOriginalScript,
@@ -123,12 +124,18 @@ function renderTransmissionChain(entry, prov) {
   const ascii = escapeHtml(entry.ascii || '');
   const puny = escapeHtml(computePunycode(entry));
 
+  // An ASCII-canonical displayed form was never "flattened" — it differs from
+  // the canonical form at most by capitalization.
+  const asciiNode = isAsciiForm(entry.unicode || '')
+    ? { label: 'ASCII Form', value: ascii, note: 'Canonical spelling — identical to the canonical form' }
+    : { label: 'ASCII Fallback', value: ascii, note: 'Flattened spelling' };
+
   const nodes = [
     { label: 'Original Script', value: original, note: 'Indigenous writing' },
     { label: 'Transliteration', value: transliteration, note: 'Scholarly reading' },
     { label: 'Unicode Restoration', value: unicode, note: 'Registrable form' },
     { label: 'Punycode', value: puny, note: 'DNS encoding' },
-    { label: 'ASCII Fallback', value: ascii, note: 'Flattened spelling' },
+    asciiNode,
   ];
 
   return `

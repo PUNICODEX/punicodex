@@ -15,6 +15,7 @@
 
 const { HUB_ORDER, HUBS } = require('./nav-tree.js');
 const { featuredLinks } = require('./sync-footer.js');
+const { isAsciiForm } = require('./lib/ascii-editorial.js');
 
 function esc(s) {
   return String(s)
@@ -47,6 +48,9 @@ function hubColumn(hub) {
  *                    never call a transliteration the original writing system)
  *   logomarkSrc:     temple logomark path (may be null)
  *   logomarkAlt:     alt text for the logomark
+ *   asciiOnly:       optional; when omitted it is derived from `name`. An
+ *                    ASCII-canonical name has no marks to "restore", so the
+ *                    identity line records the canonical spelling instead.
  */
 function templeFooterHtml(o) {
   const hubs = HUB_ORDER.map((id) => hubColumn(HUBS[id])).join('\n                        ');
@@ -54,6 +58,10 @@ function templeFooterHtml(o) {
     ? `<img src="${esc(o.logomarkSrc)}" alt="${esc(o.logomarkAlt || `${o.name} logomark`)}" class="tf-seal" width="1024" height="1024" loading="lazy" decoding="async">`
     : '';
   const scriptLabel = o.scriptLabel || 'Original Script';
+  const asciiOnly = o.asciiOnly !== undefined ? Boolean(o.asciiOnly) : isAsciiForm(o.name);
+  const tfTag = asciiOnly
+    ? `A temple of the ${esc(o.pantheon)} tradition, recorded under its canonical spelling — one of 983 in the canonical Pantheon.`
+    : `A temple of the ${esc(o.pantheon)} pantheon, restored to its true orthography — one of 983 in the Unicode Pantheon.`;
   return `<footer class="main-footer temple-footer">
         <div class="container">
             <div class="tf-grid">
@@ -61,7 +69,7 @@ function templeFooterHtml(o) {
                     ${logomark}
                     <a href="https://punicodex.com/" class="tf-wordmark">PUNICODEX</a>
                     <p class="tf-name">${esc(o.name)}</p>
-                    <p class="tf-tag">A temple of the ${esc(o.pantheon)} pantheon, restored to its true orthography — one of 980 in the Unicode Pantheon.</p>
+                    <p class="tf-tag">${tfTag}</p>
                     <dl class="tf-spec">
                         <div><dt>${esc(o.domainsLabel)}</dt><dd>${o.domainsValue}</dd></div>
                         <div><dt>Classification</dt><dd>${esc(o.classification)}</dd></div>

@@ -30,6 +30,12 @@ const SITE_ORIGIN = 'https://punicodex.com';
 const esc = (s) =>
   String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
+// Same test as create-flagship.js — an ASCII-canonical name has no restored
+// marks, so its derivation is "from the canonical orthography".
+function isAsciiOnlyUnicode(entry) {
+  return /^[\x00-\x7F]+$/.test(entry.unicode || '');
+}
+
 const onlyIdx = process.argv.indexOf('--only');
 const only = onlyIdx > -1 ? new Set(process.argv[onlyIdx + 1].split(',')) : null;
 
@@ -98,8 +104,12 @@ function renderPage(entry) {
   const ssml = derived.ssml || '';
 
   const title = `How to pronounce ${name} — IPA, syllables & stress | PUNICODEX`;
-  const descSeed = `Pronounce ${name} (${entry.ascii}): IPA ${derived.ipa}${syllables.length ? `, ${syllables.length} syllable${syllables.length > 1 ? 's' : ''}` : ''}${derived.conventional ? ' — conventional reading' : ' — derived from restored orthography'}.`;
-  const desc = descSeed.length <= 160 ? descSeed : `Pronounce ${name} (${entry.ascii}): IPA ${derived.ipa}, derived from restored orthography by the PuniCodex engine.`;
+  const asciiOnly = isAsciiOnlyUnicode(entry);
+  const derivationLabel = asciiOnly
+    ? 'derived from the canonical orthography'
+    : 'derived from restored orthography';
+  const descSeed = `Pronounce ${name} (${entry.ascii}): IPA ${derived.ipa}${syllables.length ? `, ${syllables.length} syllable${syllables.length > 1 ? 's' : ''}` : ''}${derived.conventional ? ' — conventional reading' : ` — ${derivationLabel}`}.`;
+  const desc = descSeed.length <= 160 ? descSeed : `Pronounce ${name} (${entry.ascii}): IPA ${derived.ipa}, ${derivationLabel} by the PuniCodex engine.`;
 
   const templeCss = fs.existsSync(path.join(ROOT, 'sites', id, 'styles.css'))
     ? fs.readFileSync(path.join(ROOT, 'sites', id, 'styles.css'), 'utf8').replace(/\r\n/g, '\n')
@@ -179,14 +189,14 @@ ${templeTabNavHtml(id, name, '')}
 
 <main class="wrap">
   <div class="pr-hero">
-    <span class="pr-pill">${derived.conventional ? 'Conventional reading' : 'Derived from restored orthography'}</span>
+    <span class="pr-pill">${derived.conventional ? 'Conventional reading' : `Derived from ${asciiOnly ? 'the canonical' : 'restored'} orthography`}</span>
     <h1>How to pronounce ${esc(name)}</h1>
     <p class="tag">${esc(entry.pantheon ? entry.pantheon.charAt(0).toUpperCase() + entry.pantheon.slice(1) : 'Mythological')} name — ${esc(entry.domain || '')}${entry.meaning ? ` · “${esc(entry.meaning.split(/(?<=[.!?])\\s/)[0])}”` : ''}</p>
   </div>
 
   <div class="pr-ipa-card">
     <div class="pr-ipa">${esc(derived.ipa)}</div>
-    <div class="pr-ipa-label">${esc(derived.ipaLabel || '')}</div>
+    <div class="pr-ipa-label">${esc(asciiOnly ? (derived.ipaLabel || '').replace(/restored/i, 'canonical') : derived.ipaLabel)}</div>
     <div class="pr-respelling">${esc(derived.respelling || '')}</div>
     ${syllHtml ? `<div class="pr-syll">${syllHtml}</div>` : ''}
     <div class="pr-meta">

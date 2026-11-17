@@ -29,7 +29,10 @@ const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'platform', 'blog', 'series', 'canonical');
 
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
-const { getOriginalScript } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+const {
+  getOriginalScript,
+  getProvenance,
+} = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 const LORE = require(path.join(ROOT, 'scripts', 'lore-catalog.json'));
 const V = require(path.join(ROOT, 'scripts', 'lib', 'blog-voice.js'));
 
@@ -37,6 +40,45 @@ const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 
 const ARCHETYPES = vm.runInNewContext(`(function(){\n${archetypeSrc}\nreturn ARCHETYPES;\n})()`);
 const BUILT_IDS = ARCHETYPES.filter((a) => a.built).map((a) => a.id).sort();
 const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
+
+// ── Script attestation status ────────────────────────────────────────────────
+// The register must never call a scholarly reconstruction "attested". The
+// provenance steps say so explicitly for the normalized runic specimens; a
+// hedged step ("attestation or normalized reconstruction") is rendered as the
+// uncertainty it is, and Egyptian-style entries whose script is genuinely
+// attested but whose vowels are reconstructed get that nuance stated.
+
+function scriptStatus(entry, script) {
+  if (!script || script === '—') return 'none';
+  const provenance = getProvenance(entry);
+  const steps = ((provenance && provenance.steps) || []).join(' ');
+  if (
+    /normalized phonetic reconstruction|scholarly reconstruction|not attested in runic inscriptions|not an attested inscription|no [a-z -]*inscription of the word is known/i.test(
+      steps
+    )
+  ) {
+    return 'reconstructed';
+  }
+  if (/attestation or normalized reconstruction/i.test(steps)) return 'uncertain';
+  if (/vowels? (are |were )?reconstructed from Coptic|vocali[sz]ed form .*reconstructed from Coptic/i.test(steps)) {
+    return 'vocalization-reconstructed';
+  }
+  return 'attested';
+}
+
+function attestationFor(entry, script, u) {
+  const status = scriptStatus(entry, script);
+  if (status === 'reconstructed') {
+    return `The reconstructed form is **${script}** — a normalized scholarly specimen, not an attested inscription. The canonical transliteration is **${u}**.`;
+  }
+  if (status === 'uncertain') {
+    return `The runic form **${script}** is a normalized scholarly rendering; no inscription of this name is securely attested, and the record is the manuscript tradition. The canonical transliteration is **${u}**.`;
+  }
+  if (status === 'vocalization-reconstructed') {
+    return `The written form **${script}** is genuinely attested; the vocalized reading **${u}** is a scholarly reconstruction — its vowels are supplied by convention, not recorded in the script. The canonical transliteration is **${u}**.`;
+  }
+  return `The attested form is **${script}**, from the tradition's own record. The canonical transliteration is **${u}**.`;
+}
 
 // ── Tradition conventions (what "correct" means here) ───────────────────────
 
@@ -312,6 +354,13 @@ The oldest writing system on earth encodes its gods in wedge marks on clay, and 
 };
 
 function traditionDeepDive(entry, id) {
+  // Marks-describing convention histories have no place in an ASCII-canonical
+  // post — the name carries no marks to defend.
+  if (isAsciiForm(entry.unicode)) {
+    return `## The Convention's Own History
+
+The canonical spelling of **${entry.unicode}** rests on the tradition's own scholarly record, not on a marks convention: the name's forms are documented, compared, and one reference spelling is fixed so that citations agree across the temple, the lexicon, and this register. The principle that unifies every entry is the one the whole project stands on: a name is evidence, and evidence is not negotiable — not for keyboards, not for convenience, not for anyone.`;
+  }
   const fn = TRADITION_DEEPDIVE[entry.pantheon];
   if (fn) return fn(entry, id);
   return V.pick(id, 406, [
@@ -324,11 +373,29 @@ Every tradition in this register has its own scholarly transliteration standard,
 // ── Post assembly ───────────────────────────────────────────────────────────
 
 function glanceBlock(entry, script, falseCount, contestedCount) {
+  const status = scriptStatus(entry, script);
+  // A reconstruction is not an original script, and an unattested script is a
+  // scholarly transliteration — the glance row must say which is which.
+  let scriptRow;
+  if (!script || script === '—') {
+    scriptRow = `- **Scholarly Transliteration:** no original script securely attested — the romanized form is the primary record`;
+  } else if (status === 'reconstructed') {
+    scriptRow = `- **Reconstructed form:** ${script} (a normalized scholarly specimen)`;
+  } else if (status === 'uncertain') {
+    scriptRow = `- **Reconstructed form:** ${script} (normalized scholarly rendering)`;
+  } else if (status === 'vocalization-reconstructed') {
+    scriptRow = `- **Original script:** ${script} (vocalization reconstructed by convention)`;
+  } else {
+    scriptRow = `- **Original script:** ${script}`;
+  }
+  const convention = isAsciiForm(entry.unicode)
+    ? `the tradition's scholarly romanization, kept exactly as recorded`
+    : TRADITION_CONVENTION[entry.pantheon] || 'the tradition\u2019s own scholarly transliteration standard';
   const rows = [
     `- **Canonical form:** ${entry.unicode}`,
-    `- **Original script:** ${script}`,
+    scriptRow,
     `- **Pantheon:** ${V.displayPantheon(entry.pantheon)}`,
-    `- **Convention:** ${TRADITION_CONVENTION[entry.pantheon] || 'the tradition\u2019s own scholarly transliteration standard'}`,
+    `- **Convention:** ${convention}`,
     `- **False forms on record:** ${falseCount}`,
     `- **Contested forms:** ${contestedCount > 0 ? contestedCount : 'none attested'}`,
     `- **Series:** The Canonical Register, No. ${BUILT_IDS.indexOf(entry.id) + 1} of ${BUILT_IDS.length}`,
@@ -394,15 +461,18 @@ function main() {
     const seriesNo = BUILT_IDS.indexOf(id) + 1;
 
     // ── Shared evidence blocks ──────────────────────────────────────────────
+    const status = scriptStatus(entry, script);
     const attestation = entry.greek && entry.greek !== '—'
       ? `The name is attested as **${entry.greek}**${V.citeSources(lore) ? `, ${V.citeSources(lore)}` : ''}.${entry.meaning ? ` On the evidence, it means "${entry.meaning}".` : ''} The canonical transliteration is **${u}**.`
       : script && script !== '—'
-        ? `The attested form is **${script}**, from the tradition's own record. The canonical transliteration is **${u}**.`
+        ? attestationFor(entry, script, u)
         : `The tradition's record preserves this name in its romanized scholarly form: **${u}** — no older script survives to transcribe, so the canonical content is the exactness of the spelling itself.`;
 
     const marksBlock = marks.length > 0
       ? `Every mark is evidence, and every piece of evidence is checkable:\n\n${marks.map((m) => `- **${m.char} → ${m.to}** — ${m.note}: ${m.type === 'stress' ? 'the stress position' : 'the vowel length'}, as the sources give it.`).join('\n')}`
-      : `No diacritics are required here: the canonical form is the exactness of the spelling itself, the form ${TRADITION_CONVENTION[entry.pantheon] || 'the tradition\u2019s convention'} demands.`;
+      : isAsciiForm(u)
+        ? `No diacritics exist to require: the canonical form is the exactness of the spelling itself — plain Latin letters kept exactly as the scholarly convention records them.`
+        : `No diacritics are required here: the canonical form is the exactness of the spelling itself, the form ${TRADITION_CONVENTION[entry.pantheon] || 'the tradition\u2019s convention'} demands.`;
 
     const conventionsBlock = conventions.length > 0
       ? `**Accepted conventions.** These alternate forms are legitimate in their own contexts — not false, and not contested, but sanctioned by convention:\n\n${conventions.map((v) => `- **${v.unicode}** — ${v.note || 'an accepted conventional form'}.`).join('\n')}`
@@ -410,7 +480,9 @@ function main() {
 
     const asciiBlock = asciiIsCanonical
       ? `The plain form *${ascii}* differs from the canonical **${u}** only by convention of display — case, not content. It is **acceptable everywhere**: in legacy systems, in plain-text citation, in the DNS itself. What is not acceptable is what follows in the register: respellings that change the letters, not just their case.`
-      : `The plain form *${ascii}* is **not false — it is a fallback**, and the register is exact about what that means. In systems that cannot carry diacritics (legacy databases, older tooling, parts of the address-bar pipeline) the flattened form is the accepted vehicle, and the rulebook names it explicitly as the final rung of the fallback hierarchy: full restoration first, circumflex where attested, macron-only by the academic standard, an attested variant, and only then plain ASCII.\n\nWhat the fallback status forbids is promotion: *${ascii}* may carry the name where marks are impossible, but it may not *represent* the name where marks are possible. ${marks.length > 0 ? `Every mark it drops — ${marks.map((m) => `**${m.char} → ${m.to}**`).join(', ')} — is a fact the sources recorded.` : ''} A fallback is a vehicle, never the primary.`;
+      : isAsciiForm(u)
+        ? `The plain form *${ascii}* is **not false — it is a convenience spelling**, and the register is exact about what that means. It circulates in English-language writing and in systems that normalize names to their familiar sound, and it is acceptable there. What the convenience form may not do is replace the canonical spelling in the record: **${u}** is the reference form the sources support, and the temple keeps it primary.\n\nA convenience spelling is a vehicle, never the primary.`
+        : `The plain form *${ascii}* is **not false — it is a fallback**, and the register is exact about what that means. In systems that cannot carry diacritics (legacy databases, older tooling, parts of the address-bar pipeline) the flattened form is the accepted vehicle, and the rulebook names it explicitly as the final rung of the fallback hierarchy: full restoration first, circumflex where attested, macron-only by the academic standard, an attested variant, and only then plain ASCII.\n\nWhat the fallback status forbids is promotion: *${ascii}* may carry the name where marks are impossible, but it may not *represent* the name where marks are possible. ${marks.length > 0 ? `Every mark it drops — ${marks.map((m) => `**${m.char} → ${m.to}**`).join(', ')} — is a fact the sources recorded.` : ''} A fallback is a vehicle, never the primary.`;
 
     const falseBlock = falseForms.length > 0
       ? falseForms
@@ -425,7 +497,9 @@ function main() {
         `Where scholars disagree, the register reports the disagreement. The canonical form above remains the temple's primary because the evidence for it is stronger — not because the others were never argued.`,
         `The canonical form stands above the contested ones here by weight of evidence, not by decree. If the scholarship shifts, the register shifts with it — that is what "canonical" means when it is honest.`,
       ])}`
-      : `No alternate form of this name carries documented scholarly support in the lexicon's record. The convention here — ${TRADITION_CONVENTION[entry.pantheon] || 'the tradition\u2019s standard'} — produces exactly one defensible transliteration: **${u}**. Forms that differ from it are not contested; they are simply wrong.`;
+      : isAsciiForm(u)
+        ? `No alternate form of this name carries documented scholarly support in the lexicon's record. The scholarly record here produces exactly one defensible reference spelling: **${u}**. Forms that differ from it are not contested; they are simply wrong.`
+        : `No alternate form of this name carries documented scholarly support in the lexicon's record. The convention here — ${TRADITION_CONVENTION[entry.pantheon] || 'the tradition\u2019s standard'} — produces exactly one defensible transliteration: **${u}**. Forms that differ from it are not contested; they are simply wrong.`;
 
     const idnaBlock = isAsciiForm(u)
       ? `## The Address, Without an Encoding Detour\n\nThe canonical form **${u}** already uses ordinary Latin letters, so the address bar needs no special encoding narrative. The digital temple can preserve the spelling exactly as the scholarly record presents it. That is the practical point here: consistency between the source, the citation, and the public address.\n\nThis does not make every romanization equally valid. A wrong letter remains wrong even when it is easy to type. Canonical status still depends on the attested convention, never on convenience or registrar inventory.`
@@ -446,12 +520,20 @@ function main() {
     const parts = [];
 
     if (architecture === 'ruling') {
-      parts.push(V.pick(id, 301, [
+      let rulingLead = V.pick(id, 301, [
         `Misspell a god and you have not spelled the god at all — you have named something else. This is the register entry for **${u}**, with the false forms on record and the honest status of the plain form beneath it.`,
         `The internet spells **${u}** more ways than one, and only one of them is the name the sources wrote. This is the register's ruling — canonical, fallback, contested, and false, each in its proper place.`,
         `There is exactly one canonical form of this name, and it is **${u}**. Everything else in circulation is documented below — with its origin, its status, and where it fails.`,
         `A name is a chain of evidence. **${u}** is intact; the forms below are where the chain broke. The register records each break, and why — and it is equally precise about what the plain form may legitimately do.`,
-      ]));
+      ]);
+      if (status === 'none') {
+        // No script survives: "the name the sources wrote" overclaims.
+        rulingLead = rulingLead.replace(
+          'and only one of them is the name the sources wrote',
+          'and only one of them is the spelling the scholarly record supports'
+        );
+      }
+      parts.push(rulingLead);
       parts.push(glance);
       parts.push(`## The Canonical Form\n\n${attestation}\n\n${marksBlock}${conventionsBlock ? '\n\n' + conventionsBlock : ''}`);
       parts.push(`## Where the Flattened Form Stands\n\n${asciiBlock}`);
@@ -488,12 +570,18 @@ function main() {
       if (precedent) parts.push(`## ${precedent.title}\n\n${precedent.text}`);
       parts.push(idnaBlock);
     } else if (architecture === 'trial') {
-      parts.push(V.pick(id, 321, [
+      parts.push(V.pick(id, 321, isAsciiForm(u) ? [
+        `*The name ${u} versus the internet, session ${String(seriesNo).padStart(3, '0')} of the Canonical Register. The charge: widespread misspelling, with intent to confuse. The register sits in judgment.*`,
+        `*Court is in session. In the matter of ${u}, the register hears the evidence — the attestation, the spelling, and the forms that stand accused.*`,
+      ] : [
         `*The name ${u} versus the internet, session ${String(seriesNo).padStart(3, '0')} of the Canonical Register. The charge: widespread misspelling, with intent to confuse. The register sits in judgment.*`,
         `*Court is in session. In the matter of ${u}, the register hears the evidence — the attestation, the marks, and the forms that stand accused.*`,
       ]));
       parts.push(glance);
-      parts.push(`## The Charge\n\n${V.pick(id, 322, [
+      parts.push(`## The Charge\n\n${V.pick(id, 322, isAsciiForm(u) ? [
+        `That the name **${u}** is routinely written in competing conventions — spellings that vary from source to source until no two citations agree. The register's task is to separate the honest variant from the outright false.`,
+        `That confusion about this name is now self-sustaining: wrong forms cite wrong forms until the wrongness looks like consensus. The register's task is to restore the evidence to the center of the record.`,
+      ] : [
         `That the name **${u}** is routinely written in forms that move, drop, or invent its marks — and that each such form teaches the reader a different, lesser name. The register's task is to separate the honest fallback from the outright false.`,
         `That confusion about this name is now self-sustaining: wrong forms cite wrong forms until the wrongness looks like consensus. The register's task is to restore the evidence to the center of the record.`,
       ])}`);
@@ -515,13 +603,23 @@ function main() {
         `*A letter to a colleague, ${new Date('2026-07-31').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} — on the name ${u}, and on the forms that keep failing it.*`,
         `*Correspondence ${String(seriesNo).padStart(3, '0')} — a colleague asks why we are so strict about ${u}. Here is the whole answer.*`,
       ]));
-      parts.push(V.pick(id, 332, [
+      parts.push(V.pick(id, 332, isAsciiForm(u) ? [
+        `You asked why the register cares so much about one name. It is a fair question, and ${u} is as good a case as any to answer it with.`,
+        `Your note said, roughly: surely one spelling is as good as another. Permit me to use ${u} to show it is not.`,
+      ] : [
         `You asked why the register cares so much about one name. It is a fair question, and ${u} is as good a case as any to answer it with.`,
         `Your note said, roughly: surely the marks are a nicety. Permit me to use ${u} to show they are not.`,
       ]));
       parts.push(`First, the attestation. ${attestation}`);
       if (marks.length > 0) parts.push(`And the marks themselves: ${marks.map((m) => `**${m.char} → ${m.to}** (${m.note})`).join('; ')}. Remove any one of them and you have not simplified the name — you have told a small lie about it, ${V.pick(id, 333, ['and small lies in references have long consequences', 'and references are built of exactly such small truths', 'and the whole discipline is the refusal of such lies'])}.`);
-      if (pron && pron.approximation) parts.push(`Say it aloud as the sources heard it: ${pron.approximation.charAt(0).toLowerCase() + pron.approximation.slice(1)} The marks are what carry that sound to a reader who has never heard it spoken.`);
+      if (pron && pron.approximation) {
+        const soundNote = isAsciiForm(u)
+          ? status === 'attested'
+            ? `The marks of the original script carry that sound for its own readers; the temple's canonical **${u}** follows the unmarked scholarly convention, and the reconstructed pronunciation above keeps the sound on record.`
+            : `The scholarly record carries that sound; the temple's canonical **${u}** follows the unmarked convention, and the reconstructed pronunciation above keeps it on record.`
+          : `The marks are what carry that sound to a reader who has never heard it spoken.`;
+        parts.push(`Say it aloud as the sources heard it: ${pron.approximation.charAt(0).toLowerCase() + pron.approximation.slice(1)} ${soundNote}`);
+      }
       parts.push(`On the plain form — and I want to be precise, because you pushed on this. ${asciiBlock.replace(/\*\*/g, '*')}`);
       if (falseForms.length > 0) {
         const letters = falseForms
@@ -563,7 +661,7 @@ function main() {
     }.`;
 
     // The verdict (all architectures, four voices).
-    parts.push(V.pick(id, 341, [
+    let verdict = V.pick(id, 341, [
       `## The Verdict
 
 **${u}** is the canonical form: attested, checkable, and enforced across the temple, the lexicon, the cards, the APIs, and this register. ${
@@ -592,7 +690,17 @@ Case closed on **${u}**: canonical, cited, and defended. ${
 So the register finds: **${u}**, canonical; *${ascii}*, ${
         asciiIsCanonical ? 'equally canonical' : 'a sanctioned fallback'
       }; the contested forms, recorded with their support; the false forms, ruled against with their violations named. Every line of that finding cites its evidence, and the evidence is open to any reader — the register asks to be checked, not trusted. The temple keeps the canonical form at [/${id}/](/${id}/).`,
-    ]) + `\n\n${evidenceDocket}`);
+    ]);
+    if (isAsciiForm(u)) {
+      // No marks exist on an ASCII-canonical name: the verdict's mark and
+      // fallback vocabulary would assert marks that are not there.
+      verdict = verdict
+        .replace('every mark sourced', 'every letter traced')
+        .replace('is the sanctioned fallback for systems without marks — a vehicle, never the scholarly primary.', 'is a convenience spelling — a vehicle, never the scholarly primary.')
+        .replace('rides as the sanctioned fallback — and stays in that lane.', 'rides as the convenience spelling — and stays in that lane.')
+        .replace('a sanctioned fallback', 'a convenience spelling');
+    }
+    parts.push(verdict + `\n\n${evidenceDocket}`);
 
     parts.push(closeBlock(entry));
 
@@ -649,6 +757,7 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
       asciiStatus,
       convention: TRADITION_CONVENTION[entry.pantheon] || 'the tradition\u2019s own scholarly transliteration standard',
       originalScript: script,
+      scriptStatus: status,
       falseForms: falseForms.map((f) => ({ form: f.form, origin: f.origin, violation: f.violation })),
       conventions: conventions.map((v) => ({ form: v.unicode, note: v.note || null })),
       contested: variants.map((v) => ({ form: v.unicode, note: v.note || null, sources: v.sources || [] })),

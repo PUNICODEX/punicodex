@@ -26,7 +26,10 @@ const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'platform', 'blog', 'series', 'restoration');
 
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
-const { getOriginalScript } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+const {
+  getOriginalScript,
+  getProvenance,
+} = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 const LORE = require(path.join(ROOT, 'scripts', 'lore-catalog.json'));
 const PATTERNS = require(path.join(ROOT, 'platform', 'api', 'industry-patterns.json'));
 const TEXTS = require(path.join(ROOT, 'platform', 'texts', 'registry.json'));
@@ -57,6 +60,47 @@ const TEXT_BY_PANTHEON = {
 };
 const TEXT_TITLE = new Map(TEXTS.texts.map((t) => [t.id, t.title]));
 
+// ── Script attestation status ────────────────────────────────────────────────
+// Mirrors the Canonical Register: a scholarly reconstruction is never billed
+// as an attestation, and a scriptless tradition is a scholarly transliteration.
+
+function scriptStatus(entry, script) {
+  if (!script || script === '—') return 'none';
+  const provenance = getProvenance(entry);
+  const steps = ((provenance && provenance.steps) || []).join(' ');
+  if (
+    /normalized phonetic reconstruction|scholarly reconstruction|not attested in runic inscriptions|not an attested inscription|no [a-z -]*inscription of the word is known/i.test(
+      steps
+    )
+  ) {
+    return 'reconstructed';
+  }
+  if (/attestation or normalized reconstruction/i.test(steps)) return 'uncertain';
+  if (/vowels? (are |were )?reconstructed from Coptic|vocali[sz]ed form .*reconstructed from Coptic/i.test(steps)) {
+    return 'vocalization-reconstructed';
+  }
+  return 'attested';
+}
+
+// The one-line attestation statement used by the Bench Notes and the
+// Provenance Record when the entry has no Greek/CJK field to quote.
+function attestationLine(entry, script) {
+  const status = scriptStatus(entry, script);
+  if (status === 'reconstructed') {
+    return `The reconstruction on record: **${script}** — a normalized scholarly specimen, not an attested inscription.`;
+  }
+  if (status === 'uncertain') {
+    return `The runic form **${script}** is a normalized scholarly rendering; no inscription of this name is securely attested, and the record is the manuscript tradition.`;
+  }
+  if (status === 'vocalization-reconstructed') {
+    return `The written form **${script}** is genuinely attested; the vocalized reading is a scholarly reconstruction — its vowels are supplied by convention, not recorded in the script.`;
+  }
+  if (status === 'none') {
+    return `The attestation is the tradition's own record, preserved in romanized scholarly form — no older script securely attests the name.`;
+  }
+  return `The attestation runs through the tradition's own sources: **${script}**.`;
+}
+
 // ── Shared fragments ────────────────────────────────────────────────────────
 
 function preservationSentence(entry) {
@@ -82,14 +126,30 @@ function seatsFor(id) {
 }
 
 function glanceBlock(entry, script, extra) {
+  const asciiOnly = isAsciiForm(entry.unicode);
+  const status = scriptStatus(entry, script);
+  // An ASCII-canonical name was never "restored"; a reconstructed specimen is
+  // not an original script; a scriptless tradition is a transliteration.
+  let scriptRow;
+  if (!script || script === '—') {
+    scriptRow = `- **Scholarly Transliteration:** no original script securely attested — the romanized form is the primary record`;
+  } else if (status === 'reconstructed') {
+    scriptRow = `- **Reconstructed form:** ${script} (a normalized scholarly specimen)`;
+  } else if (status === 'uncertain') {
+    scriptRow = `- **Reconstructed form:** ${script} (normalized scholarly rendering)`;
+  } else if (status === 'vocalization-reconstructed') {
+    scriptRow = `- **Original script:** ${script} (vocalization reconstructed by convention)`;
+  } else {
+    scriptRow = `- **Original script:** ${script}`;
+  }
   const rows = [
-    `- **Restored name:** ${entry.unicode}`,
+    asciiOnly ? `- **Canonical name:** ${entry.unicode}` : `- **Restored name:** ${entry.unicode}`,
     `- **ASCII form:** ${entry.ascii}`,
     `- **Meaning:** "${entry.meaning || 'See the temple record'}"`,
     `- **Domain of influence:** ${entry.domain || 'Mythic'}`,
     `- **Pantheon:** ${V.displayPantheon(entry.pantheon)}`,
     `- **Restoration:** ${preservationLabel(entry.unicode)}`,
-    `- **Original script:** ${script}`,
+    scriptRow,
   ];
   if (extra) rows.push(extra);
   rows.push(`- **Series:** The Restoration Files, No. ${BUILT_IDS.indexOf(entry.id) + 1} of ${BUILT_IDS.length}`);
@@ -145,8 +205,9 @@ function archLedger(entry, script, lore) {
   if (lead) parts.push(lead);
   parts.push(glanceBlock(entry, script, null));
 
-  // The Name Before the Marks
-  const phil = ['## The Name Before the Marks', ''];
+  // The Name Before the Marks — for ASCII-canonical names there are no marks
+  // to come "before"; the section documents the plain, exact spelling.
+  const phil = [isAsciiForm(u) ? '## The Name, Plain and Exact' : '## The Name Before the Marks', ''];
   if (entry.greek && entry.greek !== '—') {
     const cite = V.citeSources(lore);
     phil.push(`The name is attested as **${entry.greek}**${cite ? `, ${cite}` : ''}.${entry.meaning ? ` On the evidence, it means "${entry.meaning}".` : ''}`);
@@ -176,7 +237,7 @@ function archLedger(entry, script, lore) {
   // The temple
   parts.push(`## The Temple That Stands Now
 
-The restored name is not a plaque; it is an address. The temple of **${u}** lives at [/${entry.id}/](/${entry.id}/), with its mythology in the [lore halls](/${entry.id}/lore/), its peer-reviewed record in the [Scholarly Edition](/${entry.id}/scholars/), and its place in the pattern atlas on the [patterns floor](/${entry.id}/patterns/).
+${isAsciiForm(u) ? 'The canonical name' : 'The restored name'} is not a plaque; it is an address. The temple of **${u}** lives at [/${entry.id}/](/${entry.id}/), with its mythology in the [lore halls](/${entry.id}/lore/), its peer-reviewed record in the [Scholarly Edition](/${entry.id}/scholars/), and its place in the pattern atlas on the [patterns floor](/${entry.id}/patterns/).
 
 ${preservationSentence(entry)}`);
 
@@ -287,7 +348,7 @@ function archBench(entry, script, lore) {
     const cite = V.citeSources(lore);
     found.push(`The attestation, ${cite || 'from the canonical record'}: **${entry.greek}**.${entry.meaning ? ` Meaning: "${entry.meaning}".` : ''}`);
   } else {
-    found.push(`The attestation runs through the tradition's own sources: **${script}**.${entry.meaning ? ` Meaning: "${entry.meaning}".` : ''}`);
+    found.push(`${attestationLine(entry, script)}${entry.meaning ? ` Meaning: "${entry.meaning}".` : ''}`);
   }
   const lead = V.loreLead(lore);
   if (lead) found.push(`\nThe figure behind the name: ${V.firstSentences(lead, 1)}`);
@@ -367,7 +428,11 @@ function archProvenance(entry, script, lore) {
   if (entry.greek && entry.greek !== '—') {
     entries.push(`**${n++}. The attestation.** **${entry.greek}**${entry.meaning ? ` — "${entry.meaning}"` : ''}.${sources.length ? ` On record: ${sources.join(', ')}.` : ''}`);
   } else {
-    entries.push(`**${n++}. The attestation.** **${script}**, from the tradition's own record.${sources.length ? ` On record: ${sources.join(', ')}.` : ''}`);
+    const line =
+      scriptStatus(entry, script) !== 'attested'
+        ? attestationLine(entry, script)
+        : `**${script}**, from the tradition's own record.`;
+    entries.push(`**${n++}. The attestation.** ${line}${sources.length ? ` On record: ${sources.join(', ')}.` : ''}`);
   }
   if (marks.length > 0) {
     entries.push(
@@ -383,7 +448,7 @@ function archProvenance(entry, script, lore) {
   if (arch) {
     entries.push(`**${n++}. The physical record.** ${arch}`);
   }
-  entries.push(`**${n++}. The current holding.** The temple at [/${entry.id}/](/${entry.id}/), a temple of the restored name. ${preservationSentence(entry)}`);
+  entries.push(`**${n++}. The current holding.** The temple at [/${entry.id}/](/${entry.id}/), a temple of the ${isAsciiForm(u) ? 'canonical' : 'restored'} name. ${preservationSentence(entry)}`);
   if (seats.length > 0) {
     entries.push(
       `**${n++}. The documented resonances.** ${seats.slice(0, 3).map((s) => `**${s.name}**`).join(', ')} — seats argued and weighted in the [pattern atlas](/patterns/), read through the myths in this temple's [Resonance File](/${entry.id}/blog/resonance/).`

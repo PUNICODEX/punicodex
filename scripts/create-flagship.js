@@ -30,9 +30,13 @@ const ROOT = path.join(__dirname, '..');
 const TEMPLATE_DIR = path.join(ROOT, 'templates', 'flagship');
 const SITES_DIR = path.join(ROOT, 'sites');
 const FLAGSHIP_DATA = require(path.join(__dirname, 'flagship-data.json'));
-const { getOriginalScript, hasOriginalScript, getOriginalScriptLabel, getNoScriptNote } = require(
-  path.join(ROOT, 'type', 'js', 'original-scripts.js')
-);
+const {
+  getOriginalScript,
+  hasOriginalScript,
+  getOriginalScriptLabel,
+  getNoScriptNote,
+  getProvenance,
+} = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 const { buildRichProvenanceSection } = require(path.join(__dirname, 'build-provenance-section.js'));
 
 const LORE_STUBS = require(path.join(__dirname, 'lore-stubs.js'));
@@ -1257,8 +1261,14 @@ function analyzeFeatures(entry) {
   return features;
 }
 
-function joinFeatures(arr) {
-  if (!arr || arr.length === 0) return 'original diacritics and script distinctions';
+function joinFeatures(arr, entry) {
+  // An ASCII-canonical name has no diacritics to point at: only the script
+  // distinctions of the source tradition remain claimable.
+  if (!arr || arr.length === 0) {
+    return entry && isAsciiOnlyUnicode(entry)
+      ? 'script distinctions'
+      : 'original diacritics and script distinctions';
+  }
   if (arr.length === 1) return arr[0];
   if (arr.length === 2) return arr.join(' and ');
   return `${arr.slice(0, -1).join(', ')}, and ${arr[arr.length - 1]}`;
@@ -1268,15 +1278,34 @@ function isAsciiOnlyUnicode(entry) {
   return /^[\x00-\x7F]+$/.test(entry.unicode || '');
 }
 
+// The original-scripts atlas marks reconstruction work in the provenance steps
+// (e.g. "normalized phonetic reconstruction", "the vowels are reconstructed").
+// A reconstructed script must never be presented as attested. Only step/note
+// text is scanned — the schema itself carries a phoneticReconstruction field
+// name on nearly every entry.
+function isReconstructedScript(entry) {
+  const prov = getProvenance(entry);
+  if (!prov) return false;
+  const text = [
+    ...(Array.isArray(prov.steps) ? prov.steps : []),
+    ...(Array.isArray(prov.uncertainties) ? prov.uncertainties : []),
+    prov.editorsNote || '',
+    prov.normalizedReading || '',
+  ].join(' ');
+  return /reconstruct/i.test(text);
+}
+
 function buildNameProse(entry) {
   const label = scriptLabel(entry);
   const source = getOriginalScript(entry);
   const hasOriginal = hasOriginalScript(entry);
   const features = analyzeFeatures(entry);
-  const featureList = joinFeatures(features);
+  const featureList = joinFeatures(features, entry);
   const meaningClause = entry.meaning ? ` — “${entry.meaning}”` : '';
   const original = hasOriginal
-    ? `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested in the source tradition${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`
+    ? isReconstructedScript(entry)
+      ? `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is a reconstructed form of the source tradition${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`
+      : `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested in the source tradition${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`
     : isAsciiOnlyUnicode(entry)
       ? `The name survives in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, documented in academic sources${meaningClause}. The spelling uses ordinary Latin letters, so the canonical form and the ASCII form coincide.`
       : `The name survives only in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, documented in academic sources${meaningClause}. Its ${featureList} preserve distinctions lost in plain ASCII.`;
@@ -1353,7 +1382,7 @@ function buildTheNameSection(entry, sectionNumber) {
                         <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
                     </svg>
                 </div>
-                <h3 class="card-title">ASCII Constraint</h3>
+                <h3 class="card-title">${asciiOnly ? 'ASCII Form' : 'ASCII Constraint'}</h3>
                 <p class="card-ascii">${escapeHtml(entry.ascii)}</p>
                 <p class="card-body">${nameProse.ascii}</p>
             </div>
@@ -1414,6 +1443,17 @@ function greekRuleLine(entry) {
     : 'The accent marks pitch, not volume — the acute is a rise, the circumflex a rise-and-fall.';
 }
 
+function pronunciationIpaLabel(entry, derived) {
+  const label = derived.ipaLabel || 'Reconstructed Pronunciation';
+  if (!isAsciiOnlyUnicode(entry)) return label;
+  // The engine label ("Derived from restored orthography") overclaims for
+  // ASCII-canonical names, which carry no restored marks.
+  return label.replace(
+    'Derived from restored orthography',
+    'Derived from the canonical orthography'
+  );
+}
+
 function buildPronunciationPanel(entry) {
   const derived = derivePronunciation(entry);
   if (!derived.derived || !derived.timing) return '';
@@ -1451,7 +1491,7 @@ function buildPronunciationPanel(entry) {
                 </div>
                 <h2 class="pronunciation-title">How to pronounce ${escapeHtml(entry.unicode)}</h2>
                 <p class="pronunciation-respelling">${escapeHtml(derived.respelling)}</p>
-                <p class="pronunciation-ipa"><span class="pronunciation-ipa-value">${escapeHtml(derived.ipa)}</span> <span class="pronunciation-ipa-label">${escapeHtml(derived.ipaLabel)}</span></p>
+                <p class="pronunciation-ipa"><span class="pronunciation-ipa-value">${escapeHtml(derived.ipa)}</span> <span class="pronunciation-ipa-label">${escapeHtml(pronunciationIpaLabel(entry, derived))}</span></p>
                 <div class="pronunciation-rhythm">
                     <span class="pronunciation-beats">${escapeHtml(timing.beats)}</span>
                     <span class="pronunciation-duration">${timing.totalMorae} morae · ≈${timing.durationMs} ms</span>
@@ -1772,6 +1812,7 @@ function buildZeusFooter(entry, assetPrefix) {
   return templeFooterHtml({
     name: entry.unicode,
     pantheon: entry.pantheon,
+    asciiOnly: isAsciiOnlyUnicode(entry),
     domainsLabel: isOwned ? 'Owned Domains' : 'Restoration',
     domainsValue: domains,
     classification: preservationLabel(entry.unicode),
@@ -2274,7 +2315,7 @@ function buildExploreTempleStrip(entry) {
     ['blog/', 'Blog'],
     ['pronunciation/', 'Pronunciation'],
     ['etymology/', 'Etymology'],
-    ['script/', 'Original Script'],
+    ['script/', getOriginalScriptLabel(entry)],
   ];
   const links = rooms
     .map(([p, label]) => `<a href="/${entry.id}/${p}" class="source-badge">${label}</a>`)
@@ -2884,11 +2925,16 @@ function buildMetaDescription(entry, catalogEntry) {
     desc = `${entry.unicode}, ${entry.domain}. ${desc}`;
   }
   if (desc.length < 120) {
-    const fallback = `Scholarly restoration of ${entry.unicode}, the ${entry.domain}.`;
-    desc = desc.length ? `${desc}${closer}`.trim() : `${fallback}${closer}`.trim();
+    const fallback = isAsciiOnlyUnicode(entry)
+      ? `Scholarly record of ${entry.unicode}, the ${entry.domain}.`
+      : `Scholarly restoration of ${entry.unicode}, the ${entry.domain}.`;
+    if (!desc.length) desc = `${fallback}${closer}`.trim();
+    else if (!desc.startsWith(fallback)) desc = `${desc}${closer}`.trim();
     // Still short (very terse legacy lead): prepend the fallback and let the
-    // truncation below settle it inside the window.
-    if (desc.length < 120) {
+    // truncation below settle it inside the window — unless the fallback is
+    // already the desc's own prefix (the <120 branch above just built it),
+    // which would double the prefix.
+    if (desc.length < 120 && !desc.startsWith(fallback)) {
       desc = `${fallback} ${desc}`.trim();
     }
   }
@@ -2934,16 +2980,33 @@ function buildHomeMetaDescription(entry) {
   // sponsorship, the restored domain) — mythology and pronunciation intents
   // belong to the lore page. Same SERP discipline as buildMetaDescription;
   // tries progressively shorter phrasings before resorting to truncation.
+  // ASCII-canonical names have no marks to restore and scriptless temples have
+  // no original script — neither may be claimed.
   const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
   const firstClause = (entry.domain || '').split(',')[0].trim() || entry.domain;
-  const bases = [
-    `${entry.unicode} — the restored ${label} name of ${firstClause}: `,
-    `${entry.unicode} — restored ${label} name: ${firstClause}. `,
-  ];
-  const payloads = [
-    'original script, the restored domain, and the temple record.',
-    'original script and the restored domain.',
-  ];
+  const asciiOnly = isAsciiOnlyUnicode(entry);
+  const hasScript = hasOriginalScript(entry);
+  const owned = getOwnedForms(entry).length > 0;
+  const bases = asciiOnly
+    ? [
+        `${entry.unicode} — the canonical ${label} name for ${firstClause}: `,
+        `${entry.unicode} — canonical ${label} name: ${firstClause}. `,
+      ]
+    : [
+        `${entry.unicode} — the restored ${label} name of ${firstClause}: `,
+        `${entry.unicode} — restored ${label} name: ${firstClause}. `,
+      ];
+  const payloads = asciiOnly
+    ? owned
+      ? ['the temple, its Reliquary, and the restored-domain record.', 'the temple and its Reliquary.']
+      : ['the temple, its Reliquary, and its scholarly record.', 'the temple and its Reliquary.']
+    : hasScript && owned
+      ? ['original script, the restored domain, and the temple record.', 'original script and the restored domain.']
+      : hasScript
+        ? ['original script and the temple record.', 'original script and its scholarship.']
+        : owned
+          ? ['the restored domain and the temple record.', 'the temple record and the restored domain.']
+          : ['the temple record and its scholarship.', 'the temple record.'];
   const closers = [
     " Sponsor this temple's spaces or shop its Reliquary.",
     ' Sponsor its spaces or shop the Reliquary.',
@@ -3332,6 +3395,12 @@ function generateHomePage(
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
+    // The modal opener must not claim the name was "returned to how it was
+    // written" when the canonical spelling is ASCII (the ancient written form
+    // is a different script — or unattested).
+    ASCII_RESTORATION_LINE: isAsciiOnlyUnicode(entry)
+      ? 'This temple is a restoration: the name it carries, fixed in its canonical scholarly spelling — how the tradition records it, how it is said — and kept permanently at its true domain.'
+      : 'This temple is a restoration: the name it carries, returned to its original form — how it was written, how it was said — and kept permanently at its true domain.',
     TAGLINE: heroTagline(entry),
     BREADCRUMB_JSONLD: templeBreadcrumb(entry),
     BREADCRUMB_NAV: templeBreadcrumbNav(entry),
@@ -3350,15 +3419,23 @@ function generateHomePage(
         `${entry.unicode} — ${firstClause} · ${label} | PUNICODEX`,
         `${entry.unicode} — ${firstClause} | PUNICODEX`,
       ];
-      for (const c of candidates) {
+      // An ASCII-canonical name carries no restored marks — "Restored" would
+      // claim a recovery that never happened.
+      const pool = isAsciiOnlyUnicode(entry)
+        ? candidates.filter((c) => !/\bRestored\b/.test(c))
+        : candidates;
+      for (const c of pool) {
         if (c.length >= 45 && c.length <= 60) return c;
       }
       // Nothing in the window (very short names): take the last ≤60 and pad.
-      const fits = candidates.filter((c) => c.length <= 60);
+      const fits = pool.filter((c) => c.length <= 60);
       const best = fits[fits.length - 1];
       return best.length >= 45
         ? best
-        : best.replace(' | PUNICODEX', ' · Restored Temple | PUNICODEX');
+        : best.replace(
+            ' | PUNICODEX',
+            isAsciiOnlyUnicode(entry) ? ' · Temple | PUNICODEX' : ' · Restored Temple | PUNICODEX'
+          );
     })(),
     ABOUT_JSON: (() => {
       // The restored Unicode form is the canonical name of the entity; the
@@ -3484,7 +3561,7 @@ function buildPronunciationContent(entry, catalogEntry) {
         <div class="pronunciation-main reveal-up">
           <div class="ipa-display">
             <span class="ipa-text">${derived.ipa || ''}</span>
-            <span class="ipa-label">${derived.ipaLabel || 'Reconstructed Pronunciation'}</span>
+            <span class="ipa-label">${pronunciationIpaLabel(entry, derived) || 'Reconstructed Pronunciation'}</span>
           </div>
           ${phonemes ? `<div class="pronunciation-breakdown">${phonemes}</div>` : ''}
         </div>
@@ -3494,7 +3571,7 @@ function buildPronunciationContent(entry, catalogEntry) {
             <p class="sidebar-text">${p.approximation || ''}</p>
             <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
           </div>
-          ${p.note ? `<div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">${p.note}</p></div>` : ''}
+          ${p.note ? `<div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">${asciiTempleText(p.note, entry)}</p></div>` : ''}
         </div>
       </div>`;
   }

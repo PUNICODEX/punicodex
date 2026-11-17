@@ -138,6 +138,10 @@ const RULES = [
     suites: ['Blog Pantheon Hubs Tests'],
   },
   {
+    pattern: /^scripts\/lib\/ascii-editorial\.js$|^scripts\/temple-footer\.js$|^scripts\/build-provenance-section\.js$|^scripts\/generate-(?:script|pronunciation)-pages\.js$|^scripts\/lore-catalog\.json$|^type\/js\/original-scripts\.js$|^test\/ascii-doctrine\.test\.js$/,
+    suites: ['ASCII Doctrine Tests'],
+  },
+  {
     pattern: /^data\/pantheon-strata\.json$|^scripts\/generate-strata-page\.js$|^pantheon\/(?:origins|strata)\/|^test\/strata-page\.test\.js$/,
     suites: ['STRATA Page Tests'],
   },

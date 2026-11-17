@@ -34,6 +34,7 @@ const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const {
   getOriginalScript,
   getScriptName,
+  getProvenance,
 } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 const { applyCanaryWatermark, shouldWatermark } = require('./lib/canary.js');
 const { writeFileWithRetry } = require('./write-file-retry.js');
@@ -311,6 +312,16 @@ function buildData(id) {
 
   const script = getOriginalScript(entry);
   const scriptName = getScriptName(entry);
+  // A script specimen counts as evidence only when the provenance does not
+  // mark it as a scholarly reconstruction (normalized runic specimens and the
+  // like); scriptless traditions fall back to the scholarly record.
+  const provenance = getProvenance(entry);
+  const provSteps = ((provenance && provenance.steps) || []).join(' ');
+  const scriptAttested =
+    !!script &&
+    !/normalized phonetic reconstruction|scholarly reconstruction|not attested in runic inscriptions|not an attested inscription|attestation or normalized reconstruction|no [a-z -]*inscription of the word is known/i.test(
+      provSteps
+    );
 
   // Full, uncapped scholars sections in reading order. The symbols and
   // iconography sections merge into a single H2.
@@ -347,6 +358,7 @@ function buildData(id) {
     pantheonCount: LEXICON.filter((e) => e.pantheon === entry?.pantheon).length,
     script: script || entry?.greek || '',
     scriptName: scriptName || 'the original script',
+    scriptAttested,
     etymology: entry?.etymology || null,
     variants: (entry?.variants || []).filter((v) => v && v.unicode),
     breakdown: (entry?.breakdown || []).filter((b) => b && b.char),
@@ -522,12 +534,25 @@ function preservationSentence(data) {
 }
 
 function atGlanceBlock(data) {
-  const rows = [`- **Restored name:** ${data.unicode}`, `- **ASCII form:** ${data.ascii}`];
+  // ASCII-canonical names were never "restored" — nothing was missing — and
+  // a reconstructed script specimen must not be badged as an original script.
+  const rows = [
+    data.asciiOnly
+      ? `- **Canonical name:** ${data.unicode}`
+      : `- **Restored name:** ${data.unicode}`,
+    `- **ASCII form:** ${data.ascii}`,
+  ];
   if (data.meaning) rows.push(`- **Meaning:** "${data.meaning}"`);
   if (data.sphere) rows.push(`- **Domain of influence:** ${data.sphere}`);
   rows.push(`- **Pantheon:** ${data.pantheonDisplay}`);
   rows.push(`- **Restoration:** ${data.preservation}`);
-  if (data.script && data.script !== '—') rows.push(`- **Original script:** ${data.script} (${data.scriptName})`);
+  if (data.script && data.script !== '—') {
+    rows.push(
+      data.scriptAttested
+        ? `- **Original script:** ${data.script} (${data.scriptName})`
+        : `- **Reconstructed form:** ${data.script} (${data.scriptName})`
+    );
+  }
   if (data.domainUnicode) rows.push(`- **Live domain:** ${data.domainUnicode}`);
   return rows.join('\n');
 }
@@ -799,20 +824,20 @@ function exploreBlock(data) {
 // ── Body assembly ───────────────────────────────────────────────────────────
 
 const ASCII_INTROS = [
-  (d) => `A name can be complete without carrying a single diacritic. **${d.unicode}** is a canonical scholarly spelling, not a damaged form waiting for decoration. This post follows the evidence behind that spelling: the ${d.scriptName} record, the reconstructed sound, the myths, the material culture, and the reasons this particular romanization became the public reference. The plain ASCII letters already contain the whole form. The scholarly work is to prove their provenance, preserve their capitalization, and keep the name attached to its history.`,
+  (d) => `A name can be complete without carrying a single diacritic. **${d.unicode}** is a canonical scholarly spelling, not a damaged form waiting for decoration. This post follows the evidence behind that spelling: ${d.scriptAttested ? `the ${d.scriptName} record` : 'the scholarly record'}, the reconstructed sound, the myths, the material culture, and the reasons this particular romanization became the public reference. The plain ASCII letters already contain the whole form. The scholarly work is to prove their provenance, preserve their capitalization, and keep the name attached to its history.`,
   (d) => `Behind the plain ASCII spelling *${d.ascii}* stands a much longer record. **${d.unicode}** reaches through manuscripts, inscriptions, oral transmission, and scholarly convention long before it reaches a keyboard. No lost marks are being invented here. Instead, this post traces why the tradition's sources support this exact form, how the name sounds, what its myths preserve, and how the digital temple keeps that evidence open for review.`,
-  (d) => `Long before it became a digital address, this name travelled through scripts. **${d.unicode}** begins in ${d.scriptName}, passes through scholarly transliteration, and arrives in a Latin form that needs no special encoding. Each stage preserves some information and requires some judgment. This post follows that journey: the original evidence, the reconstructed pronunciation, the mythological record, the material remains, and the reviewed spelling used by the temple.`,
+  (d) => `Long before it became a digital address, this name travelled through scripts. **${d.unicode}** ${d.scriptAttested ? `begins in ${d.scriptName}, passes through scholarly transliteration` : 'reaches us through scholarly transliteration'}, and arrives in a Latin form that needs no special encoding. Each stage preserves some information and requires some judgment. This post follows that journey: the original evidence, the reconstructed pronunciation, the mythological record, the material remains, and the reviewed spelling used by the temple.`,
   (d) => `Names are not only data points; they are cultural evidence. **${d.unicode}** shows why an ASCII spelling can still demand serious scholarship. The sources distinguish this name from every neighboring form, and the temple records that distinction without adding marks the evidence does not contain. What follows is the full picture — name, script, sound, myth, cult, and legacy — ending with the digital home that makes the record easy to reach.`,
-  (d) => `The ASCII form *${d.ascii}* is not missing anything that this name requires. **${d.unicode}** is the canonical spelling supported by the ${d.scriptName} evidence and the tradition's scholarly conventions. This post explains what that form preserves, how it is pronounced, which narratives surround it, and why consistency matters. There are no recovered accents to celebrate; there is something more useful — a spelling whose history can actually be checked.`,
+  (d) => `The ASCII form *${d.ascii}* is not missing anything that this name requires. **${d.unicode}** is the canonical spelling supported by ${d.scriptAttested ? `the ${d.scriptName} evidence` : 'the scholarly record'} and the tradition's scholarly conventions. This post explains what that form preserves, how it is pronounced, which narratives surround it, and why consistency matters. There are no recovered accents to celebrate; there is something more useful — a spelling whose history can actually be checked.`,
   (d) => `A name is a door. **${d.unicode}** opens onto ${d.sphere ? `the domain of ${d.sphere.toLowerCase()}, ` : ''}the ${d.pantheonDisplay} tradition, and centuries of storytelling, worship, and scholarship. This post moves through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, and its afterlife — before arriving at the digital temple that makes the record addressable. The letters are plain; the evidence is not.`,
-  (d) => `Saying **${d.unicode}** aloud requires more than reading Latin letters on a screen. The conventional spelling is only the entry point into a reconstructed sound and a much older tradition. This post unpacks that sound, the ${d.scriptName} evidence, the kindred forms, and the mythological record, then shows how the temple preserves the whole argument without pretending that a diacritic was ever lost.`,
-  (d) => `No important name has only one face. **${d.unicode}** appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and a digital temple. This post looks at each face in turn: the name and its roots, the ${d.scriptName} original, the reconstructed pronunciation, the symbols and sanctuaries, and the afterlife that brought the canonical spelling into the present.`,
+  (d) => `Saying **${d.unicode}** aloud requires more than reading Latin letters on a screen. The conventional spelling is only the entry point into a reconstructed sound and a much older tradition. This post unpacks that sound, ${d.scriptAttested ? `the ${d.scriptName} evidence` : 'the evidence assembled in the scholarly record'}, the kindred forms, and the mythological record, then shows how the temple preserves the whole argument without pretending that a diacritic was ever lost.`,
+  (d) => `No important name has only one face. **${d.unicode}** appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and a digital temple. This post looks at each face in turn: the name and its roots, ${d.scriptAttested ? `the ${d.scriptName} original` : `the tradition's original record`}, the reconstructed pronunciation, the symbols and sanctuaries, and the afterlife that brought the canonical spelling into the present.`,
 ];
 
 const ASCII_CLOSINGS = [
   (d) => `Recording **${d.unicode}** accurately is part of a larger effort to make the web more faithful to the names it carries. This spelling needs no recovered marks; it needs a defensible chain of evidence. The script, sound, myths, and material record converge on the same point: the canonical form is information, and information deserves an address of its own. The temple keeps that address connected to the scholarship that justifies it.`,
   (d) => `The story of ${d.unicode} did not end in antiquity; it changed medium. Names survive because each generation finds a new carrier for them — clay, papyrus, print, and now the digital temple. The carrier is honest when the spelling that resolves is the spelling the evidence supports. **${d.unicode}** and *${d.ascii}* contain the same letters; what the project adds is not ornament but provenance, review, and a permanent home for the record.`,
-  (d) => `Every stage from ${d.scriptName} to the canonical Latin spelling was an act of care: the scribe who first recorded the name, the lexicographer who glossed it, the editor who fixed the convention, and the scholar who documented the reconstruction. The temple is the latest stage, not the last word. Its principle remains simple: a name deserves to be written in the form its evidence supports. **${d.unicode}** is that principle made accessible.`,
+  (d) => `Every stage from ${d.scriptAttested ? d.scriptName : `the tradition's original language`} to the canonical Latin spelling was an act of care: the scribe who first recorded the name, the lexicographer who glossed it, the editor who fixed the convention, and the scholar who documented the reconstruction. The temple is the latest stage, not the last word. Its principle remains simple: a name deserves to be written in the form its evidence supports. **${d.unicode}** is that principle made accessible.`,
   (d) => `In 2026 the stakes are practical. Search indexes, language models, and localization pipelines inherit whatever spelling the web normalizes. **${d.unicode}** teaches the machinery that this reviewed form exists, that it is used, and that it points to a real scholarly record. That is why a project built on philology cares about digital infrastructure: the infrastructure decides which names the future sees, and this temple keeps the whole name visible.`,
   (d) => `The letters in **${d.unicode}** were never lost, and no replacement marks are needed to make them whole. The burden is instead one of fidelity: every use should carry the same attested spelling and the history attached to it. The PuniCodex temple keeps that form in circulation — as a digital address, a dataset entry, and a scholarly argument — so consistency becomes the easy choice rather than an accident of citation.`,
   (d) => `A door matters when people can walk through it. ${d.domainUnicode ? `**${d.domainUnicode}** is open` : 'The digital temple is open'}, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on a spelling the evidence supports. The PuniCodex project bets that the web will make room for names as they are actually documented, and ${d.unicode} is one of its standing proofs. Visit, share, cite, and use the whole record.`,
@@ -843,7 +868,12 @@ function asciiTechnicalBlock(data, key) {
     return `You do not need a special keyboard to use this name. **${data.unicode}** already uses ordinary Latin letters. The [PuniCodex Type Tool](/type/) lets you confirm the canonical spelling and copy it cleanly, while the original-script notes in the temple show the evidence behind the romanization.`;
   }
   if (key === 'marksDeep') {
-    return `A canonical name is a small map. In the case of **${data.unicode}**, the route does not lead through diacritics or special letters, because the conventional scholarly spelling already uses the Latin alphabet. The original evidence — ${data.script && data.script !== '—' ? `**${data.script}** in ${data.scriptName}` : `the ${data.scriptName} record`} — carries semantic and phonetic information that no romanization can fully reproduce.\n\nBy fixing one reviewed spelling as the public reference, the project prevents the drift that occurs when a name is romanized differently in every article, map, and database. The character list shows exactly what is carried forward. "No change" here means a deliberate choice to keep the name stable, searchable, and faithful to the record.`;
+    const evidence = data.scriptAttested
+      ? `**${data.script}** in ${data.scriptName}`
+      : data.script && data.script !== '—'
+        ? `**${data.script}** — a reconstructed specimen in ${data.scriptName}`
+        : `the tradition's transmitted record`;
+    return `A canonical name is a small map. In the case of **${data.unicode}**, the route does not lead through diacritics or special letters, because the conventional scholarly spelling already uses the Latin alphabet. The original evidence — ${evidence} — carries semantic and phonetic information that no romanization can fully reproduce.\n\nBy fixing one reviewed spelling as the public reference, the project prevents the drift that occurs when a name is romanized differently in every article, map, and database. The character list shows exactly what is carried forward. "No change" here means a deliberate choice to keep the name stable, searchable, and faithful to the record.`;
   }
   if (key === 'traditionContext') {
     return `**${data.unicode}** does not stand alone. It belongs to the ${data.pantheonDisplay} tradition, where it is counted among ${data.pantheonCount} names in the PuniCodex lexicon. ${data.sphere ? `Its sphere — ${data.sphere} — places it beside other figures who govern similar aspects of experience.` : 'Its place in that tradition shapes how the name is read, what stories attach to it, and why later cultures kept returning to it.'} The canonical spelling keeps the name in the company of its kin and gives researchers one stable reference across the temples, the APIs, and the scholarly record.`;
@@ -855,11 +885,19 @@ function asciiTechnicalBlock(data, key) {
     return `A digital address is a kind of publication. When **${data.unicode}** resolves, it proves that the canonical spelling is not a theoretical exercise; it is a working reference on the public internet. Search engines can index it, language models can encounter it, and anyone who copies it from a manuscript can paste it into a browser.\n\nThe address already uses Latin letters, so there is no special encoding narrative to tell. Its practical value is continuity: the same reviewed form appears in the temple, the lexicon, the API, and the address bar.`;
   }
   if (key === 'restorationNotes') {
-    return `Recording a name is not a single decision; it is a sequence of smaller decisions, each backed by a different kind of evidence. For **${data.unicode}**, the chain begins with the attested form in ${data.scriptName}, continues through the standard scholarly romanizations, and ends with the canonical spelling used by this temple.\n\n${data.meaning ? `The meaning "${data.meaning}" anchors the name in its semantic field and helps explain why this particular convention was retained.` : 'The lexicon records no single-line gloss, so the canonical form relies on contextual usage and the scholarly record assembled above.'} The plain ASCII letters already contain the complete reference form. The task is to preserve that form consistently, publish the reasoning, and let the original evidence remain available for challenge.`;
+    const chainStart = data.scriptAttested
+      ? `the attested form in ${data.scriptName}`
+      : data.script && data.script !== '—'
+        ? `the reconstructed specimen in ${data.scriptName} (a normalized scholarly rendering)`
+        : `the tradition's transmitted record`;
+    return `Recording a name is not a single decision; it is a sequence of smaller decisions, each backed by a different kind of evidence. For **${data.unicode}**, the chain begins with ${chainStart}, continues through the standard scholarly romanizations, and ends with the canonical spelling used by this temple.\n\n${data.meaning ? `The meaning "${data.meaning}" anchors the name in its semantic field and helps explain why this particular convention was retained.` : 'The lexicon records no single-line gloss, so the canonical form relies on contextual usage and the scholarly record assembled above.'} The plain ASCII letters already contain the complete reference form. The task is to preserve that form consistently, publish the reasoning, and let the original evidence remain available for challenge.`;
   }
   if (key === 'evidenceMethod') {
     const authorities = (data.entry?.sources || []).filter(Boolean);
-    return `A careful reading of **${data.unicode}** begins by separating attestation from convention. The ${data.scriptName} record and the scholarly authorities are different kinds of evidence: one preserves the name in its historical setting, while the other explains how that evidence should be represented in a modern reference work. The canonical spelling answers the second question without pretending to replace the first.\n\nReaders can test this entry in three steps. Compare the original-script note with the conventional romanization; inspect the character list to see exactly what the canonical form contains; then consult ${authorities.length ? `the cited authorities — ${authorities.join(', ')} —` : 'the references assembled in the Scholarly Edition'} for the reasoning behind it. A plain Latin form is not evidence of missing scholarship, and visual sophistication is not a reason to invent a mark. The discipline is fidelity to the record, with every editorial choice left open to inspection.`;
+    const recordName = data.scriptAttested
+      ? `The ${data.scriptName} record`
+      : `The tradition's transmitted record`;
+    return `A careful reading of **${data.unicode}** begins by separating attestation from convention. ${recordName} and the scholarly authorities are different kinds of evidence: one preserves the name in its historical setting, while the other explains how that evidence should be represented in a modern reference work. The canonical spelling answers the second question without pretending to replace the first.\n\nReaders can test this entry in three steps. Compare the original-script note with the conventional romanization; inspect the character list to see exactly what the canonical form contains; then consult ${authorities.length ? `the cited authorities — ${authorities.join(', ')} —` : 'the references assembled in the Scholarly Edition'} for the reasoning behind it. A plain Latin form is not evidence of missing scholarship, and visual sophistication is not a reason to invent a mark. The discipline is fidelity to the record, with every editorial choice left open to inspection.`;
   }
   return null;
 }
