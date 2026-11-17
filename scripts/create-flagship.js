@@ -1827,38 +1827,35 @@ function getUnicodeInfo(char) {
 }
 
 function buildQuickFactsSection(entry, catalogEntry, sectionNumber = 1) {
+  // Slim 'At a Glance' strip: every fact links to the page or section that
+  // owns it — no symbols list, no pronunciation row, no meaning paragraph, no
+  // classification restatement. Those facts live on the lore page, the script
+  // page, and the sources section.
   const greek = getOriginalScript(entry);
   const hasOriginal = hasOriginalScript(entry);
-  const symbols = catalogEntry?.symbols || [];
-  const ipa = catalogEntry?.pronunciation?.ipa ? catalogEntry.pronunciation.ipa : '';
+  const pantheonLabel = (entry.pantheon || '')
+    .replace(/-/g, ' ')
+    .replace(/\w/g, (c) => c.toUpperCase());
   const facts = [
-    { dt: getOriginalScriptLabel(entry), dd: hasOriginal ? greek : entry.unicode, isScript: true },
-    { dt: 'Unicode Restoration', dd: entry.unicode },
-    {
-      dt: 'Pantheon',
-      dd: (entry.pantheon || '').replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-    },
-    { dt: 'Domain', dd: entry.domain },
-    { dt: 'Meaning', dd: entry.meaning || entry.domain },
-    { dt: 'Classification', dd: preservationLabel(entry.unicode) },
-    {
-      dt: 'Primary Domain',
-      dd: getDomainsText(entry).split(' \u00b7 ')[0] || `${entry.unicode}.com`,
-    },
+    { dt: 'Pantheon', dd: escapeHtml(pantheonLabel) },
+    { dt: 'Domain', dd: escapeHtml(entry.domain) },
   ];
-  if (ipa) facts.splice(2, 0, { dt: 'Reconstructed Pronunciation', dd: ipa });
-  if (symbols.length)
-    facts.push({
-      dt: 'Sacred Symbols',
-      dd: symbols
-        .slice(0, 5)
-        .map((s) => s.name)
-        .join(', '),
-    });
+  const dating = (catalogEntry?.archaeology || '')
+    .replace(/<[^>]+>/g, ' ')
+    .match(/(?:c\.\s*)?\d{3,4}(?:\s*[–—-]\s*\d{3,4})?\s*(?:BCE|CE|BC|AD)/i);
+  if (dating) facts.push({ dt: 'Attested', dd: escapeHtml(dating[0].replace(/\s+/g, ' ')) });
+  facts.push({
+    dt: getOriginalScriptLabel(entry),
+    dd: `<a href="/${entry.id}/script/" style="color:var(--primary,#d4af37)">${escapeHtml(hasOriginal ? greek : entry.unicode)} →</a>`,
+  });
+  facts.push({
+    dt: 'Primary Sources',
+    dd: `<a href="#sources" style="color:var(--primary,#d4af37)">${countPrimarySources(entry, catalogEntry)} cited →</a>`,
+  });
   const rows = facts
     .map(
       (f) =>
-        `<div class="fact-card reveal-up"><span class="fact-label">${f.dt}</span><span class="fact-value ${f.isScript ? 'script' : ''}">${f.dd}</span></div>`
+        `<div class="fact-card reveal-up"><span class="fact-label">${f.dt}</span><span class="fact-value">${f.dd}</span></div>`
     )
     .join('');
   return `<section class="section section-name" id="quick-facts">
@@ -1866,8 +1863,8 @@ function buildQuickFactsSection(entry, catalogEntry, sectionNumber = 1) {
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
-            <h2 class="section-title">Quick Facts</h2>
-            <p class="section-subtitle">Essential information about ${entry.unicode}, ${entry.domain}</p>
+            <h2 class="section-title">At a Glance</h2>
+            <p class="section-subtitle">${entry.unicode} — every fact links to its home</p>
         </div>
         <div class="facts-grid reveal-up">
             <div class="facts-list">${rows}</div>
@@ -1931,13 +1928,11 @@ function buildEtymologySection(entry, catalogEntry, sectionNumber = 2) {
   }
   const scholarlyVariants = (entry.variants || []).filter((v) => v.type !== 'ascii');
   if (scholarlyVariants.length) {
+    // The variant family itself renders once, on the lore page — link there
+    // instead of re-listing the spellings here.
     derivativeGroups.push({
-      title: 'Unicode Variants',
-      items: scholarlyVariants
-        .map(
-          (v) => `<li><strong>${v.unicode}</strong> — ${v.type}${v.note ? ` (${v.note})` : ''}</li>`
-        )
-        .join(''),
+      title: 'Name Variations',
+      items: `<li><a href="../#name-variations" style="color:var(--primary,#d4af37)">Every attested spelling →</a></li>`,
     });
   }
   if (entry.accuracyNote) {
@@ -2119,6 +2114,186 @@ function buildReceptionSection(_entry, catalogEntry, sectionNumber) {
 </section>`;
 }
 
+// ---------------------------------------------------------------------------
+// Extended-page discovery sections — Parallels & Equivalents (cross-tradition
+// equivalents from the similarities graph), The Name in the Modern World
+// (everyday words descended from the name), Places Bearing the Name (sacred
+// geography), and the Original Script Note. Each renders ONLY when data
+// exists — never an empty section.
+// ---------------------------------------------------------------------------
+
+const SIMILARITIES_GRAPH = (() => {
+  try {
+    return JSON.parse(
+      fs.readFileSync(path.join(ROOT, 'platform', 'api', 'similarities.json'), 'utf8')
+    );
+  } catch {
+    return null;
+  }
+})();
+
+const SACRED_SITES = (() => {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'sacred-sites.json'), 'utf8'));
+  } catch {
+    return null;
+  }
+})();
+
+function parallelsFor(entryId) {
+  // Cross-tradition equivalents: edges that name this entry as the source, or
+  // as a bidirectional target. Deduped by the other id, strongest first.
+  const nodes = new Map((SIMILARITIES_GRAPH?.nodes || []).map((n) => [n.id, n]));
+  const seen = new Map();
+  for (const e of SIMILARITIES_GRAPH?.edges || []) {
+    let otherId = null;
+    if (e.source === entryId) otherId = e.target;
+    else if (e.target === entryId && e.bidirectional) otherId = e.source;
+    if (!otherId || seen.has(otherId)) continue;
+    const node = nodes.get(otherId);
+    if (!node) continue;
+    seen.set(otherId, {
+      id: otherId,
+      unicode: node.unicode,
+      pantheonLabel: node.pantheonLabel || node.pantheon || '',
+      relationship: e.relationship || '',
+      strength: e.strength || 0,
+    });
+  }
+  return [...seen.values()].sort((a, b) => b.strength - a.strength).slice(0, 6);
+}
+
+function buildParallelsSection(entry, sectionNumber) {
+  const parallels = parallelsFor(entry.id);
+  if (!parallels.length) return '';
+  const cards = parallels
+    .map(
+      (p, i) => `
+    <a href="/${p.id}/" class="related-card reveal-up" ${i > 0 ? `data-delay="${i * 100}"` : ''}>
+      <span class="related-name">${escapeHtml(p.unicode)}</span>
+      <span class="related-domain">${escapeHtml(p.relationship)}</span>
+      <span class="related-tier">${escapeHtml(p.pantheonLabel)}</span>
+    </a>`
+    )
+    .join('');
+  return `<section class="section section-related" id="parallels">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">Parallels &amp; Equivalents</h2>
+            <p class="section-subtitle">${escapeHtml(entry.unicode)} across the traditions</p>
+        </div>
+        <div class="related-grid reveal-up">
+            ${cards}
+        </div>
+    </div>
+</section>`;
+}
+
+function buildModernWordsSection(entry, sectionNumber) {
+  const words = EVERYDAY_WORDS_MAP.get(entry.id) || [];
+  if (!words.length) return '';
+  const links = words
+    .map(
+      (w) =>
+        `<a href="https://punicodex.com/everyday/#${w.anchor}" class="source-badge" title="${escapeHtml(w.gloss)}">${escapeHtml(w.word)}</a>`
+    )
+    .join('');
+  return `<section class="section section-related" id="modern-words">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">The Name in the Modern World</h2>
+            <p class="section-subtitle">Ordinary words that descend from ${escapeHtml(entry.unicode)}</p>
+        </div>
+        <div class="sources-section reveal-up">
+            <div class="sources-list">
+                ${links}
+            </div>
+        </div>
+    </div>
+</section>`;
+}
+
+function buildPlacesSection(entry, sectionNumber) {
+  const sites = (SACRED_SITES?.sites || []).filter((s) =>
+    (s.deities || []).some((d) => d.id === entry.id)
+  );
+  if (!sites.length) return '';
+  const cards = sites
+    .map(
+      (s, i) => `
+    <a href="/world/sacred/${s.id}/" class="related-card reveal-up" ${i > 0 ? `data-delay="${i * 100}"` : ''}>
+      <span class="related-name">${escapeHtml(s.name)}</span>
+      <span class="related-domain">${escapeHtml(s.place || s.country || '')}</span>
+      <span class="related-tier">${escapeHtml(s.era || '')}</span>
+    </a>`
+    )
+    .join('');
+  return `<section class="section section-related" id="places">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">Places Bearing the Name</h2>
+            <p class="section-subtitle">Sacred geography tied to ${escapeHtml(entry.unicode)}</p>
+        </div>
+        <div class="related-grid reveal-up">
+            ${cards}
+        </div>
+    </div>
+</section>`;
+}
+
+function buildOriginalScriptNoteSection(entry, catalogEntry, sectionNumber) {
+  const note = catalogEntry?.originalScriptNote;
+  if (!note) return '';
+  const label = getOriginalScriptLabel(entry);
+  return `<section class="section section-name" id="original-script-note">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">The ${escapeHtml(label)} Note</h2>
+            <p class="section-subtitle">What the written record preserves — and what it does not</p>
+        </div>
+        ${cardGrid([{ title: label, body: stripOuterPTag(note) }])}
+    </div>
+</section>`;
+}
+
+// Footer-adjacent crawl strip so the extended page is never a dead end: every
+// other room of the temple, including the pronunciation / etymology / script
+// sub-pages.
+function buildExploreTempleStrip(entry) {
+  const rooms = [
+    ['', 'Temple'],
+    ['lore/', 'Lore'],
+    ['patterns/', 'Patterns'],
+    ['scholars/', 'Scholars'],
+    ['patron/', 'Patrons'],
+    ['blog/', 'Blog'],
+    ['pronunciation/', 'Pronunciation'],
+    ['etymology/', 'Etymology'],
+    ['script/', 'Original Script'],
+  ];
+  const links = rooms
+    .map(([p, label]) => `<a href="/${entry.id}/${p}" class="source-badge">${label}</a>`)
+    .join('');
+  return `<section class="section section-related" id="explore-temple">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <h2 class="section-title">Explore the Temple</h2>
+            <p class="section-subtitle">Every room of the ${escapeHtml(entry.unicode)} temple</p>
+        </div>
+        <div class="sources-section reveal-up">
+            <div class="sources-list">
+                ${links}
+            </div>
+        </div>
+    </div>
+</section>`;
+}
+
 // The Meditation — the catalog's extended essay, given its own stage on the
 // extended page instead of languishing as a single teaser paragraph in a CTA.
 function buildMeditationSection(entry, catalogEntry, sectionNumber = 5) {
@@ -2150,60 +2325,56 @@ function stripOuterPTag(html) {
 }
 
 function buildFaqItems(entry, catalogEntry) {
-  const greek = getOriginalScript(entry) || entry.unicode;
-  const ipa = catalogEntry?.pronunciation?.ipa ? catalogEntry.pronunciation.ipa : '';
-  const approximation = catalogEntry?.pronunciation?.approximation
-    ? catalogEntry.pronunciation.approximation.replace(/[.\s]+$/, '')
-    : '';
-  const symbols = catalogEntry?.symbols || [];
-  const variants = (entry.variants || []).filter((v) => v.type !== 'ascii');
+  // Deep-dive FAQ: every question must be answerable only from extended-owned
+  // material (cult, archaeology, iconography, reception, syncretism, sources,
+  // originalScriptNote). Basics — pronunciation, meaning, symbols, spelling
+  // variants, restoration rationale — belong to the lore page and its
+  // sub-pages; never pad this list with them. Each answer is one sentence
+  // plus a link to the section that owns the fact.
+  const firstSentence = (html) => {
+    const plain = (html || '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const m = plain.match(/^[^.!?]+[.!?]/);
+    return m ? m[0].trim() : plain;
+  };
   const items = [];
-  items.push({
-    q: `How do you pronounce ${entry.unicode}?`,
-    a: ipa
-      ? `In reconstructed pronunciation, <strong>${entry.unicode}</strong> is ${ipa}${approximation ? ` — approximately ${approximation}` : ''}.`
-      : `The original form <strong>${greek}</strong> preserves phonetic distinctions that plain <strong>${entry.ascii}</strong> cannot show.`,
-  });
-  items.push({
-    q: `What does ${entry.unicode} mean?`,
-    a: `<strong>${entry.unicode}</strong> means <strong>${entry.meaning || entry.domain}</strong> in the ${entry.pantheon} tradition.`,
-  });
-  if (symbols.length) {
+  if (catalogEntry?.archaeology || catalogEntry?.cult) {
+    const basis = firstSentence(catalogEntry?.archaeology || catalogEntry?.cult);
     items.push({
-      q: `What are the symbols of ${entry.unicode}?`,
-      a: `${entry.unicode} is associated with ${symbols
-        .slice(0, 5)
-        .map((s) => `<strong>${s.name}</strong> (${s.meaning})`)
-        .join(', ')}.`,
+      q: `How do we know how ${entry.unicode} was worshipped?`,
+      a: `${basis} <a href="#cult">The full cult record →</a>`,
     });
   }
-  if (variants.length) {
+  const sourceNames = (catalogEntry?.sources || []).map((s) => (s.name || s).toString());
+  if (sourceNames.length) {
+    const cited = sourceNames
+      .slice(0, 3)
+      .map((n) => `<cite>${escapeHtml(n)}</cite>`)
+      .join(', ');
     items.push({
-      q: `Why are there different spellings of ${entry.unicode}?`,
-      a: `Each form is a historically attested restoration rather than a mistake: ${variants
-        .filter((v) => v.unicode)
-        .map(
-          (v) =>
-            `<strong>${v.unicode}</strong> is the ${v.type} form${v.note ? ` (${v.note})` : ''}`
-        )
-        .join(
-          '; '
-        )}. PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.`,
+      q: `Where do the earliest attestations of ${entry.unicode} come from?`,
+      a: `The record rests on ${cited}${sourceNames.length > 3 ? `, among ${sourceNames.length} cited works` : ''}. <a href="#sources">The full source apparatus →</a>`,
     });
   }
-  items.push({
-    q: isAsciiOnlyUnicode(entry)
-      ? `Why use the canonical spelling of ${entry.unicode}?`
-      : `Why restore ${entry.unicode} in Unicode?`,
-    a: isAsciiOnlyUnicode(entry)
-      ? `<strong>${entry.unicode}</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.`
-      : `Plain ASCII <strong>${entry.ascii}</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.`,
-  });
-  if (catalogEntry?.mythology?.myths?.length) {
-    const m = catalogEntry.mythology.myths[0];
+  if (catalogEntry?.reception || catalogEntry?.syncretism) {
+    const basis = firstSentence(catalogEntry?.reception || catalogEntry?.syncretism);
     items.push({
-      q: `What is the most important myth about ${entry.unicode}?`,
-      a: `“${m.title}” — the ${m.tag ? `${m.tag.replace(/^The\\s+/i, '').replace(/^A\\s+/i, '')} story that anchors the mythology of` : 'foundational myth of'} <strong>${entry.unicode}</strong>, told in full on <a href="../#mythology">the lore page</a>.`,
+      q: `How did later traditions reinterpret ${entry.unicode}?`,
+      a: `${basis} <a href="#reception">Reception &amp; transformation →</a>`,
+    });
+  }
+  if (catalogEntry?.iconography) {
+    items.push({
+      q: `What do the surviving images of ${entry.unicode} actually show?`,
+      a: `${firstSentence(catalogEntry.iconography)} <a href="#iconography">The iconography →</a>`,
+    });
+  }
+  if (catalogEntry?.originalScriptNote) {
+    items.push({
+      q: `What does the written record of ${entry.unicode} actually preserve?`,
+      a: `${firstSentence(catalogEntry.originalScriptNote)} <a href="#original-script-note">The ${getOriginalScriptLabel(entry)} note →</a>`,
     });
   }
   return items;
@@ -2245,11 +2416,189 @@ function buildFaqSection(entry, catalogEntry, sectionNumber = 6) {
         <div class="section-header reveal-up">
             <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Common questions about ${entry.unicode}, ${entry.domain}, and Unicode restoration</p>
+            <p class="section-subtitle">Deep-dives into the cult, attestation, reception, and sources of ${entry.unicode}</p>
         </div>
         <div class="faq-list">${faqs}</div>
     </div>
 </section>`;
+}
+
+// Source-classification tables shared by buildSourcesSection and
+// countPrimarySources — the quick-facts strip counts primary texts with the
+// same rules the sources section classifies them by.
+const SOURCE_LEX_KEYS = [
+  'LSJ',
+  'Beekes',
+  'Pape-Benseler',
+  'Chantraine',
+  'Faulkner',
+  'Budge',
+  'Watkins',
+  'West',
+];
+
+const PRIMARY_SOURCE_PATTERNS = [
+  /Homer/,
+  /Hesiod/,
+  /Aeschylus/,
+  /Sophocles/,
+  /Euripides/,
+  /Pindar/,
+  /Pausanias/,
+  /Apollodorus/,
+  /Ovid/,
+  /Vergil/,
+  /Virgil/,
+  /Plato/,
+  /Cicero/,
+  /Homeric Hymn/,
+  /Orphic Hymn/,
+  /Theogony/,
+  /Works and Days/,
+  /Iliad/,
+  /Odyssey/,
+  /Library/,
+  /Metamorphoses/,
+  /Aeneid/,
+  /Phaedo/,
+  /Protagoras/,
+  /Republic/,
+  /Suppliants/,
+  /Eumenides/,
+  /Prometheus Bound/,
+  /Iphigenia/,
+  /Sappho/,
+  /Kojiki/,
+  /Nihon Shoki/,
+  /Man['’]?yōshū/,
+  /Man['’]?yoshu/,
+  /Engishiki/,
+  /Fudoki/,
+  // Norse and Germanic
+  /Poetic Edda/,
+  /Prose Edda/,
+  /Völuspá/,
+  /Hávamál/,
+  /Grímnismál/,
+  /Lokasenna/,
+  /Vafþrúðnismál/,
+  /Skáldskaparmál/,
+  /Ynglinga saga/,
+  /Gylfaginning/,
+  /Saxo Grammaticus/,
+  /Gesta Danorum/,
+  /Rök runestone/,
+  /Alvíssmál/,
+  /Old High German/,
+  /Old English/,
+  /Beowulf/,
+  /Crist A/,
+  // Egyptian
+  /Pyramid Texts/,
+  /Coffin Texts/,
+  /Book of the Dead/,
+  /Book of Caverns/,
+  /Book of Amduat/,
+  /Book of Gates/,
+  /Hymn to Ra/,
+  /Hymn to Osiris/,
+  /Great Hymn to the Aten/,
+  /Instruction of Amenemope/,
+  /Instruction of Ptahhotep/,
+  /Edwin Smith/,
+  /Ebers Papyrus/,
+  /London Medical Papyrus/,
+  /Metternich Stela/,
+  /Shabaka Stone/,
+  /Bremner-Rhind Papyrus/,
+  /Papyrus Jumilhac/,
+  // Mesopotamian
+  /Enuma Elish/,
+  /Epic of Gilgamesh/,
+  /Atrahasis/,
+  /Inanna's Descent/,
+  /Hymn to Enlil/,
+  /Hymn to Ea/,
+  /Hymn to Inanna/,
+  /Hymn to Ishtar/,
+  /Code of Hammurabi/,
+  /Enki and Ninhursag/,
+  /Enki and the World Order/,
+  /Adapa/,
+  /Anzu Epic/,
+  /Sumerian Hymn/,
+  // Canaanite and Northwest Semitic
+  /KTU/,
+  /Baal Cycle/,
+  /Keret Epic/,
+  /Epic of Aqhat/,
+  /Aqhat Legend/,
+  /Hebrew Bible/,
+  /Karatepe/,
+  // Sanskrit / Hindu
+  /Rigveda/,
+  /Ṛgveda/,
+  /Atharvaveda/,
+  /Shatapatha Brahmana/,
+  /Śatapatha Brāhmaṇa/,
+  /Taittiriya Samhita/,
+  /Taittirīya Saṃhitā/,
+  /Purusha Sukta/,
+  /Puruṣa Sūkta/,
+  /Shiva Purana/,
+  /Śiva Purāṇa/,
+  /Vishnu Purana/,
+  /Viṣṇu Purāṇa/,
+  /Bhagavad Gita/,
+  /Bhagavad Gītā/,
+  /Upanishad/,
+  /Upaniṣad/,
+  /Manusmriti/,
+  /Manusmṛti/,
+  /Nirukta/,
+  /Brahma Sutras/,
+  /Brahma Sūtra/,
+  /Liṅga Purāṇa/,
+  /Skanda Purāṇa/,
+  /Brahmāṇḍa Purāṇa/,
+  /Bhāgavata Purāṇa/,
+  /Kālikā Purāṇa/,
+  /Mahānirvāṇa Tantra/,
+  /Tantrarāja Tantra/,
+  /Brahmayāmala Tantra/,
+  // Other classical and colonial sources
+  /Diodorus Siculus/,
+  /Plutarch/,
+  /Strabo/,
+  /Tyrtaeus/,
+  /Alonso de Ovalle/,
+  /Pedro Mariño de Lobera/,
+  /Alonso de Góngora Marmolejo/,
+  // Zoroastrian
+  /Yasna/,
+  /Yašt/,
+  /Yasht/,
+  /Gāthā/,
+  /Gatha/,
+  /Avesta/,
+  /Vendidad/,
+  /Visperad/,
+  /Khordeh Avesta/,
+];
+
+function countPrimarySources(entry, catalogEntry) {
+  let n = 0;
+  for (const s of entry.sources || []) {
+    if (PRIMARY_SOURCE_PATTERNS.some((p) => p.test(s))) n++;
+  }
+  if (catalogEntry?.sources) {
+    for (const s of catalogEntry.sources) {
+      const name = (s.name || s).toString();
+      if (SOURCE_LEX_KEYS.includes(name)) continue;
+      if (PRIMARY_SOURCE_PATTERNS.some((p) => p.test(name))) n++;
+    }
+  }
+  return n;
 }
 
 function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
@@ -2295,164 +2644,6 @@ function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
     hindu: 'The <em>Ṛgveda</em>; the <em>Brāhmaṇas</em>; early Upaniṣadic literature.',
     japanese: 'The <em>Kojiki</em>; the <em>Nihon Shoki</em>; shrine ritual records.',
   };
-  const lexKeys = [
-    'LSJ',
-    'Beekes',
-    'Pape-Benseler',
-    'Chantraine',
-    'Faulkner',
-    'Budge',
-    'Watkins',
-    'West',
-  ];
-  const primaryPatterns = [
-    /Homer/,
-    /Hesiod/,
-    /Aeschylus/,
-    /Sophocles/,
-    /Euripides/,
-    /Pindar/,
-    /Pausanias/,
-    /Apollodorus/,
-    /Ovid/,
-    /Vergil/,
-    /Virgil/,
-    /Plato/,
-    /Cicero/,
-    /Homeric Hymn/,
-    /Orphic Hymn/,
-    /Theogony/,
-    /Works and Days/,
-    /Iliad/,
-    /Odyssey/,
-    /Library/,
-    /Metamorphoses/,
-    /Aeneid/,
-    /Phaedo/,
-    /Protagoras/,
-    /Republic/,
-    /Suppliants/,
-    /Eumenides/,
-    /Prometheus Bound/,
-    /Iphigenia/,
-    /Sappho/,
-    /Kojiki/,
-    /Nihon Shoki/,
-    /Man['’]?yōshū/,
-    /Man['’]?yoshu/,
-    /Engishiki/,
-    /Fudoki/,
-    // Norse and Germanic
-    /Poetic Edda/,
-    /Prose Edda/,
-    /Völuspá/,
-    /Hávamál/,
-    /Grímnismál/,
-    /Lokasenna/,
-    /Vafþrúðnismál/,
-    /Skáldskaparmál/,
-    /Ynglinga saga/,
-    /Gylfaginning/,
-    /Saxo Grammaticus/,
-    /Gesta Danorum/,
-    /Rök runestone/,
-    /Alvíssmál/,
-    /Old High German/,
-    /Old English/,
-    /Beowulf/,
-    /Crist A/,
-    // Egyptian
-    /Pyramid Texts/,
-    /Coffin Texts/,
-    /Book of the Dead/,
-    /Book of Caverns/,
-    /Book of Amduat/,
-    /Book of Gates/,
-    /Hymn to Ra/,
-    /Hymn to Osiris/,
-    /Great Hymn to the Aten/,
-    /Instruction of Amenemope/,
-    /Instruction of Ptahhotep/,
-    /Edwin Smith/,
-    /Ebers Papyrus/,
-    /London Medical Papyrus/,
-    /Metternich Stela/,
-    /Shabaka Stone/,
-    /Bremner-Rhind Papyrus/,
-    /Papyrus Jumilhac/,
-    // Mesopotamian
-    /Enuma Elish/,
-    /Epic of Gilgamesh/,
-    /Atrahasis/,
-    /Inanna's Descent/,
-    /Hymn to Enlil/,
-    /Hymn to Ea/,
-    /Hymn to Inanna/,
-    /Hymn to Ishtar/,
-    /Code of Hammurabi/,
-    /Enki and Ninhursag/,
-    /Enki and the World Order/,
-    /Adapa/,
-    /Anzu Epic/,
-    /Sumerian Hymn/,
-    // Canaanite and Northwest Semitic
-    /KTU/,
-    /Baal Cycle/,
-    /Keret Epic/,
-    /Epic of Aqhat/,
-    /Aqhat Legend/,
-    /Hebrew Bible/,
-    /Karatepe/,
-    // Sanskrit / Hindu
-    /Rigveda/,
-    /Ṛgveda/,
-    /Atharvaveda/,
-    /Shatapatha Brahmana/,
-    /Śatapatha Brāhmaṇa/,
-    /Taittiriya Samhita/,
-    /Taittirīya Saṃhitā/,
-    /Purusha Sukta/,
-    /Puruṣa Sūkta/,
-    /Shiva Purana/,
-    /Śiva Purāṇa/,
-    /Vishnu Purana/,
-    /Viṣṇu Purāṇa/,
-    /Bhagavad Gita/,
-    /Bhagavad Gītā/,
-    /Upanishad/,
-    /Upaniṣad/,
-    /Manusmriti/,
-    /Manusmṛti/,
-    /Nirukta/,
-    /Brahma Sutras/,
-    /Brahma Sūtra/,
-    /Liṅga Purāṇa/,
-    /Skanda Purāṇa/,
-    /Brahmāṇḍa Purāṇa/,
-    /Bhāgavata Purāṇa/,
-    /Kālikā Purāṇa/,
-    /Mahānirvāṇa Tantra/,
-    /Tantrarāja Tantra/,
-    /Brahmayāmala Tantra/,
-    // Other classical and colonial sources
-    /Diodorus Siculus/,
-    /Plutarch/,
-    /Strabo/,
-    /Tyrtaeus/,
-    /Alonso de Ovalle/,
-    /Pedro Mariño de Lobera/,
-    /Alonso de Góngora Marmolejo/,
-    // Zoroastrian
-    /Yasna/,
-    /Yašt/,
-    /Yasht/,
-    /Gāthā/,
-    /Gatha/,
-    /Avesta/,
-    /Vendidad/,
-    /Visperad/,
-    /Khordeh Avesta/,
-  ];
   const archaeologyPatterns = [
     /Archaeology/,
     /Art History/,
@@ -2482,7 +2673,7 @@ function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
     const cite = sourceCitations[s] || `<cite>${s}</cite>`;
     // Lexicon sources are not all lexicography — a primary text cited in the
     // lexicon (e.g. the Kojiki for Amaterasu) belongs under Primary Texts.
-    if (primaryPatterns.some((p) => p.test(s))) primaryFromLex.push(cite);
+    if (PRIMARY_SOURCE_PATTERNS.some((p) => p.test(s))) primaryFromLex.push(cite);
     else lexItems.push(cite);
   }
   if (!lexItems.length)
@@ -2496,8 +2687,8 @@ function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
     for (const s of catalogEntry.sources) {
       const name = (s.name || s).toString();
       const cite = `<cite>${name}</cite>`;
-      if (lexKeys.includes(name)) continue;
-      if (primaryPatterns.some((p) => p.test(name))) {
+      if (SOURCE_LEX_KEYS.includes(name)) continue;
+      if (PRIMARY_SOURCE_PATTERNS.some((p) => p.test(name))) {
         primaryItems.push(cite);
       } else if (archaeologyPatterns.some((p) => p.test(name))) {
         archaeologyItems.push(cite);
@@ -2662,15 +2853,21 @@ function buildMetaDescription(entry, catalogEntry) {
   // narrative when the catalog has one; otherwise the templated fallback.
   // SERP discipline: 120–160 characters, single quotes only (the description
   // lives in a double-quoted HTML attribute AND inside a JSON-LD string).
-  const closer =
-    ' Explore the original script, pronunciation, mythology, and the restored Unicode temple.';
+  // Narrative intent — mythology & symbols — matching the lore page.
+  const closer = ' Explore the mythology, sacred symbols, and the restored Unicode temple.';
   let desc = '';
   if (catalogEntry?.culturalLegacy) {
     const plain = catalogEntry.culturalLegacy
       .replace(/<[^>]+>/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
-    const sentences = plain.match(/[^.!?]+[.!?]/g) || [plain];
+    // Mask citation initials ("W. B. Yeats") so the sentence splitter never
+    // reads them as sentence ends and slices a citation to dangling initials.
+    // Each initial's period becomes a sentinel (restored at the end).
+    const masked = plain.replace(/\b((?:[A-Z]\.\s*){2,})/g, (m) =>
+      m.replace(/([A-Z])\.\s*/g, '$1\u0001')
+    );
+    const sentences = masked.match(/[^.!?]+[.!?]+/g) || [masked];
     for (const s of sentences) {
       if ((desc + s).trim().length > 130) break;
       desc = `${desc}${s.trim()} `;
@@ -2696,10 +2893,27 @@ function buildMetaDescription(entry, catalogEntry) {
     }
   }
   if (desc.length > 157) {
-    desc = desc.slice(0, 157);
-    desc = `${desc.slice(0, desc.lastIndexOf(' ')).trim()}…`;
+    // Truncate on sentence boundaries only — never mid-word, never into a
+    // citation's dangling initials.
+    const sentences = desc.match(/[^.!?]+[.!?]+/g) || [desc];
+    desc = '';
+    for (const s of sentences) {
+      if (`${desc}${s}`.trim().length > 157) break;
+      desc = `${desc}${s}`.trim();
+    }
+    if (!desc) {
+      desc = sentences[0].slice(0, 157);
+      desc = `${desc.slice(0, desc.lastIndexOf(' ')).trim()}.`;
+    }
   }
-  return desc.replace(/"/g, "'");
+  if (desc.length < 120) {
+    // Sentence-boundary discipline can land just under the floor — top up
+    // with a short narrative closer when one fits.
+    const topUp = ' Explore the mythology and symbols.';
+    if (`${desc}${topUp}`.trim().length <= 157) desc = `${desc}${topUp}`.trim();
+  }
+  // Restore the masked citation initials ("W.\u0001 B." back to "W. B.").
+  return desc.replace(/\u0001/g, '. ').replace(/"/g, "'");
 }
 
 // Auto-generated taglines are built as `${domain} · ${meaning}`, while the
@@ -2716,10 +2930,10 @@ function heroTagline(entry) {
 
 function buildHomeMetaDescription(entry) {
   // Sponsorship-layout description for the temple root: names the restored
-  // form, the pantheon, the scholarly payload (original script, pronunciation,
-  // mythology) and the commercial nature of the page (sponsorship spaces +
-  // the Reliquary). Same SERP discipline as buildMetaDescription; tries
-  // progressively shorter phrasings before resorting to truncation.
+  // form and targets entity + temple/commercial intent (the Reliquary,
+  // sponsorship, the restored domain) — mythology and pronunciation intents
+  // belong to the lore page. Same SERP discipline as buildMetaDescription;
+  // tries progressively shorter phrasings before resorting to truncation.
   const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
   const firstClause = (entry.domain || '').split(',')[0].trim() || entry.domain;
   const bases = [
@@ -2727,8 +2941,8 @@ function buildHomeMetaDescription(entry) {
     `${entry.unicode} — restored ${label} name: ${firstClause}. `,
   ];
   const payloads = [
-    'original script, reconstructed pronunciation, and mythology.',
-    'original script, pronunciation, and mythology.',
+    'original script, the restored domain, and the temple record.',
+    'original script and the restored domain.',
   ];
   const closers = [
     " Sponsor this temple's spaces or shop its Reliquary.",
@@ -3248,6 +3462,10 @@ function iconSvg(pathData, stroke = 'var(--primary)') {
 }
 
 function buildPronunciationContent(entry, catalogEntry) {
+  // The engine derivation is the single canonical IPA — one derivation on
+  // every surface. Catalog approximation prose and phoneme notes stay as
+  // curated enrichment underneath it, but the catalog ipa field never renders.
+  const derived = derivePronunciation(entry);
   if (catalogEntry?.pronunciation) {
     const p = catalogEntry.pronunciation;
     const phonemes = (p.phonemes || [])
@@ -3265,8 +3483,8 @@ function buildPronunciationContent(entry, catalogEntry) {
       <div class="pronunciation-grid">
         <div class="pronunciation-main reveal-up">
           <div class="ipa-display">
-            <span class="ipa-text">${p.ipa || ''}</span>
-            <span class="ipa-label">${p.ipaLabel || 'Reconstructed Pronunciation'}</span>
+            <span class="ipa-text">${derived.ipa || ''}</span>
+            <span class="ipa-label">${derived.ipaLabel || 'Reconstructed Pronunciation'}</span>
           </div>
           ${phonemes ? `<div class="pronunciation-breakdown">${phonemes}</div>` : ''}
         </div>
@@ -3966,6 +4184,41 @@ function generatePatternsPage(entry, _palette, templateDir) {
   return replacePlaceholders(html0, vars);
 }
 
+// Scholarly-reference meta description for the extended page: cult,
+// attestation, reception, sources — distinct from the lore page's narrative
+// intent and the temple root's commercial intent. Unique per temple (the
+// Unicode name is always present), 120–155 characters, single quotes only.
+function buildExtendedMetaDescription(entry, catalogEntry) {
+  const has = (k) => Boolean(catalogEntry?.[k]);
+  const facets = [];
+  if (has('cult') || has('archaeology')) facets.push('cult and worship');
+  facets.push('attestation and primary sources');
+  if (has('iconography')) facets.push('iconography');
+  if (has('reception') || has('syncretism') || has('culturalLegacy')) facets.push('reception');
+  if (has('extendedMeditation')) facets.push('a meditation on the name');
+  const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
+  const firstClause = (entry.domain || '').split(',')[0].trim();
+  const scope = firstClause
+    ? ` — the ${label} tradition of ${firstClause}.`
+    : ` — the ${label} tradition.`;
+  let desc = `${entry.unicode} — the deeper record: ${facets.join(', ')}${scope}`;
+  // Drop trailing facets (never the core two) until the description fits —
+  // a facet is a whole phrase, so nothing ever truncates mid-clause.
+  while (desc.length > 155 && facets.length > 2) {
+    facets.pop();
+    desc = `${entry.unicode} — the deeper record: ${facets.join(', ')}${scope}`;
+  }
+  if (desc.length > 155) {
+    desc = desc.slice(0, 155);
+    desc = desc.slice(0, desc.lastIndexOf(' ')).trim();
+    if (!/[.!?]$/.test(desc)) desc = `${desc}.`;
+  }
+  while (desc.length < 120) {
+    desc = `${desc} The complete scholarly apparatus.`;
+  }
+  return desc.replace(/"/g, "'");
+}
+
 function generateExtendedPage(entry, palette, templateDir, catalog) {
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'extended', 'index.html'), 'utf8');
   const templeId = entry.id;
@@ -3992,6 +4245,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     EFFECT: getCanvasEffect(entry),
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
+    META_DESCRIPTION: buildExtendedMetaDescription(entry, catalogEntry),
     HERO_VISUAL: buildHeroVisualExtended(entry, '../../'),
     QUICK_FACTS: buildQuickFactsSection(entry, catalogEntry, next()),
     ETYMOLOGY: buildEtymologySection(entry, catalogEntry, next()),
@@ -3999,10 +4253,15 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     CULT: '',
     ICONOGRAPHY: '',
     RECEPTION: '',
+    PARALLELS: '',
+    MODERN_WORDS: '',
+    PLACES: '',
+    SCRIPT_NOTE: '',
     MEDITATION: '',
     SCREEN_APPEARANCES: '',
     FAQ: '',
     SOURCES: '',
+    EXPLORE_TEMPLE: buildExploreTempleStrip(entry),
   };
   vars.CULT = buildCultSection(entry, catalogEntry, next());
   if (!vars.CULT) n -= 1;
@@ -4010,6 +4269,14 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
   if (!vars.ICONOGRAPHY) n -= 1;
   vars.RECEPTION = buildReceptionSection(entry, catalogEntry, next());
   if (!vars.RECEPTION) n -= 1;
+  vars.PARALLELS = buildParallelsSection(entry, next());
+  if (!vars.PARALLELS) n -= 1;
+  vars.MODERN_WORDS = buildModernWordsSection(entry, next());
+  if (!vars.MODERN_WORDS) n -= 1;
+  vars.PLACES = buildPlacesSection(entry, next());
+  if (!vars.PLACES) n -= 1;
+  vars.SCRIPT_NOTE = buildOriginalScriptNoteSection(entry, catalogEntry, next());
+  if (!vars.SCRIPT_NOTE) n -= 1;
   vars.MEDITATION = buildMeditationSection(entry, catalogEntry, next());
   if (!vars.MEDITATION) n -= 1;
   vars.SCREEN_APPEARANCES = buildScreenAppearancesSection(entry, next());
@@ -4037,6 +4304,9 @@ function buildExtendedNavLinks(vars) {
   if (vars.CULT) links.push(['#cult', 'Cult']);
   if (vars.ICONOGRAPHY) links.push(['#iconography', 'Iconography']);
   if (vars.RECEPTION) links.push(['#reception', 'Reception']);
+  if (vars.PARALLELS) links.push(['#parallels', 'Parallels']);
+  if (vars.PLACES) links.push(['#places', 'Places']);
+  if (vars.SCRIPT_NOTE) links.push(['#script-note', 'Script']);
   if (vars.MEDITATION) links.push(['#meditation', 'Meditation']);
   if (vars.SCREEN_APPEARANCES) links.push(['#screen-appearances', 'Screen']);
   links.push(['#faq', 'FAQ'], ['#sources', 'Sources']);

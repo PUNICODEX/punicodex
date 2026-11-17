@@ -37,6 +37,41 @@ const {
   runCommand,
   runValidators,
 } = require('./flywheel-utils');
+const { isStubLoreEntry } = require('./generate-catalog-stubs');
+
+// The 12 lore-catalog keys create-flagship.js renders into the lore and
+// extended pages. A flagship promoted on top of missing/stub lore ships
+// placeholder pages and fails validate-flywheel one step removed.
+const REQUIRED_LORE_KEYS = [
+  'pronunciation',
+  'domains',
+  'symbols',
+  'mythology',
+  'syncretism',
+  'culturalLegacy',
+  'extendedMeditation',
+  'sources',
+  'cult',
+  'iconography',
+  'reception',
+  'archaeology',
+];
+
+// lore-batch merge-script families that replace stubs with real scholarship
+// (fill-only-missing; they never overwrite hand-edited content).
+const LORE_BATCH_FAMILIES = {
+  egyptian: 'scripts/lore-batch-egyptian.js … lore-batch-egyptian-5.js',
+  norse: 'scripts/lore-batch-norse-celtic.js',
+  celtic: 'scripts/lore-batch-norse-celtic.js',
+  hindu: 'scripts/lore-batch-sanskrit-1.js … lore-batch-sanskrit-6.js',
+};
+
+function loreKeyEmpty(value) {
+  if (value == null || value === '') return true;
+  if (Array.isArray(value)) return value.length === 0;
+  if (typeof value === 'object') return Object.keys(value).length === 0;
+  return false;
+}
 
 function parseArgs(argv) {
   const id = argv[0];
@@ -101,6 +136,40 @@ function main() {
     }
   }
 
+  // Blocking lore gate — runs BEFORE any mutation (lexicon flag, archetype,
+  // owned domains) and before create-flagship.js. create-flagship renders the
+  // lore and extended pages straight from scripts/lore-catalog.json; promoting
+  // without a complete, non-stub entry ships placeholder pages.
+  {
+    const lore = JSON.parse(
+      fs.readFileSync(path.join(__dirname, 'lore-catalog.json'), 'utf8'),
+    );
+    const loreEntry = lore[id];
+    const problems = [];
+    if (!loreEntry) {
+      problems.push('no entry at all');
+    } else {
+      if (isStubLoreEntry(loreEntry)) {
+        problems.push('entry is a generated stub (scripts/generate-catalog-stubs.js)');
+      }
+      for (const key of REQUIRED_LORE_KEYS) {
+        if (loreKeyEmpty(loreEntry[key])) problems.push(`missing or empty key "${key}"`);
+      }
+    }
+    if (problems.length) {
+      const family =
+        LORE_BATCH_FAMILIES[entry.pantheon] ||
+        `a new scripts/lore-batch-<pantheon>.js merge script (entry contract: see scripts/lore-batch-final.js)`;
+      console.error(`\n✗ Cannot promote ${id}: scripts/lore-catalog.json lore is incomplete:`);
+      for (const problem of problems) console.error(`    - ${problem}`);
+      console.error('\n  Remediation: author/run ' + family + ' — lore-batch merges are');
+      console.error('  fill-only-missing and never overwrite hand-edited content — then re-run');
+      console.error('  this promotion.\n');
+      process.exit(1);
+    }
+    console.log(`✓ lore-catalog entry complete (${REQUIRED_LORE_KEYS.length} keys, non-stub)`);
+  }
+
   // Ensure lexicon hasAdSite flag
   let lexiconSrc = loadLexiconSource();
   if (!entry.hasAdSite) {
@@ -122,8 +191,6 @@ function main() {
     greek: entry.greek || '—',
     domain: entry.domain || `${entry.pantheon} deity`,
     tagline: entry.meaning ? `${entry.domain} · ${entry.meaning}` : `${entry.domain}`,
-    tier: entry.tier === 'dual' ? 'dual-tier' : entry.tier === '1' ? 'tier-1' : 'tier-2',
-    tierDetail: entry.tier === 'dual' ? 'dual-tier' : 'single-tier',
     pantheon: entry.pantheon,
     folder: id,
     rentalTier: existing?.rentalTier,
@@ -193,12 +260,9 @@ function main() {
 
   console.log(`\n✓ ${id} promoted to flagship`);
 
-  // Post-promotion completeness report. The flywheel validator hard-fails on
-  // any of these missing, so surface them here, while the fix is cheap.
+  // Post-promotion completeness report. The lore-catalog gate ran before any
+  // mutation, so this list is a summary of the remaining integration surface.
   {
-    const lore = JSON.parse(
-      fs.readFileSync(path.join(__dirname, 'lore-catalog.json'), 'utf8'),
-    );
     const galleryNow = JSON.parse(fs.readFileSync(galleryPath, 'utf8'));
     const effects = JSON.parse(
       fs.readFileSync(
@@ -215,7 +279,7 @@ function main() {
     );
     const seats = (patternsSrc.match(new RegExp(`'${id}'`, 'g')) || []).length;
     const checks = [
-      ['lore catalog (scripts/lore-catalog.json)', lore[id] && Object.keys(lore[id]).length > 0],
+      ['lore catalog (scripts/lore-catalog.json) — enforced by the pre-promotion gate', true],
       ['rental tier (js/archetypes-v2.js)', /rentalTier:\s*"SSS|S|A|B|C"/.test(newArchetypesSrc.split(`id: "${id}"`)[1]?.slice(0, 400) || '')],
       ['bespoke hero effect (templates/flagship/effects/)', Boolean(effects[id])],
       [
