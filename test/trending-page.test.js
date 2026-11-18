@@ -30,6 +30,14 @@ function test(name, fn) {
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 const GENERATOR = path.join(root, 'scripts', 'generate-trending-page.js');
 const STAMPER = path.join(root, 'scripts', 'stamp-asset-versions.js');
+// trending/ is in the university-collaborators injector's footer-target union,
+// so the pipeline under test must include the injector (mirrors npm run
+// generate order: generator → injector → stamper).
+const INJECTOR = path.join(root, 'scripts', 'inject-university-collaborators.js');
+// inject-analytics re-asserts its block directly after <head> (before the
+// university block), so it must run after the university injector to
+// reproduce committed bytes.
+const ANALYTICS = path.join(root, 'scripts', 'inject-analytics.js');
 const PAGE = path.join(root, 'trending', 'index.html');
 
 function registryFrom(html) {
@@ -42,15 +50,29 @@ test('generator is idempotent (byte-identical output across runs)', () => {
   const hash = () =>
     require('node:crypto').createHash('sha256').update(fs.readFileSync(PAGE)).digest('hex');
   const runStamper = () => execFileSync(process.execPath, [STAMPER], { cwd: root, stdio: 'pipe' });
+  const runInjector = () =>
+    execFileSync(process.execPath, [INJECTOR, '--files', 'trending/index.html'], {
+      cwd: root,
+      stdio: 'pipe',
+    });
+  const runAnalytics = () =>
+    execFileSync(process.execPath, [ANALYTICS, '--files', 'trending/index.html'], {
+      cwd: root,
+      stdio: 'pipe',
+    });
   const committed = hash();
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  runInjector();
+  runAnalytics();
   runStamper();
   assert.strictEqual(
     hash(),
     committed,
-    'first regeneration changed the page — rerun node scripts/generate-trending-page.js then node scripts/stamp-asset-versions.js'
+    'first regeneration changed the page — rerun node scripts/generate-trending-page.js, node scripts/inject-university-collaborators.js, then node scripts/stamp-asset-versions.js'
   );
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  runInjector();
+  runAnalytics();
   runStamper();
   assert.strictEqual(hash(), committed, 'second regeneration changed the page');
 });

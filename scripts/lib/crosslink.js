@@ -159,9 +159,15 @@ function pushForm(id, form, { asciiLike = false, isVariant = false } = {}) {
     // English prose; "atlas"/"nike" are everyday words).
     if (!NEVER_LINK.has(form.toLowerCase())) {
       if (form.length >= 3) {
-        MATCHES_WITH_AMBIGUOUS.push({ id, form, isVariant });
-        if (!AMBIGUOUS_ASCII.has(form.toLowerCase())) {
+        const amb = AMBIGUOUS_ASCII.has(form.toLowerCase());
+        if (!amb) {
           MATCHES.push({ id, form, isVariant });
+          MATCHES_WITH_AMBIGUOUS.push({ id, form, isVariant });
+        } else if (form.length >= 4) {
+          // Ambiguous capitalized forms (Sol, Nike) need one extra letter —
+          // three-letter common words ("Sol walked in") false-positive too
+          // easily even in mythological prose.
+          MATCHES_WITH_AMBIGUOUS.push({ id, form, isVariant });
         }
       }
       const lower = form.toLowerCase();

@@ -372,7 +372,24 @@ function serpTitle(postTitle, suffix) {
   ]) {
     if (`${postTitle}${tail}`.length <= 60) return `${postTitle}${tail}`;
   }
+  // The full title doesn't fit with the per-temple suffix. The suffix is the
+  // temple's own name ("Candra Blog") — the one token that makes this page's
+  // title unique across the fleet — so it must survive truncation even when
+  // it appears nowhere in the surviving head of the headline.
+  const name = suffix.endsWith(' Blog') ? suffix.slice(0, -' Blog'.length) : null;
   const tail = ' | PUNICODEX';
+  if (name && !SERIES_SUFFIX.has(suffix)) {
+    const keep = `… ${name}${tail}`;
+    const budget = 60 - keep.length - 1; // reserve one column for the ellipsis
+    if (budget >= 12) {
+      let cut = postTitle.slice(0, budget);
+      const lastSpace = cut.lastIndexOf(' ');
+      if (lastSpace > 0) cut = cut.slice(0, lastSpace);
+      cut = cut.trim().replace(/[\s—–-]+$/u, '');
+      while (TRAILING_DROP.test(cut)) cut = cut.replace(TRAILING_DROP, '').trim().replace(/[\s—–-]+$/u, '');
+      if (cut.length >= 8) return `${cut}${keep}`;
+    }
+  }
   const budget = Math.max(20, 59 - tail.length); // one column reserved for '…'
   let cut = postTitle.slice(0, budget);
   const lastSpace = cut.lastIndexOf(' ');

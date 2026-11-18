@@ -61,6 +61,15 @@ function harvest(html, id) {
         : null;
   }
   if (!logomarkSrc) logomarkSrc = `assets/${id}_logomark.webp`;
+  // Base temples ship no assets/ dir — a seal pointing at a missing logomark
+  // 404s, so fall back to the global emblem. Flagships always have theirs.
+  let logomarkAlt = `${entry.unicode || id} logomark`;
+  const hasLocal = logomarkSrc.startsWith('assets/') &&
+    fs.existsSync(path.join(ROOT, 'sites', id, logomarkSrc));
+  if (logomarkSrc.startsWith('assets/') && !hasLocal) {
+    logomarkSrc = '/assets/brand/01-logos/punicodex-emblem-gold.webp';
+    logomarkAlt = 'PuniCodex emblem';
+  }
   return {
     name: entry.unicode || entry.name || id,
     pantheon: entry.pantheon || '—',
@@ -70,12 +79,14 @@ function harvest(html, id) {
     scriptLabel,
     script,
     logomarkSrc,
-    logomarkAlt: `${entry.unicode || id} logomark`,
+    logomarkAlt,
   };
 }
 
 function findBalancedFooter(html) {
-  const start = html.indexOf('<footer class="main-footer"');
+  // No closing quote — the temple footer carries a second class
+  // ("main-footer temple-footer"), which the old literal never matched.
+  const start = html.indexOf('<footer class="main-footer');
   if (start === -1) return null;
   let depth = 0;
   let i = start;
@@ -97,10 +108,16 @@ function findBalancedFooter(html) {
 
 function syncFile(filePath) {
   const html = fs.readFileSync(filePath, 'utf8');
-  if (html.includes('temple-footer')) return 'already';
+  const id = path.basename(path.dirname(filePath));
+  // Pages already synced stay untouched — unless the seal references a local
+  // logomark the temple doesn't have (base temples ship no assets/), which
+  // harvest() now resolves to the global emblem; rewrite those.
+  const sealMissing = html.includes('temple-footer') &&
+    html.includes(`assets/${id}_logomark`) &&
+    !fs.existsSync(path.join(ROOT, 'sites', id, 'assets', `${id}_logomark.webp`));
+  if (html.includes('temple-footer') && !sealMissing) return 'already';
   const span = findBalancedFooter(html);
   if (!span) return 'no-footer';
-  const id = path.basename(path.dirname(filePath));
   const next =
     html.slice(0, span.start) + templeFooterHtml(harvest(html, id)) + html.slice(span.end);
   writeFileWithRetry(filePath, next);

@@ -65,7 +65,7 @@ const TARGETS = [
   { page: path.join('about', 'index.html'), active: '/about/' },
   { page: path.join('about', 'authenticity.html'), active: null, replaceNav: true },
   { page: path.join('appraise', 'index.html'), active: '/appraise/' },
-  { page: path.join('art', 'index.html'), active: null },
+  // art/ is a nav-less redirect stub to /store/art/ — intentionally no chrome targets.
   { page: path.join('authenticity', 'index.html'), active: null },
   { page: path.join('blog', 'index.html'), active: '/blog/' },
   { page: path.join('texts', 'index.html'), active: '/texts/' },

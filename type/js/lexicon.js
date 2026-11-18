@@ -42437,7 +42437,11 @@ const LEXICON = [
       {
         "unicode": "bodhisattva",
         "type": "alt",
-        "note": "Standard transliteration spelling (single d), the form English prose most often uses"
+        "note": "Standard transliteration spelling (single d), the form English prose most often uses",
+        "sources": [
+          "Mahayana texts",
+          "Buddhist texts"
+        ]
       }
     ],
     "meaning": "'Awakening-being' — one who vows Buddhahood for the sake of all beings",

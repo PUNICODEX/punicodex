@@ -27,6 +27,7 @@ const {
 } = require('../type/js/original-scripts.js');
 const { derivePronunciation } = require('../type/js/pronunciation-rules.js');
 const { templeFooterHtml } = require('./temple-footer.js');
+const REPO_ROOT = path.join(__dirname, '..');
 // Stacked diacritics are no longer rendered inline in base temples;
 // they remain available via the Type Tool and flagship temples.
 
@@ -1186,8 +1187,16 @@ ${JSON.stringify(
       classification: subtype,
       scriptLabel: getOriginalScriptLabel(entry),
       script: hasOriginal ? originalScript : entry.unicode,
-      logomarkSrc: `assets/${entry.id}_logomark.webp`,
-      logomarkAlt: `${entry.unicode} logomark`,
+      logomarkSrc: fs.existsSync(
+        path.join(REPO_ROOT, 'sites', entry.id, 'assets', `${entry.id}_logomark.webp`)
+      )
+        ? `assets/${entry.id}_logomark.webp`
+        : '/assets/brand/01-logos/punicodex-emblem-gold.webp',
+      logomarkAlt: fs.existsSync(
+        path.join(REPO_ROOT, 'sites', entry.id, 'assets', `${entry.id}_logomark.webp`)
+      )
+        ? `${entry.unicode} logomark`
+        : 'PuniCodex emblem',
     })}
 
     <script src="https://punicodex.com/js/px-core.js" defer></script>

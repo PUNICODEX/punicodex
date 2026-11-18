@@ -55,3 +55,91 @@ function templeTabNavHtml(id, name, active = '') {
 }
 
 module.exports = { templeTabNavHtml };
+
+/**
+ * Base-temple chrome (generate-temples.js) for the page families that exist
+ * on base temples — etymology, pronunciation, original-script. Base temples
+ * have no lore/patterns/scholars/patron tabs and no temple assets, so the
+ * flagship tab nav's links and logolockup would 404. Mirrors the base
+ * temple's own nav exactly: text wordmark + Pantheon/Lexicon/Connections/Type.
+ */
+function baseTempleNavHtml(id, name) {
+  return `
+    <div class="global-strip">
+      <div class="global-strip-inner">
+        <a href="https://punicodex.com/" class="global-brand"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></a>
+        <div class="global-links">
+          <a href="https://punicodex.com/world/">World</a><a href="https://punicodex.com/culture/">Culture</a><a href="https://punicodex.com/instruments/">Tools</a><a href="https://punicodex.com/library/">Library</a><a href="https://punicodex.com/relics/">Relics</a><a href="https://punicodex.com/about/">About</a>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav base-nav" id="main-nav">
+      <div class="nav-inner">
+        <a href="https://punicodex.com/" class="nav-logo base-nav-logo" aria-label="PUNICODEX — ${esc(name)}">
+          <span class="nav-logo-text">${esc(name)}</span>
+        </a>
+        <div class="nav-links base-nav-links">
+          <a href="https://punicodex.com/pantheon/" class="nav-link">Pantheon</a>
+          <a href="https://punicodex.com/lexicon/" class="nav-link">Lexicon</a>
+          <a href="https://punicodex.com/connections/" class="nav-link">Connections</a>
+          <a href="https://punicodex.com/type/#${esc(id)}" class="nav-link">Type</a>
+        </div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+      <div class="mobile-menu-section">
+        <span class="mobile-menu-title">Explore</span>
+        <div class="mobile-menu-group">
+          <a href="https://punicodex.com/pantheon/">Pantheon</a>
+          <a href="https://punicodex.com/lexicon/">Lexicon</a>
+          <a href="https://punicodex.com/connections/">Connections</a>
+        </div>
+      </div>
+      <div class="mobile-menu-section">
+        <span class="mobile-menu-title">Tools</span>
+        <div class="mobile-menu-group">
+          <a href="https://punicodex.com/type/#${esc(id)}">Type</a>
+          <a href="https://punicodex.com/search/">Search</a>
+          <a href="https://punicodex.com/rulebook/">The Rules</a>
+          <a href="https://punicodex.com/oracle/">Oracle</a>
+        </div>
+      </div>
+      <div class="mobile-menu-section">
+        <span class="mobile-menu-title">Resources</span>
+        <div class="mobile-menu-group">
+          <a href="https://punicodex.com/codex/">Codex</a>
+          <a href="https://punicodex.com/api/v1/docs/">API</a>
+        </div>
+      </div>
+      <div class="mobile-menu-section">
+        <span class="mobile-menu-title">About</span>
+        <div class="mobile-menu-group">
+          <a href="https://punicodex.com/about/">About</a>
+          <a href="https://punicodex.com/contact/">Contact</a>
+        </div>
+      </div>
+    </div>`;
+}
+
+const path = require('node:path');
+const { ARCHETYPES } = require(path.join(__dirname, '..', '..', 'js', 'archetypes-v2.js'));
+const FLAGSHIP_IDS = new Set(ARCHETYPES.map((a) => a.id));
+
+/**
+ * Dispatch on temple class: flagships get the full tab nav; base temples
+ * (and any entry without a built flagship) get the base chrome that matches
+ * their own main page. Page families on base temples (etymology,
+ * pronunciation, original-script) must never emit flagship-only tabs —
+ * lore/patterns/scholars/patron/art don't exist there and the temple
+ * logolockup asset would 404.
+ */
+function templeNavHtml(id, name, active = '') {
+  return FLAGSHIP_IDS.has(id)
+    ? templeTabNavHtml(id, name, active)
+    : baseTempleNavHtml(id, name);
+}
+
+module.exports = { templeTabNavHtml, baseTempleNavHtml, templeNavHtml };

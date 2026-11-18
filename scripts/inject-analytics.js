@@ -69,9 +69,21 @@ function walk(dir, callback) {
 
 const snippet = buildSnippet();
 
+// Scoped mode for page idempotency suites:
+// `node inject-analytics.js --files blog/index.html ...` limits injection to
+// the given repo-relative paths instead of walking the whole tree, so test
+// pipelines don't rewrite unrelated pages.
+const SCOPED_FILES = (() => {
+  const i = process.argv.indexOf('--files');
+  if (i === -1) return null;
+  const files = process.argv.slice(i + 1).filter((a) => !a.startsWith('--'));
+  if (!files.length) throw new Error('--files requires at least one path');
+  return files.map((f) => path.join(ROOT, f));
+})();
+
 const targets = [];
-walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
-walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
+if (!SCOPED_FILES) walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
+if (!SCOPED_FILES) walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
 
 const rootPages = [
   'index.html',
@@ -136,10 +148,13 @@ for (const production of SCREEN_INDEX.productions) {
   rootPages.push(path.join('screen', production.id, 'index.html'));
 }
 
-for (const p of rootPages) {
-  const full = path.join(ROOT, p);
-  if (fs.existsSync(full)) targets.push(full);
+if (!SCOPED_FILES) {
+  for (const p of rootPages) {
+    const full = path.join(ROOT, p);
+    if (fs.existsSync(full)) targets.push(full);
+  }
 }
+if (SCOPED_FILES) targets.push(...SCOPED_FILES);
 
 function withRetry(fn, attempts = 5, delayMs = 100) {
   let lastErr;

@@ -196,25 +196,37 @@ function stripFromFile(filePath) {
   return false;
 }
 
+// Scoped mode for page idempotency suites:
+// `node inject-university-collaborators.js --files trending/index.html ...`
+// limits work to the given repo-relative paths — no tree walks, no admin
+// strip passes — so test pipelines don't rewrite unrelated pages.
+const SCOPED_FILES = (() => {
+  const i = process.argv.indexOf('--files');
+  if (i === -1) return null;
+  const files = process.argv.slice(i + 1).filter((a) => !a.startsWith('--'));
+  if (!files.length) throw new Error('--files requires at least one path');
+  return files.map((f) => path.join(ROOT, f));
+})();
+
 function main() {
   const headSnippet = buildHeadSnippet();
   const bodySnippet = buildBodySnippet();
   const targets = [];
 
-  for (const rel of EXCLUDED_PAGES) {
+  if (!SCOPED_FILES) for (const rel of EXCLUDED_PAGES) {
     const full = path.join(ROOT, rel);
     if (fs.existsSync(full) && stripFromFile(full)) {
       console.log(`Stripped Academic Collaborators strip from excluded page: ${rel}`);
     }
   }
 
-  walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
-  walk(path.join(ROOT, 'world'), (p) => targets.push(p));
-  walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
+  if (!SCOPED_FILES) walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
+  if (!SCOPED_FILES) walk(path.join(ROOT, 'world'), (p) => targets.push(p));
+  if (!SCOPED_FILES) walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
   // game/ and mobile/ are walked so the app-surface exclusion strips any
   // previously injected blocks from them on every run (deterministic).
-  walk(path.join(ROOT, 'game'), (p) => targets.push(p));
-  if (fs.existsSync(path.join(ROOT, 'mobile'))) {
+  if (!SCOPED_FILES) walk(path.join(ROOT, 'game'), (p) => targets.push(p));
+  if (!SCOPED_FILES && fs.existsSync(path.join(ROOT, 'mobile'))) {
     walk(path.join(ROOT, 'mobile'), (p) => targets.push(p));
   }
 
@@ -249,9 +261,11 @@ function main() {
     path.join('type', 'test.html'),
   ];
 
-  for (const p of rootPages) {
-    const full = path.join(ROOT, p);
-    if (fs.existsSync(full)) targets.push(full);
+  if (!SCOPED_FILES) {
+    for (const p of rootPages) {
+      const full = path.join(ROOT, p);
+      if (fs.existsSync(full)) targets.push(full);
+    }
   }
 
   // Union with the canonical footer targets (2026-11 audit): every public
@@ -260,11 +274,15 @@ function main() {
   // blog/, texts/, about/founder, the pantheon landing pages and the rest
   // were missing it because only rootPages + select walks were covered.
   // Explicit EXCLUDED_PAGES (university-sponsorship) stay excluded.
-  const { TARGETS: FOOTER_TARGETS } = require('./sync-footer.js');
-  for (const rel of FOOTER_TARGETS) {
-    if (EXCLUDED_PAGES.has(rel)) continue;
-    const full = path.join(ROOT, rel);
-    if (fs.existsSync(full)) targets.push(full);
+  if (!SCOPED_FILES) {
+    const { TARGETS: FOOTER_TARGETS } = require('./sync-footer.js');
+    for (const rel of FOOTER_TARGETS) {
+      if (EXCLUDED_PAGES.has(rel)) continue;
+      const full = path.join(ROOT, rel);
+      if (fs.existsSync(full)) targets.push(full);
+    }
+  } else {
+    targets.push(...SCOPED_FILES);
   }
 
   let injected = 0;
@@ -275,7 +293,7 @@ function main() {
   // The generated root admin-portal/ copy is not part of the injection
   // targets gathered above; strip any previously injected blocks explicitly.
   const syncedPortalDir = path.join(ROOT, 'admin-portal');
-  if (fs.existsSync(syncedPortalDir)) {
+  if (!SCOPED_FILES && fs.existsSync(syncedPortalDir)) {
     walk(syncedPortalDir, (p) => {
       try {
         if (stripFromFile(p)) {
@@ -294,7 +312,7 @@ function main() {
   // sync-scholars-portal re-copies the canonical tree BEFORE this injector
   // runs, so the synced copies must be stripped on every run to stay
   // deterministic.
-  for (const syncedScholarsAdminDir of [
+  for (const syncedScholarsAdminDir of SCOPED_FILES ? [] : [
     path.join(ROOT, 'scholars', 'admin'),
     path.join(ROOT, 'scholars', 'dept-admin'),
   ]) {

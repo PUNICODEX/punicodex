@@ -36,6 +36,14 @@ function test(name, fn) {
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 const GENERATOR = path.join(root, 'scripts', 'generate-patterns-page.js');
 const STAMPER = path.join(root, 'scripts', 'stamp-asset-versions.js');
+// patterns/ is in the university-collaborators injector's footer-target union,
+// so the pipeline under test must include the injector (mirrors npm run
+// generate order: generator → injector → stamper).
+const INJECTOR = path.join(root, 'scripts', 'inject-university-collaborators.js');
+// inject-analytics re-asserts its block directly after <head> (before the
+// university block), so it must run after the university injector to
+// reproduce committed bytes.
+const ANALYTICS = path.join(root, 'scripts', 'inject-analytics.js');
 const ATLAS_PAGE = path.join(root, 'patterns', 'index.html');
 const METHOD_PAGE = path.join(root, 'patterns', 'methodology', 'index.html');
 
@@ -76,15 +84,31 @@ test('alias layer schema: real industries, no dup terms, >=6 lowercase aliases e
 test('page generator is idempotent (byte-identical output across runs)', () => {
   const hash = (p) => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
   const runStamper = () => execFileSync(process.execPath, [STAMPER], { cwd: root, stdio: 'pipe' });
+  const runInjector = () =>
+    execFileSync(
+      process.execPath,
+      [INJECTOR, '--files', 'patterns/index.html', 'patterns/methodology/index.html'],
+      { cwd: root, stdio: 'pipe' }
+    );
+  const runAnalytics = () =>
+    execFileSync(
+      process.execPath,
+      [ANALYTICS, '--files', 'patterns/index.html', 'patterns/methodology/index.html'],
+      { cwd: root, stdio: 'pipe' }
+    );
   const committed = [hash(ATLAS_PAGE), hash(METHOD_PAGE)];
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  runInjector();
+  runAnalytics();
   runStamper();
   assert.deepStrictEqual(
     [hash(ATLAS_PAGE), hash(METHOD_PAGE)],
     committed,
-    'first regeneration changed a page — rerun node scripts/generate-patterns-page.js then node scripts/stamp-asset-versions.js'
+    'first regeneration changed a page — rerun node scripts/generate-patterns-page.js, node scripts/inject-university-collaborators.js, then node scripts/stamp-asset-versions.js'
   );
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  runInjector();
+  runAnalytics();
   runStamper();
   assert.deepStrictEqual(
     [hash(ATLAS_PAGE), hash(METHOD_PAGE)],

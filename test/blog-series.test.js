@@ -327,10 +327,12 @@ test('blog index merges all four dispatches; no id collisions', () => {
 test('FAQ structured data is present and valid on rulebook and pattern atlas', () => {
   for (const page of ['rulebook/index.html', 'patterns/index.html']) {
     const html = fs.readFileSync(path.join(ROOT, page), 'utf8');
-    const m = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
-    assert.ok(m, `${page}: no JSON-LD block`);
-    const ld = JSON.parse(m[1].replace(/\\u003c/g, '<'));
-    assert.strictEqual(ld['@type'], 'FAQPage', `${page}: not an FAQPage`);
+    const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+    assert.ok(blocks.length, `${page}: no JSON-LD block`);
+    const types = blocks.map((b) => JSON.parse(b[1].replace(/\\u003c/g, '<'))['@type']);
+    const faqIdx = types.indexOf('FAQPage');
+    assert.ok(faqIdx !== -1, `${page}: not an FAQPage (found: ${types.join(', ')})`);
+    const ld = JSON.parse(blocks[faqIdx][1].replace(/\\u003c/g, '<'));
     assert.ok(ld.mainEntity.length >= 5, `${page}: fewer than 5 Q&A pairs`);
     for (const q of ld.mainEntity) {
       assert.ok(q.name.endsWith('?'), `${page}: question must be a question`);

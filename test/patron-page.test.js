@@ -95,7 +95,7 @@ test('every patron page has tab navigation with Patrons link active', () => {
     const tabNav = $('.tab-nav, #tab-nav');
     assert.ok(tabNav.length >= 1, `${id}: expected tab nav`);
     const patronLink = tabNav
-      .find('a[href="./"], a[href="./index.html"]')
+      .find('a[href="./"], a[href="./index.html"], a[href="/' + id + '/patron/"]')
       .filter((_, el) => $(el).text().trim() === 'Patrons');
     assert.ok(patronLink.length >= 1, `${id}: expected Patrons tab link`);
     patronLink.each((_, el) => {

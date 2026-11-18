@@ -99,7 +99,7 @@ const TARGETS = [
   path.join('about', 'index.html'),
   path.join('about', 'authenticity.html'),
   path.join('appraise', 'index.html'),
-  path.join('art', 'index.html'),
+  // art/ is a nav-less redirect stub to /store/art/ — no footer by design.
   path.join('authenticity', 'index.html'),
   path.join('blog', 'index.html'),
   path.join('texts', 'index.html'),

@@ -74,6 +74,11 @@ function assetUrlFor(product, assetKey) {
   if (!webp) return null;
   const png = webp.replace(/\.webp$/, '.png');
   if (png.startsWith('/sites/')) return `${DESIGN_BASE}/${path.posix.basename(png)}`;
+  // House-line brand comps may not be on the prod host yet (first-time sync) —
+  // when the file has been staged into .masters/, serve it from the same
+  // deployable base as /sites/ assets instead of punycodex.com.
+  const staged = path.join(ROOT, '.masters', path.posix.basename(png));
+  if (fs.existsSync(staged)) return `${DESIGN_BASE}/${path.posix.basename(png)}`;
   return `https://punicodex.com${png}`;
 }
 

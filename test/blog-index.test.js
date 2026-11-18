@@ -24,6 +24,14 @@ const ROOT = path.join(__dirname, '..');
 const INDEX_PATH = path.join(ROOT, 'blog', 'index.html');
 const GENERATOR_PATH = path.join(ROOT, 'scripts', 'generate-blog-index.js');
 const STAMPER_PATH = path.join(ROOT, 'scripts', 'stamp-asset-versions.js');
+// The university-collaborators injector targets blog/ as part of the canonical
+// footer union — the pipeline under test must include it or the committed
+// (fully injected) page drifts from generator+stamper output.
+const INJECTOR_PATH = path.join(ROOT, 'scripts', 'inject-university-collaborators.js');
+// inject-analytics re-asserts its block directly after <head> (before the
+// university block), so it must run after the university injector to
+// reproduce committed bytes.
+const ANALYTICS_PATH = path.join(ROOT, 'scripts', 'inject-analytics.js');
 const SITES_DIR = path.join(ROOT, 'sites');
 const BLOG_DIR = path.join(ROOT, 'platform', 'blog', 'content');
 
@@ -277,12 +285,26 @@ test('generator is idempotent (byte-identical output across runs)', () => {
     execFileSync(process.execPath, [GENERATOR_PATH], { cwd: ROOT, stdio: 'pipe' });
   const runStamper = () =>
     execFileSync(process.execPath, [STAMPER_PATH], { cwd: ROOT, stdio: 'pipe' });
+  const runInjector = () =>
+    execFileSync(process.execPath, [INJECTOR_PATH, '--files', 'blog/index.html'], {
+      cwd: ROOT,
+      stdio: 'pipe',
+    });
+  const runAnalytics = () =>
+    execFileSync(process.execPath, [ANALYTICS_PATH, '--files', 'blog/index.html'], {
+      cwd: ROOT,
+      stdio: 'pipe',
+    });
 
   const committed = hashFile();
   runGenerator();
+  runInjector();
+  runAnalytics();
   runStamper();
   const first = hashFile();
   runGenerator();
+  runInjector();
+  runAnalytics();
   runStamper();
   const second = hashFile();
 

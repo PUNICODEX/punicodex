@@ -86,8 +86,8 @@ const TARGETS = [
   { page: path.join('oracle', 'index.html'), active: '/oracle/' },
   { page: path.join('about', 'index.html'), active: '/about/' },
   { page: path.join('about', 'authenticity.html'), active: null },
+  // art/ is a nav-less redirect stub to /store/art/ (SEO wave 1) — no mobile menu.
   { page: path.join('appraise', 'index.html'), active: '/appraise/' },
-  { page: path.join('art', 'index.html'), active: null },
   { page: path.join('authenticity', 'index.html'), active: null },
   { page: path.join('codex', 'index.html'), active: '/codex/' },
   { page: path.join('texts', 'index.html'), active: '/texts/' },

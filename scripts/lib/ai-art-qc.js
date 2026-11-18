@@ -233,7 +233,10 @@ async function writeContactSheet({ items, output, title, root, perPage = 48 }) {
 </figure>`);
     }
     const pageNumber = pages.length + 1;
-    const previous = pageNumber > 1 ? `<a class="page" href="page-${pageNumber - 1}.html">← Previous</a>` : '';
+    // Page 1 is written under basename(output) (index.html), so the Previous
+    // link from page 2 must point there — page-1.html would 404.
+    const prevName = pageNumber - 1 === 1 ? path.basename(output) : `page-${pageNumber - 1}.html`;
+    const previous = pageNumber > 1 ? `<a class="page" href="${prevName}">← Previous</a>` : '';
     const next = start + perPage < items.length ? `<a class="page" href="page-${pageNumber + 1}.html">Next →</a>` : '';
     const html = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>${escapeHtml(title)} · ${pageNumber}</title><meta name="robots" content="noindex">

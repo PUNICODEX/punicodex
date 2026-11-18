@@ -20,7 +20,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 const { footerHtml } = require('./sync-footer.js');
-const { templeTabNavHtml } = require('./lib/temple-tab-nav.js');
+const { templeNavHtml } = require('./lib/temple-tab-nav.js');
 const { LEXICON } = require(path.join(__dirname, '..', 'type', 'js', 'lexicon.js'));
 const { derivePronunciation } = require(path.join(__dirname, '..', 'type', 'js', 'pronunciation-rules.js'));
 
@@ -115,6 +115,7 @@ function renderPage(entry) {
     ? fs.readFileSync(path.join(ROOT, 'sites', id, 'styles.css'), 'utf8').replace(/\r\n/g, '\n')
     : '';
   const cssPin = crypto.createHash('md5').update(templeCss).digest('hex').slice(0, 10);
+  const hasTempleCss = fs.existsSync(path.join(ROOT, 'sites', id, 'styles.css'));
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -167,7 +168,7 @@ function renderPage(entry) {
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <meta name="theme-color" content="#0A0A0C">
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
-<link rel="stylesheet" href="../styles.css?v=${cssPin}">
+${hasTempleCss ? '<link rel="stylesheet" href="../styles.css?v=${cssPin}">' : ''}
 <link rel="stylesheet" href="/css/temple-base.css?v=perf26">
 <link rel="stylesheet" href="/css/footer.css?v=8">
 <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>
@@ -177,7 +178,7 @@ ${CSS}
 </style>
 </head>
 <body class="temple-page">
-${templeTabNavHtml(id, name, '')}
+${templeNavHtml(id, name, '')}
     <nav class="temple-breadcrumb" aria-label="Breadcrumb">
         <ol class="temple-breadcrumb-list">
             <li><a href="${SITE_ORIGIN}/">Home</a></li>
