@@ -178,5 +178,37 @@ test('baked placements match the generator math (products.json in sync)', () => 
   assert.ok(checked > 15000, `expected 15k+ sync-checked artworks, got ${checked}`);
 });
 
+/* Photo-truth bounds: measured by hand against the 1000×1000 blank-base
+ * photos in assets/store-base/ (2026-11). A zone whose rect escapes these
+ * bounds lets art render off the product (the tote zone once centred at
+ * cy 40 — inside the handle gap — so picked art "fell off the bag"). Zones
+ * are constraint boxes the art fits inside, so the WHOLE zone must stay
+ * within the product bounds. Extend the map only with freshly measured
+ * photos, never by guessing. */
+const PHOTO_BOUNDS = {
+  tote: { x0: 23, y0: 38, x1: 77, y1: 94 }, // bag body
+  mug: { x0: 36, y0: 22, x1: 78, y1: 81 }, // printable front face
+  tumbler: { x0: 37.5, y0: 22, x1: 62, y1: 95 }, // body
+};
+
+test('every print zone sits inside its base-photo product bounds', () => {
+  for (const [kind, b] of Object.entries(PHOTO_BOUNDS)) {
+    const placement = PLACEMENTS[kind];
+    assert.ok(placement, `photo bounds declared for unknown kind ${kind}`);
+    for (const [zoneName, z] of Object.entries(placement)) {
+      assert.ok(
+        z.cx - z.w / 2 >= b.x0 - 0.01 && z.cx + z.w / 2 <= b.x1 + 0.01,
+        `${kind}.${zoneName} zone x ${z.cx - z.w / 2}–${z.cx + z.w / 2}% escapes ` +
+          `photo bounds x ${b.x0}–${b.x1}%`
+      );
+      assert.ok(
+        z.cy - z.h / 2 >= b.y0 - 0.01 && z.cy + z.h / 2 <= b.y1 + 0.01,
+        `${kind}.${zoneName} zone y ${z.cy - z.h / 2}–${z.cy + z.h / 2}% escapes ` +
+          `photo bounds y ${b.y0}–${b.y1}%`
+      );
+    }
+  }
+});
+
 console.log(`\nStore Placement Containment: ${passed} passed, ${failed} failed`);
 if (failed > 0) process.exit(1);

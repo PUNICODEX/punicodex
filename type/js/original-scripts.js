@@ -311,10 +311,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   alfheimr: {
-    originalScript: 'ᛅᛚᚠᚼᛁᛘᚱ',
+    originalScript: 'ᛅᛚᚠᚼᛁᛘᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛅᛚᚠᚼᛁᛘᚱ',
+      original: 'ᛅᛚᚠᚼᛁᛘᛦ',
       transliteration: 'alfhimr',
       steps: [
         'ᛅ (ár) writes /a/, /á/ and /æ/',
@@ -459,10 +459,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   asgardr: {
-    originalScript: 'ᛅᛋᚴᛅᚱᚦᚱ',
+    originalScript: 'ᛅᛋᚴᛅᚱᚦᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛅᛋᚴᛅᚱᚦᚱ',
+      original: 'ᛅᛋᚴᛅᚱᚦᛦ',
       transliteration: 'askarþr',
       steps: [
         'ᛅ (ár) writes /a/, /á/ and /æ/',
@@ -534,10 +534,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   baldr: {
-    originalScript: 'ᛒᛅᛚᛏᚱ',
+    originalScript: 'ᛒᛅᛚᛏᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛒᛅᛚᛏᚱ',
+      original: 'ᛒᛅᛚᛏᛦ',
       transliteration: 'baltr',
       steps: [
         'ᛒ (bjarkan) writes both /b/ and /p/',
@@ -614,14 +614,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   brokkr: {
-    originalScript: 'ᛒᚱᚢᚴᚴᚱ',
+    originalScript: 'ᛒᚱᚢᚴᚴᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛒᚱᚢᚴᚴᚱ',
+      original: 'ᛒᚱᚢᚴᚴᛦ',
       transliteration: 'brukkr',
       steps: [
         'ᛒ (bjarkan) writes both /b/ and /p/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'The spelling brukkr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -634,14 +635,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   brynhildr: {
-    originalScript: 'ᛒᚱᚢᚾᚼᛁᛚᛏᚱ',
+    originalScript: 'ᛒᚱᚢᚾᚼᛁᛚᛏᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛒᚱᚢᚾᚼᛁᛚᛏᚱ',
+      original: 'ᛒᚱᚢᚾᚼᛁᛚᛏᛦ',
       transliteration: 'brunhiltr',
       steps: [
         'ᛒ (bjarkan) writes both /b/ and /p/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'The spelling brunhiltr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -654,14 +656,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   draupnir: {
-    originalScript: 'ᛏᚱᛅᚢᛒᚾᛁᚱ',
+    originalScript: 'ᛏᚱᛅᚢᛒᚾᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛏᚱᛅᚢᛒᚾᛁᚱ',
+      original: 'ᛏᚱᛅᚢᛒᚾᛁᛦ',
       transliteration: 'traubnir',
       steps: [
         'ᛏ (Týr) writes both /t/ and /d/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᛅ (ár) writes /a/, /á/ and /æ/',
         'The spelling traubnir is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -693,10 +696,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   eggther: {
-    originalScript: 'ᛁᚴᚴᚦᛁᚱ',
+    originalScript: 'ᛁᚴᚴᚦᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛁᚴᚴᚦᛁᚱ',
+      original: 'ᛁᚴᚴᚦᛁᛦ',
       transliteration: 'ikkþir',
       steps: [
         'ᛁ (ís) writes both /i/ and /e/',
@@ -713,14 +716,14 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   eir: {
-    originalScript: 'ᛁᚱ',
+    originalScript: 'ᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛁᚱ',
+      original: 'ᛁᛦ',
       transliteration: 'ir',
       steps: [
         'ᛁ (ís) writes both /i/ and /e/',
-        'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'The spelling ir is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
@@ -750,10 +753,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   fafnir: {
-    originalScript: 'ᚠᛅᚠᚾᛁᚱ',
+    originalScript: 'ᚠᛅᚠᚾᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚠᛅᚠᚾᛁᚱ',
+      original: 'ᚠᛅᚠᚾᛁᛦ',
       transliteration: 'fafnir',
       steps: [
         'ᚠ (fé) writes both /f/ and /v/',
@@ -770,10 +773,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   fenrir: {
-    originalScript: 'ᚠᛁᚾᚱᛁᚱ',
+    originalScript: 'ᚠᛁᚾᚱᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚠᛁᚾᚱᛁᚱ',
+      original: 'ᚠᛁᚾᚱᛁᛦ',
       transliteration: 'finrir',
       steps: [
         'ᚠ (fé) writes both /f/ and /v/',
@@ -831,14 +834,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   freyr: {
-    originalScript: 'ᚠᚱᛅᚢᚱ',
+    originalScript: 'ᚠᚱᛅᚢᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚠᚱᛅᚢᚱ',
+      original: 'ᚠᚱᛅᚢᛦ',
       transliteration: 'fraur',
       steps: [
         'ᚠ (fé) writes both /f/ and /v/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᛅ (ár) writes /a/, /á/ and /æ/',
         'The spelling fraur is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels',
         'Reconstructed from Proto-Norse *frawjaR; the au diphthong is written ᛅᚢ.'
@@ -912,15 +916,16 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   garmr: {
-    originalScript: 'ᚴᛅᚱᛘᚱ',
+    originalScript: 'ᚴᛅᚱᛘᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚴᛅᚱᛘᚱ',
+      original: 'ᚴᛅᚱᛘᛦ',
       transliteration: 'karmr',
       steps: [
         'ᚴ (kaun) writes both /k/ and /g/ (and the ng cluster)',
         'ᛅ (ár) writes /a/, /á/ and /æ/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'The spelling karmr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
@@ -952,15 +957,16 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   geirrodr: {
-    originalScript: 'ᚴᛁᚱᚱᚢᚦᚱ',
+    originalScript: 'ᚴᛁᚱᚱᚢᚦᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚴᛁᚱᚱᚢᚦᚱ',
+      original: 'ᚴᛁᚱᚱᚢᚦᛦ',
       transliteration: 'kirruþr',
       steps: [
         'ᚴ (kaun) writes both /k/ and /g/ (and the ng cluster)',
         'ᛁ (ís) writes both /i/ and /e/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'The spelling kirruþr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
@@ -1009,10 +1015,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   gunnr: {
-    originalScript: 'ᚴᚢᚾᚾᚱ',
+    originalScript: 'ᚴᚢᚾᚾᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚴᚢᚾᚾᚱ',
+      original: 'ᚴᚢᚾᚾᛦ',
       transliteration: 'kunnr',
       steps: [
         'ᚴ (kaun) writes both /k/ and /g/ (and the ng cluster)',
@@ -1083,10 +1089,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   heimdallr: {
-    originalScript: 'ᚼᛁᛘᛏᛅᛚᛚᚱ',
+    originalScript: 'ᚼᛁᛘᛏᛅᛚᛚᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚼᛁᛘᛏᛅᛚᛚᚱ',
+      original: 'ᚼᛁᛘᛏᛅᛚᛚᛦ',
       transliteration: 'himtallr',
       steps: [
         'ᚼ (hagall) writes /h/',
@@ -1123,10 +1129,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   helheimr: {
-    originalScript: 'ᚼᛁᛚᚼᛁᛘᚱ',
+    originalScript: 'ᚼᛁᛚᚼᛁᛘᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚼᛁᛚᚼᛁᛘᚱ',
+      original: 'ᚼᛁᛚᚼᛁᛘᛦ',
       transliteration: 'hilhimr',
       steps: [
         'ᚼ (hagall) writes /h/',
@@ -1143,18 +1149,19 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   hermod: {
-    originalScript: 'ᚼᛁᚱᛘᚢᚦᚱ',
+    originalScript: 'ᚼᛁᚱᛘᚢᚦᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚼᛁᚱᛘᚢᚦᚱ',
+      original: 'ᚼᛁᚱᛘᚢᚦᛦ',
       transliteration: 'hirmuþr',
       steps: [
         'ᚼ (hagall) writes /h/',
         'ᛁ (ís) writes both /i/ and /e/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/, including long ó',
         'ᚦ (þurs) writes both þ and ð',
-        'final ᚱ writes the nominative ending -r',
+        'final ᛦ (yr) writes the nominative -r ending',
         'The spelling hirmuþr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
@@ -1166,10 +1173,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   hodr: {
-    originalScript: 'ᚼᚢᚦᚱ',
+    originalScript: 'ᚼᚢᚦᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚼᚢᚦᚱ',
+      original: 'ᚼᚢᚦᛦ',
       transliteration: 'huþr',
       steps: [
         'ᚼ (hagall) writes /h/',
@@ -1186,14 +1193,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   hraesvelgr: {
-    originalScript: 'ᚼᚱᛅᛋᚠᛁᛚᚴᚱ',
+    originalScript: 'ᚼᚱᛅᛋᚠᛁᛚᚴᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚼᚱᛅᛋᚠᛁᛚᚴᚱ',
+      original: 'ᚼᚱᛅᛋᚠᛁᛚᚴᛦ',
       transliteration: 'hrasfilkr',
       steps: [
         'ᚼ (hagall) writes /h/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᛅ (ár) writes /a/, /á/ and /æ/',
         'The spelling hrasfilkr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -1206,14 +1214,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   hrungnir: {
-    originalScript: 'ᚼᚱᚢᚾᚴᚾᛁᚱ',
+    originalScript: 'ᚼᚱᚢᚾᚴᚾᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚼᚱᚢᚾᚴᚾᛁᚱ',
+      original: 'ᚼᚱᚢᚾᚴᚾᛁᛦ',
       transliteration: 'hrunknir',
       steps: [
         'ᚼ (hagall) writes /h/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'The spelling hrunknir is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -1226,10 +1235,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   hymir: {
-    originalScript: 'ᚼᚢᛘᛁᚱ',
+    originalScript: 'ᚼᚢᛘᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚼᚢᛘᛁᚱ',
+      original: 'ᚼᚢᛘᛁᛦ',
       transliteration: 'humir',
       steps: [
         'ᚼ (hagall) writes /h/',
@@ -1266,15 +1275,16 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   jormungandr: {
-    originalScript: 'ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ',
+    originalScript: 'ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ',
+      original: 'ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᛦ',
       transliteration: 'iurmunkantr',
       steps: [
         'ᛁ (ís) writes both /i/ and /e/',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'The spelling iurmunkantr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
@@ -1286,10 +1296,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   jotunheimr: {
-    originalScript: 'ᛁᚢᛏᚢᚾᚼᛁᛘᚱ',
+    originalScript: 'ᛁᚢᛏᚢᚾᚼᛁᛘᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛁᚢᛏᚢᚾᚼᛁᛘᚱ',
+      original: 'ᛁᚢᛏᚢᚾᚼᛁᛘᛦ',
       transliteration: 'iutunhimr',
       steps: [
         'ᛁ (ís) writes both /i/ and /e/',
@@ -1439,10 +1449,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   mjolnir: {
-    originalScript: 'ᛘᛁᚢᛚᚾᛁᚱ',
+    originalScript: 'ᛘᛁᚢᛚᚾᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛘᛁᚢᛚᚾᛁᚱ',
+      original: 'ᛘᛁᚢᛚᚾᛁᛦ',
       transliteration: 'miulnir',
       steps: [
         'ᛘ (maðr) writes /m/',
@@ -1479,10 +1489,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   muspellheimr: {
-    originalScript: 'ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ',
+    originalScript: 'ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ',
+      original: 'ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᛦ',
       transliteration: 'musbillhimr',
       steps: [
         'ᛘ (maðr) writes /m/',
@@ -1557,10 +1567,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   nidhogg: {
-    originalScript: 'ᚾᛁᚦᚼᚢᚴᚴᚱ',
+    originalScript: 'ᚾᛁᚦᚼᚢᚴᚴᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚾᛁᚦᚼᚢᚴᚴᚱ',
+      original: 'ᚾᛁᚦᚼᚢᚴᚴᛦ',
       transliteration: 'niþhukkr',
       steps: [
         'ᚾ (nauðr) writes /n/',
@@ -1577,10 +1587,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   niflheimr: {
-    originalScript: 'ᚾᛁᚠᛚᚼᛁᛘᚱ',
+    originalScript: 'ᚾᛁᚠᛚᚼᛁᛘᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚾᛁᚠᛚᚼᛁᛘᚱ',
+      original: 'ᚾᛁᚠᛚᚼᛁᛘᛦ',
       transliteration: 'niflhimr',
       steps: [
         'ᚾ (nauðr) writes /n/',
@@ -1597,10 +1607,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   njordr: {
-    originalScript: 'ᚾᛁᚢᚱᚦᚱ',
+    originalScript: 'ᚾᛁᚢᚱᚦᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚾᛁᚢᚱᚦᚱ',
+      original: 'ᚾᛁᚢᚱᚦᛦ',
       transliteration: 'niurþr',
       steps: [
         'ᚾ (nauðr) writes /n/',
@@ -1674,13 +1684,14 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   ratatoskr: {
-    originalScript: 'ᚱᛅᛏᛅᛏᚢᛋᚴᚱ',
+    originalScript: 'ᚱᛅᛏᛅᛏᚢᛋᚴᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚱᛅᛏᛅᛏᚢᛋᚴᚱ',
+      original: 'ᚱᛅᛏᛅᛏᚢᛋᚴᛦ',
       transliteration: 'ratatuskr',
       steps: [
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᛅ (ár) writes /a/, /á/ and /æ/',
         'ᛏ (Týr) writes both /t/ and /d/',
         'The spelling ratatuskr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
@@ -1966,15 +1977,16 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   surtr: {
-    originalScript: 'ᛋᚢᚱᛏᚱ',
+    originalScript: 'ᛋᚢᚱᛏᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛋᚢᚱᛏᚱ',
+      original: 'ᛋᚢᚱᛏᛦ',
       transliteration: 'surtr',
       steps: [
         'ᛋ (sól) writes /s/',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'The spelling surtr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
@@ -1986,10 +1998,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   suttungr: {
-    originalScript: 'ᛋᚢᛏᛏᚢᚾᚴᚱ',
+    originalScript: 'ᛋᚢᛏᛏᚢᚾᚴᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛋᚢᛏᛏᚢᚾᚴᚱ',
+      original: 'ᛋᚢᛏᛏᚢᚾᚴᛦ',
       transliteration: 'suttunkr',
       steps: [
         'ᛋ (sól) writes /s/',
@@ -2006,10 +2018,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   svartalfaheimr: {
-    originalScript: 'ᛋᚠᛅᚱᛏᛅᛚᚠᛅᚼᛁᛘᚱ',
+    originalScript: 'ᛋᚠᛅᚱᛏᛅᛚᚠᛅᚼᛁᛘᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛋᚠᛅᚱᛏᛅᛚᚠᛅᚼᛁᛘᚱ',
+      original: 'ᛋᚠᛅᚱᛏᛅᛚᚠᛅᚼᛁᛘᛦ',
       transliteration: 'sfartalfahimr',
       steps: [
         'ᛋ (sól) writes /s/',
@@ -2066,15 +2078,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   thor: {
-    originalScript: 'ᚦᚢᚱ',
+    originalScript: 'ᚦᚢᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚦᚢᚱ',
+      original: 'ᚦᚢᛦ',
       transliteration: 'þur',
       steps: [
         'ᚦ (þurs) writes both þ and ð',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
-        'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'Attested in Viking-Age inscriptions: The form þur appears on Viking-Age artefacts such as the Mannegårde coin graffiti.'
       ],
       sources: [
@@ -2086,14 +2098,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   thrud: {
-    originalScript: 'ᚦᚱᚢᚦᚱ',
+    originalScript: 'ᚦᚱᚢᚦᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚦᚱᚢᚦᚱ',
+      original: 'ᚦᚱᚢᚦᛦ',
       transliteration: 'þruþr',
       steps: [
         'ᚦ (þurs) writes both þ and ð',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'The spelling þruþr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -2106,14 +2119,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   thrymr: {
-    originalScript: 'ᚦᚱᚢᛘᚱ',
+    originalScript: 'ᚦᚱᚢᛘᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚦᚱᚢᛘᚱ',
+      original: 'ᚦᚱᚢᛘᛦ',
       transliteration: 'þrumr',
       steps: [
         'ᚦ (þurs) writes both þ and ð',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'The spelling þrumr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -2126,15 +2140,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   tyr: {
-    originalScript: 'ᛏᚢᚱ',
+    originalScript: 'ᛏᚢᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᛏᚢᚱ',
+      original: 'ᛏᚢᛦ',
       transliteration: 'tur',
       steps: [
         'ᛏ (Týr) writes both /t/ and /d/',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
-        'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'The spelling tur is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
@@ -2146,15 +2160,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   ullr: {
-    originalScript: 'ᚢᛚᛚᚱ',
+    originalScript: 'ᚢᛚᛚᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚢᛚᛚᚱ',
+      original: 'ᚢᛚᛚᛦ',
       transliteration: 'ullr',
       steps: [
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'ᛚ (lögr) writes /l/',
-        'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'The spelling ullr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
@@ -2186,14 +2200,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   urdr: {
-    originalScript: 'ᚢᚱᚦᚱ',
+    originalScript: 'ᚢᚱᚦᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚢᚱᚦᚱ',
+      original: 'ᚢᚱᚦᛦ',
       transliteration: 'urþr',
       steps: [
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᚦ (þurs) writes both þ and ð',
         'The spelling urþr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -2248,10 +2263,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   vanaheimr: {
-    originalScript: 'ᚢᛅᚾᚼᛁᛘᛁᚱ',
+    originalScript: 'ᚢᛅᚾᚼᛁᛘᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚢᛅᚾᚼᛁᛘᛁᚱ',
+      original: 'ᚢᛅᚾᚼᛁᛘᛁᛦ',
       transliteration: 'uanhimir',
       steps: [
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
@@ -2306,10 +2321,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   vidarr: {
-    originalScript: 'ᚢᛁᚦᛅᚱ',
+    originalScript: 'ᚢᛁᚦᛅᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚢᛁᚦᛅᚱ',
+      original: 'ᚢᛁᚦᛅᛦ',
       transliteration: 'uiþar',
       steps: [
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
@@ -2365,10 +2380,10 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   ymir: {
-    originalScript: 'ᚢᛘᛁᚱ',
+    originalScript: 'ᚢᛘᛁᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚢᛘᛁᚱ',
+      original: 'ᚢᛘᛁᛦ',
       transliteration: 'umir',
       steps: [
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
@@ -2621,14 +2636,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   thrudr: {
-    originalScript: 'ᚦᚱᚢᚦᚱ',
+    originalScript: 'ᚦᚱᚢᚦᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚦᚱᚢᚦᚱ',
+      original: 'ᚦᚱᚢᚦᛦ',
       transliteration: 'þruþr',
       steps: [
         'ᚦ (þurs) writes both þ and ð',
         'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'Þrúðr is one of the Valkyries and a daughter of Thor in the Prose Edda',
         'The spelling þruþr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
@@ -2642,15 +2658,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   var: {
-    originalScript: 'ᚢᛅᚱ',
+    originalScript: 'ᚢᛅᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚢᛅᚱ',
+      original: 'ᚢᛅᛦ',
       transliteration: 'uar',
       steps: [
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/; here it writes initial /v/',
         'ᛅ (ár) writes /a/, /á/ and /æ/; here it writes long /á/',
-        'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'Vár is the goddess who hears oaths and is invoked in marriage in the Prose Edda',
         'The spelling uar is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
@@ -2663,15 +2679,15 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   vor: {
-    originalScript: 'ᚢᚢᚱ',
+    originalScript: 'ᚢᚢᛦ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚢᚢᚱ',
+      original: 'ᚢᚢᛦ',
       transliteration: 'uur',
       steps: [
         'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
         'The first ᚢ writes the initial /v/; the second ᚢ writes the vowel ǫ',
-        'ᚱ (reið) writes /r/',
+        'final ᛦ (yr) writes the nominative -r ending',
         'Vǫr is the goddess from whom nothing can be concealed in the Prose Edda',
         'The spelling uur is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],

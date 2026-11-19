@@ -180,7 +180,7 @@ const BATCH_DATA = [
   { id: 'ugayafukiaezu', ascii: 'ugayafukiaezu', unicode: 'Ugayafukiaezu', greek: '鵜草葺不合命', pantheon: 'japanese', tier: '2', tierLabel: 'Tier 2', domain: 'Ancestor of Jimmu', meaning: 'Cormorant grass-thatching unfinished', sources: ['Kojiki', 'Nihon Shoki'] },
   { id: 'hoderi', ascii: 'hoderi', unicode: 'Hoderi', greek: '火照命', pantheon: 'japanese', tier: '2', tierLabel: 'Tier 2', domain: 'Fire, Fisherman', meaning: 'Fire-shining', sources: ['Kojiki', 'Nihon Shoki'] },
   { id: 'hoori', ascii: 'hoori', unicode: 'Hoori', greek: '火折命', pantheon: 'japanese', tier: '2', tierLabel: 'Tier 2', domain: 'Agriculture, Hunter', meaning: 'Fire-subduing', sources: ['Kojiki', 'Nihon Shoki'] },
-  { id: 'nishinakahime', ascii: 'nishinakahime', unicode: 'Nishinakahime', greek: '日子波邇夜須毘売命', pantheon: 'japanese', tier: '2', tierLabel: 'Tier 2', domain: 'Rice, Agriculture', meaning: 'Day-sun wave princess', sources: ['Kojiki', 'Nihon Shoki'] },
+  { id: 'haniyasubime', ascii: 'haniyasubime', unicode: 'Haniyasubime', greek: '波邇夜須毘売神', pantheon: 'japanese', tier: '2', tierLabel: 'Tier 2', domain: 'Clay, Pottery, Earth', meaning: 'Clay-soil princess', sources: ['Kojiki', 'Nihon Shoki'] },
 
   // ==========================================
   // MORE MESOPOTAMIAN (~8 entries)

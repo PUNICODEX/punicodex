@@ -299,7 +299,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "asgardr": {
-    "originalScript": "ᛅᛋᚴᛅᚱᚦᚱ",
+    "originalScript": "ᛅᛋᚴᛅᚱᚦᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -334,7 +334,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "jormungandr": {
-    "originalScript": "ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ",
+    "originalScript": "ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -354,12 +354,12 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "baldr": {
-    "originalScript": "ᛒᛅᛚᛏᚱ",
+    "originalScript": "ᛒᛅᛚᛏᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "freyr": {
-    "originalScript": "ᚠᚱᛅᚢᚱ",
+    "originalScript": "ᚠᚱᛅᚢᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -384,12 +384,12 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "heimdallr": {
-    "originalScript": "ᚼᛁᛘᛏᛅᛚᛚᚱ",
+    "originalScript": "ᚼᛁᛘᛏᛅᛚᛚᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "vidarr": {
-    "originalScript": "ᚢᛁᚦᛅᚱ",
+    "originalScript": "ᚢᛁᚦᛅᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -399,7 +399,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "nidhogg": {
-    "originalScript": "ᚾᛁᚦᚼᚢᚴᚴᚱ",
+    "originalScript": "ᚾᛁᚦᚼᚢᚴᚴᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -409,12 +409,12 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "ymir": {
-    "originalScript": "ᚢᛘᛁᚱ",
+    "originalScript": "ᚢᛘᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "fenrir": {
-    "originalScript": "ᚠᛁᚾᚱᛁᚱ",
+    "originalScript": "ᚠᛁᚾᚱᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -819,27 +819,27 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "eir": {
-    "originalScript": "ᛁᚱ",
+    "originalScript": "ᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "garmr": {
-    "originalScript": "ᚴᛅᚱᛘᚱ",
+    "originalScript": "ᚴᛅᚱᛘᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "hrungnir": {
-    "originalScript": "ᚼᚱᚢᚾᚴᚾᛁᚱ",
+    "originalScript": "ᚼᚱᚢᚾᚴᚾᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "surtr": {
-    "originalScript": "ᛋᚢᚱᛏᚱ",
+    "originalScript": "ᛋᚢᚱᛏᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "eggther": {
-    "originalScript": "ᛁᚴᚴᚦᛁᚱ",
+    "originalScript": "ᛁᚴᚴᚦᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -849,7 +849,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "hraesvelgr": {
-    "originalScript": "ᚼᚱᛅᛋᚠᛁᛚᚴᚱ",
+    "originalScript": "ᚼᚱᛅᛋᚠᛁᛚᚴᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -859,7 +859,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "suttungr": {
-    "originalScript": "ᛋᚢᛏᛏᚢᚾᚴᚱ",
+    "originalScript": "ᛋᚢᛏᛏᚢᚾᚴᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -1489,7 +1489,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "ullr": {
-    "originalScript": "ᚢᛚᛚᚱ",
+    "originalScript": "ᚢᛚᛚᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -1534,12 +1534,12 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "brynhildr": {
-    "originalScript": "ᛒᚱᚢᚾᚼᛁᛚᛏᚱ",
+    "originalScript": "ᛒᚱᚢᚾᚼᛁᛚᛏᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "gunnr": {
-    "originalScript": "ᚴᚢᚾᚾᚱ",
+    "originalScript": "ᚴᚢᚾᚾᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -1549,7 +1549,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "urdr": {
-    "originalScript": "ᚢᚱᚦᚱ",
+    "originalScript": "ᚢᚱᚦᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -1559,17 +1559,17 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "thrymr": {
-    "originalScript": "ᚦᚱᚢᛘᚱ",
+    "originalScript": "ᚦᚱᚢᛘᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "hymir": {
-    "originalScript": "ᚼᚢᛘᛁᚱ",
+    "originalScript": "ᚼᚢᛘᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "geirrodr": {
-    "originalScript": "ᚴᛁᚱᚱᚢᚦᚱ",
+    "originalScript": "ᚴᛁᚱᚱᚢᚦᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -1584,12 +1584,12 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "brokkr": {
-    "originalScript": "ᛒᚱᚢᚴᚴᚱ",
+    "originalScript": "ᛒᚱᚢᚴᚴᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "fafnir": {
-    "originalScript": "ᚠᛅᚠᚾᛁᚱ",
+    "originalScript": "ᚠᛅᚠᚾᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -1604,7 +1604,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "niflheimr": {
-    "originalScript": "ᚾᛁᚠᛚᚼᛁᛘᚱ",
+    "originalScript": "ᚾᛁᚠᛚᚼᛁᛘᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -1614,12 +1614,12 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "vanaheimr": {
-    "originalScript": "ᚢᛅᚾᚼᛁᛘᛁᚱ",
+    "originalScript": "ᚢᛅᚾᚼᛁᛘᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "svartalfaheimr": {
-    "originalScript": "ᛋᚠᛅᚱᛏᛅᛚᚠᛅᚼᛁᛘᚱ",
+    "originalScript": "ᛋᚠᛅᚱᛏᛅᛚᚠᛅᚼᛁᛘᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -2164,7 +2164,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "huangdi": {
-    "originalScript": "黄帝",
+    "originalScript": "黃帝",
     "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },
@@ -2209,7 +2209,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "sunwukong": {
-    "originalScript": "孙悟空",
+    "originalScript": "孫悟空",
     "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },
@@ -2494,7 +2494,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "hodr": {
-    "originalScript": "ᚼᚢᚦᚱ",
+    "originalScript": "ᚼᚢᚦᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -2514,7 +2514,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "hermod": {
-    "originalScript": "ᚼᛁᚱᛘᚢᚦᚱ",
+    "originalScript": "ᚼᛁᚱᛘᚢᚦᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -2529,7 +2529,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "thrud": {
-    "originalScript": "ᚦᚱᚢᚦᚱ",
+    "originalScript": "ᚦᚱᚢᚦᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -2549,17 +2549,17 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "ratatoskr": {
-    "originalScript": "ᚱᛅᛏᛅᛏᚢᛋᚴᚱ",
+    "originalScript": "ᚱᛅᛏᛅᛏᚢᛋᚴᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "draupnir": {
-    "originalScript": "ᛏᚱᛅᚢᛒᚾᛁᚱ",
+    "originalScript": "ᛏᚱᛅᚢᛒᚾᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "mjolnir": {
-    "originalScript": "ᛘᛁᚢᛚᚾᛁᚱ",
+    "originalScript": "ᛘᛁᚢᛚᚾᛁᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
@@ -2638,8 +2638,8 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Japanese characters",
     "scriptLabel": "Original Script"
   },
-  "nishinakahime": {
-    "originalScript": "日子波邇夜須毘売命",
+  "haniyasubime": {
+    "originalScript": "波邇夜須毘売神",
     "scriptName": "Japanese characters",
     "scriptLabel": "Original Script"
   },
@@ -3984,17 +3984,17 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "thrudr": {
-    "originalScript": "ᚦᚱᚢᚦᚱ",
+    "originalScript": "ᚦᚱᚢᚦᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "vor": {
-    "originalScript": "ᚢᚢᚱ",
+    "originalScript": "ᚢᚢᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "var": {
-    "originalScript": "ᚢᛅᚱ",
+    "originalScript": "ᚢᛅᛦ",
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },

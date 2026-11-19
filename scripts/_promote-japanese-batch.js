@@ -6,7 +6,7 @@ const NAMES = [
   'amaterasu', 'amida', 'benzaiten', 'ebisu', 'fuji', 'goshin', 'hachiman',
   'hoderi', 'hoori', 'inari', 'ise', 'izanagi', 'izanami', 'kagutsuchi',
   'kannon', 'kotoshironushi', 'kumano', 'marishiten', 'nagoya', 'ninigi',
-  'nishinakahime', 'omononushi', 'raijin', 'sarutahiko', 'shikoku',
+  'haniyasubime', 'omononushi', 'raijin', 'sarutahiko', 'shikoku',
   'sukunahikona', 'tajikarao', 'takachiho', 'toyotama', 'tsukuyomi',
   'ugayafukiaezu',
 ];

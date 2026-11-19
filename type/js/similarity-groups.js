@@ -149,7 +149,7 @@ const FUNCTION_GROUPS = [
       'matzemlya', 'tlaltecuhtli', 'babaluaye', 'kishar', 'halmoni', 'rhea', 'demeter',
       'freyr', 'freyja', 'bastet', 'sobek', 'cernunnos', 'ishtar', 'inari', 'oshun',
       'parvati', 'sita', 'gefjon', 'min', 'heqet', 'makemake', 'anahita', 'hp', 'dagan',
-      'jord', 'fjorgyn', 'audhumla', 'shakti', 'ninigi', 'nishinakahime', 'omononushi',
+      'jord', 'fjorgyn', 'audhumla', 'shakti', 'ninigi', 'haniyasubime', 'omononushi',
       'hoori', 'toyotama', 'ugayafukiaezu',
     ],
   },

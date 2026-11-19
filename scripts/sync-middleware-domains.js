@@ -38,6 +38,7 @@ const LEGACY_REDIRECTS = {
   '/europa': '/europe',
   '/hercules': '/herakles',
   '/jason': '/iason',
+  '/nishinakahime': '/haniyasubime', // fabricated name replaced by the attested clay kami (Kojiki 波邇夜須毘売神)
   '/khaos': '/chaos',
   '/oceanus': '/okeanos',
   '/pegasus': '/pegasos',

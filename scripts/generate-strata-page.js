@@ -194,7 +194,7 @@ function layerScene(l, idx) {
     ${beings ? `<div class="stx-beings"><p class="stx-beings-label">Enter their temples</p><div class="stx-chips">${beings}</div></div>` : ''}
     ${survivals ? `<div class="stx-survivals"><p class="stx-beings-label">What survived</p><ul>${survivals}</ul></div>` : ''}
     <div class="stx-layer-links">
-      <a class="stx-pantheon-link" href="${pantheonPath(l.pantheon)}">Open the ${esc(l.name.replace(/^The\s+/i, ''))} pantheon →</a>
+      <a class="stx-pantheon-link" href="${pantheonPath(l.pantheon)}">Open the ${esc((l.ctaName || l.name).replace(/^The\s+/i, ''))} pantheon →</a>
       ${principle ? `<a class="stx-pantheon-link" href="/genesis/#scene-${principle}">Compare this tradition in Archē →</a>` : ''}
     </div>
   </div>

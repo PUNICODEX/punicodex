@@ -32,7 +32,7 @@ test('every canonical stratum renders a scene with its name', () => {
     assert.ok(html.includes(l.eraLabel), `${l.pantheon}: era present`);
     assert.ok(html.includes(l.attestation.slice(0, 40)), `${l.pantheon}: attestation present`);
     assert.ok(html.includes(l.scriptNote.slice(0, 20)), `${l.pantheon}: script note present`);
-    const ctaName = l.name.replace(/^The\s+/i, '');
+    const ctaName = (l.ctaName || l.name).replace(/^The\s+/i, '');
     assert.ok(
       html.includes(`Open the ${ctaName} pantheon →`),
       `${l.pantheon}: pantheon CTA has incorrect article handling`

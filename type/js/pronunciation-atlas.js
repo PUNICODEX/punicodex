@@ -8919,15 +8919,15 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Hoori; review recommended before promotion to canonical."
   },
-  "nishinakahime": {
-    "ipa": "/nishinakahime/",
+  "haniyasubime": {
+    "ipa": "/haniyasubime/",
     "ipaLabel": "Modern Japanese reading",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "generated",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Nishinakahime; review recommended before promotion to canonical."
+    "note": "Broad IPA generated from the Unicode restoration Haniyasubime; review recommended before promotion to canonical."
   },
   "kingu": {
     "ipa": "/kiŋgu/",

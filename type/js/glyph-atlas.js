@@ -8173,20 +8173,18 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 800 CE – present",
     "region": "Japan"
   },
-  "nishinakahime": {
+  "haniyasubime": {
     "scriptName": "Japanese characters",
     "codePoints": [
-      "U+65E5",
-      "U+5B50",
       "U+6CE2",
       "U+9087",
       "U+591C",
       "U+9808",
       "U+6BD8",
       "U+58F2",
-      "U+547D"
+      "U+795E"
     ],
-    "specimen": "日子波邇夜須毘売命",
+    "specimen": "波邇夜須毘売神",
     "family": "CJK (Japanese)",
     "writingDirection": "LTR historically top-to-bottom",
     "timePeriod": "c. 800 CE – present",

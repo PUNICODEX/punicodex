@@ -25625,7 +25625,7 @@ const LEXICON = [
     "greek": "邇邇芸命",
     "pantheon": "japanese",
     "domain": "Heavenly Descent, Imperial Ancestor",
-    "meaning": "The august rice spirit",
+    "meaning": "The heavenly grandchild (the name's etymology is debated)",
     "sources": [
       "Kojiki",
       "Nihon Shoki"
@@ -31799,7 +31799,7 @@ const LEXICON = [
     "ascii": "anima",
     "unicode": "Anima",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Soul, Breath, Life Force",
     "meaning": "Breath, air, soul",
     "sources": [
@@ -31845,7 +31845,7 @@ const LEXICON = [
     "ascii": "animus",
     "unicode": "Animus",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Mind, Spirit, Courage",
     "meaning": "Mind, spirit, courage",
     "sources": [
@@ -31897,7 +31897,7 @@ const LEXICON = [
     "ascii": "numen",
     "unicode": "Nūmen",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Divine Will, Power",
     "meaning": "A nodding, divine power",
     "sources": [
@@ -31942,7 +31942,7 @@ const LEXICON = [
     "ascii": "fides",
     "unicode": "Fidēs",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Faith, Trust, Promise",
     "meaning": "Trust, faith",
     "sources": [
@@ -31987,7 +31987,7 @@ const LEXICON = [
     "ascii": "pietas",
     "unicode": "Pietās",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Piety, Duty, Devotion",
     "meaning": "Duty, devotion",
     "sources": [
@@ -32038,7 +32038,7 @@ const LEXICON = [
     "ascii": "virtus",
     "unicode": "Virtūs",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Courage, Excellence, Virtue",
     "meaning": "Manliness, courage",
     "sources": [
@@ -32089,7 +32089,7 @@ const LEXICON = [
     "ascii": "gravitas",
     "unicode": "Gravitas",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Weight, Seriousness, Dignity",
     "meaning": "Weight, importance",
     "sources": [
@@ -32153,7 +32153,7 @@ const LEXICON = [
     "ascii": "dignitas",
     "unicode": "Dignitās",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Worthiness, Rank, Honor",
     "meaning": "Worth, merit",
     "sources": [
@@ -32216,7 +32216,7 @@ const LEXICON = [
     "ascii": "auctoritas",
     "unicode": "Auctōritās",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Authority, Influence",
     "meaning": "Authority, prestige",
     "sources": [
@@ -32291,7 +32291,7 @@ const LEXICON = [
     "ascii": "clementia",
     "unicode": "Clementia",
     "greek": "—",
-    "pantheon": "greek",
+    "pantheon": "roman",
     "domain": "Mercy, Forgiveness",
     "meaning": "Mildness, mercy",
     "sources": [
@@ -33481,7 +33481,7 @@ const LEXICON = [
     hasAdSite: true,
     "ascii": "huangdi",
     "unicode": "Huángdì",
-    "greek": "黄帝",
+    "greek": "黃帝",
     "pantheon": "chinese",
     "domain": "Yellow Emperor, Ancestor",
     "meaning": "Yellow emperor",
@@ -33933,7 +33933,7 @@ const LEXICON = [
     "id": "sunwukong",
     "ascii": "sunwukong",
     "unicode": "Sūnwùkōng",
-    "greek": "孙悟空",
+    "greek": "孫悟空",
     "pantheon": "chinese",
     "domain": "Monkey King, Chaos, Enlightenment",
     "meaning": "Monkey awakened to emptiness",
@@ -39974,45 +39974,27 @@ const LEXICON = [
     "hasAdSite": true
   },
   {
-    "id": "nishinakahime",
-    "ascii": "nishinakahime",
-    "unicode": "Nishinakahime",
-    "greek": "日子波邇夜須毘売命",
+    "id": "haniyasubime",
+    "ascii": "haniyasubime",
+    "unicode": "Haniyasubime",
+    "greek": "波邇夜須毘売神",
     "pantheon": "japanese",
-    "domain": "Rice, Agriculture",
-    "meaning": "Day-sun wave princess",
+    "domain": "Clay, Pottery, Earth",
+    "meaning": "Clay-soil princess",
     "sources": [
       "Kojiki",
       "Nihon Shoki"
     ],
     "breakdown": [
       {
-        "char": "n",
-        "to": "N",
+        "char": "h",
+        "to": "H",
         "type": "same",
         "note": "Same, capitalized"
       },
       {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "i",
-        "to": "i",
+        "char": "a",
+        "to": "a",
         "type": "same",
         "note": "Same"
       },
@@ -40023,26 +40005,38 @@ const LEXICON = [
         "note": "Same"
       },
       {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
         "char": "a",
         "to": "a",
         "type": "same",
         "note": "Same"
       },
       {
-        "char": "k",
-        "to": "k",
+        "char": "s",
+        "to": "s",
         "type": "same",
         "note": "Same"
       },
       {
-        "char": "a",
-        "to": "a",
+        "char": "u",
+        "to": "u",
         "type": "same",
         "note": "Same"
       },
       {
-        "char": "h",
-        "to": "h",
+        "char": "b",
+        "to": "b",
         "type": "same",
         "note": "Same"
       },
@@ -52555,9 +52549,8 @@ const LEXICON = [
     "domain": "First God of the Norse Pantheon, Progenitor of the Æsir",
     "meaning": "In the Prose Edda, Búri is the primeval ancestor born from the salty rime, father of Borr and grandfather of Óðinn.",
     "sources": [
-      "Poetic Edda",
       "Prose Edda",
-      "Zoëga"
+      "Cleasby-Vigfusson"
     ],
     "variants": [
       {

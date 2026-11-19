@@ -146,12 +146,16 @@ const PLACEMENTS = {
   hoodie:    { chest: { cx: 50, cy: 40, w: 27, h: 32 }, logo: { cx: 33, cy: 32, w: 21, h: 11 } },
   crewneck:  { chest: { cx: 51, cy: 41, w: 36, h: 32 }, logo: { cx: 51, cy: 34, w: 36, h: 17 } },
   cap:       { chest: { cx: 50, cy: 37, w: 17, h: 22 }, logo: { cx: 50, cy: 34, w: 24, h: 13 } },
-  tote:      { chest: { cx: 50, cy: 40, w: 27, h: 32 }, logo: { cx: 50, cy: 33, w: 36, h: 17 } },
+  tote:      { chest: { cx: 50, cy: 63, w: 34, h: 42 }, logo: { cx: 50, cy: 58, w: 38, h: 16 } },
   // Object kinds — print zones span the product's printable face (mugs,
   // totes, posters, cases are full-surface prints, unlike garment chest
-  // bands). Heights validated against the previously hand-tuned house line.
-  mug:       { chest: { cx: 50, cy: 42, w: 22, h: 50 }, logo: { cx: 50, cy: 36, w: 30, h: 26 } },
-  tumbler:   { chest: { cx: 45, cy: 44, w: 20, h: 46 }, logo: { cx: 45, cy: 38, w: 28, h: 26 } },
+  // bands). Zones measured against the 1000×1000 blank-base photos in
+  // assets/store-base/ (tote bag body y 38–94; mug face x 33–80, y 20–83 —
+  // its printable front sits right of stage centre because of the handle;
+  // tumbler body x 37–62, y 21–96). Heights validated against the
+  // previously hand-tuned house line.
+  mug:       { chest: { cx: 56, cy: 48, w: 24, h: 52 }, logo: { cx: 56, cy: 44, w: 32, h: 26 } },
+  tumbler:   { chest: { cx: 50, cy: 46, w: 20, h: 46 }, logo: { cx: 50, cy: 40, w: 24, h: 26 } },
   phonecase: { chest: { cx: 50, cy: 50, w: 34, h: 78 }, logo: { cx: 50, cy: 44, w: 44, h: 40 } },
   pin:       { chest: { cx: 50, cy: 48, w: 22, h: 28 }, logo: { cx: 50, cy: 48, w: 22, h: 28 } },
   notebook:  { chest: { cx: 50, cy: 50, w: 44, h: 80 }, logo: { cx: 50, cy: 38, w: 42, h: 30 } },
