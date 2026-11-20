@@ -142,7 +142,7 @@ function feedItem(p, label, priceCents, image) {
   const title =
     p.name +
     (color && size ? ` (${color} / ${size})` : color ? ` (${color})` : '');
-  const description = `${p.blurb || p.name} Printed on demand by the PUNICODEX Reliquary — made to order, shipped worldwide.`;
+  const description = `${p.blurb || p.name} Printed on demand by the PUNICODEX Reliquary — made to order, shipping included.`;
   const lines = [
     `<g:id>${esc(variantId)}</g:id>`,
     `<g:item_group_id>${esc(p.id)}</g:item_group_id>`,

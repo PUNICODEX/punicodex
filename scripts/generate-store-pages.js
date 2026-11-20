@@ -566,8 +566,8 @@ function renderEntrance(colls, templeId = null) {
       <span class="glyph" aria-hidden="true">◈</span>
       <h2>Merch</h2>
       <p>${meta
-        ? `${products.length} pieces from ${meta.name} — tees, hoodies, prints, canvases, mugs, stickers and relics, each built from the temple's own mascot, seal and name lockup. Printed to order, shipped worldwide.`
-        : `${colls.size} temple collections — tees, hoodies, prints, canvases, mugs, stickers and relics, each built from the temple's own mascot, seal and name lockup. Printed to order, shipped worldwide.`}</p>
+        ? `${products.length} pieces from ${meta.name} — tees, hoodies, prints, canvases, mugs, stickers and relics, each built from the temple's own mascot, seal and name lockup. Printed to order — shipping included.`
+        : `${colls.size} temple collections — tees, hoodies, prints, canvases, mugs, stickers and relics, each built from the temple's own mascot, seal and name lockup. Printed to order — shipping included.`}</p>
       <span class="go">Enter the Merch Hall →</span>
     </a>
     <a class="dept" href="${artPath}">
@@ -579,7 +579,7 @@ function renderEntrance(colls, templeId = null) {
       <span class="go">Enter the Art Department →</span>
     </a>
   </div>
-  <p class="wrap" style="padding-bottom:2rem;color:var(--dim);font-size:.85rem;text-align:center">Every piece is printed to order and shipped worldwide. <a href="/store/shipping/">Shipping</a> · <a href="/store/returns/">Returns &amp; refunds</a></p>
+  <p class="wrap" style="padding-bottom:2rem;color:var(--dim);font-size:.85rem;text-align:center">Every piece is printed to order — shipping included. <a href="/store/shipping/">Shipping</a> · <a href="/store/returns/">Returns &amp; refunds</a></p>
 </div>
 <script src="/js/pc-fx-core.js?v=1" defer></script>
 <script src="/js/pc-fx-brilliant.js?v=1" defer></script>
@@ -1166,7 +1166,7 @@ ${cards}
   })();
 })();
 </script>
-<p class="wrap" style="padding-bottom:2rem;color:var(--dim);font-size:.85rem;text-align:center">Every piece is printed to order and shipped worldwide. <a href="/store/shipping/">Shipping</a> · <a href="/store/returns/">Returns &amp; refunds</a></p>
+<p class="wrap" style="padding-bottom:2rem;color:var(--dim);font-size:.85rem;text-align:center">Every piece is printed to order — shipping included. <a href="/store/shipping/">Shipping</a> · <a href="/store/returns/">Returns &amp; refunds</a></p>
 
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
@@ -1265,7 +1265,7 @@ ${groupsHtml}
       <div class="ce-empty">No creator editions for ${esc(meta.name)} yet. When a verified creator publishes work inspired by this temple, it appears here.<br><a href="/creatives/">The Creative Marketplace →</a></div>
     </div>
   </section>
-  <p class="wrap" style="padding-bottom:3rem;color:var(--dim);font-size:.85rem">Every piece is printed to order and shipped worldwide. Curious about the name itself? <a href="${esc(meta.url)}">Enter the ${esc(meta.name)} temple →</a></p>
+  <p class="wrap" style="padding-bottom:3rem;color:var(--dim);font-size:.85rem">Every piece is printed to order — shipping included. Curious about the name itself? <a href="${esc(meta.url)}">Enter the ${esc(meta.name)} temple →</a></p>
 </div>
 <script>
 (function(){
@@ -1479,7 +1479,7 @@ function renderProduct(id, kind, product) {
       <ul>
 ${placements}
       </ul>
-      <p style="color:var(--dim);font-size:.82rem;margin-top:1rem">Printed on demand and shipped worldwide. Part of the <a href="${MERCH}/${id}/">${esc(meta.name)} collection</a> · <a href="${esc(meta.url)}">the temple itself</a>.</p>
+      <p style="color:var(--dim);font-size:.82rem;margin-top:1rem">Printed on demand — shipping included. Part of the <a href="${MERCH}/${id}/">${esc(meta.name)} collection</a> · <a href="${esc(meta.url)}">the temple itself</a>.</p>
     </div>
   </div>
 </div>
@@ -1615,7 +1615,7 @@ const POLICY_PAGES = [
     dir: 'shipping',
     title: 'Shipping Policy',
     description:
-      'How PUNICODEX Reliquary orders are produced and shipped: made to order, fulfilled by our print partner, shipped worldwide with tracking.',
+      'How PUNICODEX Reliquary orders are produced and delivered: made to order, fulfilled by our print partner, shipped with tracking — shipping included in the price.',
     heading: 'Shipping Policy',
     sections: [
       {
@@ -1626,10 +1626,10 @@ const POLICY_PAGES = [
         ],
       },
       {
-        heading: 'Worldwide delivery',
+        heading: 'Delivery & cost',
         body: [
-          'We ship worldwide through our print partner’s carrier network (postal and courier services, depending on destination). Shipping options and the exact cost for your address are shown at checkout before you pay.',
-          'After your order ships you receive a tracking link by email. Delivery estimates after production are typically 3–8 business days for North America, 5–10 business days for Europe, and 10–20 business days elsewhere — customs processing can add time outside our control.',
+          'Shipping is included in the price you see — there is no separate shipping charge at checkout. We deliver through our print partner’s carrier network (postal and courier services, depending on destination) to Australia, Canada, France, Germany, New Zealand, the United Kingdom, and the United States.',
+          'After your order ships you receive a tracking link by email. Delivery estimates after production are typically 3–8 business days for North America and Oceania, and 5–10 business days for Europe — customs processing can add time outside our control.',
         ],
       },
       {
