@@ -11,6 +11,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
+const zlib = require('node:zlib');
 
 const ROOT = path.join(__dirname, '..');
 const CATALOG = require('../store/products.json');
@@ -384,12 +385,18 @@ test('store pages carry the responsive breakpoint and canonical site nav', () =>
 
 // ── Google Merchant Center feed ──
 // The feed is the growth surface for the Reliquary; these tests pin the
-// contract that keeps Merchant from disapproving items: price must match the
-// PDP's displayed price, links must resolve to real product pages, and the
-// POD disclosure (identifier_exists=no) must be present on every item.
+// contract that keeps Merchant from disapproving items: one item per
+// purchasable VARIANT grouped by item_group_id (apparel requires size/colour
+// at variant level), price must match the PDP's displayed price, links must
+// resolve to real product pages, and the POD disclosure
+// (identifier_exists=no) must be present on every item. The committed feed
+// is gzip-compressed (Google accepts .xml.gz over URL); the deep contract —
+// counts, determinism, field presence — lives in test/merchant-feed.test.js.
 
 function parseFeedItems() {
-  const xml = read('store/merchant-feed.xml');
+  const xml = zlib
+    .gunzipSync(fs.readFileSync(path.join(ROOT, 'store', 'merchant-feed.xml.gz')))
+    .toString('utf8');
   const blocks = xml
     .split('<item>')
     .slice(1)
@@ -406,6 +413,7 @@ function parseFeedItems() {
   };
   return blocks.map((b) => ({
     id: field(b, 'id'),
+    group: field(b, 'item_group_id'),
     title: field(b, 'title'),
     link: field(b, 'link'),
     image: field(b, 'image_link'),
@@ -431,18 +439,30 @@ function expectedFeedPriceCents(p) {
   return Math.round(Number(p.price || 0) * 100);
 }
 
-test('merchant feed exists with one item per catalog product', () => {
-  assert.ok(exists('store/merchant-feed.xml'), 'store/merchant-feed.xml missing');
+test('merchant feed exists with one item per purchasable variant, grouped per product', () => {
+  assert.ok(exists('store/merchant-feed.xml.gz'), 'store/merchant-feed.xml.gz missing');
   const items = parseFeedItems();
-  assert.strictEqual(items.length, CATALOG.products.length);
-  const feedIds = new Set(items.map((i) => i.id));
+  const synced = CATALOG.products.filter((p) => p.printfulProductId);
+  let expected = 0;
+  const groups = new Set();
+  for (const p of synced) {
+    expected += Math.max(1, Object.keys(p.printfulVariants || {}).length);
+    groups.add(p.id);
+  }
+  assert.strictEqual(items.length, expected, `feed items ${items.length} != ${expected} variants`);
+  const feedGroups = new Set(items.map((i) => i.group));
+  for (const g of groups) assert.ok(feedGroups.has(g), `${g}: missing from feed`);
+  // Unsynced products (checkout would reject them) must not be advertised.
   for (const p of CATALOG.products) {
-    assert.ok(feedIds.has(p.id), `${p.id}: missing from feed`);
+    if (!p.printfulProductId) assert.ok(!feedGroups.has(p.id), `${p.id}: unsynced but advertised`);
   }
 });
 
 test('every feed link resolves to a real product page on disk', () => {
+  const seen = new Set();
   for (const item of parseFeedItems()) {
+    if (seen.has(item.link)) continue;
+    seen.add(item.link);
     assert.ok(item.link.startsWith('https://punicodex.com/store/merch/'), `${item.id}: bad link`);
     assert.ok(!item.link.includes('/store/merch/null/'), `${item.id}: null temple link`);
     const rel = item.link.replace('https://punicodex.com/store/merch/', '').replace(/\/$/, '');
@@ -452,19 +472,26 @@ test('every feed link resolves to a real product page on disk', () => {
 });
 
 test('feed prices match the PDP price logic exactly', () => {
-  const byId = new Map(parseFeedItems().map((i) => [i.id, i]));
-  for (const p of CATALOG.products.slice(0, 150)) {
-    const item = byId.get(p.id);
-    const expected = (expectedFeedPriceCents(p) / 100).toFixed(2);
-    assert.strictEqual(item.price, `${expected} USD`, `${p.id}: feed/PDP price mismatch`);
+  const byGroup = new Map();
+  for (const item of parseFeedItems()) {
+    if (!byGroup.has(item.group)) byGroup.set(item.group, []);
+    byGroup.get(item.group).push(item.price);
+  }
+  for (const p of CATALOG.products.filter((x) => x.printfulProductId).slice(0, 150)) {
+    const prices = byGroup.get(p.id);
+    assert.ok(prices && prices.length > 0, `${p.id}: no feed items`);
+    const expected = `${(expectedFeedPriceCents(p) / 100).toFixed(2)} USD`;
+    for (const price of prices) {
+      assert.strictEqual(price, expected, `${p.id}: feed/PDP price mismatch`);
+    }
   }
 });
 
 test('feed items carry the Merchant-required POD attributes', () => {
   for (const item of parseFeedItems()) {
     assert.strictEqual(item.condition, 'new', `${item.id}: condition`);
-    assert.strictEqual(item.availability, 'in stock', `${item.id}: availability`);
-    assert.strictEqual(item.brand, 'PUNICODEX', `${item.id}: brand`);
+    assert.strictEqual(item.availability, 'in_stock', `${item.id}: availability`);
+    assert.strictEqual(item.brand, 'PuniCodex', `${item.id}: brand`);
     assert.strictEqual(item.identifierExists, 'no', `${item.id}: identifier_exists`);
     assert.ok(item.title && item.title.length <= 150, `${item.id}: title length`);
     assert.ok(/^https:\/\//.test(item.image || ''), `${item.id}: image_link not https`);
@@ -477,12 +504,13 @@ test('feed items carry the Merchant-required POD attributes', () => {
 });
 
 test('merchant feed generator is idempotent', () => {
-  const before = read('store/merchant-feed.xml');
+  const before = fs.readFileSync(path.join(ROOT, 'store', 'merchant-feed.xml.gz'));
   execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'generate-merchant-feed.js')], {
     cwd: ROOT,
     encoding: 'utf8',
   });
-  assert.strictEqual(read('store/merchant-feed.xml'), before, 'feed not byte-stable');
+  const after = fs.readFileSync(path.join(ROOT, 'store', 'merchant-feed.xml.gz'));
+  assert.ok(before.equals(after), 'feed not byte-stable');
 });
 
 test('shipping + returns policy pages exist with canonical chrome and contact route', () => {

@@ -171,6 +171,11 @@ async function snap(page) {
             display: getComputedStyle(overlay).display,
             src: overlay.currentSrc || '',
             box: [Math.round(or.width), Math.round(or.height)],
+            topPct: Math.round(((or.top - stage.top) / stage.height) * 1000) / 10,
+            heightPct: Math.round((or.height / stage.height) * 1000) / 10,
+            widthPct: Math.round((or.width / stage.width) * 1000) / 10,
+            background: getComputedStyle(overlay).backgroundColor,
+            aspectRatio: getComputedStyle(overlay).aspectRatio,
           }
         : null,
       tintMix: Boolean(document.querySelector('.cfg-tint-mix')),
@@ -499,6 +504,96 @@ test('temple art room: pills, deep links, canonical swap, and global temple chro
   assert.ok(await page.locator('#art-grid-creatives').isVisible());
   assert.ok(
     (await page.locator('#art-canonical').getAttribute('href')).includes('?view=creatives')
+  );
+  await page.close();
+});
+
+test('canvas: framed preview follows the selected size (square vs tall)', async () => {
+  const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
+  await openStorePage(page, '/store/merch/zeus/canvas/');
+  await page.waitForTimeout(400);
+  let s = await snap(page);
+  assert.ok(s.src.includes('mockups'), 'canvas init shows the fleet composite');
+  const arts = await artChips(page);
+  const labels = [];
+  for (const a of arts) labels.push(await a.getAttribute('title'));
+  assert.ok(labels.includes('As shown'), `expected an "As shown" chip, got ${labels}`);
+  const mascot = arts[labels.indexOf('Mascot')];
+  await clickAndSettle(page, mascot);
+  s = await snap(page);
+  assert.ok(!s.src.includes('mockups'), `mascot must swap to the blank base (src=${s.src})`);
+  assert.ok(s.overlay && s.overlay.display !== 'none', 'framed overlay visible');
+  assert.ok(
+    s.overlay.background && s.overlay.background !== 'rgba(0, 0, 0, 0)',
+    'frame carries the white matte background'
+  );
+  // Overlay geometry = the frame: aspect-ratio style present, centered on the
+  // canvas face (topPct within the face band, not hugging the stage top).
+  assert.ok(s.overlay.aspectRatio && s.overlay.aspectRatio !== 'auto', 'frame aspect-ratio set');
+  assert.ok(s.overlay.topPct > 5 && s.overlay.topPct < 60, `frame top ${s.overlay.topPct}% off`);
+
+  // Size options must reshape the frame: click through every size and require
+  // at least two distinct frame geometries (a square 10″×10″ vs a tall
+  // 12″×36″ must not render identically — the "sizes do nothing" bug).
+  const sizes = await page.$$('#opts-size .opt');
+  assert.ok(sizes.length >= 2, 'canvas should expose size options');
+  const geometries = new Set();
+  for (const b of sizes) {
+    await clickAndSettle(page, b);
+    s = await snap(page);
+    assert.ok(s.overlay && s.overlay.display !== 'none', 'frame survives size change');
+    geometries.add(`${s.overlay.widthPct}x${s.overlay.heightPct}`);
+  }
+  assert.ok(
+    geometries.size >= 2,
+    `all ${sizes.length} canvas sizes rendered the same frame: ${[...geometries]}`
+  );
+  await page.close();
+});
+
+test('deep links: ?art= preselects and selections sync back into the URL', async () => {
+  const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
+  await openStorePage(page, '/store/merch/zeus/tee/?art=logomark&color=White');
+  await page.waitForTimeout(400);
+  let s = await snap(page);
+  assert.strictEqual(s.checkout.artworkKey, 'logomark', '?art=logomark preselected');
+  assert.strictEqual(s.activeColor, 'White', '?color=White preselected');
+  assert.ok(page.url().includes('art=logomark'), 'art param survives init');
+  const arts = await artChips(page);
+  const labels = [];
+  for (const a of arts) labels.push(await a.getAttribute('title'));
+  await clickAndSettle(page, arts[labels.indexOf('Mascot')]);
+  s = await snap(page);
+  assert.strictEqual(s.checkout.artworkKey, 'mascot');
+  assert.ok(page.url().includes('art=mascot'), 'URL tracks the new artwork pick');
+  await page.close();
+});
+
+test('cap: embroidery zone matches across colourways (no position jump)', async () => {
+  const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
+  await openStorePage(page, '/store/merch/zeus/cap/');
+  await page.waitForTimeout(400);
+  const chips = await colourChips(page);
+  assert.ok(chips.length >= 2, 'cap should have colour chips');
+  const byLabel = async (label) => {
+    for (const c of chips) if ((await c.getAttribute('title')) === label) return c;
+    return null;
+  };
+  const white = await byLabel('White');
+  assert.ok(white, 'expected a White cap chip');
+  await clickAndSettle(page, white);
+  const s = await snap(page);
+  assert.ok(s.overlay && s.overlay.display !== 'none', 'white cap overlays the mark');
+  // The fleet-measured embroidery centre sits at cy ≈ 45.5% of the stage; the
+  // pre-calibration zone (cy 37) made the mark visibly jump between the
+  // black composite photo and every other colourway.
+  assert.ok(
+    s.overlay.topPct > 32 && s.overlay.topPct < 55,
+    `cap overlay top ${s.overlay.topPct}% — outside the calibrated embroidery band`
+  );
+  assert.ok(
+    s.overlay.heightPct > 8 && s.overlay.heightPct < 30,
+    `cap overlay height ${s.overlay.heightPct}% implausible for embroidery`
   );
   await page.close();
 });

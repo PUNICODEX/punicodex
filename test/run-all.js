@@ -319,6 +319,11 @@ const SUITES = [
     name: 'Store Placement Containment Tests',
     cmd: 'node test/store-placement-containment.test.js',
   },
+  {
+    name: 'Merchant Feed Tests',
+    cmd: 'node test/merchant-feed.test.js',
+    timeout: 300000,
+  },
   { name: 'Sponsor Pitch Render Tests', cmd: 'node test/sponsor-pitch-render.test.js' },
   { name: 'Herald Scene Tests', cmd: 'node test/herald-scene.test.js' },
   { name: 'Stale Counter Tests', cmd: 'node test/stale-counters.test.js' },

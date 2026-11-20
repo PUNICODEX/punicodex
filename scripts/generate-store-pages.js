@@ -20,6 +20,7 @@ const PINS = require('./asset-pins.js');
 const ROOT = path.join(__dirname, '..');
 const CATALOG = require(path.join(ROOT, 'store', 'products.json'));
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
+const { PLACEMENTS: KIND_PLACEMENTS } = require(path.join(ROOT, 'scripts', 'generate-pod-products.js'));
 const LORE = require(path.join(ROOT, 'scripts', 'lore-catalog.json'));
 // Canonical original-script resolution — the archetype `greek` field holds the
 // legacy "—" placeholder for most non-Greek entries; never render it raw.
@@ -1424,6 +1425,23 @@ function renderProduct(id, kind, product) {
     placement: product.placement || null,
     labels: v.labels,
   };
+  // Framed-preview payload (canvas/print): the size options change the
+  // product's shape, so the configurator renders the chosen art inside a
+  // white proportioned face per size. Aspects parse from the variant labels
+  // ("10″×10″", "30×40 cm"); the face rect is the kind's measured print zone.
+  if (kind === 'canvas' || kind === 'print') {
+    const sizeAspects = {};
+    for (const label of v.labels) {
+      const m = label.match(/(\d+(?:\.\d+)?)\s*(?:″|")?\s*[×x]\s*(\d+(?:\.\d+)?)/);
+      if (m) {
+        const w = Number(m[1]);
+        const h = Number(m[2]);
+        if (w > 0 && h > 0) sizeAspects[label] = Math.round((w / h) * 1000) / 1000;
+      }
+    }
+    if (Object.keys(sizeAspects).length >= 2) cfgData.sizeAspects = sizeAspects;
+    if (KIND_PLACEMENTS[kind]) cfgData.face = KIND_PLACEMENTS[kind].chest;
+  }
   const cfgJson = JSON.stringify(cfgData).replace(/</g, '\\u003c');
 
   return `${head({

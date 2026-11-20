@@ -284,8 +284,8 @@ const RULES = [
     suites: ['Sponsor Pitch Render Tests', 'Pitch Email Tests', 'Sponsor Brain Tests'],
   },
   {
-    pattern: /^scripts\/generate-pod-products\.js$|^store\/products\.json$|^store\/placement-overrides\.json$|^test\/store-placement-containment\.test\.js$/,
-    suites: ['Store Placement Containment Tests', 'Store Configurator Data Tests', 'Store Structure Tests'],
+    pattern: /^scripts\/generate-pod-products\.js$|^store\/products\.json$|^store\/placement-overrides\.json$|^test\/store-placement-containment\.test\.js$|^scripts\/generate-merchant-feed\.js$|^store\/merchant-feed\.xml\.gz$|^test\/merchant-feed\.test\.js$/,
+    suites: ['Store Placement Containment Tests', 'Store Configurator Data Tests', 'Store Structure Tests', 'Merchant Feed Tests'],
   },
   {
     pattern: /^index\.html$|^css\/home-critical\.css$|^js\/front-court\.js$|^test\/home-front-court\.test\.js$/,

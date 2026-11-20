@@ -88,6 +88,11 @@
   // photo shows). Without it the initial selection would checkout a plain
   // art the photo never displayed.
   var NEED_DEFAULT_CHIP = MODE === 'overlay' && COMPOSITE && BAKED === null;
+  // Framed preview kinds (canvas/print): data.sizeAspects maps each size
+  // label to its width/height aspect and data.face is the product face rect
+  // on the blank base photo. The stage then renders the chosen art inside a
+  // white proportioned face per size (see applyArt).
+  var FRAME_MODE = Boolean(data.face && data.sizeAspects) && MODE === 'overlay';
   // Swap mode (object kinds) prepends a virtual "Product photo" chip so the
   // buyer can return to the original stage image; overlay stages whose
   // composite print is not choosable get the equivalent "As shown" chip.
@@ -123,18 +128,43 @@
     var b = activeBtn(colorBtns);
     return b ? b.getAttribute('data-c') : null;
   }
-  // Deep-link support: ?color=Black preselects that colourway (used by the
-  // home page's Reliquary plinths, which customise the link before the
-  // visitor arrives).
+  // Deep-link support: ?color=Black&size=12%C3%97%2016%C2%B3&art=mascot
+  // preselect that exact configuration (used by the home page's Reliquary
+  // plinths for colour, and by shared links for art/size). Art is validated
+  // against the payload; '__default' is only accepted where that chip exists.
+  // queryPreselectedColour guards the composite-truthfulness init below from
+  // stomping an explicit deep link (it would otherwise re-mark the photo's
+  // own colour active — the "?color= does nothing" regression).
+  var queryPreselectedColour = false;
   (function preselectFromQuery() {
     try {
-      var wanted = new URLSearchParams(window.location.search).get('color');
-      if (!wanted) return;
-      var match = null;
-      for (var i = 0; i < colorBtns.length; i++) {
-        if (colorBtns[i].getAttribute('data-c') === wanted) { match = colorBtns[i]; break; }
+      var q = new URLSearchParams(window.location.search);
+      var wanted = q.get('color');
+      if (wanted) {
+        var match = null;
+        for (var i = 0; i < colorBtns.length; i++) {
+          if (colorBtns[i].getAttribute('data-c') === wanted) { match = colorBtns[i]; break; }
+        }
+        if (match) {
+          queryPreselectedColour = true;
+          match.click();
+        }
       }
-      if (match) match.click();
+      wanted = q.get('size');
+      if (wanted) {
+        for (var si = 0; si < sizeBtns.length; si++) {
+          if (sizeBtns[si].getAttribute('data-s') === wanted) { sizeBtns[si].click(); break; }
+        }
+      }
+      wanted = q.get('art');
+      if (wanted) {
+        var ok = false;
+        for (var ai = 0; ai < data.artworks.length; ai++) {
+          if (data.artworks[ai].key === wanted) { ok = true; break; }
+        }
+        if (!ok && (MODE === 'swap' || NEED_DEFAULT_CHIP) && wanted === '__default') ok = true;
+        if (ok) state.artworkKey = wanted;
+      }
     } catch (e) { /* never break the PDP over a query param */ }
   })();
   function activeSize() {
@@ -160,6 +190,38 @@
   }
 
   // ── State broadcasting ──
+  // syncQuery keeps the URL shareable: every selection lands in
+  // ?art=&color=&size= so a copied link reproduces the exact configuration
+  // (canonical remains the clean product URL for search engines).
+  function syncQuery() {
+    try {
+      if (!window.history || !window.history.replaceState) return;
+      var q = new URLSearchParams(window.location.search);
+      var art = state.artworkKey;
+      if (art === '__default') {
+        if (MODE === 'swap' || NEED_DEFAULT_CHIP) q.set('art', '__default');
+        else q.delete('art');
+      } else {
+        q.set('art', art);
+      }
+      if (state.colorName) q.set('color', state.colorName);
+      else q.delete('color');
+      if (state.size != null && state.size !== undefined && String(state.size) !== 'undefined') {
+        q.set('size', state.size);
+      } else {
+        q.delete('size');
+      }
+      var qs = q.toString();
+      window.history.replaceState(
+        null,
+        '',
+        window.location.pathname + (qs ? '?' + qs : '') + window.location.hash
+      );
+    } catch (err) {
+      /* history unavailable — selection getter still works */
+    }
+  }
+
   function broadcast() {
     state.colorName = activeColor();
     state.size = activeSize() || (sizeBtns.length ? null : undefined);
@@ -176,6 +238,7 @@
       /* no CustomEvent (very old engines) — selection getter still works */
     }
     if (window.storeConfigurator) window.storeConfigurator.selection = detail;
+    syncQuery();
   }
 
   window.storeConfigurator = {
@@ -247,13 +310,52 @@
         overlayImg.draggable = false;
         stageImg.parentNode.insertBefore(overlayImg, stageImg.nextSibling);
       }
-      overlayImg.style.width = place.widthPct + '%';
-      overlayImg.style.top = place.topPct + '%';
-      overlayImg.style.left = (place.leftPct == null ? 50 : place.leftPct) + '%';
+      // Framed preview (canvas/print): the size options change the product's
+      // SHAPE (10″×10″ square vs 20″×30″ tall), and a single fleet photo can
+      // only show one of them. Render the chosen art inside a white
+      // proportioned face — aspect from the selected size, fitted inside the
+      // kind's measured face rect — so every size previews honestly instead
+      // of the photo never changing. 'As shown' keeps the fleet photo.
+      var frameAspect = null;
+      if (FRAME_MODE && state.artworkKey !== '__default') {
+        var selSize = activeSize();
+        frameAspect = (selSize && data.sizeAspects[selSize]) || null;
+        if (!frameAspect) {
+          for (var fa in data.sizeAspects) { frameAspect = data.sizeAspects[fa]; break; }
+        }
+      }
+      if (frameAspect && data.face) {
+        var fw = Math.min(data.face.w, data.face.h * frameAspect);
+        var fh = fw / frameAspect;
+        overlayImg.style.width = fw + '%';
+        overlayImg.style.aspectRatio = String(frameAspect);
+        overlayImg.style.height = 'auto';
+        overlayImg.style.top = data.face.cy - fh / 2 + '%';
+        overlayImg.style.left = data.face.cx + '%';
+        overlayImg.style.display = 'block';
+        overlayImg.style.boxSizing = 'border-box';
+        overlayImg.style.background = '#f6f4ef';
+        overlayImg.style.boxShadow = '0 3px 14px rgba(0,0,0,.28)';
+        overlayImg.style.borderRadius = '2px';
+        overlayImg.style.padding = '5%';
+        overlayImg.style.objectFit = 'contain';
+      } else {
+        overlayImg.style.width = place.widthPct + '%';
+        overlayImg.style.top = place.topPct + '%';
+        overlayImg.style.left = (place.leftPct == null ? 50 : place.leftPct) + '%';
+        overlayImg.style.aspectRatio = '';
+        overlayImg.style.display = '';
+        overlayImg.style.boxSizing = '';
+        overlayImg.style.background = '';
+        overlayImg.style.boxShadow = '';
+        overlayImg.style.borderRadius = '';
+        overlayImg.style.padding = '';
+        overlayImg.style.objectFit = '';
+      }
       if (overlayImg.getAttribute('src') !== art.src) overlayImg.setAttribute('src', art.src);
       // The overlay only ever prints on a blank garment base — never over
       // the composite photo (its print is already baked into the garment).
-      overlayImg.style.display = stageIsComposite() ? 'none' : '';
+      overlayImg.style.display = stageIsComposite() ? 'none' : frameAspect && data.face ? 'block' : '';
     } else if (stageImg) {
       if (stageImg.getAttribute('src') !== art.src) stageImg.setAttribute('src', art.src);
     }
@@ -474,7 +576,8 @@
   // then also starts on the photo's colour. Without this, the first chip
   // claimed the photo showed a colour it didn't and the first clicks seemed
   // to do nothing (the reported "colour selections don't change anything").
-  if (COMPOSITE) {
+  // An explicit ?color= deep link wins over the photo's colour.
+  if (COMPOSITE && !queryPreselectedColour) {
     var keep = compositeKeepColor();
     var initMatch = null;
     for (var ci = 0; ci < colorBtns.length; ci++) {

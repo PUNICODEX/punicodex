@@ -189,6 +189,8 @@ const PHOTO_BOUNDS = {
   tote: { x0: 23, y0: 38, x1: 77, y1: 94 }, // bag body
   mug: { x0: 36, y0: 22, x1: 78, y1: 81 }, // printable front face
   tumbler: { x0: 37.5, y0: 22, x1: 62, y1: 95 }, // body
+  cap: { x0: 18, y0: 8, x1: 82, y1: 62 }, // front crown panels above the brim seam
+  canvas: { x0: 17, y0: 17, x1: 83, y1: 84 }, // stretched canvas object on the blank base
 };
 
 test('every print zone sits inside its base-photo product bounds', () => {
@@ -207,6 +209,19 @@ test('every print zone sits inside its base-photo product bounds', () => {
           `photo bounds y ${b.y0}–${b.y1}%`
       );
     }
+  }
+});
+
+test('chest and logo zones share one vertical centre (arts never jump between picks)', () => {
+  /* The 2026-11 "changing the artwork moves it to a different place" complaint
+   * came from chest/logo zone pairs with different cy values — the mascot
+   * centred at cy 63 and the lockup at cy 58 on the tote, etc. The pair may
+   * differ by at most 1.6 points (the crewneck's intentional 39/38 split). */
+  for (const [kind, p] of Object.entries(PLACEMENTS)) {
+    assert.ok(
+      Math.abs(p.chest.cy - p.logo.cy) <= 1.6,
+      `${kind}: chest cy ${p.chest.cy} vs logo cy ${p.logo.cy} — artwork picks jump vertically`
+    );
   }
 });
 

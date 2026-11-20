@@ -141,12 +141,24 @@ const KIND_ART_POLICY = {
 // art, of any shape, can spill off the garment. The old two-preset scheme
 // (default + `tall`) let wide lockups and near-square marks overhang; the
 // zone math makes that impossible by construction.
+//
+// 2026-11 fleet calibration: the chest/logo zones below are sized to CONTAIN
+// the median print box the Printful mockup fleet actually renders per kind
+// (measured by diffing .masters/mockups/* against the blank bases — rerun
+// scripts/audit-print-boxes.js to re-derive). Before calibration the tee zone
+// height (30) clipped the mascot to ~22% width while the baked fleet photo
+// showed the same mascot at ~29% × 42%, so the default colourway and every
+// other colour visibly disagreed ("black shows a bigger mascot"); the cap
+// zone sat at cy 37 while the embroidery really prints at cy ~45.5, so
+// switching cap colourways moved the mark. Both zone pairs also share one
+// vertical centre now — picking the logomark no longer jumps the print to a
+// different height than the mascot.
 const PLACEMENTS = {
-  tee:       { chest: { cx: 50, cy: 38, w: 34, h: 30 }, logo: { cx: 50, cy: 32, w: 34, h: 16 } },
-  hoodie:    { chest: { cx: 50, cy: 40, w: 27, h: 32 }, logo: { cx: 33, cy: 32, w: 21, h: 11 } },
-  crewneck:  { chest: { cx: 51, cy: 41, w: 36, h: 32 }, logo: { cx: 51, cy: 34, w: 36, h: 17 } },
-  cap:       { chest: { cx: 50, cy: 37, w: 17, h: 22 }, logo: { cx: 50, cy: 34, w: 24, h: 13 } },
-  tote:      { chest: { cx: 50, cy: 63, w: 34, h: 42 }, logo: { cx: 50, cy: 58, w: 38, h: 16 } },
+  tee:       { chest: { cx: 50, cy: 39, w: 34, h: 44 }, logo: { cx: 50, cy: 39, w: 34, h: 18 } },
+  hoodie:    { chest: { cx: 50, cy: 36.5, w: 32, h: 30 }, logo: { cx: 50, cy: 36.5, w: 32, h: 14 } },
+  crewneck:  { chest: { cx: 51, cy: 39, w: 36, h: 32 }, logo: { cx: 50.5, cy: 38, w: 30, h: 12 } },
+  cap:       { chest: { cx: 50, cy: 45.5, w: 17, h: 17 }, logo: { cx: 50, cy: 45.5, w: 20, h: 13 } },
+  tote:      { chest: { cx: 51, cy: 64, w: 34, h: 44 }, logo: { cx: 51, cy: 64, w: 38, h: 16 } },
   // Object kinds — print zones span the product's printable face (mugs,
   // totes, posters, cases are full-surface prints, unlike garment chest
   // bands). Zones measured against the 1000×1000 blank-base photos in
@@ -154,14 +166,16 @@ const PLACEMENTS = {
   // its printable front sits right of stage centre because of the handle;
   // tumbler body x 37–62, y 21–96). Heights validated against the
   // previously hand-tuned house line.
-  mug:       { chest: { cx: 56, cy: 48, w: 24, h: 52 }, logo: { cx: 56, cy: 44, w: 32, h: 26 } },
-  tumbler:   { chest: { cx: 50, cy: 46, w: 20, h: 46 }, logo: { cx: 50, cy: 40, w: 24, h: 26 } },
-  phonecase: { chest: { cx: 50, cy: 50, w: 34, h: 78 }, logo: { cx: 50, cy: 44, w: 44, h: 40 } },
+  mug:       { chest: { cx: 57, cy: 53, w: 26, h: 56 }, logo: { cx: 57, cy: 53, w: 30, h: 26 } },
+  tumbler:   { chest: { cx: 50, cy: 48, w: 20, h: 46 }, logo: { cx: 50, cy: 48, w: 23, h: 26 } },
+  phonecase: { chest: { cx: 50, cy: 50, w: 34, h: 78 }, logo: { cx: 50, cy: 50, w: 44, h: 40 } },
   pin:       { chest: { cx: 50, cy: 48, w: 22, h: 28 }, logo: { cx: 50, cy: 48, w: 22, h: 28 } },
-  notebook:  { chest: { cx: 50, cy: 50, w: 44, h: 80 }, logo: { cx: 50, cy: 38, w: 42, h: 30 } },
-  print:     { chest: { cx: 50, cy: 50, w: 42, h: 86 }, logo: { cx: 50, cy: 40, w: 42, h: 40 } },
-  canvas:    { chest: { cx: 50, cy: 46, w: 34, h: 58 }, logo: { cx: 50, cy: 38, w: 40, h: 34 } },
-  sticker:   { chest: { cx: 50, cy: 48, w: 42, h: 62 }, logo: { cx: 50, cy: 42, w: 42, h: 40 } },
+  notebook:  { chest: { cx: 50, cy: 50, w: 44, h: 80 }, logo: { cx: 50, cy: 50, w: 42, h: 30 } },
+  print:     { chest: { cx: 50, cy: 50, w: 46, h: 86 }, logo: { cx: 50, cy: 50, w: 46, h: 40 } },
+  // Canvas face measured on canvas--standard.jpg (the blank base photo):
+  // the stretched canvas object occupies x 19.5–79.5, y 20–81 of the stage.
+  canvas:    { chest: { cx: 50, cy: 50.5, w: 56, h: 58 }, logo: { cx: 50, cy: 50.5, w: 40, h: 34 } },
+  sticker:   { chest: { cx: 50, cy: 48, w: 42, h: 62 }, logo: { cx: 50, cy: 48, w: 42, h: 40 } },
 };
 
 // Arts wider than this ratio print as a small logo, not a centered chest piece.

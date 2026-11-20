@@ -109,7 +109,11 @@ async function buildTempleComposites(id) {
     out.push(`${id}_comp-sticker.png`);
   }
 
-  // Canvas (2:3 @ 300dpi): full mascot, corner seal.
+  // Canvas (2:3 @ 300dpi): full mascot, corner seal. The seal sits a full
+  // 360px (6–7% of the face) inside the edges — gallery-wrap canvases print
+  // the design across the wrapped side edges, so a seal at the old 160px
+  // inset printed half on the front face and half on the wrap (the "logomark
+  // cut off in the corner" catch).
   {
     const [m, s] = await Promise.all([
       scaled(mascot, { w: 3300 }),
@@ -118,20 +122,24 @@ async function buildTempleComposites(id) {
     const bg = await transparentCanvas(3600, 5400);
     await compositeToFile(bg, [
       { buf: m.buf, left: center(3600, m.width), top: center(5400, m.height) },
-      { buf: s.buf, left: 3600 - 480 - 160, top: 5400 - 480 - 160 },
+      { buf: s.buf, left: 3600 - 480 - 360, top: 5400 - 480 - 360 },
     ], path.join(dir, `${id}_comp-canvas.png`));
     out.push(`${id}_comp-canvas.png`);
   }
 
-  // Tote: one cohesive centred column — lockup above, deity below, no void.
+  // Tote: one cohesive centred column — lockup above, deity below, the group
+  // vertically centred in the print file so it lands mid-bag (the old fixed
+  // tops left the column low and small).
   {
     const [l, m] = await Promise.all([
-      scaledTrimmed(lockup, { w: 2500 }),
-      scaledTrimmed(mascot, { h: 1400 }),
+      scaledTrimmed(lockup, { w: 2700 }),
+      scaledTrimmed(mascot, { h: 1500 }),
     ]);
     const bg = await transparentCanvas(3000, 3300);
-    const lockupTop = 200;
-    const mascotTop = lockupTop + l.height + 180;
+    const gap = 220;
+    const groupH = l.height + gap + m.height;
+    const lockupTop = Math.round(3300 * 0.5 - groupH / 2);
+    const mascotTop = lockupTop + l.height + gap;
     await compositeToFile(bg, [
       { buf: l.buf, left: center(3000, l.width), top: lockupTop },
       { buf: m.buf, left: center(3000, m.width), top: mascotTop },
@@ -153,16 +161,22 @@ async function buildTempleComposites(id) {
     out.push(`${id}_comp-mug.png`);
   }
 
-  // Notebook cover (A5 @ 300dpi): lockup centre, seal footer.
+  // Notebook cover (A5 @ 300dpi): lockup + seal as one centred group — the
+  // fixed tops used to strand the lockup at ~40% with a void above and a
+  // floating seal below ("no vision to make it look good").
   {
     const [l, s] = await Promise.all([
-      scaled(lockup, { w: 1400 }),
-      scaled(logomark, { w: 320 }),
+      scaledTrimmed(lockup, { w: 1500 }),
+      scaledTrimmed(logomark, { w: 340 }),
     ]);
     const bg = await transparentCanvas(1750, 2480);
+    const gap = 300;
+    const groupH = l.height + gap + s.height;
+    const lockupTop = Math.round(2480 * 0.47 - groupH / 2);
+    const sealTop = lockupTop + l.height + gap;
     await compositeToFile(bg, [
-      { buf: l.buf, left: center(1750, l.width), top: 620 },
-      { buf: s.buf, left: center(1750, s.width), top: 1900 },
+      { buf: l.buf, left: center(1750, l.width), top: lockupTop },
+      { buf: s.buf, left: center(1750, s.width), top: sealTop },
     ], path.join(dir, `${id}_comp-notebook.png`));
     out.push(`${id}_comp-notebook.png`);
   }
