@@ -24,6 +24,7 @@
  *
  * Usage: node scripts/generate-merchant-feed.js
  */
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const zlib = require('node:zlib');
@@ -94,6 +95,15 @@ function absUrl(src) {
   return `${SITE_ORIGIN}${src.startsWith('/') ? '' : '/'}${src}`;
 }
 
+/* Merchant Center rejects g:id values over 50 characters (2026-11 upload:
+ * 4 phonecase variants tripped it). Shorten deterministically — a stable
+ * content hash suffix keeps ids unique across regenerations. */
+function feedId(base) {
+  if (base.length <= 50) return base;
+  const h = crypto.createHash('sha1').update(base).digest('hex').slice(0, 8);
+  return `${base.slice(0, 41)}-${h}`;
+}
+
 // Same default-price logic as the PDP template in generate-store-pages.js:
 // spread variant prices → the "from" (minimum) price, else the flat price —
 // Googlebot reads the static PDP, so the feed must match what that shows.
@@ -127,7 +137,7 @@ function feedItem(p, label, priceCents, image) {
   const temple = p.temple || 'punicodex';
   const kind = String(p.id).split('-').pop();
   const { color, size } = label ? variantParts(label) : { color: null, size: null };
-  const variantId = label ? p.id + '__' + label.replace(/[^A-Za-z0-9]+/g, '_') : p.id;
+  const variantId = label ? feedId(p.id + '__' + label.replace(/[^A-Za-z0-9]+/g, '_')) : p.id;
   const link = `${SITE_ORIGIN}/store/merch/${temple}/${kind}/`;
   const title =
     p.name +
@@ -210,4 +220,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { build, feedItem, variantParts, feedPriceCents, TAXONOMY };
+module.exports = { build, feedItem, feedId, variantParts, feedPriceCents, TAXONOMY };

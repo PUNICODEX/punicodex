@@ -27,7 +27,9 @@ const zlib = require('node:zlib');
 
 const root = path.join(__dirname, '..');
 const CATALOG = require(path.join(root, 'store', 'products.json'));
-const { build, feedPriceCents } = require(path.join(root, 'scripts', 'generate-merchant-feed.js'));
+const { build, feedPriceCents, feedId } = require(
+  path.join(root, 'scripts', 'generate-merchant-feed.js')
+);
 
 const FEED = path.join(root, 'store', 'merchant-feed.xml.gz');
 
@@ -176,6 +178,21 @@ test('feed links resolve to real product pages', () => {
     );
   }
   assert.ok(checked.size >= 2000, `expected 2000+ distinct product links, got ${checked.size}`);
+});
+
+test('g:id values are within Merchant Center limits and unique', () => {
+  const xml = zlib.gunzipSync(fs.readFileSync(FEED)).toString('utf8');
+  const ids = parseItems(xml).map((item) => field(item, 'g:id'));
+  const seen = new Set();
+  for (const id of ids) {
+    assert.ok(id.length <= 50, `${id}: g:id longer than 50 chars (${id.length})`);
+    assert.ok(!seen.has(id), `${id}: duplicate g:id`);
+    seen.add(id);
+  }
+  // Deterministic shortening: same input → same shortened id, ≤50 chars.
+  const long = 'huitzilopochtli-phonecase__Glossy_iPhone_11_Pro_Max';
+  assert.strictEqual(feedId(long), feedId(long));
+  assert.ok(feedId(long).length <= 50);
 });
 
 console.log(`\nMerchant Feed: ${passed} passed, ${failed} failed`);
