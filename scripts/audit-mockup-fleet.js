@@ -46,8 +46,14 @@ async function main() {
       batch.map(async (id) => {
         if (scanOnly) return { id, ok: true };
         try {
-          const res = await fetch(`${MASTERS_BASE}/${id}.jpg`, { method: 'HEAD' });
-          return { id, ok: res.status === 200 };
+          // The store markup serves <picture><source …/mockups/{id}.webp> with
+          // the jpg as fallback — browsers pick the webp source, so a mockup
+          // only counts as live when BOTH formats resolve.
+          const [jpg, webp] = await Promise.all([
+            fetch(`${MASTERS_BASE}/${id}.jpg`, { method: 'HEAD' }),
+            fetch(`${MASTERS_BASE}/${id}.webp`, { method: 'HEAD' }),
+          ]);
+          return { id, ok: jpg.status === 200 && webp.status === 200 };
         } catch {
           return { id, ok: false };
         }

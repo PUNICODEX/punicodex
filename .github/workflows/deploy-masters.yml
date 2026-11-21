@@ -39,6 +39,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      # convert-images-to-webp.js shells out to python3 + PIL to build the
+      # .webp siblings the store's <picture> markup references.
+      - name: Set up Python + Pillow for WebP fleet
+        run: sudo apt-get update && sudo apt-get install -y python3-pil
+
       - name: Build the complete media fleet
         run: |
           node scripts/generate-merch-composites.js
@@ -46,6 +51,7 @@ jobs:
           node scripts/sync-masters-assets.js
           node scripts/sync-masters-legacy-root.js
           node scripts/generate-local-mockups.js
+          node scripts/convert-images-to-webp.js
 
       - name: Link the masters project
         working-directory: .masters
@@ -72,6 +78,11 @@ jobs:
                 const actual = crypto.createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex');
                 if (actual !== expected) throw new Error('Production bytes do not match the built mockup');
                 console.log('Production mockup verified byte-for-byte:', url);
+                // The store serves <picture><source …/zeus-tee.webp> — the fleet
+                // is broken when the webp sibling is missing, even with jpg OK.
+                const webp = await fetch('https://punycodex-masters.vercel.app/mockups/zeus-tee.webp');
+                if (!webp.ok) throw new Error(`WebP sibling HTTP ${webp.status}`);
+                console.log('Production webp sibling verified:', webp.status);
                 return;
               } catch (error) {
                 if (attempt === 12) throw error;
