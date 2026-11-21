@@ -49,14 +49,18 @@ async function render(product) {
   const left = Math.round((width * (placement.leftPct ?? 50)) / 100 - overlayMeta.width / 2);
   const top = Math.round((height * placement.topPct) / 100);
   const output = path.join(OUT, `${product.id}.jpg`);
+  const outputWebp = path.join(OUT, `${product.id}.webp`);
   const archived = path.join(ARCHIVE, `${product.id}.jpg`);
   fs.mkdirSync(OUT, { recursive: true });
   fs.mkdirSync(ARCHIVE, { recursive: true });
   if (fs.existsSync(output) && !fs.existsSync(archived)) fs.copyFileSync(output, archived);
-  await base
-    .composite([{ input: overlay, left, top }])
-    .jpeg({ quality: 91, mozjpeg: true })
-    .toFile(output);
+  // The store markup serves <picture><source …/mockups/{id}.webp> with the
+  // jpg as fallback — the webp sibling is part of the fleet, so the mockup
+  // pipeline owns both formats (the masters host only carries what the
+  // machine that deploys produced; .masters is gitignored).
+  const composited = await base.composite([{ input: overlay, left, top }]).toBuffer();
+  await sharp(composited).jpeg({ quality: 91, mozjpeg: true }).toFile(output);
+  await sharp(composited).webp({ quality: 88 }).toFile(outputWebp);
   product.mockupImage = `${MASTERS}/${product.id}.jpg`;
   return true;
 }

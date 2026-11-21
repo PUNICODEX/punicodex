@@ -39,11 +39,8 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      # convert-images-to-webp.js shells out to python3 + PIL to build the
-      # .webp siblings the store's <picture> markup references.
-      - name: Set up Python + Pillow for WebP fleet
-        run: sudo apt-get update && sudo apt-get install -y python3-pil
-
+      # generate-local-mockups.js owns both fleet formats: it writes the
+      # .jpg and the .webp sibling the store's <picture> markup serves.
       - name: Build the complete media fleet
         run: |
           node scripts/generate-merch-composites.js
@@ -51,7 +48,6 @@ jobs:
           node scripts/sync-masters-assets.js
           node scripts/sync-masters-legacy-root.js
           node scripts/generate-local-mockups.js
-          node scripts/convert-images-to-webp.js
 
       - name: Link the masters project
         working-directory: .masters
