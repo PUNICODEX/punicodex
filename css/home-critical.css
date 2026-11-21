@@ -1014,39 +1014,31 @@ body.menu-open {
 }
 
 /* ─── III · The Gallery ─── */
+/* Orientation-aware collage: CSS columns let every piece keep its natural
+   aspect — portraits hang tall beside wide landscapes instead of being
+   cropped into uniform slits. */
 
 .fc-gallery {
     padding: clamp(3.5rem, 9vh, 6rem) 0;
 }
 
 .fc-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: 200px;
-    gap: 14px;
+    column-count: 3;
+    column-gap: 14px;
     margin-top: 2.4rem;
 }
 
 .fc-art {
     position: relative;
     overflow: hidden;
-    margin: 0;
+    margin: 0 0 14px;
     border: 1px solid rgba(212, 175, 55, 0.16);
-    grid-column: span 2;
-}
-
-.fc-art--tall {
-    grid-row: span 2;
-}
-
-.fc-art--wide {
-    grid-column: span 4;
+    break-inside: avoid;
 }
 
 .fc-art img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
     filter: saturate(0.88) brightness(0.92);
     transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
@@ -1500,12 +1492,7 @@ body.menu-open {
 
 @media (max-width: 1024px) {
     .fc-gallery-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .fc-art,
-    .fc-art--wide {
-        grid-column: span 2;
+        column-count: 2;
     }
 
     .fc-shelf {
@@ -1534,17 +1521,12 @@ body.menu-open {
     }
 
     .fc-gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 170px;
+        column-count: 2;
+        column-gap: 10px;
     }
 
-    .fc-art,
-    .fc-art--wide {
-        grid-column: span 2;
-    }
-
-    .fc-art--tall {
-        grid-row: span 1;
+    .fc-art {
+        margin-bottom: 10px;
     }
 
     .fc-duo,
