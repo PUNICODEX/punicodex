@@ -75,6 +75,22 @@ async function fetchOriginal(originalPath) {  if (/^https?:\/\//.test(originalPa
 
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
+  // Scheduled-CI resilience: without DATABASE_URL the operational store is a
+  // bare SQLite file with no creative_assets table — an environment skip,
+  // not a sync failure (exit 0 keeps the nightly job green and, unlike a
+  // throw, can never rewrite the committed index from an empty local DB).
+  // A missing/unreachable store WHEN DATABASE_URL is configured is a real
+  // production fault and must still fail loudly.
+  try {
+    await dbAll('SELECT id FROM creative_assets LIMIT 1');
+  } catch (err) {
+    if (process.env.DATABASE_URL) throw err;
+    console.log(
+      `Creative sync skipped: operational store unavailable (${err.message}). ` +
+        'Set DATABASE_URL (or run db-init) to enable the nightly sync.',
+    );
+    return;
+  }
   const rows = await dbAll(`
     SELECT a.id, a.title, a.original_path, a.inspiration_entry_id, a.creator_id
     FROM creative_assets a
