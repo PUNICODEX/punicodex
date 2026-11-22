@@ -4741,6 +4741,19 @@ function createFlagship(templeId, options = {}) {
       safeCopyFileSync(p, path.join(backupDir, f));
     }
   }
+  // Self-prune: snapshots are copies of GENERATED pages (canonical sources
+  // live in type/js + templates/), so anything but the newest is dead weight
+  // — left unbounded this accumulated ~27 GB across 597 temples.
+  const BACKUP_KEEP = 1;
+  const backupRoot = path.join(siteDir, '.backup');
+  const snaps = fs
+    .readdirSync(backupRoot, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && /^\d+$/.test(e.name))
+    .map((e) => e.name)
+    .sort();
+  for (const ts of snaps.slice(0, Math.max(0, snaps.length - BACKUP_KEEP))) {
+    fs.rmSync(path.join(backupRoot, ts), { recursive: true, force: true });
+  }
 
   // Content-addressed pins for the temple's own styles.css/script.js:
   // both are rebuilt per bake, and the pages reference them with ?v= pins
