@@ -1,8 +1,8 @@
 # PuniCodex Oracle — Model Card
 
 **Model family:** PuniCodex Oracle (specialized language model)  
-**Data version:** 2.0.168  
-**Generated:** 2026-11-19T14:49:45.605Z  
+**Data version:** 2.0.169  
+**Generated:** 2026-11-22T03:00:23.833Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -72,8 +72,8 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 6,042 training documents (1,158,260 whitespace tokens).
-- `data/corpus/pretrain-validation.jsonl` — 328 validation documents (62,292 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 6,042 training documents (1,158,731 whitespace tokens).
+- `data/corpus/pretrain-validation.jsonl` — 328 validation documents (62,308 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 
 Documents are drawn from structured entry records, flagship lore, original-script provenance, pronunciation notes, the source catalog, mythology synthesis, oracle reflections, symbolic correspondences, and scientific analogies. Strip HTML and normalize whitespace before tokenization. This step teaches the model the domain's scripts, diacritics, scholarly vocabulary, and canonical source style before chat-format SFT.

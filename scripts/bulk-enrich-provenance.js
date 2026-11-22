@@ -474,7 +474,7 @@ function generateJapanese(entry, archetype) {
       `The name is written with the kanji ${originalScript}.`,
       'Each kanji carries both a semantic meaning and Sino-Japanese (on\'yomi) and native Japanese (kun\'yomi) readings.',
       'Hepburn romanisation with macron marks long vowels, which the ASCII form loses.',
-      `The Unicode restoration ${name} is used for DNS because the kanji form is not supported in the .com IDN table.`,
+      `The Unicode restoration ${name} is used for DNS as the primary scholarly form; the kanji form is registrable in .com as an internationalised domain (Han is in the Verisign IDN table), but the romanised form stays primary for cross-script recognisability.`,
     ],
     etymology: deriveEtymology(entry, archetype),
     semantics: deriveSemantics(entry, archetype),
@@ -484,7 +484,7 @@ function generateJapanese(entry, archetype) {
     uncertainties: [
       'Historical pitch accent and the exact chronology of on\'yomi borrowings vary by text and dialect.',
     ],
-    dnsNotes: `The Unicode restoration ${name} preserves the Hepburn macron; the kanji form is not registrable in .com.`,
+    dnsNotes: `The Unicode restoration ${name} preserves the Hepburn macron; the kanji form is likewise registrable in .com as an internationalised domain.`,
     defaultSources: ['Joyō Kanji Table', 'Hepburn Romanisation Standard', 'Kojiki'],
     reviewStatus: 'canonical',
   });
@@ -553,7 +553,7 @@ function generateSanskrit(entry, archetype) {
       `Sanskrit ${transliteration} is written ${originalScript} in Devanagari.`,
       'Each aksara combines a consonant with an inherent or explicit vowel.',
       'IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.',
-      'The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.',
+      'The Devanagari form is registrable in .com as an internationalised domain (the Verisign IDN table includes Devanagari); the romanised IAST form stays primary for scholarly consistency.',
     ],
     etymology: deriveEtymology(entry, archetype),
     semantics: deriveSemantics(entry, archetype),
@@ -561,10 +561,21 @@ function generateSanskrit(entry, archetype) {
       'Vedic accent and exact historical morphology are reconstructed from metrical and grammatical evidence.',
       'Schwa deletion in connected speech means the final short -a is often not phonetically realised.',
     ],
-    dnsNotes: `The IAST form ${transliteration} uses registrable Latin diacritics; the Devanagari form is not supported in .com.`,
+    dnsNotes: `The IAST form ${transliteration} uses registrable Latin diacritics; the Devanagari form is likewise registrable in .com as an internationalised domain.`,
     defaultSources: ['Monier-Williams Sanskrit-English Dictionary', 'Macdonell, Sanskrit Grammar for Students'],
     reviewStatus: 'canonical',
   });
+}
+
+
+function norseFeaturePhrase(name) {
+  const feats = [];
+  if (/[Þþ]/.test(name)) feats.push('Thorn (Þ)');
+  if (/ð/.test(name)) feats.push('eth (ð)');
+  if (/[ǫö]/.test(name)) feats.push('o-umlaut (ö/ǫ)');
+  if (/[óáíúé]/.test(name)) feats.push('acute-accented vowels');
+  if (/rr/.test(name)) feats.push('geminate rr');
+  return feats.length ? feats.join(', ') : 'extended Latin letters';
 }
 
 function generateNorse(entry, archetype, existing) {
@@ -587,10 +598,10 @@ function generateNorse(entry, archetype, existing) {
     transliterationScheme: 'normalized Old Norse',
     signs: runeSigns(originalScript),
     steps: [
-      `The Younger Futhark form ${originalScript} provides a Viking-Age runic attestation or normalized reconstruction.`,
+      `The Younger Futhark form ${originalScript} gives the name in Viking-Age runic letters; where no contemporary inscription of the name survives, this reading is a normalized reconstruction.`,
       'Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.',
       'The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).',
-      `The Unicode restoration ${name} uses Thorn (Þ) and accented vowels registrable in .com.`,
+      `The Unicode restoration ${name} uses ${norseFeaturePhrase(name)} registrable in .com.`,
     ],
     etymology: deriveEtymology(entry, archetype),
     semantics: deriveSemantics(entry, archetype),
@@ -598,7 +609,7 @@ function generateNorse(entry, archetype, existing) {
       'Runic vowel values are ambiguous because the reduced runic alphabet conflates several vowel qualities.',
       'Many names are attested only in later manuscripts, not in contemporary runic inscriptions.',
     ],
-    dnsNotes: `The Unicode restoration ${name} uses registrable Thorn and vowel accents; the runic form is not used because runic TLD support is impractical.`,
+    dnsNotes: `The Unicode restoration ${name} uses registrable ${norseFeaturePhrase(name)}; the runic form is not used because runic TLD support is impractical.`,
     defaultSources: ['Zoëga, A Concise Dictionary of Old Icelandic', 'Cleasby-Vigfusson, An Icelandic-English Dictionary', 'Poetic Edda', 'Prose Edda'],
     reviewStatus: 'canonical',
   });

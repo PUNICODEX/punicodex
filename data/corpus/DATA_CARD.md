@@ -1,7 +1,7 @@
 # PuniCodex AI Training Corpus — Data Card
 
-**Data version:** 2.0.168  
-**Generated:** 2026-11-19T14:49:45.605Z  
+**Data version:** 2.0.169  
+**Generated:** 2026-11-22T03:00:23.833Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -28,13 +28,13 @@ This corpus is the foundational training and evaluation data for a specialized A
 | oracle-doctrine-examples.jsonl | 3,378 | 8.38 MB | Philological-doctrine instruction examples: diacritic semantics, script honesty, restoration-vs-ASCII, doctrine boundaries (Phase 11b). |
 | symbolic-correspondences.jsonl | 1,237 | 749.4 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
 | scientific-analogies.jsonl | 1,500 | 1.04 MB | Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13). |
-| chat-train.jsonl | 67,040 | 91.96 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
+| chat-train.jsonl | 67,040 | 91.97 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
 | chat-eval.jsonl | 16,848 | 23.12 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
 | MODEL_CARD.md | 79 | 4.4 KB | Model card with training recipe, evaluation plan, and hardware guidance (Phases 14-15). |
 | pretrain.jsonl | 6,042 | 7.89 MB | Raw-text continual pretraining corpus, 95% split (Phase 15). |
-| pretrain-validation.jsonl | 328 | 434.4 KB | Held-out raw-text validation split, 5% (Phase 15). |
+| pretrain-validation.jsonl | 328 | 434.5 KB | Held-out raw-text validation split, 5% (Phase 15). |
 | huggingface/train.jsonl | 6,042 | 7.09 MB | HuggingFace-compatible continual pretraining split (Phase 15). |
-| huggingface/validation.jsonl | 328 | 389.9 KB | HuggingFace-compatible validation split (Phase 15). |
+| huggingface/validation.jsonl | 328 | 390.0 KB | HuggingFace-compatible validation split (Phase 15). |
 | manifest.json | 337 | 10.6 KB | Machine-readable corpus manifest. |
 
 ## Phase Summary

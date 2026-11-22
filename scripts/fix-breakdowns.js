@@ -29,7 +29,7 @@ const letoOld = `      {
         "char": "o",
         "to": "ō",
         "type": "length",
-        "note": "Omega: long omicron"
+        "note": "Omega: the long o"
       }
     ]
   },
@@ -40,7 +40,7 @@ const letoNew = `      {
         "char": "e",
         "to": "ē",
         "type": "length",
-        "note": "Eta: long epsilon"
+        "note": "Eta: the long e"
       },
       {
         "char": "t",
@@ -52,7 +52,7 @@ const letoNew = `      {
         "char": "o",
         "to": "ō",
         "type": "length",
-        "note": "Omega: long omicron"
+        "note": "Omega: the long o"
       }
     ]
   },
@@ -77,7 +77,7 @@ const mnemosyneYOld = `      {
         "char": "e",
         "to": "ē",
         "type": "length",
-        "note": "Eta: long epsilon"
+        "note": "Eta: the long e"
       }
     ],
     "etymology":`;
@@ -98,7 +98,7 @@ const mnemosyneYNew = `      {
         "char": "e",
         "to": "ē",
         "type": "length",
-        "note": "Eta: long epsilon"
+        "note": "Eta: the long e"
       }
     ],
     "etymology":`;

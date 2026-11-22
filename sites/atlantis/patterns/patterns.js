@@ -222,14 +222,18 @@
       card.tabIndex = 0;
       card.setAttribute('role', 'button');
       card.setAttribute('aria-label', 'Show ' + ind.name + ' in the pattern wheel');
+      // Count sisters, excluding this temple — the detail panel renders the
+      // same quantity ('N aligned temples share this pattern'), so both
+      // surfaces must agree or the page contradicts itself by one.
+      var sisterCount = ind.members.filter(function (m) { return m.id !== data.id; }).length;
       card.innerHTML =
         '<div class="patterns-index-card-bar" style="background:' + sectorColor(ind.sector) + '"></div>' +
         '<div class="patterns-index-card-body">' +
         '<div class="patterns-index-card-sector">' + sectorName(ind.sector) + '</div>' +
         '<h3 class="patterns-index-card-name">' + ind.name + '</h3>' +
         '<p class="patterns-index-card-tagline">' + ind.tagline + '</p>' +
-        '<div class="patterns-index-card-meta"><span>' + ind.members.length +
-        (ind.members.length === 1 ? ' temple' : ' temples') + '</span>' +
+        '<div class="patterns-index-card-meta"><span>' + sisterCount +
+        (sisterCount === 1 ? ' temple' : ' temples') + '</span>' +
         '<span class="weight">' + weightLabel(ind.weight) + '</span></div>' +
         '</div>';
       card.addEventListener('click', function () {

@@ -1254,7 +1254,20 @@ function analyzeFeatures(entry) {
     if (/[ʿʾ]/.test(unicode)) features.push('Semitic pharyngeal letters');
     if (/[ḥṣṭḍẓ]/.test(unicode.toLowerCase())) features.push('emphatic consonants');
     if (/[āīūēō]/.test(unicode)) features.push('macron-length vowels');
-    if (/[áéíóú]/.test(unicode)) features.push('acute stress marks');
+    if (/[áéíóú]/.test(unicode)) {
+      // The acute means different things by tradition: tone in Mandarin,
+      // stress in Norse and Slavic romanisation, and merely acute where
+      // neither claim is safe. One blanket label mislabels every non-Greek
+      // page that borrows it (e.g. Lóngwáng's á is Tone 2, not stress).
+      const p = entry.pantheon || '';
+      features.push(
+        p === 'chinese' || p === 'taoist'
+          ? 'tone marks (Mandarin tones)'
+          : p === 'norse' || p === 'slavic'
+            ? 'acute stress marks'
+            : 'acute accent marks'
+      );
+    }
     if (/[ṃṇñṅ]/.test(unicode.toLowerCase())) features.push('nasal retroflexes');
     if (/[śṣ]/.test(unicode)) features.push('palatal/retroflex sibilants');
   }
@@ -1903,7 +1916,7 @@ function buildQuickFactsSection(entry, catalogEntry, sectionNumber = 1) {
   const citedN = primaryN > 0 ? primaryN : totalCited;
   facts.push({
     dt: primaryN > 0 ? 'Primary Sources' : 'Cited Works',
-    dd: `<a href="#sources" style="color:var(--primary,#d4af37)">${citedN} cited →</a>`,
+    dd: `<a href="#sources" style="color:var(--primary,#d4af37)">${citedN} ${primaryN > 0 ? `primary source${citedN === 1 ? '' : 's'}` : 'cited works'} →</a>`,
   });
   const rows = facts
     .map(
@@ -2411,11 +2424,18 @@ function buildFaqItems(entry, catalogEntry) {
     return sentence;
   };
   const items = [];
-  if (catalogEntry?.archaeology || catalogEntry?.cult) {
-    const basis = firstSentence(catalogEntry?.archaeology || catalogEntry?.cult);
+  if (catalogEntry?.cult) {
     items.push({
       q: `How do we know how ${entry.unicode} was worshipped?`,
-      a: `${basis} <a href="#cult">The full cult record →</a>`,
+      a: `${firstSentence(catalogEntry.cult)} <a href="#cult">The full cult record →</a>`,
+    });
+  } else if (catalogEntry?.archaeology) {
+    // No cult record: ask the question the archaeology can actually answer
+    // (audit: the worship question was being answered with an archaeology
+    // paragraph on every page whose catalog entry carries both sections).
+    items.push({
+      q: `What does the material record of ${entry.unicode} actually show?`,
+      a: `${firstSentence(catalogEntry.archaeology)} <a href="#places">The full record →</a>`,
     });
   }
   const sourceNames = (catalogEntry?.sources || []).map((s) => (s.name || s).toString());
@@ -4402,7 +4422,7 @@ function buildPatternsIndexStatic(payload) {
         `<div class="patterns-index-card-sector">${escapeHtml(sectorName)}</div>` +
         `<h3 class="patterns-index-card-name">${escapeHtml(ind.name)}</h3>` +
         `<p class="patterns-index-card-tagline">${escapeHtml(ind.tagline)}</p>` +
-        `<div class="patterns-index-card-meta"><span>${ind.members.length}${ind.members.length === 1 ? ' temple' : ' temples'}</span>` +
+        `<div class="patterns-index-card-meta"><span>${others.length}${others.length === 1 ? ' temple' : ' temples'}</span>` +
         `<span class="weight">${patternWeightLabel(ind.weight)}</span></div>` +
         links +
         `</div></div>`
